@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "variant_id": "01a16685-effb-70a3-bb35-504ed01cf43c",
+  "written_at": "2026-10-23T02:10:16.240Z",
+  "model": {
+    "name": "Qwen X",
+    "upstream_identity": null,
+    "evidence": {
+      "architecture": "qwen2",
+      "author": null,
+      "base_model": null,
+      "config_hash": null,
+      "parent_hashes": [],
+      "tokenizer_hash": null
+    }
+  },
+  "distribution": {
+    "source_id": "0192f000-0000-7000-8000-00000000f001",
+    "upstream_namespace": "local",
+    "upstream_model_id": "qwen#Qwen X",
+    "license_id": null
+  },
+  "revision": {
+    "revision_key": "content:714d13528a2c1d8e1973b94de6db6207bca6d9ad51658c782f7a7a3f7226c636",
+    "manifest_hash": "714d13528a2c1d8e1973b94de6db6207bca6d9ad51658c782f7a7a3f7226c636",
+    "upstream_commit": null
+  },
+  "variant": {
+    "format": "GGUF",
+    "quantization": "Q8_0",
+    "architecture": "qwen2",
+    "capabilities": []
+  },
+  "artifacts": [
+    {
+      "filename": "README.md",
+      "role": "other",
+      "sha256": "504dc76a888de8c93dd8f4fc1ef1753750cfb46d357d68c36b248a089236cae8",
+      "size_bytes": 8,
+      "required": false,
+      "blob": "blobs/sha256/50/504dc76a888de8c93dd8f4fc1ef1753750cfb46d357d68c36b248a089236cae8"
+    },
+    {
+      "filename": "mmproj-qwen-x-f16.gguf",
+      "role": "mmproj",
+      "sha256": "853e748972f37813268395ae19c05e0cbe75e6d8c5f8a4c1f23477523f2cd837",
+      "size_bytes": 604,
+      "required": true,
+      "blob": "blobs/sha256/85/853e748972f37813268395ae19c05e0cbe75e6d8c5f8a4c1f23477523f2cd837"
+    },
+    {
+      "filename": "qwen-x-Q8_0.gguf",
+      "role": "weights",
+      "sha256": "feb400fcfb7b9c3a6b80ef3423176954784e1ba57c39432c6d0ef66bd90b14e6",
+      "size_bytes": 5107,
+      "required": true,
+      "blob": "blobs/sha256/fe/feb400fcfb7b9c3a6b80ef3423176954784e1ba57c39432c6d0ef66bd90b14e6"
+    }
+  ]
+}

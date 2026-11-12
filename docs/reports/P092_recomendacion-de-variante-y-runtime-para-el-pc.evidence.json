@@ -1,0 +1,95 @@
+{
+  "prompt_id": "P092",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "c44182977cc24d819d82da0ac210a5c4b169063ffbd1da6d1ad740d3308b7958",
+  "changed_files": [
+    "crates/larm-core/src/lib.rs",
+    "crates/larm-core/src/recommendation.rs",
+    "crates/larm-core/tests/recommendation.rs",
+    "crates/larm-domain/src/evaluation.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/tests/evaluation.rs",
+    "tests/fixtures/evaluation-reference.json",
+    "tools/p092_evidence.py",
+    "tools/p092_schema_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P092-PURE-COMPOSER",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --test evaluation -p larm-core --test recommendation --offline -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-core/src/recommendation.rs:20c7d439a19fefe31b566e7d60eb0041d9b40bd88f8c1c4575399748b68e0930",
+        "crates/larm-core/tests/recommendation.rs:add2e5bdebf5a2a5a189583482ed6a5e8dc5ff3d59e313ed95eb039292ea385b",
+        "crates/larm-core/src/lib.rs:57b96004b3fbdaa05c48f6a42f7bae3d6b9ee64f516523cda17a9d0a8fe40813",
+        "crates/larm-domain/src/evaluation.rs:b77d70d012c26d1dc86a2e80f145d93d9e3fe5b9f7bce750d6eefb455eba8944",
+        "crates/larm-domain/tests/evaluation.rs:f451aeb3004a1ef1ea34cb940329c170c67baad6fb87f51f8a6aeeb096083ff1",
+        "crates/larm-domain/src/lib.rs:a9f2231c441ba56ace45ea8ff9c97852b5e85a447ce1ecb9c2333e4e1ff93a19",
+        "tests/fixtures/evaluation-reference.json:8dab44e9b82545382bad4251a62b8bb1588138a40f02c9ab9ca0d100722ff952"
+      ],
+      "expected": "Tupla completa ligada a compatibilidad/contexto; gates y coverage; ranking con/sin evaluación comparable, pesos explícitos, fuentes equivalentes, top-N y empates deterministas. Fixtures sintéticas, no cualificación/importación.",
+      "observed": "exit=0; Compiling larm-core v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-core) | Finished `test` profile [unoptimized + debuginfo] target(s) in 28.96s | Running tests\\recommendation.rs (target\\debug\\deps\\recommendation-6ecb051c1ef22d88.exe) | Running tests\\evaluation.rs (target\\debug\\deps\\evaluation-a983885cabb9ab38.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P092_runs/P092-PURE-COMPOSER.log#sha256=e5017c73f4de16b959ea36fe121917a423eb28738aea659b4c8a7931965dd091"
+      ]
+    },
+    {
+      "id": "P092-EVALUATION-WIRE",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p092_schema_evidence.py",
+      "fixture_hashes": [
+        "tests/fixtures/evaluation-reference.json:8dab44e9b82545382bad4251a62b8bb1588138a40f02c9ab9ca0d100722ff952",
+        "docs/contracts/schemas/domain.schema.json:384bed4e270a7011471d185bf3fc647f7beefde7266c8e5cf0608ab5615150c0"
+      ],
+      "expected": "El fixture y los nullable explícitos cumplen el schema ya publicado; campos ausentes/extra, enums y tipos inválidos se rechazan. No autentica el origen.",
+      "observed": "exit=0; {\"status\": \"PASS\", \"checks\": 28, \"scope\": \"Existing wire representation only; numerical scale and comparability are Rust behavior tests, no authenticated external import\"}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P092_runs/P092-EVALUATION-WIRE.log#sha256=362631d54bfd4ed399c8d8568f53f93bea668c81c55ada544ea65dd7e6fc8292"
+      ]
+    },
+    {
+      "id": "P092-ARCHITECTURE",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/check_architecture.py",
+      "fixture_hashes": [],
+      "expected": "Grafo contractual intacto; Core usa dominio/SDK existentes, sin dependencias nuevas.",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\", | \"crates_checked\": 17, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P092_runs/P092-ARCHITECTURE.log#sha256=7030a5f42ac2879d9540006e802081842cbecfaf13af67bcc1b6a42f68a4468e"
+      ]
+    },
+    {
+      "id": "P092-PACKAGE-COPIES",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/package_copy.py check",
+      "fixture_hashes": [],
+      "expected": "Las copias siguen siendo idénticas al paquete 3.12.1, sin revisión normativa nueva.",
+      "observed": "exit=0; PASS 78 copias idénticas al paquete 3.12.1",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P092_runs/P092-PACKAGE-COPIES.log#sha256=f47e99470b4cf8be433e53c52f27d326663f1f744b53f6a1425782dcb8bc1d10"
+      ]
+    },
+    {
+      "id": "P092-REAL-QUALIFIED-CANDIDATES",
+      "kind": "REAL",
+      "command": "Componer candidatos desde catálogo/compatibilidad/benchmark cualificados en Windows y la política efectiva; importar evaluación mediante P116 y conectar Search antes de aceptar Descubrir.",
+      "fixture_hashes": [],
+      "expected": "Tuplas físicas y referencias externas autorizadas llegan al compositor y producen ranking y razones verificables en la app.",
+      "observed": "NO EJECUTADA: P044/P091 no tienen REAL_PASS integral; faltan el productor P116 autenticado, composición de candidatos físicos y conexión con Search. El módulo puro no los sustituye.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "Preparación independiente: sin endpoint nuevo, importación externa, permisos de ejecución, promoción ni UI de recomendaciones activada.",
+    "dependencia P044 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P091 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-30T13:47:47.973Z"
+}

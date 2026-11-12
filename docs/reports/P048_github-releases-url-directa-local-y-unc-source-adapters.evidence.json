@@ -1,0 +1,188 @@
+{
+  "prompt_id": "P048",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "0e7e5e6a3caafba05156760623a640e8e668cff4dfceeb42f2c1ff3ae4fea7df",
+  "changed_files": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "adapters/source/p048/Cargo.toml",
+    "adapters/source/p048/package.py",
+    "adapters/source/p048/src/lib.rs",
+    "adapters/source/p048/src/main.rs",
+    "docs/adapters/p048-source-adapters.md",
+    "docs/contracts/REVISION_3_6_0_P048.md",
+    "docs/contracts/source-profiles.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P048_github-releases-url-directa-local-y-unc-source-adapters.evidence.json",
+    "docs/reports/P048_github-releases-url-directa-local-y-unc-source-adapters.md",
+    "docs/spec/PACKAGE_COPY_HASHES.json",
+    "docs/spec/manifest.json",
+    "tools/p048_evidence.py",
+    "tools/p048_live_probe.py",
+    "tools/p048_package_smoke.py"
+  ],
+  "tests": [
+    {
+      "id": "P048-RUST-FOCAL",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-source-p048",
+      "fixture_hashes": [
+        "adapters/source/p048/Cargo.toml:076512362b947973240fd1ab1058e24a96682a211a94cc38b69ddbde72378ef3",
+        "adapters/source/p048/src/lib.rs:46e13dd619f3ad7c6389caf4d9d9e8e94b9c2dbc0c00c4173a98b99ae6cecdc5",
+        "adapters/source/p048/src/main.rs:64ae26d6a77cb75923e9c7b4b8e2e65f5dc282a125d13bbc4958b20c08c186b5",
+        "adapters/source/p048/package.py:5edc3debb44fda3c7565679203bc61628593848dd5caefdf4212ce81515cc33d",
+        "tools/p048_package_smoke.py:90b33655e152fec02cf5add8864602cc19a17c82ea1f72d16daf94faf5fcfa99",
+        "tools/p048_live_probe.py:68d4b694156946935fd6f81b763511c526779417043f5b510854c7db188d0252",
+        "docs/adapters/p048-source-adapters.md:5d72f8bcb0696a8a3e4a0192977a41a4e298446cb4076fa9aab51ef10fecfa31",
+        "docs/contracts/source-profiles.json:dc066f7473b36e192b7858e5fabfa46b56475292bb4f1d2c5518ef620e953254",
+        "docs/contracts/REVISION_3_6_0_P048.md:f9e6133efd3547b53d78560e424758bb52ac0187f22b863b4083042056f63e70"
+      ],
+      "expected": "Las pruebas focales de seguridad de rutas, UNC, HEAD/range, límites, rates de GitHub e indexado P017 pasan en Windows.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 19.94s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_source_p048-2b9a60375d599802.exe) | Running unittests src\\main.rs (target\\debug\\deps\\larm_source_p048-c8309af5c9169e0d.exe) | Doc-tests larm_source_p048",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P048_runs/P048-RUST-FOCAL.log#sha256=dd6436f87496eeeed24e3561ffc79a0c978e471ee22769588185985fe667a2d8"
+      ]
+    },
+    {
+      "id": "P048-CLIPPY-FOCAL",
+      "kind": "UNIT",
+      "command": "cargo clippy -p larm-source-p048 --all-targets -- -D warnings",
+      "fixture_hashes": [
+        "adapters/source/p048/Cargo.toml:076512362b947973240fd1ab1058e24a96682a211a94cc38b69ddbde72378ef3",
+        "adapters/source/p048/src/lib.rs:46e13dd619f3ad7c6389caf4d9d9e8e94b9c2dbc0c00c4173a98b99ae6cecdc5",
+        "adapters/source/p048/src/main.rs:64ae26d6a77cb75923e9c7b4b8e2e65f5dc282a125d13bbc4958b20c08c186b5",
+        "adapters/source/p048/package.py:5edc3debb44fda3c7565679203bc61628593848dd5caefdf4212ce81515cc33d",
+        "tools/p048_package_smoke.py:90b33655e152fec02cf5add8864602cc19a17c82ea1f72d16daf94faf5fcfa99",
+        "tools/p048_live_probe.py:68d4b694156946935fd6f81b763511c526779417043f5b510854c7db188d0252",
+        "docs/adapters/p048-source-adapters.md:5d72f8bcb0696a8a3e4a0192977a41a4e298446cb4076fa9aab51ef10fecfa31",
+        "docs/contracts/source-profiles.json:dc066f7473b36e192b7858e5fabfa46b56475292bb4f1d2c5518ef620e953254",
+        "docs/contracts/REVISION_3_6_0_P048.md:f9e6133efd3547b53d78560e424758bb52ac0187f22b863b4083042056f63e70"
+      ],
+      "expected": "El adaptador y todos sus targets compilan sin advertencias de Clippy.",
+      "observed": "exit=0; Checking larm-storage v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-storage) | Checking larm-models v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models) | Checking larm-source-p048 v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\adapters\\source\\p048) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.82s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P048_runs/P048-CLIPPY-FOCAL.log#sha256=6451ea99bc394ad03d0c7b67455bc280127aa05f123f455ee502d17236f591d4"
+      ]
+    },
+    {
+      "id": "P048-WORKER-BUILD",
+      "kind": "UNIT",
+      "command": "cargo build -p larm-source-p048",
+      "fixture_hashes": [
+        "adapters/source/p048/Cargo.toml:076512362b947973240fd1ab1058e24a96682a211a94cc38b69ddbde72378ef3",
+        "adapters/source/p048/src/lib.rs:46e13dd619f3ad7c6389caf4d9d9e8e94b9c2dbc0c00c4173a98b99ae6cecdc5",
+        "adapters/source/p048/src/main.rs:64ae26d6a77cb75923e9c7b4b8e2e65f5dc282a125d13bbc4958b20c08c186b5",
+        "adapters/source/p048/package.py:5edc3debb44fda3c7565679203bc61628593848dd5caefdf4212ce81515cc33d",
+        "tools/p048_package_smoke.py:90b33655e152fec02cf5add8864602cc19a17c82ea1f72d16daf94faf5fcfa99",
+        "tools/p048_live_probe.py:68d4b694156946935fd6f81b763511c526779417043f5b510854c7db188d0252",
+        "docs/adapters/p048-source-adapters.md:5d72f8bcb0696a8a3e4a0192977a41a4e298446cb4076fa9aab51ef10fecfa31",
+        "docs/contracts/source-profiles.json:dc066f7473b36e192b7858e5fabfa46b56475292bb4f1d2c5518ef620e953254",
+        "docs/contracts/REVISION_3_6_0_P048.md:f9e6133efd3547b53d78560e424758bb52ac0187f22b863b4083042056f63e70"
+      ],
+      "expected": "Se genera el ejecutable Windows usado por los smokes empaquetados.",
+      "observed": "exit=0; Compiling larm-source-p048 v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\adapters\\source\\p048) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.41s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P048_runs/P048-WORKER-BUILD.log#sha256=9aaa9e0fbdab390c6d3fb9e24f57929ba49e5cf66cfe9daa5e86c5dca69abccf"
+      ]
+    },
+    {
+      "id": "P048-LOCAL-PACKAGED-WORKER",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p048_package_smoke.py",
+      "fixture_hashes": [
+        "adapters/source/p048/Cargo.toml:076512362b947973240fd1ab1058e24a96682a211a94cc38b69ddbde72378ef3",
+        "adapters/source/p048/src/lib.rs:46e13dd619f3ad7c6389caf4d9d9e8e94b9c2dbc0c00c4173a98b99ae6cecdc5",
+        "adapters/source/p048/src/main.rs:64ae26d6a77cb75923e9c7b4b8e2e65f5dc282a125d13bbc4958b20c08c186b5",
+        "adapters/source/p048/package.py:5edc3debb44fda3c7565679203bc61628593848dd5caefdf4212ce81515cc33d",
+        "tools/p048_package_smoke.py:90b33655e152fec02cf5add8864602cc19a17c82ea1f72d16daf94faf5fcfa99",
+        "tools/p048_live_probe.py:68d4b694156946935fd6f81b763511c526779417043f5b510854c7db188d0252",
+        "docs/adapters/p048-source-adapters.md:5d72f8bcb0696a8a3e4a0192977a41a4e298446cb4076fa9aab51ef10fecfa31",
+        "docs/contracts/source-profiles.json:dc066f7473b36e192b7858e5fabfa46b56475292bb4f1d2c5518ef620e953254",
+        "docs/contracts/REVISION_3_6_0_P048.md:f9e6133efd3547b53d78560e424758bb52ac0187f22b863b4083042056f63e70"
+      ],
+      "expected": "El worker Windows empaquetado completa JSON-RPC real con P017, manifiesto, revisión, estimación, bloque read-only y rechazo de búsqueda import-only.",
+      "observed": "exit=0; {\"status\": \"PASS\", \"handshake\": true, \"p017_models\": 1, \"manifest_revisions_estimates_chunks\": true, \"search_rejected\": true, \"source_read_only\": true, \"package_sha256\": \"1b4bee661c6a057c5211bff1222b56c18b0ffbee213ce7e761d5975eead4813a\"}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P048_runs/P048-LOCAL-PACKAGED-WORKER.log#sha256=3ece3e2dfbed6268a0ab6ce690624426c03976daf79d25ef216244441509694e"
+      ]
+    },
+    {
+      "id": "P048-CONTRACT-COPIES",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "tools/package_copy.py:89896afff425166248cdffd4e307126866588afdb75eb012674048e6e327be28",
+        "docs/spec/PACKAGE_COPY_HASHES.json:daab59e12a1cf579b498d8e9b090c15c57ab657daf00287dcf41f3b9e14a4f8d"
+      ],
+      "expected": "Las copias contractuales locales coinciden con el paquete canónico 3.6.0.",
+      "observed": "exit=0; PASS 61 copias idénticas al paquete 3.6.1",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P048_runs/P048-CONTRACT-COPIES.log#sha256=70afca0ea36726f5204ed25ea669b1090b25cbf57b92717c5eb1d9a8bedfb6ef"
+      ]
+    },
+    {
+      "id": "P048-PYTHON-COMPILE",
+      "kind": "UNIT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -m py_compile adapters/source/p048/package.py tools/p048_package_smoke.py tools/p048_live_probe.py tools/p048_evidence.py",
+      "fixture_hashes": [
+        "adapters/source/p048/Cargo.toml:076512362b947973240fd1ab1058e24a96682a211a94cc38b69ddbde72378ef3",
+        "adapters/source/p048/src/lib.rs:46e13dd619f3ad7c6389caf4d9d9e8e94b9c2dbc0c00c4173a98b99ae6cecdc5",
+        "adapters/source/p048/src/main.rs:64ae26d6a77cb75923e9c7b4b8e2e65f5dc282a125d13bbc4958b20c08c186b5",
+        "adapters/source/p048/package.py:5edc3debb44fda3c7565679203bc61628593848dd5caefdf4212ce81515cc33d",
+        "tools/p048_package_smoke.py:90b33655e152fec02cf5add8864602cc19a17c82ea1f72d16daf94faf5fcfa99",
+        "tools/p048_live_probe.py:68d4b694156946935fd6f81b763511c526779417043f5b510854c7db188d0252",
+        "docs/adapters/p048-source-adapters.md:5d72f8bcb0696a8a3e4a0192977a41a4e298446cb4076fa9aab51ef10fecfa31",
+        "docs/contracts/source-profiles.json:dc066f7473b36e192b7858e5fabfa46b56475292bb4f1d2c5518ef620e953254",
+        "docs/contracts/REVISION_3_6_0_P048.md:f9e6133efd3547b53d78560e424758bb52ac0187f22b863b4083042056f63e70"
+      ],
+      "expected": "El empaquetador y las herramientas focales compilan.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P048_runs/P048-PYTHON-COMPILE.log#sha256=6fcc6567132655ef8e80f48eae9bfbf0e01e18e4f17688a05db22bf7598b0383"
+      ]
+    },
+    {
+      "id": "P048-GITHUB-RELEASES-LIVE",
+      "kind": "REAL",
+      "command": "python tools/p048_live_probe.py",
+      "fixture_hashes": [
+        "tools/p048_live_probe.py:68d4b694156946935fd6f81b763511c526779417043f5b510854c7db188d0252",
+        "adapters/source/p048/src/lib.rs:46e13dd619f3ad7c6389caf4d9d9e8e94b9c2dbc0c00c4173a98b99ae6cecdc5"
+      ],
+      "expected": "Búsqueda anónima read-only desde el worker empaquetado contra un repositorio público con releases.",
+      "observed": "Consulta anónima read-only en vivo mediante el worker Windows; repo=ggml-org/whisper.cpp; items=1",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P048_runs/P048-GITHUB-RELEASES-LIVE.log#sha256=91851fc88f032bfaca1a9336d6ceb41daff7d44390c19cd9d29abba31daf65fa"
+      ]
+    },
+    {
+      "id": "P048-UNC-PRIVATE-SHARE",
+      "kind": "REAL",
+      "command": "source.sync y source.auth_probe sobre una UNC privada autorizada",
+      "fixture_hashes": [],
+      "expected": "El worker lee una share Windows real bajo la identidad integrada permitida.",
+      "observed": "NO EJECUTADA: No se configuró una share privada de prueba ni una identidad de Windows dedicada; la fixture UNC inexistente cubre el rechazo retryable, no la autorización positiva.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P048 depende de REAL_PASS en P043, P045 y P017.",
+    "GitHub público se cualifica sin credenciales; autenticación privada/gated sigue pendiente de P045/P141.",
+    "La lectura positiva de una share UNC privada requiere una identidad y una ubicación de prueba autorizadas.",
+    "Git LFS permanece sin implementar ni ejecutar; requiere resolución y cualificación propias.",
+    "dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P045 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P017 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-24T00:55:59.972Z"
+}

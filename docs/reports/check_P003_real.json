@@ -1,0 +1,47 @@
+﻿{
+    "prompt":  "P003",
+    "real":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.14s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "npm_lint",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_typecheck",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0 \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m | \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m | \u001b[2m   Start at \u001b[22m 19:59:55 | \u001b[2m   Duration \u001b[22m 798ms\u001b[2m (environment 72%, import 12%, tests 10%, transform 5%)\u001b[22m | "
+                   },
+                   {
+                       "check":  "npm_build",
+                       "result":  "PASS",
+                       "detail":  "exit=0 dist/index.html                  0.32 kB Ôöé gzip:  0.23 kB | dist/assets/core-CwxXejkd.js     0.09 kB Ôöé gzip:  0.10 kB | dist/assets/index-DhVi8h1n.js  222.25 kB Ôöé gzip: 69.77 kB |  | \u001b[32mÔ£ô built in 88ms\u001b[39m"
+                   },
+                   {
+                       "check":  "P003_config_logging_real",
+                       "result":  "PASS",
+                       "detail":  "exit=0   [PASS] env_port_applied |   [PASS] correlation_id_present |   [PASS] telemetry_off_registered |   [PASS] no_secret_patterns | PASS: P003 real ÔÇö precedencia env, logging JSON en fichero, correlation id, sin secretos, exit 0"
+                   }
+               ]
+}

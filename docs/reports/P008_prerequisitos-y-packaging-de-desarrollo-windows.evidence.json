@@ -1,0 +1,60 @@
+{
+  "prompt_id": "P008",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24",
+  "inputs_hash": "ac2ee8dcc7ad4570c16abb2daf0bf10449eb9b24c747c14beaa074a36865070a",
+  "changed_files": [
+    "docs/operations/windows-prerequisites.md",
+    "docs/reports/P008_runs/doctor.json",
+    "tools/doctor.ps1",
+    "tools/p008_evidence.py",
+    "tools/verify_p008.py"
+  ],
+  "tests": [
+    {
+      "id": "P008-UNIT-doctor-parser",
+      "kind": "UNIT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p008.py parser",
+      "fixture_hashes": [
+        "environment.lock.json:e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24"
+      ],
+      "expected": "16 salidas falsas -> estados esperados, incluida la instancia única de vswhere y JSON basura; cada no-PASS con paso manual",
+      "observed": "exit=0; PASS 16 casos con salidas falsas: todo-bien, vswhere-una-instancia, sin-vswhere, solo-prerelease, vswhere-basura, sin-webview2, sin-sdk, rust-distinto, rust-prefijo-engañoso, sin-rust, node-distinto, python-antiguo, sin-git, sin-cmake-ninja, sin-devmode-symlink, sin-rutas-largas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P008_runs/P008-UNIT-doctor-parser.log#sha256=c0496b5d9b599c5c431d7e7214fe7bda9d572c54133f75cd5309e68f029ac80a"
+      ]
+    },
+    {
+      "id": "P008-REAL-doctor-pc-ia",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p008.py readonly",
+      "fixture_hashes": [],
+      "expected": "doctor real en el PC IA: informe JSON válido y PATH/registro sin cambios",
+      "observed": "exit=0; PASS PATH y registro idénticos tras el doctor; WARN: msvc=PASS, windows_sdk=PASS, webview2=PASS, rustc=PASS, node=PASS, python=PASS, git=PASS, powershell=PASS, cmake=WARN, ninja=WARN, developer_mode=WARN, symlink=WARN, long_paths=PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P008_runs/P008-REAL-doctor-pc-ia.log#sha256=f065e25780a922fcc5f61d076f0ceb20d10270a25b7c74a8bad56dc7ca39cac2"
+      ]
+    },
+    {
+      "id": "P008-REAL-doctor-script",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/doctor.ps1",
+      "fixture_hashes": [],
+      "expected": "tools/doctor.ps1 sin FAIL en el PC IA (avisos permitidos)",
+      "observed": "exit=0; [WARN] symlink: no se pueden crear symlinks con este usuario | -> Las vistas de runtime usaran hard links o copias; activar el Modo de programador para symlinks. | [PASS] long_paths: LongPathsEnabled=1 | DOCTOR: WARN (0 FAIL, 4 WARN)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P008_runs/P008-REAL-doctor-script.log#sha256=c8447eb55ff95c3ca4054729a176fa3c76b9eaf38b4356a3c0988601ab868b02"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P001 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P007 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P000 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T09:29:21.858Z"
+}

@@ -1,0 +1,235 @@
+{
+  "prompt_id": "P025",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "cb179fab97d10b6da5e86ac04f09fa5e980c810886ceca3f1ec0fbf1db7a0efb",
+  "inputs_hash": "07fdc1abf8680262479b4ffee774609c8da8aba5f77e29e43a83550e793daab5",
+  "changed_files": [
+    "adapters/runtime/reference/README.md",
+    "adapters/runtime/reference/echo.rs",
+    "adapters/runtime/reference/package.py",
+    "adapters/sdk/python/README.md",
+    "adapters/sdk/python/larm_adapter_sdk/__init__.py",
+    "adapters/sdk/python/larm_adapter_sdk/contracts.py",
+    "adapters/sdk/python/larm_adapter_sdk/server.py",
+    "adapters/source/reference/README.md",
+    "adapters/source/reference/adapter.py",
+    "adapters/source/reference/catalog.py",
+    "adapters/source/reference/main.py",
+    "adapters/source/reference/package.py",
+    "adapters/source/reference/state.py",
+    "adapters/source/reference/transfer.py",
+    "apps/daemon/tests/reference_adapters.rs",
+    "crates/larm-adapter-sdk/Cargo.toml",
+    "crates/larm-adapter-sdk/src/generic.rs",
+    "crates/larm-adapter-sdk/src/protocol.rs",
+    "crates/larm-adapter-sdk/src/server.rs",
+    "crates/larm-adapter-sdk/src/source/wire.rs",
+    "crates/larm-adapter-sdk/tests/examples.rs",
+    "crates/larm-adapter-sdk/tests/session.rs",
+    "crates/larm-adapter-sdk/tests/source_protocol.rs",
+    "docs/adapters/authoring.md",
+    "docs/adapters/source-v1.md",
+    "docs/implementation/STATE.md",
+    "environment.lock.json",
+    "tests/fixtures/adapters/python_sdk_worker.py",
+    "tools/adapter-conformance/runner.py",
+    "tools/adapter-conformance/session.py",
+    "tools/p025_evidence.py",
+    "tools/p025_host_fixture.py",
+    "tools/p025_prepare_evidence.py",
+    "tools/p025_runtime_real.py",
+    "tools/p025_source_real.py",
+    "tools/test_python_adapter_sdk.py",
+    "tools/test_reference_transfer.py"
+  ],
+  "tests": [
+    {
+      "id": "P025-REAL-build",
+      "kind": "REAL",
+      "command": "cargo build -p larm-adapter-sdk -p larm-daemon --bins",
+      "fixture_hashes": [],
+      "expected": "worker genérico, servidor echo y daemon compilados sin instalar herramientas globales",
+      "observed": "exit=0; Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 9.38s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-build.log#sha256=ec374417432ecc4cbea8db451f52f63e1c7ffc931b2fa0f8d7ceaee92d5a5c13"
+      ]
+    },
+    {
+      "id": "P025-REAL-python-sdk",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_python_adapter_sdk.py",
+      "fixture_hashes": [
+        "tools/test_python_adapter_sdk.py:6bbfb8df7d5529487ec31897f7800b68bb8e63b172bdfa95db980db46a352614",
+        "tests/fixtures/adapters/python_sdk_worker.py:14e3f0e0e76a116398703c1151c03b853aad500cfd11008610ed260dc9358085"
+      ],
+      "expected": "9 pruebas: ocho procesos propios con frames reales, límites/recuperación, callbacks/cola/cancel/EOF y 24 ejemplos compartidos",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 9 tests in 1.574s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-python-sdk.log#sha256=ed3fb27f61966b75ba44174a718d4b29c116ed002311b55eea77426ca4b21503"
+      ]
+    },
+    {
+      "id": "P025-CONTRACT-rust-sdk",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-sdk",
+      "fixture_hashes": [],
+      "expected": "SDK completo: decoder de producción, 24 ejemplos compartidos, sesión/EOF/IDs duplicados, permisos, genérico y Source Protocol con recibo canónico de worker sin job ficticio de Core",
+      "observed": "exit=0; Running tests\\session.rs (target\\debug\\deps\\session-4c6b95049cdd6761.exe) | Running tests\\source.rs (target\\debug\\deps\\source-b137697117d89ed5.exe) | Running tests\\source_protocol.rs (target\\debug\\deps\\source_protocol-bc84017bfe757603.exe) | Doc-tests larm_adapter_sdk",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-CONTRACT-rust-sdk.log#sha256=7e106c73a367fc00bf2d6c0952c09d3c40b53cee5e31c5a484c7fb861b921f7d"
+      ]
+    },
+    {
+      "id": "P025-REAL-source-host-regression",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test source",
+      "fixture_hashes": [],
+      "expected": "6 procesos Windows: permisos, negociación, paginación, auth/429, respuestas inválidas, crash/reinicio, timeout/cancel e ID duplicado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s | Running tests\\source.rs (target\\debug\\deps\\source-ad0f89c096091351.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-source-host-regression.log#sha256=6e3215cb9af7f9dcebb4e971c204923fd85526efa4d9ee6de89a462210ce3fa9"
+      ]
+    },
+    {
+      "id": "P025-REAL-protected-references",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test reference_adapters",
+      "fixture_hashes": [
+        "apps/daemon/tests/reference_adapters.rs:1ebf1741a58a1c9a96ccfa4058554cde704d546703dc8a862bd7af36e47df716",
+        "tools/p025_host_fixture.py:1ded6b8de1fc6432a57e5f7b199b3466613dfda1c5272467421bde0722599e41"
+      ],
+      "expected": "ambas referencias por GuardedWorker/WhoAmI real y concesión exacta TRUSTED_ONLY sin secretos; echo con parada, source actualizada por CLI/coordinador P024 real con profiler/SQLite/reservas/publicación, candidata descubierta INSTALLED/UNTRUSTED y usada por host tipado, SHA y ledger contrastados; origen inicial fixture no acredita P028 ni P026",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s | Running tests\\reference_adapters.rs (target\\debug\\deps\\reference_adapters-f6595df6da9bd043.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-protected-references.log#sha256=1025e7b7c8138a841f58ab8ebe05c4ba22844fd8a28a8ff3c2d41b9265eb8cd1"
+      ]
+    },
+    {
+      "id": "P025-REAL-runtime",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p025_runtime_real.py",
+      "fixture_hashes": [
+        "tools/p025_runtime_real.py:8ef0c7a60fad2421151150a5e886005e434ee65c1c33524e1265deb13ee85c54"
+      ],
+      "expected": "25 pasos: conformance común, versión/hash y plan independientes, cancel/estado/generación/límites, echo HTTP real, muerte del hijo propio y recuperación, parada/EOF, registro API y uso de paquete instalado sin cambios Core, hash inmutable y principal revocado",
+      "observed": "exit=0; PASS version-output-bounded | PASS core-registers-and-discovers-reference | PASS installed-package-executes-actual-echo | PASS installed-worker-eof-cleanup",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-runtime.log#sha256=fb72bcd367810145990bb45b16e55071f20343846fcf628822a2ce11a5dd1276"
+      ]
+    },
+    {
+      "id": "P025-REAL-source",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p025_source_real.py",
+      "fixture_hashes": [
+        "tools/p025_source_real.py:9ec759b2ae4b4df7349fbca71f71f5c6309ee8e873cc0ea66f0173ee6ec1ef45"
+      ],
+      "expected": "30 pasos: Python autónomo, catálogo/paginación/metadata, nueve firmas, snapshot/cursor/plan/expiry/auth/presupuesto, SHA y tamaños, ejecución durable privada, reanudación/cancel, fallo real de outbox en aceptación/finalización, proceso muerto/recuperación sin timeout, perfil fijado, conformance común, ZIP descubierto por Core y paquete inmutable",
+      "observed": "exit=0; PASS work-profile-bound-to-ledger | PASS reusable-conformance-source | PASS core-discovers-portable-source-package | PASS immutable-package-and-no-auth-header",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-source.log#sha256=60236eebe81c74163bc585cf4524c557cb1eaef085f4f71f1062b3c7bacf47f8"
+      ]
+    },
+    {
+      "id": "P025-REAL-source-transfer",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_reference_transfer.py",
+      "fixture_hashes": [
+        "tools/test_reference_transfer.py:0ddba0c66b71f4b37b2036a3c18d2766b7f95f716775086462eaa1d8cef8acc8"
+      ],
+      "expected": "9 pruebas HTTP/NTFS: bytes/hash, Range/If-Range, cambio ETag/Range/longitud, checksum, cancel/retry, 401/429/redirect, presupuesto y raíces/orígenes, junction real rechazada",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 9 tests in 4.837s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-source-transfer.log#sha256=7e518000e11d2c6cf840ed3b1d8285cb1f55d28c24eba301946a617daf6f256d"
+      ]
+    },
+    {
+      "id": "P025-CONTRACT-source-schemas",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p043_schemas.py",
+      "fixture_hashes": [],
+      "expected": "18 válidos y 102 negativos contra schemas canónicos; las referencias no amplían DTO ni sustituyen unknown por soporte",
+      "observed": "exit=0; PASS: 18 documentos válidos y 102 negativos contra los schemas canónicos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-CONTRACT-source-schemas.log#sha256=f05b4494a7096cf3eccff898573df09c20cfaf8311a384bb6b5a9c779fd17a53"
+      ]
+    },
+    {
+      "id": "P025-CONTRACT-package-regression",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-host --test packages",
+      "fixture_hashes": [],
+      "expected": "9 oráculos P024 de paquetes: snapshot/hash, paths/colisiones/enlaces/bombas, límites antes de asignar, cancel/timeout y publicación sin sobrescribir",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\packages.rs (target\\debug\\deps\\packages-44f061fe6e87f17e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-CONTRACT-package-regression.log#sha256=9373f3b74ad688b834008cf50ae8b2ff3df31ef3516e73c0a51546434d5578da"
+      ]
+    },
+    {
+      "id": "P025-CONTRACT-openapi",
+      "kind": "CONTRACT",
+      "command": "target/debug/larm-daemon.exe openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [],
+      "expected": "OpenAPI canónico intacto; el estado privado del worker no se anuncia como ruta Core implementada",
+      "observed": "exit=0; OpenAPI al día: docs/api/openapi.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-CONTRACT-openapi.log#sha256=2a0b9ad5e286e14c80b848bd74fbfbe5c6d884cd6cc5a358d07ec087146b0a76"
+      ]
+    },
+    {
+      "id": "P025-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo publicado conservado: adaptadores no dependen de Core/DB/API; pruebas cruzadas sólo en composition root daemon",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-architecture.log#sha256=7f338a67530e939b724a71f5a9dfa55121777dcf50a1beab8008d2ec2b14a9d5"
+      ]
+    },
+    {
+      "id": "P025-REAL-lock",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py lock-coherence",
+      "fixture_hashes": [],
+      "expected": "46 dependencias fijadas; Python autónomo usa las versiones existentes y sus licencias, sin nueva dependencia",
+      "observed": "exit=0; PASS 46 dependencias usadas coinciden en version y hash con Cargo.lock/package-lock.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-lock.log#sha256=9da159c0267fb1ec19b820f457e1ba52f794fc3e94c7f95435b1121d19fade5a"
+      ]
+    },
+    {
+      "id": "P025-REAL-secret-storage",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/check_integration_credentials.py --scan-only",
+      "fixture_hashes": [],
+      "expected": "ambos tokens autorizados permanecen en Credential Manager y ausentes de los archivos inspeccionados; valores nunca impresos",
+      "observed": "exit=0; PASS: credencial ai-broker recuperable desde Credential Manager | PASS: credencial agora recuperable desde Credential Manager | PASS: tokens ausentes de 4384 archivos de código, datos operativos, documentación, builds y logs",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P025_runs/P025-REAL-secret-storage.log#sha256=266538ee35c429a23f2ec739eafce9d5b21e532dd4a701848401a95982535045"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P020 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P021 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P024 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-17T22:22:04.096Z"
+}

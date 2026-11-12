@@ -1,0 +1,163 @@
+{
+  "$defs": {
+    "domain__runtime_version": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_hash": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "build": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "channel": {
+          "enum": [
+            "stable",
+            "prerelease",
+            "nightly",
+            "commit",
+            "custom"
+          ],
+          "type": "string"
+        },
+        "commit": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "lifecycle": {
+          "enum": [
+            "CANDIDATE",
+            "INSTALLING",
+            "VALIDATING",
+            "VALIDATED",
+            "DEFAULT",
+            "RETAINED",
+            "BROKEN",
+            "REJECTED"
+          ],
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "promotion": {
+          "enum": [
+            "NONE",
+            "CANDIDATE",
+            "DEFAULT",
+            "PINNED",
+            "REJECTED"
+          ],
+          "type": "string"
+        },
+        "released_at": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "row_version": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "runtime_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "updated_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        },
+        "version_string": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "row_version",
+        "metadata",
+        "runtime_id",
+        "version_string",
+        "commit",
+        "build",
+        "channel",
+        "released_at",
+        "artifact_hash",
+        "promotion"
+      ],
+      "type": "object"
+    },
+    "larm__RuntimeVersionPage": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/domain__runtime_version"
+          },
+          "type": "array"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_at"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__RuntimeVersionPage",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

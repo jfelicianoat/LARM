@@ -1,0 +1,50 @@
+[
+  {
+    "id": "01a127e0-8649-7165-8bde-f2203622c0d8",
+    "created_at": "2026-10-10T22:13:08.297Z",
+    "updated_at": "2026-10-10T22:14:08.181Z",
+    "row_version": 7,
+    "metadata": {
+      "ttl_seconds": 30,
+      "variant_id": "01a127e0-7e03-7599-863e-abb96ef7db4e"
+    },
+    "owner_id": "ai-broker",
+    "request_id": "task_1abaadcf6ac94aeea42777be4fb924dc:inv_de83d66e53b148b195bc4b8a1ae7b938",
+    "instance_id": "01a127e0-b45e-7523-9d3e-da9dc91ae104",
+    "generation": 1791670386503,
+    "state": "RELEASED",
+    "expires_at": "2026-10-10T22:14:30.539Z",
+    "endpoint_id": "01a127e0-8649-7165-8bde-f22282ef74c4",
+    "constraints": {
+      "runtime_version_id": "01a127e0-7f24-76fb-b02f-a31d07bb97be",
+      "backend_id": null,
+      "execution_fingerprint": null,
+      "allow_backend_fallback": false,
+      "max_memory_bytes": null
+    }
+  },
+  {
+    "id": "01a127e1-7249-7083-ac55-394907aacd12",
+    "created_at": "2026-10-10T22:14:08.713Z",
+    "updated_at": "2026-10-10T22:14:12.444Z",
+    "row_version": 3,
+    "metadata": {
+      "ttl_seconds": 30,
+      "variant_id": "01a127e0-7e03-7599-863e-abb96ef7db4e"
+    },
+    "owner_id": "ai-broker",
+    "request_id": "task_7b463eb07aa8475487ec379d08510bb3:inv_d3071418014a45fb9df91792a9e861cb",
+    "instance_id": "01a127e0-b45e-7523-9d3e-da9dc91ae104",
+    "generation": 1791670386503,
+    "state": "RELEASED",
+    "expires_at": "2026-10-10T22:14:38.781Z",
+    "endpoint_id": "01a127e1-7249-7083-ac55-394b43ba4035",
+    "constraints": {
+      "runtime_version_id": "01a127e0-7f24-76fb-b02f-a31d07bb97be",
+      "backend_id": null,
+      "execution_fingerprint": null,
+      "allow_backend_fallback": false,
+      "max_memory_bytes": null
+    }
+  }
+]

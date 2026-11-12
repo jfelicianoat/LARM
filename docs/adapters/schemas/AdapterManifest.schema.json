@@ -1,0 +1,194 @@
+{
+  "$id": "https://larm.local/adapters/AdapterManifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "AdapterManifest (generado desde docs/contracts/schemas/larm.schema.json; no editar)",
+  "properties": {
+    "architectures": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "capabilities": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "executable": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "relative_path": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "relative_path",
+        "args"
+      ],
+      "type": "object"
+    },
+    "family": {
+      "enum": [
+        "runtime",
+        "source",
+        "protocol",
+        "transformation",
+        "benchmark"
+      ],
+      "type": "string"
+    },
+    "id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "installation_strategies": {
+      "items": {
+        "enum": [
+          "PREBUILT_BINARY",
+          "GITHUB_RELEASE",
+          "SOURCE_BUILD",
+          "WINGET",
+          "PIP",
+          "UV",
+          "CONDA",
+          "MAMBA",
+          "NUGET",
+          "WSL",
+          "CONTAINER",
+          "CUSTOM",
+          "MSI_MANAGED",
+          "PYTHON_VENV",
+          "EXTERNAL_ADOPTION"
+        ],
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "methods": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "permissions": {
+      "additionalProperties": false,
+      "properties": {
+        "network_origins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "process_allowlist": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "read_roots": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "secret_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "write_roots": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "read_roots",
+        "write_roots",
+        "network_origins",
+        "process_allowlist",
+        "secret_refs"
+      ],
+      "type": "object"
+    },
+    "platforms": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "protocol_version": {
+      "const": "1.0"
+    },
+    "publisher": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "signature": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "algorithm": {
+              "const": "Ed25519"
+            },
+            "key_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "value": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "algorithm",
+            "key_id",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "version": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "family",
+    "protocol_version",
+    "publisher",
+    "executable",
+    "platforms",
+    "architectures",
+    "methods",
+    "permissions",
+    "capabilities",
+    "package_sha256",
+    "signature",
+    "installation_strategies"
+  ],
+  "type": "object"
+}

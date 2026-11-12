@@ -1,0 +1,31 @@
+{
+  "$defs": {
+    "larm__AuthResult": {
+      "additionalProperties": false,
+      "properties": {
+        "auth_required": {
+          "type": "boolean"
+        },
+        "authenticated": {
+          "type": "boolean"
+        },
+        "license_required": {
+          "type": "boolean"
+        },
+        "reason": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "authenticated",
+        "auth_required",
+        "license_required",
+        "reason"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__AuthResult",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

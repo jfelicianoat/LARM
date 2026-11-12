@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "larm__embedding_create_input": {
+      "additionalProperties": false,
+      "properties": {
+        "inputs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "inputs"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__embedding_create_input",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

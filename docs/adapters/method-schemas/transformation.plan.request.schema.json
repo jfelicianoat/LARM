@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "larm__Transform": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "hard_budget_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "input_variant_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "storage_location_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "target_format": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "tool_version": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_variant_id",
+        "adapter_id",
+        "tool_version",
+        "target_format",
+        "parameters",
+        "storage_location_id",
+        "hard_budget_bytes"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__Transform",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

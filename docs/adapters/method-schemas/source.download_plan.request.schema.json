@@ -1,0 +1,154 @@
+{
+  "$defs": {
+    "larm__DownloadPriority": {
+      "enum": [
+        "BACKGROUND",
+        "NORMAL",
+        "HIGH"
+      ],
+      "type": "string"
+    },
+    "larm__SourceAcquisitionArtifactBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "relative_path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "relative_path",
+        "required"
+      ],
+      "type": "object"
+    },
+    "larm__SourceAcquisitionBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/larm__SourceAcquisitionArtifactBinding"
+          },
+          "maxItems": 4096,
+          "minItems": 1,
+          "type": "array"
+        },
+        "manifest_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "revision": {
+          "$ref": "#/$defs/larm__SourceCatalogReference"
+        }
+      },
+      "required": [
+        "revision",
+        "manifest_hash",
+        "artifacts"
+      ],
+      "type": "object"
+    },
+    "larm__SourceCatalogReference": {
+      "additionalProperties": false,
+      "properties": {
+        "revision_key": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "upstream_model_id": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        "upstream_namespace": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "upstream_namespace",
+        "upstream_model_id",
+        "revision_key"
+      ],
+      "type": "object"
+    },
+    "larm__SourceDownloadPlanRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "acquisition": {
+          "$ref": "#/$defs/larm__SourceAcquisitionBinding"
+        },
+        "hard_budget_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "optional_artifact_ids": {
+          "items": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "type": "string"
+          },
+          "maxItems": 4096,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "priority": {
+          "$ref": "#/$defs/larm__DownloadPriority"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "storage_location_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "variant_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "variant_id",
+        "storage_location_id",
+        "hard_budget_bytes",
+        "source_id",
+        "priority"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__SourceDownloadPlanRequest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

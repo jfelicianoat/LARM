@@ -1,0 +1,540 @@
+{
+  "policy": "Exact API/SDK profile locked before enable; listed auth modes are candidates to verify with source and operator, not assertions of account access. P141 implements OAuth/cookies/SSH when profile supports them. Private HTTP Git/UNC are supported modes, not cloud assumptions.",
+  "profiles": [
+    {
+      "source_type": "HUGGING_FACE",
+      "owner": "P046",
+      "primary_source": "https://huggingface.co/docs/hub/api",
+      "auth_candidates": [
+        "TOKEN",
+        "GIT_LFS"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.download_chunk",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "MODELSCOPE",
+      "owner": "P047",
+      "primary_source": "https://github.com/modelscope/modelscope_hub/tree/v0.4.0",
+      "auth_candidates": [
+        "TOKEN"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.download_chunk",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "KAGGLE",
+      "owner": "P049",
+      "primary_source": "https://github.com/Kaggle/kaggle-api",
+      "auth_candidates": [
+        "TOKEN"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "OLLAMA_LIBRARY",
+      "owner": "P049",
+      "primary_source": "https://github.com/ollama/ollama/blob/main/docs/import.md",
+      "auth_candidates": [
+        "NONE"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "GITHUB",
+      "owner": "P048",
+      "primary_source": "https://docs.github.com/en/rest/releases/releases",
+      "auth_candidates": [
+        "TOKEN"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.download_chunk",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "OPENXLAB",
+      "owner": "P049",
+      "primary_source": "https://github.com/OpenXLab/openxlab-model",
+      "auth_candidates": [
+        "TOKEN"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "NGC",
+      "owner": "P049",
+      "primary_source": "https://docs.nvidia.com/ngc/ngc-catalog-user-guide/index.html",
+      "auth_candidates": [
+        "TOKEN"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "CIVITAI",
+      "owner": "P049",
+      "primary_source": "https://github.com/civitai/civitai/wiki/REST-API-Reference",
+      "auth_candidates": [
+        "TOKEN"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "FOUNDRY_CATALOG",
+      "owner": "P049",
+      "primary_source": "https://learn.microsoft.com/en-us/azure/foundry-local/what-is-foundry-local",
+      "auth_candidates": [
+        "NONE"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "LEMONADE_REGISTRY",
+      "owner": "P049",
+      "primary_source": "https://lemonade-server.ai/docs/api/",
+      "auth_candidates": [
+        "NONE"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": true,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "HTTP",
+      "owner": "P048",
+      "primary_source": "https://www.rfc-editor.org/rfc/rfc9110",
+      "auth_candidates": [
+        "NONE",
+        "TOKEN",
+        "BEARER",
+        "API_TOKEN",
+        "BASIC",
+        "COOKIE",
+        "OAUTH_DEVICE",
+        "OAUTH_AUTH_CODE_PKCE"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.download_chunk",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": false,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "GIT_LFS",
+      "owner": "P048",
+      "primary_source": "https://github.com/git-lfs/git-lfs/blob/main/docs/spec.md",
+      "auth_candidates": [
+        "TOKEN",
+        "SSH"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": false,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "LOCAL",
+      "owner": "P048",
+      "primary_source": null,
+      "auth_candidates": [
+        "NONE"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.download_chunk",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": false,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION"
+    },
+    {
+      "source_type": "UNC_PRIVATE",
+      "owner": "P048",
+      "primary_source": "https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file",
+      "auth_candidates": [
+        "NONE",
+        "WINDOWS_INTEGRATED"
+      ],
+      "methods": [
+        "source.search",
+        "source.get_model",
+        "source.list_revisions",
+        "source.get_manifest",
+        "source.estimate_size",
+        "source.download_plan",
+        "source.download",
+        "source.download_chunk",
+        "source.sync",
+        "source.auth_probe"
+      ],
+      "search_applicable": false,
+      "required_profile_fields": [
+        "api_version_or_sdk_lock",
+        "base_url_or_root",
+        "revision_mapping",
+        "search_mapping",
+        "pagination_mapping",
+        "manifest_mapping",
+        "size_confidence_mapping",
+        "checksum_mapping",
+        "auth_flow_mapping",
+        "rate_limits",
+        "license_flow",
+        "fixture_hashes",
+        "error_mapping",
+        "primary_source_revision"
+      ],
+      "status": "REQUIRES_REAL_QUALIFICATION",
+      "os_auth_mapping": "Windows identity of the worker/service; optional explicit credential_reference resolved through Credential Manager into a scoped SMB connection. PASSWORD is a secret type, not an auth mode; no HTTP Basic over SMB."
+    }
+  ]
+}

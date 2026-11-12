@@ -1,0 +1,58 @@
+{
+  "request": {
+    "variant_id": "0192aaaa-0000-7000-8000-000000000002",
+    "storage_location_id": "0192aaaa-0000-7000-8000-000000000003",
+    "hard_budget_bytes": null,
+    "source_id": "0192aaaa-0000-7000-8000-000000000001",
+    "priority": "NORMAL",
+    "optional_artifact_ids": [
+      "0192aaaa-0000-7000-8000-000000000005"
+    ],
+    "acquisition": {
+      "revision": {
+        "source_id": "0192aaaa-0000-7000-8000-000000000001",
+        "upstream_namespace": "acme",
+        "upstream_model_id": "model",
+        "revision_key": "r1"
+      },
+      "manifest_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "artifacts": [
+        {
+          "artifact_id": "0192aaaa-0000-7000-8000-000000000005",
+          "relative_path": "config.json",
+          "required": false
+        },
+        {
+          "artifact_id": "0192aaaa-0000-7000-8000-000000000004",
+          "relative_path": "weights.bin",
+          "required": true
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "revision_key": "r1",
+    "manifest_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "artifacts": [
+      {
+        "relative_path": "weights.bin",
+        "size_bytes": "4",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "required": true,
+        "role": "weights"
+      },
+      {
+        "relative_path": "config.json",
+        "size_bytes": "2",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "required": false,
+        "role": "config"
+      }
+    ]
+  },
+  "selected_paths": [
+    "config.json",
+    "weights.bin"
+  ],
+  "scope": "CONTRACT_DATA_ONLY; no physical qualification"
+}

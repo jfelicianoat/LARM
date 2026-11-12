@@ -1,0 +1,116 @@
+{
+  "prompt_id": "P122",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "725a91ea5be9e29b19e40f04a1de72960e8a09b57017a33edf6ff9eeedc4ac0b",
+  "changed_files": [
+    "apps/desktop/src/models.test.tsx",
+    "apps/desktop/src/models.tsx",
+    "apps/desktop/src/styles.css",
+    "docs/implementation/STATE.md",
+    "docs/reports/P122_detalle-de-modelo-variantes-y-preflight-de-descarga.evidence.json",
+    "docs/reports/P122_detalle-de-modelo-variantes-y-preflight-de-descarga.md",
+    "tools/p122_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P122-FOCUSED-UI",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js exec -- vitest run src/models.test.tsx --pool=threads --maxWorkers=1",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06"
+      ],
+      "expected": "La pantalla compara variantes y destinos, conserva la confirmación bloqueada, y muestra licencia, autenticación y confianza sin afirmar que estén aceptadas o comprobadas.",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  15 passed (15) | Start at  13:52:23 | Duration  2.43s (tests 52%, environment 35%, import 7%, transform 6%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P122_runs/P122-FOCUSED-UI.log#sha256=81c5d773bab795eced3dcf06f46d504e1222dfba863b9dd2e682510907d302c4"
+      ]
+    },
+    {
+      "id": "P122-DESKTOP-SUITE",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run test",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06"
+      ],
+      "expected": "La suite completa del escritorio pasa sin regresiones.",
+      "observed": "exit=0; Duration  23.11s (tests 54%, environment 37%, import 7%, transform 2%) | Isolate  9 workers spawned · ~1.00s startup each (spawn + environment, per file) | at least ~8.03s faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P122_runs/P122-DESKTOP-SUITE.log#sha256=93c83f9342645c589ed1e080f40bd1fd4f8caad445ff48599aad8c14370c03b4"
+      ]
+    },
+    {
+      "id": "P122-LINT",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run lint",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06"
+      ],
+      "expected": "ESLint termina sin errores.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 lint | > eslint .",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P122_runs/P122-LINT.log#sha256=d1a0bb70f7b61c83c1f9e1bba3a14091f8ab9749b5a47d00f2d2aba821ab6055"
+      ]
+    },
+    {
+      "id": "P122-TYPECHECK",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run typecheck",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06"
+      ],
+      "expected": "TypeScript compila todos los proyectos.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 typecheck | > tsc -b",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P122_runs/P122-TYPECHECK.log#sha256=363eadf5aec8c0e59c6ac4165de9082b421362ca81801119f22caabfee3eb91d"
+      ]
+    },
+    {
+      "id": "P122-BUILD",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run build",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06"
+      ],
+      "expected": "El escritorio genera el bundle de producción.",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-CGXXWt1y.js   402.37 kB │ gzip: 115.52 kB | ✓ built in 127ms",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P122_runs/P122-BUILD.log#sha256=17458383cba3b0ee07c43ee7dfb3008cd7250a0913e11d76b4c4367e4f4bf96b"
+      ]
+    },
+    {
+      "id": "P122-WINDOWS-DAEMON-REAL",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P122 -Real",
+      "fixture_hashes": [],
+      "expected": "Preflight y ejecución verificados contra daemon Windows y ubicaciones controladas, con autorización real de fuente y licencia.",
+      "observed": "NO EJECUTADA: La transferencia completa P051 sigue cerrada y P092/P121 aún no tienen REAL_PASS; las pruebas de interfaz usan respuestas simuladas.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La UI presenta los datos declarados, pero la aceptación de licencia y el acceso real se deben validar en la ejecución P051.",
+    "Falta el recorrido real en Windows con daemon y ubicaciones controladas.",
+    "dependencia P052 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P092 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P121 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T12:52:56.972Z"
+}

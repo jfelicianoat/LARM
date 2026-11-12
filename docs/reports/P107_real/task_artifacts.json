@@ -1,0 +1,17 @@
+{
+  "task_id": "task_1abaadcf6ac94aeea42777be4fb924dc",
+  "items": [
+    {
+      "artifact_id": "art_5314b351e6c24dfcbf8031233fc74b4c",
+      "artifact_type": "single_output",
+      "filename": "final.md",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 1696,
+      "sha256": "07924af1dc9138816d0a303f08f347033fdc90d38a5fcc0165dfe137dc90d885",
+      "created_at": "2026-10-10T22:14:08.199041Z",
+      "download_url": "/api/v1/tasks/task_1abaadcf6ac94aeea42777be4fb924dc/artifacts/art_5314b351e6c24dfcbf8031233fc74b4c",
+      "available": true,
+      "final": true
+    }
+  ]
+}

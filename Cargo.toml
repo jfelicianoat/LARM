@@ -1,0 +1,105 @@
+[workspace]
+resolver = "2"
+members = [
+    "apps/daemon",
+    "crates/larm-domain",
+    "crates/larm-core",
+    "crates/larm-db",
+    "crates/larm-api",
+    "crates/larm-hardware",
+    "crates/larm-storage",
+    "crates/larm-adapter-sdk",
+    "crates/larm-adapter-host",
+    "crates/larm-runtime",
+    "crates/larm-models",
+    "crates/larm-download",
+    "crates/larm-transform",
+    "crates/larm-benchmark",
+    "crates/larm-protocol",
+    "crates/larm-events",
+    "adapters/source/p048",
+]
+exclude = ["apps/desktop/src-tauri"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "UNLICENSED"
+repository = "https://example.invalid/larm"
+rust-version = "1.99.0"
+
+[workspace.dependencies]
+tokio = { version = "=1.53.2", features = ["rt-multi-thread", "macros", "signal", "time", "sync", "fs", "process", "io-util", "net"] }
+axum = { version = "=0.8.9", features = ["json"] }
+sqlx = { version = "=0.9.0", features = ["runtime-tokio", "sqlite", "migrate", "macros", "uuid", "chrono"] }
+reqwest = { version = "=0.13.5", default-features = false, features = ["json", "rustls", "stream"] }
+rustls = "=0.23.45"
+tracing = "=0.1.44"
+tracing-subscriber = { version = "=0.3.23", features = ["env-filter", "json", "fmt", "time"] }
+tracing-appender = "=0.2.5"
+clap = { version = "=4.6.7", features = ["derive"] }
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.152"
+thiserror = "=2.0.21"
+anyhow = "=1.0.104"
+uuid = { version = "=1.28.0", features = ["v4", "v7", "serde"] }
+chrono = { version = "=0.4.45", features = ["serde", "clock"] }
+tokio-util = { version = "=0.7.20", features = ["io"] }
+futures = "=0.3.34"
+dirs = "=7.0.0"
+sha2 = "=0.11.0"
+hex = "=0.4.3"
+ed25519-dalek = { version = "=3.0.0" }
+tempfile = "=3.27.0"
+async-trait = "=0.1.92"
+keyring = { version = "=4.2.0" }
+rand = "=0.10.3"
+parking_lot = "=0.12.5"
+base64 = "=0.23.1"
+regex = "=1.13.1"
+jsonschema = { version = "=0.59.0", default-features = false }
+zip = { version = "=9.0.3", default-features = false, features = ["deflate-flate2-zlib-rs"] }
+url = { version = "=2.5.8", features = ["serde"] }
+win32job = "=2.0.3"
+tower = "=0.5.3"
+windows-sys = { version = "=0.61.2", features = ["Win32_Foundation", "Win32_Security", "Win32_Security_Authorization"] }
+sysinfo = { version = "=0.39.6", default-features = false, features = ["system"] }
+windows-registry = "=0.100.0"
+windows = { version = "=0.62.2", features = ["Win32_Foundation", "Win32_Devices_DeviceAndDriverInstallation", "Win32_Graphics_Dxgi", "Win32_Graphics_Dxgi_Common", "Win32_Graphics_Direct3D", "Win32_Graphics_Direct3D12", "Win32_AI_MachineLearning_DirectML", "Win32_System_LibraryLoader", "Win32_Storage_FileSystem", "Win32_System_IO", "Win32_System_Ioctl", "Win32_System_SystemServices", "Win32_NetworkManagement_WNet", "Win32_Security", "AI_MachineLearning", "Graphics", "Foundation"] }
+tower-http = { version = "=0.7.1", features = ["fs", "trace", "cors"] }
+larm-domain = { path = "crates/larm-domain" }
+larm-core = { path = "crates/larm-core" }
+larm-db = { path = "crates/larm-db" }
+larm-api = { path = "crates/larm-api" }
+larm-hardware = { path = "crates/larm-hardware" }
+larm-storage = { path = "crates/larm-storage" }
+larm-adapter-sdk = { path = "crates/larm-adapter-sdk" }
+larm-adapter-host = { path = "crates/larm-adapter-host" }
+larm-runtime = { path = "crates/larm-runtime" }
+larm-models = { path = "crates/larm-models" }
+larm-download = { path = "crates/larm-download" }
+larm-transform = { path = "crates/larm-transform" }
+larm-benchmark = { path = "crates/larm-benchmark" }
+larm-protocol = { path = "crates/larm-protocol" }
+larm-events = { path = "crates/larm-events" }
+larm-source-p048 = { path = "adapters/source/p048" }
+
+[workspace.lints.rust]
+# deny (no forbid): admite la única excepción documentada en ADR-0009 (apps/daemon/src/winsec.rs).
+unsafe_code = "deny"
+unused_must_use = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
+todo = "warn"
+unimplemented = "warn"
+
+[profile.dev]
+debug = 1
+
+[profile.release]
+lto = "thin"
+codegen-units = 1

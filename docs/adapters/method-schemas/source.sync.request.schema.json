@@ -1,0 +1,47 @@
+{
+  "$defs": {
+    "larm__SyncRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "cursor": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "etag": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "query": {
+          "type": "object"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "cursor",
+        "etag",
+        "query"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__SyncRequest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

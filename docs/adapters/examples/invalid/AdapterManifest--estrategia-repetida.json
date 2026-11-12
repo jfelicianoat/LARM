@@ -1,0 +1,66 @@
+{
+  "id": "larm.llama-cpp",
+  "version": "0.1.0",
+  "family": "runtime",
+  "protocol_version": "1.0",
+  "publisher": "LARM",
+  "executable": {
+    "relative_path": "bin/demo_adapter.exe",
+    "args": [
+      "--manifest",
+      "manifest.json"
+    ]
+  },
+  "platforms": [
+    "windows"
+  ],
+  "architectures": [
+    "x86_64"
+  ],
+  "methods": [
+    "core.handshake",
+    "core.cancel",
+    "core.heartbeat",
+    "runtime.discover",
+    "runtime.list_versions",
+    "runtime.install_plan",
+    "runtime.install",
+    "runtime.detect_backends",
+    "runtime.inspect_model",
+    "runtime.check_compatibility",
+    "runtime.estimate_memory",
+    "runtime.launch_plan",
+    "runtime.start",
+    "runtime.load",
+    "runtime.health",
+    "runtime.stop"
+  ],
+  "permissions": {
+    "read_roots": [
+      "$models"
+    ],
+    "write_roots": [
+      "$runtime"
+    ],
+    "network_origins": [
+      "https://github.com"
+    ],
+    "process_allowlist": [
+      "bin/llama-server.exe"
+    ],
+    "secret_refs": [
+      "larm/source/github"
+    ]
+  },
+  "capabilities": [
+    "runtime.gguf",
+    "runtime.openai_compatible",
+    "vendor.amd.rocm-experimental"
+  ],
+  "package_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "signature": null,
+  "installation_strategies": [
+    "UV",
+    "UV"
+  ]
+}

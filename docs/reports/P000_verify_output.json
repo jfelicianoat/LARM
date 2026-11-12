@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "checks": 18,
+  "failed": 0,
+  "results": [
+    {
+      "check": "inventory.json_valid_json",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "environment.lock.json_valid_json",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "fixtures.lock.json_valid_json",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "inventory_schema_keys",
+      "result": "PASS",
+      "detail": "all present"
+    },
+    {
+      "check": "inventory_os_build_present",
+      "result": "PASS",
+      "detail": "26200"
+    },
+    {
+      "check": "inventory_cpu_present",
+      "result": "PASS",
+      "detail": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          "
+    },
+    {
+      "check": "inventory_volume_guids",
+      "result": "PASS",
+      "detail": "1 volumes"
+    },
+    {
+      "check": "inventory_npu_no_default_fill",
+      "result": "PASS",
+      "detail": "[{'class': 'ComputeAccelerator', 'instanceId': 'PCI\\\\VEN_1022&DEV_17F0&SUBSYS_17"
+    },
+    {
+      "check": "inventory_deterministic_hash",
+      "result": "PASS",
+      "detail": "n1=5d14d4694b8f n2=5d14d4694b8f recorded=5d14d4694b8f"
+    },
+    {
+      "check": "no_secrets_in_locks_and_inventory",
+      "result": "PASS",
+      "detail": "clean"
+    },
+    {
+      "check": "negative_unknown_not_filled_with_default",
+      "result": "PASS",
+      "detail": "mutado detectado=True, real limpio=True"
+    },
+    {
+      "check": "negative_invalid_schema_rejected",
+      "result": "PASS",
+      "detail": "missing required key: os"
+    },
+    {
+      "check": "package_fixture_hashes_match",
+      "result": "PASS",
+      "detail": "checked=4 mismatches=[]"
+    },
+    {
+      "check": "llamacpp_two_versions_pinned",
+      "result": "PASS",
+      "detail": "versions=['b11539', 'b11538']"
+    },
+    {
+      "check": "acceptance_volumes_recorded_honestly",
+      "result": "PASS",
+      "detail": "1"
+    },
+    {
+      "check": "environment_crates_pinned_with_sha",
+      "result": "PASS",
+      "detail": "37 crates"
+    },
+    {
+      "check": "environment_npm_pinned_with_integrity",
+      "result": "PASS",
+      "detail": "13 packages"
+    },
+    {
+      "check": "environment_toolchains_pinned",
+      "result": "PASS",
+      "detail": ""
+    }
+  ]
+}

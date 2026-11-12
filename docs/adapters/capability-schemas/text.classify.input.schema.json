@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "larm__text_classify_input": {
+      "additionalProperties": false,
+      "properties": {
+        "labels": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "text": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "labels"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__text_classify_input",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,251 @@
+{
+  "prompt_id": "P021",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "ae53a5f90bbe0862306231d4b19e3c2b20be331485f6e85603110399334300c5",
+  "changed_files": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "crates/larm-adapter-host/Cargo.toml",
+    "crates/larm-adapter-host/examples/fake_adapter.rs",
+    "crates/larm-adapter-host/src/lib.rs",
+    "crates/larm-adapter-host/src/worker.rs",
+    "crates/larm-adapter-host/tests/worker.rs",
+    "docs/adapters/host.md",
+    "docs/adapters/security.md",
+    "docs/implementation/STATE.md",
+    "docs/reports/P021_adapter-host-workers-timeout-crash-y-lifecycle.md",
+    "tests/fixtures/fake_adapter/manifest.json",
+    "tests/fixtures/fake_adapter/README.md",
+    "tools/p021_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P021-REAL-build-fake",
+      "kind": "REAL",
+      "command": "cargo build -p larm-adapter-host --example fake_adapter",
+      "fixture_hashes": [],
+      "expected": "adaptador falso compilado",
+      "observed": "exit=0; Compiling larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.12s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-build-fake.log#sha256=1bc2a207c8157bd65edceb0b1eb0d15ea295bd1c3800297f665528ff27c7f58e"
+      ]
+    },
+    {
+      "id": "P021-REAL-handshake-ok",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- handshake_correcto_y_llamadas --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: READY, llamadas, método no anunciado sin enviar, parada STOPPED",
+      "observed": "exit=0; Compiling larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.93s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-handshake-ok.log#sha256=fc81fae08d54e0e93db3f5e88f72d2a9644103b78264aec4c4ac143142eec0ba"
+      ]
+    },
+    {
+      "id": "P021-REAL-handshake-fallido",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- handshake_fallido --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: handshake sin respuesta (TIMEOUT) y con otro nonce; ejecutable ausente; variable inyectable",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-handshake-fallido.log#sha256=2b50588bdf1109ec1cb329c967f7eb664074949d92c697bf94ecacdea7de4840"
+      ]
+    },
+    {
+      "id": "P021-REAL-timeout",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- timeout_con_cancelacion_atendida_y_sin_atender --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: timeout con cancel atendido (sigue READY) y desatendido (gracia y kill, FAILED)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-timeout.log#sha256=0d11441c6ec240529307b7ae9acb37a2e9816ce5d2f287000cb0a33290bb469c"
+      ]
+    },
+    {
+      "id": "P021-REAL-cancelacion",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- cancelacion_pedida_por_el_host --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: cancel por id: request_cancelled y cancelled=false después",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-cancelacion.log#sha256=7eaff302b884eb41eda78aca7c655c48ded673b287daf877bd67bb3cf86e8a67"
+      ]
+    },
+    {
+      "id": "P021-REAL-crash",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- crash_del_proceso --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: proceso que sale: ADAPTER_CRASHED y FAILED process_exited",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-crash.log#sha256=3bac8b53889e03cc8cdae17fdb45f237bb707e402062cd1698c64b8d352b4628"
+      ]
+    },
+    {
+      "id": "P021-REAL-stdout-corrupto",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- stdout_corrupto --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: tres líneas que no son frames: FAILED stdout_corrupt",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-stdout-corrupto.log#sha256=e56886f339cb8101ee29308fd7f35014fc7688a256d8a0dd1432dd3374979537"
+      ]
+    },
+    {
+      "id": "P021-REAL-stderr-enorme",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- stderr_enorme_no_bloquea_y_se_limita --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: 12 MiB en stderr: no bloquea, se descarta lo que pasa de 10 MiB, secreto redactado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-stderr-enorme.log#sha256=ec7d0918a1074ef08735c28288655566c0e8dbb37f519516790b9c702272b1ea"
+      ]
+    },
+    {
+      "id": "P021-REAL-heartbeat",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- heartbeat_ausente --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: 3 heartbeats sin respuesta: FAILED heartbeat_missed",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-heartbeat.log#sha256=c1da40b364ee82d61ad5fd38527e4b1426433ff12c0f8afc00db67c44b1e92ee"
+      ]
+    },
+    {
+      "id": "P021-REAL-entorno",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- entorno_minimo_explicito --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: entorno vaciado: ni PATH ni USERPROFILE ni APPDATA; sí lo del perfil y TEMP",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-entorno.log#sha256=cf39bafa300778c2bf931c9ef42567ffe989ecf4947a810f2f6e0c526445c234"
+      ]
+    },
+    {
+      "id": "P021-REAL-cola",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- cola_acotada --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: cola llena reintentable; mutaciones del mismo recurso en serie",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-cola.log#sha256=e819b7ad4a92c15192aee84e91ea084397849d124ffea13c2a431434193a26b8"
+      ]
+    },
+    {
+      "id": "P021-REAL-arbol",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker -- matar_es_el_ultimo_recurso_y_mata_el_arbol --exact",
+      "fixture_hashes": [],
+      "expected": "PC IA, procesos reales: kill como último recurso termina worker y nieto (tasklist)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running tests\\worker.rs (target\\debug\\deps\\worker-28e0a69757f3c957.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-arbol.log#sha256=573c17dff4dc7e59de9ad981d75305a636eb5b43d935a2b617dc152abd6073e5"
+      ]
+    },
+    {
+      "id": "P021-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-UNIT-cargo-fmt.log#sha256=8e6e5366c848d64401c97d693266abb60c5c6132283635cfe5a32573283d19fb"
+      ]
+    },
+    {
+      "id": "P021-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Checking larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.72s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-UNIT-cargo-clippy.log#sha256=b0bede008980a26a34dfe52ae9cd22978ae0ee1a2ab3d8196d58558bf598750c"
+      ]
+    },
+    {
+      "id": "P021-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-UNIT-cargo-test.log#sha256=e0632f224d01e7d6ca5cbabc8014e97b88f485b286a524e00b64d0e120af1f1d"
+      ]
+    },
+    {
+      "id": "P021-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P021-REAL-regresion-p020",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p020_real.py stdio",
+      "fixture_hashes": [],
+      "expected": "protocolo v1 (P020) sigue en verde",
+      "observed": "exit=0; [PASS] progreso-heartbeat-cancel: 3 progresos válidos con su request_id; heartbeat con el id en curso; cancel → cancelled y la ejecución termina cancelada, una respuesta por id | [PASS] stdout-solo-frames: 13 líneas en stdout, todas frames JSON-RPC; stdin cerrado → exit 0; stderr aparte (0 B) | [PASS] version-incompatible: el adaptador anuncia 2.0: versión mayor distinta y fuera del schema; el host corta la sesión sin pedir nada más | PASS 8 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-regresion-p020.log#sha256=d45de99415d25bf154d09bddaf48188d628b4bcd80a235ac087e7c94be0afd92"
+      ]
+    },
+    {
+      "id": "P021-REAL-job-object-kill-on-close",
+      "kind": "REAL",
+      "command": "cargo test --offline -p larm-adapter-host --test worker job_object_al_cerrar_worker_termina_descendiente_aunque_muera_el_padre -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "Cargo.toml:84882c895bd3492a681be53dae756a3f13aba4831befa9e6fca43ee089180c02",
+        "Cargo.lock:95b8129dec0d4919eb4536373f15ecaf8279747f8a24d852c48da6055681dc98",
+        "crates/larm-adapter-host/Cargo.toml:d3948729c255156d292ccab37369a352ea4cdd45e300ad44882dd4c3039d78c7",
+        "crates/larm-adapter-host/src/worker.rs:b18e3a0e7ff066f47a0fe9fc8d3c6ed57da276d5e4fe883a3f779d7c2160bac2",
+        "crates/larm-adapter-host/tests/worker.rs:85793159f1b688b1b531bf388eb19aa32df57c36f8c5564645081773d68f57d9"
+      ],
+      "expected": "Job Object kill-on-close termina al nieto cuando solo muere el worker raíz",
+      "observed": "exit=0; test result: ok. 1 passed; 0 failed; 0 ignored",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P021_runs/P021-REAL-job-object-kill-on-close.log#sha256=7cdde6bd63a1fd05a851339c57ba148402926c056b6b69457a7b773a8ee1bdc7"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P020 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T03:20:41.245Z"
+}

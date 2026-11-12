@@ -1,0 +1,12 @@
+{
+  "$defs": {
+    "larm__Empty": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__Empty",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

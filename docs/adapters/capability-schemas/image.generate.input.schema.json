@@ -1,0 +1,53 @@
+{
+  "$defs": {
+    "larm__image_generate_input": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "maximum": 8192,
+          "minimum": 64,
+          "type": "integer"
+        },
+        "negative_prompt": {
+          "type": "string"
+        },
+        "prompt": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "seed": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "steps": {
+          "maximum": 200,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "width": {
+          "maximum": 8192,
+          "minimum": 64,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt",
+        "negative_prompt",
+        "width",
+        "height",
+        "steps",
+        "seed"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__image_generate_input",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

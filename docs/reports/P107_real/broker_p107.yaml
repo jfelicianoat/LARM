@@ -1,0 +1,32 @@
+server:
+  host: 127.0.0.1
+  port: 8766
+  admin_token_env: AI_BROKER_P107_ADMIN_TOKEN
+  admin_keyring_service: ai-broker-p107-real-test
+  publish_session_token: none
+persistence:
+  database: C:/Procesos/Local AI Runtime Manager — LARM/larm/docs/reports/P107_real/broker/broker.db
+processing:
+  auto_dispatch: true
+ingestion:
+  enabled: false
+sandbox:
+  enabled: false
+mcp:
+  enabled: false
+system1:
+  enabled: false
+shadow_probe:
+  enabled: false
+strategy_router:
+  enabled: false
+providers:
+  ollama:
+    enabled: false
+larm:
+  enabled: true
+  endpoint: http://127.0.0.1:8790
+  api_key_env: LARM_BROKER_TOKEN
+  keyring_service: larm-p107-real-test-unused
+  lease_ttl_seconds: 30
+  job_poll_seconds: 1

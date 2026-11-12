@@ -1,0 +1,31 @@
+[package]
+name = "larm-api"
+description = "API administrativa Axum v1: OpenAPI, auth, SSE y operación de endpoints."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+larm-domain = { workspace = true }
+larm-core = { workspace = true }
+axum = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+chrono = { workspace = true }
+futures = { workspace = true }
+async-trait = { workspace = true }
+tokio = { workspace = true }
+
+[dev-dependencies]
+parking_lot = { workspace = true }
+reqwest = { workspace = true }
+tower = { version = "=0.5.3", features = ["util"] }
+uuid = { workspace = true }
+tempfile = { workspace = true }
+
+[lints]
+workspace = true

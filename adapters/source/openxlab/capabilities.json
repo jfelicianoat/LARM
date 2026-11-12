@@ -1,0 +1,10 @@
+{
+  "provider": "OPENXLAB",
+  "api_reference": "https://openxlab.org.cn/docs/en/models/%E4%B8%8B%E8%BD%BD%E6%A8%A1%E5%9E%8B.html",
+  "search_applicable": false,
+  "supported_methods": [],
+  "status": "UNSUPPORTED",
+  "limitations": [
+    "La documentación disponible describe UI, SDK y descarga de repositorios, pero no un contrato estable de búsqueda pública para este adapter; no se hace scraping."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "larm__GateResult": {
+      "additionalProperties": false,
+      "properties": {
+        "gates": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_refs": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNKNOWN"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "status",
+              "reason",
+              "evidence_refs"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "status": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "gates",
+        "status"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__GateResult",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

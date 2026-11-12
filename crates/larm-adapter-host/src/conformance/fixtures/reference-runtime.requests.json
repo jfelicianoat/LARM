@@ -1,0 +1,175 @@
+{
+  "runtime.benchmark": {
+    "backend_id": "019a0000-0000-7000-8000-000000000001",
+    "fixture_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "launch_profile_id": "019a0000-0000-7000-8000-000000000001",
+    "runtime_version_id": "019a0000-0000-7000-8000-000000000001",
+    "settings_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "suite_id": "x",
+    "variant_id": "019a0000-0000-7000-8000-000000000001"
+  },
+  "runtime.check_compatibility": {
+    "backend_id": "019a0000-0000-7000-8000-000000000001",
+    "hardware_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "launch_profile": {
+      "adapter_options": {},
+      "backend_id": "019a0000-0000-7000-8000-000000000001",
+      "batch": 1,
+      "chat_template_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "concurrency": 1,
+      "context": 1,
+      "environment": {
+        "allowlist": [],
+        "variables": []
+      },
+      "generation": {
+        "max_output_tokens": 1,
+        "seed": 0,
+        "temperature": 0,
+        "top_p": 0
+      },
+      "memory_limit_bytes": "1",
+      "offload_layers": 0,
+      "runtime_arguments": [],
+      "threads": 1,
+      "tokenizer_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "resource_requirements": {
+      "audio_duration_ms": 0,
+      "batch": 1,
+      "capability": "x",
+      "context_tokens": 0,
+      "frames": 0,
+      "hard_memory_budget_bytes": "0",
+      "height": 0,
+      "max_output_tokens": 0,
+      "sample_rate": 0,
+      "width": 0
+    },
+    "runtime_version_id": "019a0000-0000-7000-8000-000000000001",
+    "variant_id": "019a0000-0000-7000-8000-000000000001"
+  },
+  "runtime.detect_backends": {
+    "installation_id": "019a0000-0000-7000-8000-000000000001"
+  },
+  "runtime.discover": {
+    "base_url": "x",
+    "credential_reference_id": "019a0000-0000-7000-8000-000000000001",
+    "host_id": "019a0000-0000-7000-8000-000000000001",
+    "installation_path": "x"
+  },
+  "runtime.estimate_memory": {
+    "backend_id": "019a0000-0000-7000-8000-000000000001",
+    "hardware_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "launch_profile": {
+      "adapter_options": {},
+      "backend_id": "019a0000-0000-7000-8000-000000000001",
+      "batch": 1,
+      "chat_template_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "concurrency": 1,
+      "context": 1,
+      "environment": {
+        "allowlist": [],
+        "variables": []
+      },
+      "generation": {
+        "max_output_tokens": 1,
+        "seed": 0,
+        "temperature": 0,
+        "top_p": 0
+      },
+      "memory_limit_bytes": "1",
+      "offload_layers": 0,
+      "runtime_arguments": [],
+      "threads": 1,
+      "tokenizer_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "resource_requirements": {
+      "audio_duration_ms": 0,
+      "batch": 1,
+      "capability": "x",
+      "context_tokens": 0,
+      "frames": 0,
+      "hard_memory_budget_bytes": "0",
+      "height": 0,
+      "max_output_tokens": 0,
+      "sample_rate": 0,
+      "width": 0
+    },
+    "runtime_version_id": "019a0000-0000-7000-8000-000000000001",
+    "variant_id": "019a0000-0000-7000-8000-000000000001"
+  },
+  "runtime.inspect_model": {
+    "format_hint": "x",
+    "root_path": "x"
+  },
+  "runtime.install": {
+    "approval_id": "019a0000-0000-7000-8000-000000000001",
+    "plan_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "plan_id": "019a0000-0000-7000-8000-000000000001"
+  },
+  "runtime.install_plan": {
+    "external_host_id": "019a0000-0000-7000-8000-000000000001",
+    "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "runtime_id": "019a0000-0000-7000-8000-000000000001",
+    "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+    "strategy": "PREBUILT_BINARY",
+    "upstream_version": "x"
+  },
+  "runtime.install_status": {
+    "plan_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "plan_id": "019a0000-0000-7000-8000-000000000001"
+  },
+  "runtime.list_models": {
+    "base_url": "x",
+    "credential_reference_id": "019a0000-0000-7000-8000-000000000001",
+    "host_id": "019a0000-0000-7000-8000-000000000001",
+    "installation_path": "x"
+  },
+  "runtime.load": {
+    "constraints": {
+      "allow_backend_fallback": false,
+      "backend_id": "019a0000-0000-7000-8000-000000000001",
+      "execution_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "max_memory_bytes": "0",
+      "runtime_version_id": "019a0000-0000-7000-8000-000000000001"
+    },
+    "installation_id": "019a0000-0000-7000-8000-000000000001",
+    "launch_profile": {
+      "adapter_options": {},
+      "backend_id": "019a0000-0000-7000-8000-000000000001",
+      "batch": 1,
+      "chat_template_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "concurrency": 1,
+      "context": 1,
+      "environment": {
+        "allowlist": [],
+        "variables": []
+      },
+      "generation": {
+        "max_output_tokens": 1,
+        "seed": 0,
+        "temperature": 0,
+        "top_p": 0
+      },
+      "memory_limit_bytes": "1",
+      "offload_layers": 0,
+      "runtime_arguments": [],
+      "threads": 1,
+      "tokenizer_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "resource_requirements": {
+      "audio_duration_ms": 0,
+      "batch": 1,
+      "capability": "x",
+      "context_tokens": 0,
+      "frames": 0,
+      "hard_memory_budget_bytes": "0",
+      "height": 0,
+      "max_output_tokens": 0,
+      "sample_rate": 0,
+      "width": 0
+    },
+    "variant_id": "019a0000-0000-7000-8000-000000000001"
+  }
+}

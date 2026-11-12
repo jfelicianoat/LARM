@@ -1,0 +1,49 @@
+{
+  "$defs": {
+    "larm__SourceSearch": {
+      "additionalProperties": false,
+      "properties": {
+        "capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "limit": {
+          "maximum": 200,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "q": {
+          "maxLength": 500,
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "q",
+        "capabilities",
+        "cursor",
+        "limit"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__SourceSearch",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "larm__ValidationResult": {
+      "additionalProperties": false,
+      "properties": {
+        "errors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "valid",
+        "errors"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__ValidationResult",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

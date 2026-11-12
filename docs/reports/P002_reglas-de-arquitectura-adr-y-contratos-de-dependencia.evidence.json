@@ -1,0 +1,148 @@
+{
+  "prompt_id": "P002",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24",
+  "inputs_hash": "43bf20e76b0d811f61e283d325fdede7de90df38c587a5460ffe2db426edddae",
+  "changed_files": [
+    "crates/larm-core/src/bridge.rs",
+    "crates/larm-domain/Cargo.toml",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-runtime/Cargo.toml",
+    "crates/larm-runtime/src/credentials_pipe.rs",
+    "crates/larm-runtime/src/external_adoption.rs",
+    "docs/adr/0007-identificadores-uuidv7.md",
+    "docs/adr/0008-versionado-api.md",
+    "docs/architecture/dependencies.md",
+    "docs/contracts/crate-graph.json",
+    "tools/check_architecture.ps1",
+    "tools/check_architecture.py",
+    "tools/gen_dependencies_doc.py",
+    "tools/gen_p002_docs.py (eliminado)",
+    "tools/p002_evidence.py",
+    "tools/verify_p002.py"
+  ],
+  "tests": [
+    {
+      "id": "P002-CONTRACT-graph-pristine",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p002.py graph-pristine",
+      "fixture_hashes": [
+        "docs/contracts/crate-graph.json:e4e83534c9115b8b847d47f2b7dc2c191deb505540f1582bcac87dfefe6484cd"
+      ],
+      "expected": "crate-graph.json del repo idéntico al del paquete v3",
+      "observed": "exit=0; PASS crate-graph.json idéntico al paquete (sha256 e4e83534c9115b8b847d47f2b7dc2c191deb505540f1582bcac87dfefe6484cd)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-CONTRACT-graph-pristine.log#sha256=528425f6a1b6c457d32b99b3b1cd860b468d082354b4d00ac467fe34281b7fd7"
+      ]
+    },
+    {
+      "id": "P002-CONTRACT-dependencies-doc",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/gen_dependencies_doc.py --check",
+      "fixture_hashes": [
+        "docs/contracts/crate-graph.json:e4e83534c9115b8b847d47f2b7dc2c191deb505540f1582bcac87dfefe6484cd"
+      ],
+      "expected": "docs/architecture/dependencies.md generado del contrato, sin deriva",
+      "observed": "exit=0; PASS documento coincide con el contrato",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-CONTRACT-dependencies-doc.log#sha256=166969f5c43255b4fd3c7c52fe072adff95ae53967332001abc3db3195317956"
+      ]
+    },
+    {
+      "id": "P002-CONTRACT-adrs",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p002.py adrs",
+      "fixture_hashes": [],
+      "expected": "ADR 0001-0008 aceptados y alineados con contratos 00/03/07",
+      "observed": "exit=0; PASS 9 ADR aceptados con las decisiones del contrato",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-CONTRACT-adrs.log#sha256=0a5c123b21fd3b43f17b64b3b39a04de5b5fad44a5cb6887b421d743517b55ca"
+      ]
+    },
+    {
+      "id": "P002-CONTRACT-conventions",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p002.py conventions",
+      "fixture_hashes": [],
+      "expected": "código de producción sin UUIDv4 ni timestamps fuera de formato",
+      "observed": "exit=0; PASS 55 ficheros de producción sin UUIDv4 ni to_rfc3339()",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-CONTRACT-conventions.log#sha256=f5d2949e0a80830487bb810fc769d00cb024edee4a4fa453a5cecda0ffc9f114"
+      ]
+    },
+    {
+      "id": "P002-FAULT-architecture-negatives",
+      "kind": "FAULT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/check_architecture.py --selftest",
+      "fixture_hashes": [
+        "docs/contracts/crate-graph.json:e4e83534c9115b8b847d47f2b7dc2c191deb505540f1582bcac87dfefe6484cd"
+      ],
+      "expected": "7 workspaces reales: domain con sqlx/windows/std::fs, runtime->core, crate fuera del grafo y GUI->crate interno fallan; el grafo válido pasa",
+      "observed": "exit=0; [PASS] crate_fuera_del_grafo: esperado='fuera del grafo' observado=['larm-extra: crate fuera del grafo contractual'] | [PASS] gui_depende_de_crate_interno: esperado='la GUI solo usa' observado=[\"larm-desktop (apps/desktop): la GUI solo usa la API HTTP; depende de ['larm-domain']\"] | [PASS] control_grafo_valido: esperado='sin fallos' observado=[] | selftest arquitectura: PASS (7 workspaces reales)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-FAULT-architecture-negatives.log#sha256=86871057e0c452f7cc9caa019dad7ade28f816734511d7ebb589cdd40d908ab2"
+      ]
+    },
+    {
+      "id": "P002-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-UNIT-cargo-fmt.log#sha256=841ddf8d91a2388de3cb0a0e61f26aa4a5cb523ba61e6ff8f22d2af28b780603"
+      ]
+    },
+    {
+      "id": "P002-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-UNIT-cargo-clippy.log#sha256=55808347b4d9ca2b5d8809dc7a1b643ec4fea56e96d5f10f5f7815acc0745962"
+      ]
+    },
+    {
+      "id": "P002-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-UNIT-cargo-test.log#sha256=fdc3efc74e5f329aa1d7124b299a681e9b53305b115f3b7d618dd543f2c19e27"
+      ]
+    },
+    {
+      "id": "P002-REAL-cargo-metadata",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [
+        "docs/contracts/crate-graph.json:e4e83534c9115b8b847d47f2b7dc2c191deb505540f1582bcac87dfefe6484cd"
+      ],
+      "expected": "cargo metadata real del workspace (16 crates) y del shell Tauri conforme al contrato",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P002_runs/P002-REAL-cargo-metadata.log#sha256=1e4ebccecee18333ac42f27b2a49c79f1c5a9eb647dc01e470bfb6e04502e579"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P001 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T05:09:46.323Z"
+}

@@ -1,0 +1,257 @@
+{
+  "prompt_id": "P018",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "584d098877064bf772283aef348694686da207c4282166895a9c6ff2a292cfce",
+  "changed_files": [
+    "apps/daemon/src/hardware.rs",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/maintenance.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/maintenance.rs",
+    "crates/larm-db/src/artifacts.rs",
+    "crates/larm-db/src/backup.rs",
+    "crates/larm-db/src/models.rs",
+    "crates/larm-db/src/variants.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-domain/src/locations.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-models/Cargo.toml",
+    "crates/larm-models/src/import.rs",
+    "crates/larm-models/src/lib.rs",
+    "crates/larm-models/src/rebuild.rs",
+    "crates/larm-models/tests/maintenance.rs",
+    "crates/larm-storage/src/analyzer.rs",
+    "crates/larm-storage/src/cleanup.rs",
+    "crates/larm-storage/src/lib.rs",
+    "crates/larm-storage/src/rebuild.rs",
+    "crates/larm-storage/src/reconcile.rs",
+    "docs/api/openapi.json",
+    "docs/operations/storage-maintenance.md",
+    "tools/p018_evidence.py",
+    "tools/p018_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P018-UNIT-niveles-h09",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- locations::tests",
+      "fixture_hashes": [],
+      "expected": "NORMAL/WARNING/CRITICAL por volumen sin duplicar raíces, observación más reciente, PERCENT y BYTES, igualdad sin cruce y transiciones una vez por volumen",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-UNIT-niveles-h09.log#sha256=45cf03775ccd3a6e76c716ed82decde44698d98fb5f7e393867f0025f6423849"
+      ]
+    },
+    {
+      "id": "P018-UNIT-analizador",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- analyzer::tests",
+      "fixture_hashes": [],
+      "expected": "categorías MODELS/PARTIALS/TEMPORARIES/CACHES/RUNTIMES/ORPHANS; job vivo bloquea; copias EXTERNAL y ficheros del usuario nunca recuperables; determinista",
+      "observed": "exit=0; Compiling larm-storage v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-storage) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.02s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-09f55593bf6e03b0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-UNIT-analizador.log#sha256=e91c50dcf3149ba2accc35a3433ffe4483539606bfc1d7b764a12d04cc33d042"
+      ]
+    },
+    {
+      "id": "P018-UNIT-manifiestos",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- rebuild::tests",
+      "fixture_hashes": [],
+      "expected": "manifiestos atómicos; blobs releídos OK/MISSING/CORRUPT; manifiesto ilegible informado; blobs sin citar",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-09f55593bf6e03b0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-UNIT-manifiestos.log#sha256=6b850785def9d2edfe0f6cdb61fca6aec655ee3f6bd4cf9b8b59cc2d168f25a1"
+      ]
+    },
+    {
+      "id": "P018-INTEGRATION-offline-online",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test maintenance -- volumen_offline_y_vuelta_con_reverificacion --exact",
+      "fixture_hashes": [],
+      "expected": "OFFLINE sin borrar ni tocar la etapa; de vuelta, bytes releídos y disponibilidad restaurada; CORRUPT; MISSING",
+      "observed": "exit=0; Compiling larm-storage v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-storage) | Compiling larm-models v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models) | Finished `test` profile [unoptimized + debuginfo] target(s) in 2.37s | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-fc457f8e089c6ff7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-INTEGRATION-offline-online.log#sha256=57ec8a69d1fc59090c75cf189a0378ff2c81f1f642168b845736ee9e5e67c6d4"
+      ]
+    },
+    {
+      "id": "P018-INTEGRATION-huerfanos-y-parciales",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test maintenance -- huerfanos_parciales_y_limpieza_aprobada --exact",
+      "fixture_hashes": [],
+      "expected": "blob huérfano y parcial de job terminado recuperables; job vivo y fichero del usuario intactos; plan de un uso; lo que cambió se salta",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-fc457f8e089c6ff7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-INTEGRATION-huerfanos-y-parciales.log#sha256=09607cfef2917c28c8341cffedd22803dff11a5a820fd6d46a4c2879a442fdab"
+      ]
+    },
+    {
+      "id": "P018-INTEGRATION-borrado",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test maintenance -- borrar_una_variante --exact",
+      "fixture_hashes": [],
+      "expected": "DELETE_FILE/KEEP_SHARED/DEREGISTER; If-Match; ACTIVE_LEASE; variant_in_use sin borrar nada; manifiesto retirado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-fc457f8e089c6ff7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-INTEGRATION-borrado.log#sha256=d780d047bece646136b75d6b205f667e37106c924c7095f113716618484096ac"
+      ]
+    },
+    {
+      "id": "P018-INTEGRATION-rebuild",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test maintenance -- reconstruir_el_registro_desde_manifiestos --exact",
+      "fixture_hashes": [],
+      "expected": "reconstrucción en staging: completa recuperada, incompleta informada, blob sin citar; la base viva intacta",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-fc457f8e089c6ff7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-INTEGRATION-rebuild.log#sha256=b5e9841887daa7305a7980ff4a189a9939d6fec2ebf65b4cb9a49ec4d44adf02"
+      ]
+    },
+    {
+      "id": "P018-INTEGRATION-restore-instalacion-nueva",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration -- restore_en_una_instalacion_nueva_sin_carpeta",
+      "fixture_hashes": [],
+      "expected": "defecto heredado de P004 corregido: restore en una instalación sin carpeta de datos",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-INTEGRATION-restore-instalacion-nueva.log#sha256=aee21dae8fde82aa67efbf0772fcd2858d93f03fe728fc6822da23841ddec03e"
+      ]
+    },
+    {
+      "id": "P018-INTEGRATION-api",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test maintenance",
+      "fixture_hashes": [],
+      "expected": "scopes storage:write/models:write, Probe, ExecutePlan, aprobación obligatoria ligada al plan, If-Match 428, plan_hash requerido, parámetros no previstos",
+      "observed": "exit=0; Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.86s | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-63e7850f25fdcc6a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-INTEGRATION-api.log#sha256=96a5273e9610187ab44ca5a37c561df402a50c8933249d215308e14fe6408c48"
+      ]
+    },
+    {
+      "id": "P018-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-UNIT-cargo-fmt.log#sha256=8e6e5366c848d64401c97d693266abb60c5c6132283635cfe5a32573283d19fb"
+      ]
+    },
+    {
+      "id": "P018-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-UNIT-cargo-clippy.log#sha256=39daf2f24bc1be8f6b7063af8afd152063043f319980af0a7a88d91fb6638bb4"
+      ]
+    },
+    {
+      "id": "P018-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-UNIT-cargo-test.log#sha256=98f34aa9719799281bd8365777c3c4aac11998039dbbe2bd3e9fdf580a58c092"
+      ]
+    },
+    {
+      "id": "P018-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P018-REAL-build-daemon",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.23s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-REAL-build-daemon.log#sha256=2ed3debcf080006450ef9217d60a6c32d20ee295a5ede6a2719ba6ab0d6ccb55"
+      ]
+    },
+    {
+      "id": "P018-REAL-openapi",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p005_real.py openapi",
+      "fixture_hashes": [],
+      "expected": "docs/api/openapi.json al día con las 5 operaciones de P018 implementadas",
+      "observed": "exit=0; PASS al día y válido OpenAPI 3.1.0: 142 operaciones, 47 implementadas, 281 schemas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-REAL-openapi.log#sha256=caec19a55a23c7b9e4df7c36da4de35a6b7b23df8bb0d9c394391d170c46a58e"
+      ]
+    },
+    {
+      "id": "P018-REAL-mantenimiento",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p018_real.py serve",
+      "fixture_hashes": [],
+      "expected": "PC IA: copia con manifiestos, análisis, limpieza aprobada, borrado de variante, raíz que desaparece y vuelve con bytes releídos, reconstrucción en staging y db-restore en otra carpeta servido por el daemon",
+      "observed": "exit=0; [PASS] borrado-de-variante: delete-plan DELETE_FILE + KEEP_SHARED; DELETE 204 con If-Match y aprobación; gguf de Alfa borrado; README compartido y Beta intactos | [PASS] raiz-desaparece-y-vuelve: carpeta renombrada: MISSING (2 filas), Beta OFFLINE sin tocar su etapa; de vuelta: 2 ficheros releídos ONLINE y Beta AVAILABLE | [PASS] reconstruccion-y-restore: manifiestos → base de staging (Beta recuperada; el de Alfa ya no existe); db-restore verificado en otra carpeta de datos y el daemon sirve la variante recuperada | PASS 6 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-REAL-mantenimiento.log#sha256=e10aa2e6dc77e7a080b8cef29ad4e6e6a26dc06cb27794590d7209bfc69875c7"
+      ]
+    },
+    {
+      "id": "P018-REAL-regresion-p017",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p017_real.py serve",
+      "fixture_hashes": [],
+      "expected": "importación y CAS (P017) siguen en verde con los manifiestos",
+      "observed": "exit=0; [PASS] copia-al-cas: 9 blobs copiados y verificados de solo lectura; mmproj y README una vez para dos variantes (4 filas SHARED); original intacto; repetir no copia | [PASS] vista-y-fallback: C:: 3 hard links (st_nlink [2, 2, 2]); \\\\localhost\\Temp: sin enlace posible (cross-device link or rename), referencias en view.json y ningún blob copiado | [PASS] limpieza: \\\\localhost\\Temp\\larm-p017-95ffb459 borrada | PASS 6 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P018_runs/P018-REAL-regresion-p017.log#sha256=754828b94939f735e3712abc4344f5ebc30081576c77d7b198adab3ab66390a7"
+      ]
+    },
+    {
+      "id": "P018-REAL-disco-desconectado",
+      "kind": "REAL",
+      "command": "desconectar físicamente un disco con modelos y volver a conectarlo",
+      "fixture_hashes": [],
+      "expected": "artefactos OFFLINE y variante OFFLINE sin borrar nada; al volver, bytes releídos y disponibilidad restaurada",
+      "observed": "NO EJECUTADA: el PC IA no tiene un segundo volumen ni un disco extraíble (bloqueo de P000); se probó con la raíz que desaparece (MISSING) y con estados OFFLINE en integración",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "dependencia P017 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T20:40:15.591Z"
+}

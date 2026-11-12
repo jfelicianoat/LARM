@@ -1,0 +1,21 @@
+{
+  "threads": 16,
+  "context": 8192,
+  "batch": 512,
+  "concurrency": 2,
+  "offload_layers": 99,
+  "backend_id": "0192aaaa-0000-7000-8000-000000000001",
+  "tokenizer_hash": null,
+  "chat_template_hash": null,
+  "generation": {"temperature": 0.7, "top_p": 0.95, "seed": 42, "max_output_tokens": 512},
+  "memory_limit_bytes": "34359738368",
+  "runtime_arguments": ["--flash-attn", "--no-mmap"],
+  "environment": {
+    "allowlist": ["HSA_OVERRIDE_GFX_VERSION", "HF_TOKEN"],
+    "variables": [
+      {"name": "HSA_OVERRIDE_GFX_VERSION", "value": "11.5.1"},
+      {"name": "HF_TOKEN", "credential_reference": "larm/source/hf"}
+    ]
+  },
+  "adapter_options": {"mlock": false, "rope": {"scale": 1.0, "base": 10000, "factor": 0.000001}, "ñ": "€", "big": 1e21}
+}

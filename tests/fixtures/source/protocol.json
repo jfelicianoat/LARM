@@ -1,0 +1,366 @@
+{
+  "scope": "protocol fixture only; does not download or qualify an upstream",
+  "source_id": "0192aaaa-0000-7000-8000-000000000001",
+  "support": {
+    "search_applicable": true,
+    "supported_filters": [
+      "source.search.q"
+    ],
+    "limitations": [
+      "fixture_only",
+      "core_postfilter_required"
+    ]
+  },
+  "requests": {
+    "source.search": {
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "q": "llama",
+      "capabilities": [],
+      "cursor": null,
+      "limit": 1
+    },
+    "source.get_model": {
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "upstream_namespace": "fixture",
+      "upstream_model_id": "llama"
+    },
+    "source.list_revisions": {
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "upstream_namespace": "fixture",
+      "upstream_model_id": "llama"
+    },
+    "source.get_manifest": {
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "upstream_namespace": "fixture",
+      "upstream_model_id": "llama",
+      "revision_key": "commit:fixture-v1"
+    },
+    "source.estimate_size": {
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "upstream_namespace": "fixture",
+      "upstream_model_id": "llama",
+      "revision_key": "commit:fixture-v1"
+    },
+    "source.download_plan": {
+      "variant_id": "0192aaaa-0000-7000-8000-000000000011",
+      "storage_location_id": "0192aaaa-0000-7000-8000-000000000002",
+      "hard_budget_bytes": null,
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "priority": "NORMAL"
+    },
+    "source.download": {
+      "plan_id": "0192aaaa-0000-7000-8000-000000000031",
+      "plan_hash": "46488763ff6bc6b222319471a9214f47b347f3cf9b0c64e13e4a68f7e1df638f",
+      "approval_id": null
+    },
+    "source.download_chunk": {
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "job_id": "0192aaaa-0000-7000-8000-000000000051",
+      "plan_id": "0192aaaa-0000-7000-8000-000000000031",
+      "plan_hash": "46488763ff6bc6b222319471a9214f47b347f3cf9b0c64e13e4a68f7e1df638f",
+      "approval_id": null,
+      "revision": {
+        "source_id": "0192aaaa-0000-7000-8000-000000000001",
+        "upstream_namespace": "fixture",
+        "upstream_model_id": "llama",
+        "revision_key": "commit:fixture-v1"
+      },
+      "relative_path": "weights.gguf",
+      "offset": "0",
+      "max_bytes": "524288",
+      "validator": null
+    },
+    "source.sync": {
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "cursor": null,
+      "etag": null,
+      "query": {
+        "vendor_query": {
+          "unknown": true
+        }
+      }
+    },
+    "source.auth_probe": {
+      "source_id": "0192aaaa-0000-7000-8000-000000000001",
+      "auth_mode": "NONE",
+      "account_id": null,
+      "credential_reference_id": null
+    }
+  },
+  "responses": {
+    "source.search": {
+      "items": [
+        {
+          "id": "0192aaaa-0000-7000-8000-000000000011",
+          "created_at": "2026-10-16T00:00:00.000Z",
+          "updated_at": "2026-10-16T00:00:00.000Z",
+          "row_version": 1,
+          "metadata": {
+            "vendor_unrecognized": {
+              "nested": [
+                1,
+                true,
+                null
+              ]
+            },
+            "display_name": "llama fixture"
+          },
+          "revision_id": "0192aaaa-0000-7000-8000-000000000021",
+          "format": "GGUF",
+          "quantization": null,
+          "architecture": null,
+          "bundle_hash": null,
+          "lifecycle": "DISCOVERED",
+          "availability": "UNKNOWN",
+          "ownership": "EXTERNAL",
+          "promotion": "NONE",
+          "system_role": "GENERAL",
+          "capabilities": [
+            "text.generate"
+          ],
+          "model_limits": {
+            "parameter_count": null,
+            "layers": null,
+            "kv_heads": null,
+            "head_dim": null,
+            "context_limit": null,
+            "kv_bits": null,
+            "model_max_memory_bytes": null,
+            "architecture_metadata_hash": null
+          },
+          "system1_state": null,
+          "update_available": false,
+          "status": "DISCOVERED"
+        }
+      ],
+      "next_cursor": "page-2",
+      "snapshot_at": "2026-10-16T00:00:00.000Z"
+    },
+    "source.get_model": {
+      "upstream_identity": null,
+      "architecture": null,
+      "format": "GGUF",
+      "quantization": null,
+      "capabilities": [
+        "text.generate"
+      ],
+      "limits": {
+        "vendor_new_field": {
+          "context": null,
+          "evidence": [
+            "declared"
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "relative_path": "weights.gguf",
+          "size_bytes": "18",
+          "sha256": "c62864ff58ad519ae0d0caab067b7459b5c9e117973d92eec22ad69ac7cef3c1",
+          "required": true,
+          "role": "weights"
+        }
+      ],
+      "license": null,
+      "evidence_refs": [
+        "fixture:source/1"
+      ]
+    },
+    "source.list_revisions": {
+      "items": [
+        {
+          "id": "0192aaaa-0000-7000-8000-000000000021",
+          "created_at": "2026-10-16T00:00:00.000Z",
+          "updated_at": "2026-10-16T00:00:00.000Z",
+          "row_version": 1,
+          "metadata": {},
+          "distribution_id": "0192aaaa-0000-7000-8000-000000000041",
+          "revision_key": "commit:fixture-v1",
+          "upstream_commit": "fixture-v1",
+          "manifest_hash": "509725aaa4fe7260cd870ed4b10443147635756909446cb6d805d423f6840506",
+          "state": "CANDIDATE"
+        }
+      ],
+      "next_cursor": null,
+      "snapshot_at": "2026-10-16T00:00:00.000Z"
+    },
+    "source.get_manifest": {
+      "revision_key": "commit:fixture-v1",
+      "manifest_hash": "509725aaa4fe7260cd870ed4b10443147635756909446cb6d805d423f6840506",
+      "artifacts": [
+        {
+          "relative_path": "weights.gguf",
+          "size_bytes": "18",
+          "sha256": "c62864ff58ad519ae0d0caab067b7459b5c9e117973d92eec22ad69ac7cef3c1",
+          "required": true,
+          "role": "weights"
+        }
+      ]
+    },
+    "source.estimate_size": {
+      "download_bytes": "18",
+      "final_artifact_bytes": "18",
+      "installed_bytes": "0",
+      "derived_cache_bytes": "0",
+      "temporary_peak_bytes": "0",
+      "existing_bytes": "0",
+      "peak_extra_bytes": "18",
+      "required_free_bytes": "1073741842",
+      "upper_bound_bytes": "18",
+      "confidence": "EXACT",
+      "reason": "fixture_exact",
+      "evidence_refs": [
+        "fixture:source/1"
+      ],
+      "per_volume": [
+        {
+          "volume_key": "fixture-volume",
+          "peak_extra_bytes": "18",
+          "margin_bytes": "1073741824",
+          "other_reservations_bytes": "0",
+          "usable_free_bytes": "2000000000",
+          "eligible": true,
+          "reason": "fixture_only"
+        }
+      ]
+    },
+    "source.download_plan": {
+      "plan_id": "0192aaaa-0000-7000-8000-000000000031",
+      "operation": "source.download",
+      "resource_ids": [
+        "0192aaaa-0000-7000-8000-000000000011",
+        "0192aaaa-0000-7000-8000-000000000002"
+      ],
+      "storage_estimate": {
+        "download_bytes": "18",
+        "final_artifact_bytes": "18",
+        "installed_bytes": "0",
+        "derived_cache_bytes": "0",
+        "temporary_peak_bytes": "0",
+        "existing_bytes": "0",
+        "peak_extra_bytes": "18",
+        "required_free_bytes": "1073741842",
+        "upper_bound_bytes": "18",
+        "confidence": "EXACT",
+        "reason": "fixture_exact",
+        "evidence_refs": [
+          "fixture:source/1"
+        ],
+        "per_volume": [
+          {
+            "volume_key": "fixture-volume",
+            "peak_extra_bytes": "18",
+            "margin_bytes": "1073741824",
+            "other_reservations_bytes": "0",
+            "usable_free_bytes": "2000000000",
+            "eligible": true,
+            "reason": "fixture_only"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "phase": "DOWNLOAD",
+          "adapter_id": "fixture.source",
+          "request": {
+            "source_download_v1": {
+              "variant_id": "0192aaaa-0000-7000-8000-000000000011",
+              "storage_location_id": "0192aaaa-0000-7000-8000-000000000002",
+              "revision": {
+                "source_id": "0192aaaa-0000-7000-8000-000000000001",
+                "upstream_namespace": "fixture",
+                "upstream_model_id": "llama",
+                "revision_key": "commit:fixture-v1"
+              },
+              "artifacts": [
+                {
+                  "relative_path": "weights.gguf",
+                  "size_bytes": "18",
+                  "sha256": "c62864ff58ad519ae0d0caab067b7459b5c9e117973d92eec22ad69ac7cef3c1",
+                  "required": true,
+                  "role": "weights"
+                }
+              ],
+              "auth": {
+                "authenticated": false,
+                "auth_required": false,
+                "license_required": false,
+                "reason": "public_fixture"
+              },
+              "resumable": false,
+              "priority": "NORMAL",
+              "hard_budget_bytes": null
+            }
+          }
+        }
+      ],
+      "expires_at": "2099-01-01T00:00:00.000Z",
+      "approval_required": false,
+      "plan_hash": "46488763ff6bc6b222319471a9214f47b347f3cf9b0c64e13e4a68f7e1df638f"
+    },
+    "source.download": {
+      "job_id": "0192aaaa-0000-7000-8000-000000000051",
+      "status_url": "/api/v1/jobs/0192aaaa-0000-7000-8000-000000000051",
+      "state": "QUEUED"
+    },
+    "source.download_chunk": {
+      "offset": "0",
+      "data_base64": "YWJj",
+      "eof": false,
+      "total_bytes": "18",
+      "validator": {
+        "kind": "STRONG_ETAG",
+        "value": "\"fixture-v1\""
+      }
+    },
+    "source.sync": {
+      "cursor": "sync-2",
+      "etag": "fixture-etag",
+      "changed": true,
+      "models": [
+        {
+          "upstream_identity": null,
+          "architecture": null,
+          "format": "GGUF",
+          "quantization": null,
+          "capabilities": [
+            "text.generate"
+          ],
+          "limits": {
+            "vendor_new_field": {
+              "context": null,
+              "evidence": [
+                "declared"
+              ]
+            }
+          },
+          "artifacts": [
+            {
+              "relative_path": "weights.gguf",
+              "size_bytes": "18",
+              "sha256": "c62864ff58ad519ae0d0caab067b7459b5c9e117973d92eec22ad69ac7cef3c1",
+              "required": true,
+              "role": "weights"
+            }
+          ],
+          "license": null,
+          "evidence_refs": [
+            "fixture:source/1"
+          ]
+        }
+      ]
+    },
+    "source.auth_probe": {
+      "authenticated": false,
+      "auth_required": false,
+      "license_required": false,
+      "reason": "public_fixture"
+    }
+  },
+  "rate_limit": {
+    "limit": "100",
+    "remaining": "0",
+    "reset_at": "2099-01-01T00:00:00.000Z",
+    "retry_after_seconds": "900"
+  }
+}

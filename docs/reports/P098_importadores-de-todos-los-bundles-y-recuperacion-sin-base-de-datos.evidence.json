@@ -1,0 +1,318 @@
+{
+  "prompt_id": "P098",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "4a090dad777617956ef34c539e2702234346dea7320db9f050225903759f0c9c",
+  "changed_files": [
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/model_import_preview.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/desktop/src/model-import.tsx",
+    "apps/desktop/src/models.test.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-api/src/import_preview.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/model_import.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/import_preview.rs",
+    "crates/larm-api/tests/model_import.rs",
+    "crates/larm-db/Cargo.toml",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/model_import.rs",
+    "crates/larm-db/tests/adapter_selection.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/model_import.rs",
+    "crates/larm-models/Cargo.toml",
+    "crates/larm-models/src/import.rs",
+    "crates/larm-models/src/import_worker.rs",
+    "crates/larm-models/src/lib.rs",
+    "crates/larm-models/src/scan.rs",
+    "crates/larm-models/tests/import.rs",
+    "crates/larm-models/tests/import_worker.rs",
+    "crates/larm-storage/src/import.rs",
+    "docs/api/openapi.json",
+    "docs/contracts/REVISION_3_2_0_P098.md",
+    "docs/contracts/api-operations.json",
+    "docs/contracts/manifest.json",
+    "docs/contracts/schemas/larm.schema.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P098_importadores-de-todos-los-bundles-y-recuperacion-sin-base-de-datos.md",
+    "docs/reports/P123_mis-modelos-y-gestion-multidisco.md",
+    "migrations/0007_p098_local_import_source.sql",
+    "tools/p098_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P098-UNIT-storage-limit",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib import::tests::limite_incluye_ficheros_encontrados_y_elementos_omitidos -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "Recorrido y preview pasan, incluido el límite agregado de 100.000 entradas.",
+      "observed": "exit=0; warning: `larm-storage` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 5.57s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-953d06367966e736.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-UNIT-storage-limit.log#sha256=aa2312c6a63be1c184f4443d78e97aeb85032927b3b6546504cb6521e8985af9"
+      ]
+    },
+    {
+      "id": "P098-UNIT-models-preview",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-models -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El preview detecta variantes y tamaños, incluidos GGUF, CTranslate2, NCNN y MNN, mantiene rutas relativas y no modifica archivos.",
+      "observed": "exit=0; Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-fe060dd5ff7a5397.exe) | Running tests\\registry.rs (target\\debug\\deps\\registry-d7f80cb6a5c9f1ed.exe) | Running tests\\verification.rs (target\\debug\\deps\\verification-8945d0893b251cea.exe) | Doc-tests larm_models",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-UNIT-models-preview.log#sha256=b4933b54ad4f07d72c43e76a1cda6438fe42282c6243df8cf35f51f9447c0a0a"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-api-preview",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test import_preview -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "La ruta exige models:write, valida el cuerpo estricto y no requiere clave de idempotencia.",
+      "observed": "exit=0; warning: `larm-api` (lib) generated 1 warning | Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 3.88s | Running tests\\import_preview.rs (target\\debug\\deps\\import_preview-59a8ad6d01aaa71b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-api-preview.log#sha256=9aaf998daa0e61b55adda00296fe582fef0ba4835b928905809d9b67b6cda5fe"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-api-import",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test model_import -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "POST /api/v1/models/import exige models:write e Idempotency-Key y rechaza requests incompletas o propiedades desconocidas.",
+      "observed": "exit=0; warning: `larm-api` (lib) generated 1 warning | Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.94s | Running tests\\model_import.rs (target\\debug\\deps\\model_import-4dae15fc5336cd4b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-api-import.log#sha256=2e1da3a06c32b9a2a2089e7fbc968e14eeadbf41dc884cc4aad9b92531e12e59"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-sqlite-jobs",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib model_import::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "La cola confirma journal, idempotencia y outbox atómicos, cierra jobs RUNNING, crea/reutiliza fuentes automáticas concurrentemente y falla cerrado si se revoca el adaptador local.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.29s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-c463ce497a7a8126.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-sqlite-jobs.log#sha256=50cd68bb2efb3e84399a53e8033d16fac49196a63a7f528a3a6b36e13c9a6068"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-migration-source",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test adapter_selection -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "La migración 0007 instala la fuente local interna sin cambiar la selección de adapters.",
+      "observed": "exit=0; warning: `larm-db` (test \"adapter_selection\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 2.46s | Running tests\\adapter_selection.rs (target\\debug\\deps\\adapter_selection-bbbf622ae0234785.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-migration-source.log#sha256=be67c5c5c4dee51c688559fc19461299e4695ac49cf70ffb64a3f6165774aab0"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-migration-compatibility",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration migracion_desde_vacia_crea_exactamente_las_tablas_del_ddl -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "Una instalación desde una base vacía aplica exactamente las siete migraciones esperadas.",
+      "observed": "exit=0; warning: `larm-db` (test \"integration\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.31s | Running tests\\integration.rs (target\\debug\\deps\\integration-7432882d547af07b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-migration-compatibility.log#sha256=8852036407e38cc7b8b54769713ac846568f2380a15fda32a6147d5013727657"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-import-worker",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import_worker -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El worker crea/reutiliza la fuente de la ruta local canónica y la vincula a las distribuciones GGUF, CTranslate2, NCNN y MNN.",
+      "observed": "exit=0; warning: `larm-models` (test \"import_worker\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.35s | Running tests\\import_worker.rs (target\\debug\\deps\\import_worker-d29b33af27675b18.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-import-worker.log#sha256=de520aa373994e11c6b7399d370e1906ac346b18e75b6d448828d9eaa86445bc"
+      ]
+    },
+    {
+      "id": "P098-REGRESSION-db-model-crates",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db -p larm-models -j1 -- --test-threads=1 --skip backup_y_restore_verificado --skip h01_conserva_los_cinco_canales_en_backup_y_restore --skip restore_en_una_instalacion_nueva_sin_carpeta",
+      "fixture_hashes": [],
+      "expected": "Todas las pruebas de larm-db y larm-models pasan; se omiten solo tres pruebas de backup/restore bloqueadas por permisos de publicación en este Windows.",
+      "observed": "exit=0; Running tests\\registry.rs (target\\debug\\deps\\registry-d7f80cb6a5c9f1ed.exe) | Running tests\\verification.rs (target\\debug\\deps\\verification-8945d0893b251cea.exe) | Doc-tests larm_db | Doc-tests larm_models",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-REGRESSION-db-model-crates.log#sha256=2c5345d8ca6ad1ad561e3399bb3ebe7c30127fb151d78db084c6aaea249c40e7"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-registry-rebuild",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import reconstruye_registro_en_una_base_nueva_desde_manifiestos_y_blobs -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "Copia los bundles a CAS y reconstruye variantes y ubicaciones en una base SQLite nueva; conserva licencias desconocidas.",
+      "observed": "exit=0; warning: `larm-models` (test \"import\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.36s | Running tests\\import.rs (target\\debug\\deps\\import-0f8c3fead87e67c2.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-registry-rebuild.log#sha256=831e3f3d6944e442d9b8ca3d26e7dc041f5740c57733dd1989ba3712f33e1952"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-import-format-license",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El filtro de formato limita las variantes importadas y conserva license_id como declaración, sin elevarla a verificación.",
+      "observed": "exit=0; warning: `larm-models` (test \"import\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.34s | Running tests\\import.rs (target\\debug\\deps\\import-0f8c3fead87e67c2.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-import-format-license.log#sha256=41eddc0562099f767e79e8487f999c936d6f4fcb09bfdd03feb5b126c3e4e7e6"
+      ]
+    },
+    {
+      "id": "P098-INTEGRATION-daemon-preview",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon model_import_preview::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El daemon explora archivos reales de una carpeta temporal sin modificarlos ni revelar rutas absolutas.",
+      "observed": "exit=0; Running tests\\lifecycle.rs (target\\debug\\deps\\lifecycle-000a73e312a1e251.exe) | Running tests\\move.rs (target\\debug\\deps\\move-dbb8b35046eacba7.exe) | Running tests\\reference_adapters.rs (target\\debug\\deps\\reference_adapters-a0e1954a2890aeee.exe) | Running tests\\runtime_catalog.rs (target\\debug\\deps\\runtime_catalog-6d8576ea9ab22d6b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-INTEGRATION-daemon-preview.log#sha256=484fb8b1111085789a5357475a2f577ee7e98db6e4bdf71bb7f184e0ed06f44b"
+      ]
+    },
+    {
+      "id": "P098-CONTRACT-openapi",
+      "kind": "CONTRACT",
+      "command": "cargo run -p larm-daemon -- openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [],
+      "expected": "OpenAPI coincide con el contrato e identifica el preview y la importación durable como implementados.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.88s | Running `target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check`",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-CONTRACT-openapi.log#sha256=525237a0db7772796d0473e3779d24ff18d153c26ca969a38b7a2ec96726f65d"
+      ]
+    },
+    {
+      "id": "P098-UI-tests",
+      "kind": "INTEGRATION",
+      "command": "npm.cmd test",
+      "fixture_hashes": [],
+      "expected": "Las pruebas de escritorio confirman preview, filtro de formato, recuento seleccionado y confirmación explícita.",
+      "observed": "exit=0; Duration  22.81s (tests 54%, environment 37%, import 7%, transform 2%) | Isolate  9 workers spawned · ~983ms startup each (spawn + environment, per file) | at least ~7.86s faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-UI-tests.log#sha256=d8d99e7e6d5d17ebcfe65fa423d64dd794e6342729f02d0886bb90e2cc157851"
+      ]
+    },
+    {
+      "id": "P098-UI-lint",
+      "kind": "CONTRACT",
+      "command": "npm.cmd run lint",
+      "fixture_hashes": [],
+      "expected": "El lint del frontend no encuentra errores.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 lint | > eslint .",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-UI-lint.log#sha256=e24f6a14967c328805c88d30cc2c52572315ab4235a0c7165e202b4ebe4746dc"
+      ]
+    },
+    {
+      "id": "P098-UI-typecheck",
+      "kind": "CONTRACT",
+      "command": "npm.cmd run typecheck",
+      "fixture_hashes": [],
+      "expected": "El frontend pasa la comprobación de tipos.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 typecheck | > tsc -b",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-UI-typecheck.log#sha256=b304060fede894ce306d656d5d774827fb510d1111c033fc532855441f02ab69"
+      ]
+    },
+    {
+      "id": "P098-UI-build",
+      "kind": "CONTRACT",
+      "command": "npm.cmd run build",
+      "fixture_hashes": [],
+      "expected": "El escritorio compila correctamente.",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-CGXXWt1y.js   402.37 kB │ gzip: 115.52 kB | ✓ built in 127ms",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-UI-build.log#sha256=8770bac7c907f6f27345059936d75470fcaa09731b54bbd99fb9c83d1a3d2fb0"
+      ]
+    },
+    {
+      "id": "P098-FORMAT",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --all -- --check",
+      "fixture_hashes": [],
+      "expected": "El código Rust está formateado.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-FORMAT.log#sha256=5d480de4f93657d4071e0152eef86a0a9ccbd8130f421a5f781c4648bc8c48cd"
+      ]
+    },
+    {
+      "id": "P098-CLIPPY",
+      "kind": "CONTRACT",
+      "command": "cargo clippy -p larm-storage -p larm-db -p larm-models -p larm-api -p larm-daemon --all-targets -j1 -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "Los crates afectados pasan Clippy sin advertencias.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_storage-1qleoarjtg6yd\\s-hnh69zs4r8-0wj2dvw-working` | warning: `larm-storage` (lib test) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.65s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-CLIPPY.log#sha256=b57aef0e3e89b8272302a43cba44eedfe751f3dd865b991f6fe9d495a54d784c"
+      ]
+    },
+    {
+      "id": "P098-PACKAGE-verification",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe ../LARM_prompts_v3/tools/verify_pack.py",
+      "fixture_hashes": [],
+      "expected": "La revisión contractual 3.2.0 pasa los validadores del paquete.",
+      "observed": "exit=0; {\"conformity_v3\": {\"status\": \"PASS\", \"scope\": \"DOCUMENTARY_CONTRACT_ONLY\", \"software_real_tests_run\": false, \"positive_cases\": 81, \"negative_cases\": 21, \"checks\": 197}, \"status\": \"PASS\", \"scope\": \"PROMPT_PACKAGE_ONLY\", \"checks\": 3099, \"negative_cases\": 52, \"prompts\": 128, \"findings\": 33, \"sections\": 166, \"operations\": 146, \"adapter_methods\": 40, \"original_files_preserved\": null, \"original_preservation_status\": \"NOT_CHECKED_CURRENT_HOST\", \"software_implemented\": false, \"software_real_tests_run\": false}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-PACKAGE-verification.log#sha256=e9e28a807d549691eaed530dce0c97b53b3580b3ba5869cd783f350170f59683"
+      ]
+    },
+    {
+      "id": "P098-PACKAGE-copies",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/package_copy.py check",
+      "fixture_hashes": [],
+      "expected": "Las copias locales sincronizadas coinciden con el paquete 3.2.0.",
+      "observed": "exit=0; PASS 57 copias idénticas al paquete 3.3.0",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P098_runs/P098-PACKAGE-copies.log#sha256=4b9d302d5e2dd23cdd491abb4195f93f806ac948848083db933bc6f744827c2a"
+      ]
+    },
+    {
+      "id": "P098-REAL-import-and-recovery",
+      "kind": "REAL",
+      "command": "Importación REAL de bundles representativos, recuperación desde sidecars sin base de datos y recorrido multidisco",
+      "fixture_hashes": [],
+      "expected": "Importa bundles reales representativos, reconstruye el registro tras perder SQLite y valida el flujo entre volúmenes.",
+      "observed": "NO EJECUTADA: El handler y el worker durable pasan pruebas con SQLite y fixtures de GGUF, CTranslate2, NCNN y MNN; la reconstrucción desde sidecars pasa en una base nueva. Falta la aceptación REAL autorizada con bundles representativos y el comando completo de recuperación, además del recorrido multidisco. La sandbox de Windows también impide crear junctions.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "Falta ejecutar recovery end-to-end desde sidecars y backup en un escenario real, fault injection de IO/daemon y aceptación REAL autorizada con bundles representativos en varios volúmenes.",
+    "El host Windows restringe la creación de junctions en la prueba de walker; la ruta de junction requiere validación en un entorno cualificado.",
+    "dependencia P017 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P041 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T12:51:39.101Z"
+}

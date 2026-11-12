@@ -1,0 +1,182 @@
+{
+  "prompt_id": "P124",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "2d20df618b5288dbea879f6c01be38d19e978a081b30f41e835c281d1c5a73af",
+  "changed_files": [
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/api/instances.ts",
+    "apps/desktop/src/instances.test.tsx",
+    "apps/desktop/src/instances.tsx",
+    "apps/desktop/src/runtimes.test.tsx",
+    "apps/desktop/src/styles.css",
+    "docs/implementation/STATE.md",
+    "docs/reports/P124_runtimes-versiones-backends-e-instancias.evidence.json",
+    "docs/reports/P124_runtimes-versiones-backends-e-instancias.md",
+    "tools/p124_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P124-FOCUSED-UI",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js exec -- vitest run src/instances.test.tsx src/runtimes.test.tsx --pool=threads --maxWorkers=1",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:74b9c620da6da7bb06281a9477cd408e81ee32c4329458bd25e95c9f91f1f4cf",
+        "apps/desktop/src/instances.tsx:4b60fb47de5a5f0f8e50e58d07c240dfe7a3284fcd74baaa778658ebe10e7340",
+        "apps/desktop/src/instances.test.tsx:fa51eeede45a79ba41c5ba02a1da55e2bd06aeec55a1173d4ca15e440388792d",
+        "apps/desktop/src/api/instances.ts:0b29fda4bfe503a1ec889333922ba6102fabb78dd3fd97bf1a413f0a8d3a3264",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/runtimes.tsx:3ea93e6944ed7a1950138ddf0de68dda6ed2255edac805cb4bfcbd1f5d6f16cd",
+        "apps/desktop/src/runtimes.test.tsx:475924e5bbabf5c21b27c96398951bb20fae7c2390dc841c20a54d6326edb6c2"
+      ],
+      "expected": "Instancias y runtimes distinguen el proceso gestionado, confirman la parada y conservan los guards de versiones, candidatos e instalaciones externas.",
+      "observed": "exit=0; Duration  7.20s (tests 57%, environment 32%, import 6%, transform 5%) | Isolate  2 workers spawned · ~1.22s startup each (spawn + environment, per file) | at least ~1.22s faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P124_runs/P124-FOCUSED-UI.log#sha256=89a13fdb83887a5448a14fc00cba3ce6e4ac963171acbf9b868e10c42a64296d"
+      ]
+    },
+    {
+      "id": "P124-DESKTOP-SUITE",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run test",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:74b9c620da6da7bb06281a9477cd408e81ee32c4329458bd25e95c9f91f1f4cf",
+        "apps/desktop/src/instances.tsx:4b60fb47de5a5f0f8e50e58d07c240dfe7a3284fcd74baaa778658ebe10e7340",
+        "apps/desktop/src/instances.test.tsx:fa51eeede45a79ba41c5ba02a1da55e2bd06aeec55a1173d4ca15e440388792d",
+        "apps/desktop/src/api/instances.ts:0b29fda4bfe503a1ec889333922ba6102fabb78dd3fd97bf1a413f0a8d3a3264",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/runtimes.tsx:3ea93e6944ed7a1950138ddf0de68dda6ed2255edac805cb4bfcbd1f5d6f16cd",
+        "apps/desktop/src/runtimes.test.tsx:475924e5bbabf5c21b27c96398951bb20fae7c2390dc841c20a54d6326edb6c2"
+      ],
+      "expected": "La suite completa del escritorio pasa sin regresiones.",
+      "observed": "exit=0; Duration  23.08s (tests 54%, environment 37%, import 7%, transform 2%) | Isolate  9 workers spawned · ~997ms startup each (spawn + environment, per file) | at least ~7.98s faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P124_runs/P124-DESKTOP-SUITE.log#sha256=a2725a1525da4a8c02d617449d012363038dc1261329a68dbf7de4c77670ef8b"
+      ]
+    },
+    {
+      "id": "P124-LINT",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run lint",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:74b9c620da6da7bb06281a9477cd408e81ee32c4329458bd25e95c9f91f1f4cf",
+        "apps/desktop/src/instances.tsx:4b60fb47de5a5f0f8e50e58d07c240dfe7a3284fcd74baaa778658ebe10e7340",
+        "apps/desktop/src/instances.test.tsx:fa51eeede45a79ba41c5ba02a1da55e2bd06aeec55a1173d4ca15e440388792d",
+        "apps/desktop/src/api/instances.ts:0b29fda4bfe503a1ec889333922ba6102fabb78dd3fd97bf1a413f0a8d3a3264",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/runtimes.tsx:3ea93e6944ed7a1950138ddf0de68dda6ed2255edac805cb4bfcbd1f5d6f16cd",
+        "apps/desktop/src/runtimes.test.tsx:475924e5bbabf5c21b27c96398951bb20fae7c2390dc841c20a54d6326edb6c2"
+      ],
+      "expected": "ESLint termina sin errores.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 lint | > eslint .",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P124_runs/P124-LINT.log#sha256=2d39edfacd2015ee666d2ce76570b4ba779aa86cca2ddb0bd6886cae096f46b5"
+      ]
+    },
+    {
+      "id": "P124-TYPECHECK",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run typecheck",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:74b9c620da6da7bb06281a9477cd408e81ee32c4329458bd25e95c9f91f1f4cf",
+        "apps/desktop/src/instances.tsx:4b60fb47de5a5f0f8e50e58d07c240dfe7a3284fcd74baaa778658ebe10e7340",
+        "apps/desktop/src/instances.test.tsx:fa51eeede45a79ba41c5ba02a1da55e2bd06aeec55a1173d4ca15e440388792d",
+        "apps/desktop/src/api/instances.ts:0b29fda4bfe503a1ec889333922ba6102fabb78dd3fd97bf1a413f0a8d3a3264",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/runtimes.tsx:3ea93e6944ed7a1950138ddf0de68dda6ed2255edac805cb4bfcbd1f5d6f16cd",
+        "apps/desktop/src/runtimes.test.tsx:475924e5bbabf5c21b27c96398951bb20fae7c2390dc841c20a54d6326edb6c2"
+      ],
+      "expected": "TypeScript compila todos los proyectos.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 typecheck | > tsc -b",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P124_runs/P124-TYPECHECK.log#sha256=cd0caddb9a8dda2b36fda299af841e3831ca9c286db78b54d2d377a03f68f770"
+      ]
+    },
+    {
+      "id": "P124-BUILD",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run build",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:74b9c620da6da7bb06281a9477cd408e81ee32c4329458bd25e95c9f91f1f4cf",
+        "apps/desktop/src/instances.tsx:4b60fb47de5a5f0f8e50e58d07c240dfe7a3284fcd74baaa778658ebe10e7340",
+        "apps/desktop/src/instances.test.tsx:fa51eeede45a79ba41c5ba02a1da55e2bd06aeec55a1173d4ca15e440388792d",
+        "apps/desktop/src/api/instances.ts:0b29fda4bfe503a1ec889333922ba6102fabb78dd3fd97bf1a413f0a8d3a3264",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/runtimes.tsx:3ea93e6944ed7a1950138ddf0de68dda6ed2255edac805cb4bfcbd1f5d6f16cd",
+        "apps/desktop/src/runtimes.test.tsx:475924e5bbabf5c21b27c96398951bb20fae7c2390dc841c20a54d6326edb6c2"
+      ],
+      "expected": "El escritorio genera el bundle de producción.",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-CGXXWt1y.js   402.37 kB │ gzip: 115.52 kB | ✓ built in 242ms",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P124_runs/P124-BUILD.log#sha256=345c8774106e537ba38342e0a02bfbbd98d8c6f639a842f792e1d69b9432482d"
+      ]
+    },
+    {
+      "id": "P124-INSTANCE-API",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --lib instances::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/instances.rs:c3960d9bdcf6f03551b62ff5fce920db32069b5a1fc11f6ea426419234f5b805"
+      ],
+      "expected": "La API aplica lectura autenticada, filtrado/paginación estable y parada idempotente con scope.",
+      "observed": "exit=0; warning: `larm-api` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.77s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_api-5f6e854a88740b17.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P124_runs/P124-INSTANCE-API.log#sha256=24c489d51da314f0731c5b1b06be8eaaa67aafb93aed8b0a2b99c6bdcabb0919"
+      ]
+    },
+    {
+      "id": "P124-STOP-OWNERSHIP",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib runtime_instance_stops::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/runtime_instance_stops.rs:89a8b5f8bcaf849a71feb2a3c482132dfcf49bf5de67935296f491bafccb4452"
+      ],
+      "expected": "La parada durable rechaza propiedad externa y conserva transacción, journal, outbox y replay.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.43s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-c463ce497a7a8126.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P124_runs/P124-STOP-OWNERSHIP.log#sha256=5bbb492d9c96a72910a693f470646736c70981c1a72d4a8029c1579175e308c6"
+      ]
+    },
+    {
+      "id": "P124-RUST-FORMAT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all -- --check",
+      "fixture_hashes": [
+        "Cargo.toml:8f1ec0858952ee008ac6671efac718cfcb6c654554b8f3d52613d226e5cbb95e"
+      ],
+      "expected": "El workspace Rust conserva el formato requerido.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P124_runs/P124-RUST-FORMAT.log#sha256=8d4b5dc1200abeae77114c91c75baaf16b1532e9abddd375fcee9c06f900760f"
+      ]
+    },
+    {
+      "id": "P124-WINDOWS-RUNTIME-INTEGRATION",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P124 -Real",
+      "fixture_hashes": [],
+      "expected": "Rollback, candidato fallido y proceso gestionado validados en Windows con un runtime cualificado.",
+      "observed": "NO EJECUTADA: P032/P033/P037 no han alcanzado REAL_PASS y no hay una instalación de runtime cualificada para este recorrido; no se altera un runtime externo.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La API contractual de RuntimeInstance no expone endpoint, memoria medida ni ubicación de logs; la UI solo muestra la estimación y el límite del snapshot efectivo.",
+    "api-operations.json ya define promoción (P117) y rollback (P032), pero sus handlers de API y controles de UI no están conectados.",
+    "La pantalla de runtimes aún necesita completar el flujo plan→instalación→validación→promoción y rollback usando las operaciones contractuales existentes.",
+    "dependencia P032 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P033 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P037 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-24T02:03:06.231Z"
+}

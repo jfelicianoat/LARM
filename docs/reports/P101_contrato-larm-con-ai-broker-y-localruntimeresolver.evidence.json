@@ -1,0 +1,159 @@
+{
+  "prompt_id": "P101",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "60f7aa10ef121dbd372aae826b8fb15b1c8abc1ef0816e8a94b5c8e0882afceb",
+  "changed_files": [
+    "crates/larm-api/src/broker.rs",
+    "crates/larm-api/src/broker/tests.rs",
+    "crates/larm-domain/src/bridge.rs",
+    "crates/larm-runtime/src/credentials_pipe.rs",
+    "crates/larm-runtime/src/external_adoption.rs",
+    "docs/api/ai-broker-contract.md",
+    "docs/implementation/STATE.md",
+    "docs/reports/P101_contrato-larm-con-ai-broker-y-localruntimeresolver.md",
+    "tools/p101_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P101-API-ROUTES-AUTH-AND-LEASE-HEADERS",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api broker::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/broker.rs:9366250a69b0d18bf5c6863c14bf50ff680f41b22c0374dad3f5bd2690a6e015",
+        "crates/larm-api/src/broker/tests.rs:db15be522972d0f37a7591d6ac66bffb9e385520514c8d8e05380ed40482d495"
+      ],
+      "expected": "El router exige principal y scopes, valida body estricto, clave idempotente, If-Match, UUID y token de gateway por lease.",
+      "observed": "exit=0; Running tests\\models.rs (target\\debug\\deps\\models-a6f67a200a7ac713.exe) | Running tests\\security.rs (target\\debug\\deps\\security-d39bb51321ce644f.exe) | Running tests\\storage.rs (target\\debug\\deps\\storage-9e372789be770ad9.exe) | Running tests\\transformations.rs (target\\debug\\deps\\transformations-12f91de29cadb981.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-API-ROUTES-AUTH-AND-LEASE-HEADERS.log#sha256=43aa17a84952266e17bd68826c2d89de3647538aa1f1bf83c841bc150c77af3f"
+      ]
+    },
+    {
+      "id": "P101-ADOPTION-CATALOG-LEASE-GATEWAY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib external_adoption::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/external_adoption.rs:5b4e30f05f6c9ea17f5dc859b4c7c498add5dd865989045a32cd2c2f04fceb39"
+      ],
+      "expected": "El fixture HTTP de Ollama verifica catálogo aceptado, admisión, job, replay, renovación, expiry, liberación, memoria y gateway con modelo fijo.",
+      "observed": "exit=0; warning: `larm-runtime` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.65s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-c13b52f836f22229.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-ADOPTION-CATALOG-LEASE-GATEWAY.log#sha256=1c8d03e3b09bff749d2b0e5b4ea23d4b220a95948ec6bdb599dc0c89eefcb760"
+      ]
+    },
+    {
+      "id": "P101-ENDPOINT-CREDENTIAL-PIPE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib credentials_pipe::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/credentials_pipe.rs:222669c5cb55cc841f5d98bfc391f29d89da3c23db7e4f4a3691b7c5168bb33c"
+      ],
+      "expected": "El pipe local vincula nonce, owner, scope, lease y generación; rechazos nunca contienen el token.",
+      "observed": "exit=0; warning: `larm-runtime` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-c13b52f836f22229.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-ENDPOINT-CREDENTIAL-PIPE.log#sha256=c3bc20977bdb2ed74e81f22673de60ffc53d6e2a6713aa8f65c25f456c152378"
+      ]
+    },
+    {
+      "id": "P101-DOMAIN-CONTRACT-DTOS",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib bridge::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/bridge.rs:15a76668fb6cd484a7ac6612f8bb8cfe87a96b58e7dd624570f5452283c16865"
+      ],
+      "expected": "DTOs Broker mantienen schema estricto, errores, bytes acotados, UUIDv7 y cadence de renovación.",
+      "observed": "exit=0; warning: `larm-domain` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.44s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-892f2ab81062ba5a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-DOMAIN-CONTRACT-DTOS.log#sha256=fa7d29bfc2c2cf35518801b8c66a230016fd4145c57170cd137cdddae59bc0ef"
+      ]
+    },
+    {
+      "id": "P101-CATALOG-CONTRACT-AND-OPENAPI",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p036_broker_contract_probe.py",
+      "fixture_hashes": [
+        "tools/p036_broker_contract_probe.py:f6f849775c3facb2b22620ee2368b98451c23861fb9c89e2cb2e63ccb05c54df",
+        "docs/contracts/api-operations.json:4c183d697cd276b050797e4fe316a6e0a35d2b5ef8f8d99f8b4ab32855449d2e",
+        "docs/api/openapi.json:f26f7ee59e1f5323adf2144b6a014a07e898036eadc86210870d1575c71a68bd"
+      ],
+      "expected": "P101_get__broker_catalog coincide en paquete canónico, espejo, scope, BrokerCatalog y OpenAPI.",
+      "observed": "exit=0; P101 broker catalog: canonical/local operation, scope, OpenAPI route and response schema match",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-CATALOG-CONTRACT-AND-OPENAPI.log#sha256=6dc1efcf4afa89774f4d6d6268aaa1f4bd14bac45d70518add52c0f1c788b2fd"
+      ]
+    },
+    {
+      "id": "P101-OPENAPI-GENERATED-CHECK",
+      "kind": "CONTRACT",
+      "command": "cargo run -p larm-daemon -- openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [],
+      "expected": "El OpenAPI generado permanece sincronizado con api-operations.json y sus schemas.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.61s | Running `target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check`",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-OPENAPI-GENERATED-CHECK.log#sha256=7f9c28a6146d0569042eb6f59c80c8711fd19cfd4d31cdb10acfb25893111529"
+      ]
+    },
+    {
+      "id": "P101-FORMAT",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "El workspace Rust está formateado.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-FORMAT.log#sha256=62340c77835f148212ae4f5aa26262214a0c36e7bbdb7d794d82de63a656537a"
+      ]
+    },
+    {
+      "id": "P101-CLIPPY",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "Clippy del workspace pasa sin warnings.",
+      "observed": "exit=0; warning: `larm-runtime` (lib test) generated 1 warning | warning: `larm-db` (test \"adapter_updates\") generated 1 warning | warning: `larm-runtime` (test \"install\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.56s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-CLIPPY.log#sha256=c229b21d1e472ecfa645c860db7b56fc4cf8ed5fcfc60e7b637237e87916647b"
+      ]
+    },
+    {
+      "id": "P101-PACKAGE-COPIES",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [],
+      "expected": "Las copias normativas locales coinciden con el paquete 3.3.0.",
+      "observed": "exit=0; PASS 57 copias idénticas al paquete 3.3.0",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P101_runs/P101-PACKAGE-COPIES.log#sha256=69117376eb341b43234e9eb07375a2faec4a4e2f6c7dab2dd15838e467f1c271"
+      ]
+    },
+    {
+      "id": "P101-REAL-BROKER-RUNTIME-INTEGRATION",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P101 -Real y consumo desde Broker con runtime cualificado",
+      "fixture_hashes": [],
+      "expected": "Broker obtiene catálogo activo, crea y renueva lease, usa credencial de endpoint por canal local y libera tras respuesta/cancelación.",
+      "observed": "NO EJECUTADA: P100 no tiene evidencia de servicio durable, P009 conserva una aceptación Windows pendiente y P069 no está cualificado. La adopción mantiene estado en memoria; la ruta interna del gateway tampoco figura aún en el contrato canónico.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "El slice de adopción es provisional: leases/jobs/idempotencia viven en memoria y deben pasar a SQLite/outbox con recuperación P100.",
+    "La ruta interna del gateway de endpoint debe quedar definida en la fuente contractual propietaria antes de anunciarla al Broker.",
+    "dependencia P100 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P009 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P069 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T14:01:37.352Z"
+}

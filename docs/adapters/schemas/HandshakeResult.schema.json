@@ -1,0 +1,39 @@
+{
+  "$id": "https://larm.local/adapters/HandshakeResult.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "HandshakeResult (generado desde docs/contracts/schemas/larm.schema.json; no editar)",
+  "properties": {
+    "adapter_version": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "capabilities": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "methods": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "nonce": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "protocol_version": {
+      "const": "1.0"
+    }
+  },
+  "required": [
+    "protocol_version",
+    "adapter_version",
+    "methods",
+    "capabilities",
+    "nonce"
+  ],
+  "type": "object"
+}

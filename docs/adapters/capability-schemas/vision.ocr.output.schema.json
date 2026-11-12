@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "larm__vision_ocr_output": {
+      "additionalProperties": false,
+      "properties": {
+        "regions": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "box": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 4,
+                "minItems": 4,
+                "type": "array"
+              },
+              "confidence": {
+                "anyOf": [
+                  {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "text": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "text",
+              "box",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "regions"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__vision_ocr_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

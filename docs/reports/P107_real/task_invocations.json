@@ -1,0 +1,168 @@
+{
+  "task_id": "task_1abaadcf6ac94aeea42777be4fb924dc",
+  "items": [
+    {
+      "invocation_id": "inv_de83d66e53b148b195bc4b8a1ae7b938",
+      "role": "single",
+      "model": {
+        "provider": "larm",
+        "deployment": "local",
+        "model": "01a127e0-7e03-7599-863e-abb96ef7db4e",
+        "role": "single",
+        "required": false
+      },
+      "status": "completed",
+      "contractual": true,
+      "error_code": null,
+      "tokens_input": 49,
+      "tokens_output": 1200,
+      "cost_usd": 0.0,
+      "latency_ms": 47553.423,
+      "started_at": "2026-10-10T22:13:08.244332Z",
+      "completed_at": "2026-10-10T22:14:08.189086Z",
+      "created_at": "2026-10-10T22:13:08.244332Z",
+      "updated_at": "2026-10-10T22:14:08.189086Z",
+      "generation": {
+        "temperature": 0.0,
+        "max_output_tokens": 1200,
+        "seed": 42,
+        "seed_status": "sent",
+        "top_p": null,
+        "top_p_status": "not_requested"
+      },
+      "execution_fingerprint": {
+        "hash": "c5a5625d69450f6fad80f8cc270478a612f13e6461f81000f372a2aea86d3624",
+        "components": {
+          "provider": {
+            "value": "larm",
+            "status": "declarado"
+          },
+          "deployment": {
+            "value": "local",
+            "status": "declarado"
+          },
+          "model": {
+            "value": "01a127e0-7e03-7599-863e-abb96ef7db4e",
+            "status": "declarado"
+          },
+          "digest": {
+            "value": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+            "status": "verificado"
+          },
+          "quantization": {
+            "value": null,
+            "status": "no_disponible"
+          },
+          "parameter_size": {
+            "value": null,
+            "status": "no_disponible"
+          },
+          "family": {
+            "value": null,
+            "status": "no_disponible"
+          },
+          "tokenizer": {
+            "value": null,
+            "status": "no_disponible"
+          },
+          "chat_template": {
+            "value": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+            "status": "verificado"
+          },
+          "runtime": {
+            "value": "Ollama",
+            "status": "verificado"
+          },
+          "runtime_version": {
+            "value": "0.40.2",
+            "status": "verificado"
+          },
+          "system_fingerprint": {
+            "value": "fp_ollama",
+            "status": "verificado"
+          },
+          "remote_model": {
+            "value": "gemma4:12b",
+            "status": "verificado"
+          },
+          "api_version": {
+            "value": null,
+            "status": "no_disponible"
+          }
+        },
+        "extensions": {
+          "larm.v1": {
+            "contract_version": "1.0",
+            "source": "lease",
+            "variant_id": "01a127e0-7e03-7599-863e-abb96ef7db4e",
+            "fingerprint_hash": "670aaabaca61f655fa796f5f16f6de259fd13608ca0404e281dfe71270a26299",
+            "components": {
+              "artifact_bundle_hash": {
+                "value": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+                "status": "VERIFIED"
+              },
+              "backend": {
+                "value": "GPU",
+                "status": "VERIFIED"
+              },
+              "chat_template_hash": {
+                "value": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+                "status": "VERIFIED"
+              },
+              "driver_versions": {
+                "value": null,
+                "status": "UNAVAILABLE"
+              },
+              "effective_generation": {
+                "value": null,
+                "status": "UNAVAILABLE"
+              },
+              "hardware_fingerprint": {
+                "value": null,
+                "status": "UNAVAILABLE"
+              },
+              "installation_hash": {
+                "value": null,
+                "status": "UNAVAILABLE"
+              },
+              "launch_profile_hash": {
+                "value": "fa0a57e599961f5d118efb384aac4ad546633062b48c6c3c20cffc685d1853ea",
+                "status": "DECLARED"
+              },
+              "protocol": {
+                "value": "openai",
+                "status": "DECLARED"
+              },
+              "protocol_profile_hash": {
+                "value": "f41cecda5e298521ae80df6ca94869cab4ade9c74e6000bc4dfc7fb9219a5237",
+                "status": "DECLARED"
+              },
+              "revision": {
+                "value": null,
+                "status": "UNAVAILABLE"
+              },
+              "runtime_id": {
+                "value": "Ollama",
+                "status": "VERIFIED"
+              },
+              "runtime_version": {
+                "value": "0.40.2",
+                "status": "VERIFIED"
+              },
+              "tokenizer_hash": {
+                "value": null,
+                "status": "UNAVAILABLE"
+              }
+            }
+          }
+        }
+      },
+      "excluded_from_model_learning": true,
+      "content_source": null,
+      "prompt_compression": {
+        "requested": "off",
+        "effective": "off"
+      }
+    }
+  ]
+}

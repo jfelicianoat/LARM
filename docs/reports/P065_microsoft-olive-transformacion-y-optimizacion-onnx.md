@@ -1,0 +1,14 @@
+# P065 — Microsoft Olive: transformación y optimización ONNX
+
+Fecha: 2026-10-23  
+Estado: BLOCKED_REAL
+
+P065 añade un worker privado y estricto para preparar y probar la integración de Microsoft Olive. Implementa `probe`, `version`, `capabilities`, `plan` y `execute_fixture` sin modificar el protocolo público de transformación. El worker acepta sólo la fixture ONNX `tensor_identity`, fijada en 130 bytes con SHA256 `8de2df197dba94a7151d39371e464bf0bd10316ffa7d7006db81b08159210dde`; rechaza rutas y fixtures arbitrarias, y no inspecciona Olive ni ONNX Runtime desde un Python no gestionado.
+
+El plan es determinista y no escribe archivos: registra tamaño exacto de entrada, dependencias y versiones cuando son observables, provider solicitado, precisión normalizada y `trust_remote_code=false`. El tamaño de salida queda `UNKNOWN` mientras no haya un estimador cualificado. La ejecución vuelve a validar el plan y el hash de la fixture, llama a `olive.optimize` en un proceso hijo con timeout, verifica que el original no cambió, calcula hashes de salida y conserva provenance en una carpeta candidata bajo la raíz controlada. No publica en el model store ni promueve la salida.
+
+Las pruebas focales usan un venv temporal con Python 3.14.6, metadatos Olive `1.0.0` falsos, ONNX Runtime `1.20.0` falso y `CPUExecutionProvider` simulado: 2 PASS, 0 FAIL, 1 BLOCKED. Incluyen probe/version/capabilities, schema cerrado, repetibilidad y lectura pura del plan, hash de fixture, provider ausente, ejecución autorizada, plan desactualizado, salida IO inválida, timeout, fallo parcial y reintento. Se ejecutó además el probe del host Windows; detectó que no hay un entorno de runtime gestionado y dejó las dependencias como desconocidas sin instalar paquetes.
+
+La puerta oficial `tools/check.ps1 -Prompt P065 -Real` figura como **FAIL (13/14 comprobaciones PASS); fallos: cargo_test** en [check_P065_real.json](check_P065_real.json). El último gate completo falla sólo en `cargo_test`: `larm-runtime/tests/discovery_service.rs` no pudo abrir el ejecutable de fixture inmediatamente después de terminar el runner dentro del workspace; el mismo target pasa 6/6 al ejecutarlo aislado. Las otras comprobaciones, incluida la evidencia focal P065, pasan. La evidencia focal está en [P065 evidence](P065_microsoft-olive-transformacion-y-optimizacion-onnx.evidence.json) y las instrucciones del worker en [olive-tooling](../adapters/olive-tooling.md).
+
+La aceptación de optimización real queda bloqueada: P062, P071 y P093 aún no tienen `REAL_PASS`; tampoco existe un entorno P071 con Olive y ONNX Runtime instalados y cualificados. La cancelación en árbol depende del host de procesos P021/P022/P130; la ejecución durable, preflight/reservas, verificación/smoke y registro pertenecen al consumidor P093. Ningún mock se cuenta como prueba real.

@@ -1,0 +1,28 @@
+{
+  "$defs": {
+    "larm__text_classify_output": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "scores": {
+          "additionalProperties": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "label",
+        "scores"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__text_classify_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

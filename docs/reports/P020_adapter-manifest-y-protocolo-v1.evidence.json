@@ -1,0 +1,165 @@
+{
+  "prompt_id": "P020",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "9a33589046899ff436c587b182f7ed99e712acadb9a829a5abafb0c2abc58687",
+  "changed_files": [
+    "crates/larm-adapter-sdk/Cargo.toml",
+    "crates/larm-adapter-sdk/examples/demo_adapter.rs",
+    "crates/larm-adapter-sdk/src/lib.rs",
+    "crates/larm-adapter-sdk/src/manifest.rs",
+    "crates/larm-adapter-sdk/src/protocol.rs",
+    "crates/larm-adapter-sdk/src/server.rs",
+    "crates/larm-adapter-sdk/tests/examples.rs",
+    "crates/larm-adapter-sdk/tests/session.rs",
+    "docs/adapters/examples",
+    "docs/adapters/protocol-v1.md",
+    "docs/adapters/schemas",
+    "tests/fixtures/adapters/demo-benchmark.manifest.json",
+    "tools/p020_evidence.py",
+    "tools/p020_real.py",
+    "tools/p020_schemas.py"
+  ],
+  "tests": [
+    {
+      "id": "P020-UNIT-manifiesto",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-adapter-sdk --lib -- manifest::tests",
+      "fixture_hashes": [],
+      "expected": "38 firmas del contrato; manifiesto válido con roundtrip exacto; capacidad desconocida conservada; estrategia no anunciada rechazada (422) antes del worker; negativos de schema, rutas, métodos, estrategias, secretos y orígenes",
+      "observed": "exit=0; Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.01s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_adapter_sdk-f814f6e092d61f7b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-UNIT-manifiesto.log#sha256=b844cb8d0dd2f4beb54dbbaa40a4dbe78834c913401ed0836d9948f24ee184a7"
+      ]
+    },
+    {
+      "id": "P020-UNIT-protocolo",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-adapter-sdk --lib -- protocol::tests",
+      "fixture_hashes": [],
+      "expected": "framing NDJSON de una línea y 1 MiB; -32700/-32600; progreso de forma cerrada; error de dominio con LarmError; handshake con versión mayor y nonce exacto; traducción de initialize",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_adapter_sdk-f814f6e092d61f7b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-UNIT-protocolo.log#sha256=5ba630af4c8e5b295c7de3b003508752b259fe848152df6f0b66aa46393ddfa0"
+      ]
+    },
+    {
+      "id": "P020-INTEGRATION-sesion",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-adapter-sdk --test session",
+      "fixture_hashes": [],
+      "expected": "handshake obligatorio, versión incompatible en ambos sentidos, JSON mal formado sin cortar la sesión, métodos no anunciados -32601, parámetros inválidos, progreso, heartbeat y cancelación con una respuesta por id",
+      "observed": "exit=0; Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.67s | Running tests\\session.rs (target\\debug\\deps\\session-962bae7c21e68fbe.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-INTEGRATION-sesion.log#sha256=d03da18e86c52f009b372a22876605083d1393376144186969f8b4d5e0c0c897"
+      ]
+    },
+    {
+      "id": "P020-INTEGRATION-ejemplos-rust",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-adapter-sdk --test examples",
+      "fixture_hashes": [],
+      "expected": "los tipos del SDK dan el mismo veredicto que el JSON Schema en los 24 ejemplos",
+      "observed": "exit=0; Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.65s | Running tests\\examples.rs (target\\debug\\deps\\examples-7ca78ad83fc04c99.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-INTEGRATION-ejemplos-rust.log#sha256=efbf4621a55681b19f5f0abf125e0180d500cfbf3f59f4150260e212d3d7e780"
+      ]
+    },
+    {
+      "id": "P020-UNIT-schemas",
+      "kind": "UNIT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p020_schemas.py check",
+      "fixture_hashes": [],
+      "expected": "docs/adapters/schemas generados desde larm.schema.json y al día; ejemplos válidos pasan e inválidos fallan (jsonschema)",
+      "observed": "exit=0; PASS 9 schemas al día; 24 ejemplos (válidos pasan, inválidos fallan)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-UNIT-schemas.log#sha256=3b21dedeca7ef70824bd7f2c65acc38124f337df3aceb6e8cb72bf6a14dfd333"
+      ]
+    },
+    {
+      "id": "P020-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-UNIT-cargo-fmt.log#sha256=8e6e5366c848d64401c97d693266abb60c5c6132283635cfe5a32573283d19fb"
+      ]
+    },
+    {
+      "id": "P020-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-UNIT-cargo-clippy.log#sha256=87ed9ced264b45910c42731967d7f3063e42f1c963c94f2900e051882e05ca10"
+      ]
+    },
+    {
+      "id": "P020-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-UNIT-cargo-test.log#sha256=e29ef89d8e44e7830ae61673199882c3144ba42ccbbe2e27e7f046ec7682c042"
+      ]
+    },
+    {
+      "id": "P020-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P020-REAL-build-adaptador",
+      "kind": "REAL",
+      "command": "cargo build -p larm-adapter-sdk --example demo_adapter",
+      "fixture_hashes": [],
+      "expected": "adaptador de ejemplo compilado",
+      "observed": "exit=0; Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.90s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-REAL-build-adaptador.log#sha256=41dae5b2fe951c4c0d92284d25ad02844df0b3abe8ffe5c6d583f05cfd9556aa"
+      ]
+    },
+    {
+      "id": "P020-REAL-stdio",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p020_real.py stdio",
+      "fixture_hashes": [],
+      "expected": "PC IA: host Python independiente contra el adaptador como proceso; cada frame validado con los schemas; manifiesto con sha256 real; handshake, -32700, -32601, progreso, heartbeat, cancel, stdout solo frames, versión 2.0 rechazada",
+      "observed": "exit=0; [PASS] progreso-heartbeat-cancel: 3 progresos válidos con su request_id; heartbeat con el id en curso; cancel → cancelled y la ejecución termina cancelada, una respuesta por id | [PASS] stdout-solo-frames: 13 líneas en stdout, todas frames JSON-RPC; stdin cerrado → exit 0; stderr aparte (0 B) | [PASS] version-incompatible: el adaptador anuncia 2.0: versión mayor distinta y fuera del schema; el host corta la sesión sin pedir nada más | PASS 8 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P020_runs/P020-REAL-stdio.log#sha256=64a7d0eba0d406b13bb1c831758d617e42f0922a7a63080b6d42a2d9c24b4128"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P002 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P003 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P009 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-12T06:53:33.847Z"
+}

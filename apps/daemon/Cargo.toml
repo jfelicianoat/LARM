@@ -1,0 +1,57 @@
+[package]
+name = "larm-daemon"
+description = "Daemon administrativo de LARM (Axum + Tokio)."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "larm-daemon"
+path = "src/main.rs"
+
+[dependencies]
+larm-core = { workspace = true }
+larm-domain = { workspace = true }
+larm-api = { workspace = true }
+larm-runtime = { workspace = true }
+larm-db = { workspace = true }
+larm-hardware = { workspace = true }
+larm-storage = { workspace = true }
+larm-models = { workspace = true }
+larm-download = { workspace = true }
+larm-transform = { workspace = true }
+larm-adapter-host = { workspace = true }
+larm-adapter-sdk = { workspace = true }
+axum = { workspace = true }
+async-trait = { workspace = true }
+futures = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+keyring = { workspace = true }
+parking_lot = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+url = { workspace = true }
+reqwest = { workspace = true }
+sysinfo = { workspace = true }
+sqlx = { workspace = true }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true }
+
+[dev-dependencies]
+tracing-subscriber = { workspace = true }
+tower = { workspace = true }
+base64 = { workspace = true }
+ed25519-dalek = { workspace = true }
+zip = { workspace = true }
+tempfile = { workspace = true }
+
+[lints]
+workspace = true

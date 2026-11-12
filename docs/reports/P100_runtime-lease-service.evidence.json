@@ -1,0 +1,397 @@
+{
+  "prompt_id": "P100",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "f27671f2ab28646b9b7263e22d810e394036d31edae34093b1319181211bc9da",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/adoption_references.rs",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "crates/larm-adapter-sdk/src/capabilities/generated.rs",
+    "crates/larm-adapter-sdk/src/contracts/generated.rs",
+    "crates/larm-db/src/instances.rs",
+    "crates/larm-db/src/jobs.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/runtime_leases.rs",
+    "crates/larm-domain/src/auth.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-domain/src/runtime_ports.rs",
+    "crates/larm-runtime/src/endpoints.rs",
+    "crates/larm-runtime/src/external_adoption.rs",
+    "crates/larm-runtime/src/external_adoption/tests.rs",
+    "crates/larm-runtime/src/lease_recovery.rs",
+    "crates/larm-runtime/src/lib.rs",
+    "docs/adapters/capability-schemas/audio.classify.input.schema.json",
+    "docs/adapters/capability-schemas/audio.classify.output.schema.json",
+    "docs/adapters/capability-schemas/audio.transcribe.input.schema.json",
+    "docs/adapters/capability-schemas/audio.transcribe.output.schema.json",
+    "docs/adapters/capability-schemas/audio.translate.input.schema.json",
+    "docs/adapters/capability-schemas/audio.translate.output.schema.json",
+    "docs/adapters/capability-schemas/decision.evaluate.input.schema.json",
+    "docs/adapters/capability-schemas/decision.evaluate.output.schema.json",
+    "docs/adapters/capability-schemas/embedding.create.input.schema.json",
+    "docs/adapters/capability-schemas/embedding.create.output.schema.json",
+    "docs/adapters/capability-schemas/generic.inference.input.schema.json",
+    "docs/adapters/capability-schemas/generic.inference.output.schema.json",
+    "docs/adapters/capability-schemas/image.generate.input.schema.json",
+    "docs/adapters/capability-schemas/image.generate.output.schema.json",
+    "docs/adapters/capability-schemas/image.upscale.input.schema.json",
+    "docs/adapters/capability-schemas/image.upscale.output.schema.json",
+    "docs/adapters/capability-schemas/index.json",
+    "docs/adapters/capability-schemas/rerank.input.schema.json",
+    "docs/adapters/capability-schemas/rerank.output.schema.json",
+    "docs/adapters/capability-schemas/speech.synthesize.input.schema.json",
+    "docs/adapters/capability-schemas/speech.synthesize.output.schema.json",
+    "docs/adapters/capability-schemas/text.classify.input.schema.json",
+    "docs/adapters/capability-schemas/text.classify.output.schema.json",
+    "docs/adapters/capability-schemas/text.generate.input.schema.json",
+    "docs/adapters/capability-schemas/text.generate.output.schema.json",
+    "docs/adapters/capability-schemas/tool.call.input.schema.json",
+    "docs/adapters/capability-schemas/tool.call.output.schema.json",
+    "docs/adapters/capability-schemas/video.generate.input.schema.json",
+    "docs/adapters/capability-schemas/video.generate.output.schema.json",
+    "docs/adapters/capability-schemas/vision.detect.input.schema.json",
+    "docs/adapters/capability-schemas/vision.detect.output.schema.json",
+    "docs/adapters/capability-schemas/vision.ocr.input.schema.json",
+    "docs/adapters/capability-schemas/vision.ocr.output.schema.json",
+    "docs/adapters/capability-schemas/vision.segment.input.schema.json",
+    "docs/adapters/capability-schemas/vision.segment.output.schema.json",
+    "docs/adapters/capability-schemas/vision.understand.input.schema.json",
+    "docs/adapters/capability-schemas/vision.understand.output.schema.json",
+    "docs/adapters/method-schemas/benchmark.describe.request.schema.json",
+    "docs/adapters/method-schemas/benchmark.describe.response.schema.json",
+    "docs/adapters/method-schemas/benchmark.run.request.schema.json",
+    "docs/adapters/method-schemas/benchmark.run.response.schema.json",
+    "docs/adapters/method-schemas/benchmark.validate.request.schema.json",
+    "docs/adapters/method-schemas/benchmark.validate.response.schema.json",
+    "docs/adapters/method-schemas/core.cancel.request.schema.json",
+    "docs/adapters/method-schemas/core.cancel.response.schema.json",
+    "docs/adapters/method-schemas/core.handshake.request.schema.json",
+    "docs/adapters/method-schemas/core.handshake.response.schema.json",
+    "docs/adapters/method-schemas/core.heartbeat.request.schema.json",
+    "docs/adapters/method-schemas/core.heartbeat.response.schema.json",
+    "docs/adapters/method-schemas/index.json",
+    "docs/adapters/method-schemas/protocol.cancel.request.schema.json",
+    "docs/adapters/method-schemas/protocol.cancel.response.schema.json",
+    "docs/adapters/method-schemas/protocol.describe.request.schema.json",
+    "docs/adapters/method-schemas/protocol.describe.response.schema.json",
+    "docs/adapters/method-schemas/protocol.invoke.request.schema.json",
+    "docs/adapters/method-schemas/protocol.invoke.response.schema.json",
+    "docs/adapters/method-schemas/protocol.qualify.request.schema.json",
+    "docs/adapters/method-schemas/protocol.qualify.response.schema.json",
+    "docs/adapters/method-schemas/runtime.benchmark.request.schema.json",
+    "docs/adapters/method-schemas/runtime.benchmark.response.schema.json",
+    "docs/adapters/method-schemas/runtime.check_compatibility.request.schema.json",
+    "docs/adapters/method-schemas/runtime.check_compatibility.response.schema.json",
+    "docs/adapters/method-schemas/runtime.detect_backends.request.schema.json",
+    "docs/adapters/method-schemas/runtime.detect_backends.response.schema.json",
+    "docs/adapters/method-schemas/runtime.discover.request.schema.json",
+    "docs/adapters/method-schemas/runtime.discover.response.schema.json",
+    "docs/adapters/method-schemas/runtime.estimate_memory.request.schema.json",
+    "docs/adapters/method-schemas/runtime.estimate_memory.response.schema.json",
+    "docs/adapters/method-schemas/runtime.health.request.schema.json",
+    "docs/adapters/method-schemas/runtime.health.response.schema.json",
+    "docs/adapters/method-schemas/runtime.inspect_model.request.schema.json",
+    "docs/adapters/method-schemas/runtime.inspect_model.response.schema.json",
+    "docs/adapters/method-schemas/runtime.install.request.schema.json",
+    "docs/adapters/method-schemas/runtime.install.response.schema.json",
+    "docs/adapters/method-schemas/runtime.install_plan.request.schema.json",
+    "docs/adapters/method-schemas/runtime.install_plan.response.schema.json",
+    "docs/adapters/method-schemas/runtime.install_status.request.schema.json",
+    "docs/adapters/method-schemas/runtime.install_status.response.schema.json",
+    "docs/adapters/method-schemas/runtime.launch_plan.request.schema.json",
+    "docs/adapters/method-schemas/runtime.launch_plan.response.schema.json",
+    "docs/adapters/method-schemas/runtime.list_models.request.schema.json",
+    "docs/adapters/method-schemas/runtime.list_models.response.schema.json",
+    "docs/adapters/method-schemas/runtime.list_versions.request.schema.json",
+    "docs/adapters/method-schemas/runtime.list_versions.response.schema.json",
+    "docs/adapters/method-schemas/runtime.load.request.schema.json",
+    "docs/adapters/method-schemas/runtime.load.response.schema.json",
+    "docs/adapters/method-schemas/runtime.start.request.schema.json",
+    "docs/adapters/method-schemas/runtime.start.response.schema.json",
+    "docs/adapters/method-schemas/runtime.stop.request.schema.json",
+    "docs/adapters/method-schemas/runtime.stop.response.schema.json",
+    "docs/adapters/method-schemas/source.auth_probe.request.schema.json",
+    "docs/adapters/method-schemas/source.auth_probe.response.schema.json",
+    "docs/adapters/method-schemas/source.download.request.schema.json",
+    "docs/adapters/method-schemas/source.download.response.schema.json",
+    "docs/adapters/method-schemas/source.download_chunk.request.schema.json",
+    "docs/adapters/method-schemas/source.download_chunk.response.schema.json",
+    "docs/adapters/method-schemas/source.download_plan.request.schema.json",
+    "docs/adapters/method-schemas/source.download_plan.response.schema.json",
+    "docs/adapters/method-schemas/source.estimate_size.request.schema.json",
+    "docs/adapters/method-schemas/source.estimate_size.response.schema.json",
+    "docs/adapters/method-schemas/source.get_manifest.request.schema.json",
+    "docs/adapters/method-schemas/source.get_manifest.response.schema.json",
+    "docs/adapters/method-schemas/source.get_model.request.schema.json",
+    "docs/adapters/method-schemas/source.get_model.response.schema.json",
+    "docs/adapters/method-schemas/source.list_revisions.request.schema.json",
+    "docs/adapters/method-schemas/source.list_revisions.response.schema.json",
+    "docs/adapters/method-schemas/source.search.request.schema.json",
+    "docs/adapters/method-schemas/source.search.response.schema.json",
+    "docs/adapters/method-schemas/source.sync.request.schema.json",
+    "docs/adapters/method-schemas/source.sync.response.schema.json",
+    "docs/adapters/method-schemas/transformation.describe.request.schema.json",
+    "docs/adapters/method-schemas/transformation.describe.response.schema.json",
+    "docs/adapters/method-schemas/transformation.execute.request.schema.json",
+    "docs/adapters/method-schemas/transformation.execute.response.schema.json",
+    "docs/adapters/method-schemas/transformation.plan.request.schema.json",
+    "docs/adapters/method-schemas/transformation.plan.response.schema.json",
+    "docs/adapters/method-schemas/transformation.verify.request.schema.json",
+    "docs/adapters/method-schemas/transformation.verify.response.schema.json",
+    "docs/api/ai-broker-contract.md",
+    "docs/implementation/STATE.md",
+    "docs/reports/P036_inferenceendpoint-y-registro-de-protocolos.md",
+    "docs/reports/P100_runtime-lease-service.md",
+    "docs/reports/P101_contrato-larm-con-ai-broker-y-localruntimeresolver.md",
+    "docs/reports/P107_P100_revalidacion_focal_2026-10-24.md",
+    "tools/p100_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P100-ADAPTER-METHOD-SCHEMAS",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_schemas.py check",
+      "fixture_hashes": [],
+      "expected": "Los 80 schemas de métodos, el índice y el código Rust corresponden a los contratos canónicos.",
+      "observed": "exit=0; PASS: 40 firmas / 80 schemas autocontenidos, índice y hashes exactos; todas las restricciones originales conservadas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-ADAPTER-METHOD-SCHEMAS.log#sha256=004746690405d92f083d17a17ac617d265ea3d81d2eda9e08af3bec8f6dcb14b"
+      ]
+    },
+    {
+      "id": "P100-ADAPTER-CAPABILITY-SCHEMAS",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_capability_schemas.py check",
+      "fixture_hashes": [],
+      "expected": "Los 36 schemas de capacidades, el índice y el código Rust corresponden a sus descriptores canónicos.",
+      "observed": "exit=0; PASS: 18 capacidades / 36 schemas con hashes RFC8785 e índice Rust exactos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-ADAPTER-CAPABILITY-SCHEMAS.log#sha256=bcdd62505a2ea1fbbf091ff94f51f80f8637095fcb5a2ba5b2a79369d592d1d5"
+      ]
+    },
+    {
+      "id": "P100-SQLITE-LEASE-REPOSITORY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib runtime_leases::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/runtime_leases.rs:f0715260bc3c4f17989049b0cdbf027b8bf1c2951d4b5eeb05c66c4a1a8588fa"
+      ],
+      "expected": "Siete pruebas cubren replay/conflicto idempotente, renovaciones con CAS y replay, vencimiento con gracia, transiciones owner/revisión/generación, reinicio, secretos y rollback del outbox.",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 50.20s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-c463ce497a7a8126.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-SQLITE-LEASE-REPOSITORY.log#sha256=b0008f60643bdc9d0cb33c7221a7badf2eecaa5c9b838cbca35fff4a44890a57"
+      ]
+    },
+    {
+      "id": "P100-STARTUP-LEASE-RECOVERY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib lease_recovery::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/lease_recovery.rs:b9ce31da7f35147119c56c88e2981d02a5fbcc791abfb2993096a14af4e757f8",
+        "crates/larm-runtime/src/external_adoption.rs:0d509f80fb9107ff4634ffe76cedb842f4a97487382ee6969f2ff2db6b7e60ea",
+        "crates/larm-runtime/src/external_adoption/tests.rs:2fe775a4d284daa82d58b1c538761f1b8c84a11e2d0cd3d29c26e661fc8072bc",
+        "apps/daemon/src/serve.rs:7596dd808666b192f8febf8c70ffed80717a08e90ff3799f9c3394de65604af3"
+      ],
+      "expected": "Tres pruebas ejecutan recuperación contra SQLite y secretos de fixture: expiran solo generaciones viejas, revocan tokens, reintentan fallos y rechazan generation cero.",
+      "observed": "exit=0; Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Compiling larm-runtime v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-runtime) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 11s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-9d1104528e18df41.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-STARTUP-LEASE-RECOVERY.log#sha256=afa2507e8f8dbcf4cb730dee33d9bea41149b9848290eea6d6ff3855cb6ea18e"
+      ]
+    },
+    {
+      "id": "P100-BROKER-PERSISTED-LEASE-READS",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib leases_reconciliadas_siguen_disponibles_en_get_y_list -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/external_adoption.rs:0d509f80fb9107ff4634ffe76cedb842f4a97487382ee6969f2ff2db6b7e60ea",
+        "crates/larm-runtime/src/external_adoption/tests.rs:2fe775a4d284daa82d58b1c538761f1b8c84a11e2d0cd3d29c26e661fc8072bc",
+        "crates/larm-db/src/runtime_leases.rs:f0715260bc3c4f17989049b0cdbf027b8bf1c2951d4b5eeb05c66c4a1a8588fa",
+        "apps/daemon/src/serve.rs:7596dd808666b192f8febf8c70ffed80717a08e90ff3799f9c3394de65604af3"
+      ],
+      "expected": "Tras reiniciar el puente, GET/LIST leen leases reconciliadas desde SQLite, recorren más de una página, respetan propietario y dan prioridad al estado vigente en memoria.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.95s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-9d1104528e18df41.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-BROKER-PERSISTED-LEASE-READS.log#sha256=d76961b754b71622e7603b63bff79efd5970c5fb981d653fd1a3098df4aff565"
+      ]
+    },
+    {
+      "id": "P100-DURABLE-LEASE-ADMISSION-JOB",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib external_adoption::tests::admision_durable_no_termina_sin_instancia_y_endpoint_cualificados -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/ports.rs:33226537142054b5fbe8f52c89468bd9f3f99f9d9172d2a145401891cc586c23",
+        "crates/larm-db/src/jobs.rs:bf1412ecf3e105c7b9e8df192ab3f1731f8fca3af80c7450d566b0d17af1a054",
+        "crates/larm-db/src/runtime_leases.rs:f0715260bc3c4f17989049b0cdbf027b8bf1c2951d4b5eeb05c66c4a1a8588fa",
+        "crates/larm-runtime/src/external_adoption.rs:0d509f80fb9107ff4634ffe76cedb842f4a97487382ee6969f2ff2db6b7e60ea",
+        "crates/larm-runtime/src/external_adoption/tests.rs:2fe775a4d284daa82d58b1c538761f1b8c84a11e2d0cd3d29c26e661fc8072bc",
+        "apps/daemon/src/serve.rs:7596dd808666b192f8febf8c70ffed80717a08e90ff3799f9c3394de65604af3"
+      ],
+      "expected": "La solicitud y el job se guardan en SQLite; sin instancia y endpoint cualificados el job termina FAILED, SQLite registra ADMITTING→FAILED y el runtime no se carga ni se devuelve una lease ACTIVE ficticia.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.85s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-9d1104528e18df41.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-DURABLE-LEASE-ADMISSION-JOB.log#sha256=f28a029e2ae74ce53a5064593fbdde28759613b824393d16d37917e715e84a58"
+      ]
+    },
+    {
+      "id": "P100-DURABLE-ADMISSION-ACTIVE-BRIDGE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib external_adoption::tests::admision_durable_persiste_referencias_y_transiciona_lease_a_active -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/runtime_ports.rs:da6ffbe382fe28d029700bc95a6eaab2427753064f6b3e47c94eab2f474dddfc",
+        "crates/larm-db/src/instances.rs:a2116adec88d31986a5f0b6c5e318af1377bd6ac2675191e27e22c0a2b00595e",
+        "crates/larm-runtime/src/endpoints.rs:60fe909cad9e09ca1320d54c43351d81b69496aff447a186b7a128bd10897e81",
+        "crates/larm-runtime/src/external_adoption.rs:0d509f80fb9107ff4634ffe76cedb842f4a97487382ee6969f2ff2db6b7e60ea",
+        "crates/larm-runtime/src/external_adoption/tests.rs:2fe775a4d284daa82d58b1c538761f1b8c84a11e2d0cd3d29c26e661fc8072bc"
+      ],
+      "expected": "La admisión durable sólo pasa a ACTIVE después de obtener y guardar las referencias cualificadas; SQLite conserva los mismos IDs y generación.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.90s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-9d1104528e18df41.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-DURABLE-ADMISSION-ACTIVE-BRIDGE.log#sha256=2df83976c5ab39b2ea2e1e223f2e7c3852ed5f88fe923bad6b09a1dab6e01ebc"
+      ]
+    },
+    {
+      "id": "P100-QUALIFIED-EXTERNAL-REFERENCE-STORE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon adoption_references::tests::reference_store_requires_catalog_bindings_and_http_qualification -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/src/adoption_references.rs:b94d7a7af0dca26955459aa64a5cb724507cb4ff3ae77aaafe64f0cd6dd09b79",
+        "crates/larm-db/src/instances.rs:a2116adec88d31986a5f0b6c5e318af1377bd6ac2675191e27e22c0a2b00595e",
+        "crates/larm-runtime/src/endpoints.rs:60fe909cad9e09ca1320d54c43351d81b69496aff447a186b7a128bd10897e81"
+      ],
+      "expected": "El daemon valida host, versión, instalación, backend, variante y perfil locales; una sonda HTTP P036 cualificada registra instancia y endpoint en una sola transacción.",
+      "observed": "exit=0; Running tests\\lifecycle.rs (target\\debug\\deps\\lifecycle-a14048a2a395ed70.exe) | Running tests\\move.rs (target\\debug\\deps\\move-551a69ba50feaa45.exe) | Running tests\\reference_adapters.rs (target\\debug\\deps\\reference_adapters-fa0a17687c795fee.exe) | Running tests\\runtime_catalog.rs (target\\debug\\deps\\runtime_catalog-d5f322bdcfcfb659.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-QUALIFIED-EXTERNAL-REFERENCE-STORE.log#sha256=4baa7be4de1917a0602ba29b2047feed2b2fe055ffbe4a649667d3793e77b057"
+      ]
+    },
+    {
+      "id": "P100-DURABLE-LEASE-RENEW-RELEASE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib external_adoption::tests::renovacion_y_liberacion_durables_actualizan_sqlite_y_revocan_secreto -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/ports.rs:33226537142054b5fbe8f52c89468bd9f3f99f9d9172d2a145401891cc586c23",
+        "crates/larm-db/src/runtime_leases.rs:f0715260bc3c4f17989049b0cdbf027b8bf1c2951d4b5eeb05c66c4a1a8588fa",
+        "crates/larm-runtime/src/external_adoption.rs:0d509f80fb9107ff4634ffe76cedb842f4a97487382ee6969f2ff2db6b7e60ea",
+        "crates/larm-runtime/src/external_adoption/tests.rs:2fe775a4d284daa82d58b1c538761f1b8c84a11e2d0cd3d29c26e661fc8072bc"
+      ],
+      "expected": "El puente renueva con CAS e idempotencia durables, repite la respuesta original y libera en SQLite; la revocación borra el secreto local.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 1.16s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-9d1104528e18df41.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-DURABLE-LEASE-RENEW-RELEASE.log#sha256=7e6c618774a3b8c1128701b11a3c25365a639f8df6b2880a53047ef40d11d960"
+      ]
+    },
+    {
+      "id": "P100-LEASE-RELEASE-DURING-ADMISSION",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib external_adoption::tests::liberacion_durante_admission_se_rechaza_hasta_que_la_lease_este_activa -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/external_adoption.rs:0d509f80fb9107ff4634ffe76cedb842f4a97487382ee6969f2ff2db6b7e60ea",
+        "crates/larm-runtime/src/external_adoption/tests.rs:2fe775a4d284daa82d58b1c538761f1b8c84a11e2d0cd3d29c26e661fc8072bc"
+      ],
+      "expected": "La API rechaza liberar durante ADMITTING sin revocar el token; tras completar la admisión, permite ACTIVE→RELEASED y revoca la credencial.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.87s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-9d1104528e18df41.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-LEASE-RELEASE-DURING-ADMISSION.log#sha256=e1c87ef8c673166638f292aa0163029df09093c0618ca7972246d552dd6b4788"
+      ]
+    },
+    {
+      "id": "P100-LEASE-RELEASE-DURING-EXPIRY-GRACE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib external_adoption::tests::unrenewed_lease_expires_after_grace_and_loses_its_token -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/external_adoption.rs:0d509f80fb9107ff4634ffe76cedb842f4a97487382ee6969f2ff2db6b7e60ea",
+        "crates/larm-runtime/src/external_adoption/tests.rs:2fe775a4d284daa82d58b1c538761f1b8c84a11e2d0cd3d29c26e661fc8072bc"
+      ],
+      "expected": "Durante EXPIRING, DELETE falla cerrado y conserva el token hasta que finaliza la gracia y se registra EXPIRED.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.83s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-9d1104528e18df41.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-LEASE-RELEASE-DURING-EXPIRY-GRACE.log#sha256=aa60d97ca1b61ac4c16dfb6a9d0d67c11e9c8048822140d1721f6ef317421730"
+      ]
+    },
+    {
+      "id": "P100-LARM-DB-ALL-TARGETS",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --all-targets -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/runtime_leases.rs:f0715260bc3c4f17989049b0cdbf027b8bf1c2951d4b5eeb05c66c4a1a8588fa",
+        "crates/larm-db/src/lib.rs:d20413622aa462cbe0d9bdf68bdf6e1616926b847946fcb645b6ac1009456b8d"
+      ],
+      "expected": "Todas las suites y binarios de prueba de larm-db pasan con temporales dentro del workspace.",
+      "observed": "exit=0; Running tests\\source_probes.rs (target\\debug\\deps\\source_probes-6919f3703ec81d51.exe) | Running tests\\sources.rs (target\\debug\\deps\\sources-4de0aa4c77bca8cd.exe) | Running tests\\storage.rs (target\\debug\\deps\\storage-6b8abefecb38c4b8.exe) | Running unittests examples\\guard_worker.rs (target\\debug\\examples\\guard_worker-5b15ed273a7e632b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-LARM-DB-ALL-TARGETS.log#sha256=e8686bc4ff79cf87519a6ad459bd18202a8e3ec49400d7a998b9b26498095ff9"
+      ]
+    },
+    {
+      "id": "P100-FORMAT",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "El workspace Rust está formateado.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-FORMAT.log#sha256=eb90fc330a0301acab16a76079746169e43cd002c2a8437227a4d9ef6d4b5fbe"
+      ]
+    },
+    {
+      "id": "P100-CLIPPY",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "Clippy del workspace pasa sin advertencias de código.",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 9.65s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-CLIPPY.log#sha256=5a2b86ca6ce232849add1ab31c6f3930a51c9966c1615c442830cb1e6e195acb"
+      ]
+    },
+    {
+      "id": "P100-PACKAGE-COPIES",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [],
+      "expected": "Las copias contractuales coinciden con el paquete canónico.",
+      "observed": "exit=0; PASS 67 copias idénticas al paquete 3.9.1",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P100_runs/P100-PACKAGE-COPIES.log#sha256=4dfc4c2ca3d6005b81bf7d8c3e02877e275956dbe8f5878646ca83790b3b8940"
+      ]
+    },
+    {
+      "id": "P100-REAL-LEASE-LIFECYCLE",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P100 -Real",
+      "fixture_hashes": [],
+      "expected": "Crear, renovar, expirar, recuperar tras reinicio y liberar una lease a través del daemon Windows, con SQL, reservas, credenciales y eventos/outbox consistentes.",
+      "observed": "NO EJECUTADA: La ruta durable ya conecta el worker con un resolvedor que valida el catálogo local, cualifica el protocolo por HTTP y registra RuntimeInstance e InferenceEndpoint en SQLite antes de activar la lease. Esta prueba REAL sigue sin ejecutarse con el daemon Windows y un runtime externo instalado; P033/P035/P036/P042/P019/P090 aún no tienen REAL_PASS.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La ruta de admisión con referencias cualificadas pasa pruebas locales; falta la aceptación REAL con el daemon Windows y un runtime externo instalado para comprobar el ciclo operativo completo.",
+    "dependencia P033 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P035 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P036 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P042 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P090 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-24T22:42:32.320Z"
+}

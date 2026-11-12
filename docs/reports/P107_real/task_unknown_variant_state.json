@@ -1,0 +1,33 @@
+{
+  "task_id": "task_728c3fd051d542db9e3c046aa63f980e",
+  "kind": "inference",
+  "status": "failed",
+  "request_id": null,
+  "created_at": "2026-10-10T22:14:14.571160Z",
+  "updated_at": "2026-10-10T22:14:14.692075Z",
+  "execution_strategy": "single",
+  "execution_preset": "fast",
+  "selection_mode": "auto",
+  "progress": {
+    "phase": "failed"
+  },
+  "result": null,
+  "error": {
+    "code": "MODEL_UNAVAILABLE",
+    "message": "Modelo exacto no disponible: larm/local/01a127e0-7e03-7599-863e-abbaf3cc1fe1 (LARM no lo publica como BROKER_ELIGIBLE)",
+    "retryable": false,
+    "stage": "routing"
+  },
+  "execution_summary": {
+    "requested_model": {
+      "provider": "larm",
+      "deployment": "local",
+      "model": "01a127e0-7e03-7599-863e-abbaf3cc1fe1",
+      "role": null,
+      "required": false
+    },
+    "served_by": null,
+    "models_used": [],
+    "fallback_used": null
+  }
+}

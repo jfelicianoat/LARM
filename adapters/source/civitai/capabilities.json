@@ -1,0 +1,16 @@
+{
+  "provider": "CIVITAI",
+  "api_reference": "https://github.com/civitai/civitai-developer-docs/blob/main/site/reference/models.md",
+  "search_applicable": true,
+  "supported_methods": [
+    "source.search",
+    "source.get_model",
+    "source.list_revisions",
+    "source.get_manifest",
+    "source.estimate_size"
+  ],
+  "status": "CODE_READY_REAL_QUALIFICATION_REQUIRED",
+  "limitations": [
+    "API Site v1 pública para metadatos, modelos, versiones y cursor; planes y transferencias quedan deshabilitados hasta integrar P045."
+  ]
+}

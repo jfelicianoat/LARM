@@ -1,0 +1,42 @@
+{
+  "$defs": {
+    "larm__speech_synthesize_input": {
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sample_rate": {
+          "maximum": 192000,
+          "minimum": 8000,
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "voice": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "text",
+        "voice",
+        "language",
+        "sample_rate"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__speech_synthesize_input",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

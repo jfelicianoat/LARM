@@ -1,0 +1,139 @@
+{
+  "contract_version": "1.0",
+  "items": [
+    {
+      "variant_id": "01a127e0-7e03-7599-863e-abb96ef7db4e",
+      "capabilities": [
+        "text.generate"
+      ],
+      "runtime_version_ids": [
+        "01a127e0-7f24-76fb-b02f-a31d07bb97be"
+      ],
+      "backend_ids": [],
+      "protocol_profiles": [
+        {
+          "protocol": "openai",
+          "profile_hash": "f41cecda5e298521ae80df6ca94869cab4ade9c74e6000bc4dfc7fb9219a5237",
+          "capabilities": [
+            "text.generate"
+          ],
+          "streaming": false,
+          "tools": false,
+          "request_schema_id": "openai.chat_completions.request.v1",
+          "response_schema_id": "openai.chat_completions.response.v1"
+        }
+      ],
+      "fingerprint": {
+        "hash": "c466ca12958f0b28313a8ffc812a60d1f6d04c91e089659033a3ad2d9ba61cfb",
+        "components": {
+          "artifact_bundle_hash": {
+            "value": "4eb23ef187e2c5462566d6a1d3bbbc2f1346d0b4327cbb66d58fffbcc9b2b05c",
+            "status": "VERIFIED",
+            "evidence_refs": [
+              "ollama:/api/tags#digest"
+            ]
+          },
+          "backend": {
+            "value": null,
+            "status": "UNAVAILABLE",
+            "evidence_refs": [
+              "backend_known_only_after_load"
+            ]
+          },
+          "chat_template_hash": {
+            "value": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+            "status": "VERIFIED",
+            "evidence_refs": [
+              "ollama:/api/show#template"
+            ]
+          },
+          "driver_versions": {
+            "value": null,
+            "status": "UNAVAILABLE",
+            "evidence_refs": [
+              "P011_pending:no_driver_probe"
+            ]
+          },
+          "effective_generation": {
+            "value": null,
+            "status": "UNAVAILABLE",
+            "evidence_refs": [
+              "per_request"
+            ]
+          },
+          "hardware_fingerprint": {
+            "value": null,
+            "status": "UNAVAILABLE",
+            "evidence_refs": [
+              "P013_pending:no_hardware_fingerprint"
+            ]
+          },
+          "installation_hash": {
+            "value": null,
+            "status": "UNAVAILABLE",
+            "evidence_refs": [
+              "external_adoption:not_installed_by_larm"
+            ]
+          },
+          "launch_profile_hash": {
+            "value": "fa0a57e599961f5d118efb384aac4ad546633062b48c6c3c20cffc685d1853ea",
+            "status": "DECLARED",
+            "evidence_refs": [
+              "external_adoption:runtime_controls_launch"
+            ]
+          },
+          "protocol": {
+            "value": "openai",
+            "status": "DECLARED",
+            "evidence_refs": [
+              "external_adoption:openai_compat_endpoint"
+            ]
+          },
+          "protocol_profile_hash": {
+            "value": "f41cecda5e298521ae80df6ca94869cab4ade9c74e6000bc4dfc7fb9219a5237",
+            "status": "DECLARED",
+            "evidence_refs": [
+              "larm:protocol_profile"
+            ]
+          },
+          "revision": {
+            "value": null,
+            "status": "UNAVAILABLE",
+            "evidence_refs": [
+              "external_adoption:no_revision_registry"
+            ]
+          },
+          "runtime_id": {
+            "value": "Ollama",
+            "status": "VERIFIED",
+            "evidence_refs": [
+              "ollama:/api/version"
+            ]
+          },
+          "runtime_version": {
+            "value": "0.40.2",
+            "status": "VERIFIED",
+            "evidence_refs": [
+              "ollama:/api/version"
+            ]
+          },
+          "tokenizer_hash": {
+            "value": null,
+            "status": "UNAVAILABLE",
+            "evidence_refs": [
+              "external_adoption:tokenizer_not_exposed"
+            ]
+          }
+        }
+      },
+      "constraints": {
+        "runtime_version_id": "01a127e0-7f24-76fb-b02f-a31d07bb97be",
+        "backend_id": null,
+        "execution_fingerprint": null,
+        "allow_backend_fallback": false,
+        "max_memory_bytes": null
+      }
+    }
+  ],
+  "snapshot_at": "2026-10-10T22:13:08.231Z"
+}

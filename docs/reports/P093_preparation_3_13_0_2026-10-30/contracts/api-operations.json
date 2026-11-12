@@ -1,0 +1,2514 @@
+{
+  "contract_version": "1.0",
+  "operations": [
+    {
+      "id": "P005_get__health_live",
+      "method": "GET",
+      "path": "/api/v1/health/live",
+      "scope": "public",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/Health",
+      "owner": "P005",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P005_get__health_ready",
+      "method": "GET",
+      "path": "/api/v1/health/ready",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/Health",
+      "owner": "P005",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P010_get__hardware",
+      "method": "GET",
+      "path": "/api/v1/hardware",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/hardware_profileList",
+      "owner": "P010",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P011_post__hardware_refresh",
+      "method": "POST",
+      "path": "/api/v1/hardware/refresh",
+      "scope": "admin",
+      "request_schema": "larm.schema.json#/$defs/Probe",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P011",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P014_get__storage_locations",
+      "method": "GET",
+      "path": "/api/v1/storage-locations",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/storage_locationList",
+      "owner": "P014",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P014_post__storage_locations",
+      "method": "POST",
+      "path": "/api/v1/storage-locations",
+      "scope": "storage:write",
+      "request_schema": "larm.schema.json#/$defs/storage_locationCreate",
+      "response_schema": "larm.schema.json#/$defs/storage_location",
+      "owner": "P014",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P014_get__storage_locations_id_",
+      "method": "GET",
+      "path": "/api/v1/storage-locations/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/storage_location",
+      "owner": "P014",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P014_patch__storage_locations_id_",
+      "method": "PATCH",
+      "path": "/api/v1/storage-locations/{id}",
+      "scope": "storage:write",
+      "request_schema": "larm.schema.json#/$defs/storage_locationCreate",
+      "response_schema": "larm.schema.json#/$defs/storage_location",
+      "owner": "P014",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P014_delete__storage_locations_id_",
+      "method": "DELETE",
+      "path": "/api/v1/storage-locations/{id}",
+      "scope": "storage:write",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P014",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P014_post__storage_locations_id_probe",
+      "method": "POST",
+      "path": "/api/v1/storage-locations/{id}/probe",
+      "scope": "storage:write",
+      "request_schema": "larm.schema.json#/$defs/Probe",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P014",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P040_get__models",
+      "method": "GET",
+      "path": "/api/v1/models",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/canonical_modelList",
+      "owner": "P040",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P040_get__models_id_",
+      "method": "GET",
+      "path": "/api/v1/models/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/canonical_model",
+      "owner": "P040",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P044_post__models_search",
+      "method": "POST",
+      "path": "/api/v1/models/search",
+      "scope": "read",
+      "request_schema": "larm.schema.json#/$defs/Search",
+      "response_schema": "larm.schema.json#/$defs/canonical_modelList",
+      "owner": "P044",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P041_get__variants",
+      "method": "GET",
+      "path": "/api/v1/variants",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_variantList",
+      "owner": "P041",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P041_get__variants_id_",
+      "method": "GET",
+      "path": "/api/v1/variants/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_variant",
+      "owner": "P041",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P042_post__models_select",
+      "method": "POST",
+      "path": "/api/v1/models/select",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/Selection",
+      "response_schema": "larm.schema.json#/$defs/model_variant",
+      "owner": "P042",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P098_post__models_import_preview",
+      "method": "POST",
+      "path": "/api/v1/models/import/preview",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/ImportPreviewRequest",
+      "response_schema": "larm.schema.json#/$defs/ImportScanPreview",
+      "owner": "P098",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P098_post__models_import",
+      "method": "POST",
+      "path": "/api/v1/models/import",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/Import",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P098",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P016_post__models_id_move",
+      "method": "POST",
+      "path": "/api/v1/models/{id}/move",
+      "scope": "storage:write",
+      "request_schema": "larm.schema.json#/$defs/Move",
+      "response_schema": "larm.schema.json#/$defs/Plan",
+      "owner": "P016",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ],
+      "resource_id_semantics": "ModelVariant UUID, not CanonicalModel group UUID"
+    },
+    {
+      "id": "P018_delete__models_id_",
+      "method": "DELETE",
+      "path": "/api/v1/models/{id}",
+      "scope": "models:write",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P018",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "query_parameters": {
+        "approval_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "plan_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ],
+      "resource_id_semantics": "ModelVariant UUID, not CanonicalModel group UUID"
+    },
+    {
+      "id": "P042_post__models_id_verify",
+      "method": "POST",
+      "path": "/api/v1/models/{id}/verify",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/Probe",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P042",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ],
+      "resource_id_semantics": "ModelVariant UUID, not CanonicalModel group UUID"
+    },
+    {
+      "id": "P097_post__models_id_update",
+      "method": "POST",
+      "path": "/api/v1/models/{id}/update",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/ModelUpdate",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P097",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ],
+      "resource_id_semantics": "ModelVariant UUID, not CanonicalModel group UUID"
+    },
+    {
+      "id": "P117_post__models_id_promote",
+      "method": "POST",
+      "path": "/api/v1/models/{id}/promote",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/Promote",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P117",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ],
+      "resource_id_semantics": "ModelVariant UUID, not CanonicalModel group UUID"
+    },
+    {
+      "id": "P052_post__download_plans",
+      "method": "POST",
+      "path": "/api/v1/download-plans",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/DownloadPlanRequest",
+      "response_schema": "larm.schema.json#/$defs/DownloadPlanResponse",
+      "owner": "P052",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P051_post__downloads",
+      "method": "POST",
+      "path": "/api/v1/downloads",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/ExecuteDownloadPlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P051",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P051_get__downloads",
+      "method": "GET",
+      "path": "/api/v1/downloads",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/download_jobList",
+      "owner": "P051",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P051_post__downloads_id_pause",
+      "method": "POST",
+      "path": "/api/v1/downloads/{id}/pause",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/Stop",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P051",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P051_post__downloads_id_resume",
+      "method": "POST",
+      "path": "/api/v1/downloads/{id}/resume",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/Stop",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P051",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P051_post__downloads_id_cancel",
+      "method": "POST",
+      "path": "/api/v1/downloads/{id}/cancel",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/Stop",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P051",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P093_post__transform_plans",
+      "method": "POST",
+      "path": "/api/v1/transform-plans",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/Transform",
+      "response_schema": "larm.schema.json#/$defs/Plan",
+      "owner": "P093",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P093_post__transformations",
+      "method": "POST",
+      "path": "/api/v1/transformations",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P093",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P093_post__transformations_id_restart",
+      "method": "POST",
+      "path": "/api/v1/transformations/{id}/restart",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P093",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key",
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P093_get__transformations",
+      "method": "GET",
+      "path": "/api/v1/transformations",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/transformation_jobList",
+      "owner": "P093",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P030_get__runtimes",
+      "method": "GET",
+      "path": "/api/v1/runtimes",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtimeList",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P030_post__runtimes",
+      "method": "POST",
+      "path": "/api/v1/runtimes",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/runtimeCreate",
+      "response_schema": "larm.schema.json#/$defs/runtime",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P030_get__runtimes_id_",
+      "method": "GET",
+      "path": "/api/v1/runtimes/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P031_get__runtime_versions",
+      "method": "GET",
+      "path": "/api/v1/runtime-versions",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_versionList",
+      "owner": "P031",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P031_get__runtime_versions_id_",
+      "method": "GET",
+      "path": "/api/v1/runtime-versions/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_version",
+      "owner": "P031",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P031_post__runtime_installations",
+      "method": "POST",
+      "path": "/api/v1/runtime-installations",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/InstallRequest",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P031",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P032_post__runtime_versions_id_update",
+      "method": "POST",
+      "path": "/api/v1/runtime-versions/{id}/update",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/RuntimeUpdateRequest",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P032",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P117_post__runtime_versions_id_promote",
+      "method": "POST",
+      "path": "/api/v1/runtime-versions/{id}/promote",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/Promote",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P117",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P032_post__runtime_versions_id_rollback",
+      "method": "POST",
+      "path": "/api/v1/runtime-versions/{id}/rollback",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/RuntimeRollbackRequest",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P032",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P032_post__runtime_versions_id_pin",
+      "method": "POST",
+      "path": "/api/v1/runtime-versions/{id}/pin",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/RuntimePinRequest",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P032",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P034_get__launch_profiles",
+      "method": "GET",
+      "path": "/api/v1/launch-profiles",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/launch_profileList",
+      "owner": "P034",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P034_post__launch_profiles",
+      "method": "POST",
+      "path": "/api/v1/launch-profiles",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/launch_profileCreate",
+      "response_schema": "larm.schema.json#/$defs/launch_profile",
+      "owner": "P034",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P034_get__launch_profiles_id_",
+      "method": "GET",
+      "path": "/api/v1/launch-profiles/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/launch_profile",
+      "owner": "P034",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P034_patch__launch_profiles_id_",
+      "method": "PATCH",
+      "path": "/api/v1/launch-profiles/{id}",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/launch_profileCreate",
+      "response_schema": "larm.schema.json#/$defs/launch_profile",
+      "owner": "P034",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P034_delete__launch_profiles_id_",
+      "method": "DELETE",
+      "path": "/api/v1/launch-profiles/{id}",
+      "scope": "runtimes:write",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P034",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P033_get__instances",
+      "method": "GET",
+      "path": "/api/v1/instances",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_instanceList",
+      "owner": "P033",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P033_get__instances_id_",
+      "method": "GET",
+      "path": "/api/v1/instances/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_instance",
+      "owner": "P033",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P033_post__instances_id_stop",
+      "method": "POST",
+      "path": "/api/v1/instances/{id}/stop",
+      "scope": "leases:manage",
+      "request_schema": "larm.schema.json#/$defs/Stop",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P033",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P100_get__leases",
+      "method": "GET",
+      "path": "/api/v1/leases",
+      "scope": "leases:manage",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_leaseList",
+      "owner": "P100",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P100_post__leases",
+      "method": "POST",
+      "path": "/api/v1/leases",
+      "scope": "leases:manage",
+      "request_schema": "larm.schema.json#/$defs/LeaseRequest",
+      "response_schema": "larm.schema.json#/$defs/LeaseResponse",
+      "owner": "P100",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "alternative_responses": {
+        "202": "larm.schema.json#/$defs/JobReceipt"
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P100_get__leases_id_",
+      "method": "GET",
+      "path": "/api/v1/leases/{id}",
+      "scope": "leases:manage",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_lease",
+      "owner": "P100",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P100_post__leases_id_renew",
+      "method": "POST",
+      "path": "/api/v1/leases/{id}/renew",
+      "scope": "leases:manage",
+      "request_schema": "larm.schema.json#/$defs/Renew",
+      "response_schema": "larm.schema.json#/$defs/runtime_lease",
+      "owner": "P100",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match",
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P100_delete__leases_id_",
+      "method": "DELETE",
+      "path": "/api/v1/leases/{id}",
+      "scope": "leases:manage",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P100",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P043_get__sources",
+      "method": "GET",
+      "path": "/api/v1/sources",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_sourceList",
+      "owner": "P043",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P043_post__sources",
+      "method": "POST",
+      "path": "/api/v1/sources",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/model_sourceCreate",
+      "response_schema": "larm.schema.json#/$defs/model_source",
+      "owner": "P043",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P043_get__sources_id_",
+      "method": "GET",
+      "path": "/api/v1/sources/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_source",
+      "owner": "P043",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P043_patch__sources_id_",
+      "method": "PATCH",
+      "path": "/api/v1/sources/{id}",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/model_sourceCreate",
+      "response_schema": "larm.schema.json#/$defs/model_source",
+      "owner": "P043",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P043_delete__sources_id_",
+      "method": "DELETE",
+      "path": "/api/v1/sources/{id}",
+      "scope": "models:write",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P043",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P045_post__sources_id_probe",
+      "method": "POST",
+      "path": "/api/v1/sources/{id}/probe",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/Probe",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P045",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P045_post__sources_id_license",
+      "method": "POST",
+      "path": "/api/v1/sources/{id}/license",
+      "scope": "credentials:write",
+      "request_schema": "larm.schema.json#/$defs/CheckLicense",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P045",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P050_get__source_watches",
+      "method": "GET",
+      "path": "/api/v1/source-watches",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/source_watchList",
+      "owner": "P050",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P050_post__source_watches",
+      "method": "POST",
+      "path": "/api/v1/source-watches",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/source_watchCreate",
+      "response_schema": "larm.schema.json#/$defs/source_watch",
+      "owner": "P050",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P050_get__source_watches_id_",
+      "method": "GET",
+      "path": "/api/v1/source-watches/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/source_watch",
+      "owner": "P050",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P050_patch__source_watches_id_",
+      "method": "PATCH",
+      "path": "/api/v1/source-watches/{id}",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/source_watchCreate",
+      "response_schema": "larm.schema.json#/$defs/source_watch",
+      "owner": "P050",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P050_delete__source_watches_id_",
+      "method": "DELETE",
+      "path": "/api/v1/source-watches/{id}",
+      "scope": "models:write",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P050",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P009_post__credentials",
+      "method": "POST",
+      "path": "/api/v1/credentials",
+      "scope": "credentials:write",
+      "request_schema": "larm.schema.json#/$defs/CredentialWrite",
+      "response_schema": "larm.schema.json#/$defs/credential_reference",
+      "owner": "P009",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P009_delete__credentials_id_",
+      "method": "DELETE",
+      "path": "/api/v1/credentials/{id}",
+      "scope": "credentials:write",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P009",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P024_get__adapters",
+      "method": "GET",
+      "path": "/api/v1/adapters",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/adapter_installationList",
+      "owner": "P024",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P024_get__adapters_id_",
+      "method": "GET",
+      "path": "/api/v1/adapters/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/adapter_installation",
+      "owner": "P024",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P028_post__adapters_import",
+      "method": "POST",
+      "path": "/api/v1/adapters/import",
+      "scope": "adapters:write",
+      "request_schema": "larm.schema.json#/$defs/AdapterImport",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P028",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P028_post__adapters_export",
+      "method": "POST",
+      "path": "/api/v1/adapters/export",
+      "scope": "adapters:write",
+      "request_schema": "larm.schema.json#/$defs/AdapterExport",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P028",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P028_get__adapters_registry",
+      "method": "GET",
+      "path": "/api/v1/adapters/registry",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/RegistryStatus",
+      "owner": "P028",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P028_post__adapters_registry_sync",
+      "method": "POST",
+      "path": "/api/v1/adapters/registry/sync",
+      "scope": "adapters:write",
+      "request_schema": "larm.schema.json#/$defs/RegistrySyncRequest",
+      "response_schema": "larm.schema.json#/$defs/RegistrySyncReceipt",
+      "owner": "P028",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P024_post__adapters_id_update",
+      "method": "POST",
+      "path": "/api/v1/adapters/{id}/update",
+      "scope": "adapters:write",
+      "request_schema": "larm.schema.json#/$defs/AdapterImport",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P024",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P026_post__adapters_id_probe",
+      "method": "POST",
+      "path": "/api/v1/adapters/{id}/probe",
+      "scope": "adapters:write",
+      "request_schema": "larm.schema.json#/$defs/Probe",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P026",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P009_post__approvals",
+      "method": "POST",
+      "path": "/api/v1/approvals",
+      "scope": "admin",
+      "request_schema": "larm.schema.json#/$defs/Approval",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P009",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P110_post__benchmarks",
+      "method": "POST",
+      "path": "/api/v1/benchmarks",
+      "scope": "benchmarks:write",
+      "request_schema": "larm.schema.json#/$defs/Benchmark",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P110",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P110_get__benchmarks",
+      "method": "GET",
+      "path": "/api/v1/benchmarks",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/technical_benchmarkList",
+      "owner": "P110",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P110_get__benchmarks_id_",
+      "method": "GET",
+      "path": "/api/v1/benchmarks/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/technical_benchmark",
+      "owner": "P110",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P117_post__comparisons",
+      "method": "POST",
+      "path": "/api/v1/comparisons",
+      "scope": "benchmarks:write",
+      "request_schema": "larm.schema.json#/$defs/Compare",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P117",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P116_post__evaluation_references",
+      "method": "POST",
+      "path": "/api/v1/evaluation-references",
+      "scope": "benchmarks:write",
+      "request_schema": "larm.schema.json#/$defs/evaluation_referenceCreate",
+      "response_schema": "larm.schema.json#/$defs/evaluation_reference",
+      "owner": "P116",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P116_get__evaluation_references",
+      "method": "GET",
+      "path": "/api/v1/evaluation-references",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/evaluation_referenceList",
+      "owner": "P116",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P116_get__evaluation_references_id_",
+      "method": "GET",
+      "path": "/api/v1/evaluation-references/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/evaluation_reference",
+      "owner": "P116",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P116_get__certifications",
+      "method": "GET",
+      "path": "/api/v1/certifications",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/certificationList",
+      "owner": "P116",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P116_get__certifications_id_",
+      "method": "GET",
+      "path": "/api/v1/certifications/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/certification",
+      "owner": "P116",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P113_get__events",
+      "method": "GET",
+      "path": "/api/v1/events",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P113",
+      "mode": "sse",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P113_get__notifications",
+      "method": "GET",
+      "path": "/api/v1/notifications",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/notificationList",
+      "owner": "P113",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P113_get__notifications_id_",
+      "method": "GET",
+      "path": "/api/v1/notifications/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/notification",
+      "owner": "P113",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P113_patch__notifications_id_",
+      "method": "PATCH",
+      "path": "/api/v1/notifications/{id}",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/MarkNotificationRead",
+      "response_schema": "larm.schema.json#/$defs/notification",
+      "owner": "P113",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P003_get__settings",
+      "method": "GET",
+      "path": "/api/v1/settings",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/Settings",
+      "owner": "P003",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P003_patch__settings",
+      "method": "PATCH",
+      "path": "/api/v1/settings",
+      "scope": "settings:write",
+      "request_schema": "larm.schema.json#/$defs/Settings",
+      "response_schema": "larm.schema.json#/$defs/Settings",
+      "owner": "P003",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {},
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P007_get__jobs_id_",
+      "method": "GET",
+      "path": "/api/v1/jobs/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/JobState",
+      "owner": "P007",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P101_get__broker_catalog",
+      "method": "GET",
+      "path": "/api/v1/broker/catalog",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/BrokerCatalog",
+      "owner": "P101",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P134_post__diagnostics",
+      "method": "POST",
+      "path": "/api/v1/diagnostics",
+      "scope": "admin",
+      "request_schema": "larm.schema.json#/$defs/Probe",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P134",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P132_post__recovery_rebuild",
+      "method": "POST",
+      "path": "/api/v1/recovery/rebuild",
+      "scope": "admin",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P132",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P133_post__updates_larm",
+      "method": "POST",
+      "path": "/api/v1/updates/larm",
+      "scope": "admin",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P133",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P014_get__storage",
+      "method": "GET",
+      "path": "/api/v1/storage",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/storage_locationList",
+      "owner": "P014",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P014_get__storage_locations",
+      "method": "GET",
+      "path": "/api/v1/storage/locations",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/storage_locationList",
+      "owner": "P014",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P044_post__sources_search",
+      "method": "POST",
+      "path": "/api/v1/sources/search",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/Search",
+      "response_schema": "larm.schema.json#/$defs/canonical_modelList",
+      "owner": "P044",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P041_get__models_id_variants",
+      "method": "GET",
+      "path": "/api/v1/models/{id}/variants",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_variantList",
+      "owner": "P041",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P030_get__runtimes_id_versions",
+      "method": "GET",
+      "path": "/api/v1/runtimes/{id}/versions",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_versionList",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P033_get__runtimes_id_instances",
+      "method": "GET",
+      "path": "/api/v1/runtimes/{id}/instances",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_instanceList",
+      "owner": "P033",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P090_get__compatibility",
+      "method": "GET",
+      "path": "/api/v1/compatibility",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/compatibility_recordList",
+      "owner": "P090",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P141_post__sources_id_oauth_start",
+      "method": "POST",
+      "path": "/api/v1/sources/{id}/oauth/start",
+      "scope": "credentials:write",
+      "request_schema": "larm.schema.json#/$defs/OAuthStart",
+      "response_schema": "larm.schema.json#/$defs/OAuthFlow",
+      "owner": "P141",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P141_post__sources_id_oauth_poll",
+      "method": "POST",
+      "path": "/api/v1/sources/{id}/oauth/poll",
+      "scope": "credentials:write",
+      "request_schema": "larm.schema.json#/$defs/OAuthPoll",
+      "response_schema": "larm.schema.json#/$defs/OAuthStatus",
+      "owner": "P141",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P141_post__sources_id_oauth_revoke",
+      "method": "POST",
+      "path": "/api/v1/sources/{id}/oauth/revoke",
+      "scope": "credentials:write",
+      "request_schema": "larm.schema.json#/$defs/OAuthPoll",
+      "response_schema": "larm.schema.json#/$defs/CommandReceipt",
+      "owner": "P141",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P027_get__custom_rules",
+      "method": "GET",
+      "path": "/api/v1/custom-rules",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/CustomRules",
+      "owner": "P027",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P027_patch__custom_rules",
+      "method": "PATCH",
+      "path": "/api/v1/custom-rules",
+      "scope": "settings:write",
+      "request_schema": "larm.schema.json#/$defs/CustomRules",
+      "response_schema": "larm.schema.json#/$defs/CustomRules",
+      "owner": "P027",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {},
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P023_post__adapters_declarative",
+      "method": "POST",
+      "path": "/api/v1/adapters/declarative",
+      "scope": "adapters:write",
+      "request_schema": "larm.schema.json#/$defs/DeclarativeAdapter",
+      "response_schema": "larm.schema.json#/$defs/adapter_installation",
+      "owner": "P023",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {},
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P018_post__models_id_delete_plan",
+      "method": "POST",
+      "path": "/api/v1/models/{id}/delete-plan",
+      "scope": "models:write",
+      "request_schema": "larm.schema.json#/$defs/Probe",
+      "response_schema": "larm.schema.json#/$defs/Plan",
+      "owner": "P018",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ],
+      "resource_id_semantics": "ModelVariant UUID, not CanonicalModel group UUID"
+    },
+    {
+      "id": "P141_post__sources_id_basic_credential",
+      "method": "POST",
+      "path": "/api/v1/sources/{id}/basic-credential",
+      "scope": "credentials:write",
+      "request_schema": "larm.schema.json#/$defs/BasicCredentialWrite",
+      "response_schema": "larm.schema.json#/$defs/credential_reference",
+      "owner": "P141",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P141_get__sources_oauth_callback",
+      "method": "GET",
+      "path": "/api/v1/sources/oauth/callback",
+      "scope": "oauth_nonce",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/OAuthStatus",
+      "owner": "P141",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {},
+      "query_parameters": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "state",
+          "code",
+          "error"
+        ]
+      }
+    },
+    {
+      "id": "P030_get__runtime_installations",
+      "method": "GET",
+      "path": "/api/v1/runtime-installations",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_installationList",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P030_get__runtime_installations_id_",
+      "method": "GET",
+      "path": "/api/v1/runtime-installations/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_installation",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P030_get__runtime_backends",
+      "method": "GET",
+      "path": "/api/v1/runtime-backends",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_backendList",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P030_get__runtime_backends_id_",
+      "method": "GET",
+      "path": "/api/v1/runtime-backends/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_backend",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P045_get__source_accounts",
+      "method": "GET",
+      "path": "/api/v1/source-accounts",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_source_accountList",
+      "owner": "P045",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P045_post__source_accounts",
+      "method": "POST",
+      "path": "/api/v1/source-accounts",
+      "scope": "credentials:write",
+      "request_schema": "larm.schema.json#/$defs/model_source_accountCreate",
+      "response_schema": "larm.schema.json#/$defs/model_source_account",
+      "owner": "P045",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {}
+    },
+    {
+      "id": "P045_get__source_accounts_id_",
+      "method": "GET",
+      "path": "/api/v1/source-accounts/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_source_account",
+      "owner": "P045",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P045_delete__source_accounts_id_",
+      "method": "DELETE",
+      "path": "/api/v1/source-accounts/{id}",
+      "scope": "credentials:write",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P045",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P037_post__external_hosts",
+      "method": "POST",
+      "path": "/api/v1/external-hosts",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/ExternalHostCreate",
+      "response_schema": "larm.schema.json#/$defs/external_host",
+      "owner": "P037",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {}
+    },
+    {
+      "id": "P030_get__external_hosts",
+      "method": "GET",
+      "path": "/api/v1/external-hosts",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/external_hostList",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P030_get__external_hosts_id_",
+      "method": "GET",
+      "path": "/api/v1/external-hosts/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/external_host",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P040_get__model_distributions",
+      "method": "GET",
+      "path": "/api/v1/model-distributions",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_distributionList",
+      "owner": "P040",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P040_get__model_distributions_id_",
+      "method": "GET",
+      "path": "/api/v1/model-distributions/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_distribution",
+      "owner": "P040",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P040_get__model_revisions",
+      "method": "GET",
+      "path": "/api/v1/model-revisions",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_revisionList",
+      "owner": "P040",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P040_get__model_revisions_id_",
+      "method": "GET",
+      "path": "/api/v1/model-revisions/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_revision",
+      "owner": "P040",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P041_get__model_bundles",
+      "method": "GET",
+      "path": "/api/v1/model-bundles",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_bundleList",
+      "owner": "P041",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P041_get__model_bundles_id_",
+      "method": "GET",
+      "path": "/api/v1/model-bundles/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_bundle",
+      "owner": "P041",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P041_get__model_artifacts",
+      "method": "GET",
+      "path": "/api/v1/model-artifacts",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_artifactList",
+      "owner": "P041",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P041_get__model_artifacts_id_",
+      "method": "GET",
+      "path": "/api/v1/model-artifacts/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_artifact",
+      "owner": "P041",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P016_get__artifact_locations",
+      "method": "GET",
+      "path": "/api/v1/artifact-locations",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/artifact_locationList",
+      "owner": "P016",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P016_get__artifact_locations_id_",
+      "method": "GET",
+      "path": "/api/v1/artifact-locations/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/artifact_location",
+      "owner": "P016",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P096_get__artifact_provenance",
+      "method": "GET",
+      "path": "/api/v1/artifact-provenance",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/artifact_provenanceList",
+      "owner": "P096",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P096_get__artifact_provenance_id_",
+      "method": "GET",
+      "path": "/api/v1/artifact-provenance/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/artifact_provenance",
+      "owner": "P096",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P042_get__variants_id_detail",
+      "method": "GET",
+      "path": "/api/v1/variants/{id}/detail",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/VariantDetail",
+      "owner": "P042",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P018_get__storage_locations_id_analysis",
+      "method": "GET",
+      "path": "/api/v1/storage-locations/{id}/analysis",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/StorageAnalysis",
+      "owner": "P018",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P018_post__storage_locations_id_cleanup_plan",
+      "method": "POST",
+      "path": "/api/v1/storage-locations/{id}/cleanup-plan",
+      "scope": "storage:write",
+      "request_schema": "larm.schema.json#/$defs/Probe",
+      "response_schema": "larm.schema.json#/$defs/Plan",
+      "owner": "P018",
+      "mode": "sync",
+      "success_status": 201,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P018_post__storage_locations_id_cleanup",
+      "method": "POST",
+      "path": "/api/v1/storage-locations/{id}/cleanup",
+      "scope": "storage:write",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P018",
+      "mode": "job",
+      "success_status": 202,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P009_get__credentials",
+      "method": "GET",
+      "path": "/api/v1/credentials",
+      "scope": "credentials:read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/credential_referenceList",
+      "owner": "P009",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P009_get__credentials_id_",
+      "method": "GET",
+      "path": "/api/v1/credentials/{id}",
+      "scope": "credentials:read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/credential_reference",
+      "owner": "P009",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P030_patch__runtimes_id_channel_policy",
+      "method": "PATCH",
+      "path": "/api/v1/runtimes/{id}/channel-policy",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/RuntimeChannelPolicy",
+      "response_schema": "larm.schema.json#/$defs/runtime",
+      "owner": "P030",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P051_patch__downloads_id_priority",
+      "method": "PATCH",
+      "path": "/api/v1/downloads/{id}/priority",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/DownloadPriorityUpdate",
+      "response_schema": "larm.schema.json#/$defs/download_job",
+      "owner": "P051",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P099_get__runtime_profile_locks_lock_sha256_",
+      "method": "GET",
+      "path": "/api/v1/runtime-profile-locks/{lock_sha256}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/RuntimeProfileLock",
+      "owner": "P099",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "lock_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    {
+      "id": "P099_put__runtime_profile_locks_lock_sha256_",
+      "method": "PUT",
+      "path": "/api/v1/runtime-profile-locks/{lock_sha256}",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/RuntimeProfileLock",
+      "response_schema": "larm.schema.json#/$defs/RuntimeProfileLock",
+      "owner": "P099",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "lock_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    {
+      "id": "P031_post__jobs_id_cancel",
+      "method": "POST",
+      "path": "/api/v1/jobs/{id}/cancel",
+      "scope": "runtimes:write",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "owner": "P031",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P032_patch__runtimes_id_retention_policy",
+      "method": "PATCH",
+      "path": "/api/v1/runtimes/{id}/retention-policy",
+      "scope": "runtimes:write",
+      "request_schema": "larm.schema.json#/$defs/RuntimeRetentionPolicy",
+      "response_schema": "larm.schema.json#/$defs/runtime",
+      "owner": "P032",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "If-Match",
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P032_get__runtime_pins",
+      "method": "GET",
+      "path": "/api/v1/runtime-pins",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/RuntimePinPage",
+      "owner": "P032",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {},
+      "required_headers": [],
+      "query_parameters": {
+        "runtime_version_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    {
+      "id": "P032_delete__runtime_pins_variant_id_launch_profile_id",
+      "method": "DELETE",
+      "path": "/api/v1/runtime-pins/{variant_id}/{launch_profile_id}",
+      "scope": "runtimes:write",
+      "request_schema": null,
+      "response_schema": null,
+      "owner": "P032",
+      "mode": "sync",
+      "success_status": 204,
+      "path_parameters": {
+        "variant_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "launch_profile_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "P117_get__comparisons_id",
+      "method": "GET",
+      "path": "/api/v1/comparisons/{id}",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/ComparisonResult",
+      "owner": "P117",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      },
+      "required_headers": []
+    }
+  ]
+}

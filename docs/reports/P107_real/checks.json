@@ -1,0 +1,76 @@
+[
+  {
+    "id": "P107-REAL-01-capabilities",
+    "expected": "local_runtime_resolver=true, larm_contract_version=1.0, contract_version=2.11",
+    "observed": "local_runtime_resolver=True, larm_contract_version=1.0, contract_version=2.11",
+    "result": "PASS",
+    "evidence_paths": [
+      "broker_capabilities.json"
+    ]
+  },
+  {
+    "id": "P107-REAL-02-catalog",
+    "expected": "la variante adoptada aparece como BROKER_ELIGIBLE con huella verificada",
+    "observed": "items=['01a127e0-7e03-7599-863e-abb96ef7db4e']",
+    "result": "PASS",
+    "evidence_paths": [
+      "larm_catalog.json"
+    ]
+  },
+  {
+    "id": "P107-REAL-03-served-by-exact",
+    "expected": "status=completed y served_by=larm/local/01a127e0-7e03-7599-863e-abb96ef7db4e sin fallback",
+    "observed": "status=completed, served_by=larm/local/01a127e0-7e03-7599-863e-abb96ef7db4e, fallback_used=False, error=None",
+    "result": "PASS",
+    "evidence_paths": [
+      "task_completed_state.json"
+    ]
+  },
+  {
+    "id": "P107-REAL-04-canonical-artifact",
+    "expected": "exactamente un artefacto final disponible y su SHA-256 casa con los bytes descargados",
+    "observed": "finales=1, sha256 descargado=07924af1dc9138816d0a303f08f347033fdc90d38a5fcc0165dfe137dc90d885, declarado=07924af1dc9138816d0a303f08f347033fdc90d38a5fcc0165dfe137dc90d885, bytes=1696",
+    "result": "PASS",
+    "evidence_paths": [
+      "task_artifacts.json",
+      "final_artifact.bin"
+    ]
+  },
+  {
+    "id": "P107-REAL-05-fingerprint-extension",
+    "expected": "invocación contractual con extensión larm.v1 source=lease, variante exacta y backend efectivo verificado",
+    "observed": "invocaciones contractuales=1, source=lease, variant=01a127e0-7e03-7599-863e-abb96ef7db4e, backend={'value': 'GPU', 'status': 'VERIFIED'}, generation={'temperature': 0.0, 'max_output_tokens': 1200, 'seed': 42, 'seed_status': 'sent', 'top_p': None, 'top_p_status': 'not_requested'}",
+    "result": "PASS",
+    "evidence_paths": [
+      "task_invocations.json"
+    ]
+  },
+  {
+    "id": "P107-REAL-06-lease-renewed-and-released",
+    "expected": "la lease de la invocación se renovó (row_version > 3) y quedó RELEASED",
+    "observed": "lease=01a127e0-8649-7165-8bde-f2203622c0d8, state=RELEASED, row_version=7, request_id=task_1abaadcf6ac94aeea42777be4fb924dc:inv_de83d66e53b148b195bc4b8a1ae7b938",
+    "result": "PASS",
+    "evidence_paths": [
+      "larm_leases_after_task.json"
+    ]
+  },
+  {
+    "id": "P107-REAL-07-cancel-releases",
+    "expected": "tarea cancelada y su lease RELEASED",
+    "observed": "status=cancelled, leases=[('01a127e1-7249-7083-ac55-394907aacd12', 'RELEASED')]",
+    "result": "PASS",
+    "evidence_paths": [
+      "larm_leases_after_cancel.json",
+      "task_cancelled_state.json"
+    ]
+  },
+  {
+    "id": "P107-REAL-08-unknown-variant-no-fallback",
+    "expected": "failed con MODEL_UNAVAILABLE y sin invocar ningún modelo",
+    "observed": "status=failed, code=MODEL_UNAVAILABLE",
+    "result": "PASS",
+    "evidence_paths": [
+      "task_unknown_variant_state.json"
+    ]
+  }
+]

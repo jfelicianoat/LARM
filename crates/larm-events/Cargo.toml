@@ -1,0 +1,14 @@
+[package]
+name = "larm-events"
+description = "Outbox durable, event bus, notificaciones y auditoría."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+larm-domain = { workspace = true }
+
+
+[lints]
+workspace = true

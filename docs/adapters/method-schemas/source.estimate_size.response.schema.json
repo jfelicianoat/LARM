@@ -1,0 +1,216 @@
+{
+  "$defs": {
+    "larm__StorageEstimate": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "enum": [
+            "EXACT",
+            "HIGH",
+            "ESTIMATED",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "derived_cache_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "download_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "existing_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "final_artifact_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "installed_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "peak_extra_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "per_volume": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "eligible": {
+                "type": "boolean"
+              },
+              "margin_bytes": {
+                "maxLength": 19,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string",
+                "x-maximum-decimal": "9223372036854775807"
+              },
+              "other_reservations_bytes": {
+                "maxLength": 19,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string",
+                "x-maximum-decimal": "9223372036854775807"
+              },
+              "peak_extra_bytes": {
+                "maxLength": 19,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string",
+                "x-maximum-decimal": "9223372036854775807"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "usable_free_bytes": {
+                "maxLength": 19,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string",
+                "x-maximum-decimal": "9223372036854775807"
+              },
+              "volume_key": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "volume_key",
+              "peak_extra_bytes",
+              "margin_bytes",
+              "other_reservations_bytes",
+              "usable_free_bytes",
+              "eligible",
+              "reason"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "reason": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "required_free_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "temporary_peak_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "upper_bound_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "download_bytes",
+        "final_artifact_bytes",
+        "installed_bytes",
+        "derived_cache_bytes",
+        "temporary_peak_bytes",
+        "existing_bytes",
+        "peak_extra_bytes",
+        "required_free_bytes",
+        "upper_bound_bytes",
+        "confidence",
+        "reason",
+        "evidence_refs",
+        "per_volume"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__StorageEstimate",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

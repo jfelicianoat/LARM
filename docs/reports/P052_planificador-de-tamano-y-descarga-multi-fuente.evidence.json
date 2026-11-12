@@ -1,0 +1,577 @@
+{
+  "prompt_id": "P052",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "612ee5847d1134ce442397fe48489b059502c29f58f2b88e786de4f7d40bc022",
+  "changed_files": [
+    "Cargo.lock",
+    "adapters/runtime/reference/capabilities.json",
+    "adapters/source/reference/capabilities.json",
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/tests/reference_adapters.rs",
+    "apps/desktop/src/models.test.tsx",
+    "apps/desktop/src/models.tsx",
+    "crates/larm-adapter-host/src/package.rs",
+    "crates/larm-adapter-host/src/updates.rs",
+    "crates/larm-adapter-sdk/src/capabilities/builtin.rs",
+    "crates/larm-adapter-sdk/src/contracts/generated.rs",
+    "crates/larm-adapter-sdk/tests/contracts.rs",
+    "crates/larm-api/src/download_plans.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/download_plans.rs",
+    "crates/larm-api/tests/models.rs",
+    "crates/larm-db/src/download_jobs.rs",
+    "crates/larm-db/src/download_plans.rs",
+    "crates/larm-db/src/download_progress.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/model_import.rs",
+    "crates/larm-db/src/variants.rs",
+    "crates/larm-db/tests/adapters.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-db/tests/sources.rs",
+    "crates/larm-domain/src/auth.rs",
+    "crates/larm-domain/src/download.rs",
+    "crates/larm-domain/src/model.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-download/Cargo.toml",
+    "crates/larm-download/src/activation_service.rs",
+    "crates/larm-download/src/consumer.rs",
+    "crates/larm-download/src/lib.rs",
+    "crates/larm-download/src/planner.rs",
+    "crates/larm-download/src/preview_service.rs",
+    "crates/larm-download/src/transfer.rs",
+    "crates/larm-models/src/import_worker.rs",
+    "crates/larm-models/src/registry.rs",
+    "crates/larm-models/tests/import_worker.rs",
+    "docs/adapters/capability-schemas/index.json",
+    "docs/adapters/method-schemas/index.json",
+    "docs/adapters/method-schemas/source.download_plan.request.schema.json",
+    "docs/adapters/method-schemas/source.get_manifest.response.schema.json",
+    "docs/api/openapi.json",
+    "docs/contracts/00_PACKAGE.md",
+    "docs/contracts/02_STORAGE_DOWNLOAD.md",
+    "docs/contracts/07_API_EVENTS_MCP.md",
+    "docs/contracts/REVISION_3_10_0_P052.md",
+    "docs/contracts/REVISION_3_10_1_P052.md",
+    "docs/contracts/REVISION_3_1_0_P052.md",
+    "docs/contracts/adapter-methods.json",
+    "docs/contracts/api-operations.json",
+    "docs/contracts/migrations/0006_p052_artifact_size_estimate.sql",
+    "docs/contracts/persistence.sql",
+    "docs/contracts/schemas/domain.schema.json",
+    "docs/contracts/schemas/larm.schema.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P052_planificador-de-tamano-y-descarga-multi-fuente.md",
+    "docs/spec/PACKAGE_COPY_HASHES.json",
+    "docs/spec/manifest.json",
+    "migrations/0006_p052_artifact_size_estimate.sql",
+    "tests/fixtures/adapters/method-schema-corpus.json",
+    "tools/p026_capability_schemas.py",
+    "tools/p026_reference_capabilities.py",
+    "tools/p026_schema_corpus.py",
+    "tools/p052_contract_revision.py",
+    "tools/p052_evidence.py",
+    "tools/p052_evidence.py",
+    "tools/package_copy.py",
+    "tools/test_python_contracts.py"
+  ],
+  "tests": [
+    {
+      "id": "P052-FMT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [
+        "crates/larm-download/src/planner.rs:0c86f33bf7a1826e33b808d9cb94383b3ec7ce10a64a8bd419803f5f5ffa421c",
+        "crates/larm-storage/src/estimate.rs:15047d88fb817c8794ad75a2c88b199918d189d20e1e1868b74b3b7db6b4a8cd",
+        "crates/larm-download/Cargo.toml:08bb639353b3a23fc11fd1f7334be80264ede76b24f4d6450c0776d87ec938f1"
+      ],
+      "expected": "Todo el Rust del workspace está formateado.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-FMT.log#sha256=e58a25732db3ccdbe01a54efb4dc8c7470b50cd7662372d3a9bfef1bf292fa79"
+      ]
+    },
+    {
+      "id": "P052-CONTRACT-PACKAGE-3.10.1",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe ../LARM_prompts_v3/tools/verify_pack.py",
+      "fixture_hashes": [
+        "docs/contracts/schemas/larm.schema.json:fce08524f66310c00056912788afa27db8aeee610dcdd580ffe49b320641f0f7",
+        "docs/contracts/REVISION_3_10_1_P052.md:e06b65c2a8e96b6e219bf353ee2e7bad3d11c1d66e718071578c165be4652c4f",
+        "verify_pack.py:21b26ca2d9f14854d8b7d2ea3581f16871ceebcc450a188ff16430a3a16c6a1c",
+        "docs/contracts/REVISION_3_1_0_P052.md:0a09116084c66a4eb6a64faa20870c0718a73a03cb5f4860ac68f8c5c3a477c0",
+        "docs/contracts/REVISION_3_7_0_P052.md:6de973acc387f271d3e3e7fdd2ceb625480b6195e31dd51037f5196ee618dc1e",
+        "docs/contracts/REVISION_3_10_0_P052.md:6dc0adeb9885482cda8acf2d8901fd8f3fc14e9af9048ff957c9426d7245da2b",
+        "docs/contracts/migrations/0006_p052_artifact_size_estimate.sql:f83db5b02455cc5c619ae75b39a3814afd6fd5914ec0bb86537f7ca8f376c452"
+      ],
+      "expected": "El paquete 3.10.1 separa la fuente principal de cero a dieciséis mirrors alternativos y conserva las reglas de hash, revalidación y fallback por artefacto.",
+      "observed": "exit=0; {\"conformity_v3\": {\"status\": \"PASS\", \"scope\": \"DOCUMENTARY_CONTRACT_ONLY\", \"software_real_tests_run\": false, \"positive_cases\": 81, \"negative_cases\": 21, \"checks\": 197}, \"status\": \"PASS\", \"scope\": \"PROMPT_PACKAGE_ONLY\", \"checks\": 3142, \"negative_cases\": 52, \"prompts\": 128, \"findings\": 33, \"sections\": 166, \"operations\": 148, \"adapter_methods\": 40, \"original_files_preserved\": null, \"original_preservation_status\": \"NOT_CHECKED_CURRENT_HOST\", \"software_implemented\": false, \"software_real_tests_run\": false}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-CONTRACT-PACKAGE-3.10.1.log#sha256=fdef40fc07ec5f457169c609e656830fe693698dbe2341fdbececbefe7e8c987"
+      ]
+    },
+    {
+      "id": "P052-PACKAGE-COPIES",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "docs/spec/manifest.json:8f3a7c5523389c0866e8311f84361198ab7dacd35a9fe6fb9f7ff3d37c0ae39f",
+        "docs/spec/PACKAGE_COPY_HASHES.json:f4cd05db7e216683a8defa06ed5cef307c1f07ddea7f96eaa8e42a11eef2a370",
+        "tools/package_copy.py:89896afff425166248cdffd4e307126866588afdb75eb012674048e6e327be28"
+      ],
+      "expected": "Las copias locales coinciden byte a byte con el paquete contractual vigente 3.10.1.",
+      "observed": "exit=0; PASS 69 copias idénticas al paquete 3.10.1",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-PACKAGE-COPIES.log#sha256=21cfee290a61464c3797b4271542326183e50995e1941dc4d44818f1c8d35356"
+      ]
+    },
+    {
+      "id": "P052-SOURCE-ARTIFACT-SIZE-SCHEMA",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/p026_schemas.py check",
+      "fixture_hashes": [
+        "tools/p026_schemas.py:f5d8cdcf3eb91483556a27354fe45e9aab36023e752ca65be40e11b0c061d194",
+        "docs/adapters/method-schemas/source.get_manifest.response.schema.json:b1ff45ebecad17f0f270baf817aad94fb14e71ca5f2a6a3efbbc816a66433ff9",
+        "docs/adapters/method-schemas/index.json:7155aa9985692be1748aa6fe61a1e024ff0957ecaeaaa44c9a4dfc88906a1395"
+      ],
+      "expected": "Las firmas de los adapters se regeneran desde el paquete 3.10.1; source.get_manifest transporta la estimación por artefacto con sus límites y evidencia.",
+      "observed": "exit=0; PASS: 40 firmas / 80 schemas autocontenidos, índice y hashes exactos; todas las restricciones originales conservadas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-SOURCE-ARTIFACT-SIZE-SCHEMA.log#sha256=392a894e9659eef9f1de58d96245dda455ce70f423a73935b8eb852c29c479f2"
+      ]
+    },
+    {
+      "id": "P052-SOURCE-SCHEMA-CORPUS",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/p026_schema_corpus.py check",
+      "fixture_hashes": [
+        "tools/p026_schema_corpus.py:008d258a960a7654d227b6fe6d1c8604314a4c01634b4a3fc9c34b000a4cf3fa",
+        "tests/fixtures/adapters/method-schema-corpus.json:ed040411a9969e50d52467c39feb82e1ef40e7a7cc01a0850679fa0b93567650",
+        "crates/larm-adapter-sdk/tests/contracts.rs:1c68b4eb4d6b3026ae013feffc042347b0698d6e74c77f652753b928d10f01c5",
+        "tools/test_python_contracts.py:aa6c91e89d712f7a355fe7d7d12894c47ac8fb3d7362fa3f97173137e9340666"
+      ],
+      "expected": "El corpus de las 80 direcciones se regenera desde los schemas y mantiene el mismo veredicto entre Rust y Python.",
+      "observed": "exit=0; PASS: corpus independiente compartido, 8915 casos de las 80 direcciones; no cualifica workers",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-SOURCE-SCHEMA-CORPUS.log#sha256=93b34a6dd71704afe6da0024c43ed697a7089d7d44a9c0b192ddee153873172a"
+      ]
+    },
+    {
+      "id": "P052-CAPABILITY-SCHEMAS",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/p026_capability_schemas.py check",
+      "fixture_hashes": [
+        "tools/p026_capability_schemas.py:fbc7c8aa99849070d92e0147d29fce8c50df62a25e4dadce37b2d428bce0e3b4",
+        "docs/adapters/capability-schemas/index.json:91f548235b4972b4e9f96776e03d2cecd43c109f5af0de5edc3f94e29d36c180",
+        "crates/larm-adapter-sdk/src/capabilities/builtin.rs:a6e067e2cb12c540b2e86d72bb4e0532fc3482bc613d45b2aa88bca4acdb5c29"
+      ],
+      "expected": "Las 18 capacidades y sus 36 schemas cerrados coinciden con el paquete contractual 3.10.1.",
+      "observed": "exit=0; PASS: 18 capacidades / 36 schemas con hashes RFC8785 e índice Rust exactos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-CAPABILITY-SCHEMAS.log#sha256=a1ce7f76b0595aba44049a6c39ae742e39a2f765350256c9f80fc28392f4f289"
+      ]
+    },
+    {
+      "id": "P052-REFERENCE-CAPABILITY-DESCRIPTORS",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/p026_reference_capabilities.py check",
+      "fixture_hashes": [
+        "tools/p026_reference_capabilities.py:687a9d928f1ac1e28c91a11e20aaee732e6518091b6b130fc01b31c95989b928",
+        "adapters/source/reference/capabilities.json:a34feb48a59f2504d52e387c1d57e66464f8eb1c71df28aee912b6ff876dc2c2",
+        "adapters/runtime/reference/capabilities.json:d89f06c4a6bb353ca5ceb00b197dba2a08eb182f7da2dbaa592afcab13f0601a"
+      ],
+      "expected": "Los descriptores source/runtime fijados usan hashes y fixtures válidos contra los schemas revisados.",
+      "observed": "exit=0; PASS: seis descriptores fijados (runtime echo y cinco operaciones source); fixtures sólo de contrato",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-REFERENCE-CAPABILITY-DESCRIPTORS.log#sha256=6b48d91a68ec00fa6ef7a29c5b1a81676ffd51f3317937170572c5b740ce51c9"
+      ]
+    },
+    {
+      "id": "P052-ARTIFACT-SIZE-DOMAIN",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain artifact_size_estimate --lib -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/model.rs:f849443d9f419d6df4f380943e11066bd9102f9eedb51e839bd2cec2429426c4"
+      ],
+      "expected": "EXACT/UNKNOWN serializan bytes decimales y se rechazan fuentes, límites o evidencias incoherentes.",
+      "observed": "exit=0; warning: `larm-domain` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-11b22671b55091d0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-ARTIFACT-SIZE-DOMAIN.log#sha256=5f866b4a525fe80390654350b073b9f4ef27dac4600f373bd744fc20009ebd90"
+      ]
+    },
+    {
+      "id": "P052-ARTIFACT-SIZE-MIGRATION",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration p052_migra_tamanos_historicos_a_unknown_y_los_expone_conservadoramente -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/migrate.rs:723994083878781eb9df9cf4bb915d288f3164d7412cb1850745f6558325aeb2",
+        "migrations/0006_p052_artifact_size_estimate.sql:1d448f80b2bf584a9377c3449b5ac3c924089352eec1ca769d970489b7a98365",
+        "crates/larm-db/src/variants.rs:719b310981c46ca5f56968c35eef6d1aa1b8759cc52be34325ce89e93c4efa64",
+        "crates/larm-db/tests/integration.rs:d7793ca866a2dacabb4cad93eb99e97a6aa728fc9f44d4e4c808eac399b12ff9"
+      ],
+      "expected": "0006 conserva expected_size, asigna UNKNOWN a las filas antiguas y el repositorio publica la estimación migrada.",
+      "observed": "exit=0; warning: `larm-db` (test \"integration\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.29s | Running tests\\integration.rs (target\\debug\\deps\\integration-5041ec6f5c8acac9.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-ARTIFACT-SIZE-MIGRATION.log#sha256=0a99aaf8509d94039c4c93967972080f44121663ad8016d1043974d0c716531e"
+      ]
+    },
+    {
+      "id": "P052-ARTIFACT-SIZE-API-DTO",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test models -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/model.rs:f849443d9f419d6df4f380943e11066bd9102f9eedb51e839bd2cec2429426c4",
+        "crates/larm-db/src/variants.rs:719b310981c46ca5f56968c35eef6d1aa1b8759cc52be34325ce89e93c4efa64",
+        "crates/larm-models/src/registry.rs:8f10e9c7df7a4bf0808dd6d9688538943c884bb7f8e650c516f384628414d960",
+        "crates/larm-api/tests/models.rs:4b8e650b210621f14f30a6361d537abe0d4f0501acae052210a3866a972fe3d4"
+      ],
+      "expected": "Los endpoints de detalle y artefactos devuelven el DTO tipado size_estimate del contrato.",
+      "observed": "exit=0; warning: `larm-api` (test \"models\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.40s | Running tests\\models.rs (target\\debug\\deps\\models-713ddaa83523a851.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-ARTIFACT-SIZE-API-DTO.log#sha256=c5db147769e462251a93ba3c366383ccdab9b203792fd34a2a456f83ec937914"
+      ]
+    },
+    {
+      "id": "P052-API-PREFLIGHT-IDEMPOTENCY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test download_plans -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/download_plans.rs:449bfa8de6ee863af8b60b92f65e7aed170472e794f0715a92cd9e5b53f00d58",
+        "crates/larm-api/tests/download_plans.rs:f964516d26da8c8f566a36d86ed75fbc02459e9aecbc39e147b4ab50f3e3ddc4",
+        "crates/larm-domain/src/download.rs:e7ca4c3cb51b3fa8b6bde3b0eb7fc21d8132135ffdd2582b11a5ee1a27226b48"
+      ],
+      "expected": "La ruta valida selección opcional, aplica jobs:write y reproduce previews por Idempotency-Key sin duplicar el cálculo.",
+      "observed": "exit=0; warning: `larm-api` (test \"download_plans\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s | Running tests\\download_plans.rs (target\\debug\\deps\\download_plans-410defaf270928bf.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-API-PREFLIGHT-IDEMPOTENCY.log#sha256=77e3d63159e97aee34dc89c8fb61782ad2507f62d7a1974f6fc1ac8b20daa451"
+      ]
+    },
+    {
+      "id": "P052-DURABLE-PLAN-JOURNAL",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib download_plans::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/download_plans.rs:a0aae40ae1ef06f67097e3ddfb7fe9e798875ca33aa5a4922290270fd24451db",
+        "crates/larm-db/src/events.rs:a8846030442d11faf650c55c1e0788f5a5bd455f78af478d0613a3e051c7fa3c",
+        "crates/larm-domain/src/download.rs:e7ca4c3cb51b3fa8b6bde3b0eb7fc21d8132135ffdd2582b11a5ee1a27226b48"
+      ],
+      "expected": "Un destino elegible persiste el plan en operation_journal con su evento outbox; selección inválida y fallo del outbox no dejan efectos parciales.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.29s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-DURABLE-PLAN-JOURNAL.log#sha256=13101fcd754066f3ffd34b84dfb58ceb98c77f469b01e0f9b62e0f7bd8a16557"
+      ]
+    },
+    {
+      "id": "P052-ARTIFACT-SIZE-PREFLIGHT-MAPPING",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-download --lib preview_service::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/preview_service.rs:b2ad7ae69334502f9bc84fd1819e0801cdcfa370a054f9f92ae8077f70d70d29",
+        "crates/larm-download/src/planner.rs:0c86f33bf7a1826e33b808d9cb94383b3ec7ce10a64a8bd419803f5f5ffa421c",
+        "crates/larm-domain/src/model.rs:f849443d9f419d6df4f380943e11066bd9102f9eedb51e839bd2cec2429426c4"
+      ],
+      "expected": "La conexión del preflight conserva EXACT, intervalo ESTIMATED y UNKNOWN y falla cerrado ante evidencia incoherente.",
+      "observed": "exit=0; warning: `larm-download` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.37s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-ARTIFACT-SIZE-PREFLIGHT-MAPPING.log#sha256=ccc0c899ec69bd8ea284e29e08e94331926df563bbe5c8dfe0e36148f58894ec"
+      ]
+    },
+    {
+      "id": "P052-MIS-MODELOS-DESKTOP",
+      "kind": "INTEGRATION",
+      "command": "npm.cmd run test --prefix apps/desktop -- src/models.test.tsx",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:4f1a6dfb257a8ce52bbdf7d72b49dd7af6804eebbcdd57f2df9d86b6ba0999df",
+        "apps/desktop/src/models.test.tsx:e50063013f2ef58f1a4eae708b2c800c16017d09263a1b75ae28b093d579a748"
+      ],
+      "expected": "Mis modelos separa biblioteca y comparación, presenta tamaños exactos/estimados/desconocidos y no inicia una descarga desde el preflight.",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  15 passed (15) | Start at  04:41:37 | Duration  2.46s (tests 53%, environment 34%, import 7%, transform 6%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-MIS-MODELOS-DESKTOP.log#sha256=99077f257bfef1c2aecae5e37b5c027dc588a8304ae078fedea9b14ca5d96876"
+      ]
+    },
+    {
+      "id": "P052-LOCAL-IMPORT-SOURCE-DB",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib model_import::tests::crea_una_fuente_por_carpeta_y_reutiliza_la_misma_en_reintentos -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/model_import.rs:2713b2c722d8e81016845fda6a07e8350a0adfdac90f8a10efa1f61984f95fdb",
+        "migrations/0007_p098_local_import_source.sql:3d35586209fc6b3110fc765f6e4e9d2bd8c9272f774d90715fff8da1e3ba50f8"
+      ],
+      "expected": "La importación crea una fuente local automática por carpeta canónica y reutiliza esa fuente en reintentos.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.30s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-LOCAL-IMPORT-SOURCE-DB.log#sha256=5aa90393968b76d4d1b73ad7512aa73c660bdb0696e79acf43a4feaf9145e4d5"
+      ]
+    },
+    {
+      "id": "P052-LOCAL-IMPORT-WORKER",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import_worker job_persistido_importa_una_carpeta_verificada_y_devuelve_su_resultado -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-models/src/import_worker.rs:5b6b04134f27ba5a8b381a183458c4fb364be3d9ac0bd41683d701498e1260ae",
+        "crates/larm-models/tests/import_worker.rs:9c6b47293fa444ef406ac55b95dcd843e1e654240ff347ec81dcb1e41a20aceb"
+      ],
+      "expected": "El worker procesa la carpeta importada desde el job durable con la fuente local registrada.",
+      "observed": "exit=0; warning: `larm-models` (test \"import_worker\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.37s | Running tests\\import_worker.rs (target\\debug\\deps\\import_worker-0321165935416ac6.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-LOCAL-IMPORT-WORKER.log#sha256=d29472f0b75ff55291c31ea2e937800ff19e082bccafd4dd89d574c7d022f7d3"
+      ]
+    },
+    {
+      "id": "P052-PLANNER-CASES",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-download --lib planner::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/planner.rs:0c86f33bf7a1826e33b808d9cb94383b3ec7ce10a64a8bd419803f5f5ffa421c",
+        "crates/larm-storage/src/estimate.rs:15047d88fb817c8794ad75a2c88b199918d189d20e1e1868b74b3b7db6b4a8cd"
+      ],
+      "expected": "Bundle exacto, unknown/rango, selección opcional, destinos, presupuesto duro y lista vacía, orden y límite de mirrors pasan sus oráculos.",
+      "observed": "exit=0; warning: `larm-download` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-PLANNER-CASES.log#sha256=d162b6500ea0d82d00a1fe1578584b1f17ce76005912d6d077328a1f358fe841"
+      ]
+    },
+    {
+      "id": "P052-STORAGE-ESTIMATOR",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-storage --lib estimate::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-storage/src/estimate.rs:15047d88fb817c8794ad75a2c88b199918d189d20e1e1868b74b3b7db6b4a8cd"
+      ],
+      "expected": "El planificador consume el estimador P015 para cotas, presupuesto y admisión por volumen.",
+      "observed": "exit=0; warning: `larm-storage` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-63745f27885f105d.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-STORAGE-ESTIMATOR.log#sha256=952f1ed565bd52184394f3b85b9f8988945d5e403579e7a4a430101afbd91af4"
+      ]
+    },
+    {
+      "id": "P052-SOURCE-PLAN-PRIORITY",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-sdk --test source_protocol presupuesto_y_prioridad_no_desaparecen_y_unknown_no_es_cero -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-adapter-sdk/src/source/download.rs:b321d695a2214000f4e26e6b37cfe239957f3cf6314c32eae6c4ad387ac546a3",
+        "crates/larm-adapter-sdk/tests/source_protocol.rs:fdfdd0b9c731b56ddafb3d2d3ec60df22a499ca2ab30bd5adca61a1ae5d01af9",
+        "crates/larm-download/src/planner.rs:0c86f33bf7a1826e33b808d9cb94383b3ec7ce10a64a8bd419803f5f5ffa421c"
+      ],
+      "expected": "La prioridad queda fijada en el plan sellado; cambiarla invalida el plan y no convierte UNKNOWN en cero.",
+      "observed": "exit=0; warning: `larm-adapter-sdk` (bin \"larm-reference-echo\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.89s | Running tests\\source_protocol.rs (target\\debug\\deps\\source_protocol-e0bf8d49076768c7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-SOURCE-PLAN-PRIORITY.log#sha256=9da758499f1c5577c68ec5a1adb77e4ab6ca140912c70cb7bae84b8608865a7f"
+      ]
+    },
+    {
+      "id": "P052-CLIPPY-WORKSPACE",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --workspace --all-targets -j 1 -- -D warnings",
+      "fixture_hashes": [
+        "crates/larm-domain/src/model.rs:f849443d9f419d6df4f380943e11066bd9102f9eedb51e839bd2cec2429426c4",
+        "crates/larm-db/src/variants.rs:719b310981c46ca5f56968c35eef6d1aa1b8759cc52be34325ce89e93c4efa64",
+        "crates/larm-db/src/migrate.rs:723994083878781eb9df9cf4bb915d288f3164d7412cb1850745f6558325aeb2",
+        "crates/larm-models/src/registry.rs:8f10e9c7df7a4bf0808dd6d9688538943c884bb7f8e650c516f384628414d960",
+        "crates/larm-download/src/planner.rs:0c86f33bf7a1826e33b808d9cb94383b3ec7ce10a64a8bd419803f5f5ffa421c",
+        "crates/larm-storage/src/estimate.rs:15047d88fb817c8794ad75a2c88b199918d189d20e1e1868b74b3b7db6b4a8cd",
+        "crates/larm-download/Cargo.toml:08bb639353b3a23fc11fd1f7334be80264ede76b24f4d6450c0776d87ec938f1"
+      ],
+      "expected": "Todo el workspace pasa Clippy sin warnings.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_domain-1cm3aqwq43y5e\\s-hnj1xekfqi-13kai8s-working` | warning: `larm-domain` (lib test) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 10.32s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-CLIPPY-WORKSPACE.log#sha256=2e83519ffb954a2e17164eac2cc0566ad8a65972fbfbc58a79d5fad800572e22"
+      ]
+    },
+    {
+      "id": "P052-TESTS-DOWNLOAD-DB",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-download -p larm-db --lib -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e6718083fff85d0f0a502ac85f0665b10977b406357813c64a91b2c0c451b42e",
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0",
+        "crates/larm-download/src/planner.rs:0c86f33bf7a1826e33b808d9cb94383b3ec7ce10a64a8bd419803f5f5ffa421c",
+        "crates/larm-db/src/migrate.rs:723994083878781eb9df9cf4bb915d288f3164d7412cb1850745f6558325aeb2",
+        "crates/larm-db/src/variants.rs:719b310981c46ca5f56968c35eef6d1aa1b8759cc52be34325ce89e93c4efa64"
+      ],
+      "expected": "Las suites unitarias de descarga y persistencia pasan, incluidas selección, fallback, checkpoint, evento/outbox y procedencia.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.48s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-04b48dab56e27f5b.exe) | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-TESTS-DOWNLOAD-DB.log#sha256=ef7425c44a6fe0fb8e1f29ba98919274f4fbc2e202d2a7c94fdc8f4befa9c1aa"
+      ]
+    },
+    {
+      "id": "P052-OPENAPI-3.10.1",
+      "kind": "CONTRACT",
+      "command": "cargo run -p larm-daemon -- openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [
+        "crates/larm-api/src/openapi.rs:49ddde043cc328e7a82004a675207cb489594847ed5efa4d2fccd99f8a46965e",
+        "docs/api/openapi.json:e4fe1d5fdef4fd330a7e4043803aa0c70aa0645d8018fe6239209692b4d6a7f4",
+        "docs/contracts/schemas/larm.schema.json:fce08524f66310c00056912788afa27db8aeee610dcdd580ffe49b320641f0f7"
+      ],
+      "expected": "OpenAPI refleja el schema vigente de DownloadPlanResponse, incluidos source_candidates y la lista vacía.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 7.14s | Running `target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check`",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-OPENAPI-3.10.1.log#sha256=bf51a71eb228f861d015c76186e58f82bb3d840c2dee53bf16afee6871247c3b"
+      ]
+    },
+    {
+      "id": "P052-ARCHITECTURE",
+      "kind": "CONTRACT",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [
+        "crates/larm-download/src/planner.rs:0c86f33bf7a1826e33b808d9cb94383b3ec7ce10a64a8bd419803f5f5ffa421c",
+        "crates/larm-download/Cargo.toml:08bb639353b3a23fc11fd1f7334be80264ede76b24f4d6450c0776d87ec938f1",
+        "docs/contracts/crate-graph.json:413f16e7a9ae9fdf6899b02b4ed9a98044531640eb790524ff06b5339cee7a9f"
+      ],
+      "expected": "El grafo de crates del workspace y Tauri conserva sus límites publicados.",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-ARCHITECTURE.log#sha256=828932f1d292e877a12f16bbd4882828ae39bdf1d8fb150f93c86bef71a7c989"
+      ]
+    },
+    {
+      "id": "P052-CONSUMER-MIRROR-FAILOVER",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-download --lib consumer::tests::consumidor_reintenta_en_mirror_y_guarda_procedencia_tras_verificar -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e6718083fff85d0f0a502ac85f0665b10977b406357813c64a91b2c0c451b42e",
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0",
+        "crates/larm-download/src/transfer.rs:eac6467687924086eba12644b0501fe7a3078f0f832b43027b96d403c31b0984"
+      ],
+      "expected": "Tras escribir un bloque parcial y vencer la fuente principal, el consumidor reinicia desde offset cero y completa desde el mirror aprobado con procedencia efectiva.",
+      "observed": "exit=0; warning: `larm-download` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-CONSUMER-MIRROR-FAILOVER.log#sha256=4a99ad43993fc288093b9b6008571b6c7f8105e34a8376df7e77d6a416efe08d"
+      ]
+    },
+    {
+      "id": "P052-CONSUMER-RECOVERY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-download --lib consumer::tests::consumidor_recupera_checkpoint_y_reanuda_misma_fuente_tras_reapertura_sqlite -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e6718083fff85d0f0a502ac85f0665b10977b406357813c64a91b2c0c451b42e",
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0",
+        "crates/larm-download/src/transfer.rs:eac6467687924086eba12644b0501fe7a3078f0f832b43027b96d403c31b0984"
+      ],
+      "expected": "Tras cuatro bytes sincronizados y una cola de staging no reconocida, el test cierra y reabre SQLite, verifica el checkpoint persistido, trunca la cola y reanuda la misma fuente/revisión desde offset cuatro con el validador conservado.",
+      "observed": "exit=0; warning: `larm-download` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.37s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-CONSUMER-RECOVERY.log#sha256=d1afd073055046002f5df07e83c535aade3e76ddfc3b72f94d3ab9519454b510"
+      ]
+    },
+    {
+      "id": "P052-CONSUMER-PROCESS-CRASH-RECOVERY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-download --lib consumer::tests::consumidor_recupera_descarga_despues_de_caida_del_proceso -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e6718083fff85d0f0a502ac85f0665b10977b406357813c64a91b2c0c451b42e",
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0",
+        "crates/larm-download/src/transfer.rs:eac6467687924086eba12644b0501fe7a3078f0f832b43027b96d403c31b0984",
+        "crates/larm-storage/src/cas.rs:587de13779a6a8c29f74b58b0ea2238d10e42539b4df47bb9d0e4956a190c656"
+      ],
+      "expected": "Un proceso hijo termina abruptamente durante la transferencia tras persistir cuatro bytes; al reabrir SQLite y staging, recover_interrupted conserva el checkpoint, descarta la cola no reconocida, reanuda con el mismo ETag y completa el CAS.",
+      "observed": "exit=0; warning: `larm-download` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-CONSUMER-PROCESS-CRASH-RECOVERY.log#sha256=622dd25d788cc768f407de29914ec970f1dbd2ff89c0d3a436badec77bf5e44b"
+      ]
+    },
+    {
+      "id": "P052-MIRROR-FALLBACK-OUTBOX",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib download_jobs::tests::failover_reinicia_checkpoint_y_guarda_evento_con_outbox_atomicos -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0"
+      ],
+      "expected": "El failover rechaza fuentes no aprobadas y guarda el checkpoint reiniciado, evento y outbox atómicamente.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.29s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-MIRROR-FALLBACK-OUTBOX.log#sha256=032280f6b5a6ed9bdd535eeedc617f8e9151ecdb43a4e9af6876a8867422d4af"
+      ]
+    },
+    {
+      "id": "P052-PRIMARY-WITH-MIRRORS",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib download_jobs::tests::completion_acepta_la_fuente_principal_ademas_de_mirrors_sellados -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0"
+      ],
+      "expected": "La finalización admite la fuente principal aunque el plan contenga mirrors alternativos.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-PRIMARY-WITH-MIRRORS.log#sha256=d0add4038a46e6bd4f3ff54b61153c3cd29acd9c517c24630509dc017f7006a0"
+      ]
+    },
+    {
+      "id": "P052-FALLBACK-CLASSIFIER",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-download --lib consumer::tests::fallback_solo_admite_fallos_transitorios_de_transporte -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e6718083fff85d0f0a502ac85f0665b10977b406357813c64a91b2c0c451b42e"
+      ],
+      "expected": "Solo timeout, I/O y HTTP 408/429/5xx pueden activar fallback; autorización, protocolo e integridad son terminales.",
+      "observed": "exit=0; warning: `larm-download` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.37s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P052_runs/P052-FALLBACK-CLASSIFIER.log#sha256=db3f73b799279ab0d1a63160d70da2590d7f379e91d6cb60ed538f2269fafcff"
+      ]
+    },
+    {
+      "id": "P052-REAL-PREFLIGHT-AND-DESTINATIONS",
+      "kind": "REAL",
+      "command": "Preflight del daemon en Windows con ubicaciones locales y volúmenes de prueba",
+      "fixture_hashes": [],
+      "expected": "Mostrar exact/estimado/rango/desconocido, temporales y alternativas; no admitir UNKNOWN sin presupuesto duro.",
+      "observed": "NO EJECUTADA: El endpoint combina bundles SQL, sondeo nativo de volúmenes y reservas de P015; aún faltan REAL_PASS de P015/P041 y una ejecución Windows con discos local y de prueba. Las pruebas de código no sustituyen esa observación física.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P052-API-OPTIONAL-SELECTION-AND-CONFIRMATION",
+      "kind": "REAL",
+      "command": "POST /api/v1/download-plans y ejecución con confirmación explícita del operador",
+      "fixture_hashes": [],
+      "expected": "La selección opcional llega al plan sellado; crear el plan no inicia transferencia y cada descarga requiere confirmación explícita.",
+      "observed": "NO EJECUTADA: La selección de destino elegible persiste el plan y el evento en una transacción SQLite. `POST /downloads` exige confirmación, revalida, reserva y crea el job durable; el consumidor P051 está conectado, pero la puerta sigue cerrada hasta tener fuentes y dependencias cualificadas.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P015, P043, P051 y P041 siguen sin REAL_PASS; las puertas del consumidor permanecen BLOCKED_REAL según contrato 00.",
+    "El catálogo, la activación y el worker ya integran mirrors exactos; falta seleccionar y probar fuentes cualificadas bajo P043/P045 y completar la aceptación real de transferencias P051.",
+    "Falta la prueba Windows con variantes, destinos y reservas físicas y la transferencia end-to-end desde fuentes cualificadas; los tests actuales verifican selección, autorización simulada, fallback, persistencia y recorrido con fixtures, mientras la admisión real permanece cerrada.",
+    "dependencia P015 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P051 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P041 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-25T04:42:10.349Z"
+}

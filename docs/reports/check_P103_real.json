@@ -1,0 +1,149 @@
+{
+  "prompt": "P103",
+  "real": true,
+  "status": "FAIL",
+  "checks": [
+    {
+      "check": "cargo_fmt",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "cargo_clippy",
+      "result": "PASS",
+      "detail": "exit=0 warning: `larm-db` (test \"storage\") generated 1 warning | warning: `larm-db` (test \"guard\") generated 1 warning | warning: `larm-db` (test \"conformance_profiles\") generated 1 warning | warning: `larm-models` (lib test) generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.75s"
+    },
+    {
+      "check": "test_fixtures",
+      "result": "PASS",
+      "detail": "exit=0 warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_domain-31ajtyjv8p95z\\s-hnfdqg4v1s-1wqifrv-working` |  | warning: `larm-domain` (lib) generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.58s"
+    },
+    {
+      "check": "cargo_test",
+      "result": "PASS",
+      "detail": "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+    },
+    {
+      "check": "architecture",
+      "result": "PASS",
+      "detail": "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager � LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+    },
+    {
+      "check": "package_copy",
+      "result": "FAIL",
+      "detail": "exit=1 FAIL copia modificada respecto al paquete: docs/contracts/adapter-methods.json | FAIL copia modificada respecto al paquete: docs/contracts/api-operations.json | FAIL copia modificada respecto al paquete: docs/contracts/schemas/larm.schema.json"
+    },
+    {
+      "check": "desktop_fmt",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "desktop_clippy",
+      "result": "PASS",
+      "detail": "exit=0 warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\incremental\\larm_desktop-36zl1ivcsmtof\\s-hnf5mc6055-0jokog9-working` |  | warning: `larm-desktop` (bin \"larm-desktop\") generated 1 warning | warning: `larm-desktop` (bin \"larm-desktop\" test) generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 7.32s"
+    },
+    {
+      "check": "desktop_test",
+      "result": "PASS",
+      "detail": "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+    },
+    {
+      "check": "npm_lint",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "npm_typecheck",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "npm_test",
+      "result": "PASS",
+      "detail": "exit=0    Duration  26.39s (environment 54%, tests 34%, import 11%, transform 1%) |  |     Isolate  5 workers spawned · ~2.92s startup each (spawn + environment, per file) |              at least ~11.68s faster with isolate: false — reuses workers across files instead of one per file | "
+    },
+    {
+      "check": "npm_build",
+      "result": "PASS",
+      "detail": "exit=0 dist/assets/index-BzifS1ul.css    7.78 kB │ gzip:  2.24 kB | dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-B0hQoFhV.js   301.62 kB │ gzip: 90.99 kB |  | ✓ built in 343ms"
+    },
+    {
+      "check": "P103_evidence",
+      "result": "PASS",
+      "detail": "exit=0    BLOQUEO  P103 solo prepara un sidecar REST personalizado de texto; no anuncia compatibilidad OpenAI ni está integrado aún al lifecycle RuntimeInstance/lease. |    BLOQUEO  El echo CLI es un fixture, no un modelo. Faltan cualificación de runtimes/prompt templates, contención de árbol de procesos y aceptación real del consumidor. |    BLOQUEO  dependencia P036 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P021 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P026 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+    }
+  ],
+  "transcripts": {
+    "cargo_fmt": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/cargo_fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "cargo_clippy": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/cargo_clippy.log",
+      "sha256": "54d35a1e5759011a1a3501642edb3343f73332d12388da170b7a38811600c391",
+      "exit_code": 0
+    },
+    "test_fixtures": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/test_fixtures.log",
+      "sha256": "528a6e15a11aadfeadef141080d3b3a76a99e01824a4fc2b18dfbc74e1b802a3",
+      "exit_code": 0
+    },
+    "cargo_test": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/cargo_test.log",
+      "sha256": "5584673ad40b8ec75ebd4e9cf0903f2264465cc3ee93b8ac5c3860887f29c02a",
+      "exit_code": 0
+    },
+    "architecture": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/architecture.log",
+      "sha256": "9532dd5f24d2c8c4a6048eb5f9f376777c94db379b8d41194a57c46d93b13e89",
+      "exit_code": 0
+    },
+    "package_copy": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/package_copy.log",
+      "sha256": "7d6bba720dd659e6c63244c17429971ce9ace3a71d5dbf3d9f17f5c752ec5d85",
+      "exit_code": 1
+    },
+    "desktop_fmt": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/desktop_fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "desktop_clippy": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/desktop_clippy.log",
+      "sha256": "32361838bad2d7900a37eaa7adf2ab4f44e9042b58abc68b059de3cb66f27bb9",
+      "exit_code": 0
+    },
+    "desktop_test": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/desktop_test.log",
+      "sha256": "2f75c18bab9ae6dbed435eaf9d131c9dfba863809f52612d7ad27144236a8117",
+      "exit_code": 0
+    },
+    "npm_lint": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/npm_lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "npm_typecheck": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/npm_typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "npm_test": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/npm_test.log",
+      "sha256": "f5cd8a549520fa7755d15b407cc1d257eb79c407b707cd2b89dd7bdcafd5d4f2",
+      "exit_code": 0
+    },
+    "npm_build": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/npm_build.log",
+      "sha256": "d9818e243044f84cbb862f900e2904bddba2204d8128e86241c89c86d6183008",
+      "exit_code": 0
+    },
+    "P103_evidence": {
+      "path": "docs/reports/check_runs/20261021T2205485385079Z/P103_evidence.log",
+      "sha256": "1a5b836b43ff382deeeec56e959c1c62b42770ab2af47a6bd682df9136d72477",
+      "exit_code": 0
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "allowed_dependencies": {
+    "larm-domain": [],
+    "larm-db": [
+      "larm-domain"
+    ],
+    "larm-adapter-sdk": [
+      "larm-domain"
+    ],
+    "larm-events": [
+      "larm-domain",
+      "larm-db"
+    ],
+    "larm-core": [
+      "larm-domain",
+      "larm-adapter-sdk"
+    ],
+    "larm-api": [
+      "larm-domain",
+      "larm-core"
+    ],
+    "larm-hardware": [
+      "larm-domain",
+      "larm-db"
+    ],
+    "larm-storage": [
+      "larm-domain",
+      "larm-db",
+      "larm-events"
+    ],
+    "larm-adapter-host": [
+      "larm-domain",
+      "larm-adapter-sdk",
+      "larm-events",
+      "larm-download"
+    ],
+    "larm-protocol": [
+      "larm-domain",
+      "larm-adapter-sdk",
+      "larm-adapter-host",
+      "larm-events"
+    ],
+    "larm-models": [
+      "larm-domain",
+      "larm-db",
+      "larm-adapter-sdk",
+      "larm-storage",
+      "larm-events"
+    ],
+    "larm-runtime": [
+      "larm-domain",
+      "larm-db",
+      "larm-hardware",
+      "larm-storage",
+      "larm-adapter-sdk",
+      "larm-adapter-host",
+      "larm-protocol",
+      "larm-events"
+    ],
+    "larm-source-p048": [
+      "larm-domain",
+      "larm-models",
+      "larm-adapter-sdk",
+      "keyring"
+    ],
+    "larm-download": [
+      "larm-domain",
+      "larm-adapter-sdk",
+      "larm-db",
+      "larm-models",
+      "larm-storage",
+      "larm-adapter-host",
+      "larm-events"
+    ],
+    "larm-transform": [
+      "larm-domain",
+      "larm-db",
+      "larm-models",
+      "larm-storage",
+      "larm-download",
+      "larm-runtime",
+      "larm-adapter-host",
+      "larm-events"
+    ],
+    "larm-benchmark": [
+      "larm-domain",
+      "larm-db",
+      "larm-runtime",
+      "larm-models",
+      "larm-protocol",
+      "larm-storage",
+      "larm-adapter-sdk",
+      "larm-events"
+    ]
+  },
+  "composition_root": "apps/daemon",
+  "forbidden_domain_dependencies": [
+    "IO",
+    "SQLx",
+    "Axum",
+    "Tauri",
+    "Windows"
+  ],
+  "gui_boundary": "HTTP administrative API only; Tauri bootstraps local endpoint/auth securely"
+}

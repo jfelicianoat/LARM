@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://larm.invalid/adapters/runtime/diffusers/protocol.schema.json",
+  "title": "Fragmento privado P072 del protocolo de adaptadores LARM",
+  "$defs": {
+    "protocol_invoke": {
+      "allOf": [
+        {
+          "$ref": "../../../docs/contracts/schemas/larm.schema.json#/$defs/CapabilityRequest"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "capability": {
+              "const": "image.generate"
+            },
+            "generation": {
+              "type": "null"
+            },
+            "stream": {
+              "const": false
+            },
+            "input": {
+              "$ref": "../../../docs/contracts/schemas/larm.schema.json#/$defs/image_generate_input"
+            }
+          }
+        }
+      ]
+    },
+    "protocol_response": {
+      "$ref": "../../../docs/contracts/schemas/larm.schema.json#/$defs/CapabilityResponse"
+    },
+    "cancel_request": {
+      "$ref": "../../../docs/contracts/schemas/larm.schema.json#/$defs/CancelRequest"
+    },
+    "cancel_response": {
+      "$ref": "../../../docs/contracts/schemas/larm.schema.json#/$defs/CancelResult"
+    },
+    "heartbeat_response": {
+      "$ref": "../../../docs/contracts/schemas/larm.schema.json#/$defs/Heartbeat"
+    },
+    "progress_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "const": "core.progress"
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "request_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "phase": {
+              "type": "string",
+              "minLength": 1
+            },
+            "completed_bytes": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "total_bytes": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "message_code": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "request_id",
+            "phase",
+            "completed_bytes",
+            "total_bytes",
+            "message_code"
+          ]
+        }
+      },
+      "required": [
+        "method",
+        "params"
+      ]
+    }
+  }
+}

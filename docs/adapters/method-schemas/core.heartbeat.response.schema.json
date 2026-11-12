@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "larm__Heartbeat": {
+      "additionalProperties": false,
+      "properties": {
+        "alive": {
+          "type": "boolean"
+        },
+        "running_request_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "alive",
+        "running_request_ids"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__Heartbeat",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "at": "2026-10-10T22:13:06.448Z",
+    "step": "environment",
+    "host": "A9_Mega",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.5",
+    "larm_daemon": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\larm-daemon.exe",
+    "larm_daemon_sha256": "6bbd45c11de8f1ea416bf75d6696e5fdcc010cd0733bffe67f2d33da0c0d1ddd",
+    "model": "gemma4:12b",
+    "variant_id": "01a127e0-7e03-7599-863e-abb96ef7db4e",
+    "ollama_version": {
+      "version": "0.40.2"
+    }
+  },
+  {
+    "at": "2026-10-10T22:13:06.468Z",
+    "step": "principal_enrolled",
+    "principal": "ai-broker",
+    "channel": "stdin -> Windows Credential Manager"
+  },
+  {
+    "at": "2026-10-10T22:13:08.245Z",
+    "step": "task_accepted",
+    "status": 202,
+    "body": {
+      "task_id": "task_1abaadcf6ac94aeea42777be4fb924dc",
+      "status": "queued",
+      "execution_strategy": "single",
+      "execution_preset": "fast",
+      "selection_mode": "auto",
+      "status_url": "/api/v1/tasks/task_1abaadcf6ac94aeea42777be4fb924dc",
+      "cancel_url": "/api/v1/tasks/task_1abaadcf6ac94aeea42777be4fb924dc"
+    }
+  },
+  {
+    "at": "2026-10-10T22:14:16.603Z",
+    "step": "cleanup",
+    "principal_credential_deleted": true
+  }
+]

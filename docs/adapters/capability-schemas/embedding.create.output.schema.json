@@ -1,0 +1,33 @@
+{
+  "$defs": {
+    "larm__embedding_create_output": {
+      "additionalProperties": false,
+      "properties": {
+        "dimension": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "normalized": {
+          "type": "boolean"
+        },
+        "vectors": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "dimension",
+        "vectors",
+        "normalized"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__embedding_create_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

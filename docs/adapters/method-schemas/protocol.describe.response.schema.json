@@ -1,0 +1,49 @@
+{
+  "$defs": {
+    "larm__ProtocolDescription": {
+      "additionalProperties": false,
+      "properties": {
+        "capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "profile_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "protocol": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "request_schema_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "response_schema_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "streaming": {
+          "type": "boolean"
+        },
+        "tools": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "profile_hash",
+        "capabilities",
+        "streaming",
+        "tools",
+        "request_schema_id",
+        "response_schema_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__ProtocolDescription",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

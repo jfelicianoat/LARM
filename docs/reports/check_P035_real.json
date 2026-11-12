@@ -1,0 +1,149 @@
+{
+  "prompt": "P035",
+  "real": true,
+  "status": "FAIL",
+  "checks": [
+    {
+      "check": "cargo_fmt",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "cargo_clippy",
+      "result": "PASS",
+      "detail": "exit=0 warning: `larm-adapter-host` (example \"fake_source\") generated 1 warning | warning: `larm-db` (test \"runtime_installation\") generated 1 warning | warning: `larm-db` (test \"sources\") generated 1 warning |     Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.73s"
+    },
+    {
+      "check": "test_fixtures",
+      "result": "PASS",
+      "detail": "exit=0 warning: `larm-adapter-host` (example \"fake_source\") generated 1 warning | warning: `larm-adapter-host` (example \"fake_runtime_worker\") generated 1 warning | warning: `larm-adapter-host` (example \"fake_adapter\") generated 1 warning | warning: `larm-adapter-host` (example \"conformance_host\") generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.79s"
+    },
+    {
+      "check": "cargo_test",
+      "result": "PASS",
+      "detail": "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+    },
+    {
+      "check": "architecture",
+      "result": "PASS",
+      "detail": "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager � LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+    },
+    {
+      "check": "package_copy",
+      "result": "FAIL",
+      "detail": "exit=1 FAIL copia modificada respecto al paquete: docs/contracts/adapter-methods.json | FAIL copia modificada respecto al paquete: docs/contracts/api-operations.json | FAIL copia modificada respecto al paquete: docs/contracts/schemas/larm.schema.json"
+    },
+    {
+      "check": "desktop_fmt",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "desktop_clippy",
+      "result": "PASS",
+      "detail": "exit=0 warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\incremental\\build_script_build-2wvf0lsc4qz6d\\s-hnf5maq8hf-0qo4eij-working` |  | warning: `larm-desktop` (build script) generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.70s"
+    },
+    {
+      "check": "desktop_test",
+      "result": "PASS",
+      "detail": "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+    },
+    {
+      "check": "npm_lint",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "npm_typecheck",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "npm_test",
+      "result": "PASS",
+      "detail": "exit=0    Duration  51.32s (environment 56%, tests 30%, import 13%, transform 1%) |  |     Isolate  6 workers spawned · ~4.87s startup each (spawn + environment, per file) |              at least ~24.35s faster with isolate: false — reuses workers across files instead of one per file | "
+    },
+    {
+      "check": "npm_build",
+      "result": "PASS",
+      "detail": "exit=0 dist/assets/index-CQajtatj.css    9.67 kB │ gzip:  2.49 kB | dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-DaJmUWWg.js   320.24 kB │ gzip: 95.76 kB |  | ✓ built in 642ms"
+    },
+    {
+      "check": "P035_evidence",
+      "result": "PASS",
+      "detail": "exit=0    BLOCKED  P035-REAL-LAUNCH-AND-PERSISTED-INSTANCE: NO EJECUTADA: P034 y P033 siguen BLOCKED_REAL en la integración productiva LaunchPlan→RuntimeInstance; P011 y P019 tampoco alcanzan REAL_PASS, por lo que no se puede declarar cualificada la admisión d |    BLOQUEO  La reserva multi-pool y el preflight funcionan en pruebas, pero P035 aún no está conectado al flujo productivo de LaunchPlan/RuntimeInstance/lease; no se declara admisión real de un modelo gestionado. |    BLOQUEO  dependencia P011 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P034 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+    }
+  ],
+  "transcripts": {
+    "cargo_fmt": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/cargo_fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "cargo_clippy": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/cargo_clippy.log",
+      "sha256": "ac195df5daf79aba4a7900c775ede350c2ee9b292d4b1d10baf7bc0195edb6f9",
+      "exit_code": 0
+    },
+    "test_fixtures": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/test_fixtures.log",
+      "sha256": "ac36a9ae0c5d71f62d881b3d256168e40404f4611e4e8222f30d4d1d25d49f21",
+      "exit_code": 0
+    },
+    "cargo_test": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/cargo_test.log",
+      "sha256": "8b07d2a2bc2a9a5089b3c1c1c879d52720bba47cfb5da67dd238a815bdfcb266",
+      "exit_code": 0
+    },
+    "architecture": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/architecture.log",
+      "sha256": "9532dd5f24d2c8c4a6048eb5f9f376777c94db379b8d41194a57c46d93b13e89",
+      "exit_code": 0
+    },
+    "package_copy": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/package_copy.log",
+      "sha256": "7d6bba720dd659e6c63244c17429971ce9ace3a71d5dbf3d9f17f5c752ec5d85",
+      "exit_code": 1
+    },
+    "desktop_fmt": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/desktop_fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "desktop_clippy": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/desktop_clippy.log",
+      "sha256": "030cdc1da05d4f3e698e7af7fa1ef22af8b2114c4b0448c5d142a3949ca8a5f0",
+      "exit_code": 0
+    },
+    "desktop_test": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/desktop_test.log",
+      "sha256": "9cf7b7a974a18bb4b4c0119b79d818bd455e266bc019e8e4881227341f3aacaf",
+      "exit_code": 0
+    },
+    "npm_lint": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/npm_lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "npm_typecheck": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/npm_typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "npm_test": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/npm_test.log",
+      "sha256": "07e20b87679a12013198e0ed4986ec3a4ff7e2b04d9d95f0f5f16bd68f0acbcd",
+      "exit_code": 0
+    },
+    "npm_build": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/npm_build.log",
+      "sha256": "ddea8e7f9268e238dfff1fc60bf93b14ed69b918cb9d9944ed9616fe19a2a67e",
+      "exit_code": 0
+    },
+    "P035_evidence": {
+      "path": "docs/reports/check_runs/20261022T1244376987100Z/P035_evidence.log",
+      "sha256": "464f6cd024f8a41c852497522af934f33a4c58492f24bd84e34874b753d8a813",
+      "exit_code": 0
+    }
+  }
+}

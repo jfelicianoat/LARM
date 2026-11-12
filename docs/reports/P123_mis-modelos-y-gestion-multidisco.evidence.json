@@ -1,0 +1,166 @@
+{
+  "prompt_id": "P123",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "9ee9fcd0c0729d4229975be7bf07a2300a0e36416bd2141a379480ce1c7387c9",
+  "changed_files": [
+    "apps/desktop/src/models.test.tsx",
+    "apps/desktop/src/models.tsx",
+    "apps/desktop/src/styles.css",
+    "docs/implementation/STATE.md",
+    "docs/reports/P123_mis-modelos-y-gestion-multidisco.evidence.json",
+    "docs/reports/P123_mis-modelos-y-gestion-multidisco.md",
+    "tools/p123_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P123-FOCUSED-UI",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js exec -- vitest run src/models.test.tsx --pool=threads --maxWorkers=1",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/move-model.tsx:94a0b33088661231a1ff8f40acf77c07f1363bfabd33269c1e8093e778fae9b3",
+        "apps/desktop/src/model-storage.tsx:391218b1b5119e26253de4766a3619462d3548dd7747e35c747ff001ccf29fe4",
+        "apps/desktop/src/model-import.tsx:c2cde1911231634571260d67814b5c5d2169541a36376e87883f1b5ed0748645",
+        "apps/desktop/src/model-delete.tsx:3b045e41b327ee5d620093b29dadcc8050508208fe32d76f6159b349527a63bb"
+      ],
+      "expected": "Biblioteca y comparación local incluyen avisos de licencia/acceso; movimiento, importación, análisis y borrado mantienen confirmaciones y límites seguros.",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  15 passed (15) | Start at  16:24:41 | Duration  3.53s (tests 50%, environment 36%, import 7%, transform 6%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P123_runs/P123-FOCUSED-UI.log#sha256=4d464d7620e3503075c404014ea30c56b0286a050f2be9896400d8432946062c"
+      ]
+    },
+    {
+      "id": "P123-DESKTOP-SUITE",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run test",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/move-model.tsx:94a0b33088661231a1ff8f40acf77c07f1363bfabd33269c1e8093e778fae9b3",
+        "apps/desktop/src/model-storage.tsx:391218b1b5119e26253de4766a3619462d3548dd7747e35c747ff001ccf29fe4",
+        "apps/desktop/src/model-import.tsx:c2cde1911231634571260d67814b5c5d2169541a36376e87883f1b5ed0748645",
+        "apps/desktop/src/model-delete.tsx:3b045e41b327ee5d620093b29dadcc8050508208fe32d76f6159b349527a63bb"
+      ],
+      "expected": "La suite completa del escritorio pasa sin regresiones.",
+      "observed": "exit=0; Duration  29.51s (tests 49%, environment 41%, import 8%, transform 2%) | Isolate  9 workers spawned · ~1.41s startup each (spawn + environment, per file) | at least ~11.28s faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P123_runs/P123-DESKTOP-SUITE.log#sha256=82245edc925fabf5c2c09f8d4e2cac704d5974802020deb8d48ef6c878d777d0"
+      ]
+    },
+    {
+      "id": "P123-LINT",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run lint",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/move-model.tsx:94a0b33088661231a1ff8f40acf77c07f1363bfabd33269c1e8093e778fae9b3",
+        "apps/desktop/src/model-storage.tsx:391218b1b5119e26253de4766a3619462d3548dd7747e35c747ff001ccf29fe4",
+        "apps/desktop/src/model-import.tsx:c2cde1911231634571260d67814b5c5d2169541a36376e87883f1b5ed0748645",
+        "apps/desktop/src/model-delete.tsx:3b045e41b327ee5d620093b29dadcc8050508208fe32d76f6159b349527a63bb"
+      ],
+      "expected": "ESLint termina sin errores.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 lint | > eslint .",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P123_runs/P123-LINT.log#sha256=55a3b426892a86d01fcb9c152a719c9d06c8270dbfb429e0b3da648146c8cc96"
+      ]
+    },
+    {
+      "id": "P123-TYPECHECK",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run typecheck",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/move-model.tsx:94a0b33088661231a1ff8f40acf77c07f1363bfabd33269c1e8093e778fae9b3",
+        "apps/desktop/src/model-storage.tsx:391218b1b5119e26253de4766a3619462d3548dd7747e35c747ff001ccf29fe4",
+        "apps/desktop/src/model-import.tsx:c2cde1911231634571260d67814b5c5d2169541a36376e87883f1b5ed0748645",
+        "apps/desktop/src/model-delete.tsx:3b045e41b327ee5d620093b29dadcc8050508208fe32d76f6159b349527a63bb"
+      ],
+      "expected": "TypeScript compila todos los proyectos.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 typecheck | > tsc -b",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P123_runs/P123-TYPECHECK.log#sha256=abd3b8ec58ea9fc24628c1b6937fc38cf1f296307c9e7112cde550bc72863488"
+      ]
+    },
+    {
+      "id": "P123-BUILD",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run build",
+      "fixture_hashes": [
+        "apps/desktop/src/models.tsx:afcc1a82e6eaae1da5ff08892492e396574e3a75b712028ea5df111717842db4",
+        "apps/desktop/src/models.test.tsx:ed284a8c9cc0291b0234d5487f753601e10f60c8ab5d2bfdc28f35d8626b7b61",
+        "apps/desktop/src/styles.css:9af4dd6bd226ad4e643388144a03b3bc5f29cb7272c3afd85459119c5209ec06",
+        "apps/desktop/src/move-model.tsx:94a0b33088661231a1ff8f40acf77c07f1363bfabd33269c1e8093e778fae9b3",
+        "apps/desktop/src/model-storage.tsx:391218b1b5119e26253de4766a3619462d3548dd7747e35c747ff001ccf29fe4",
+        "apps/desktop/src/model-import.tsx:c2cde1911231634571260d67814b5c5d2169541a36376e87883f1b5ed0748645",
+        "apps/desktop/src/model-delete.tsx:3b045e41b327ee5d620093b29dadcc8050508208fe32d76f6159b349527a63bb"
+      ],
+      "expected": "El escritorio genera el bundle de producción.",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-CGXXWt1y.js   402.37 kB │ gzip: 115.52 kB | ✓ built in 273ms",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P123_runs/P123-BUILD.log#sha256=53b53ac09289a1e4da6eb0e0b92855104f9310b168bc5f726871741c9b8d8113"
+      ]
+    },
+    {
+      "id": "P123-LOCAL-SOURCE-IDEMPOTENCY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib model_import::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/model_import.rs:2713b2c722d8e81016845fda6a07e8350a0adfdac90f8a10efa1f61984f95fdb"
+      ],
+      "expected": "La carpeta canónica crea o reutiliza su fuente local; la creación deja journal y outbox auditable.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.55s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-c463ce497a7a8126.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P123_runs/P123-LOCAL-SOURCE-IDEMPOTENCY.log#sha256=278db637e013afcc2d10fde09fbd9d2878b9f8d5c8b6933d936dd1c0da0eef20"
+      ]
+    },
+    {
+      "id": "P123-LOCAL-SOURCE-WORKER",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import_worker -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-models/src/import_worker.rs:5b6b04134f27ba5a8b381a183458c4fb364be3d9ac0bd41683d701498e1260ae",
+        "crates/larm-models/tests/import_worker.rs:9c6b47293fa444ef406ac55b95dcd843e1e654240ff347ec81dcb1e41a20aceb"
+      ],
+      "expected": "El worker usa la fuente automática de la carpeta canónica para las variantes importadas.",
+      "observed": "exit=0; warning: `larm-models` (test \"import_worker\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s | Running tests\\import_worker.rs (target\\debug\\deps\\import_worker-d29b33af27675b18.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P123_runs/P123-LOCAL-SOURCE-WORKER.log#sha256=59484ec297785e37f8a6c414278ded51689123a75b1331915b536de824e1edbe"
+      ]
+    },
+    {
+      "id": "P123-WINDOWS-MULTIDISK-REAL",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P123 -Real",
+      "fixture_hashes": [],
+      "expected": "Biblioteca, offline, leases, movimiento e importación comprobados con daemon Windows y varios volúmenes controlados.",
+      "observed": "NO EJECUTADA: Las pruebas de interfaz usan transporte simulado y P016/P018/P042/P098 aún no tienen REAL_PASS.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "No se ejecutó movimiento, importación o borrado real contra daemon con volúmenes controlados.",
+    "P016/P018/P042/P098 aún no tienen REAL_PASS.",
+    "dependencia P016 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P018 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P042 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P098 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T15:25:32.277Z"
+}

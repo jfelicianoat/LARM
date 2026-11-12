@@ -1,0 +1,42 @@
+{
+  "id": "larm.demo-benchmark",
+  "version": "0.1.0",
+  "family": "benchmark",
+  "protocol_version": "1.0",
+  "publisher": "LARM",
+  "executable": {
+    "relative_path": "bin/demo_adapter.exe",
+    "args": [
+      "--manifest",
+      "manifest.json"
+    ]
+  },
+  "platforms": [
+    "windows"
+  ],
+  "architectures": [
+    "x86_64"
+  ],
+  "methods": [
+    "core.handshake",
+    "core.cancel",
+    "core.heartbeat",
+    "benchmark.describe",
+    "benchmark.run",
+    "benchmark.validate"
+  ],
+  "permissions": {
+    "read_roots": [],
+    "write_roots": [],
+    "network_origins": [],
+    "process_allowlist": [],
+    "secret_refs": []
+  },
+  "capabilities": [
+    "benchmark.latency",
+    "vendor.demo.experimental"
+  ],
+  "package_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "signature": null,
+  "installation_strategies": []
+}

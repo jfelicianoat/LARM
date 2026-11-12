@@ -1,0 +1,72 @@
+{
+    "prompt":  "P030",
+    "real":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Checking larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) |     Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) |     Checking larm-models v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models) |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.92s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager � LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 PASS 53 copias id�nticas al paquete v3"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.02s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "npm_lint",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_typecheck",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  Test Files  5 passed (5) |       Tests  50 passed (50) |    Start at  15:00:44 |    Duration  4.87s (tests 64%, environment 25%, import 6%, transform 5%) | "
+                   },
+                   {
+                       "check":  "npm_build",
+                       "result":  "PASS",
+                       "detail":  "exit=0 dist/assets/index-B2pI5UYh.css    7.25 kB │ gzip:  2.15 kB | dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-Crp8Vmvg.js   287.23 kB │ gzip: 87.58 kB |  | ✓ built in 108ms"
+                   },
+                   {
+                       "check":  "P030_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0 ==\u003e P030-CONTRACT-independent-audit: C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p030_audit.py |     PASS (1.2s) | P030: BLOCKED_REAL {\u0027PASS\u0027: 16, \u0027FAIL\u0027: 0, \u0027BLOCKED\u0027: 0, \u0027INAPPLICABLE\u0027: 0} bloqueos=2 -\u003e docs\\reports\\P030_dominio-y-persistencia-de-runtimes.evidence.json |    BLOQUEO  dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P020 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ]
+}

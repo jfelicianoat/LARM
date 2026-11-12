@@ -1,0 +1,126 @@
+{
+  "prompt_id": "P050",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "b96bbc279080c4fe8c8f66f7fe3706fe183dfe3675b37f0ef4129dd8440ccb29",
+  "changed_files": [
+    "Cargo.lock",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/src/source_watches.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/source_watches.rs",
+    "crates/larm-api/tests/source_watches.rs",
+    "crates/larm-db/Cargo.toml",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/source_watches.rs",
+    "crates/larm-db/tests/source_watches.rs",
+    "crates/larm-domain/Cargo.toml",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-domain/src/watchers.rs",
+    "crates/larm-events/Cargo.toml",
+    "crates/larm-events/src/lib.rs",
+    "crates/larm-events/src/source_watch.rs",
+    "crates/larm-models/src/lib.rs",
+    "crates/larm-models/src/watcher.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P050_source-watcher-sincronizacion-incremental-y-notificaciones.md",
+    "tools/p050_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P050-EVENT-CLASSIFIER",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-events source_watch -- --nocapture",
+      "fixture_hashes": [
+        "crates/larm-events/src/source_watch.rs:81e6fd84988226f95b18e7226123e042bf19e9e120e8acd5c117a3a2f0ea0d6d"
+      ],
+      "expected": "La clasificación distingue modelo/revisión nueva y actualizaciones; la clave de dedupe es estable y opaca.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_events-82afe6bd43a0b6a0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P050_runs/P050-EVENT-CLASSIFIER.log#sha256=a3fcdd0ae495b9693e8f9b29a29e48ef582e3d9034471f97695eebe4cd75dcde"
+      ]
+    },
+    {
+      "id": "P050-WORKER-CURSOR-RETRY",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-models watcher -- --nocapture",
+      "fixture_hashes": [
+        "crates/larm-models/src/watcher.rs:ae1300adb7ff679765842f157fda50a96a1b134a3c683286a915602a1bb03f16"
+      ],
+      "expected": "El worker conserva cursor/ETag, aplica jitter/backoff acotados, sanitiza errores y no avanza ante compatibilidad desconocida.",
+      "observed": "exit=0; Running tests\\import_worker.rs (target\\debug\\deps\\import_worker-0321165935416ac6.exe) | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-649f93df1ac5c903.exe) | Running tests\\registry.rs (target\\debug\\deps\\registry-fc8a79800f55fb2f.exe) | Running tests\\verification.rs (target\\debug\\deps\\verification-fe6b34da5ce804d2.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P050_runs/P050-WORKER-CURSOR-RETRY.log#sha256=8e3b1b588731f63d46f7cf6907be84b821560050a78e96b63620a69d7fb24618"
+      ]
+    },
+    {
+      "id": "P050-SQLITE-ATOMIC-OUTBOX",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test source_watches -- --nocapture",
+      "fixture_hashes": [
+        "crates/larm-db/src/source_watches.rs:f44af80ced706faeefe2b72460debdf86b2413af61505c295ed0f71f5925b03a",
+        "crates/larm-db/tests/source_watches.rs:d5aa4f0924e473dee02da21c3d367c7af8f378a36b6443d3b5cbf08caa87f60f"
+      ],
+      "expected": "SQLite confirma cursor, notificación y outbox de forma atómica, deduplica revisiones y revierte detecciones inválidas.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.32s | Running tests\\source_watches.rs (target\\debug\\deps\\source_watches-e3a68689b9b65455.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P050_runs/P050-SQLITE-ATOMIC-OUTBOX.log#sha256=88cf310fca724960ebfc6a7851555a739c64d37d79e8d78546790cac2fb939d5"
+      ]
+    },
+    {
+      "id": "P050-API-CONTRACT",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test source_watches -- --nocapture",
+      "fixture_hashes": [
+        "crates/larm-api/src/source_watches.rs:fad5d588cfc155338f24abcfd0c9028a95a3be063b45fba5db8ce8c264f390de",
+        "crates/larm-api/tests/source_watches.rs:146f4bb3fa18ff3b41c09f6bc8460d603c7ec8e6db5506792ad4d3b30df552a2"
+      ],
+      "expected": "Las rutas aplican scopes, DTO estricto, replay idempotente, paginación y If-Match/CAS.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.46s | Running tests\\source_watches.rs (target\\debug\\deps\\source_watches-70dfbee8f4c35d73.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P050_runs/P050-API-CONTRACT.log#sha256=25fd3b1f00e038fae1e6ef639a6794b8186eb40121970985985e36cd7c563faf"
+      ]
+    },
+    {
+      "id": "P050-DAEMON-WIRING",
+      "kind": "INTEGRATION",
+      "command": "cargo check -p larm-daemon",
+      "fixture_hashes": [
+        "apps/daemon/src/source_watches.rs:a4fa4a341f427aeee464ecb4a23f8a7ef0521c5cbbb7fea669dd2846cf0ab425",
+        "apps/daemon/src/serve.rs:dca2a31313d45508355a9d0180a3f3977cc27a20068edd6c7a27558851b7325f"
+      ],
+      "expected": "El daemon compone el scheduler con SQLite y solo invoca source.sync mediante una instalación y cualificación vigentes, con permisos y timeout acotados.",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.63s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P050_runs/P050-DAEMON-WIRING.log#sha256=2b2e77aec2bedbc2adc53bbfdf6988897d71ea83e2fb6a1f390fa8c36ac486be"
+      ]
+    },
+    {
+      "id": "P050-REAL-QUALIFIED-SOURCE",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P050 -Real con fuente upstream cualificada y datos de prueba en Windows/PC IA",
+      "fixture_hashes": [],
+      "expected": "Una instalación source.sync cualificada completa sincronización real, conserva cursor y ETag tras reinicio y verifica dedupe/notificaciones/outbox en SQLite.",
+      "observed": "NO EJECUTADA: P044, P046, P047 y P029 aún no tienen REAL_PASS; no hay una instalación upstream cualificada admisible para este recorrido. Los fixtures locales solo acreditan CODE_PASS.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P044/P046/P047/P029 siguen sin REAL_PASS; P050 no puede completar su cualificación hasta validar esas dependencias.",
+    "La evaluación de compatibilidad de P090 aún no está conectada al daemon; las vigilancias que exigen compatibilidad fallan cerradas y conservan el cursor.",
+    "dependencia P044 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P046 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P047 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P029 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-25T00:30:52.056Z"
+}

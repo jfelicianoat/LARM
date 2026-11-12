@@ -1,0 +1,121 @@
+{
+  "prompt_id": "P072",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "c7070cbbc76f1c77f95f8177d54c370a5376c5cc1fac8b2e813df772a4ff5d79",
+  "changed_files": [
+    "adapters/runtime/diffusers/README.md",
+    "adapters/runtime/diffusers/protocol.schema.json",
+    "adapters/runtime/diffusers/sidecar.py",
+    "adapters/runtime/diffusers/tests/test_worker.py",
+    "adapters/runtime/diffusers/worker.py",
+    "docs/adapters/diffusers.md",
+    "docs/implementation/STATE.md",
+    "docs/reports/P072_diffusers-pytorch-runtime.md",
+    "tools/p072_evidence.py",
+    "tools/p072_host_probe.py",
+    "tools/p072_schema_probe.py"
+  ],
+  "tests": [
+    {
+      "id": "P072-INTEGRATION-diffusers-worker-and-protocol-hooks",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -m unittest discover -s adapters/runtime/diffusers/tests -p test_worker.py -v",
+      "fixture_hashes": [
+        "adapters/runtime/diffusers/tests/test_worker.py:e11f92a74c54d3a043c8d73dcdcf741966c66e8639ddf886a3412c6b7aa0918d",
+        "adapters/runtime/diffusers/protocol.schema.json:9f4b20aee45496841e41108844629a2b2116c5369d73e12225fc82ee71642d1b"
+      ],
+      "expected": "12 pruebas observan identidad separada por lock, bundle Diffusers local, roles contractuales, rechazo de código remoto, safetensors, salida PNG con hash, progreso, cancelación y limpieza ante fallos.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 12 tests in 0.349s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P072_runs/P072-INTEGRATION-diffusers-worker-and-protocol-hooks.log#sha256=61f4ad063ba590eb6aabc729c41761b60311ec2a39cfc69df34584e66767013e"
+      ]
+    },
+    {
+      "id": "P072-QUALITY-cargo-format",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "El workspace conserva el formato Rust contractual.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P072_runs/P072-QUALITY-cargo-format.log#sha256=82d47eae1e041bf8e2fa0c7dbc16fd833fda3af42236aa45741172ace9ebfbb8"
+      ]
+    },
+    {
+      "id": "P072-QUALITY-cargo-clippy",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "Clippy del workspace pasa con warnings tratados como errores.",
+      "observed": "exit=0; warning: `larm-db` (test \"conformance\") generated 1 warning | warning: `larm-runtime` (test \"discovery_service\") generated 1 warning | warning: `larm-db` (test \"events\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.58s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P072_runs/P072-QUALITY-cargo-clippy.log#sha256=ee43cdbd589bf716f25dc975990633da21d24e5e8ab245a5471b0d21181083b8"
+      ]
+    },
+    {
+      "id": "P072-UNIT-contract-schemas",
+      "kind": "UNIT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p072_schema_probe.py",
+      "fixture_hashes": [
+        "docs/contracts/schemas/larm.schema.json:feda3d66c09f322f558846789f84c4908db5a096dd206ea4d6e92c2e1e641a08",
+        "adapters/runtime/diffusers/protocol.schema.json:9f4b20aee45496841e41108844629a2b2116c5369d73e12225fc82ee71642d1b",
+        "tools/p072_schema_probe.py:79364a71d8ffb3b75a467df526662ac04d712582c1bd91b054d3a209358f4295"
+      ],
+      "expected": "Ambos schemas cumplen Draft 2020-12, las referencias P072 resuelven al contrato público y invoke/salida pasan validación.",
+      "observed": "exit=0; schemas Draft 2020-12 válidos; 6 referencias públicas resueltas; invoke y salida conformes",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P072_runs/P072-UNIT-contract-schemas.log#sha256=4495e9ac4831c88247d042d34bc701cf273fc4c7c1624e318b584d1078156e4d"
+      ]
+    },
+    {
+      "id": "P072-REAL-host-refuses-unmanaged-python",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p072_host_probe.py",
+      "fixture_hashes": [],
+      "expected": "El Python de herramientas no se acepta como runtime y el probe no importa Torch ni Diffusers.",
+      "observed": "exit=0; {\"ok\": true, \"result\": {\"managed_python\": false, \"platform\": \"Windows-11-10.0.26200-SP0\", \"python_prefix\": \"C:\\\\Procesos\\\\Local AI Runtime Manager \\u2014 LARM\\\\larm\\\\.venv-tools\", \"python_version\": \"3.14.6\", \"torch_or_diffusers_imported\": []}}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P072_runs/P072-REAL-host-refuses-unmanaged-python.log#sha256=791ac30f62b671aa7ae5036acdec82031978b7cae9877f884b694c8c33b34767"
+      ]
+    },
+    {
+      "id": "P072-REAL-local-diffusion-inference",
+      "kind": "REAL",
+      "command": "Crear un runtime gestionado con lock P099, cargar un bundle tiny safetensors local en CPU y registrar imagen/hash/tiempo/memoria/cancelación",
+      "fixture_hashes": [],
+      "expected": "La inferencia genera un PNG local validado por el contrato, mide segundos por imagen y carga, informa memoria real si el backend la expone y cancela sin artefactos parciales.",
+      "observed": "NO EJECUTADA: El host no dispone de un runtime Diffusers gestionado ni de un bundle tiny autorizado con pesos reales. El profile lock y los comandos deben fijarse en P099; el fixture de esta suite usa bytes y pipeline simulados.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P072-REAL-full-quality-gate",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P072 -Real -SkipFrontend -SkipDesktop",
+      "fixture_hashes": [],
+      "expected": "La puerta común completa su suite workspace, arquitectura, copias contractuales y evidencia P072.",
+      "observed": "NO EJECUTADA: No se repite la suite workspace en esta fase: la puerta oficial P071 quedó sin resultado tras más de diez minutos en cargo_test y P072 no modifica Rust, UI ni contratos canónicos. No se afirma PASS ni FAIL para la puerta común.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P099 debe cualificar versiones de Python/Diffusers/Torch, wheels, estrategia de entorno y comandos observados antes de instalar o anunciar el runtime.",
+    "P103 debe alojar el worker en su ciclo protocol.invoke, job durable, progreso, cancelación, recuperación y cierre de proceso; sidecar.py sólo aporta hooks internos.",
+    "P090 debe emitir la huella de ejecución y autorizar admisión antes de la primera inferencia.",
+    "El worker no implementa aprobación REMOTE_CODE; pipelines y componentes personalizados permanecen bloqueados hasta que el flujo de aprobación cualificado esté integrado.",
+    "dependencia P071 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P036 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P103 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P099 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P090 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T12:55:26.894Z"
+}

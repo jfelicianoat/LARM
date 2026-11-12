@@ -1,0 +1,4998 @@
+{
+  "product": "Local AI Runtime Manager (LARM)",
+  "package_version": "3.14.0",
+  "generated_at_utc": "2026-10-30T18:19:21Z",
+  "prompt_count": 128,
+  "original_prompt_count": 107,
+  "new_prompt_count": 21,
+  "stack": {
+    "core": "Rust + Tokio",
+    "api": "Axum + JSON + SSE",
+    "desktop": "Tauri 2 + React + TypeScript",
+    "database": "SQLite + SQLx",
+    "http": "reqwest/rustls",
+    "logging": "tracing"
+  },
+  "execution_order": [
+    "P000",
+    "P001",
+    "P002",
+    "P003",
+    "P004",
+    "P009",
+    "P005",
+    "P006",
+    "P007",
+    "P008",
+    "P010",
+    "P011",
+    "P012",
+    "P013",
+    "P014",
+    "P015",
+    "P019",
+    "P016",
+    "P040",
+    "P041",
+    "P017",
+    "P018",
+    "P020",
+    "P021",
+    "P022",
+    "P023",
+    "P024",
+    "P043",
+    "P025",
+    "P026",
+    "P030",
+    "P031",
+    "P027",
+    "P028",
+    "P029",
+    "P032",
+    "P033",
+    "P034",
+    "P035",
+    "P036",
+    "P037",
+    "P042",
+    "P044",
+    "P045",
+    "P046",
+    "P047",
+    "P048",
+    "P049",
+    "P050",
+    "P051",
+    "P052",
+    "P099",
+    "P060",
+    "P103",
+    "P090",
+    "P061",
+    "P071",
+    "P062",
+    "P063",
+    "P064",
+    "P093",
+    "P065",
+    "P066",
+    "P067",
+    "P068",
+    "P069",
+    "P070",
+    "P072",
+    "P073",
+    "P074",
+    "P075",
+    "P076",
+    "P077",
+    "P078",
+    "P079",
+    "P080",
+    "P081",
+    "P082",
+    "P083",
+    "P091",
+    "P092",
+    "P094",
+    "P095",
+    "P096",
+    "P110",
+    "P100",
+    "P101",
+    "P113",
+    "P107",
+    "P118",
+    "P114",
+    "P115",
+    "P116",
+    "P111",
+    "P112",
+    "P142",
+    "P117",
+    "P097",
+    "P098",
+    "P102",
+    "P104",
+    "P105",
+    "P106",
+    "P108",
+    "P119",
+    "P120",
+    "P121",
+    "P122",
+    "P123",
+    "P124",
+    "P125",
+    "P126",
+    "P141",
+    "P127",
+    "P128",
+    "P139",
+    "P140",
+    "P129",
+    "P130",
+    "P131",
+    "P132",
+    "P133",
+    "P134",
+    "P143",
+    "P137",
+    "P135",
+    "P136",
+    "P138"
+  ],
+  "prompts": [
+    {
+      "code": "P000",
+      "title": "Inventario real y locks de entorno antes de implementar",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P000_inventario-real-y-locks-de-entorno-antes-de-implementar.md",
+      "dependencies": [],
+      "contracts": [
+        "00_PACKAGE.md",
+        "09_EXTERNAL_PROFILES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        4,
+        9,
+        22,
+        23,
+        127,
+        164
+      ],
+      "report": "docs/reports/P000_inventario-real-y-locks-de-entorno-antes-de-implementar"
+    },
+    {
+      "code": "P001",
+      "phase": "00_fundamentos",
+      "title": "Bootstrap del monorepo y estructura contractual",
+      "dependencies": [
+        "P000"
+      ],
+      "file": "prompts/00_fundamentos/P001_bootstrap-del-monorepo-y-estructura-contractual.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        101,
+        127,
+        128,
+        158,
+        166
+      ],
+      "report": "docs/reports/P001_bootstrap-del-monorepo-y-estructura-contractual"
+    },
+    {
+      "code": "P002",
+      "phase": "00_fundamentos",
+      "title": "Reglas de arquitectura, ADR y contratos de dependencia",
+      "dependencies": [
+        "P001"
+      ],
+      "file": "prompts/00_fundamentos/P002_reglas-de-arquitectura-adr-y-contratos-de-dependencia.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        3,
+        4,
+        62,
+        89,
+        127,
+        161,
+        165
+      ],
+      "report": "docs/reports/P002_reglas-de-arquitectura-adr-y-contratos-de-dependencia"
+    },
+    {
+      "code": "P003",
+      "phase": "00_fundamentos",
+      "title": "Configuración, errores y logging estructurado",
+      "dependencies": [
+        "P001",
+        "P002"
+      ],
+      "file": "prompts/00_fundamentos/P003_configuracion-errores-y-logging-estructurado.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        44,
+        90,
+        98,
+        136,
+        154,
+        156
+      ],
+      "report": "docs/reports/P003_configuracion-errores-y-logging-estructurado"
+    },
+    {
+      "code": "P004",
+      "phase": "00_fundamentos",
+      "title": "Persistencia SQLite y framework de migraciones",
+      "dependencies": [
+        "P001",
+        "P002",
+        "P003"
+      ],
+      "file": "prompts/00_fundamentos/P004_persistencia-sqlite-y-framework-de-migraciones.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        81,
+        86,
+        104
+      ],
+      "report": "docs/reports/P004_persistencia-sqlite-y-framework-de-migraciones"
+    },
+    {
+      "code": "P009",
+      "title": "Autenticación, secretos y autorizaciones desde la primera API",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P009_autenticacion-secretos-y-autorizaciones-desde-la-primera-api.md",
+      "dependencies": [
+        "P003",
+        "P004"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "03_ADAPTERS_SECURITY.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        90,
+        91,
+        92,
+        93,
+        94
+      ],
+      "report": "docs/reports/P009_autenticacion-secretos-y-autorizaciones-desde-la-primera-api"
+    },
+    {
+      "code": "P005",
+      "phase": "00_fundamentos",
+      "title": "API administrativa Axum v1 y OpenAPI",
+      "dependencies": [
+        "P003",
+        "P004",
+        "P009"
+      ],
+      "file": "prompts/00_fundamentos/P005_api-administrativa-axum-v1-y-openapi.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        87,
+        88,
+        89,
+        90,
+        108,
+        166
+      ],
+      "report": "docs/reports/P005_api-administrativa-axum-v1-y-openapi"
+    },
+    {
+      "code": "P006",
+      "phase": "00_fundamentos",
+      "title": "Shell desktop Tauri, navegación y cliente API",
+      "dependencies": [
+        "P005"
+      ],
+      "file": "prompts/00_fundamentos/P006_shell-desktop-tauri-navegacion-y-cliente-api.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        101,
+        106,
+        128
+      ],
+      "report": "docs/reports/P006_shell-desktop-tauri-navegacion-y-cliente-api"
+    },
+    {
+      "code": "P007",
+      "phase": "00_fundamentos",
+      "title": "CI local, quality gates y fixtures comunes",
+      "dependencies": [
+        "P001",
+        "P006",
+        "P004",
+        "P005"
+      ],
+      "file": "prompts/00_fundamentos/P007_ci-local-quality-gates-y-fixtures-comunes.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        142,
+        159
+      ],
+      "report": "docs/reports/P007_ci-local-quality-gates-y-fixtures-comunes"
+    },
+    {
+      "code": "P008",
+      "phase": "00_fundamentos",
+      "title": "Prerequisitos y packaging de desarrollo Windows",
+      "dependencies": [
+        "P001",
+        "P007",
+        "P000"
+      ],
+      "file": "prompts/00_fundamentos/P008_prerequisitos-y-packaging-de-desarrollo-windows.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        158
+      ],
+      "report": "docs/reports/P008_prerequisitos-y-packaging-de-desarrollo-windows"
+    },
+    {
+      "code": "P010",
+      "phase": "01_hardware_storage",
+      "title": "Hardware Profiler: Windows, CPU y memoria",
+      "dependencies": [
+        "P003",
+        "P004"
+      ],
+      "file": "prompts/01_hardware_storage/P010_hardware-profiler-windows-cpu-y-memoria.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        22
+      ],
+      "report": "docs/reports/P010_hardware-profiler-windows-cpu-y-memoria"
+    },
+    {
+      "code": "P011",
+      "phase": "01_hardware_storage",
+      "title": "Hardware Profiler: GPU, NPU y backends",
+      "dependencies": [
+        "P010"
+      ],
+      "file": "prompts/01_hardware_storage/P011_hardware-profiler-gpu-npu-y-backends.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        22,
+        100
+      ],
+      "report": "docs/reports/P011_hardware-profiler-gpu-npu-y-backends"
+    },
+    {
+      "code": "P012",
+      "phase": "01_hardware_storage",
+      "title": "Storage Profiler y Volume Identity Windows",
+      "dependencies": [
+        "P010"
+      ],
+      "file": "prompts/01_hardware_storage/P012_storage-profiler-y-volume-identity-windows.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        22,
+        28,
+        115
+      ],
+      "report": "docs/reports/P012_storage-profiler-y-volume-identity-windows"
+    },
+    {
+      "code": "P013",
+      "phase": "01_hardware_storage",
+      "title": "HardwareFingerprint reproducible",
+      "dependencies": [
+        "P010",
+        "P011",
+        "P012"
+      ],
+      "file": "prompts/01_hardware_storage/P013_hardwarefingerprint-reproducible.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        23,
+        56,
+        76
+      ],
+      "report": "docs/reports/P013_hardwarefingerprint-reproducible"
+    },
+    {
+      "code": "P014",
+      "phase": "01_hardware_storage",
+      "title": "StorageLocation Registry y políticas de colocación",
+      "dependencies": [
+        "P012",
+        "P004"
+      ],
+      "file": "prompts/01_hardware_storage/P014_storagelocation-registry-y-politicas-de-colocacion.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        27,
+        29,
+        83,
+        87,
+        112,
+        113,
+        114,
+        136
+      ],
+      "report": "docs/reports/P014_storagelocation-registry-y-politicas-de-colocacion"
+    },
+    {
+      "code": "P015",
+      "phase": "01_hardware_storage",
+      "title": "StorageEstimate y preflight de espacio",
+      "dependencies": [
+        "P014"
+      ],
+      "file": "prompts/01_hardware_storage/P015_storageestimate-y-preflight-de-espacio.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        30,
+        31,
+        33,
+        45,
+        114,
+        137
+      ],
+      "report": "docs/reports/P015_storageestimate-y-preflight-de-espacio"
+    },
+    {
+      "code": "P019",
+      "title": "Guards de artefactos, reservas y journal transaccional",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P019_guards-de-artefactos-reservas-y-journal-transaccional.md",
+      "dependencies": [
+        "P004"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "04_RUNTIME_LEASES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        37,
+        38,
+        39,
+        64,
+        153
+      ],
+      "report": "docs/reports/P019_guards-de-artefactos-reservas-y-journal-transaccional"
+    },
+    {
+      "code": "P016",
+      "phase": "01_hardware_storage",
+      "title": "ArtifactLocation, resolución de rutas y movimiento seguro",
+      "dependencies": [
+        "P014",
+        "P015",
+        "P019"
+      ],
+      "file": "prompts/01_hardware_storage/P016_artifactlocation-resolucion-de-rutas-y-movimiento-seguro.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        28,
+        35,
+        36,
+        37,
+        38,
+        82,
+        145,
+        158
+      ],
+      "report": "docs/reports/P016_artifactlocation-resolucion-de-rutas-y-movimiento-seguro"
+    },
+    {
+      "code": "P040",
+      "phase": "04_models_sources",
+      "title": "Dominio de modelos, variantes y procedencia",
+      "dependencies": [
+        "P004",
+        "P003"
+      ],
+      "file": "prompts/04_models_sources/P040_dominio-de-modelos-variantes-y-procedencia.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_0_P044_P052.md"
+      ],
+      "spec_sections": [
+        1,
+        7,
+        17,
+        19,
+        20,
+        81,
+        84,
+        87,
+        166
+      ],
+      "report": "docs/reports/P040_dominio-de-modelos-variantes-y-procedencia"
+    },
+    {
+      "code": "P041",
+      "phase": "04_models_sources",
+      "title": "ModelBundle, artefactos requeridos e identidad canónica",
+      "dependencies": [
+        "P040"
+      ],
+      "file": "prompts/04_models_sources/P041_modelbundle-artefactos-requeridos-e-identidad-canonica.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_0_P044_P052.md"
+      ],
+      "spec_sections": [
+        17,
+        18,
+        21,
+        36
+      ],
+      "report": "docs/reports/P041_modelbundle-artefactos-requeridos-e-identidad-canonica"
+    },
+    {
+      "code": "P017",
+      "phase": "01_hardware_storage",
+      "title": "Content-addressed store, deduplicación e importación",
+      "dependencies": [
+        "P016",
+        "P041"
+      ],
+      "file": "prompts/01_hardware_storage/P017_content-addressed-store-deduplicacion-e-importacion.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        39,
+        40,
+        41,
+        42,
+        95
+      ],
+      "report": "docs/reports/P017_content-addressed-store-deduplicacion-e-importacion"
+    },
+    {
+      "code": "P018",
+      "phase": "01_hardware_storage",
+      "title": "Storage Analyzer, offline volumes y rebuild registry",
+      "dependencies": [
+        "P017"
+      ],
+      "file": "prompts/01_hardware_storage/P018_storage-analyzer-offline-volumes-y-rebuild-registry.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        29,
+        43,
+        134,
+        135,
+        136,
+        145
+      ],
+      "report": "docs/reports/P018_storage-analyzer-offline-volumes-y-rebuild-registry"
+    },
+    {
+      "code": "P020",
+      "phase": "02_adapters",
+      "title": "Adapter manifest y protocolo v1",
+      "dependencies": [
+        "P002",
+        "P003",
+        "P004",
+        "P009"
+      ],
+      "file": "prompts/02_adapters/P020_adapter-manifest-y-protocolo-v1.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        6,
+        10,
+        11,
+        12,
+        20,
+        52,
+        53,
+        129,
+        153,
+        163,
+        166
+      ],
+      "report": "docs/reports/P020_adapter-manifest-y-protocolo-v1"
+    },
+    {
+      "code": "P021",
+      "phase": "02_adapters",
+      "title": "Adapter Host: workers, timeout, crash y lifecycle",
+      "dependencies": [
+        "P020"
+      ],
+      "file": "prompts/02_adapters/P021_adapter-host-workers-timeout-crash-y-lifecycle.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        12,
+        94
+      ],
+      "report": "docs/reports/P021_adapter-host-workers-timeout-crash-y-lifecycle"
+    },
+    {
+      "code": "P022",
+      "phase": "02_adapters",
+      "title": "Permisos, confianza y aislamiento de adaptadores",
+      "dependencies": [
+        "P020",
+        "P021"
+      ],
+      "file": "prompts/02_adapters/P022_permisos-confianza-y-aislamiento-de-adaptadores.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        12,
+        97,
+        131
+      ],
+      "report": "docs/reports/P022_permisos-confianza-y-aislamiento-de-adaptadores"
+    },
+    {
+      "code": "P023",
+      "phase": "02_adapters",
+      "title": "Adaptador declarativo configurable desde GUI",
+      "dependencies": [
+        "P020",
+        "P021",
+        "P022"
+      ],
+      "file": "prompts/02_adapters/P023_adaptador-declarativo-configurable-desde-gui.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        13
+      ],
+      "report": "docs/reports/P023_adaptador-declarativo-configurable-desde-gui"
+    },
+    {
+      "code": "P024",
+      "phase": "02_adapters",
+      "title": "Plugin Registry, instalación y actualización de adaptadores",
+      "dependencies": [
+        "P020",
+        "P022"
+      ],
+      "file": "prompts/02_adapters/P024_plugin-registry-instalacion-y-actualizacion-de-adaptadores.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        130,
+        131,
+        141
+      ],
+      "report": "docs/reports/P024_plugin-registry-instalacion-y-actualizacion-de-adaptadores"
+    },
+    {
+      "code": "P043",
+      "phase": "04_models_sources",
+      "title": "ModelSourceAdapter protocol y catálogo de fuentes",
+      "dependencies": [
+        "P020",
+        "P040",
+        "P041"
+      ],
+      "file": "prompts/04_models_sources/P043_modelsourceadapter-protocol-y-catalogo-de-fuentes.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_0_P044_P052.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        6,
+        14,
+        15,
+        108,
+        144,
+        163
+      ],
+      "report": "docs/reports/P043_modelsourceadapter-protocol-y-catalogo-de-fuentes"
+    },
+    {
+      "code": "P025",
+      "phase": "02_adapters",
+      "title": "SDK de adaptadores y adaptadores de referencia",
+      "dependencies": [
+        "P020",
+        "P021",
+        "P024",
+        "P043"
+      ],
+      "file": "prompts/02_adapters/P025_sdk-de-adaptadores-y-adaptadores-de-referencia.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        6,
+        10,
+        15,
+        142,
+        143,
+        144,
+        158,
+        163
+      ],
+      "report": "docs/reports/P025_sdk-de-adaptadores-y-adaptadores-de-referencia"
+    },
+    {
+      "code": "P026",
+      "title": "Conformance SDK para las cinco familias de plugins",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P026_conformance-sdk-para-las-cinco-familias-de-plugins.md",
+      "dependencies": [
+        "P025"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "03_ADAPTERS_SECURITY.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        6,
+        10,
+        12,
+        15,
+        20,
+        129,
+        143,
+        144
+      ],
+      "report": "docs/reports/P026_conformance-sdk-para-las-cinco-familias-de-plugins"
+    },
+    {
+      "code": "P030",
+      "phase": "03_runtime_core",
+      "title": "Dominio y persistencia de runtimes",
+      "dependencies": [
+        "P004",
+        "P020"
+      ],
+      "file": "prompts/03_runtime_core/P030_dominio-y-persistencia-de-runtimes.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        5,
+        7,
+        10,
+        41,
+        49,
+        81,
+        85,
+        117,
+        118
+      ],
+      "report": "docs/reports/P030_dominio-y-persistencia-de-runtimes"
+    },
+    {
+      "code": "P031",
+      "phase": "03_runtime_core",
+      "title": "Descubrimiento e instalación de versiones de runtime",
+      "dependencies": [
+        "P030",
+        "P021",
+        "P019"
+      ],
+      "file": "prompts/03_runtime_core/P031_descubrimiento-e-instalacion-de-versiones-de-runtime.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        48,
+        49,
+        52,
+        53,
+        117
+      ],
+      "report": "docs/reports/P031_descubrimiento-e-instalacion-de-versiones-de-runtime"
+    },
+    {
+      "code": "P027",
+      "title": "CUSTOM_RULES como datos y estrategia NuGet gestionada",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P027_custom-rules-como-datos-y-estrategia-nuget-gestionada.md",
+      "dependencies": [
+        "P023",
+        "P031"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "03_ADAPTERS_SECURITY.md",
+        "04_RUNTIME_LEASES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        52,
+        78,
+        113
+      ],
+      "report": "docs/reports/P027_custom-rules-como-datos-y-estrategia-nuget-gestionada"
+    },
+    {
+      "code": "P028",
+      "title": "Registro remoto firmado y exportación/importación de plugins",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P028_registro-remoto-firmado-y-exportacion-importacion-de-plugins.md",
+      "dependencies": [
+        "P024",
+        "P026"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "03_ADAPTERS_SECURITY.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_9_0_P028.md",
+        "REVISION_3_9_1_P028.md"
+      ],
+      "spec_sections": [
+        130,
+        131,
+        141
+      ],
+      "report": "docs/reports/P028_registro-remoto-firmado-y-exportacion-importacion-de-plugins"
+    },
+    {
+      "code": "P029",
+      "title": "Outbox y eventos durables antes de watchers y procesos",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P029_outbox-y-eventos-durables-antes-de-watchers-y-procesos.md",
+      "dependencies": [
+        "P004",
+        "P005"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        77,
+        78,
+        79,
+        80,
+        88,
+        98
+      ],
+      "report": "docs/reports/P029_outbox-y-eventos-durables-antes-de-watchers-y-procesos"
+    },
+    {
+      "code": "P032",
+      "phase": "03_runtime_core",
+      "title": "Actualización side-by-side, promoción, rollback y pinning",
+      "dependencies": [
+        "P031"
+      ],
+      "file": "prompts/03_runtime_core/P032_actualizacion-side-by-side-promocion-rollback-y-pinning.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        48,
+        49,
+        50,
+        51,
+        117,
+        161
+      ],
+      "report": "docs/reports/P032_actualizacion-side-by-side-promocion-rollback-y-pinning"
+    },
+    {
+      "code": "P033",
+      "phase": "03_runtime_core",
+      "title": "Runtime Process Supervisor e instancias",
+      "dependencies": [
+        "P030",
+        "P021",
+        "P019",
+        "P029"
+      ],
+      "file": "prompts/03_runtime_core/P033_runtime-process-supervisor-e-instancias.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        54,
+        55,
+        56,
+        105
+      ],
+      "report": "docs/reports/P033_runtime-process-supervisor-e-instancias"
+    },
+    {
+      "code": "P034",
+      "phase": "03_runtime_core",
+      "title": "Launch Profiles y configuración reproducible",
+      "dependencies": [
+        "P030",
+        "P033"
+      ],
+      "file": "prompts/03_runtime_core/P034_launch-profiles-y-configuracion-reproducible.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        54,
+        56,
+        76
+      ],
+      "report": "docs/reports/P034_launch-profiles-y-configuracion-reproducible"
+    },
+    {
+      "code": "P035",
+      "phase": "03_runtime_core",
+      "title": "Memory Estimator y scheduler de instancias",
+      "dependencies": [
+        "P011",
+        "P034",
+        "P019"
+      ],
+      "file": "prompts/03_runtime_core/P035_memory-estimator-y-scheduler-de-instancias.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        38,
+        56,
+        57,
+        149,
+        150,
+        151,
+        152,
+        153
+      ],
+      "report": "docs/reports/P035_memory-estimator-y-scheduler-de-instancias"
+    },
+    {
+      "code": "P036",
+      "phase": "03_runtime_core",
+      "title": "InferenceEndpoint y registro de protocolos",
+      "dependencies": [
+        "P033"
+      ],
+      "file": "prompts/03_runtime_core/P036_inferenceendpoint-y-registro-de-protocolos.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        54,
+        58,
+        60
+      ],
+      "report": "docs/reports/P036_inferenceendpoint-y-registro-de-protocolos"
+    },
+    {
+      "code": "P037",
+      "phase": "03_runtime_core",
+      "title": "Onboarding genérico de runtimes desde GUI/API",
+      "dependencies": [
+        "P023",
+        "P030",
+        "P031",
+        "P036"
+      ],
+      "file": "prompts/03_runtime_core/P037_onboarding-generico-de-runtimes-desde-gui-api.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        13,
+        52,
+        53
+      ],
+      "report": "docs/reports/P037_onboarding-generico-de-runtimes-desde-gui-api"
+    },
+    {
+      "code": "P042",
+      "phase": "04_models_sources",
+      "title": "Lifecycle de modelos y availability derivada",
+      "dependencies": [
+        "P040",
+        "P041",
+        "P016"
+      ],
+      "file": "prompts/04_models_sources/P042_lifecycle-de-modelos-y-availability-derivada.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        29,
+        116,
+        119,
+        120,
+        135,
+        161
+      ],
+      "report": "docs/reports/P042_lifecycle-de-modelos-y-availability-derivada"
+    },
+    {
+      "code": "P044",
+      "phase": "04_models_sources",
+      "title": "Búsqueda federada, normalización y ranking técnico inicial",
+      "dependencies": [
+        "P043",
+        "P041"
+      ],
+      "file": "prompts/04_models_sources/P044_busqueda-federada-normalizacion-y-ranking-tecnico-inicial.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_0_P044_P052.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        108,
+        126
+      ],
+      "report": "docs/reports/P044_busqueda-federada-normalizacion-y-ranking-tecnico-inicial"
+    },
+    {
+      "code": "P045",
+      "phase": "04_models_sources",
+      "title": "Autenticación de fuentes y CredentialReference",
+      "dependencies": [
+        "P003",
+        "P043",
+        "P009"
+      ],
+      "file": "prompts/04_models_sources/P045_autenticacion-de-fuentes-y-credentialreference.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        16,
+        91,
+        96
+      ],
+      "report": "docs/reports/P045_autenticacion-de-fuentes-y-credentialreference"
+    },
+    {
+      "code": "P046",
+      "phase": "04_models_sources",
+      "title": "Hugging Face Source Adapter",
+      "dependencies": [
+        "P025",
+        "P043",
+        "P045"
+      ],
+      "file": "prompts/04_models_sources/P046_hugging-face-source-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        14,
+        32,
+        96,
+        144,
+        164
+      ],
+      "report": "docs/reports/P046_hugging-face-source-adapter"
+    },
+    {
+      "code": "P047",
+      "phase": "04_models_sources",
+      "title": "ModelScope Source Adapter",
+      "dependencies": [
+        "P025",
+        "P043",
+        "P045"
+      ],
+      "file": "prompts/04_models_sources/P047_modelscope-source-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        14,
+        32,
+        144,
+        164
+      ],
+      "report": "docs/reports/P047_modelscope-source-adapter"
+    },
+    {
+      "code": "P048",
+      "phase": "04_models_sources",
+      "title": "GitHub Releases, URL directa, local y UNC Source Adapters",
+      "dependencies": [
+        "P043",
+        "P045",
+        "P017"
+      ],
+      "file": "prompts/04_models_sources/P048_github-releases-url-directa-local-y-unc-source-adapters.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        14,
+        16,
+        32,
+        144
+      ],
+      "report": "docs/reports/P048_github-releases-url-directa-local-y-unc-source-adapters"
+    },
+    {
+      "code": "P049",
+      "phase": "04_models_sources",
+      "title": "Fuentes adicionales: Kaggle, Ollama Library, OpenXLab, NGC y Civitai",
+      "dependencies": [
+        "P043",
+        "P045",
+        "P025"
+      ],
+      "file": "prompts/04_models_sources/P049_fuentes-adicionales-kaggle-ollama-library-openxlab-ngc-y-civitai.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        14,
+        16,
+        144
+      ],
+      "report": "docs/reports/P049_fuentes-adicionales-kaggle-ollama-library-openxlab-ngc-y-civitai"
+    },
+    {
+      "code": "P050",
+      "phase": "04_models_sources",
+      "title": "Source Watcher, sincronización incremental y notificaciones",
+      "dependencies": [
+        "P044",
+        "P046",
+        "P047",
+        "P029"
+      ],
+      "file": "prompts/04_models_sources/P050_source-watcher-sincronizacion-incremental-y-notificaciones.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        78,
+        79
+      ],
+      "report": "docs/reports/P050_source-watcher-sincronizacion-incremental-y-notificaciones"
+    },
+    {
+      "code": "P051",
+      "phase": "04_models_sources",
+      "title": "Download Manager: cola, pausa, reanudación y checksum",
+      "dependencies": [
+        "P015",
+        "P043",
+        "P019",
+        "P029"
+      ],
+      "file": "prompts/04_models_sources/P051_download-manager-cola-pausa-reanudacion-y-checksum.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_0_P044_P052.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        44,
+        45,
+        95,
+        104,
+        137,
+        145
+      ],
+      "report": "docs/reports/P051_download-manager-cola-pausa-reanudacion-y-checksum"
+    },
+    {
+      "code": "P052",
+      "phase": "04_models_sources",
+      "title": "Planificador de tamaño y descarga multi-fuente",
+      "dependencies": [
+        "P015",
+        "P043",
+        "P051",
+        "P041"
+      ],
+      "file": "prompts/04_models_sources/P052_planificador-de-tamano-y-descarga-multi-fuente.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_0_P044_P052.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        30,
+        32,
+        44,
+        45,
+        139
+      ],
+      "report": "docs/reports/P052_planificador-de-tamano-y-descarga-multi-fuente"
+    },
+    {
+      "code": "P099",
+      "title": "Perfiles externos por versión y fixtures de APIs reales",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P099_perfiles-externos-por-version-y-fixtures-de-apis-reales.md",
+      "dependencies": [
+        "P020",
+        "P043",
+        "P036",
+        "P000"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "09_EXTERNAL_PROFILES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        52,
+        53,
+        56,
+        164
+      ],
+      "report": "docs/reports/P099_perfiles-externos-por-version-y-fixtures-de-apis-reales"
+    },
+    {
+      "code": "P060",
+      "phase": "05_runtime_adapters",
+      "title": "llama.cpp: descubrimiento, instalación y versiones",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P032",
+        "P011",
+        "P099"
+      ],
+      "file": "prompts/05_runtime_adapters/P060_llama-cpp-descubrimiento-instalacion-y-versiones.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        11,
+        143,
+        164
+      ],
+      "report": "docs/reports/P060_llama-cpp-descubrimiento-instalacion-y-versiones"
+    },
+    {
+      "code": "P103",
+      "phase": "07_broker_protocol",
+      "title": "Protocol Sidecar framework",
+      "dependencies": [
+        "P036",
+        "P021",
+        "P026"
+      ],
+      "file": "prompts/07_broker_protocol/P103_protocol-sidecar-framework.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        58,
+        59,
+        60,
+        129,
+        158
+      ],
+      "report": "docs/reports/P103_protocol-sidecar-framework"
+    },
+    {
+      "code": "P090",
+      "phase": "06_compat_transform",
+      "title": "Compatibility Engine: hard gates",
+      "dependencies": [
+        "P013",
+        "P035",
+        "P041",
+        "P030",
+        "P019"
+      ],
+      "file": "prompts/06_compat_transform/P090_compatibility-engine-hard-gates.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "04_RUNTIME_LEASES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        24,
+        25
+      ],
+      "report": "docs/reports/P090_compatibility-engine-hard-gates"
+    },
+    {
+      "code": "P061",
+      "phase": "05_runtime_adapters",
+      "title": "llama.cpp: compatibilidad, serving, smoke tests y llama-bench",
+      "dependencies": [
+        "P060",
+        "P034",
+        "P036",
+        "P042",
+        "P103",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P061_llama-cpp-compatibilidad-serving-smoke-tests-y-llama-bench.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        21,
+        143
+      ],
+      "report": "docs/reports/P061_llama-cpp-compatibilidad-serving-smoke-tests-y-llama-bench"
+    },
+    {
+      "code": "P071",
+      "phase": "05_runtime_adapters",
+      "title": "Python Environment Manager y PyTorch/Transformers",
+      "dependencies": [
+        "P031",
+        "P022",
+        "P040"
+      ],
+      "file": "prompts/05_runtime_adapters/P071_python-environment-manager-y-pytorch-transformers.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        52,
+        53,
+        93,
+        94,
+        143
+      ],
+      "report": "docs/reports/P071_python-environment-manager-y-pytorch-transformers"
+    },
+    {
+      "code": "P062",
+      "phase": "05_runtime_adapters",
+      "title": "ONNX Runtime base y Execution Providers",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P011",
+        "P071",
+        "P099"
+      ],
+      "file": "prompts/05_runtime_adapters/P062_onnx-runtime-base-y-execution-providers.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        7,
+        8,
+        9,
+        143,
+        164
+      ],
+      "report": "docs/reports/P062_onnx-runtime-base-y-execution-providers"
+    },
+    {
+      "code": "P063",
+      "phase": "05_runtime_adapters",
+      "title": "ONNX Runtime GenAI: LLM/VLM serving",
+      "dependencies": [
+        "P062",
+        "P036",
+        "P034",
+        "P103",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P063_onnx-runtime-genai-llm-vlm-serving.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        9,
+        59,
+        143,
+        164
+      ],
+      "report": "docs/reports/P063_onnx-runtime-genai-llm-vlm-serving"
+    },
+    {
+      "code": "P064",
+      "phase": "05_runtime_adapters",
+      "title": "Windows ML y proveedores AMD/otros",
+      "dependencies": [
+        "P062",
+        "P011",
+        "P099"
+      ],
+      "file": "prompts/05_runtime_adapters/P064_windows-ml-y-proveedores-amd-otros.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        7,
+        8,
+        9,
+        143,
+        164
+      ],
+      "report": "docs/reports/P064_windows-ml-y-proveedores-amd-otros"
+    },
+    {
+      "code": "P093",
+      "phase": "06_compat_transform",
+      "title": "Transformation Pipeline framework",
+      "dependencies": [
+        "P016",
+        "P040",
+        "P051"
+      ],
+      "file": "prompts/06_compat_transform/P093_transformation-pipeline-framework.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "04_RUNTIME_LEASES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_13_0_P093.md"
+      ],
+      "spec_sections": [
+        33,
+        34,
+        46,
+        104,
+        129
+      ],
+      "report": "docs/reports/P093_transformation-pipeline-framework"
+    },
+    {
+      "code": "P065",
+      "phase": "05_runtime_adapters",
+      "title": "Microsoft Olive: transformación y optimización ONNX",
+      "dependencies": [
+        "P062",
+        "P071",
+        "P093"
+      ],
+      "file": "prompts/05_runtime_adapters/P065_microsoft-olive-transformacion-y-optimizacion-onnx.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        52,
+        53,
+        158
+      ],
+      "report": "docs/reports/P065_microsoft-olive-transformacion-y-optimizacion-onnx"
+    },
+    {
+      "code": "P066",
+      "phase": "05_runtime_adapters",
+      "title": "stable-diffusion.cpp adapter",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P034",
+        "P036",
+        "P103",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P066_stable-diffusion-cpp-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        9,
+        59,
+        143,
+        164
+      ],
+      "report": "docs/reports/P066_stable-diffusion-cpp-adapter"
+    },
+    {
+      "code": "P067",
+      "phase": "05_runtime_adapters",
+      "title": "whisper.cpp adapter",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P034",
+        "P036",
+        "P103",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P067_whisper-cpp-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        59,
+        143,
+        164
+      ],
+      "report": "docs/reports/P067_whisper-cpp-adapter"
+    },
+    {
+      "code": "P068",
+      "phase": "05_runtime_adapters",
+      "title": "Lemonade: detección y adopción no destructiva",
+      "dependencies": [
+        "P025",
+        "P030",
+        "P045",
+        "P099"
+      ],
+      "file": "prompts/05_runtime_adapters/P068_lemonade-deteccion-y-adopcion-no-destructiva.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        7,
+        8,
+        14,
+        41,
+        68,
+        69,
+        118,
+        143,
+        146,
+        164
+      ],
+      "report": "docs/reports/P068_lemonade-deteccion-y-adopcion-no-destructiva"
+    },
+    {
+      "code": "P069",
+      "phase": "05_runtime_adapters",
+      "title": "Lemonade: certificación modelo por modelo para AI Broker",
+      "dependencies": [
+        "P068",
+        "P036",
+        "P042",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P069_lemonade-certificacion-modelo-por-modelo-para-ai-broker.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        68,
+        70,
+        71,
+        143,
+        146
+      ],
+      "report": "docs/reports/P069_lemonade-certificacion-modelo-por-modelo-para-ai-broker"
+    },
+    {
+      "code": "P070",
+      "phase": "05_runtime_adapters",
+      "title": "Ollama runtime/host adapter",
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P070_ollama-runtime-host-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        41,
+        143
+      ],
+      "report": "docs/reports/P070_ollama-runtime-host-adapter"
+    },
+    {
+      "code": "P072",
+      "phase": "05_runtime_adapters",
+      "title": "Diffusers/PyTorch runtime",
+      "dependencies": [
+        "P071",
+        "P036",
+        "P103",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P072_diffusers-pytorch-runtime.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        21,
+        59,
+        143
+      ],
+      "report": "docs/reports/P072_diffusers-pytorch-runtime"
+    },
+    {
+      "code": "P073",
+      "phase": "05_runtime_adapters",
+      "title": "MLC LLM adapter",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P093",
+        "P103",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P073_mlc-llm-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        9,
+        143,
+        158,
+        164
+      ],
+      "report": "docs/reports/P073_mlc-llm-adapter"
+    },
+    {
+      "code": "P074",
+      "phase": "05_runtime_adapters",
+      "title": "sherpa-onnx adapter",
+      "dependencies": [
+        "P062",
+        "P036",
+        "P103",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P074_sherpa-onnx-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        21,
+        143
+      ],
+      "report": "docs/reports/P074_sherpa-onnx-adapter"
+    },
+    {
+      "code": "P075",
+      "phase": "05_runtime_adapters",
+      "title": "OpenVINO Runtime adapter",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P103",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P075_openvino-runtime-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        9,
+        143
+      ],
+      "report": "docs/reports/P075_openvino-runtime-adapter"
+    },
+    {
+      "code": "P076",
+      "phase": "05_runtime_adapters",
+      "title": "Foundry Local adapter",
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P076_foundry-local-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        9,
+        14,
+        41,
+        143,
+        164
+      ],
+      "report": "docs/reports/P076_foundry-local-adapter"
+    },
+    {
+      "code": "P077",
+      "phase": "05_runtime_adapters",
+      "title": "CTranslate2 adapter",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P093",
+        "P103",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P077_ctranslate2-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        143
+      ],
+      "report": "docs/reports/P077_ctranslate2-adapter"
+    },
+    {
+      "code": "P078",
+      "phase": "05_runtime_adapters",
+      "title": "ComfyUI host adapter",
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P022",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P078_comfyui-host-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        93,
+        143
+      ],
+      "report": "docs/reports/P078_comfyui-host-adapter"
+    },
+    {
+      "code": "P079",
+      "phase": "05_runtime_adapters",
+      "title": "LM Studio host adapter",
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P079_lm-studio-host-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        118,
+        143
+      ],
+      "report": "docs/reports/P079_lm-studio-host-adapter"
+    },
+    {
+      "code": "P080",
+      "phase": "05_runtime_adapters",
+      "title": "KoboldCpp adapter",
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P099",
+        "P090"
+      ],
+      "file": "prompts/05_runtime_adapters/P080_koboldcpp-adapter.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        143
+      ],
+      "report": "docs/reports/P080_koboldcpp-adapter"
+    },
+    {
+      "code": "P081",
+      "phase": "05_runtime_adapters",
+      "title": "WSL2 y Container execution host abstraction",
+      "dependencies": [
+        "P030",
+        "P022",
+        "P031"
+      ],
+      "file": "prompts/05_runtime_adapters/P081_wsl2-y-container-execution-host-abstraction.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "04_RUNTIME_LEASES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        5,
+        52
+      ],
+      "report": "docs/reports/P081_wsl2-y-container-execution-host-abstraction"
+    },
+    {
+      "code": "P082",
+      "title": "Adaptador oficial NCNN y serving por worker",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P082_adaptador-oficial-ncnn-y-serving-por-worker.md",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P103",
+        "P099"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "09_EXTERNAL_PROFILES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        10,
+        20,
+        158
+      ],
+      "report": "docs/reports/P082_adaptador-oficial-ncnn-y-serving-por-worker"
+    },
+    {
+      "code": "P083",
+      "title": "Adaptador oficial MNN y bundles de inferencia",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P083_adaptador-oficial-mnn-y-bundles-de-inferencia.md",
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P103",
+        "P099"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "09_EXTERNAL_PROFILES.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        8,
+        10,
+        20,
+        158
+      ],
+      "report": "docs/reports/P083_adaptador-oficial-mnn-y-bundles-de-inferencia"
+    },
+    {
+      "code": "P091",
+      "phase": "06_compat_transform",
+      "title": "Estimación de recursos y TechnicalFitScore",
+      "dependencies": [
+        "P090",
+        "P015",
+        "P035"
+      ],
+      "file": "prompts/06_compat_transform/P091_estimacion-de-recursos-y-technicalfitscore.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "04_RUNTIME_LEASES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        25,
+        26,
+        97,
+        115,
+        125,
+        126
+      ],
+      "report": "docs/reports/P091_estimacion-de-recursos-y-technicalfitscore"
+    },
+    {
+      "code": "P092",
+      "phase": "06_compat_transform",
+      "title": "Recomendación de variante y runtime para el PC",
+      "dependencies": [
+        "P044",
+        "P091"
+      ],
+      "file": "prompts/06_compat_transform/P092_recomendacion-de-variante-y-runtime-para-el-pc.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "04_RUNTIME_LEASES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        97,
+        125,
+        126,
+        139
+      ],
+      "report": "docs/reports/P092_recomendacion-de-variante-y-runtime-para-el-pc"
+    },
+    {
+      "code": "P094",
+      "phase": "06_compat_transform",
+      "title": "Pipeline GGUF: conversión y cuantización",
+      "dependencies": [
+        "P060",
+        "P093"
+      ],
+      "file": "prompts/06_compat_transform/P094_pipeline-gguf-conversion-y-cuantizacion.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "04_RUNTIME_LEASES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        34,
+        46
+      ],
+      "report": "docs/reports/P094_pipeline-gguf-conversion-y-cuantizacion"
+    },
+    {
+      "code": "P095",
+      "phase": "06_compat_transform",
+      "title": "Pipeline ONNX y Olive: exportación y cuantización",
+      "dependencies": [
+        "P062",
+        "P065",
+        "P093"
+      ],
+      "file": "prompts/06_compat_transform/P095_pipeline-onnx-y-olive-exportacion-y-cuantizacion.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "04_RUNTIME_LEASES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        46
+      ],
+      "report": "docs/reports/P095_pipeline-onnx-y-olive-exportacion-y-cuantizacion"
+    },
+    {
+      "code": "P096",
+      "phase": "06_compat_transform",
+      "title": "Provenance de conversiones y lineage graph",
+      "dependencies": [
+        "P093",
+        "P094",
+        "P095"
+      ],
+      "file": "prompts/06_compat_transform/P096_provenance-de-conversiones-y-lineage-graph.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "04_RUNTIME_LEASES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        19,
+        47
+      ],
+      "report": "docs/reports/P096_provenance-de-conversiones-y-lineage-graph"
+    },
+    {
+      "code": "P110",
+      "phase": "08_benchmark_evaluation",
+      "title": "Benchmark Engine framework",
+      "dependencies": [
+        "P013",
+        "P034",
+        "P096"
+      ],
+      "file": "prompts/08_benchmark_evaluation/P110_benchmark-engine-framework.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        72,
+        73,
+        74,
+        76,
+        81,
+        100,
+        129,
+        138,
+        148,
+        152
+      ],
+      "report": "docs/reports/P110_benchmark-engine-framework"
+    },
+    {
+      "code": "P100",
+      "phase": "07_broker_protocol",
+      "title": "Runtime Lease service",
+      "dependencies": [
+        "P033",
+        "P035",
+        "P036",
+        "P042",
+        "P019",
+        "P090"
+      ],
+      "file": "prompts/07_broker_protocol/P100_runtime-lease-service.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        38,
+        56,
+        63,
+        64,
+        81,
+        87,
+        147,
+        150,
+        158
+      ],
+      "report": "docs/reports/P100_runtime-lease-service"
+    },
+    {
+      "code": "P101",
+      "phase": "07_broker_protocol",
+      "title": "Contrato LARM con AI Broker y LocalRuntimeResolver",
+      "dependencies": [
+        "P100",
+        "P009",
+        "P069"
+      ],
+      "file": "prompts/07_broker_protocol/P101_contrato-larm-con-ai-broker-y-localruntimeresolver.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        3,
+        4,
+        62,
+        63,
+        89,
+        91,
+        121,
+        124,
+        147,
+        161
+      ],
+      "report": "docs/reports/P101_contrato-larm-con-ai-broker-y-localruntimeresolver"
+    },
+    {
+      "code": "P113",
+      "phase": "08_benchmark_evaluation",
+      "title": "Event Bus, notificaciones y auditoría",
+      "dependencies": [
+        "P005",
+        "P050",
+        "P110",
+        "P029"
+      ],
+      "file": "prompts/08_benchmark_evaluation/P113_event-bus-notificaciones-y-auditoria.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        77,
+        80,
+        81,
+        88,
+        98,
+        104,
+        136
+      ],
+      "report": "docs/reports/P113_event-bus-notificaciones-y-auditoria"
+    },
+    {
+      "code": "P107",
+      "title": "Cambio compañero en AI Broker: LocalRuntimeResolver real",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P107_cambio-companero-en-ai-broker-localruntimeresolver-real.md",
+      "dependencies": [
+        "P101",
+        "P099"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "06_ECOSYSTEM.md",
+        "07_API_EVENTS_MCP.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        62,
+        63,
+        64,
+        147
+      ],
+      "report": "docs/reports/P107_cambio-companero-en-ai-broker-localruntimeresolver-real"
+    },
+    {
+      "code": "P118",
+      "title": "Cambios compañeros en Agora, Lab y Model Drift",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P118_cambios-companeros-en-agora-lab-y-model-drift.md",
+      "dependencies": [
+        "P107",
+        "P110",
+        "P113"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "06_ECOSYSTEM.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        75,
+        77,
+        121,
+        122,
+        123
+      ],
+      "report": "docs/reports/P118_cambios-companeros-en-agora-lab-y-model-drift"
+    },
+    {
+      "code": "P114",
+      "phase": "08_benchmark_evaluation",
+      "title": "Agora Bridge entre PC IA y PC principal",
+      "dependencies": [
+        "P113",
+        "P110",
+        "P118"
+      ],
+      "file": "prompts/08_benchmark_evaluation/P114_agora-bridge-entre-pc-ia-y-pc-principal.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        3,
+        4,
+        75,
+        77,
+        123
+      ],
+      "report": "docs/reports/P114_agora-bridge-entre-pc-ia-y-pc-principal"
+    },
+    {
+      "code": "P115",
+      "phase": "08_benchmark_evaluation",
+      "title": "Contrato con Local-AI-Lab",
+      "dependencies": [
+        "P101",
+        "P114"
+      ],
+      "file": "prompts/08_benchmark_evaluation/P115_contrato-con-local-ai-lab.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        4,
+        74,
+        75,
+        121
+      ],
+      "report": "docs/reports/P115_contrato-con-local-ai-lab"
+    },
+    {
+      "code": "P116",
+      "phase": "08_benchmark_evaluation",
+      "title": "Contrato con Model Drift y certificaciones",
+      "dependencies": [
+        "P115"
+      ],
+      "file": "prompts/08_benchmark_evaluation/P116_contrato-con-model-drift-y-certificaciones.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        3,
+        67,
+        74,
+        75,
+        76,
+        81,
+        120,
+        122
+      ],
+      "report": "docs/reports/P116_contrato-con-model-drift-y-certificaciones"
+    },
+    {
+      "code": "P111",
+      "phase": "08_benchmark_evaluation",
+      "title": "Benchmarks de texto y LLM",
+      "dependencies": [
+        "P110",
+        "P061",
+        "P063"
+      ],
+      "file": "prompts/08_benchmark_evaluation/P111_benchmarks-de-texto-y-llm.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        72,
+        138
+      ],
+      "report": "docs/reports/P111_benchmarks-de-texto-y-llm"
+    },
+    {
+      "code": "P112",
+      "phase": "08_benchmark_evaluation",
+      "title": "Benchmarks de imagen, vídeo, ASR y TTS",
+      "dependencies": [
+        "P110",
+        "P066",
+        "P067",
+        "P074"
+      ],
+      "file": "prompts/08_benchmark_evaluation/P112_benchmarks-de-imagen-video-asr-y-tts.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        72,
+        138
+      ],
+      "report": "docs/reports/P112_benchmarks-de-imagen-video-asr-y-tts"
+    },
+    {
+      "code": "P142",
+      "title": "Cobertura normativa y manifiesto de evidencia por requisito",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P142_cobertura-normativa-y-manifiesto-de-evidencia-por-requisito.md",
+      "dependencies": [
+        "P007"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        142,
+        157,
+        159,
+        160,
+        166
+      ],
+      "report": "docs/reports/P142_cobertura-normativa-y-manifiesto-de-evidencia-por-requisito"
+    },
+    {
+      "code": "P117",
+      "phase": "08_benchmark_evaluation",
+      "title": "Detección de regresiones y promoción segura",
+      "dependencies": [
+        "P032",
+        "P110",
+        "P116",
+        "P111",
+        "P112",
+        "P142"
+      ],
+      "file": "prompts/08_benchmark_evaluation/P117_deteccion-de-regresiones-y-promocion-segura.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        50,
+        56,
+        119,
+        120,
+        148
+      ],
+      "report": "docs/reports/P117_deteccion-de-regresiones-y-promocion-segura"
+    },
+    {
+      "code": "P097",
+      "title": "Actualización de modelos y revisiones coexistentes",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P097_actualizacion-de-modelos-y-revisiones-coexistentes.md",
+      "dependencies": [
+        "P050",
+        "P051",
+        "P042",
+        "P117"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        34,
+        51,
+        119,
+        120
+      ],
+      "report": "docs/reports/P097_actualizacion-de-modelos-y-revisiones-coexistentes"
+    },
+    {
+      "code": "P098",
+      "title": "Importadores de todos los bundles y recuperación sin base de datos",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P098_importadores-de-todos-los-bundles-y-recuperacion-sin-base-de-datos.md",
+      "dependencies": [
+        "P017",
+        "P041"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_2_0_P098.md"
+      ],
+      "spec_sections": [
+        21,
+        36,
+        41,
+        42,
+        43,
+        133,
+        134
+      ],
+      "report": "docs/reports/P098_importadores-de-todos-los-bundles-y-recuperacion-sin-base-de-datos"
+    },
+    {
+      "code": "P102",
+      "phase": "07_broker_protocol",
+      "title": "Capability contracts multimodales para AI Broker",
+      "dependencies": [
+        "P101",
+        "P074",
+        "P066",
+        "P067",
+        "P071",
+        "P072",
+        "P073",
+        "P075",
+        "P077",
+        "P078",
+        "P082",
+        "P083"
+      ],
+      "file": "prompts/07_broker_protocol/P102_capability-contracts-multimodales-para-ai-broker.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        1,
+        20,
+        65,
+        163
+      ],
+      "report": "docs/reports/P102_capability-contracts-multimodales-para-ai-broker"
+    },
+    {
+      "code": "P104",
+      "phase": "07_broker_protocol",
+      "title": "MCP Administration Server",
+      "dependencies": [
+        "P005",
+        "P022",
+        "P051",
+        "P032",
+        "P100",
+        "P029"
+      ],
+      "file": "prompts/07_broker_protocol/P104_mcp-administration-server.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        61,
+        92,
+        124
+      ],
+      "report": "docs/reports/P104_mcp-administration-server"
+    },
+    {
+      "code": "P105",
+      "phase": "07_broker_protocol",
+      "title": "MCP opcional de acceso a modelos",
+      "dependencies": [
+        "P103",
+        "P102"
+      ],
+      "file": "prompts/07_broker_protocol/P105_mcp-opcional-de-acceso-a-modelos.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "04_RUNTIME_LEASES.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        61,
+        62
+      ],
+      "report": "docs/reports/P105_mcp-opcional-de-acceso-a-modelos"
+    },
+    {
+      "code": "P106",
+      "phase": "07_broker_protocol",
+      "title": "Laya y modelos System-1 dentro de LARM",
+      "dependencies": [
+        "P042",
+        "P092",
+        "P100",
+        "P103"
+      ],
+      "file": "prompts/07_broker_protocol/P106_laya-y-modelos-system-1-dentro-de-larm.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        66,
+        67,
+        120
+      ],
+      "report": "docs/reports/P106_laya-y-modelos-system-1-dentro-de-larm"
+    },
+    {
+      "code": "P108",
+      "title": "Cambio compañero en AI Broker: contratos multimodales",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P108_cambio-companero-en-ai-broker-contratos-multimodales.md",
+      "dependencies": [
+        "P107",
+        "P102",
+        "P103",
+        "P106"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "06_ECOSYSTEM.md",
+        "10_MULTIMODAL_PROTOCOL.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        20,
+        65,
+        66,
+        124
+      ],
+      "report": "docs/reports/P108_cambio-companero-en-ai-broker-contratos-multimodales"
+    },
+    {
+      "code": "P119",
+      "title": "Admisión autorizada de descargas automáticas",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P119_admision-autorizada-de-descargas-automaticas.md",
+      "dependencies": [
+        "P050",
+        "P052",
+        "P009"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        44,
+        78,
+        80,
+        113,
+        114,
+        139
+      ],
+      "report": "docs/reports/P119_admision-autorizada-de-descargas-automaticas"
+    },
+    {
+      "code": "P120",
+      "phase": "09_gui",
+      "title": "Dashboard real de Inicio",
+      "dependencies": [
+        "P006",
+        "P113",
+        "P014",
+        "P033"
+      ],
+      "file": "prompts/09_gui/P120_dashboard-real-de-inicio.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        106,
+        107
+      ],
+      "report": "docs/reports/P120_dashboard-real-de-inicio"
+    },
+    {
+      "code": "P121",
+      "phase": "09_gui",
+      "title": "Descubrir: búsqueda federada y filtros",
+      "dependencies": [
+        "P044",
+        "P092",
+        "P120"
+      ],
+      "file": "prompts/09_gui/P121_descubrir-busqueda-federada-y-filtros.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        106,
+        108,
+        109,
+        162
+      ],
+      "report": "docs/reports/P121_descubrir-busqueda-federada-y-filtros"
+    },
+    {
+      "code": "P122",
+      "phase": "09_gui",
+      "title": "Detalle de modelo, variantes y preflight de descarga",
+      "dependencies": [
+        "P052",
+        "P092",
+        "P121"
+      ],
+      "file": "prompts/09_gui/P122_detalle-de-modelo-variantes-y-preflight-de-descarga.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_12_0_P044_P052.md",
+        "REVISION_3_12_1_SOURCE_ACQUISITION.md"
+      ],
+      "spec_sections": [
+        30,
+        45,
+        96,
+        106,
+        109,
+        110,
+        111,
+        162
+      ],
+      "report": "docs/reports/P122_detalle-de-modelo-variantes-y-preflight-de-descarga"
+    },
+    {
+      "code": "P123",
+      "phase": "09_gui",
+      "title": "Mis modelos y gestión multidisco",
+      "dependencies": [
+        "P016",
+        "P018",
+        "P042",
+        "P098"
+      ],
+      "file": "prompts/09_gui/P123_mis-modelos-y-gestion-multidisco.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_2_0_P098.md"
+      ],
+      "spec_sections": [
+        27,
+        43,
+        106,
+        112
+      ],
+      "report": "docs/reports/P123_mis-modelos-y-gestion-multidisco"
+    },
+    {
+      "code": "P124",
+      "phase": "09_gui",
+      "title": "Runtimes, versiones, backends e instancias",
+      "dependencies": [
+        "P032",
+        "P033",
+        "P037"
+      ],
+      "file": "prompts/09_gui/P124_runtimes-versiones-backends-e-instancias.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        13,
+        49,
+        56,
+        99,
+        106,
+        155
+      ],
+      "report": "docs/reports/P124_runtimes-versiones-backends-e-instancias"
+    },
+    {
+      "code": "P125",
+      "phase": "09_gui",
+      "title": "Descargas y transformaciones",
+      "dependencies": [
+        "P051",
+        "P093"
+      ],
+      "file": "prompts/09_gui/P125_descargas-y-transformaciones.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        44,
+        99,
+        104,
+        106
+      ],
+      "report": "docs/reports/P125_descargas-y-transformaciones"
+    },
+    {
+      "code": "P126",
+      "phase": "09_gui",
+      "title": "Benchmarks, evaluaciones y comparaciones",
+      "dependencies": [
+        "P110",
+        "P116",
+        "P117"
+      ],
+      "file": "prompts/09_gui/P126_benchmarks-evaluaciones-y-comparaciones.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        106,
+        110
+      ],
+      "report": "docs/reports/P126_benchmarks-evaluaciones-y-comparaciones"
+    },
+    {
+      "code": "P141",
+      "title": "Autenticación privada OAuth, SSH, cookies y Git LFS",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P141_autenticacion-privada-oauth-ssh-cookies-y-git-lfs.md",
+      "dependencies": [
+        "P045",
+        "P046",
+        "P047",
+        "P048",
+        "P049"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "03_ADAPTERS_SECURITY.md",
+        "08_UI_RELEASE.md",
+        "09_EXTERNAL_PROFILES.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        14,
+        15,
+        16,
+        91,
+        96
+      ],
+      "report": "docs/reports/P141_autenticacion-privada-oauth-ssh-cookies-y-git-lfs"
+    },
+    {
+      "code": "P127",
+      "phase": "09_gui",
+      "title": "Fuentes, cuentas y adaptadores",
+      "dependencies": [
+        "P024",
+        "P045",
+        "P049",
+        "P141",
+        "P028"
+      ],
+      "file": "prompts/09_gui/P127_fuentes-cuentas-y-adaptadores.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        106,
+        141
+      ],
+      "report": "docs/reports/P127_fuentes-cuentas-y-adaptadores"
+    },
+    {
+      "code": "P128",
+      "phase": "09_gui",
+      "title": "Notificaciones, watchers y actualizaciones",
+      "dependencies": [
+        "P050",
+        "P113",
+        "P032",
+        "P097",
+        "P119"
+      ],
+      "file": "prompts/09_gui/P128_notificaciones-watchers-y-actualizaciones.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        78,
+        80,
+        106,
+        119,
+        136
+      ],
+      "report": "docs/reports/P128_notificaciones-watchers-y-actualizaciones"
+    },
+    {
+      "code": "P139",
+      "title": "Pantalla Hardware y asistente completo de almacenamiento",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P139_pantalla-hardware-y-asistente-completo-de-almacenamiento.md",
+      "dependencies": [
+        "P120",
+        "P011",
+        "P014",
+        "P015",
+        "P018"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "08_UI_RELEASE.md",
+        "02_STORAGE_DOWNLOAD.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        22,
+        27,
+        30,
+        106,
+        112,
+        113,
+        114,
+        115
+      ],
+      "report": "docs/reports/P139_pantalla-hardware-y-asistente-completo-de-almacenamiento"
+    },
+    {
+      "code": "P140",
+      "title": "Configuración completa y asistentes de runtime y fuente",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P140_configuracion-completa-y-asistentes-de-runtime-y-fuente.md",
+      "dependencies": [
+        "P127",
+        "P037",
+        "P139",
+        "P028",
+        "P027",
+        "P119"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "08_UI_RELEASE.md",
+        "03_ADAPTERS_SECURITY.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        13,
+        16,
+        44,
+        52,
+        53,
+        90,
+        101,
+        106,
+        136,
+        141,
+        155
+      ],
+      "report": "docs/reports/P140_configuracion-completa-y-asistentes-de-runtime-y-fuente"
+    },
+    {
+      "code": "P129",
+      "phase": "09_gui",
+      "title": "UX, accesibilidad y estados de error finales",
+      "dependencies": [
+        "P120",
+        "P128",
+        "P139",
+        "P140"
+      ],
+      "file": "prompts/09_gui/P129_ux-accesibilidad-y-estados-de-error-finales.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        106
+      ],
+      "report": "docs/reports/P129_ux-accesibilidad-y-estados-de-error-finales"
+    },
+    {
+      "code": "P130",
+      "phase": "10_hardening_release",
+      "title": "Sandboxing, remote code y custom components",
+      "dependencies": [
+        "P022",
+        "P071",
+        "P078",
+        "P026",
+        "P028"
+      ],
+      "file": "prompts/10_hardening_release/P130_sandboxing-remote-code-y-custom-components.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        93,
+        94
+      ],
+      "report": "docs/reports/P130_sandboxing-remote-code-y-custom-components"
+    },
+    {
+      "code": "P131",
+      "phase": "10_hardening_release",
+      "title": "Secretos, auth local y permisos API",
+      "dependencies": [
+        "P045",
+        "P005",
+        "P104",
+        "P009"
+      ],
+      "file": "prompts/10_hardening_release/P131_secretos-auth-local-y-permisos-api.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        90,
+        91,
+        92
+      ],
+      "report": "docs/reports/P131_secretos-auth-local-y-permisos-api"
+    },
+    {
+      "code": "P132",
+      "phase": "10_hardening_release",
+      "title": "Startup reconciliation, offline mode y crash recovery",
+      "dependencies": [
+        "P018",
+        "P033",
+        "P051",
+        "P093",
+        "P019",
+        "P029",
+        "P100"
+      ],
+      "file": "prompts/10_hardening_release/P132_startup-reconciliation-offline-mode-y-crash-recovery.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        103,
+        104,
+        140
+      ],
+      "report": "docs/reports/P132_startup-reconciliation-offline-mode-y-crash-recovery"
+    },
+    {
+      "code": "P133",
+      "phase": "10_hardening_release",
+      "title": "Updater de LARM, backup y rebuild",
+      "dependencies": [
+        "P004",
+        "P132",
+        "P098"
+      ],
+      "file": "prompts/10_hardening_release/P133_updater-de-larm-backup-y-rebuild.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        132,
+        133,
+        134
+      ],
+      "report": "docs/reports/P133_updater-de-larm-backup-y-rebuild"
+    },
+    {
+      "code": "P134",
+      "phase": "10_hardening_release",
+      "title": "Diagnostics bundle, privacidad y observabilidad final",
+      "dependencies": [
+        "P003",
+        "P113",
+        "P131"
+      ],
+      "file": "prompts/10_hardening_release/P134_diagnostics-bundle-privacidad-y-observabilidad-final.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        99,
+        100,
+        155,
+        156
+      ],
+      "report": "docs/reports/P134_diagnostics-bundle-privacidad-y-observabilidad-final"
+    },
+    {
+      "code": "P143",
+      "title": "Pruebas de aislamiento del SO y endpoints remotos",
+      "phase": "11_complementos",
+      "file": "prompts/11_complementos/P143_pruebas-de-aislamiento-del-so-y-endpoints-remotos.md",
+      "dependencies": [
+        "P130",
+        "P131",
+        "P028"
+      ],
+      "contracts": [
+        "00_PACKAGE.md",
+        "03_ADAPTERS_SECURITY.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        90,
+        91,
+        92,
+        93,
+        94,
+        156
+      ],
+      "report": "docs/reports/P143_pruebas-de-aislamiento-del-so-y-endpoints-remotos"
+    },
+    {
+      "code": "P137",
+      "phase": "10_hardening_release",
+      "title": "Packaging Windows, User Background Agent y Windows Service opcional",
+      "dependencies": [
+        "P132",
+        "P131",
+        "P133"
+      ],
+      "file": "prompts/10_hardening_release/P137_packaging-windows-user-background-agent-y-windows-service-opcional.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        101,
+        102,
+        128
+      ],
+      "report": "docs/reports/P137_packaging-windows-user-background-agent-y-windows-service-opcional"
+    },
+    {
+      "code": "P135",
+      "phase": "10_hardening_release",
+      "title": "Suite end-to-end del producto",
+      "dependencies": [
+        "P129",
+        "P132",
+        "P107",
+        "P108",
+        "P118",
+        "P143",
+        "P134",
+        "P137",
+        "P142",
+        "P082",
+        "P083",
+        "P097",
+        "P098",
+        "P119",
+        "P139",
+        "P140",
+        "P141",
+        "P027",
+        "P028",
+        "P026"
+      ],
+      "file": "prompts/10_hardening_release/P135_suite-end-to-end-del-producto.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        142,
+        145,
+        147,
+        160,
+        162
+      ],
+      "report": "docs/reports/P135_suite-end-to-end-del-producto"
+    },
+    {
+      "code": "P136",
+      "phase": "10_hardening_release",
+      "title": "Stress, concurrencia y rendimiento del daemon",
+      "dependencies": [
+        "P135"
+      ],
+      "file": "prompts/10_hardening_release/P136_stress-concurrencia-y-rendimiento-del-daemon.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        100,
+        149
+      ],
+      "report": "docs/reports/P136_stress-concurrencia-y-rendimiento-del-daemon"
+    },
+    {
+      "code": "P138",
+      "phase": "10_hardening_release",
+      "title": "Aceptación final, auditoría contra spec y release candidate",
+      "dependencies": [
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005",
+        "P006",
+        "P007",
+        "P008",
+        "P010",
+        "P011",
+        "P012",
+        "P013",
+        "P014",
+        "P015",
+        "P016",
+        "P017",
+        "P018",
+        "P020",
+        "P021",
+        "P022",
+        "P023",
+        "P024",
+        "P025",
+        "P030",
+        "P031",
+        "P032",
+        "P033",
+        "P034",
+        "P035",
+        "P036",
+        "P037",
+        "P040",
+        "P041",
+        "P042",
+        "P043",
+        "P044",
+        "P045",
+        "P046",
+        "P047",
+        "P048",
+        "P049",
+        "P050",
+        "P051",
+        "P052",
+        "P060",
+        "P061",
+        "P062",
+        "P063",
+        "P064",
+        "P065",
+        "P066",
+        "P067",
+        "P068",
+        "P069",
+        "P070",
+        "P071",
+        "P072",
+        "P073",
+        "P074",
+        "P075",
+        "P076",
+        "P077",
+        "P078",
+        "P079",
+        "P080",
+        "P081",
+        "P090",
+        "P091",
+        "P092",
+        "P093",
+        "P094",
+        "P095",
+        "P096",
+        "P100",
+        "P101",
+        "P102",
+        "P103",
+        "P104",
+        "P105",
+        "P106",
+        "P110",
+        "P111",
+        "P112",
+        "P113",
+        "P114",
+        "P115",
+        "P116",
+        "P117",
+        "P120",
+        "P121",
+        "P122",
+        "P123",
+        "P124",
+        "P125",
+        "P126",
+        "P127",
+        "P128",
+        "P129",
+        "P130",
+        "P131",
+        "P132",
+        "P133",
+        "P134",
+        "P135",
+        "P136",
+        "P137",
+        "P000",
+        "P009",
+        "P019",
+        "P026",
+        "P027",
+        "P028",
+        "P029",
+        "P082",
+        "P083",
+        "P097",
+        "P098",
+        "P099",
+        "P107",
+        "P108",
+        "P118",
+        "P119",
+        "P139",
+        "P140",
+        "P141",
+        "P142",
+        "P143"
+      ],
+      "file": "prompts/10_hardening_release/P138_aceptacion-final-auditoria-contra-spec-y-release-candidate.md",
+      "contracts": [
+        "00_PACKAGE.md",
+        "01_DOMAIN_STATES.md",
+        "07_API_EVENTS_MCP.md",
+        "03_ADAPTERS_SECURITY.md",
+        "09_EXTERNAL_PROFILES.md",
+        "05_BENCHMARK_FINGERPRINT.md",
+        "06_ECOSYSTEM.md",
+        "08_UI_RELEASE.md",
+        "11_CONFORMIDAD_V3.md"
+      ],
+      "spec_sections": [
+        2,
+        142,
+        157,
+        159,
+        160,
+        165,
+        166
+      ],
+      "report": "docs/reports/P138_aceptacion-final-auditoria-contra-spec-y-release-candidate"
+    }
+  ],
+  "original_spec_sha256": "52ea1dfda5a7391181b32776086b1b1ccb87738466e8b080ca9a1c795bb09a19",
+  "external_changes_required": [
+    "P107",
+    "P108",
+    "P118"
+  ],
+  "implementation_status": "NOT_IMPLEMENTED",
+  "runtime_evidence_status": "NOT_RUN",
+  "normative_files": [
+    {
+      "file": "ALL_PROMPTS.md",
+      "bytes": 663704,
+      "sha256": "e4c90af40f8ec17958c12acc20125bccb263c39e9b7242648defacb49a236333"
+    },
+    {
+      "file": "CORRECCIONES.json",
+      "bytes": 25608,
+      "sha256": "b97f2e475d6702d1d1e0737392f3b55edd67f3c34127604315cd748a4c36cf49"
+    },
+    {
+      "file": "CORRECCIONES.md",
+      "bytes": 31799,
+      "sha256": "5e44505c933807f0c0f8c14aab3a8ffd4d4762c178ecfa97a1a228726fe089a7"
+    },
+    {
+      "file": "CORRECCIONES_V3.json",
+      "bytes": 34873,
+      "sha256": "acce24b42da9514f2458f06b412704e0d8ea934d370774e90c7adea04a2e0456"
+    },
+    {
+      "file": "CORRECCIONES_V3.md",
+      "bytes": 2853,
+      "sha256": "0cc730dc0ff403602ceb6c04948e479f93fe4305a1322b9820a49f057989ebc3"
+    },
+    {
+      "file": "LARM_SPEC_BASELINE.md",
+      "bytes": 522,
+      "sha256": "c4f48644474bc5045923a610049308bbc4676ec36d7aced8e06ba415e690c6c7"
+    },
+    {
+      "file": "LARM_SPEC_ORIGINAL.md",
+      "bytes": 75804,
+      "sha256": "52ea1dfda5a7391181b32776086b1b1ccb87738466e8b080ca9a1c795bb09a19"
+    },
+    {
+      "file": "LARM_SPEC_V1.md",
+      "bytes": 62397,
+      "sha256": "909b068319a5e1313836228cb8bfa5e819e3d790b390e16c15286865773e3cb2"
+    },
+    {
+      "file": "PROMPT_INDEX.md",
+      "bytes": 21092,
+      "sha256": "d264d3a92cc4d3649dbc9535dcc2ffe22141922e78136a2938c80a99bb1000ca"
+    },
+    {
+      "file": "README.md",
+      "bytes": 5086,
+      "sha256": "ccb48aa143463d899540e30284ad59b5d89afe4a82939d5152e56ac91907764d"
+    },
+    {
+      "file": "REVISION_SEMANTICA.md",
+      "bytes": 1741,
+      "sha256": "708fa2018bbbcb3412b3ae0f8b19092b21bcd9c24ec8c3193a0c3ed8eb337f5a"
+    },
+    {
+      "file": "REVISION_STATUS.md",
+      "bytes": 416,
+      "sha256": "71581fe5243b3213ec331ceb64c0b3be2a6030f71273afbf03bb0f38f0c8986a"
+    },
+    {
+      "file": "SHARED_CONTRACT.md",
+      "bytes": 4525,
+      "sha256": "67622f387f3d6cf336cf717ffc0930c262d91de0502a248dd50da9bad023814a"
+    },
+    {
+      "file": "contracts/00_PACKAGE.md",
+      "bytes": 8992,
+      "sha256": "5afbb103f51227f49ecf24bd38a0ddb160572393ddcc6e347eaac6245e5c3dc6"
+    },
+    {
+      "file": "contracts/01_DOMAIN_STATES.md",
+      "bytes": 7806,
+      "sha256": "7cd8a275b561dd40ba4caf27b771cfc3295c56de88e548b673a3ff279287d534"
+    },
+    {
+      "file": "contracts/02_STORAGE_DOWNLOAD.md",
+      "bytes": 15121,
+      "sha256": "a83f2d99ca0e3a785812d45b1ca0e0a8396839eac329ffbc6350e0a23210a75b"
+    },
+    {
+      "file": "contracts/03_ADAPTERS_SECURITY.md",
+      "bytes": 14396,
+      "sha256": "e8735b41f79c264ad61d2ecfa2f87a3d0744b62b4fe9fa5649ec90bf77e77a89"
+    },
+    {
+      "file": "contracts/04_RUNTIME_LEASES.md",
+      "bytes": 10437,
+      "sha256": "ea86fd8c3b079a8b187b8ed6680b319685510f78d6a6b14b8aa94390684ba609"
+    },
+    {
+      "file": "contracts/05_BENCHMARK_FINGERPRINT.md",
+      "bytes": 6843,
+      "sha256": "6d4a4e875c3bb4fd059689a91e8835d0c1ef5277da410db87d4d6f234d4bd4fd"
+    },
+    {
+      "file": "contracts/06_ECOSYSTEM.md",
+      "bytes": 7280,
+      "sha256": "28d196a8f49a92502a082ca9810a7329a024ced183a2b47297bfea30eafa025d"
+    },
+    {
+      "file": "contracts/07_API_EVENTS_MCP.md",
+      "bytes": 11792,
+      "sha256": "1bf7c0f746cfcd9b44971a1bc26fe3acfdafe187107e0f1b5947dd54b20e4bb3"
+    },
+    {
+      "file": "contracts/08_UI_RELEASE.md",
+      "bytes": 6621,
+      "sha256": "6d9d0c9317775fad83f7b0ebfee7303dbb55d8a202a2d781cbb0147d0e3b6592"
+    },
+    {
+      "file": "contracts/09_EXTERNAL_PROFILES.md",
+      "bytes": 2899,
+      "sha256": "4c449c618cbb5bf90b4b5208d9a7b7db247ff0029dc27419e0fe273f904eeb8e"
+    },
+    {
+      "file": "contracts/10_MULTIMODAL_PROTOCOL.md",
+      "bytes": 2698,
+      "sha256": "517850ffaab469563b76296190b33fd2e6ed5235c3bc934462fbb01aef407dab"
+    },
+    {
+      "file": "contracts/11_CONFORMIDAD_V3.md",
+      "bytes": 17541,
+      "sha256": "c546ba415f2961224794e2c31a9aef4c4a902f9c44ffb99222a22234b09b7036"
+    },
+    {
+      "file": "contracts/REVISION_3_10_0_P052.md",
+      "bytes": 2400,
+      "sha256": "6dc0adeb9885482cda8acf2d8901fd8f3fc14e9af9048ff957c9426d7245da2b"
+    },
+    {
+      "file": "contracts/REVISION_3_10_1_P052.md",
+      "bytes": 2532,
+      "sha256": "e06b65c2a8e96b6e219bf353ee2e7bad3d11c1d66e718071578c165be4652c4f"
+    },
+    {
+      "file": "contracts/REVISION_3_10_2_P127.md",
+      "bytes": 3402,
+      "sha256": "95dd58cc3c788750a5c2dccc1fe2c789953ba02fcd2698ad8384ecf6be72274b"
+    },
+    {
+      "file": "contracts/REVISION_3_11_0_P032.md",
+      "bytes": 6904,
+      "sha256": "3b2d723307a33ac2ae9371db352d0d5ed8efb04ed2d7a1475ddc0276fe65fe21"
+    },
+    {
+      "file": "contracts/REVISION_3_11_1_P032_P100.md",
+      "bytes": 3667,
+      "sha256": "64c7afe235c70c0fc6054a19988775237e829645096fa1c4d863dc9211dff35f"
+    },
+    {
+      "file": "contracts/REVISION_3_12_0_P044_P052.md",
+      "bytes": 5282,
+      "sha256": "355ee8bc04765dad17d8c889ad1daf60e7e6dd7250d1d5786bdc4d2fd1e3d894"
+    },
+    {
+      "file": "contracts/REVISION_3_12_1_SOURCE_ACQUISITION.md",
+      "bytes": 4500,
+      "sha256": "4da4f6960aa1fe6f27200e8d8e966473b77d6984d754d6da4741210b801c8dd1"
+    },
+    {
+      "file": "contracts/REVISION_3_13_0_P093.md",
+      "bytes": 6341,
+      "sha256": "396fae3c8ac40cb51389d8e07f802eaca890e69875c722826d885ea228a6788b"
+    },
+    {
+      "file": "contracts/REVISION_3_1_0_P052.md",
+      "bytes": 893,
+      "sha256": "0a09116084c66a4eb6a64faa20870c0718a73a03cb5f4860ac68f8c5c3a477c0"
+    },
+    {
+      "file": "contracts/REVISION_3_2_0_P098.md",
+      "bytes": 2479,
+      "sha256": "614df493ad7f9b4d532797c63dffac5c932c222a1b7947a6adcabee9a695bdec"
+    },
+    {
+      "file": "contracts/REVISION_3_3_0_P051.md",
+      "bytes": 1986,
+      "sha256": "0f0f4be7cc9e5e8416f66a8fb44ae00c55a64a18dd040b6af45ce0d7c5a61efa"
+    },
+    {
+      "file": "contracts/REVISION_3_4_0_P046.md",
+      "bytes": 1189,
+      "sha256": "60698b5ff203e2c668685497700848aebbd252d6e18720ce28709815109bd0fb"
+    },
+    {
+      "file": "contracts/REVISION_3_5_0_P047.md",
+      "bytes": 1303,
+      "sha256": "7b7fd5b4bfd1f2adb48fa4375c7757d7663fa02c7c8e0f2d0f8f18735cc9cb4f"
+    },
+    {
+      "file": "contracts/REVISION_3_6_0_P048.md",
+      "bytes": 1401,
+      "sha256": "f9e6133efd3547b53d78560e424758bb52ac0187f22b863b4083042056f63e70"
+    },
+    {
+      "file": "contracts/REVISION_3_6_1_P048.md",
+      "bytes": 664,
+      "sha256": "4a8238cecfd6acda276b0fcda947ec12dc04583da18fe0817b2982a4ad084112"
+    },
+    {
+      "file": "contracts/REVISION_3_7_0_P052.md",
+      "bytes": 1198,
+      "sha256": "6de973acc387f271d3e3e7fdd2ceb625480b6195e31dd51037f5196ee618dc1e"
+    },
+    {
+      "file": "contracts/REVISION_3_8_0_P141.md",
+      "bytes": 2136,
+      "sha256": "6389f6d962c43750454ba7f5438efb3d41923fc35d77ae183b81602bdd2b6a57"
+    },
+    {
+      "file": "contracts/REVISION_3_9_0_P028.md",
+      "bytes": 2774,
+      "sha256": "bc575a65013a890c822c19871d7c135bcdc3dda356d207a7427ae7c125f04677"
+    },
+    {
+      "file": "contracts/REVISION_3_9_1_P028.md",
+      "bytes": 1884,
+      "sha256": "d6bb1cf1ecfd521d76f9ee26ba94d54a5c8ee4f0c6afd7e1af1e1d97030bdd82"
+    },
+    {
+      "file": "contracts/acceptance.json",
+      "bytes": 22354,
+      "sha256": "0b1a3bec9eb8157424a599f5f2728e4c4aa227b60a3100a67219d55b0d59ddd3"
+    },
+    {
+      "file": "contracts/adapter-methods.json",
+      "bytes": 9811,
+      "sha256": "f7425cc346d61e53ac15e0d3e518c5ea5fc2c4ab24ba93363a49fd9cfaf6ae70"
+    },
+    {
+      "file": "contracts/api-operations.json",
+      "bytes": 74086,
+      "sha256": "c53d8d01ee1b73e58a8008acf0cf8215d8529c5c91c7d29dd2828ccc2e4cd017"
+    },
+    {
+      "file": "contracts/capability-contracts.json",
+      "bytes": 4605,
+      "sha256": "63a539eb5c6855892593c81542616d4d75a59a6720b51f679c38f49ea6c3280f"
+    },
+    {
+      "file": "contracts/crate-graph.json",
+      "bytes": 2045,
+      "sha256": "413f16e7a9ae9fdf6899b02b4ed9a98044531640eb790524ff06b5339cee7a9f"
+    },
+    {
+      "file": "contracts/defaults.json",
+      "bytes": 4860,
+      "sha256": "92b203728494d28a6606d7a81a83edaf775600633a950640e06ad93b5b39552a"
+    },
+    {
+      "file": "contracts/external/Agora_Cliente.md",
+      "bytes": 14354,
+      "sha256": "3635bcb26d9c2c75e5cbb480c4162169c037da41227ad8f315848ef105f7a9b9"
+    },
+    {
+      "file": "contracts/external/Agora_Runner.md",
+      "bytes": 6783,
+      "sha256": "7f8ccdb34d9c84f11d2d9e70b00d622bd8b14abb45f5089c11eba3aebbd9dbe3"
+    },
+    {
+      "file": "contracts/external/Agora_contracts.py",
+      "bytes": 5632,
+      "sha256": "2749a01450b61a4e968444b3379f8259ff68a18e127adf4350ad272063bfe48c"
+    },
+    {
+      "file": "contracts/external/Agora_pyproject.toml",
+      "bytes": 2154,
+      "sha256": "c75d4063de86816dca68b9ee08b3a64c5596f1a205c358e3874220c6d27ab165"
+    },
+    {
+      "file": "contracts/external/Client_API_Broker_2.11.md",
+      "bytes": 105850,
+      "sha256": "f773efab2a7862c5241819b2c17257a842c08d058838e19eff28e3dcdfe731d0"
+    },
+    {
+      "file": "contracts/external/Local_AI_Lab_Broker.py",
+      "bytes": 14280,
+      "sha256": "0147058794542f35ad25e874985727f23ca96598bc80643ed75e4f85026cce2d"
+    },
+    {
+      "file": "contracts/external/Local_AI_Lab_Security.md",
+      "bytes": 4482,
+      "sha256": "9ef0ec9c89cbb9bbf11131d3111510fe077cf8b5c1fbf48bf3a75b242ecbe515"
+    },
+    {
+      "file": "contracts/external/Local_AI_Lab_desktop_package.json",
+      "bytes": 705,
+      "sha256": "e3aff659e254e08d15f3988db8a6faef2daa500d8b7bd863e44ac9741c2c71b8"
+    },
+    {
+      "file": "contracts/external/Local_AI_Lab_pyproject.toml",
+      "bytes": 864,
+      "sha256": "97fac556ead82b1457bf2f4bb23821c1a0140b92889cb3ba8f8d0a99c8c6adbc"
+    },
+    {
+      "file": "contracts/external/Model_Drift_Broker.md",
+      "bytes": 6135,
+      "sha256": "9833f3d6c3308dba6da94e4827f917b8e58aee1834bdb4e46fde4698a2ffb552"
+    },
+    {
+      "file": "contracts/external/Model_Drift_fingerprint.py",
+      "bytes": 11731,
+      "sha256": "460c5bc0dc3393ba39e383dee7980a9128df8d0cabb707029c48ef7aade657e5"
+    },
+    {
+      "file": "contracts/external/Model_Drift_pyproject.toml",
+      "bytes": 2296,
+      "sha256": "bcfabae5b4f06800ed859fc770c17c57fee6741f555ee59d62f37646ee4220f8"
+    },
+    {
+      "file": "contracts/external/snapshots.json",
+      "bytes": 3066,
+      "sha256": "841edd398a9751b22a74204d31b6907f4175f8437915a30456c368e1d1edd560"
+    },
+    {
+      "file": "contracts/foreign-keys.json",
+      "bytes": 2945,
+      "sha256": "5758aab0dcef2bcf1b39af1bc3ee545dd4dedcbd07221b7c853b8d05d266ede9"
+    },
+    {
+      "file": "contracts/mcp-permissions.json",
+      "bytes": 3135,
+      "sha256": "366a2d7a55934f79978f86edff225263ced382bc5c1e259dccfd78e38f2e1e5a"
+    },
+    {
+      "file": "contracts/migrations/0006_p052_artifact_size_estimate.sql",
+      "bytes": 402,
+      "sha256": "f83db5b02455cc5c619ae75b39a3814afd6fd5914ec0bb86537f7ca8f376c452"
+    },
+    {
+      "file": "contracts/migrations/0007_p028_signed_adapter_registry.sql",
+      "bytes": 1292,
+      "sha256": "ee315cf029230e1567ce471ea9d7486e38badbe7b248f93d8c07aa205d5e9cbb"
+    },
+    {
+      "file": "contracts/migrations/0008_p028_registry_url_binding.sql",
+      "bytes": 176,
+      "sha256": "6063941dfd8470253f1edf2bd3d377e40332dbc8328e11bcfc2c9b1c84162094"
+    },
+    {
+      "file": "contracts/migrations/0009_p127_source_operational_snapshot.sql",
+      "bytes": 934,
+      "sha256": "bcea42a883271463d27b98bec59a8fc33259d6f7210331ccbd0c47b84c3da0bc"
+    },
+    {
+      "file": "contracts/migrations/0014_model_acquisition_manifest.sql",
+      "bytes": 2356,
+      "sha256": "3eb9ba90dd4185d6f6428445553f3499680a75fa7c1ddadaf2a4020e2d68bbb3"
+    },
+    {
+      "file": "contracts/persistence.sql",
+      "bytes": 33694,
+      "sha256": "033dae4b25f5614141b7b765447175ee382dd02cad959bc5fa55191808dc1d66"
+    },
+    {
+      "file": "contracts/runtime-profiles.json",
+      "bytes": 28748,
+      "sha256": "85b3f7c380f38e639deab0e8eea521551acdf56774850f63f9cc8c976c597c8e"
+    },
+    {
+      "file": "contracts/source-profiles.json",
+      "bytes": 15596,
+      "sha256": "dc066f7473b36e192b7858e5fabfa46b56475292bb4f1d2c5518ef620e953254"
+    },
+    {
+      "file": "contracts/spec-coverage.json",
+      "bytes": 126409,
+      "sha256": "0221cb744a1e3a9465365d67558a31c88745c429e0e61c5fe858c78726df836d"
+    },
+    {
+      "file": "fixtures/benchmark-suites.json",
+      "bytes": 10678,
+      "sha256": "907db757ec3884fc0284a31e5e9b94b908addd6e6a37a6d2da17557ac3b352e2"
+    },
+    {
+      "file": "fixtures/conformity-v3.json",
+      "bytes": 40978,
+      "sha256": "86c25c099c798244c4a39e10fbb5ee470e900e1a32ddadb5328d8f61979a582f"
+    },
+    {
+      "file": "fixtures/generated/fixtures.lock.json",
+      "bytes": 786,
+      "sha256": "fceab662e757a10f639d3f41eb61ce892fd87c2f1cb4f356f2943c3933ca95ed"
+    },
+    {
+      "file": "fixtures/generated/tensor_identity.onnx",
+      "bytes": 130,
+      "sha256": "8de2df197dba94a7151d39371e464bf0bd10316ffa7d7006db81b08159210dde"
+    },
+    {
+      "file": "fixtures/generated/tensor_input.f32",
+      "bytes": 16,
+      "sha256": "ad73b9acd6e4a74b2f5bb5386658ce3bb146cd040a1867646ab3b973fb6632b1"
+    },
+    {
+      "file": "fixtures/generated/text_grid.png",
+      "bytes": 1040,
+      "sha256": "c4888536a6508ff96d385a3b075e5e861685a0ce932e96f9246693ea590a27b3"
+    },
+    {
+      "file": "fixtures/generated/tone16k.wav",
+      "bytes": 32044,
+      "sha256": "a6c41754cc16ef9ddac86f2e640bf085d002237668adbc24964ff7199851ba9a"
+    },
+    {
+      "file": "fixtures/source-acquisition-plan.json",
+      "bytes": 1783,
+      "sha256": "3e4e7ab48be29915e7159c8ff75bd3475e8c5673e1025227e2712fe29e53bdc0"
+    },
+    {
+      "file": "fixtures/storage-cases.json",
+      "bytes": 1274,
+      "sha256": "48dd51c5bf42f63e58003429a73f4b2f2c606e55b0a62dd47df60faaa69282bf"
+    },
+    {
+      "file": "prompts/00_fundamentos/P001_bootstrap-del-monorepo-y-estructura-contractual.md",
+      "bytes": 5613,
+      "sha256": "3d76a3ffa15d3a8e0f7b87f7598be0fcb060749248f5d7f84f6b122798c81839"
+    },
+    {
+      "file": "prompts/00_fundamentos/P002_reglas-de-arquitectura-adr-y-contratos-de-dependencia.md",
+      "bytes": 4826,
+      "sha256": "f141dbb948b767bb0a0ed42e9950708560efb307bcfe5a1a09bf3858e8be9d92"
+    },
+    {
+      "file": "prompts/00_fundamentos/P003_configuracion-errores-y-logging-estructurado.md",
+      "bytes": 6244,
+      "sha256": "5b50a92fc94bfadf353aba79e4c1ec166c274ce6ccd139129fd592c89aee2394"
+    },
+    {
+      "file": "prompts/00_fundamentos/P004_persistencia-sqlite-y-framework-de-migraciones.md",
+      "bytes": 5989,
+      "sha256": "4c7b73bab0b5b90fa483aa41ed394ff209a48ceb3273a9a19b2a718cfab22407"
+    },
+    {
+      "file": "prompts/00_fundamentos/P005_api-administrativa-axum-v1-y-openapi.md",
+      "bytes": 5553,
+      "sha256": "627d6a1a1ecea411cb37daa002b21f4ea307278f3cbb7a7095164f1f34d312be"
+    },
+    {
+      "file": "prompts/00_fundamentos/P006_shell-desktop-tauri-navegacion-y-cliente-api.md",
+      "bytes": 4758,
+      "sha256": "6d07941fa1395bd63651171559fa92d080da71b940f34413deb7719e4cdc06ce"
+    },
+    {
+      "file": "prompts/00_fundamentos/P007_ci-local-quality-gates-y-fixtures-comunes.md",
+      "bytes": 5067,
+      "sha256": "8053c92692a76a1a438710bf8a9a2121b916d2adb5771fbcfbf8be77ea6886d3"
+    },
+    {
+      "file": "prompts/00_fundamentos/P008_prerequisitos-y-packaging-de-desarrollo-windows.md",
+      "bytes": 4501,
+      "sha256": "11a2fb6d315f798dcd96547eee3d5bf08b4818370060b6dc99cae40e95d73c9e"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P010_hardware-profiler-windows-cpu-y-memoria.md",
+      "bytes": 4617,
+      "sha256": "5aa96d13b741968a3824d9c7b22d6e51ef9cab118b26e08864a8b5b3cb80a89d"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P011_hardware-profiler-gpu-npu-y-backends.md",
+      "bytes": 4848,
+      "sha256": "3ffb9370d9278512149d58c3b5cb6a5141fb4f77f82eeb00d3ec75fd35ef5616"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P012_storage-profiler-y-volume-identity-windows.md",
+      "bytes": 4568,
+      "sha256": "34352bb09647c917351b57e4a465833d8e3fdca55cdf0fd4729e01989175ec06"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P013_hardwarefingerprint-reproducible.md",
+      "bytes": 5869,
+      "sha256": "ff3b41eeade4fb058f750f0f9ff63bfdbc455a7827d43181ebd63d205e9775b8"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P014_storagelocation-registry-y-politicas-de-colocacion.md",
+      "bytes": 4764,
+      "sha256": "0f3e4af5eeaafe5fd881402816f2ee70bf48177d59a5386c77423dfe9c5184ee"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P015_storageestimate-y-preflight-de-espacio.md",
+      "bytes": 5063,
+      "sha256": "1be2fa623e1a8d0970191bb2cafee4d622fef5a42b9fd9c9a9184a2da1dec77e"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P016_artifactlocation-resolucion-de-rutas-y-movimiento-seguro.md",
+      "bytes": 5301,
+      "sha256": "ce501906f9210a2350b92fa6676b1b6db1491088cf5b44fbb0a73794f4b48cd8"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P017_content-addressed-store-deduplicacion-e-importacion.md",
+      "bytes": 5206,
+      "sha256": "94d261c7dc2b20e0621773c4e01baf0cb88499088ac221f54065a8f433ed9424"
+    },
+    {
+      "file": "prompts/01_hardware_storage/P018_storage-analyzer-offline-volumes-y-rebuild-registry.md",
+      "bytes": 6085,
+      "sha256": "0f3befbe0cb9040e650f9b7d96c94cd49e4c5dc5d5094cccac3055ac4bb25d69"
+    },
+    {
+      "file": "prompts/02_adapters/P020_adapter-manifest-y-protocolo-v1.md",
+      "bytes": 5965,
+      "sha256": "3b6cee0caa6d885a7df765558e8c43933cbc55ba2270c755879600d6845c2b86"
+    },
+    {
+      "file": "prompts/02_adapters/P021_adapter-host-workers-timeout-crash-y-lifecycle.md",
+      "bytes": 5084,
+      "sha256": "4e1b706a7c94e53a5dfc501d83bfc8cec551f0384d77dd928e28398687454454"
+    },
+    {
+      "file": "prompts/02_adapters/P022_permisos-confianza-y-aislamiento-de-adaptadores.md",
+      "bytes": 5156,
+      "sha256": "4e2aa0e90041551e2b5061512963ca812444e9d241a0aa747f2ccf3b443c8b3e"
+    },
+    {
+      "file": "prompts/02_adapters/P023_adaptador-declarativo-configurable-desde-gui.md",
+      "bytes": 5971,
+      "sha256": "12553b2bf1023b779c631375432392c42207a76e0a5fd3b168dcc86d66a03d23"
+    },
+    {
+      "file": "prompts/02_adapters/P024_plugin-registry-instalacion-y-actualizacion-de-adaptadores.md",
+      "bytes": 4731,
+      "sha256": "5cf1eab65fc3c2dc7ca11cf62ecd7739d397d8427e1489a9346abb8d69f5e96f"
+    },
+    {
+      "file": "prompts/02_adapters/P025_sdk-de-adaptadores-y-adaptadores-de-referencia.md",
+      "bytes": 5579,
+      "sha256": "50a6c8dc0f333487ab67b133ef834ac6be0e00df53ffaf46da8133c2350680eb"
+    },
+    {
+      "file": "prompts/03_runtime_core/P030_dominio-y-persistencia-de-runtimes.md",
+      "bytes": 5512,
+      "sha256": "61b01b1ffb8c48af003daefe1e713e185cc8b6aea7b0fac05fcb660fe30a954b"
+    },
+    {
+      "file": "prompts/03_runtime_core/P031_descubrimiento-e-instalacion-de-versiones-de-runtime.md",
+      "bytes": 6538,
+      "sha256": "5643d20395c320418abafd32df2cb8361efda4d8a01212a5da9904f54b725017"
+    },
+    {
+      "file": "prompts/03_runtime_core/P032_actualizacion-side-by-side-promocion-rollback-y-pinning.md",
+      "bytes": 5866,
+      "sha256": "4744c39ac757292d0013d48d4aa34873a9d4feb43840c5b620b202f094ec3f8d"
+    },
+    {
+      "file": "prompts/03_runtime_core/P033_runtime-process-supervisor-e-instancias.md",
+      "bytes": 5615,
+      "sha256": "7f8df556e0ab94b251f8f9b04e699d9d0e7d4e49a10fa0a0adc05664dfd2eb21"
+    },
+    {
+      "file": "prompts/03_runtime_core/P034_launch-profiles-y-configuracion-reproducible.md",
+      "bytes": 5856,
+      "sha256": "9f97710f9738819b00c20bd0703f6ae106f264d6b4c499dddc85a4cc690e0d6b"
+    },
+    {
+      "file": "prompts/03_runtime_core/P035_memory-estimator-y-scheduler-de-instancias.md",
+      "bytes": 5849,
+      "sha256": "5e5e13cc1f632052a88fe83b6e6f137365cfe6fc09a51167c8de3e511bea7722"
+    },
+    {
+      "file": "prompts/03_runtime_core/P036_inferenceendpoint-y-registro-de-protocolos.md",
+      "bytes": 4817,
+      "sha256": "d8f8448e362beabb812686cf664c7f4234bec9c5a227d98310f744ed2e763a1e"
+    },
+    {
+      "file": "prompts/03_runtime_core/P037_onboarding-generico-de-runtimes-desde-gui-api.md",
+      "bytes": 5577,
+      "sha256": "16e5d9dcaa6bb1af1afc63ad91d85dcbd7aad8cd6aeb3f97a1f809f2656c63ae"
+    },
+    {
+      "file": "prompts/04_models_sources/P040_dominio-de-modelos-variantes-y-procedencia.md",
+      "bytes": 5130,
+      "sha256": "e9157ad7eaeb0d1f5a4ab4099ca44b720b6378a2efe6b725acea53e4662f54a3"
+    },
+    {
+      "file": "prompts/04_models_sources/P041_modelbundle-artefactos-requeridos-e-identidad-canonica.md",
+      "bytes": 5488,
+      "sha256": "9a8544f6fd05db801d912638135233415d34646ae6c5ee0dd54e953818375bc5"
+    },
+    {
+      "file": "prompts/04_models_sources/P042_lifecycle-de-modelos-y-availability-derivada.md",
+      "bytes": 4935,
+      "sha256": "3b095d33629ebd7fc7728f727750a9206b6ab46a7ae9a4bfb9ca355725b3c81e"
+    },
+    {
+      "file": "prompts/04_models_sources/P043_modelsourceadapter-protocol-y-catalogo-de-fuentes.md",
+      "bytes": 6308,
+      "sha256": "afb99b10f1c6b20b8dbee64739c39c4abf49bf7943dc8724b1d9831cdef61f0d"
+    },
+    {
+      "file": "prompts/04_models_sources/P044_busqueda-federada-normalizacion-y-ranking-tecnico-inicial.md",
+      "bytes": 6525,
+      "sha256": "c0a47f0e93464a46b44b762b4513987cadbdfea96b1330cf0994be3a698a0f84"
+    },
+    {
+      "file": "prompts/04_models_sources/P045_autenticacion-de-fuentes-y-credentialreference.md",
+      "bytes": 4955,
+      "sha256": "27fc1138ddec9cc757431fa231cd4fbcd84aa688a57de57acf4c478162c5be6a"
+    },
+    {
+      "file": "prompts/04_models_sources/P046_hugging-face-source-adapter.md",
+      "bytes": 5230,
+      "sha256": "a0ebcb6c1a8260d031b1c7b68b20ed258952ba08d56daf3e11484f2fa87e59f0"
+    },
+    {
+      "file": "prompts/04_models_sources/P047_modelscope-source-adapter.md",
+      "bytes": 4955,
+      "sha256": "65096fa4bac7dc6d34536d1b502539c32cce07d92b58aec8c417ae52dfb0f905"
+    },
+    {
+      "file": "prompts/04_models_sources/P048_github-releases-url-directa-local-y-unc-source-adapters.md",
+      "bytes": 5173,
+      "sha256": "4c43b83edb01a19a7bfb77c681e8db7a01508c3a915444dda54eb69d15441a26"
+    },
+    {
+      "file": "prompts/04_models_sources/P049_fuentes-adicionales-kaggle-ollama-library-openxlab-ngc-y-civitai.md",
+      "bytes": 4895,
+      "sha256": "dad1f1cfb03046d4b021e20076a1252ef8963efef9d7eab1d1bcf4b413e5485c"
+    },
+    {
+      "file": "prompts/04_models_sources/P050_source-watcher-sincronizacion-incremental-y-notificaciones.md",
+      "bytes": 4883,
+      "sha256": "8a82f5c060a38ed674f73f75df43be37f4b6fe9e35644fc8b3705c84651fd5ac"
+    },
+    {
+      "file": "prompts/04_models_sources/P051_download-manager-cola-pausa-reanudacion-y-checksum.md",
+      "bytes": 7057,
+      "sha256": "e088b826ee7775e50ad8baa2fb142bbc29ffb6b541ca2d842a07bb6970283be4"
+    },
+    {
+      "file": "prompts/04_models_sources/P052_planificador-de-tamano-y-descarga-multi-fuente.md",
+      "bytes": 9116,
+      "sha256": "9fdf438cc3ddaf392877f6d9b1cb2840be88de5d5c3dbd96c0a0a8e3c2d3577c"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P060_llama-cpp-descubrimiento-instalacion-y-versiones.md",
+      "bytes": 5140,
+      "sha256": "d555c8ddee3ca2533d1f08df922527d88310d8469e34268dc19064263be24436"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P061_llama-cpp-compatibilidad-serving-smoke-tests-y-llama-bench.md",
+      "bytes": 5256,
+      "sha256": "8425f9c2a61183ae5b208f54d2471b7d2300c6c1a04968792f8d80420523234b"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P062_onnx-runtime-base-y-execution-providers.md",
+      "bytes": 4629,
+      "sha256": "77420c8923f7d350a65ee40b26ab6207468d2a524232959f2bf695c29da6157e"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P063_onnx-runtime-genai-llm-vlm-serving.md",
+      "bytes": 4610,
+      "sha256": "89f64ba501367ae025b90f91e43b8eb3fec005ddcbc6ebe018b6b9b0a52963eb"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P064_windows-ml-y-proveedores-amd-otros.md",
+      "bytes": 5155,
+      "sha256": "bb61c8c446af36743346fabf7dd39fa149e5a134a51083f004abe87de52efdde"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P065_microsoft-olive-transformacion-y-optimizacion-onnx.md",
+      "bytes": 5347,
+      "sha256": "68eb8f658370db70f7dcfc9c34ddb63500f3000830354829e815c0fa23418351"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P066_stable-diffusion-cpp-adapter.md",
+      "bytes": 4637,
+      "sha256": "c90f9b021f8d516d3fb5ac26246bd01557b8cb033f432100253042ec2077d811"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P067_whisper-cpp-adapter.md",
+      "bytes": 4478,
+      "sha256": "df48ffbdc891237c403f0c434ce5babb00739f6f86e30225555f952b44625db9"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P068_lemonade-deteccion-y-adopcion-no-destructiva.md",
+      "bytes": 5097,
+      "sha256": "db7e3ff43ce2bff5a58a9b5e9261ff27cf72545f5fcc3db0f5ccdb8d00e9926c"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P069_lemonade-certificacion-modelo-por-modelo-para-ai-broker.md",
+      "bytes": 5396,
+      "sha256": "cb98c75328e09106c5253c092f98c788279445bb980531c882e049a98a5c9836"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P070_ollama-runtime-host-adapter.md",
+      "bytes": 4527,
+      "sha256": "3334a38ee4ff254264f750e5c4254ef708729bd0bf0135f6a6e98f42554181f2"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P071_python-environment-manager-y-pytorch-transformers.md",
+      "bytes": 5743,
+      "sha256": "b34e27d78574acb667a40b80f2efcf15e433fd6b8f2a154a43ed3827dcf0ee7b"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P072_diffusers-pytorch-runtime.md",
+      "bytes": 4430,
+      "sha256": "8b6ecf04a410d64cc98b1be2009d109115b2caf04a80d22cc6990621d534f7eb"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P073_mlc-llm-adapter.md",
+      "bytes": 4783,
+      "sha256": "a6653d9e59fdc146811624c44dd7d39616541d9927fafdb51a275c4d72b74371"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P074_sherpa-onnx-adapter.md",
+      "bytes": 4298,
+      "sha256": "6fc955cceee1cce333976dfb99a57bc44e5d3143689b45f2627fc375bb24a7f4"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P075_openvino-runtime-adapter.md",
+      "bytes": 4387,
+      "sha256": "6a37b04de3788908c34b1dd26cf519306efee606e2196d8f0bf4cd877afb54bf"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P076_foundry-local-adapter.md",
+      "bytes": 4428,
+      "sha256": "4c4454f0a6fede85388e35bb3eb92ffa6dfb894b55c571ad9ef39dae63c7d739"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P077_ctranslate2-adapter.md",
+      "bytes": 4693,
+      "sha256": "5679f1d14c375d8323a7a90f2456f472a8d134992ed825a7ff3cee6803ff3dae"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P078_comfyui-host-adapter.md",
+      "bytes": 4453,
+      "sha256": "55028ff498b54ca1cf92a849fff6aa88bc30903e426a14a237ef035aecd1f21d"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P079_lm-studio-host-adapter.md",
+      "bytes": 4332,
+      "sha256": "c3ea15654ddcf1f20ed210ee4ecec4de775137ffec185e47ceb1c074a0df1b15"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P080_koboldcpp-adapter.md",
+      "bytes": 4338,
+      "sha256": "662c15a5155ce045b7a5de95adc8f393e44a6532f62fc659a2f64a55374fb980"
+    },
+    {
+      "file": "prompts/05_runtime_adapters/P081_wsl2-y-container-execution-host-abstraction.md",
+      "bytes": 4646,
+      "sha256": "34d349279c03b4141bcfbcc6b27b6beefa2a6fbd77cf4555bada58f02753f80e"
+    },
+    {
+      "file": "prompts/06_compat_transform/P090_compatibility-engine-hard-gates.md",
+      "bytes": 5022,
+      "sha256": "f205434895680d5311bda6575f61a50d0eec072cca7fa20cbea5c6b6f434516a"
+    },
+    {
+      "file": "prompts/06_compat_transform/P091_estimacion-de-recursos-y-technicalfitscore.md",
+      "bytes": 4913,
+      "sha256": "09deb2b965ce5c9c837a4116c7fda9151956bd756084f9af6dfb9850c6af9ddb"
+    },
+    {
+      "file": "prompts/06_compat_transform/P092_recomendacion-de-variante-y-runtime-para-el-pc.md",
+      "bytes": 4991,
+      "sha256": "028babc70decb303d7492d400e7679e4bac76b03595c9676bfcd8686245b3dd8"
+    },
+    {
+      "file": "prompts/06_compat_transform/P093_transformation-pipeline-framework.md",
+      "bytes": 5847,
+      "sha256": "56fb5e4cbc3707b5c0976fb66f72226661763a1c6a271d9ec7efd7fc7cc2baa4"
+    },
+    {
+      "file": "prompts/06_compat_transform/P094_pipeline-gguf-conversion-y-cuantizacion.md",
+      "bytes": 4617,
+      "sha256": "ee86fb2b9a85bd73c0f04ad737e7d41cc7e0c50093b2e1d2ed2afe079db04713"
+    },
+    {
+      "file": "prompts/06_compat_transform/P095_pipeline-onnx-y-olive-exportacion-y-cuantizacion.md",
+      "bytes": 4528,
+      "sha256": "66b84983151d36741f9d872f431516f15103ed6a0b64ab3da6e537c452d790d1"
+    },
+    {
+      "file": "prompts/06_compat_transform/P096_provenance-de-conversiones-y-lineage-graph.md",
+      "bytes": 4430,
+      "sha256": "7e963539a5e7617b97e1590e09884c02d61511cbdbfafc79ebb37cd6aaa858e7"
+    },
+    {
+      "file": "prompts/07_broker_protocol/P100_runtime-lease-service.md",
+      "bytes": 5968,
+      "sha256": "6e9ca9ddea3d96d4d02a76ba1666ef46f698b427a1d28db042270848d0f262b1"
+    },
+    {
+      "file": "prompts/07_broker_protocol/P101_contrato-larm-con-ai-broker-y-localruntimeresolver.md",
+      "bytes": 5135,
+      "sha256": "d7385b699502c3239d97827cc647eab3679b3be0af0abb6a417b0a536941de91"
+    },
+    {
+      "file": "prompts/07_broker_protocol/P102_capability-contracts-multimodales-para-ai-broker.md",
+      "bytes": 4984,
+      "sha256": "0f800853cb6e712d1eca06c374d43aeba54f5b64e1f6053ccaf60d0b74ea770e"
+    },
+    {
+      "file": "prompts/07_broker_protocol/P103_protocol-sidecar-framework.md",
+      "bytes": 4778,
+      "sha256": "4c9620bf7dd414b5d932bab8e310f20bacc3871690360dabac70b68d94c209e8"
+    },
+    {
+      "file": "prompts/07_broker_protocol/P104_mcp-administration-server.md",
+      "bytes": 5503,
+      "sha256": "8e4d1268fd1c5d9a18c0520f46a6514c4d9b4701d2ba7c326cc838f39825c5a3"
+    },
+    {
+      "file": "prompts/07_broker_protocol/P105_mcp-opcional-de-acceso-a-modelos.md",
+      "bytes": 4350,
+      "sha256": "89f5ed03672714a85d64f289e38578346138d82a6677ac96e96ebd66dfc6c771"
+    },
+    {
+      "file": "prompts/07_broker_protocol/P106_laya-y-modelos-system-1-dentro-de-larm.md",
+      "bytes": 5017,
+      "sha256": "893245d424f157f940faa392eeec833890ceabb7f3a17ca8b372826674b5d939"
+    },
+    {
+      "file": "prompts/08_benchmark_evaluation/P110_benchmark-engine-framework.md",
+      "bytes": 4936,
+      "sha256": "007bdc0966a446f7baaa36c844334b79e7957883650732cab62a961fbf7cec91"
+    },
+    {
+      "file": "prompts/08_benchmark_evaluation/P111_benchmarks-de-texto-y-llm.md",
+      "bytes": 4466,
+      "sha256": "7caaa2b3e43764f8ffa52c31099c88cce89d3fdea13a2f3f675073465b179784"
+    },
+    {
+      "file": "prompts/08_benchmark_evaluation/P112_benchmarks-de-imagen-video-asr-y-tts.md",
+      "bytes": 4371,
+      "sha256": "177bb6294e0945f742daaeaaa508c77ad19fe09a836ec764c532430d531b32ca"
+    },
+    {
+      "file": "prompts/08_benchmark_evaluation/P113_event-bus-notificaciones-y-auditoria.md",
+      "bytes": 6071,
+      "sha256": "48176dd0a66e5cf646819039702fa69d52be91ae5367ffda8f84ff343bb5b90a"
+    },
+    {
+      "file": "prompts/08_benchmark_evaluation/P114_agora-bridge-entre-pc-ia-y-pc-principal.md",
+      "bytes": 4781,
+      "sha256": "237565d5b74587787c72dfb584a3fe6951568d1a234320daffb230555ec933d8"
+    },
+    {
+      "file": "prompts/08_benchmark_evaluation/P115_contrato-con-local-ai-lab.md",
+      "bytes": 4775,
+      "sha256": "1dc4a0cf56a828193f892a16720a377ea1d919604d04b5e7bfbfe2cd7369094d"
+    },
+    {
+      "file": "prompts/08_benchmark_evaluation/P116_contrato-con-model-drift-y-certificaciones.md",
+      "bytes": 4911,
+      "sha256": "78b77b35ae5db0f07f26233c2eb51215a197a8b2900910df8796b250c127ec08"
+    },
+    {
+      "file": "prompts/08_benchmark_evaluation/P117_deteccion-de-regresiones-y-promocion-segura.md",
+      "bytes": 5897,
+      "sha256": "81236b1b93581bd0231fb6aebc7b1906ae66f6fae98ec0d93121f852c3702f63"
+    },
+    {
+      "file": "prompts/09_gui/P120_dashboard-real-de-inicio.md",
+      "bytes": 4313,
+      "sha256": "92234c11899f0a3dd7a2d30b600902c92a943e6022ffea53e52d66423f94ddd5"
+    },
+    {
+      "file": "prompts/09_gui/P121_descubrir-busqueda-federada-y-filtros.md",
+      "bytes": 5330,
+      "sha256": "fdc21e7c750309788c2319823b369d6ad178805d5ce34f549e7ba5afe0add373"
+    },
+    {
+      "file": "prompts/09_gui/P122_detalle-de-modelo-variantes-y-preflight-de-descarga.md",
+      "bytes": 5773,
+      "sha256": "4e8757a5fc645a3944e215e193637deb4c7c3d25b173008de7c3af7030732602"
+    },
+    {
+      "file": "prompts/09_gui/P123_mis-modelos-y-gestion-multidisco.md",
+      "bytes": 4412,
+      "sha256": "0ab6f3295b1cb68a00dd9a80b613bf4e37613653208124cd68d8853d04ca960c"
+    },
+    {
+      "file": "prompts/09_gui/P124_runtimes-versiones-backends-e-instancias.md",
+      "bytes": 5944,
+      "sha256": "b65501cade3b47a19974f419c594618b8a3ac4c265fa463fe802443750db3e0e"
+    },
+    {
+      "file": "prompts/09_gui/P125_descargas-y-transformaciones.md",
+      "bytes": 5896,
+      "sha256": "05f0fe6184bfdfe06e31080d3df24c4a0583dd8f4345dcb057dd0d968b71cf41"
+    },
+    {
+      "file": "prompts/09_gui/P126_benchmarks-evaluaciones-y-comparaciones.md",
+      "bytes": 4813,
+      "sha256": "bd0ff7d9d7397c38bf729f367e94043147c01614b5e31adfd74999226e939318"
+    },
+    {
+      "file": "prompts/09_gui/P127_fuentes-cuentas-y-adaptadores.md",
+      "bytes": 4335,
+      "sha256": "aee9ffb8f1bb4d3fcfabfc217d77f2d49c6028e482651809e4b94f5e7d0f24bf"
+    },
+    {
+      "file": "prompts/09_gui/P128_notificaciones-watchers-y-actualizaciones.md",
+      "bytes": 5246,
+      "sha256": "e158d5da0908d84da8de03fba170a65b01a41098f4289d1536d8812548abf922"
+    },
+    {
+      "file": "prompts/09_gui/P129_ux-accesibilidad-y-estados-de-error-finales.md",
+      "bytes": 4753,
+      "sha256": "a7100225616ff8218c9d6daaeafd8f18798b1c55e213318710b3783c5b5238e6"
+    },
+    {
+      "file": "prompts/10_hardening_release/P130_sandboxing-remote-code-y-custom-components.md",
+      "bytes": 4589,
+      "sha256": "0bd2e274455b02a84ee46f45dafecc502de9527456c9cf554ffafcf5345f8c79"
+    },
+    {
+      "file": "prompts/10_hardening_release/P131_secretos-auth-local-y-permisos-api.md",
+      "bytes": 5322,
+      "sha256": "b7c0e66394154dffe617af422f0dbfb47237775758081388bc895048c0d885b7"
+    },
+    {
+      "file": "prompts/10_hardening_release/P132_startup-reconciliation-offline-mode-y-crash-recovery.md",
+      "bytes": 5546,
+      "sha256": "1a8adfbc07d7f6f259c1f6f7e3dcf8be4f5a6f5191cc56637355f5988e1cea76"
+    },
+    {
+      "file": "prompts/10_hardening_release/P133_updater-de-larm-backup-y-rebuild.md",
+      "bytes": 4877,
+      "sha256": "339805d082b6cadc098c27769e50bff7874ceeb94f842d32257f4b6d9fc82789"
+    },
+    {
+      "file": "prompts/10_hardening_release/P134_diagnostics-bundle-privacidad-y-observabilidad-final.md",
+      "bytes": 4544,
+      "sha256": "79f508cf63efcb11d971e1dc10b147e7ada4d5a36c53ed663d68ecaabcb52a26"
+    },
+    {
+      "file": "prompts/10_hardening_release/P135_suite-end-to-end-del-producto.md",
+      "bytes": 5091,
+      "sha256": "1d5865431545dae90e1db1c589c9bf7dee2a09cc5d4707384ab7785bdf6bf9ab"
+    },
+    {
+      "file": "prompts/10_hardening_release/P136_stress-concurrencia-y-rendimiento-del-daemon.md",
+      "bytes": 4501,
+      "sha256": "0f43196acb14cdcc98c35c5398f73e0bb3d0b4457d376f6128828812741075c2"
+    },
+    {
+      "file": "prompts/10_hardening_release/P137_packaging-windows-user-background-agent-y-windows-service-opcional.md",
+      "bytes": 4723,
+      "sha256": "91b906fd329b38a5a98485cbcb53ddb3117fefe7cd05ea40e6bb85f9a6a38c12"
+    },
+    {
+      "file": "prompts/10_hardening_release/P138_aceptacion-final-auditoria-contra-spec-y-release-candidate.md",
+      "bytes": 6139,
+      "sha256": "5b09830238f599c8d5d76e7359a5bd2dd80c65296515828080887eb6f092c531"
+    },
+    {
+      "file": "prompts/11_complementos/P000_inventario-real-y-locks-de-entorno-antes-de-implementar.md",
+      "bytes": 4743,
+      "sha256": "ea367cf8123fef03a0b8a004c16d6792ec38739b7c4a92460c919583fe46e171"
+    },
+    {
+      "file": "prompts/11_complementos/P009_autenticacion-secretos-y-autorizaciones-desde-la-primera-api.md",
+      "bytes": 5237,
+      "sha256": "eddc5ab3b1d76c15e59ff1f9bcd9da9e112cf952a8396585342a64d36268ac27"
+    },
+    {
+      "file": "prompts/11_complementos/P019_guards-de-artefactos-reservas-y-journal-transaccional.md",
+      "bytes": 4286,
+      "sha256": "07081b5d765e8c3509addb38a059b94ca3729ed28830131a1f184a9f6b86e594"
+    },
+    {
+      "file": "prompts/11_complementos/P026_conformance-sdk-para-las-cinco-familias-de-plugins.md",
+      "bytes": 4757,
+      "sha256": "dfc7a40d92e0f81b90dd9c9a8e387095d9239fa4c8e7dce23f90b20093f2932d"
+    },
+    {
+      "file": "prompts/11_complementos/P027_custom-rules-como-datos-y-estrategia-nuget-gestionada.md",
+      "bytes": 4297,
+      "sha256": "c6748617c7ae9d9c420b02b3f7c268fc07c6d006ae3bbb9f5ca0314af7e0a173"
+    },
+    {
+      "file": "prompts/11_complementos/P028_registro-remoto-firmado-y-exportacion-importacion-de-plugins.md",
+      "bytes": 4353,
+      "sha256": "a3a0dc1b26682ff0427c87d8ef36b761dc36ca97938ee14e4ec3fe44fec2deb6"
+    },
+    {
+      "file": "prompts/11_complementos/P029_outbox-y-eventos-durables-antes-de-watchers-y-procesos.md",
+      "bytes": 4084,
+      "sha256": "d8316d05be36caf3fcbda6709ec947dc7e0c16ba80c1b5e8721152a3cec78792"
+    },
+    {
+      "file": "prompts/11_complementos/P082_adaptador-oficial-ncnn-y-serving-por-worker.md",
+      "bytes": 4122,
+      "sha256": "dd144eb48ebeb218be6588ad999a7984c249c2f78e927e02554cfe223ec485b7"
+    },
+    {
+      "file": "prompts/11_complementos/P083_adaptador-oficial-mnn-y-bundles-de-inferencia.md",
+      "bytes": 4124,
+      "sha256": "18a45b0902675d72f85aaf62d56794211bfb78a15cfb4bc465f5e23a0ca27ca0"
+    },
+    {
+      "file": "prompts/11_complementos/P097_actualizacion-de-modelos-y-revisiones-coexistentes.md",
+      "bytes": 4194,
+      "sha256": "6cc769e2a4cfb8037b1f160fa0dca5b35a867b7d65510de71433c4e01985554f"
+    },
+    {
+      "file": "prompts/11_complementos/P098_importadores-de-todos-los-bundles-y-recuperacion-sin-base-de-datos.md",
+      "bytes": 4417,
+      "sha256": "7e71509f17dd6c6704de03943b2aaa329824bce32e259116d8f70808234cb305"
+    },
+    {
+      "file": "prompts/11_complementos/P099_perfiles-externos-por-version-y-fixtures-de-apis-reales.md",
+      "bytes": 5875,
+      "sha256": "0dbf2683658641c028dd1cb0e58c7b295aa36a77ffa868184d07572853724162"
+    },
+    {
+      "file": "prompts/11_complementos/P107_cambio-companero-en-ai-broker-localruntimeresolver-real.md",
+      "bytes": 4970,
+      "sha256": "bde2fdc5394dc3112c512da3c2b479f14ee8426996bb2f5a5b30e6a7353f86b8"
+    },
+    {
+      "file": "prompts/11_complementos/P108_cambio-companero-en-ai-broker-contratos-multimodales.md",
+      "bytes": 4870,
+      "sha256": "da08c147068e9603708b6e20bd4ce2e7403f288702f5fc6747ad6cf9a98d3486"
+    },
+    {
+      "file": "prompts/11_complementos/P118_cambios-companeros-en-agora-lab-y-model-drift.md",
+      "bytes": 5197,
+      "sha256": "83a59112cb1f403d953fcde3604ab4bf9f52e028d99699553a6443bf44612860"
+    },
+    {
+      "file": "prompts/11_complementos/P119_admision-autorizada-de-descargas-automaticas.md",
+      "bytes": 5106,
+      "sha256": "27cc57ec6dfabd7929b16d230a8369bd2c86c08387b18b26d9d980de461af7fc"
+    },
+    {
+      "file": "prompts/11_complementos/P139_pantalla-hardware-y-asistente-completo-de-almacenamiento.md",
+      "bytes": 4302,
+      "sha256": "796155f48d69a2c9269db8d9a5016a84d7fb1e62fd65093f67ad41db42de7c85"
+    },
+    {
+      "file": "prompts/11_complementos/P140_configuracion-completa-y-asistentes-de-runtime-y-fuente.md",
+      "bytes": 7078,
+      "sha256": "e15aaa55290c57a1ec1a465e5788f7428fa145b6129de51ff9474cf451521f7b"
+    },
+    {
+      "file": "prompts/11_complementos/P141_autenticacion-privada-oauth-ssh-cookies-y-git-lfs.md",
+      "bytes": 4676,
+      "sha256": "73e49ec37b74325cc4fbfc2427fffb334b20f9331fb81de6dfdc8f4035d13ad8"
+    },
+    {
+      "file": "prompts/11_complementos/P142_cobertura-normativa-y-manifiesto-de-evidencia-por-requisito.md",
+      "bytes": 4344,
+      "sha256": "eb5a6ee20549fe6c01ed85556939c80d96c3c205b55e560f4c4d097ce2771545"
+    },
+    {
+      "file": "prompts/11_complementos/P143_pruebas-de-aislamiento-del-so-y-endpoints-remotos.md",
+      "bytes": 4302,
+      "sha256": "29df582fe2674c09da3cb6c3cf668bd39c5b535c183525dbdfb36a1dc6b61937"
+    },
+    {
+      "file": "provenance/INVENTARIO_ORIGINALES.json",
+      "bytes": 24907,
+      "sha256": "101349b1c4406b9e5e9cde4007360ae9caaa3a8daa41f2c46aa7562336da8c18"
+    },
+    {
+      "file": "schemas/domain.schema.json",
+      "bytes": 108595,
+      "sha256": "384bed4e270a7011471d185bf3fc647f7beefde7266c8e5cf0608ab5615150c0"
+    },
+    {
+      "file": "schemas/larm.schema.json",
+      "bytes": 360591,
+      "sha256": "2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8"
+    },
+    {
+      "file": "tools/generate_fixtures.py",
+      "bytes": 3848,
+      "sha256": "999a5458f1a0d8f49eb5cd5f6fc7fbd64cde483d2d376f3314350a4f0fd8b674"
+    },
+    {
+      "file": "tools/prepare_prompt.py",
+      "bytes": 4582,
+      "sha256": "42f63f518018dbc586ef55165f4f2b1af50b78690ca96c9a7a87c22d0e68bf40"
+    },
+    {
+      "file": "tools/requirements.txt",
+      "bytes": 141,
+      "sha256": "6131e9e743e66c2a3d570a420051e6c9ad991ca3f71068ec9322cbffe56037a1"
+    },
+    {
+      "file": "tools/verify_conformity.py",
+      "bytes": 7229,
+      "sha256": "3b94635b66551e5c8f084653ebbfcbab91f72ac849d7053545e2c7806b2d87e7"
+    },
+    {
+      "file": "tools/verify_pack.py",
+      "bytes": 36570,
+      "sha256": "e851a1bb61ab48e75f930e859ad83989b3236e4d1c8c9674b60342968967681d"
+    }
+  ],
+  "predecessor_package_version": "3.12.1",
+  "audit_findings_addressed": [
+    "H01",
+    "H02",
+    "H03",
+    "H04",
+    "H05",
+    "H06",
+    "H07",
+    "H08",
+    "H09"
+  ],
+  "contract_revision_log": [
+    {
+      "version": "3.1.0",
+      "predecessor": "3.0.0",
+      "date": "2026-10-22",
+      "scope": "P052 optional artifact selection, per-artifact size evidence, destination preflight, and explicit confirmation",
+      "audit": "contracts/REVISION_3_1_0_P052.md"
+    },
+    {
+      "version": "3.2.0",
+      "predecessor": "3.1.0",
+      "date": "2026-10-23",
+      "scope": "P098 read-only local import scan preview required by P123",
+      "audit": "contracts/REVISION_3_2_0_P098.md"
+    },
+    {
+      "version": "3.3.0",
+      "predecessor": "3.2.0",
+      "date": "2026-10-23",
+      "scope": "P051 source download chunk data plane with bounded binary responses",
+      "audit": "contracts/REVISION_3_3_0_P051.md"
+    },
+    {
+      "version": "3.4.0",
+      "predecessor": "3.3.0",
+      "date": "2026-10-23",
+      "scope": "P046 Hugging Face source.download_chunk profile capability declaration",
+      "audit": "contracts/REVISION_3_4_0_P046.md"
+    },
+    {
+      "version": "3.5.0",
+      "predecessor": "3.4.0",
+      "date": "2026-10-23",
+      "scope": "P047 ModelScope source.download_chunk profile capability declaration pinned to modelscope_hub v0.4.0",
+      "audit": "contracts/REVISION_3_5_0_P047.md"
+    },
+    {
+      "version": "3.6.0",
+      "predecessor": "3.5.0",
+      "date": "2026-10-23",
+      "scope": "P048 bounded source.download_chunk capability for GitHub, direct HTTP, local folder, and UNC profiles",
+      "audit": "contracts/REVISION_3_6_0_P048.md"
+    },
+    {
+      "version": "3.6.1",
+      "predecessor": "3.6.0",
+      "date": "2026-10-24",
+      "scope": "P048 source worker crate and allowed dependencies registered in crate-graph.json",
+      "audit": "contracts/REVISION_3_6_1_P048.md"
+    },
+    {
+      "version": "3.7.0",
+      "predecessor": "3.6.1",
+      "date": "2026-10-24",
+      "scope": "P052 source SDK DTO conformance for optional artifact IDs and fail-closed selection binding; per-artifact size intervals remain in ArtifactManifest",
+      "audit": "contracts/REVISION_3_7_0_P052.md"
+    },
+    {
+      "version": "3.8.0",
+      "predecessor": "3.7.0",
+      "date": "2026-10-24",
+      "scope": "P141 account-bound AuthProbe and exact worker credential reference resolution",
+      "audit": "contracts/REVISION_3_8_0_P141.md"
+    },
+    {
+      "version": "3.9.0",
+      "predecessor": "3.8.0",
+      "date": "2026-10-24",
+      "scope": "P028 signed registry index, revocation checkpoint, and initial import journal schemas",
+      "audit": "contracts/REVISION_3_9_0_P028.md"
+    },
+    {
+      "version": "3.9.1",
+      "predecessor": "3.9.0",
+      "date": "2026-10-24",
+      "scope": "P028 HTTPS registry sync/status operations with durable checkpoint and revocation acceptance",
+      "audit": "contracts/REVISION_3_9_1_P028.md"
+    },
+    {
+      "version": "3.10.0",
+      "predecessor": "3.9.1",
+      "date": "2026-10-25",
+      "scope": "P052 qualified mirror candidates, explicit plan sealing, transient per-artifact fallback, and actual-source provenance",
+      "audit": "contracts/REVISION_3_10_0_P052.md"
+    },
+    {
+      "version": "3.10.1",
+      "predecessor": "3.10.0",
+      "date": "2026-10-25",
+      "scope": "P052 separates the primary source from zero-to-sixteen exact qualified mirror alternatives and preserves empty-list plan hash compatibility",
+      "audit": "contracts/REVISION_3_10_1_P052.md"
+    },
+    {
+      "version": "3.10.2",
+      "predecessor": "3.10.1",
+      "date": "2026-10-25",
+      "scope": "P127 persists source operational state and rate-limit observations from durable source.sync into model_source responses and Fuentes UI",
+      "audit": "contracts/REVISION_3_10_2_P127.md"
+    },
+    {
+      "version": "3.11.0",
+      "predecessor": "3.10.2",
+      "date": "2026-10-25",
+      "scope": "P032 side-by-side runtime updates, pinning by variant/profile, durable rollback, retention and P117 comparison evidence",
+      "audit": "contracts/REVISION_3_11_0_P032.md"
+    },
+    {
+      "version": "3.11.1",
+      "predecessor": "3.11.0",
+      "date": "2026-10-25",
+      "scope": "P032/P100 exact pin then runtime default resolution for leases; persisted selection and fail-closed admission revalidation",
+      "audit": "contracts/REVISION_3_11_1_P032_P100.md"
+    },
+    {
+      "version": "3.12.0",
+      "predecessor": "3.11.1",
+      "date": "2026-10-27",
+      "scope": "Authorized remote acquisition snapshots separated from verified physical bundles; qualified ingestion and immutable plan binding",
+      "audit": "contracts/REVISION_3_12_0_P044_P052.md"
+    },
+    {
+      "version": "3.12.1",
+      "predecessor": "3.12.0",
+      "date": "2026-10-27",
+      "scope": "Materializes authorized public source acquisition binding, pinned manifest and central optional artifact selection without changing HTTP requests",
+      "audit": "contracts/REVISION_3_12_1_SOURCE_ACQUISITION.md"
+    },
+    {
+      "version": "3.13.0",
+      "predecessor": "3.12.1",
+      "date": "2026-10-30",
+      "scope": "Explicitly authorized P093 same-job transformation restart with a new confirmed plan, CAS, durable idempotency and recovery oracles",
+      "audit": "contracts/REVISION_3_13_0_P093.md"
+    },
+    {
+      "version": "3.14.0",
+      "predecessor": "3.13.0",
+      "date": "2026-11-12",
+      "scope": "P120 variant promotion state machine: exclusive DEFAULT per (revision, format, quantization) with demotion of the previous DEFAULT, REJECTED/PINNED laterals and optimistic row_version",
+      "audit": "contracts/REVISION_3_14_0_P120.md"
+    }
+  ]
+}

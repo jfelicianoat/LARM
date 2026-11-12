@@ -1,0 +1,67 @@
+{
+  "$defs": {
+    "larm__InstallRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "external_host_id": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "profile_lock_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "runtime_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "storage_location_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "strategy": {
+          "enum": [
+            "PREBUILT_BINARY",
+            "GITHUB_RELEASE",
+            "SOURCE_BUILD",
+            "WINGET",
+            "PIP",
+            "UV",
+            "CONDA",
+            "MAMBA",
+            "NUGET",
+            "WSL",
+            "CONTAINER",
+            "CUSTOM",
+            "MSI_MANAGED",
+            "PYTHON_VENV",
+            "EXTERNAL_ADOPTION"
+          ],
+          "type": "string"
+        },
+        "upstream_version": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "runtime_id",
+        "upstream_version",
+        "strategy",
+        "storage_location_id",
+        "profile_lock_hash",
+        "external_host_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__InstallRequest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

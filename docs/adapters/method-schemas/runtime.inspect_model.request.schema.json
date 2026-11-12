@@ -1,0 +1,31 @@
+{
+  "$defs": {
+    "larm__ModelPath": {
+      "additionalProperties": false,
+      "properties": {
+        "format_hint": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "root_path": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "root_path",
+        "format_hint"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__ModelPath",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

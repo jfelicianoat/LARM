@@ -1,0 +1,172 @@
+{
+  "prompt_id": "P093",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "c19fe9512152b24511db8679053a447db8b864d269a3c695156da77c3663c262",
+  "changed_files": [
+    "Cargo.lock",
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/Cargo.toml",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/transformations.rs",
+    "crates/larm-api/tests/transformations.rs",
+    "crates/larm-db/Cargo.toml",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/transformations.rs",
+    "crates/larm-db/tests/adapter_selection.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-domain/src/transformations.rs",
+    "crates/larm-transform/Cargo.toml",
+    "crates/larm-transform/src/lib.rs",
+    "docs/api/openapi.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P093_transformation-pipeline-framework.md",
+    "migrations/0008_p093_failed_recoverable.sql",
+    "tools/p093_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P093-UNIT-domain",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib transformations::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El contrato de transformation plan/job valida snapshots, hashes, parámetros, actor, correlación, timestamps y estados.",
+      "observed": "exit=0; warning: `larm-domain` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-892f2ab81062ba5a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-UNIT-domain.log#sha256=1ddf74b3993c2c910333a896f45b6e703ef9a0827a52b5903f1876324d5e9cd2"
+      ]
+    },
+    {
+      "id": "P093-UNIT-transform-crate",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-transform -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El crate de transformación conserva su fachada pública y su identificador estable.",
+      "observed": "exit=0; warning: `larm-domain` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_transform-a73c3e2411ebb367.exe) | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-UNIT-transform-crate.log#sha256=a4bcf0867625d1f41a99a136251c431686513c116ed46717efed0d4252cd22b8"
+      ]
+    },
+    {
+      "id": "P093-INTEGRATION-api",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test transformations -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "Las rutas de plan, confirmación idempotente y listado respetan DTO cerrado, autorización, paginación y OpenAPI.",
+      "observed": "exit=0; warning: `larm-api` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.37s | Running tests\\transformations.rs (target\\debug\\deps\\transformations-12f91de29cadb981.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-INTEGRATION-api.log#sha256=1dd42f2b4d7c781d375cb347f2061ecf9bc287c46299c9c43acd7e4ed2bb50c4"
+      ]
+    },
+    {
+      "id": "P093-INTEGRATION-sql-recovery",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib transformations::tests -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "SQLite reconcilia jobs interrumpidos como FAILED_RECOVERABLE con causa, journal, evento y outbox atómicos; no publica sin journal y aísla por actor.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-c463ce497a7a8126.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-INTEGRATION-sql-recovery.log#sha256=b23f80213fa108edda8ef5f4e636984ac573304ed5732bf4d3decd1c39b2e33e"
+      ]
+    },
+    {
+      "id": "P093-INTEGRATION-migration",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration h07_transformation_job_acepta_failed_recoverable -j1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "La migración admite FAILED_RECOVERABLE y rechaza estados fuera del contrato.",
+      "observed": "exit=0; warning: `larm-db` (test \"integration\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s | Running tests\\integration.rs (target\\debug\\deps\\integration-7432882d547af07b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-INTEGRATION-migration.log#sha256=9a9c847d5f80b59c1bec5e28d4593f3751d74eb089cbb1fb9f53b0a8387dfc6a"
+      ]
+    },
+    {
+      "id": "P093-INTEGRATION-worker-reference",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test reference_adapters transformation_python_por_host_protegido_convierte_y_verifica_bundle_canonico -j1 -- --exact --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El host protegido ejecuta el adaptador de referencia, rechaza escritura sobre el input y red no autorizada, y verifica el bundle producido.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s | Running tests\\reference_adapters.rs (target\\debug\\deps\\reference_adapters-a0e1954a2890aeee.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-INTEGRATION-worker-reference.log#sha256=7cfad5fea41e6a927bb72e0283e7b00ab2529de37cd2b57bc809c160b1ac365b"
+      ]
+    },
+    {
+      "id": "P093-CONTRACT-daemon-build",
+      "kind": "CONTRACT",
+      "command": "cargo check -p larm-daemon -j1",
+      "fixture_hashes": [],
+      "expected": "El daemon compila con las rutas P093, recuperación de arranque y repositorio SQLite.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_daemon-320whurc4pe1e\\s-hnh69m6sxx-1p1l9ko-working` | warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.53s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-CONTRACT-daemon-build.log#sha256=65c1f0560aeafa9841c56b0b837ef64dba9e327d2ead0468074c1a49e86f1f58"
+      ]
+    },
+    {
+      "id": "P093-CONTRACT-openapi",
+      "kind": "CONTRACT",
+      "command": "cargo run -p larm-daemon -- openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [],
+      "expected": "OpenAPI documenta las tres operaciones P093 implementadas y coincide con el contrato generado.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.49s | Running `target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check`",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-CONTRACT-openapi.log#sha256=2b22a6dc7b5cde2e196a723a5a0b5eccbd6a1817d4c4a612f3e740e95b920fa8"
+      ]
+    },
+    {
+      "id": "P093-CONTRACT-architecture",
+      "kind": "CONTRACT",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "El grafo permitido incluye las dependencias P093 y conserva los límites del workspace y Tauri.",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P093_runs/P093-CONTRACT-architecture.log#sha256=7f338a67530e939b724a71f5a9dfa55121777dcf50a1beab8008d2ec2b14a9d5"
+      ]
+    },
+    {
+      "id": "P093-REAL-preflight-worker-recovery",
+      "kind": "REAL",
+      "command": "Ejecutar el flujo público del daemon en Windows con input de prueba, herramienta aislada y volúmenes controlados",
+      "fixture_hashes": [],
+      "expected": "Comprobar preflight de espacio insuficiente, crash de herramienta, hash mismatch y recuperación H07; no publicar salidas parciales.",
+      "observed": "NO EJECUTADA: La API pública queda cerrada con UPSTREAM_UNAVAILABLE porque el servicio SQLite todavía no conecta el worker, la reserva/preflight ni la ingestión y verificación de outputs. La prueba del adaptador de referencia valida su proceso aislado, pero no ejercita un job P093 del daemon.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P093-REAL-restart-new-preflight",
+      "kind": "REAL",
+      "command": "Reiniciar un job FAILED_RECOVERABLE desde el daemon en Windows",
+      "fixture_hashes": [],
+      "expected": "Verificar el hash intacto del original, nuevo plan/preflight/reserva/guard, temporales propios y attempt incrementado con trazabilidad.",
+      "observed": "NO EJECUTADA: El cierre H07 persiste FAILED_RECOVERABLE al recuperar interrupciones; aún no existe la operación de reinicio con nuevo preflight y fencing para ejecutar este oráculo end-to-end.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La capa durable de H07 y los contratos/API están preparados, pero planificar y ejecutar fallan cerrado con UPSTREAM_UNAVAILABLE hasta conectar el worker, el preflight peak-disk, guards/reservas, staging y verificación/smoke de outputs.",
+    "Falta implementar reinicio desde FAILED_RECOVERABLE bajo nuevo preflight, comprobar integridad del input, gestionar temporales con ownership y conservar el historial del intento anterior.",
+    "Faltan los oráculos operativos P093 de disco insuficiente, crash de herramienta, hash mismatch y recovery/restart en un job del daemon sobre Windows.",
+    "dependencia P016 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P040 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P051 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T10:40:59.053Z"
+}

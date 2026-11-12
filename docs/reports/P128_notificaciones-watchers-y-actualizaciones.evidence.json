@@ -1,0 +1,285 @@
+{
+  "prompt_id": "P128",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "ffa31168bc29c3d1babd48de800f59386d5598d2407802ad4ddb6aef0130c98a",
+  "changed_files": [
+    "adapters/runtime/reference/capabilities.json",
+    "adapters/source/reference/capabilities.json",
+    "apps/daemon/src/hardware.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/api/notifications.ts",
+    "apps/desktop/src/api/settings.ts",
+    "apps/desktop/src/models.tsx",
+    "apps/desktop/src/pages/Notifications/index.tsx",
+    "apps/desktop/src/pages/Notifications/notifications.test.tsx",
+    "apps/desktop/src/pages/Updates/index.tsx",
+    "apps/desktop/src/runtimes.tsx",
+    "apps/desktop/src/settings.test.tsx",
+    "apps/desktop/src/settings.tsx",
+    "apps/desktop/src/sources.tsx",
+    "apps/desktop/src/storage.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-adapter-sdk/src/capabilities/builtin.rs",
+    "crates/larm-api/src/notifications.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/settings.rs",
+    "crates/larm-api/tests/notifications.rs",
+    "crates/larm-core/src/hardware.rs",
+    "crates/larm-core/src/source_credentials.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/notifications.rs",
+    "crates/larm-db/src/storage.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-db/tests/storage.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-domain/src/watchers.rs",
+    "crates/larm-models/src/watcher.rs",
+    "docs/adapters/capability-schemas/audio.classify.input.schema.json",
+    "docs/adapters/capability-schemas/audio.classify.output.schema.json",
+    "docs/adapters/capability-schemas/audio.transcribe.input.schema.json",
+    "docs/adapters/capability-schemas/audio.transcribe.output.schema.json",
+    "docs/adapters/capability-schemas/audio.translate.input.schema.json",
+    "docs/adapters/capability-schemas/audio.translate.output.schema.json",
+    "docs/adapters/capability-schemas/decision.evaluate.input.schema.json",
+    "docs/adapters/capability-schemas/decision.evaluate.output.schema.json",
+    "docs/adapters/capability-schemas/embedding.create.input.schema.json",
+    "docs/adapters/capability-schemas/embedding.create.output.schema.json",
+    "docs/adapters/capability-schemas/generic.inference.input.schema.json",
+    "docs/adapters/capability-schemas/generic.inference.output.schema.json",
+    "docs/adapters/capability-schemas/image.generate.input.schema.json",
+    "docs/adapters/capability-schemas/image.generate.output.schema.json",
+    "docs/adapters/capability-schemas/image.upscale.input.schema.json",
+    "docs/adapters/capability-schemas/image.upscale.output.schema.json",
+    "docs/adapters/capability-schemas/index.json",
+    "docs/adapters/capability-schemas/rerank.input.schema.json",
+    "docs/adapters/capability-schemas/rerank.output.schema.json",
+    "docs/adapters/capability-schemas/speech.synthesize.input.schema.json",
+    "docs/adapters/capability-schemas/speech.synthesize.output.schema.json",
+    "docs/adapters/capability-schemas/text.classify.input.schema.json",
+    "docs/adapters/capability-schemas/text.classify.output.schema.json",
+    "docs/adapters/capability-schemas/text.generate.input.schema.json",
+    "docs/adapters/capability-schemas/text.generate.output.schema.json",
+    "docs/adapters/capability-schemas/tool.call.input.schema.json",
+    "docs/adapters/capability-schemas/tool.call.output.schema.json",
+    "docs/adapters/capability-schemas/video.generate.input.schema.json",
+    "docs/adapters/capability-schemas/video.generate.output.schema.json",
+    "docs/adapters/capability-schemas/vision.detect.input.schema.json",
+    "docs/adapters/capability-schemas/vision.detect.output.schema.json",
+    "docs/adapters/capability-schemas/vision.ocr.input.schema.json",
+    "docs/adapters/capability-schemas/vision.ocr.output.schema.json",
+    "docs/adapters/capability-schemas/vision.segment.input.schema.json",
+    "docs/adapters/capability-schemas/vision.segment.output.schema.json",
+    "docs/adapters/capability-schemas/vision.understand.input.schema.json",
+    "docs/adapters/capability-schemas/vision.understand.output.schema.json",
+    "migrations/0012_p128_low_disk_transition.sql",
+    "tools/p026_capability_schemas.py",
+    "tools/p026_reference_capabilities.py",
+    "tools/p128_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P128-PACKAGE-COPY",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "docs/spec/PACKAGE_COPY_HASHES.json:57a606440cb2ca15d3e6bfbe8fef9711209fdc54d6529ec890d684b309c258fc"
+      ],
+      "expected": "Las copias contractuales locales coinciden con el paquete v3 vigente.",
+      "observed": "exit=0; PASS 71 copias idénticas al paquete 3.10.2",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-PACKAGE-COPY.log#sha256=23cd4050b1033e63455f6537979a5473fbe66e37d2d641f7bcbc0f3c6d9180b4"
+      ]
+    },
+    {
+      "id": "P128-CAPABILITY-SCHEMAS",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_capability_schemas.py check",
+      "fixture_hashes": [
+        "docs/adapters/capability-schemas/index.json:dae1f89dfa98d3fc1ec6ba88dfa5419c39349770fa3d4568e11021b2fda62b9c",
+        "crates/larm-adapter-sdk/src/capabilities/builtin.rs:a6e067e2cb12c540b2e86d72bb4e0532fc3482bc613d45b2aa88bca4acdb5c29",
+        "docs/contracts/capability-contracts.json:63a539eb5c6855892593c81542616d4d75a59a6720b51f679c38f49ea6c3280f",
+        "docs/contracts/schemas/larm.schema.json:5ccfa061f3f06b02ebd90cfc9e0fa2710553e512012395100831ae2728ad91ef",
+        "docs/contracts/schemas/domain.schema.json:3b1f957175d5b4ddeab066cf50cca4620a2493b8e42d6f380fa67169cb620831"
+      ],
+      "expected": "Los 18 contratos de capacidades mantienen sus 36 schemas autocontenidos y el índice coincide con los schemas canónicos actuales.",
+      "observed": "exit=0; PASS: 18 capacidades / 36 schemas con hashes RFC8785 e índice Rust exactos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-CAPABILITY-SCHEMAS.log#sha256=2e736411232e7bb327298b3175c6bfe67807d43832d4c94336df56b9cc9009f0"
+      ]
+    },
+    {
+      "id": "P128-REFERENCE-CAPABILITIES",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_reference_capabilities.py check",
+      "fixture_hashes": [
+        "adapters/source/reference/capabilities.json:45631166770cde247b7931089073b255de62c06a3e247653b6b3e0cdd03bf936",
+        "adapters/runtime/reference/capabilities.json:d89f06c4a6bb353ca5ceb00b197dba2a08eb182f7da2dbaa592afcab13f0601a",
+        "tools/p026_reference_capabilities.py:687a9d928f1ac1e28c91a11e20aaee732e6518091b6b130fc01b31c95989b928"
+      ],
+      "expected": "Los descriptores fuente/runtime de referencia se derivan de las firmas y fixtures de contrato vigentes.",
+      "observed": "exit=0; PASS: seis descriptores fijados (runtime echo y cinco operaciones source); fixtures sólo de contrato",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-REFERENCE-CAPABILITIES.log#sha256=0f097b54177371164c6e94ab87be510815f2227836a164c628873204b8377de6"
+      ]
+    },
+    {
+      "id": "P128-WATCH-QUERY-VALIDATION",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain watch_query_accepts_exact_ranges_and_rejects_ambiguous_ranges -j 1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/watchers.rs:935ead79e9885ac272e9c16e6dc60def3e730afbd37bb5be3d835bde3d9fe600"
+      ],
+      "expected": "El watcher valida filtros estrictos, tamaños exactos y rangos sin ambigüedad.",
+      "observed": "exit=0; Running tests\\conformance.rs (target\\debug\\deps\\conformance-ba721a27bbb8929a.exe) | Running tests\\custom_rules.rs (target\\debug\\deps\\custom_rules-c4dba54c08d749ec.exe) | Running tests\\runtime.rs (target\\debug\\deps\\runtime-3994deae824bf0fb.exe) | Running tests\\runtime_install.rs (target\\debug\\deps\\runtime_install-bacb796bf5485482.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-WATCH-QUERY-VALIDATION.log#sha256=6cb345077d50df67c2dc4e85476b19c457d596f207a9632561f81abd4163d53a"
+      ]
+    },
+    {
+      "id": "P128-WATCH-QUERY-MATCHING",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-models query_filters_capabilities_and_only_exact_size_values -j 1",
+      "fixture_hashes": [
+        "crates/larm-models/src/watcher.rs:586670e7d125005c78162c2e29000cc3647d61632bbbda253112c805dacb0766"
+      ],
+      "expected": "El worker aplica filtros de capacidad, compatibilidad y tamaño sin tratar estimaciones/desconocidos como exactos.",
+      "observed": "exit=0; Running tests\\import_worker.rs (target\\debug\\deps\\import_worker-0321165935416ac6.exe) | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-649f93df1ac5c903.exe) | Running tests\\registry.rs (target\\debug\\deps\\registry-fc8a79800f55fb2f.exe) | Running tests\\verification.rs (target\\debug\\deps\\verification-fe6b34da5ce804d2.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-WATCH-QUERY-MATCHING.log#sha256=eb393707a58899c0d2d4ba0639765d4c48fa6432bc17ab9d5f902b19370b22f5"
+      ]
+    },
+    {
+      "id": "P128-WATCH-EDIT-API",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test source_watches source_watch_routes_enforce_contract_scope_dto_replay_and_if_match -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/source_watches.rs:fad5d588cfc155338f24abcfd0c9028a95a3be063b45fba5db8ce8c264f390de",
+        "crates/larm-api/tests/source_watches.rs:91881076a7da1e539acc5e547d7483e651e7edebc18c60357a168f9d1f7ad184"
+      ],
+      "expected": "Crear y editar watchers exige autorización, DTO cerrado, idempotencia y revisión CAS.",
+      "observed": "exit=0; warning: `larm-api` (test \"source_watches\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.00s | Running tests\\source_watches.rs (target\\debug\\deps\\source_watches-70dfbee8f4c35d73.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-WATCH-EDIT-API.log#sha256=cbcf4fa67bb11f60e1b3d84742c8ba6929c6841a8ff318b08afa24b0f6322a0e"
+      ]
+    },
+    {
+      "id": "P128-OPENAPI-ROUTES",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api p128_notification_and_watch_routes_are_published_as_implemented -j 1",
+      "fixture_hashes": [
+        "crates/larm-api/src/openapi.rs:aeaeeb329565035a7ea89a6623b0214c53a1d76991544c8278a5f70bc0218dbf",
+        "docs/contracts/api-operations.json:9f0915ec0813b0b1556a7ab3497e801f2d2ece07ac65438ad959e5e5f693088f"
+      ],
+      "expected": "OpenAPI marca las rutas reales de notificaciones y CRUD de watchers como implementadas.",
+      "observed": "exit=0; Running tests\\source_probes.rs (target\\debug\\deps\\source_probes-81cd323c361cae29.exe) | Running tests\\source_watches.rs (target\\debug\\deps\\source_watches-70dfbee8f4c35d73.exe) | Running tests\\storage.rs (target\\debug\\deps\\storage-743a1792baf73e8f.exe) | Running tests\\transformations.rs (target\\debug\\deps\\transformations-308ad1ef55078828.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-OPENAPI-ROUTES.log#sha256=aab577232d7d872f19798fdea47a0d615c5d09129b40680591065de6bc7cbfc0"
+      ]
+    },
+    {
+      "id": "P128-NOTIFICATION-API",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test notifications notification_routes_enforce_scope_strict_patch_and_if_match -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/notifications.rs:9629247c2ae7ad638b4915f9ff06c595a94554acb0fac0e1a5b68ba84e79d9b1",
+        "crates/larm-api/tests/notifications.rs:ad097af0476a037b573bfe4118d83c97e50cbd618f6b156d939e041649cd8751"
+      ],
+      "expected": "La API de notificaciones valida permisos, rechaza campos extra y aplica cambios de lectura con If-Match.",
+      "observed": "exit=0; warning: `larm-api` (test \"notifications\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s | Running tests\\notifications.rs (target\\debug\\deps\\notifications-52a1c268e226df4e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-NOTIFICATION-API.log#sha256=652fbed930baa6c541eb13f063368db1cdec3c52e792f966da1281604c812f5c"
+      ]
+    },
+    {
+      "id": "P128-NOTIFICATION-PERSISTENCE",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-db --lib notifications::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/notifications.rs:dad6d94c6d662c0262132409fe1dfbf7df1a306324f2662fcac82f7ad078addb"
+      ],
+      "expected": "La lectura CAS y su outbox son atómicas; la paginación mantiene un cursor estable y no duplica mutaciones noop.",
+      "observed": "exit=0; warning: `larm-domain` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.32s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-NOTIFICATION-PERSISTENCE.log#sha256=1196188299b8d3ef1c86395d9f6045bfccacfc7864d41285b0673be5b1543083"
+      ]
+    },
+    {
+      "id": "P128-H09-PHYSICAL-VOLUME",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test storage h09_emite_una_alerta_por_volumen_y_transicion_y_omite_offline -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "migrations/0012_p128_low_disk_transition.sql:a6ba9ec3a8f995d0386f3e98101e230e4bab57058c7b553c0582d10f713f157f",
+        "crates/larm-db/tests/storage.rs:8accd2cb389dcd8939e2834715cffbdc29fe6763e00f62d9532cac1598b5f7fc"
+      ],
+      "expected": "H09 respeta la igualdad, emite una alerta por volumen y transición, omite discos offline y reevalúa al cambiar Settings.",
+      "observed": "exit=0; warning: `larm-domain` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s | Running tests\\storage.rs (target\\debug\\deps\\storage-3b3dd8cc3cde440d.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-H09-PHYSICAL-VOLUME.log#sha256=58aa134819b8501b93f41c656a0b41f112d7f0b2142376e793b22164680f2a4d"
+      ]
+    },
+    {
+      "id": "P128-H09-SETTINGS-REVISION",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-api changing_h09_thresholds_applies_the_saved_revision -j 1",
+      "fixture_hashes": [
+        "crates/larm-api/src/settings.rs:07b5e9e4a65100b3fb61e198b900dd75f6269caee1213ef093f7207ceea26b51",
+        "crates/larm-core/src/hardware.rs:579cb5f024f102c88654a8d9fa60184ed8665ed66c67fae71ffb1d4c30a509c4"
+      ],
+      "expected": "Al guardar umbrales nuevos se propaga la revisión persistida para reevaluar el volumen.",
+      "observed": "exit=0; Running tests\\source_probes.rs (target\\debug\\deps\\source_probes-81cd323c361cae29.exe) | Running tests\\source_watches.rs (target\\debug\\deps\\source_watches-70dfbee8f4c35d73.exe) | Running tests\\storage.rs (target\\debug\\deps\\storage-743a1792baf73e8f.exe) | Running tests\\transformations.rs (target\\debug\\deps\\transformations-308ad1ef55078828.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-H09-SETTINGS-REVISION.log#sha256=0d274a48618b717ecc143c557349752c73f97bc035817f58edeb21078a7a3a92"
+      ]
+    },
+    {
+      "id": "P128-DESKTOP-NOTIFICATIONS",
+      "kind": "INTEGRATION",
+      "command": "node node_modules/vitest/vitest.mjs run --pool=threads --maxWorkers=1 --root apps/desktop src/pages/Notifications/notifications.test.tsx src/settings.test.tsx",
+      "fixture_hashes": [
+        "apps/desktop/src/pages/Notifications/index.tsx:c581eedb4caca46b2674a0fc13c45c3be36ee8e6708cc8bb7abd76a58eea2c60",
+        "apps/desktop/src/pages/Notifications/notifications.test.tsx:0d1007cf61a856c7c48b9836d459783dba60b510a62bf5c203bf3b915b93dcb8",
+        "apps/desktop/src/settings.tsx:678b181a3a5a999a32ee8319183fe30266a3aaa92bc4058be820fba809ac22b1",
+        "apps/desktop/src/settings.test.tsx:b8b5fb92249987718e8d0ab67ae8a77a33a3fc5edd9f3eff5ffe7935c60d73b4"
+      ],
+      "expected": "La interfaz deduplica avisos, limita enlaces locales, crea watches con tamaños exactos y guarda H09 en PERCENT/BYTES.",
+      "observed": "exit=0; Duration  2.41s (environment 65%, tests 17%, import 11%, transform 6%) | Isolate  2 workers spawned · ~815ms startup each (spawn + environment, per file) | at least ~815ms faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P128_runs/P128-DESKTOP-NOTIFICATIONS.log#sha256=8a92752e7353ba758e6c4f1e269ffc4490883ca20496c8860d386b6a212c258e"
+      ]
+    },
+    {
+      "id": "P128-WINDOWS-PC-IA-REAL",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P128 -Real; acceptance Windows/PC IA sobre datos y ubicaciones de prueba",
+      "fixture_hashes": [],
+      "expected": "Ejecutar watchers, notificaciones y transiciones físicas H09 en el daemon real, con host, fixture y resultados observados.",
+      "observed": "NO EJECUTADA: Las pruebas de código pasan, pero P050, P113, P032, P097 y P119 aún no tienen REAL_PASS; no se puede atribuir aceptación productiva a la integración local.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La aceptación obligatoria del comportamiento integrado en Windows/PC IA sobre datos y ubicaciones de prueba sigue pendiente.",
+    "dependencia P050 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P113 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P032 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P097 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P119 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-25T09:28:01.362Z"
+}

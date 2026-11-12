@@ -1,0 +1,1180 @@
+[
+  {
+    "id": "F01",
+    "title": "El prompt individual no contiene ni exige todo el contexto normativo",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P001",
+      "P138",
+      "P000"
+    ],
+    "normative_files": [
+      "contracts/00_PACKAGE.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      127,
+      158,
+      161,
+      166
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F02",
+    "title": "Se delegan decisiones públicas al implementador",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P001",
+      "P002",
+      "P003",
+      "P008",
+      "P034",
+      "P136"
+    ],
+    "normative_files": [
+      "contracts/00_PACKAGE.md",
+      "contracts/defaults.json",
+      "contracts/crate-graph.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      26,
+      61,
+      125,
+      127,
+      149,
+      166
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F03",
+    "title": "Modelo de datos y serialización incompletos",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P002",
+      "P004",
+      "P010",
+      "P013",
+      "P030",
+      "P040",
+      "P045",
+      "P096",
+      "P134"
+    ],
+    "normative_files": [
+      "contracts/persistence.sql",
+      "contracts/01_DOMAIN_STATES.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      7,
+      17,
+      19,
+      21,
+      54,
+      64,
+      76,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F04",
+    "title": "API pública sin contrato exhaustivo",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P003",
+      "P005",
+      "P006",
+      "P036",
+      "P037",
+      "P100",
+      "P101",
+      "P102",
+      "P104",
+      "P105",
+      "P113",
+      "P120",
+      "P131",
+      "P009"
+    ],
+    "normative_files": [
+      "contracts/api-operations.json",
+      "contracts/07_API_EVENTS_MCP.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      63,
+      64,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F05",
+    "title": "SDK de adaptadores insuficiente para implementaciones independientes",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P020",
+      "P021",
+      "P023",
+      "P025",
+      "P043",
+      "P026"
+    ],
+    "normative_files": [
+      "contracts/adapter-methods.json",
+      "contracts/03_ADAPTERS_SECURITY.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      10,
+      11,
+      12,
+      15,
+      20,
+      129,
+      143,
+      144
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F06",
+    "title": "Dependencias semánticas no reflejadas en el orden declarado",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P016",
+      "P025",
+      "P035",
+      "P061",
+      "P063",
+      "P065",
+      "P066",
+      "P067",
+      "P070",
+      "P071",
+      "P072",
+      "P073",
+      "P077",
+      "P103",
+      "P019",
+      "P029",
+      "P099"
+    ],
+    "normative_files": [
+      "contracts/00_PACKAGE.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      37,
+      38,
+      53,
+      59,
+      64,
+      158,
+      159
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F07",
+    "title": "El criterio de cierre rebaja las pruebas reales exigidas",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P007",
+      "P069",
+      "P135",
+      "P138",
+      "P142"
+    ],
+    "normative_files": [
+      "contracts/acceptance.json",
+      "contracts/00_PACKAGE.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      157,
+      159,
+      160
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F08",
+    "title": "NCNN y MNN no tienen trabajo asignado",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P138",
+      "P082",
+      "P083"
+    ],
+    "normative_files": [
+      "contracts/runtime-profiles.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      8,
+      158,
+      160
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F09",
+    "title": "Funciones aplazadas sin un prompt que las termine",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P014",
+      "P024",
+      "P031",
+      "P081",
+      "P127",
+      "P128",
+      "P027",
+      "P028",
+      "P119",
+      "P140"
+    ],
+    "normative_files": [
+      "contracts/03_ADAPTERS_SECURITY.md",
+      "contracts/08_UI_RELEASE.md",
+      "contracts/source-profiles.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      52,
+      78,
+      80,
+      113,
+      130,
+      141
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F10",
+    "title": "Autenticación y autorización llegan después de operaciones sensibles",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P005",
+      "P021",
+      "P022",
+      "P104",
+      "P130",
+      "P131",
+      "P009",
+      "P143"
+    ],
+    "normative_files": [
+      "contracts/03_ADAPTERS_SECURITY.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      90,
+      91,
+      92,
+      93,
+      94,
+      159
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F11",
+    "title": "Move/delete/leases carecen de exclusión transaccional definida",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P016",
+      "P017",
+      "P033",
+      "P051",
+      "P093",
+      "P100",
+      "P123",
+      "P132",
+      "P019"
+    ],
+    "normative_files": [
+      "contracts/02_STORAGE_DOWNLOAD.md",
+      "contracts/persistence.sql"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      145,
+      153
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F12",
+    "title": "Estimación de espacio sin fórmula ni reserva concurrente",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P012",
+      "P014",
+      "P015",
+      "P031",
+      "P051",
+      "P052",
+      "P093",
+      "P122",
+      "P125"
+    ],
+    "normative_files": [
+      "contracts/02_STORAGE_DOWNLOAD.md",
+      "contracts/defaults.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      45,
+      114,
+      136,
+      137
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F13",
+    "title": "Identidad, bundle y provenance no son deterministas",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P017",
+      "P040",
+      "P041",
+      "P096"
+    ],
+    "normative_files": [
+      "contracts/01_DOMAIN_STATES.md",
+      "contracts/02_STORAGE_DOWNLOAD.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      17,
+      18,
+      19,
+      21,
+      35,
+      39,
+      40,
+      42,
+      47
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F14",
+    "title": "Estados mezclados y transiciones sin contrato",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P012",
+      "P016",
+      "P018",
+      "P030",
+      "P041",
+      "P042",
+      "P090",
+      "P106",
+      "P116",
+      "P132"
+    ],
+    "normative_files": [
+      "contracts/01_DOMAIN_STATES.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      18,
+      29,
+      41,
+      55,
+      67,
+      70,
+      116,
+      117,
+      118,
+      120,
+      135
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F15",
+    "title": "Memoria y scheduler no tienen política reproducible",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P034",
+      "P035",
+      "P091",
+      "P136"
+    ],
+    "normative_files": [
+      "contracts/04_RUNTIME_LEASES.md",
+      "contracts/defaults.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      56,
+      57,
+      149,
+      150,
+      151,
+      152,
+      153
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F16",
+    "title": "Lease y proceso: tiempos, propiedad e idempotencia sin definir",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P033",
+      "P035",
+      "P100",
+      "P105",
+      "P132"
+    ],
+    "normative_files": [
+      "contracts/04_RUNTIME_LEASES.md",
+      "contracts/07_API_EVENTS_MCP.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      54,
+      55,
+      63,
+      64,
+      103,
+      105,
+      147,
+      150
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F17",
+    "title": "Scores y recomendación sin funciones ni condiciones suficientes",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P044",
+      "P050",
+      "P075",
+      "P090",
+      "P091",
+      "P092",
+      "P121"
+    ],
+    "normative_files": [
+      "contracts/05_BENCHMARK_FINGERPRINT.md",
+      "contracts/defaults.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      24,
+      25,
+      26,
+      97,
+      125,
+      126
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F18",
+    "title": "Comparar la misma huella impide detectar regresiones entre versiones",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P013",
+      "P032",
+      "P110",
+      "P111",
+      "P117",
+      "P126"
+    ],
+    "normative_files": [
+      "contracts/05_BENCHMARK_FINGERPRINT.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      50,
+      73,
+      76,
+      117,
+      148,
+      160
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F19",
+    "title": "Benchmarks sin fixtures, métricas ni umbrales cerrados",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P061",
+      "P066",
+      "P067",
+      "P072",
+      "P074",
+      "P080",
+      "P094",
+      "P095",
+      "P110",
+      "P111",
+      "P112",
+      "P117",
+      "P126",
+      "P135",
+      "P136"
+    ],
+    "normative_files": [
+      "contracts/05_BENCHMARK_FINGERPRINT.md",
+      "contracts/acceptance.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      72,
+      73,
+      74,
+      76,
+      138,
+      148,
+      149
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F20",
+    "title": "Integraciones externas sin versiones, URLs ni matriz de compatibilidad fijada",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P011",
+      "P031",
+      "P036",
+      "P046",
+      "P047",
+      "P049",
+      "P060",
+      "P061",
+      "P062",
+      "P063",
+      "P064",
+      "P065",
+      "P066",
+      "P067",
+      "P068",
+      "P069",
+      "P070",
+      "P071",
+      "P072",
+      "P073",
+      "P074",
+      "P075",
+      "P076",
+      "P077",
+      "P078",
+      "P079",
+      "P080",
+      "P081",
+      "P094",
+      "P095",
+      "P102",
+      "P103",
+      "P112",
+      "P124",
+      "P000",
+      "P099"
+    ],
+    "normative_files": [
+      "contracts/09_EXTERNAL_PROFILES.md",
+      "contracts/runtime-profiles.json",
+      "contracts/source-profiles.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      7,
+      9,
+      10,
+      11,
+      14,
+      15,
+      52,
+      68,
+      69,
+      70,
+      143,
+      144,
+      164
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F21",
+    "title": "Contratos con Broker, Agora, Lab y Drift se posponen",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P068",
+      "P101",
+      "P102",
+      "P104",
+      "P106",
+      "P114",
+      "P115",
+      "P116",
+      "P107",
+      "P108",
+      "P118"
+    ],
+    "normative_files": [
+      "contracts/06_ECOSYSTEM.md",
+      "contracts/external/snapshots.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      4,
+      63,
+      65,
+      67,
+      75,
+      77,
+      121,
+      122,
+      123,
+      124,
+      147
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F22",
+    "title": "GUI final incompleta y sin especificación de interacción",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P006",
+      "P014",
+      "P023",
+      "P037",
+      "P120",
+      "P121",
+      "P122",
+      "P123",
+      "P124",
+      "P125",
+      "P126",
+      "P127",
+      "P128",
+      "P129",
+      "P134",
+      "P139",
+      "P140"
+    ],
+    "normative_files": [
+      "contracts/08_UI_RELEASE.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      13,
+      27,
+      30,
+      38,
+      43,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      124,
+      155
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F23",
+    "title": "Fuentes privadas parcialmente especificadas",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P043",
+      "P045",
+      "P046",
+      "P047",
+      "P048",
+      "P049",
+      "P071",
+      "P122",
+      "P127",
+      "P131",
+      "P141"
+    ],
+    "normative_files": [
+      "contracts/08_UI_RELEASE.md",
+      "contracts/source-profiles.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      14,
+      15,
+      16,
+      91,
+      96
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F24",
+    "title": "Extensibilidad de cinco tipos de plugin no queda cerrada",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P020",
+      "P022",
+      "P024",
+      "P062",
+      "P076",
+      "P078",
+      "P093",
+      "P096",
+      "P110",
+      "P130",
+      "P026",
+      "P028"
+    ],
+    "normative_files": [
+      "contracts/03_ADAPTERS_SECURITY.md",
+      "contracts/adapter-methods.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      6,
+      12,
+      129,
+      130,
+      131,
+      141
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F25",
+    "title": "Descarga y selección multifuente sin semántica completa",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P044",
+      "P046",
+      "P047",
+      "P048",
+      "P051",
+      "P052",
+      "P070",
+      "P092",
+      "P121",
+      "P125"
+    ],
+    "normative_files": [
+      "contracts/02_STORAGE_DOWNLOAD.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      32,
+      44,
+      45,
+      95,
+      139,
+      144
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F26",
+    "title": "Importación y recuperación de artefactos incompletas",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P017",
+      "P018",
+      "P048",
+      "P123",
+      "P133",
+      "P098"
+    ],
+    "normative_files": [
+      "contracts/02_STORAGE_DOWNLOAD.md",
+      "contracts/01_DOMAIN_STATES.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      21,
+      36,
+      41,
+      42,
+      43,
+      133,
+      134
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F27",
+    "title": "Promoción de runtimes y modelos incompleta",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P032",
+      "P042",
+      "P093",
+      "P094",
+      "P106",
+      "P117",
+      "P124",
+      "P128",
+      "P097"
+    ],
+    "normative_files": [
+      "contracts/05_BENCHMARK_FINGERPRINT.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      34,
+      48,
+      50,
+      51,
+      70,
+      95,
+      116,
+      119,
+      120,
+      160,
+      161
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F28",
+    "title": "Eventos, watchers y reintentos sin garantías de entrega definidas",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P003",
+      "P005",
+      "P044",
+      "P050",
+      "P113",
+      "P114",
+      "P120",
+      "P128",
+      "P132",
+      "P029"
+    ],
+    "normative_files": [
+      "contracts/07_API_EVENTS_MCP.md",
+      "contracts/persistence.sql"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      77,
+      78,
+      79,
+      80,
+      88,
+      98,
+      100
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F29",
+    "title": "Hardware del PC IA introducido sin respaldo en la spec entregada",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P008",
+      "P010",
+      "P011",
+      "P064",
+      "P068",
+      "P137",
+      "P000"
+    ],
+    "normative_files": [
+      "contracts/09_EXTERNAL_PROFILES.md",
+      "contracts/04_RUNTIME_LEASES.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      22,
+      23,
+      57,
+      142
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F30",
+    "title": "Especificación con escapes de exportación y ejemplos no ejecutables",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P001"
+    ],
+    "normative_files": [
+      "contracts/00_PACKAGE.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      11,
+      27,
+      64,
+      127,
+      166
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F31",
+    "title": "Actualización de LARM, backup y servicio sin protocolo operativo completo",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P004",
+      "P033",
+      "P133",
+      "P137"
+    ],
+    "normative_files": [
+      "contracts/08_UI_RELEASE.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      86,
+      101,
+      102,
+      103,
+      128,
+      132,
+      133,
+      134
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F32",
+    "title": "Acceso remoto y seguridad de endpoints sin contrato",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P006",
+      "P036",
+      "P045",
+      "P063",
+      "P081",
+      "P101",
+      "P103",
+      "P105",
+      "P130",
+      "P131",
+      "P134"
+    ],
+    "normative_files": [
+      "contracts/03_ADAPTERS_SECURITY.md",
+      "contracts/10_MULTIMODAL_PROTOCOL.md"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      58,
+      59,
+      60,
+      90,
+      91,
+      92,
+      156
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  },
+  {
+    "id": "F33",
+    "title": "Aceptación final no garantiza cubrir el paquete completo",
+    "status": "CORRECTED_IN_PROMPT_PACKAGE",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "owners": [
+      "P007",
+      "P025",
+      "P049",
+      "P060",
+      "P069",
+      "P079",
+      "P135",
+      "P138",
+      "P142"
+    ],
+    "normative_files": [
+      "contracts/acceptance.json"
+    ],
+    "schema_files": [
+      "schemas/domain.schema.json",
+      "schemas/larm.schema.json"
+    ],
+    "requirement_sections": [
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      157,
+      159,
+      160
+    ],
+    "verification_scope": "Contract/document correction; actual behavior must pass owned prompts and acceptance.json."
+  }
+]

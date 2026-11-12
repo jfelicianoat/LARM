@@ -1,0 +1,26 @@
+[package]
+name = "larm-transform"
+description = "Transformaciones: pipelines GGUF/ONNX, provenance y lineage."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+larm-domain = { workspace = true }
+larm-adapter-host = { workspace = true }
+larm-db = { workspace = true }
+larm-storage = { workspace = true }
+chrono = { workspace = true }
+async-trait = { workspace = true }
+tokio = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+serde_json = { workspace = true }
+tempfile = { workspace = true }
+
+[dev-dependencies]
+uuid = { workspace = true }
+
+[lints]
+workspace = true

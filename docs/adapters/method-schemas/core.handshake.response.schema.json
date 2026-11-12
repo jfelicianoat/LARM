@@ -1,0 +1,42 @@
+{
+  "$defs": {
+    "larm__HandshakeResult": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "methods": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nonce": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "protocol_version": {
+          "const": "1.0"
+        }
+      },
+      "required": [
+        "protocol_version",
+        "adapter_version",
+        "methods",
+        "capabilities",
+        "nonce"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__HandshakeResult",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,45 @@
+{
+  "$defs": {
+    "larm__RuntimeChannel": {
+      "enum": [
+        "stable",
+        "prerelease",
+        "nightly",
+        "commit",
+        "custom"
+      ],
+      "type": "string"
+    },
+    "larm__VersionQuery": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "$ref": "#/$defs/larm__RuntimeChannel"
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runtime_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "runtime_id",
+        "channel",
+        "cursor"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__VersionQuery",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

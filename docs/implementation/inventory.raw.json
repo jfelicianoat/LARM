@@ -1,0 +1,245 @@
+{
+    "os":  {
+               "caption":  "Microsoft Windows 11 Pro",
+               "version":  "10.0.26200",
+               "build":  "26200",
+               "ubr":  9457,
+               "displayVersion":  "25H2",
+               "architecture":  "64 bits",
+               "locale":  "es-ES",
+               "timezone":  "GMT Standard Time",
+               "hostname":  "A9_MEGA",
+               "domainJoined":  false
+           },
+    "cpu":  {
+                "name":  "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          ",
+                "manufacturer":  "AuthenticAMD",
+                "cores":  16,
+                "logicalCores":  32,
+                "maxClockMhz":  3000,
+                "description":  "AMD64 Family 26 Model 112 Stepping 0"
+            },
+    "ram":  {
+                "totalBytes":  68340748288,
+                "modules":  [
+                                {
+                                    "capacityBytes":  17179869184,
+                                    "speedMhz":  8000,
+                                    "manufacturer":  "Micron Technology",
+                                    "partNumber":  "MT62F4G32D8DV-023WT"
+                                },
+                                {
+                                    "capacityBytes":  17179869184,
+                                    "speedMhz":  8000,
+                                    "manufacturer":  "Micron Technology",
+                                    "partNumber":  "MT62F4G32D8DV-023WT"
+                                },
+                                {
+                                    "capacityBytes":  17179869184,
+                                    "speedMhz":  8000,
+                                    "manufacturer":  "Micron Technology",
+                                    "partNumber":  "MT62F4G32D8DV-023WT"
+                                },
+                                {
+                                    "capacityBytes":  17179869184,
+                                    "speedMhz":  8000,
+                                    "manufacturer":  "Micron Technology",
+                                    "partNumber":  "MT62F4G32D8DV-023WT"
+                                },
+                                {
+                                    "capacityBytes":  17179869184,
+                                    "speedMhz":  8000,
+                                    "manufacturer":  "Micron Technology",
+                                    "partNumber":  "MT62F4G32D8DV-023WT"
+                                },
+                                {
+                                    "capacityBytes":  17179869184,
+                                    "speedMhz":  8000,
+                                    "manufacturer":  "Micron Technology",
+                                    "partNumber":  "MT62F4G32D8DV-023WT"
+                                },
+                                {
+                                    "capacityBytes":  17179869184,
+                                    "speedMhz":  8000,
+                                    "manufacturer":  "Micron Technology",
+                                    "partNumber":  "MT62F4G32D8DV-023WT"
+                                },
+                                {
+                                    "capacityBytes":  17179869184,
+                                    "speedMhz":  8000,
+                                    "manufacturer":  "Micron Technology",
+                                    "partNumber":  "MT62F4G32D8DV-023WT"
+                                }
+                            ]
+            },
+    "gpus":  [
+                 {
+                     "name":  "Microsoft Remote Display Adapter",
+                     "adapterCompat":  "Microsoft",
+                     "pnpDeviceId":  "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY\u0026SESSIONID_0002",
+                     "driverVersion":  "10.0.26100.9278",
+                     "driverDate":  "2006-06-21",
+                     "vramBytes":  "NO_DISPONIBLE",
+                     "vramSource":  "NO_DISPONIBLE: el driver no publica qwMemorySize; AdapterRAM (uint32) no es fiable",
+                     "adapterRamWmiUint32":  "NO_DISPONIBLE",
+                     "videoProcessor":  null,
+                     "status":  "OK"
+                 },
+                 {
+                     "name":  "AMD Radeon(TM) 8060S Graphics",
+                     "adapterCompat":  "Advanced Micro Devices, Inc.",
+                     "pnpDeviceId":  "PCI\\VEN_1002\u0026DEV_1586\u0026SUBSYS_10111F55\u0026REV_C1\\4\u002635FE04F8\u00260\u00260041",
+                     "driverVersion":  "32.0.21030.2001",
+                     "driverDate":  "2025-09-25",
+                     "vramBytes":  "68719476736",
+                     "vramSource":  "registry:HardwareInformation.qwMemorySize",
+                     "adapterRamWmiUint32":  "4293918720",
+                     "videoProcessor":  "AMD Radeon Graphics Processor (0x1586)",
+                     "status":  "OK"
+                 }
+             ],
+    "npu":  {
+                "class":  "ComputeAccelerator",
+                "name":  "NPU Compute Accelerator Device",
+                "instanceId":  "PCI\\VEN_1022\u0026DEV_17F0\u0026SUBSYS_17F01022\u0026REV_11\\4\u002623445453\u00260\u00260142",
+                "status":  "OK",
+                "problem":  0
+            },
+    "graphicsDrivers":  [
+                            {
+                                "deviceName":  "Microsoft Remote Display Adapter",
+                                "driverVersion":  "10.0.26100.9278",
+                                "driverDate":  "2006-06-21",
+                                "infName":  "rdpidd.inf"
+                            },
+                            {
+                                "deviceName":  "AMD Radeon(TM) 8060S Graphics",
+                                "driverVersion":  "32.0.21030.2001",
+                                "driverDate":  "2025-09-25",
+                                "infName":  "oem20.inf"
+                            }
+                        ],
+    "volumes":  [
+                    {
+                        "volumeGuidPath":  "\\\\?\\Volume{ac318884-e79e-48c8-bde1-f2aaddbc0459}\\",
+                        "volumeGuid":  "ac318884-e79e-48c8-bde1-f2aaddbc0459",
+                        "driveLetter":  "NO_DISPONIBLE",
+                        "gptPartitionGuid":  "ac318884-e79e-48c8-bde1-f2aaddbc0459",
+                        "diskNumber":  0,
+                        "driveType":  "Fixed",
+                        "sizeBytes":  "1073737728",
+                        "label":  "Recovery",
+                        "fileSystem":  "NTFS",
+                        "healthStatus":  "Healthy"
+                    },
+                    {
+                        "volumeGuidPath":  "\\\\?\\Volume{fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3}\\",
+                        "volumeGuid":  "fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3",
+                        "driveLetter":  "C",
+                        "gptPartitionGuid":  "fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3",
+                        "diskNumber":  0,
+                        "driveType":  "Fixed",
+                        "sizeBytes":  "1998992699392",
+                        "label":  "Windows",
+                        "fileSystem":  "NTFS",
+                        "healthStatus":  "Healthy"
+                    }
+                ],
+    "aiHostProcesses":  [
+                            {
+                                "name":  "lemonade-app",
+                                "pid":  3244,
+                                "path":  "C:\\Users\\pcesp\\AppData\\Local\\lemonade_server\\app\\lemonade-app.exe"
+                            },
+                            {
+                                "name":  "LemonadeServer",
+                                "pid":  23412,
+                                "path":  "C:\\Users\\pcesp\\AppData\\Local\\lemonade_server\\bin\\LemonadeServer.exe"
+                            },
+                            {
+                                "name":  "ollama",
+                                "pid":  25856,
+                                "path":  "C:\\Users\\pcesp\\AppData\\Local\\Programs\\Ollama\\ollama.exe"
+                            },
+                            {
+                                "name":  "ollama app",
+                                "pid":  24672,
+                                "path":  "C:\\Users\\pcesp\\AppData\\Local\\Programs\\Ollama\\ollama app.exe"
+                            }
+                        ],
+    "detectedTools":  {
+                          "ollama":  {
+                                         "path":  "C:\\Users\\pcesp\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+                                         "version":  "ollama version is 0.40.2"
+                                     },
+                          "llama-server":  "NO_DISPONIBLE",
+                          "llama-cli":  "NO_DISPONIBLE",
+                          "python":  {
+                                         "path":  "C:\\Python314\\python.exe",
+                                         "version":  "Python 3.14.6"
+                                     },
+                          "node":  {
+                                       "path":  "C:\\Program Files\\nodejs\\node.exe",
+                                       "version":  "v24.18.0"
+                                   },
+                          "npm":  {
+                                      "path":  "C:\\Program Files\\nodejs\\npm.ps1",
+                                      "version":  "11.16.0"
+                                  },
+                          "git":  {
+                                      "path":  "C:\\Program Files\\Git\\mingw64\\bin\\git.exe",
+                                      "version":  "git version 2.55.0.windows.3"
+                                  },
+                          "docker":  {
+                                         "path":  "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe",
+                                         "version":  "Docker version 29.7.2, build a7dcaa6"
+                                     }
+                      },
+    "httpsReachability":  [
+                              {
+                                  "endpoint":  "https://huggingface.co",
+                                  "status":  200,
+                                  "ok":  true,
+                                  "ms":  167
+                              },
+                              {
+                                  "endpoint":  "https://github.com",
+                                  "status":  200,
+                                  "ok":  true,
+                                  "ms":  225
+                              },
+                              {
+                                  "endpoint":  "https://modelscope.cn",
+                                  "status":  200,
+                                  "ok":  true,
+                                  "ms":  1599
+                              },
+                              {
+                                  "endpoint":  "https://www.kaggle.com",
+                                  "status":  404,
+                                  "ok":  false,
+                                  "ms":  283,
+                                  "error":  "Error en el servidor remoto: (404) No se encontró."
+                              },
+                              {
+                                  "endpoint":  "https://registry.npmjs.org",
+                                  "status":  200,
+                                  "ok":  true,
+                                  "ms":  116
+                              },
+                              {
+                                  "endpoint":  "https://static.crates.io",
+                                  "status":  403,
+                                  "ok":  false,
+                                  "ms":  525,
+                                  "error":  "Error en el servidor remoto: (403) Prohibido."
+                              }
+                          ],
+    "brokerCapabilities":  {
+                               "endpoint":  "http://127.0.0.1:8765/api/v1/capabilities",
+                               "status":  200,
+                               "contractVersion":  "2.11",
+                               "bodySha256":  "4909e5358fb83f9056c476b829fe11f6965c5cc5c5c77f3aa9b9445bb4315afc"
+                           },
+    "brokerAuthCheck":  "NO_DISPONIBLE_SIN_CREDENCIAL_AUTORIZADA"
+}

@@ -1,0 +1,16 @@
+{
+  "$id": "https://larm.local/adapters/CancelRequest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CancelRequest (generado desde docs/contracts/schemas/larm.schema.json; no editar)",
+  "properties": {
+    "request_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id"
+  ],
+  "type": "object"
+}

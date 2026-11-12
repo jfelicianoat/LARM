@@ -1,0 +1,285 @@
+{
+  "prompt_id": "P024",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e80fec1f5150b5d404f177126439579757e11b0258aa533e7c9937527c33666f",
+  "inputs_hash": "61e60587a5292722a95e72ec19fd685ce9b7c4279b2a4ad29a8ceca24bcda474",
+  "changed_files": [
+    "Cargo.lock",
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/adapters.rs",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/tests/adapter_coordinator.rs",
+    "crates/larm-adapter-host/Cargo.toml",
+    "crates/larm-adapter-host/src/lib.rs",
+    "crates/larm-adapter-host/src/package.rs",
+    "crates/larm-adapter-host/src/registry.rs",
+    "crates/larm-adapter-host/src/update_service.rs",
+    "crates/larm-adapter-host/src/updates.rs",
+    "crates/larm-adapter-host/tests/packages.rs",
+    "crates/larm-adapter-sdk/src/permissions.rs",
+    "crates/larm-api/Cargo.toml",
+    "crates/larm-api/src/adapters.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/adapter_updates.rs",
+    "crates/larm-api/tests/adapters.rs",
+    "crates/larm-db/src/adapter_selection.rs",
+    "crates/larm-db/src/adapter_updates.rs",
+    "crates/larm-db/src/adapters.rs",
+    "crates/larm-db/src/guard.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/reservations.rs",
+    "crates/larm-db/tests/adapter_selection.rs",
+    "crates/larm-db/tests/adapter_updates.rs",
+    "crates/larm-db/tests/adapters.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-domain/src/adapter_updates.rs",
+    "crates/larm-domain/src/adapters.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "docs/adapters/registry.md",
+    "docs/api/openapi.json",
+    "docs/implementation/STATE.md",
+    "environment.lock.json",
+    "migrations/0002_adapter_selection.sql",
+    "tools/p004_evidence.py",
+    "tools/p004_real.py",
+    "tools/p024_api_real.py",
+    "tools/p024_evidence.py",
+    "tools/p024_prepare_evidence.py",
+    "tools/p024_real.py",
+    "tools/p024_selection_real.py",
+    "tools/p024_update_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P024-REAL-build",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon -p larm-adapter-sdk --bins",
+      "fixture_hashes": [],
+      "expected": "daemon y worker genérico reales compilados para las pruebas nativas",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.24s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-build.log#sha256=e836df91c44b400da1b33a58ce97908f0ca435be9edc4dd8728415fc623f4a1c"
+      ]
+    },
+    {
+      "id": "P024-CONTRACT-packages",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-host --test packages",
+      "fixture_hashes": [],
+      "expected": "9 pruebas: side-by-side sin sobrescribir, zip-slip/ADS/dispositivos/colisiones/enlaces/bombas rechazados, protocolo/schema/hashes, snapshot cambiado, límites del índice antes de asignarlo, manifiesto acotado, cancel/timeout/IO; registro local determinista y sin versiones ambiguas",
+      "observed": "exit=0; Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) | Compiling larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) | Finished `test` profile [unoptimized + debuginfo] target(s) in 3.82s | Running tests\\packages.rs (target\\debug\\deps\\packages-44f061fe6e87f17e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-CONTRACT-packages.log#sha256=454fbeb9f8920e125093bade47d282118bf85c2a7d5d386bba4a7f0b8c31b5de"
+      ]
+    },
+    {
+      "id": "P024-CONTRACT-catalog",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test adapters",
+      "fixture_hashes": [],
+      "expected": "4 pruebas del catálogo y alta existente: autorización real, listado/detalle, filtros/cursor, DTO e idempotencia",
+      "observed": "exit=0; Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.62s | Running tests\\adapters.rs (target\\debug\\deps\\adapters-33cf1d13bd74c95e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-CONTRACT-catalog.log#sha256=cb79440e1ac1c65a5fb33f116a48a5f3436fc0e313c2fd9f0aa600e967902e3e"
+      ]
+    },
+    {
+      "id": "P024-CONTRACT-update-api",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test adapter_updates",
+      "fixture_hashes": [],
+      "expected": "4 pruebas con guard real: adapters:write, UUIDv7, DTO cerrado con approval_id obligatorio nullable, Idempotency-Key y hash del cuerpo exacto, actor/correlación autenticados, JobReceipt 202 y privacidad propietario/admin sin exponer rutas",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\adapter_updates.rs (target\\debug\\deps\\adapter_updates-c1e21dfaae115d82.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-CONTRACT-update-api.log#sha256=d859220c847f332d19cecde630a94f152adecc7d1c3f86b1da9cb18b774027c1"
+      ]
+    },
+    {
+      "id": "P024-UNIT-update-dto",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain adapter_updates",
+      "fixture_hashes": [],
+      "expected": "AdapterImport exacto y serialización de estados; campos extra o faltantes, hash y aprobación inválidos rechazados",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.59s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-UNIT-update-dto.log#sha256=31620dd6325d979db0b66d71d2f34c0234cd6868e27d5380d34c4a15d0f9827c"
+      ]
+    },
+    {
+      "id": "P024-INTEGRATION-database",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db",
+      "fixture_hashes": [],
+      "expected": "persistencia SQLite completa: selección CAS/rollback y migración conservadora, 10 casos de journal durable con aceptación concurrente, replay 30 días aislado por actor/cuerpo/destino, aprobación exacta, reservas/locks/fencing, reapertura, journal alterado y fallos de outbox en transacciones; regresiones P015/P019",
+      "observed": "exit=0; Running tests\\reservations.rs (target\\debug\\deps\\reservations-9877075cdb7c156f.exe) | Running tests\\security.rs (target\\debug\\deps\\security-a1306cfd4e0262a2.exe) | Running tests\\storage.rs (target\\debug\\deps\\storage-52afdac6364cbef4.exe) | Doc-tests larm_db",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-INTEGRATION-database.log#sha256=89862b19f5cfaa0b2d0581122c69296331a4e26418f8b1f4176d96a478335086"
+      ]
+    },
+    {
+      "id": "P024-INTEGRATION-coordinator",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test adapter_coordinator",
+      "fixture_hashes": [],
+      "expected": "18 pruebas de IO y SQLite reales, espacio controlado para negativos: reserva antes de copiar, side-by-side sin promoción, firma/revocación/aprobación, cancel/timeout/fences, commit/ack inciertos, recuperación por fase, lock físico, revisión cambiada, aceptación que sobrevive a desconexión, un worker con cola durable y shutdown que espera el IO",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s | Running tests\\adapter_coordinator.rs (target\\debug\\deps\\adapter_coordinator-07fa31cfeea7c7ce.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-INTEGRATION-coordinator.log#sha256=16792175127a1df8bd976e6544e59e1e7eebbe936c8a1dfdcd6f1262c6b6ee04"
+      ]
+    },
+    {
+      "id": "P024-UNIT-space-trust",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-daemon --bin larm-daemon adapters::tests",
+      "fixture_hashes": [],
+      "expected": "4 pruebas: identidad y espacio deben estar verificados y online/escribibles; mínimo de política; claves configuradas requieren binding explícito correcto y las retiradas no se reactivan desde el fichero de metadata",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s | Running unittests src\\main.rs (target\\debug\\deps\\larm_daemon-da334d50461a0acc.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-UNIT-space-trust.log#sha256=6a10ca0a7710528e9d96e172c4b227ea94b7252a99f8f5aab6c3827d7e9de55c"
+      ]
+    },
+    {
+      "id": "P024-REAL-catalog",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p024_real.py",
+      "fixture_hashes": [
+        "p024_real.py:6d136d96283d58dd2e810aad7cdeee2b2218a3d4cba148208e3661e6f8c4af61"
+      ],
+      "expected": "9 pasos Windows: ZIP/registro local y hashes/presupuesto independientes, zip-slip/protocolo incompatible sin efectos, listado paginado/detalle contra SQLite, autorización y filtros/cursor",
+      "observed": "exit=0; [PASS] lista-paginada-real: listado del daemon real en dos páginas, sin repetición ni saltos | [PASS] detalle-y-sqlite-real: detalle exacto de la instalación persistida; sin elevar confianza | [PASS] autorizacion-y-cursor-real: sin read: 403; cursor de otro filtro y parámetro desconocido: 400 | PASS: 9 pasos de ZIP/registry local y API de lectura",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-catalog.log#sha256=bbc51d5f6f5bdaaf8e3a8066b4e87affe703729ca55bc25c9ad56a319ee0cc0a"
+      ]
+    },
+    {
+      "id": "P024-REAL-selection",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p024_selection_real.py",
+      "fixture_hashes": [
+        "p024_selection_real.py:1ad4e6f9aded548324b2c246842b54e59b2fbd844a7725e4b5ab628b32e3107f"
+      ],
+      "expected": "13 pasos Windows: selección y rollback desde procesos independientes, CAS concurrente con un solo ganador, outbox fallido revierte todo, reapertura, revocación y deshabilitación; journal/outbox/bytes comprobados con Python; VALIDATED es fixture, no conformidad P026",
+      "observed": "exit=0; [PASS] revocacion-real: revalida confianza antes de habilitar incluso si la selección estaba habilitada | [PASS] desactivacion-revocada-real: revocar no impide deshabilitar | [PASS] journal-outbox-y-bytes-reales: 5 cambios = 5 journals/eventos/outbox; estados y paquetes conservados; sin reservas/locks huérfanos | PASS: 13 pasos de selección real; suite P026 no ejecutada ni acreditada",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-selection.log#sha256=79e8876d902bd3cd8385e1e2b4568428795debdc6a3db9936b2919005bdfcd80"
+      ]
+    },
+    {
+      "id": "P024-REAL-update",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p024_update_real.py",
+      "fixture_hashes": [
+        "p024_update_real.py:14f968caa69cc7fe1a2c2f18c05c9469a4414bfbbc1880cff921c69b84532ff8"
+      ],
+      "expected": "8 pasos Windows con profiler real/NTFS/SQLite: actualización desde alta P023, hash/pico y GUID contrastados independientemente, replay sin duplicados, DTO/protocolo rechazados; muerte del proceso propio durante EXTRACTING conserva recursos y otro proceso limpia sólo su staging y registra FAILED",
+      "observed": "exit=0; [PASS] protocolo-incompatible-con-journal: job FAILED con causa de protocolo; sin reserva, publicación ni instalación extra | [PASS] muerte-real-durante-io: proceso Windows terminado durante copia de ZIP no vacío; journal, reserva y locks siguen persistidos | [PASS] recuperacion-real-tras-muerte: nuevo proceso prueba exclusión, limpia sólo staging propio, registra fallo y libera recursos; versiones anteriores intactas | PASS: 8 pasos reales de actualización y recuperación; sin ejecución/cualificación de plugins",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-update.log#sha256=547d4b59d4a4d97c315933e72af49fb7354f8507b34794940452a1e359e74aa9"
+      ]
+    },
+    {
+      "id": "P024-REAL-http",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p024_api_real.py",
+      "fixture_hashes": [
+        "p024_api_real.py:8dde7d4d601a084644d5c529944b65c795c45cafe755c52a84392e4b05630148"
+      ],
+      "expected": "14 pasos HTTP real: guard/DTO sin efectos, aceptación concurrente 202, trabajo y paquete con profiler/SQLite/NTFS, propiedad/admin, replay original y separación de actores, elevación con digest independiente y aprobación no transferible consumida; CTRL_BREAK espera IO; muerte real en PUBLISHING conserva journal/bytes/recursos y arranque termina el mismo job sin promover ni duplicar",
+      "observed": "exit=0; [PASS] muerte-real-despues-de-publicar: proceso HTTP terminado con paquete final publicado y commit bloqueado por otra conexión; journal y recursos conservados | [PASS] arranque-reconcilia-publicacion: antes de escuchar, nuevo servidor verifica bytes y termina el mismo job; conserva default/origen y limpia recursos | [PASS] replay-tras-recuperacion-http: el reinicio y recuperación no duplican la respuesta, instalación, journal ni eventos | PASS: 14 pasos HTTP reales, aprobación y muerte en PUBLISHING; P026 no ejecutado",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-http.log#sha256=1b921c608bfa403ad6158273e2697ed572e9b81844d7fce756ce19b683587511"
+      ]
+    },
+    {
+      "id": "P024-REAL-migration",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p004_real.py dbinfo",
+      "fixture_hashes": [],
+      "expected": "CLI real aplica 0001+0002, 45 tablas y reaplicación vacía; checksum de 0001 conservado",
+      "observed": "exit=0; PASS 1ª: migra 0001/0002, bootstrap sha256 a3c80076e1c7…; 2ª: nada; 45 tablas; WAL/FK/busy 5000; SQLite 3.51.3; sin rutas personales",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-migration.log#sha256=0cdcb61b08bbc09dc3f766c6a102ef4599af3ec909f867e1af029071639dc9a0"
+      ]
+    },
+    {
+      "id": "P024-CONTRACT-openapi",
+      "kind": "CONTRACT",
+      "command": "target/debug/larm-daemon.exe openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [],
+      "expected": "OpenAPI coincide con contrato; POST /adapters/{id}/update figura implementado",
+      "observed": "exit=0; OpenAPI al día: docs/api/openapi.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-CONTRACT-openapi.log#sha256=2a0b9ad5e286e14c80b848bd74fbfbe5c6d884cd6cc5a358d07ec087146b0a76"
+      ]
+    },
+    {
+      "id": "P024-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo publicado intacto; composición host+DB en daemon y puerto de dominio para la API",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P024-REAL-lock",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py lock-coherence",
+      "fixture_hashes": [],
+      "expected": "dependencias fijadas y extensión ZIP coherente con environment.lock.json",
+      "observed": "exit=0; PASS 46 dependencias usadas coinciden en version y hash con Cargo.lock/package-lock.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-lock.log#sha256=9da159c0267fb1ec19b820f457e1ba52f794fc3e94c7f95435b1121d19fade5a"
+      ]
+    },
+    {
+      "id": "P024-REAL-secret-storage",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/check_integration_credentials.py --scan-only",
+      "fixture_hashes": [],
+      "expected": "ambas credenciales autorizadas disponibles en Credential Manager y ausentes de los archivos inspeccionados; no se imprime su valor",
+      "observed": "exit=0; PASS: credencial ai-broker recuperable desde Credential Manager | PASS: credencial agora recuperable desde Credential Manager | PASS: tokens ausentes de 1475 archivos de código, datos operativos, documentación, builds y logs",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P024_runs/P024-REAL-secret-storage.log#sha256=26d696bb9deae703c456d0c58d7f81c111de141f2159516b8a71fffe338c114f"
+      ]
+    },
+    {
+      "id": "P024-REAL-conformance-before-promotion",
+      "kind": "REAL",
+      "command": "suite de conformidad P026 sobre una candidata nueva antes de promoverla",
+      "fixture_hashes": [],
+      "expected": "sólo una candidata que complete la suite puede llegar a VALIDATED y seleccionarse",
+      "observed": "NO EJECUTADA: P026 aún no está implementado; P024 instala sólo INSTALLED y rechaza su promoción. Las fixtures VALIDATED de selección prueban el mecanismo, no acreditan la suite ni una cualificación real",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "dependencia P020 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P022 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-16T21:08:05.686Z"
+}

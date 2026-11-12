@@ -1,0 +1,66 @@
+{
+  "captured_at": "2026-10-10",
+  "evidence": "documentos y código locales; no demuestra conectividad ni ejecución en PC IA",
+  "files": [
+    {
+      "file": "contracts/external/Client_API_Broker_2.11.md",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\docs\\Client_API.md",
+      "sha256": "f773efab2a7862c5241819b2c17257a842c08d058838e19eff28e3dcdfe731d0"
+    },
+    {
+      "file": "contracts/external/Agora_Cliente.md",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Agora\\docs\\A07_CONTRATO_INTEGRACION_CLIENTE.md",
+      "sha256": "3635bcb26d9c2c75e5cbb480c4162169c037da41227ad8f315848ef105f7a9b9"
+    },
+    {
+      "file": "contracts/external/Agora_contracts.py",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Agora\\src\\agora\\api\\contracts.py",
+      "sha256": "2749a01450b61a4e968444b3379f8259ff68a18e127adf4350ad272063bfe48c"
+    },
+    {
+      "file": "contracts/external/Agora_Runner.md",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Agora\\docs\\INSTALAR_RUNNER.md",
+      "sha256": "7f8ccdb34d9c84f11d2d9e70b00d622bd8b14abb45f5089c11eba3aebbd9dbe3"
+    },
+    {
+      "file": "contracts/external/Model_Drift_Broker.md",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Model_Drift\\docs\\BROKER_COMPATIBILITY.md",
+      "sha256": "9833f3d6c3308dba6da94e4827f917b8e58aee1834bdb4e46fde4698a2ffb552"
+    },
+    {
+      "file": "contracts/external/Local_AI_Lab_Security.md",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Local AI Lab\\docs\\SECURITY_BOUNDARY_CURRENT.md",
+      "sha256": "9ef0ec9c89cbb9bbf11131d3111510fe077cf8b5c1fbf48bf3a75b242ecbe515"
+    },
+    {
+      "file": "contracts/external/Local_AI_Lab_Broker.py",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Local AI Lab\\src\\local_ai_lab\\broker\\compatibility.py",
+      "sha256": "0147058794542f35ad25e874985727f23ca96598bc80643ed75e4f85026cce2d"
+    },
+    {
+      "file": "contracts/external/Model_Drift_fingerprint.py",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Model_Drift\\model_drift\\fingerprint.py",
+      "sha256": "460c5bc0dc3393ba39e383dee7980a9128df8d0cabb707029c48ef7aade657e5"
+    },
+    {
+      "file": "contracts/external/Agora_pyproject.toml",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Agora\\pyproject.toml",
+      "sha256": "c75d4063de86816dca68b9ee08b3a64c5596f1a205c358e3874220c6d27ab165"
+    },
+    {
+      "file": "contracts/external/Model_Drift_pyproject.toml",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Model_Drift\\pyproject.toml",
+      "sha256": "bcfabae5b4f06800ed859fc770c17c57fee6741f555ee59d62f37646ee4220f8"
+    },
+    {
+      "file": "contracts/external/Local_AI_Lab_pyproject.toml",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Local AI Lab\\pyproject.toml",
+      "sha256": "97fac556ead82b1457bf2f4bb23821c1a0140b92889cb3ba8f8d0a99c8c6adbc"
+    },
+    {
+      "file": "contracts/external/Local_AI_Lab_desktop_package.json",
+      "source": "D:\\Desarrollo\\Proyectos TFM\\Local AI Lab\\apps\\desktop\\package.json",
+      "sha256": "e3aff659e254e08d15f3988db8a6faef2daa500d8b7bd863e44ac9741c2c71b8"
+    }
+  ]
+}

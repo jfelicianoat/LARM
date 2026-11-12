@@ -1,0 +1,344 @@
+{
+  "prompt_id": "P013",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "579fc048de5f901c9a3685584f96727a05dad72eea987e6f727c8c2bfb1a8b17",
+  "changed_files": [
+    "apps/daemon/src/main.rs",
+    "apps/desktop/src/hardware.test.tsx",
+    "apps/desktop/src/hardware.tsx",
+    "crates/larm-db/src/hardware.rs",
+    "crates/larm-db/tests/hardware.rs",
+    "crates/larm-domain/src/canonical.rs",
+    "crates/larm-domain/src/hardware.rs",
+    "crates/larm-domain/src/launch.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-runtime/src/external_adoption.rs",
+    "docs/operations/hardware.md",
+    "docs/operations/launch-profiles.md",
+    "tests/fixtures/launch/balanced.json",
+    "tools/p013_evidence.py",
+    "tools/p013_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P013-UNIT-jcs-numeros-rfc8785",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- canonical::tests::numeros_segun",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "16 vectores del apéndice B de RFC 8785 (5e-324, 1.7976931348623157e+308, 1e+23, 0.000001…); NaN/inf rechazados",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.57s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-jcs-numeros-rfc8785.log#sha256=bacf2c5fa3d1b6d08137adb641566e33ad55fa0c798bee5c0d84f8c5b98774c9"
+      ]
+    },
+    {
+      "id": "P013-UNIT-jcs-documentos",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- canonical::tests::numeros_en_documentos",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "1.0 -> 1, 0.7 -> 0.7; enteros > 2^53 rechazados en vez de alterarse",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-jcs-documentos.log#sha256=ccdce1674ca79479936a77ce66a6d6d3a29ebf77ebae7da1f551d79752cdd967"
+      ]
+    },
+    {
+      "id": "P013-UNIT-jcs-claves",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- canonical::tests",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "claves por unidades UTF-16; mismo contenido, mismo hash",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-jcs-claves.log#sha256=34b48b18a98aff3bcd2cf93ad43cd0636cc024a229235efd23fd9cc7115e2ed0"
+      ]
+    },
+    {
+      "id": "P013-UNIT-huella-oraculos",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- hardware::tests::p013_oraculos",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "mismo input = mismo hash; orden distinto = mismo hash; driver distinto = otro hash con diff que lo nombra; RAM libre = mismo hash",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-huella-oraculos.log#sha256=3c083ad2f516c1149b610eb7a3427b54a3e9fee3c1ddacdeffff79a01f80dc7c"
+      ]
+    },
+    {
+      "id": "P013-UNIT-huella-volatiles",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- hardware::tests::la_huella_ignora",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "LUID, evidencias, métricas y orden fuera",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-huella-volatiles.log#sha256=1d2b97f247d6dbd389f6ccf62b15e3b66422a90cc88e4c5c7d861d00041cd773"
+      ]
+    },
+    {
+      "id": "P013-UNIT-huella-componentes",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- hardware::tests::la_huella_cambia",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "driver, build, RAM, ISA o un null cambian la huella",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-huella-componentes.log#sha256=1bc9950cf273c88a475fa3c0b8b1474b47902046a7e53f6bdc7fc230dc88d455"
+      ]
+    },
+    {
+      "id": "P013-CONTRACT-h03-orden",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- launch::tests::mismo_input",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "LaunchParameters: mismo input mismo hash; propiedades reordenadas mismo hash",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-CONTRACT-h03-orden.log#sha256=f5d8d35dd000a813cede3c72106258e896667b785d0ddc95fb90fdaa43b85d22"
+      ]
+    },
+    {
+      "id": "P013-CONTRACT-h03-cambios",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- launch::tests::cambiar_solo",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "solo argumento, orden de argumentos, opción, entorno, referencia, límite o temperatura -> hash distinto",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-CONTRACT-h03-cambios.log#sha256=0425b4def8139708c7370fde8018bf6eaf67e1cfeca8e894a8a517609ae04ac4"
+      ]
+    },
+    {
+      "id": "P013-CONTRACT-h03-sin-secretos",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- launch::tests::el_hash_no_contiene",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "solo referencias larm/ en la forma hasheada",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-CONTRACT-h03-sin-secretos.log#sha256=702f739ba08d416eccd36e7d45c0838a0619672e7428e05c7c15b8e68ac1fb5d"
+      ]
+    },
+    {
+      "id": "P013-CONTRACT-h03-reglas",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- launch::tests::reglas_h03",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "límite 0, nombres inválidos, duplicados sin mayúsculas, fuera de allowlist, referencia fuera de larm/, generación fuera de rango, binding doble",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-CONTRACT-h03-reglas.log#sha256=a57b547928bfd7020d6eb6b6e5342a6acade4d8da1201c1482c65741901e6d14"
+      ]
+    },
+    {
+      "id": "P013-CONTRACT-h03-builtin",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- launch::tests::builtin_y_limite",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "builtin = null/[]/{allowlist:[],variables:[]}/{}; límite efectivo = mínimo de los no null",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-CONTRACT-h03-builtin.log#sha256=e9de4a95e61dcf8d101fdea5ef5c0370fbb34de8764241b2ab44bf97c85a7487"
+      ]
+    },
+    {
+      "id": "P013-INTEGRATION-historial",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test hardware",
+      "fixture_hashes": [],
+      "expected": "fingerprint_version 1; configuración nueva guarda perfil anterior, huella anterior y diff; la misma configuración conserva el diff",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 2.34s | Running tests\\hardware.rs (target\\debug\\deps\\hardware-f39cbd28075a9ccf.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-INTEGRATION-historial.log#sha256=4c30d8abc854d5e71104563ab0d6e001c649357e3ff974349925714c5ff154e6"
+      ]
+    },
+    {
+      "id": "P013-INTEGRATION-p107-hash",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime",
+      "fixture_hashes": [],
+      "expected": "la rebanada P107 calcula launch_profile_hash con RFC 8785 y sigue en verde",
+      "observed": "exit=0; Compiling larm-runtime v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-runtime) | Finished `test` profile [unoptimized + debuginfo] target(s) in 2.46s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-24c2d4fddf03ff07.exe) | Doc-tests larm_runtime",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-INTEGRATION-p107-hash.log#sha256=304e99f050be57590c87e3e85ee4ec29f673b3075bf2d120059cb1d147060282"
+      ]
+    },
+    {
+      "id": "P013-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-cargo-fmt.log#sha256=c42934c0db92f50866c97875d20b8fe60270cb9b8c1b7ab8e3e5a6baadc09ffb"
+      ]
+    },
+    {
+      "id": "P013-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-cargo-clippy.log#sha256=87ed9ced264b45910c42731967d7f3063e42f1c963c94f2900e051882e05ca10"
+      ]
+    },
+    {
+      "id": "P013-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-cargo-test.log#sha256=d73343c2ba393c753a0231974e69d75dead4d6e0c83503faae3916a0796359ca"
+      ]
+    },
+    {
+      "id": "P013-UNIT-desktop-lint",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run lint --silent",
+      "fixture_hashes": [],
+      "expected": "eslint sin avisos",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-desktop-lint.log#sha256=af6f4a9a6240defc90a13a0dbbc573ce75b75bd3f25ac871ca490455cd9103d0"
+      ]
+    },
+    {
+      "id": "P013-UNIT-desktop-typecheck",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run typecheck --silent",
+      "fixture_hashes": [],
+      "expected": "TypeScript sin errores",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-desktop-typecheck.log#sha256=f8fad84555e9049dec4d792d15e93b0d09ec8e83fa25523f6ded2480b4951834"
+      ]
+    },
+    {
+      "id": "P013-UNIT-desktop-test",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run test --silent",
+      "fixture_hashes": [],
+      "expected": "vitest: versión de la huella y cambios respecto a la configuración anterior",
+      "observed": "exit=0; Test Files  2 passed (2) | Tests  22 passed (22) | Start at  15:28:48 | Duration  4.57s (tests 73%, environment 20%, transform 4%, import 4%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-desktop-test.log#sha256=7c4e0a2f920cc4a3021eb338d785cd0125d38d1055d03dcbe1c6522cb3bfaedd"
+      ]
+    },
+    {
+      "id": "P013-UNIT-desktop-build",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run build --silent",
+      "fixture_hashes": [],
+      "expected": "build de producción del frontend",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-CEodqF_4.js   249.49 kB │ gzip: 77.81 kB | \u001b[32m✓ built in 100ms\u001b[39m",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-UNIT-desktop-build.log#sha256=9550ea966f536d72c1897792da9be97907c924f6ce75649b71efda5b8b8520d4"
+      ]
+    },
+    {
+      "id": "P013-REAL-launch-oraculo",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p013_real.py launch",
+      "fixture_hashes": [
+        "tests/fixtures/launch/balanced.json:ea7ca16206eee017347fe377f189d684c6a9c4cfd9b4b83ba813254efad71809",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "larm-daemon launch-profile-hash = JCS independiente en Python en el fixture y 9 variantes; reordenar no cambia; 5 rechazos",
+      "observed": "exit=0; [PASS] rechazo-env_duplicate: env_duplicate: hf_token definida dos veces (sin distinguir mayúsculas) | [PASS] rechazo-credential_reference_invalid: credential_reference_invalid: HF_TOKEN: la referencia debe estar bajo larm/ | [PASS] rechazo-schema_violation: schema_violation: unknown field `extra`, expected one of `threads`, `context`, `batch`, `concurren | PASS 16 comprobaciones PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-REAL-launch-oraculo.log#sha256=4f133fa2cea6b08a8152abca83b9506ee6239864824092af7f6d53cca4fb43d4"
+      ]
+    },
+    {
+      "id": "P013-REAL-huella-hardware",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p013_real.py hardware",
+      "fixture_hashes": [],
+      "expected": "PC IA: misma huella en dos procesos con RAM libre distinta; recalculada en Python; driver cambia, volátiles no",
+      "observed": "exit=0; [PASS] oraculo-python: JCS + sha256 de Python = huella de LARM | [PASS] driver-cambia-la-huella: otro driver -> otra huella | [PASS] volatiles-no-cuentan: RAM libre, LUID y orden: misma huella | PASS 4 comprobaciones PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-REAL-huella-hardware.log#sha256=08bfff5f7f30af7f3af5d218cf92ed74d6c9641e917f1f64dc238f5ee509f3cc"
+      ]
+    },
+    {
+      "id": "P013-REAL-historial-daemon",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p013_real.py serve",
+      "fixture_hashes": [],
+      "expected": "daemon real: versión 1 en el primer perfil; rearranque = mismo perfil con el diff conservado",
+      "observed": "exit=0; [PASS] version-y-primer-perfil: fingerprint_version 1; primer perfil sin anterior ni cambios | [PASS] rearranque-misma-huella: rearranque del daemon: mismo perfil, row_version 2 y diff conservado | PASS 2 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P013_runs/P013-REAL-historial-daemon.log#sha256=397767644fc35233b69ae48ef3dd9beddbc708f01d9be6c9ad2f0c759375a390"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P010 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P011 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P012 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T14:28:59.529Z"
+}

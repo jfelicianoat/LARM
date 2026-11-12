@@ -1,0 +1,10 @@
+{
+  "provider": "OLLAMA_LIBRARY",
+  "api_reference": "https://docs.ollama.com/api/introduction",
+  "search_applicable": false,
+  "supported_methods": [],
+  "status": "UNSUPPORTED",
+  "limitations": [
+    "/api/tags describe el runtime Ollama local y no se toma como API estable del catálogo web Library; se deshabilita scraping."
+  ]
+}

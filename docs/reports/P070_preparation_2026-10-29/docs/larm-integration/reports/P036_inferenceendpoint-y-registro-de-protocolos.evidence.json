@@ -1,0 +1,107 @@
+{
+  "prompt_id": "P036",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "8673878a370e74d112eb9733eca2b5b51ce7b1961133350e2539ee16b7dfb51f",
+  "changed_files": [
+    "crates/larm-db/src/inference_endpoints.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-domain/src/bridge.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/protocol.rs",
+    "crates/larm-domain/src/runtime_ports.rs",
+    "crates/larm-runtime/src/endpoints.rs",
+    "crates/larm-runtime/src/lib.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P036_inferenceendpoint-y-registro-de-protocolos.md",
+    "tools/p036_broker_contract_probe.py",
+    "tools/p036_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P036-PROTOCOL-SCHEMA-AND-UNKNOWN-PRESERVATION",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib protocol::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/protocol.rs:669e013791965cfa3dc5bf451847dbaeb1e23314fe6984fea8cbfde1aef72e94",
+        "crates/larm-domain/src/bridge.rs:15a76668fb6cd484a7ac6612f8bb8cfe87a96b58e7dd624570f5452283c16865"
+      ],
+      "expected": "Perfiles versionados y múltiples por protocolo; unknown se conserva sin cualificarse; DTO estricto rechaza campos secretos, hashes y estados inválidos.",
+      "observed": "exit=0; warning: `larm-domain` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-892f2ab81062ba5a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P036_runs/P036-PROTOCOL-SCHEMA-AND-UNKNOWN-PRESERVATION.log#sha256=b706246e3110a36dbb1b055cbbb789b8a2728b9e18fe938d102af2f1cdd6585f"
+      ]
+    },
+    {
+      "id": "P036-SQLITE-MULTI-ENDPOINT-CAS-AND-OUTBOX",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib inference_endpoints::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/inference_endpoints.rs:f00b2f6adc4657d0e0f982eae2cc4d081b1963b3d22e5ebd7004ed275cd3ffa8",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "SQLite conserva varios protocolos por instancia, expone sólo QUALIFIED, degrada por CAS y confirma endpoint/evento/outbox en una transacción; UNTESTED o fallo de outbox no deja estado parcial.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-c463ce497a7a8126.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P036_runs/P036-SQLITE-MULTI-ENDPOINT-CAS-AND-OUTBOX.log#sha256=38ee0e84e9b1544249627ce700c9c21f51723ff3549a4d03fc38cfc1527c97fd"
+      ]
+    },
+    {
+      "id": "P036-PROBE-UNKNOWN-TIMEOUT-IO-AND-RECOVERY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib endpoints::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/endpoints.rs:5586b58f9860af27fb0927f7b45e33ffc06dffb7abe4509421acb26c890282a6",
+        "crates/larm-domain/src/protocol.rs:669e013791965cfa3dc5bf451847dbaeb1e23314fe6984fea8cbfde1aef72e94",
+        "crates/larm-db/src/inference_endpoints.rs:f00b2f6adc4657d0e0f982eae2cc4d081b1963b3d22e5ebd7004ed275cd3ffa8"
+      ],
+      "expected": "Probe habilita varios protocolos conocidos, preserva unknown sin publicarlo, convierte timeout y endpoint muerto a FAILED, permite recuperar con registro nuevo y no persiste ante error interno.",
+      "observed": "exit=0; warning: `larm-runtime` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-c13b52f836f22229.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P036_runs/P036-PROBE-UNKNOWN-TIMEOUT-IO-AND-RECOVERY.log#sha256=ed7d8c23f1ce9c3997f3b21d3e13f0932fa15effa72bb6f39228a82555c45a6a"
+      ]
+    },
+    {
+      "id": "P036-REAL-WINDOWS-LOOPBACK-AND-SQLITE",
+      "kind": "REAL",
+      "command": "cargo test -p larm-runtime --lib endpoints::tests::windows_real_loopback_health_protocol_and_sqlite_registration_then_dead_endpoint -j 1 -- --exact --nocapture --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/endpoints.rs:5586b58f9860af27fb0927f7b45e33ffc06dffb7abe4509421acb26c890282a6",
+        "crates/larm-db/src/inference_endpoints.rs:f00b2f6adc4657d0e0f982eae2cc4d081b1963b3d22e5ebd7004ed275cd3ffa8",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "En Windows, un servidor HTTP loopback responde health y handshake OpenAI; el endpoint queda QUALIFIED en SQLite y, al cerrar el proceso fixture, pasa a FAILED y desaparece de la vista Broker.",
+      "observed": "exit=0; warning: `larm-runtime` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-c13b52f836f22229.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P036_runs/P036-REAL-WINDOWS-LOOPBACK-AND-SQLITE.log#sha256=a4bd7cbdea1c55e0e856ebcea822423286e7afeb5d50ec7b3e4ac74a2f041edb"
+      ]
+    },
+    {
+      "id": "P036-BROKER-READ-ONLY-API-CONTRACT",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p036_broker_contract_probe.py",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:4c183d697cd276b050797e4fe316a6e0a35d2b5ef8f8d99f8b4ab32855449d2e",
+        "docs/contracts/schemas/larm.schema.json:feda3d66c09f322f558846789f84c4908db5a096dd206ea4d6e92c2e1e641a08",
+        "docs/api/openapi.json:f26f7ee59e1f5323adf2144b6a014a07e898036eadc86210870d1575c71a68bd",
+        "tools/p036_broker_contract_probe.py:f6f849775c3facb2b22620ee2368b98451c23861fb9c89e2cb2e63ccb05c54df"
+      ],
+      "expected": "P101 publica la operación GET /api/v1/broker/catalog con scope read y respuesta BrokerCatalog en el contrato canónico, el espejo LARM y OpenAPI.",
+      "observed": "exit=0; P101 broker catalog: canonical/local operation, scope, OpenAPI route and response schema match",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P036_runs/P036-BROKER-READ-ONLY-API-CONTRACT.log#sha256=e907f609c40007e124fef3ea2c3b566ca61a65cc52024d1d02fe36d388f17126"
+      ]
+    }
+  ],
+  "blockers": [
+    "P036 depende de P033, que sigue BLOCKED_REAL; la operación de catálogo Broker está definida por P101 y su integración durable con instancias/leases sigue pendiente.",
+    "dependencia P033 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T13:01:56.284Z"
+}

@@ -1,0 +1,93 @@
+{
+  "prompt_id": "P071",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "471e68b717d7f23b9393ff6b761b063c8083ae9f9984f3eb9ecbb200fa9df225",
+  "changed_files": [
+    "adapters/runtime/transformers/README.md",
+    "adapters/runtime/transformers/protocol.schema.json",
+    "adapters/runtime/transformers/sidecar.py",
+    "adapters/runtime/transformers/tests/test_worker.py",
+    "adapters/runtime/transformers/worker.py",
+    "crates/larm-runtime/src/lib.rs",
+    "crates/larm-runtime/src/python_env.rs",
+    "docs/adapters/transformers.md",
+    "docs/implementation/STATE.md",
+    "docs/reports/P071_python-environment-manager-y-pytorch-transformers.md",
+    "tools/p071_evidence.py",
+    "tools/p071_host_probe.py"
+  ],
+  "tests": [
+    {
+      "id": "P071-INTEGRATION-transformers-worker-and-sidecar",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -m unittest discover -s adapters/runtime/transformers/tests -p test_worker.py -v",
+      "fixture_hashes": [],
+      "expected": "13 pruebas cubren identidad de entorno, intérprete contenido en el prefijo exacto, estrategias declaradas, aislamiento, lectura local de modelos, rechazo de remote code, backend explícito e invariantes del subset OpenAI.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 13 tests in 0.036s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P071_runs/P071-INTEGRATION-transformers-worker-and-sidecar.log#sha256=5579dc1d47cc334b6f119de47c7c3af947db5555e43fb8155b2f32aba8a97342"
+      ]
+    },
+    {
+      "id": "P071-UNIT-python-environment-identity",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-runtime python_env -- --nocapture",
+      "fixture_hashes": [],
+      "expected": "Las cinco pruebas Rust verifican hash de identidad, equivalencia del digest Python/Rust, lock/Python, ruta dentro del runtime store e intérprete gestionado.",
+      "observed": "exit=0; Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-c13b52f836f22229.exe) | Running tests\\discovery_service.rs (target\\debug\\deps\\discovery_service-9924da82e0ded76d.exe) | Running tests\\install.rs (target\\debug\\deps\\install-00d9c1dba5009243.exe) | Running tests\\version_discovery.rs (target\\debug\\deps\\version_discovery-b81b5c11d5d09094.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P071_runs/P071-UNIT-python-environment-identity.log#sha256=059f223daedd9c9f0663c749f79a75b24753bb5b9968d10a09c8399e067f3b54"
+      ]
+    },
+    {
+      "id": "P071-UNIT-private-protocol-schema",
+      "kind": "UNIT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -c import json,jsonschema,pathlib; p=pathlib.Path('adapters/runtime/transformers/protocol.schema.json'); s=json.loads(p.read_text(encoding='utf-8')); jsonschema.Draft202012Validator.check_schema(s); print('schema Draft 2020-12 válido')",
+      "fixture_hashes": [
+        "adapters/runtime/transformers/protocol.schema.json:29f5c582f3bebf057ceb739a202731ccc95a0b67743b37606fb705a2bd71e064"
+      ],
+      "expected": "El schema privado cumple Draft 2020-12.",
+      "observed": "exit=0; schema Draft 2020-12 válido",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P071_runs/P071-UNIT-private-protocol-schema.log#sha256=8dbd0c486f2ea53888447c37d45d8b3645a6a8ab17a634211ce4c24366b89205"
+      ]
+    },
+    {
+      "id": "P071-REAL-host-refuses-global-python",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p071_host_probe.py",
+      "fixture_hashes": [],
+      "expected": "El probe del host rechaza el Python de herramientas como entorno runtime y no importa PyTorch/Transformers fuera del prefijo gestionado.",
+      "observed": "exit=0; {\"ok\": true, \"protocol_version\": \"1\", \"result\": {\"available_backends\": [], \"managed_python\": false, \"python_prefix\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\.venv-tools\", \"python_version\": \"3.14.6\", \"torch_version\": null, \"transformers_version\": null}}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P071_runs/P071-REAL-host-refuses-global-python.log#sha256=29802186231484f68aefa947c138bff32711f101d943a3a3194ee4305ec60531"
+      ]
+    },
+    {
+      "id": "P071-REAL-isolated-runtime-and-tiny-model",
+      "kind": "REAL",
+      "command": "Crear un entorno runtime con la estrategia UV y CONDA/MAMBA fijada por P099; ejecutar un modelo tiny safetensors en CPU y verificar generación, cierre del proceso y ausencia de acceso global",
+      "fixture_hashes": [],
+      "expected": "Registrar versiones exactas de Python/Torch/Transformers, lock, provider efectivo y salida de inferencia; validar que REMOTE_CODE_REQUIRED bloquea el modelo personalizado.",
+      "observed": "NO EJECUTADA: P031/P022/P040 no tienen REAL_PASS; P099 todavía no aporta comandos y dependencias runtime cualificados para P071. En el host no hay entorno Python gestionado ni un modelo local tiny autorizado. Los tests mock validan controles y no sustituyen la ejecución real.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P031/P022/P040 deben llegar a REAL_PASS antes de conectar el worker al supervisor, permisos y cancelación de proceso Windows.",
+    "P099 debe fijar versión de Python, comandos observados, wheels/paquetes y profile locks reales para UV y CONDA/MAMBA; el worker no improvisa flags ni instala paquetes.",
+    "Pytorch/Transformers aún no se ejecuta en el runtime store ni está cableado al ciclo durable de instalación/launch; el sidecar sólo se enlaza a loopback con token del host.",
+    "La puerta oficial quedó sin resultado: cargo_test del workspace no cerró tras más de diez minutos y se interrumpió; no se afirma PASS ni FAIL para esa suite.",
+    "dependencia P031 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P022 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P040 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T12:26:01.005Z"
+}

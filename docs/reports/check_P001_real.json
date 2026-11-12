@@ -1,0 +1,47 @@
+﻿{
+    "prompt":  "P001",
+    "real":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.11s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "npm_lint",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_typecheck",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0 \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m | \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m | \u001b[2m   Start at \u001b[22m 19:40:51 | \u001b[2m   Duration \u001b[22m 812ms\u001b[2m (environment 72%, import 12%, tests 11%, transform 5%)\u001b[22m | "
+                   },
+                   {
+                       "check":  "npm_build",
+                       "result":  "PASS",
+                       "detail":  "exit=0 dist/index.html                  0.32 kB Ôöé gzip:  0.23 kB | dist/assets/core-CwxXejkd.js     0.09 kB Ôöé gzip:  0.10 kB | dist/assets/index-DhVi8h1n.js  222.25 kB Ôöé gzip: 69.77 kB |  | \u001b[32mÔ£ô built in 95ms\u001b[39m"
+                   },
+                   {
+                       "check":  "P001_daemon_lifecycle",
+                       "result":  "PASS",
+                       "detail":  "exit=0 PASS: daemon vivo antes de la senal; cierre limpio con exit code 0 (pid=37108)"
+                   }
+               ]
+}

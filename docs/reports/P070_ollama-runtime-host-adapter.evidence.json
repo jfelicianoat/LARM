@@ -1,0 +1,181 @@
+{
+  "prompt_id": "P070",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "6948ffad02354632928a5b96eede6d16f4fc5c2db52660ef1ee6108468c50843",
+  "changed_files": [
+    "adapters/runtime/ollama/store.py",
+    "adapters/runtime/ollama/adapter.py",
+    "adapters/runtime/ollama/main.py",
+    "adapters/runtime/ollama/package.py",
+    "adapters/runtime/ollama/tests/test_store.py",
+    "adapters/runtime/ollama/README.md",
+    "adapters/source/reference/package.py",
+    "tools/test_reference_python_package.py",
+    "docs/implementation/STATE.md",
+    "docs/reports/P070_ollama-runtime-host-adapter.md",
+    "docs/reports/P070_ollama-runtime-host-adapter.evidence.json",
+    "docs/reports/P070_runs/store-inspection-20261029/publish_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P070-STORE-STORE-TESTS",
+      "kind": "UNIT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 adapters/runtime/ollama/tests/test_store.py",
+      "fixture_hashes": [
+        "adapters/runtime/ollama/store.py:a821fb623376d021cca6ccb229452382215bd4ec44d88a7444463352b44d2cab",
+        "adapters/runtime/ollama/adapter.py:7e98b4b7f21921bf8a53ad37e8c4d11597bd98b9217052d3a04e27c79e34d54e",
+        "adapters/runtime/ollama/main.py:5d440f9880bddb81553208e99edb8efce3b5f99e2ad7266ddbd1eeb02d5c87f4",
+        "adapters/runtime/ollama/package.py:18ed8b33da6a77a6257d6ce130ad04c3f38cc60296c23dfc1afb93ecda379eb2",
+        "adapters/runtime/ollama/tests/test_store.py:d003bb9a4de61e749159c60e2af26edc66ec7942ab7402ba9e7db62e5462d857",
+        "adapters/runtime/ollama/README.md:6a9309b7db0247ba8907b9db0c42c9bce6f6bd33c8375fad196074dcc98ab90c",
+        "adapters/source/reference/package.py:7f55227024239d987086f09c213d877cf3a945ce7c961bb1341c10c9aa53b727",
+        "tools/test_reference_python_package.py:830d88381b36b4d3ca45d2e085c2a53b79ad5b0c0dc91c3f536fca996599cc2d",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/requirements.txt:b3f76760f907b00dde7b04baca0b5d7befb39142cc9a40fe50b492795ef36b48"
+      ],
+      "expected": "Inspección física, integridad, desconocidos, límites, cancelación, ADS, sharing y junction Windows.",
+      "observed": "exit0; 0.870s. Inspección física, integridad, desconocidos, límites, cancelación, ADS, sharing y junction Windows.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P070_runs/store-inspection-20261029/final2/store-tests.command.json",
+        "docs/reports/P070_runs/store-inspection-20261029/final2/store-tests.log#sha256=8a0af213b8edd97b808c4600ecf125914bc6a7c4784cdd644893fc096cacdebb"
+      ]
+    },
+    {
+      "id": "P070-STORE-PYTHON-SDK",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_python_adapter_sdk.py",
+      "fixture_hashes": [
+        "adapters/runtime/ollama/store.py:a821fb623376d021cca6ccb229452382215bd4ec44d88a7444463352b44d2cab",
+        "adapters/runtime/ollama/adapter.py:7e98b4b7f21921bf8a53ad37e8c4d11597bd98b9217052d3a04e27c79e34d54e",
+        "adapters/runtime/ollama/main.py:5d440f9880bddb81553208e99edb8efce3b5f99e2ad7266ddbd1eeb02d5c87f4",
+        "adapters/runtime/ollama/package.py:18ed8b33da6a77a6257d6ce130ad04c3f38cc60296c23dfc1afb93ecda379eb2",
+        "adapters/runtime/ollama/tests/test_store.py:d003bb9a4de61e749159c60e2af26edc66ec7942ab7402ba9e7db62e5462d857",
+        "adapters/runtime/ollama/README.md:6a9309b7db0247ba8907b9db0c42c9bce6f6bd33c8375fad196074dcc98ab90c",
+        "adapters/source/reference/package.py:7f55227024239d987086f09c213d877cf3a945ce7c961bb1341c10c9aa53b727",
+        "tools/test_reference_python_package.py:830d88381b36b4d3ca45d2e085c2a53b79ad5b0c0dc91c3f536fca996599cc2d",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/requirements.txt:b3f76760f907b00dde7b04baca0b5d7befb39142cc9a40fe50b492795ef36b48"
+      ],
+      "expected": "Regresiones SDK Python NDJSON, concurrencia, cancelación y contratos.",
+      "observed": "exit0; 5.320s. Regresiones SDK Python NDJSON, concurrencia, cancelación y contratos.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P070_runs/store-inspection-20261029/final2/python-sdk.command.json",
+        "docs/reports/P070_runs/store-inspection-20261029/final2/python-sdk.log#sha256=2dbe736a1e4c86683864d09ca45ddb4d2cdaceecc01a1d99cb61f7a64d1cda46"
+      ]
+    },
+    {
+      "id": "P070-STORE-PYTHON-PACKAGE",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_reference_python_package.py",
+      "fixture_hashes": [
+        "adapters/runtime/ollama/store.py:a821fb623376d021cca6ccb229452382215bd4ec44d88a7444463352b44d2cab",
+        "adapters/runtime/ollama/adapter.py:7e98b4b7f21921bf8a53ad37e8c4d11597bd98b9217052d3a04e27c79e34d54e",
+        "adapters/runtime/ollama/main.py:5d440f9880bddb81553208e99edb8efce3b5f99e2ad7266ddbd1eeb02d5c87f4",
+        "adapters/runtime/ollama/package.py:18ed8b33da6a77a6257d6ce130ad04c3f38cc60296c23dfc1afb93ecda379eb2",
+        "adapters/runtime/ollama/tests/test_store.py:d003bb9a4de61e749159c60e2af26edc66ec7942ab7402ba9e7db62e5462d857",
+        "adapters/runtime/ollama/README.md:6a9309b7db0247ba8907b9db0c42c9bce6f6bd33c8375fad196074dcc98ab90c",
+        "adapters/source/reference/package.py:7f55227024239d987086f09c213d877cf3a945ce7c961bb1341c10c9aa53b727",
+        "tools/test_reference_python_package.py:830d88381b36b4d3ca45d2e085c2a53b79ad5b0c0dc91c3f536fca996599cc2d",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/requirements.txt:b3f76760f907b00dde7b04baca0b5d7befb39142cc9a40fe50b492795ef36b48"
+      ],
+      "expected": "Cinco rutas de familia,586archivos/11.666.934bytes stdlib conservados, DLLs y deps fijadas; imports Windows aislados.",
+      "observed": "exit0; 5.465s. Cinco rutas de familia,586archivos/11.666.934bytes stdlib conservados, DLLs y deps fijadas; imports Windows aislados.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P070_runs/store-inspection-20261029/final2/python-package.command.json",
+        "docs/reports/P070_runs/store-inspection-20261029/final2/python-package.log#sha256=cc0e5a74f1b69e6e36cf961863ec27e6d7799ccf4b216f3999638fb5296530c0"
+      ]
+    },
+    {
+      "id": "P070-STORE-ARCHITECTURE",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/check_architecture.py",
+      "fixture_hashes": [
+        "adapters/runtime/ollama/store.py:a821fb623376d021cca6ccb229452382215bd4ec44d88a7444463352b44d2cab",
+        "adapters/runtime/ollama/adapter.py:7e98b4b7f21921bf8a53ad37e8c4d11597bd98b9217052d3a04e27c79e34d54e",
+        "adapters/runtime/ollama/main.py:5d440f9880bddb81553208e99edb8efce3b5f99e2ad7266ddbd1eeb02d5c87f4",
+        "adapters/runtime/ollama/package.py:18ed8b33da6a77a6257d6ce130ad04c3f38cc60296c23dfc1afb93ecda379eb2",
+        "adapters/runtime/ollama/tests/test_store.py:d003bb9a4de61e749159c60e2af26edc66ec7942ab7402ba9e7db62e5462d857",
+        "adapters/runtime/ollama/README.md:6a9309b7db0247ba8907b9db0c42c9bce6f6bd33c8375fad196074dcc98ab90c",
+        "adapters/source/reference/package.py:7f55227024239d987086f09c213d877cf3a945ce7c961bb1341c10c9aa53b727",
+        "tools/test_reference_python_package.py:830d88381b36b4d3ca45d2e085c2a53b79ad5b0c0dc91c3f536fca996599cc2d",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/requirements.txt:b3f76760f907b00dde7b04baca0b5d7befb39142cc9a40fe50b492795ef36b48"
+      ],
+      "expected": "17 crates respetan el grafo autorizado.",
+      "observed": "exit0; 0.271s. 17 crates respetan el grafo autorizado.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P070_runs/store-inspection-20261029/final2/architecture.command.json",
+        "docs/reports/P070_runs/store-inspection-20261029/final2/architecture.log#sha256=dc2d755df4bffa967acad5b4a7c69e55e6efdd487b5893cd9134038235c72400"
+      ]
+    },
+    {
+      "id": "P070-STORE-CONTRACTS",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/package_copy.py check",
+      "fixture_hashes": [
+        "adapters/runtime/ollama/store.py:a821fb623376d021cca6ccb229452382215bd4ec44d88a7444463352b44d2cab",
+        "adapters/runtime/ollama/adapter.py:7e98b4b7f21921bf8a53ad37e8c4d11597bd98b9217052d3a04e27c79e34d54e",
+        "adapters/runtime/ollama/main.py:5d440f9880bddb81553208e99edb8efce3b5f99e2ad7266ddbd1eeb02d5c87f4",
+        "adapters/runtime/ollama/package.py:18ed8b33da6a77a6257d6ce130ad04c3f38cc60296c23dfc1afb93ecda379eb2",
+        "adapters/runtime/ollama/tests/test_store.py:d003bb9a4de61e749159c60e2af26edc66ec7942ab7402ba9e7db62e5462d857",
+        "adapters/runtime/ollama/README.md:6a9309b7db0247ba8907b9db0c42c9bce6f6bd33c8375fad196074dcc98ab90c",
+        "adapters/source/reference/package.py:7f55227024239d987086f09c213d877cf3a945ce7c961bb1341c10c9aa53b727",
+        "tools/test_reference_python_package.py:830d88381b36b4d3ca45d2e085c2a53b79ad5b0c0dc91c3f536fca996599cc2d",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/requirements.txt:b3f76760f907b00dde7b04baca0b5d7befb39142cc9a40fe50b492795ef36b48"
+      ],
+      "expected": "78 copias idénticas al paquete contractual3.12.1.",
+      "observed": "exit0; 0.117s. 78 copias idénticas al paquete contractual3.12.1.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P070_runs/store-inspection-20261029/final2/contracts.command.json",
+        "docs/reports/P070_runs/store-inspection-20261029/final2/contracts.log#sha256=1221765ab986b8d70e9a57b5a009bb2f6067b3b1ee45da0dcef41e8835fdabe6"
+      ]
+    },
+    {
+      "id": "P070-STORE-REAL-PORTABLE-WORKER",
+      "kind": "REAL",
+      "command": ".venv-tools/Scripts/python.exe -X utf8 docs/reports/P070_runs/store-inspection-20261029/native_store.py final2",
+      "fixture_hashes": [
+        "manifests/registry.ollama.ai/library/granite-embedding/30m:ff0f7216ec92b8807034476b21dff226b8212b83dcddaa8cc579ecd9a51ceac9",
+        "blobs/sha256-b4bff7b70b564130d0b58da27a04a04e97143106fb0185e65a0c855db6999fdf:b4bff7b70b564130d0b58da27a04a04e97143106fb0185e65a0c855db6999fdf",
+        "blobs/sha256-27d24c87a53d110b95abecbff83f966206857a9dc0ba1efd336d08dbd0afc833:27d24c87a53d110b95abecbff83f966206857a9dc0ba1efd336d08dbd0afc833",
+        "blobs/sha256-492069a62c2545ecde9f8cbc5c3d46adadaa3f95c0e1f68aea7ed2cca548484b:492069a62c2545ecde9f8cbc5c3d46adadaa3f95c0e1f68aea7ed2cca548484b",
+        "blobs/sha256-eb4c533ba6f7983afdc681a327251a34667340567bb160adfde1a3e07c468ec7:eb4c533ba6f7983afdc681a327251a34667340567bb160adfde1a3e07c468ec7"
+      ],
+      "expected": "SDK worker empaquetado inspecciona cinco archivos reales por hashes independientes, con negativos y sin mutación/copia/carga/inferencia.",
+      "observed": "11/11 comprobacionesPASS;15.431s. 62.536.337bytes físicos observados,5archivos,modeloGGUF/F16segúncabecera/config; arquitectura/capacidades/licencia siguen desconocidas. Mismo proceso Ollama y modelos cargados; worker exit0; paquete/perfil e inputs2047coinciden. Es transcripción directa del SDK; no P022/P026 ni aceptación Core/Broker.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P070_runs/store-inspection-20261029/final2/native.command.json",
+        "docs/reports/P070_runs/store-inspection-20261029/final2/inspection.json",
+        "docs/reports/P070_runs/store-inspection-20261029/final2/native.checked.json",
+        "docs/reports/P070_runs/store-inspection-20261029/final2/package.inputs.json"
+      ]
+    },
+    {
+      "id": "P070-QUALIFIED-COMPLETE-RUNTIME",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P070 -Real y recorrido cualificado con modelo/backend/protocolo/lease/Broker",
+      "fixture_hashes": [],
+      "expected": "Adaptador completo, integración HOST_MANAGED, P099 exacto y dependencias REAL_PASS, pruebas de carga/capacidades y lease durable.",
+      "observed": "NO EJECUTADO. Sólo runtime.inspect_model está implementado en el nuevo worker. Otros obligatorios fallan normalizados, opcionales no se anuncian. No hay publicación/cualificación ni acciones MANAGED. Las dependencias y P099 siguen sin REAL_PASS.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "Faltan worker runtime completo y composición Core de inventario HOST_MANAGED; la inspección no crea catálogos ni bundles/verificaciones/promociones centrales.",
+    "Faltan perfiles exactos P099 y dependencias P025/P030/P036/P099/P090 REAL_PASS, carga/backend/capacidades probadas por modelo y recorrido durable de leases/Broker.",
+    "Prueba REAL directa del SDK; no sustituye el host protegido P022/P026 ni el gate integral P070. No se hace inferencia ni se aceptan licencias; no se modifica Ollama externo.",
+    "Los pins protegen cada lectura mientras sus handles permanecen abiertos; la respuesta es una observación y Core debe revalidar el conjunto antes de usarlo. No se afirma snapshot global atómico ni aislamiento del SO."
+  ],
+  "generated_at": "2026-10-30T01:08:23.303Z"
+}

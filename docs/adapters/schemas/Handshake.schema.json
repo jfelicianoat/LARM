@@ -1,0 +1,25 @@
+{
+  "$id": "https://larm.local/adapters/Handshake.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Handshake (generado desde docs/contracts/schemas/larm.schema.json; no editar)",
+  "properties": {
+    "adapter_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "nonce": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "protocol_version": {
+      "const": "1.0"
+    }
+  },
+  "required": [
+    "protocol_version",
+    "adapter_id",
+    "nonce"
+  ],
+  "type": "object"
+}

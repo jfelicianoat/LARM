@@ -1,0 +1,413 @@
+{
+  "prompt_id": "P099",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "234c9d4b778d2f2dcb1623dca101c2c161f746352c56ea253f68555cb12c12be",
+  "changed_files": [
+    "apps/daemon/src/runtime_install.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/desktop/src-tauri/src/api.rs",
+    "apps/desktop/src/api/client.ts",
+    "apps/desktop/src/api/runtimes.ts",
+    "apps/desktop/src/runtimes.test.tsx",
+    "apps/desktop/src/runtimes.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-adapter-host/src/conformance.rs",
+    "crates/larm-adapter-host/src/conformance/raw.rs",
+    "crates/larm-adapter-host/src/policy.rs",
+    "crates/larm-adapter-host/src/worker.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/runtime_profiles.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/runtime_profiles.rs",
+    "crates/larm-db/src/runtimes/install.rs",
+    "crates/larm-db/tests/adapter_selection.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-db/tests/runtime_installation.rs",
+    "crates/larm-db/tests/runtime_profile_locks.rs",
+    "crates/larm-domain/src/auth.rs",
+    "crates/larm-domain/src/runtime_profiles.rs",
+    "crates/larm-runtime/src/install_service.rs",
+    "docs/adapters/capability-schemas/index.json",
+    "docs/adapters/method-schemas/index.json",
+    "docs/contracts/api-operations.json",
+    "docs/contracts/schemas/larm.schema.json",
+    "docs/implementation/STATE.md",
+    "docs/operations/runtime-profile-locks.md",
+    "docs/reports/P031_descubrimiento-e-instalacion-de-versiones-de-runtime.md",
+    "docs/reports/P099_perfiles-externos-por-version-y-fixtures-de-apis-reales.md",
+    "docs/reports/P099_runs/api_observations/ollama-api-20261022T085321391360Z/api.response.bin",
+    "docs/reports/P099_runs/api_observations/ollama-api-20261022T085321391360Z/capture.json",
+    "docs/reports/P099_runs/model_smokes/ollama-gemma4-12b-smoke-20261022T085324686648Z/api.version.response.json",
+    "docs/reports/P099_runs/model_smokes/ollama-gemma4-12b-smoke-20261022T085324686648Z/capture.json",
+    "docs/reports/P099_runs/model_smokes/ollama-gemma4-12b-smoke-20261022T085324686648Z/model.response.json",
+    "docs/reports/P099_runs/observations/ollama-20261022T085320981841Z/capture.json",
+    "docs/reports/P099_runs/observations/ollama-20261022T085320981841Z/probe.stderr.bin",
+    "docs/reports/P099_runs/observations/ollama-20261022T085320981841Z/probe.stdout.bin",
+    "docs/reports/P099_runs/sources/ollama/2476d5e/docs/api.md",
+    "migrations/0004_runtime_profile_locks.sql",
+    "migrations/0005_runtime_profile_qualifications.sql",
+    "tools/p099_capture_ollama.py",
+    "tools/p099_capture_ollama_api.py",
+    "tools/p099_evidence.py",
+    "tools/p099_ollama_listener.py",
+    "tools/p099_smoke_ollama_model.py",
+    "tools/runtime_profile_locks.py",
+    "tools/test_p099_capture_ollama.py",
+    "tools/test_p099_capture_ollama_api.py",
+    "tools/test_p099_ollama_listener.py",
+    "tools/test_p099_smoke_ollama_model.py",
+    "tools/test_runtime_profile_locks.py"
+  ],
+  "tests": [
+    {
+      "id": "P099-CONTRACT-profile-lock-api",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --lib",
+      "fixture_hashes": [],
+      "expected": "PUT autenticado e idempotente y GET por hash; cuerpos, scope y promoción inválidos se rechazan",
+      "observed": "exit=0; warning: `larm-api` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.83s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_api-3ad1071c3ed95ca7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-profile-lock-api.log#sha256=22e51abd58a5e470b9f33a718b65214ee25106e5273e09c370fb530f348f3d35"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-profile-lock-schema-regenerate",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p026_schemas.py write",
+      "fixture_hashes": [],
+      "expected": "índice de schemas de adaptadores regenerado para el hash actualizado de larm.schema.json",
+      "observed": "exit=0; PASS: 39 firmas / 78 schemas autocontenidos, índice y hashes exactos; todas las restricciones originales conservadas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-profile-lock-schema-regenerate.log#sha256=85757fba2cdfe12c89f2bfd08a3642c083f548a0fcfaae15f48f7cdbedf11f43"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-profile-lock-schema",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_p026_schemas.py",
+      "fixture_hashes": [],
+      "expected": "schemas JSON mantienen su validez y compatibilidad con los contratos existentes",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 3 tests in 2.417s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-profile-lock-schema.log#sha256=4aaac93a1bfbc00e072d8fa2623aeaeb9140ae40e0a1af8b8fc40cb6fd2e74bf"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-capability-schema-index",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p026_capability_schemas.py check",
+      "fixture_hashes": [],
+      "expected": "el índice generado de capacidades conserva los hashes de sus fuentes, incluido larm.schema.json",
+      "observed": "exit=0; PASS: 18 capacidades / 36 schemas con hashes RFC8785 e índice Rust exactos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-capability-schema-index.log#sha256=e19fffc8fc768b4f6b45d432f7d548f16808bd5d9fdd5e9ab6ea47a37c7d2304"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-locks-sqlite",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test runtime_profile_locks",
+      "fixture_hashes": [],
+      "expected": "nueve casos SQLite: adquisición y cualificación separadas, replay, binding de fixtures/estrategias, inmutabilidad e rollback del outbox",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 12.68s | Running tests\\runtime_profile_locks.rs (target\\debug\\deps\\runtime_profile_locks-1af6a73a6ec2d302.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-locks-sqlite.log#sha256=af2fd17c131e14ac618310184293e28bb8eacf98a96a7bad96960a461adbd8d3"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-install-binding",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test runtime_installation",
+      "fixture_hashes": [],
+      "expected": "admisión P031 valida perfil persistido y rechaza ausencia o binding distinto sin escrituras",
+      "observed": "exit=0; warning: `larm-db` (test \"runtime_installation\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.47s | Running tests\\runtime_installation.rs (target\\debug\\deps\\runtime_installation-b236d9435e9c6c73.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-install-binding.log#sha256=f2c7f9e17e4fe2510a5c5bcd7ffee08533eee3ee5a72df33447a4ba4d8089f5e"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-acquisition-tool",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_runtime_profile_locks.py",
+      "fixture_hashes": [
+        "tools/runtime_profile_locks.py:0f6c5055072cab749a28de06c6a7b12767217533ed405e72f7796b910369a342"
+      ],
+      "expected": "ocho casos de catálogo, hash, captura de fuente, invariancia, estrategia y CLI",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 8 tests in 0.061s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-acquisition-tool.log#sha256=ea0960f766aa2a41ae743652b416e18bc00afbd8fb8fa851e2f77640775e1276"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-local-observation-capture",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_p099_capture_ollama.py",
+      "fixture_hashes": [
+        "tools/p099_capture_ollama.py:6ce0acf5640922a9fa6b86c3ebc6da70c96907ab06e8f4c5df8ce1e4d8cc7d26",
+        "docs/contracts/runtime-profiles.json:85b3f7c380f38e639deab0e8eea521551acdf56774850f63f9cc8c976c597c8e",
+        "docs/reports/P099_runs/sources/ollama/2476d5e/docs/api.md:96db03080e385dbabf5d70e75f298d41b75983bc30975cae56f7119f848dd0f5"
+      ],
+      "expected": "seis casos verifican el comando allowlisted, hash de ejecutable/fuente, entorno sin credenciales, replay inmutable y estado siempre UNQUALIFIED",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 6 tests in 0.162s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-local-observation-capture.log#sha256=87da34cb21ba16a5eaeaf1270665adc4107b94149b1cedcdb4bead7c934d7df2"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-local-api-observation-capture",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_p099_capture_ollama_api.py",
+      "fixture_hashes": [
+        "tools/p099_capture_ollama_api.py:4c614e6ef83d60b8588dfc5d7b77d59ae38eb7d8b7fffd0197a33feb4214b841",
+        "tools/p099_ollama_listener.py:b67e72d68a92a5c9a485696c5e2a565f2ad501213425aaffda3024648e534f33",
+        "docs/contracts/runtime-profiles.json:85b3f7c380f38e639deab0e8eea521551acdf56774850f63f9cc8c976c597c8e",
+        "docs/reports/P099_runs/sources/ollama/2476d5e/docs/api.md:96db03080e385dbabf5d70e75f298d41b75983bc30975cae56f7119f848dd0f5"
+      ],
+      "expected": "cinco casos verifican endpoint loopback exacto, hash de respuesta, entorno sin credenciales, propietario allowlisted y rechazo si cambia durante la consulta; ninguna observación cualifica el perfil",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 5 tests in 0.172s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-local-api-observation-capture.log#sha256=bbc503ca8486b6619a5aa68efda62e03e092b59025e967890fd93ef0f67e5881"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-listener-owner",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_p099_ollama_listener.py",
+      "fixture_hashes": [
+        "tools/p099_ollama_listener.py:b67e72d68a92a5c9a485696c5e2a565f2ad501213425aaffda3024648e534f33"
+      ],
+      "expected": "cuatro casos identifican un único dueño de puerto, resuelven ruta y hash del ejecutable, y fallan cerrados ante propietarios ambiguos o inaccesibles",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 4 tests in 0.108s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-listener-owner.log#sha256=65336acf337351597000e7428f7dee5e129a82daf0e0173278845345509c0330"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-model-smoke-capture",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_p099_smoke_ollama_model.py",
+      "fixture_hashes": [
+        "tools/p099_smoke_ollama_model.py:aea6c7eeb39f07b164c6830b54154d9170c4b757339fab9eb24adac3defd4334",
+        "tools/p099_capture_ollama_api.py:4c614e6ef83d60b8588dfc5d7b77d59ae38eb7d8b7fffd0197a33feb4214b841",
+        "tools/p099_ollama_listener.py:b67e72d68a92a5c9a485696c5e2a565f2ad501213425aaffda3024648e534f33"
+      ],
+      "expected": "seis casos verifican versión, catálogo y generación fija, hash de captura, listener estable, entorno sin credenciales y estado siempre UNQUALIFIED",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 6 tests in 0.243s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-model-smoke-capture.log#sha256=68c701132645163e73f7a6fbbc46c3fe6945d6364bea5479ebd662632878a244"
+      ]
+    },
+    {
+      "id": "P099-REAL-ollama-version-observation",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p099_capture_ollama.py --run-id ollama-20261022T085320981841Z",
+      "fixture_hashes": [
+        "tools/p099_capture_ollama.py:6ce0acf5640922a9fa6b86c3ebc6da70c96907ab06e8f4c5df8ce1e4d8cc7d26",
+        "docs/contracts/runtime-profiles.json:85b3f7c380f38e639deab0e8eea521551acdf56774850f63f9cc8c976c597c8e",
+        "docs/reports/P099_runs/sources/ollama/2476d5e/docs/api.md:96db03080e385dbabf5d70e75f298d41b75983bc30975cae56f7119f848dd0f5",
+        "docs/reports/P099_runs/observations/ollama-20261022T085320981841Z/capture.json:01912e36f8ca5d28c608fbf549a15ce41d33320509791067fac31baa7cc785e8",
+        "docs/reports/P099_runs/observations/ollama-20261022T085320981841Z/probe.stdout.bin:183cdbfcad5074e0f908a620f629b853931744eaea264c0c4bdaecfc03fbe438",
+        "docs/reports/P099_runs/observations/ollama-20261022T085320981841Z/probe.stderr.bin:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ],
+      "expected": "la sonda local allowlisted registra Ollama 0.40.6, el hash del ejecutable y la transcripción cruda sin crear lock ni cualificación",
+      "observed": "exit=0; {\"capture_path\": \"docs/reports/P099_runs/observations/ollama-20261022T085320981841Z/capture.json\", \"capture_sha256\": \"2a0f597fe1e8aeef1d6565514991b154a0f1a0a3884a618ea394a4b497256bce\", \"qualification\": \"UNQUALIFIED\", \"runtime\": \"Ollama\", \"status\": \"PASS\", \"upstream_version\": \"0.40.6\"}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-REAL-ollama-version-observation.log#sha256=9294b1d5c9eb25d203459b2a85622224ac90b01b4c2b9ddeff5e19f5fb70fdf0"
+      ]
+    },
+    {
+      "id": "P099-REAL-ollama-api-version-observation",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p099_capture_ollama_api.py --run-id ollama-api-20261022T085321391360Z",
+      "fixture_hashes": [
+        "tools/p099_capture_ollama_api.py:4c614e6ef83d60b8588dfc5d7b77d59ae38eb7d8b7fffd0197a33feb4214b841",
+        "tools/p099_capture_ollama.py:6ce0acf5640922a9fa6b86c3ebc6da70c96907ab06e8f4c5df8ce1e4d8cc7d26",
+        "tools/p099_ollama_listener.py:b67e72d68a92a5c9a485696c5e2a565f2ad501213425aaffda3024648e534f33",
+        "docs/contracts/runtime-profiles.json:85b3f7c380f38e639deab0e8eea521551acdf56774850f63f9cc8c976c597c8e",
+        "docs/reports/P099_runs/sources/ollama/2476d5e/docs/api.md:96db03080e385dbabf5d70e75f298d41b75983bc30975cae56f7119f848dd0f5",
+        "docs/reports/P099_runs/api_observations/ollama-api-20261022T085321391360Z/capture.json:9cc388581eee4b139147627ceffe57f0f6914b5167e1b8a2b00bb9e09bb61590",
+        "docs/reports/P099_runs/api_observations/ollama-api-20261022T085321391360Z/api.response.bin:dca163f4bd8e4ad3f58f87d6cae77fef9d2d16fd8834450e4bfe2c08844b9e26"
+      ],
+      "expected": "el capturador verifica PID y SHA-256 del Ollama preexistente, consulta sólo GET 127.0.0.1:11434/api/version y registra 0.40.6 sin iniciar ni detener el servicio, cargar modelos o crear lock",
+      "observed": "exit=0; {\"capture_path\": \"docs/reports/P099_runs/api_observations/ollama-api-20261022T085321391360Z/capture.json\", \"capture_sha256\": \"7993bdb29192e15ca2df59ce0fbc6096dbcc6b8eaf3df4b6bd77a416a9f07314\", \"failure_reason\": null, \"qualification\": \"UNQUALIFIED\", \"runtime\": \"Ollama\", \"status\": \"PASS\", \"upstream_version\": \"0.40.6\"}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-REAL-ollama-api-version-observation.log#sha256=58113e204d4a452ef781e59c3cf00d1617a28d27233f1cdc88dd98e79620f491"
+      ]
+    },
+    {
+      "id": "P099-REAL-ollama-gemma4-model-smoke",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p099_smoke_ollama_model.py --run-id ollama-gemma4-12b-smoke-20261022T085324686648Z",
+      "fixture_hashes": [
+        "tools/p099_smoke_ollama_model.py:aea6c7eeb39f07b164c6830b54154d9170c4b757339fab9eb24adac3defd4334",
+        "tools/p099_capture_ollama_api.py:4c614e6ef83d60b8588dfc5d7b77d59ae38eb7d8b7fffd0197a33feb4214b841",
+        "tools/p099_ollama_listener.py:b67e72d68a92a5c9a485696c5e2a565f2ad501213425aaffda3024648e534f33",
+        "docs/contracts/runtime-profiles.json:85b3f7c380f38e639deab0e8eea521551acdf56774850f63f9cc8c976c597c8e",
+        "docs/reports/P099_runs/sources/ollama/2476d5e/docs/api.md:96db03080e385dbabf5d70e75f298d41b75983bc30975cae56f7119f848dd0f5",
+        "docs/reports/P099_runs/model_smokes/ollama-gemma4-12b-smoke-20261022T085324686648Z/capture.json:af423448fb655b3987e67c530662cd54b304f58543324152b18f71d989846dc3",
+        "docs/reports/P099_runs/model_smokes/ollama-gemma4-12b-smoke-20261022T085324686648Z/api.version.response.json:dca163f4bd8e4ad3f58f87d6cae77fef9d2d16fd8834450e4bfe2c08844b9e26",
+        "docs/reports/P099_runs/model_smokes/ollama-gemma4-12b-smoke-20261022T085324686648Z/model.response.json:87a02a184fb8d130f6b1e3d624b3364c846f736cccf24ecf598c00f3f1ccbbd9"
+      ],
+      "expected": "verifica el propietario allowlisted antes y después de consultar versión, listar modelos y generar LARM_OK con gemma4:12b; el servicio preexistente no se inicia ni detiene y el perfil queda UNQUALIFIED",
+      "observed": "exit=0; {\"capture_path\": \"docs/reports/P099_runs/model_smokes/ollama-gemma4-12b-smoke-20261022T085324686648Z/capture.json\", \"capture_sha256\": \"96863bbb0966af72d03c35e60333de22cfd8506acd5a5b58b1a43dc9754bd002\", \"failure_reason\": null, \"model\": \"gemma4:12b\", \"model_count\": 28, \"qualification\": \"UNQUALIFIED\", \"response_contains_expected_marker\": true, \"runtime\": \"Ollama\", \"status\": \"PASS\", \"upstream_version\": \"0.40.6\"}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-REAL-ollama-gemma4-model-smoke.log#sha256=ecb746030d679a162a48af01c63475b6ff3467cdff4fc0cf46dd66bbadf298cf"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-format",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --all -- --check",
+      "fixture_hashes": [],
+      "expected": "formato Rust del workspace correcto",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-format.log#sha256=af0be96f894cfee2d7a970fb3c0e2bc337207602f517c4a933015368de6d9917"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-clippy",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "Clippy del workspace y todos sus targets sin warnings de Rust",
+      "observed": "exit=0; Checking larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) | Checking larm-runtime v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-runtime) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 10.52s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-clippy.log#sha256=a704367f604b776e843d2a494ccc1b794a14ca4d0b12a988126a5a3f4e79d262"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-daemon-wiring",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-daemon --no-run",
+      "fixture_hashes": [],
+      "expected": "el daemon de producción compila con las rutas P099 y el repositorio SQLite compartido",
+      "observed": "exit=0; Executable tests\\lifecycle.rs (target\\verification-final\\debug\\deps\\lifecycle-7fff4411bf6f4301.exe) | Executable tests\\move.rs (target\\verification-final\\debug\\deps\\move-6f6f8f0a70cec932.exe) | Executable tests\\reference_adapters.rs (target\\verification-final\\debug\\deps\\reference_adapters-05c75efda9e6af3c.exe) | Executable tests\\runtime_catalog.rs (target\\verification-final\\debug\\deps\\runtime_catalog-7321c5674f4f3d42.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-daemon-wiring.log#sha256=c1af77ce04384907bea3e648c548c68725f94fcd1c19d74638ad899f8bf8e731"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-desktop-put-transport",
+      "kind": "CONTRACT",
+      "command": "cargo test --manifest-path apps/desktop/src-tauri/Cargo.toml api::tests",
+      "fixture_hashes": [],
+      "expected": "el transporte nativo sólo admite PUT dentro de la API loopback y sigue protegiendo el token",
+      "observed": "exit=0; warning: `larm-desktop` (bin \"larm-desktop\" test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 8.69s | Running unittests src\\lib.rs (apps\\desktop\\src-tauri\\target\\debug\\deps\\larm_desktop_lib-2363441017e7b728.exe) | Running unittests src\\main.rs (apps\\desktop\\src-tauri\\target\\debug\\deps\\larm_desktop-2b5b44e1bd75a42c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-desktop-put-transport.log#sha256=28dfaf0f753ccc462db88dafaadb76a8b02bd7f044028a9a26763801da81dd5e"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-desktop-format",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --manifest-path apps/desktop/src-tauri/Cargo.toml -- --check",
+      "fixture_hashes": [],
+      "expected": "formato del backend nativo Tauri correcto",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-desktop-format.log#sha256=3462b0a991c7b9696c1576fdb59d1ca231f0785716919cd05a810bc705ec90af"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-desktop-clippy",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --manifest-path apps/desktop/src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "Clippy del backend nativo Tauri sin warnings",
+      "observed": "exit=0; warning: `larm-desktop` (bin \"larm-desktop\") generated 1 warning | warning: `larm-desktop` (bin \"larm-desktop\" test) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.68s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-desktop-clippy.log#sha256=015dd1085c8b58c57e21f7f9d18f398552b43ea42ba0b3cbe57c72dfef02167e"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-profile-lock-ui",
+      "kind": "CONTRACT",
+      "command": "npm.cmd --prefix apps/desktop test",
+      "fixture_hashes": [],
+      "expected": "suite de interfaz valida adquisición, consulta por hash y bloqueo local de promoción",
+      "observed": "exit=0; Duration  17.33s (tests 64%, environment 28%, import 5%, transform 2%) | Isolate  5 workers spawned · ~1.05s startup each (spawn + environment, per file) | at least ~4.21s faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-profile-lock-ui.log#sha256=78a3f938e4a0b8d2ed5ce62dc788aba567f83d126338fee3af0c8ba3a3a8a316"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-profile-lock-ui-build",
+      "kind": "CONTRACT",
+      "command": "npm.cmd --prefix apps/desktop run build",
+      "fixture_hashes": [],
+      "expected": "TypeScript y build de producción del escritorio pasan",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-Dcr_hNt9.js   302.00 kB │ gzip: 91.12 kB | ✓ built in 222ms",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-profile-lock-ui-build.log#sha256=9ba0dfff2652f336cb0d3b507998aa0a7e3e62689aaed44d05c2584c8031cbd9"
+      ]
+    },
+    {
+      "id": "P099-CONTRACT-profile-lock-ui-lint",
+      "kind": "CONTRACT",
+      "command": "npm.cmd --prefix apps/desktop run lint",
+      "fixture_hashes": [],
+      "expected": "ESLint del escritorio pasa",
+      "observed": "exit=0; > @larm/desktop@0.1.0 lint | > eslint .",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P099_runs/P099-CONTRACT-profile-lock-ui-lint.log#sha256=a2e0ca29c6f5144bc18621457e0827bfe1ba4369a5bf745125bae8a5cdaef28b"
+      ]
+    },
+    {
+      "id": "P099-REAL-profile-capture",
+      "kind": "REAL",
+      "command": "captura de perfiles de los runtimes instalados en el PC IA",
+      "fixture_hashes": [],
+      "expected": "captura completa por runtime con versión, documentación versionada, probes y fixtures de API/modelo/backend con hashes",
+      "observed": "NO EJECUTADA: Ollama 0.40.6 ya tiene observaciones locales verificadas de versión, catálogo y generación con gemma4:12b; aún faltan fixtures y probes para completar su perfil, el resto del software instalado y la evidencia REAL_PASS de P000/P020/P043/P036",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P099-REAL-adapter-qualification",
+      "kind": "REAL",
+      "command": "cualificación por adaptador y versión upstream",
+      "fixture_hashes": [],
+      "expected": "fixtures positivos/negativos y pruebas de adquisición observadas por cada adaptador disponible",
+      "observed": "NO EJECUTADA: requiere el inventario de P000 y las dependencias reales P020/P043/P036; ningún lock UNQUALIFIED habilita soporte",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P099 permanece BLOCKED_REAL: faltan fichas verificadas para las 20 entradas y capturas completas para los runtimes disponibles; Ollama ya tiene observaciones de versión, catálogo y generación de gemma4:12b con propietario de proceso verificado.",
+    "P099 aún necesita pruebas de adquisición por cada adaptador disponible y la cualificación real de sus perfiles; el smoke Ollama observado no crea una cualificación.",
+    "No se permite cualificar ni habilitar un lock sin los hechos y fixtures reales requeridos.",
+    "dependencia P020 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P036 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P000 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T08:54:54.933Z"
+}

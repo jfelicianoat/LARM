@@ -1,0 +1,53 @@
+{
+  "$defs": {
+    "larm__text_generate_output": {
+      "additionalProperties": false,
+      "properties": {
+        "finish_reason": {
+          "enum": [
+            "stop",
+            "length",
+            "tool_calls"
+          ],
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "tool_calls": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "arguments": {
+                "type": "object"
+              },
+              "id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "name": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "arguments"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "finish_reason",
+        "tool_calls"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__text_generate_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

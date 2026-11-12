@@ -1,0 +1,32 @@
+# P042 — Lifecycle de modelos y availability derivada
+
+**Estado:** `BLOCKED_REAL` · **Fecha:** 2026-10-22 · **Host:** Windows 11 (`A9_Mega`)
+
+P042 añade una máquina de estados tipada, una derivación conservadora de availability y reconciliación segura de volúmenes. La selección, el detalle y la verificación durable de variantes están conectados a SQLite y la API. El incremento sigue abierto porque falta el flujo que reúne evidencia de ejecución y cualifica el protocolo del Broker.
+
+## Implementación
+
+- `ModelLifecycle` y `ModelAvailability` materializan los valores contractuales y su serialización. `validate_lifecycle_transition` permite sólo las transiciones enumeradas, exige evidencia para cada paso, devuelve `INVALID_STATE_TRANSITION` (409) ante un salto y sólo permite reintentar `FAILED` desde el último estado seguro con un número de intento nuevo.
+- `ModelVariant::status_for` deriva el status público con la prioridad contractual. SQLite recalcula `status` al actualizar availability y deriva el valor al leer filas, así `UPDATE_AVAILABLE` coexiste con el lifecycle de la revisión instalada.
+- `larm-models::lifecycle::derive_availability` exige al menos un artefacto requerido con una réplica online y verificada, bundle verificado, gates de modelo/runtime/backend/hardware en PASS y load, health y smoke PASS sobre la misma `execution_fingerprint` actual. `broker_eligible` requiere además `protocol_qualified`. Los casos desconocidos, vacíos o con huellas distintas fallan cerrados; no se consulta metadata libre.
+- La reconciliación no conserva disponibilidad previa en `metadata`. Un volumen offline degrada availability sin borrar el modelo ni cambiar lifecycle. Al volver, verifica los hashes y deja availability en `UNKNOWN` para recalcular los gates. Un hash incorrecto registra lifecycle y availability `CORRUPT` en una transacción con evento; tras reparar los bytes, la reverificación completa vuelve a `VERIFIED`/`UNKNOWN`.
+- No hizo falta migración. La prueba de reconciliación corre sobre SQLite y ficheros reales de Windows. Los fixtures temporales se crean dentro del repositorio para evitar errores de acceso de Windows; la prueba de vista CAS acepta el hard link o la referencia al blob que el código usa cuando el sistema no admite hard links.
+- `POST /api/v1/models/select` valida el DTO cerrado y UUIDv7, requiere `models:write` y `Idempotency-Key`, y guarda la transición `DISCOVERED→SELECTED` con CAS y evento de dominio. Un replay devuelve la respuesta guardada; reutilizar la clave con otro cuerpo devuelve `IDEMPOTENCY_CONFLICT`.
+- `GET /api/v1/variants/{id}/detail` agrega la variante, revisión, distribución, modelo canónico, bundle, artefactos, ubicaciones, procedencia, compatibilidad, evaluaciones, certificaciones y leases activos. Las dos rutas aparecen como implementadas en OpenAPI, que sigue generándose desde el contrato.
+- `POST /api/v1/models/{id}/verify` exige el Probe cerrado del contrato, valida que `resource_id` coincida con la variante, requiere `models:write` e `Idempotency-Key`, y responde `202 JobReceipt`. La clave idempotente incorpora el id de la ruta.
+- El worker `model.verify` encola jobs en `operation_journal`, evita verificaciones simultáneas de la misma variante, recupera interrupciones como `FAILED` y expone el estado con autorización por actor en `/api/v1/jobs/{id}`. Lee cada réplica usando la identidad actual del volumen, valida ruta y límites de raíz, hashea los bytes y comprueba manifiesto, tamaños, hashes y roles requeridos. La canonicalización de rutas y la lectura/hash de ficheros corren en `spawn_blocking` para no detener el runtime asíncrono mientras se procesan modelos grandes o rutas de red.
+- La finalización guarda ubicaciones, bundle, lifecycle, job y eventos del outbox en una sola transacción con `row_version`. Los bytes incorrectos marcan la réplica y variante como `CORRUPT`; una copia válida puede sostener el bundle aunque otra réplica esté corrupta. Una verificación correcta sólo avanza `DOWNLOADED→VERIFIED` o `CORRUPT→VERIFIED`; availability queda `UNKNOWN` y no se inventan gates técnicos.
+
+## Verificación
+
+La evidencia formal incluye cobertura del endpoint, del journal SQL y del worker con ficheros reales; los recuentos finales están en [evidencia P042](P042_lifecycle-de-modelos-y-availability-derivada.evidence.json). La prueba REAL `P042-REAL-WINDOWS-OFFLINE-CORRUPT-RECOVERY-AND-UPDATE` desconecta y reconecta el volumen de prueba, confirma estados y hashes en SQLite, altera un byte para observar `CORRUPT`, restaura el contenido para observar `VERIFIED`/`UNKNOWN` y comprueba que `update_available` no cambia la revisión instalada. La nueva prueba REAL del worker valida primero `VERIFIED/UNKNOWN` y detecta una modificación posterior como `CORRUPT`. El expediente conserva hashes de fuentes, fixture y migración y las transcripciones en [runs P042](P042_runs/).
+
+La puerta oficial `tools/check.ps1 -Prompt P042 -Real` terminó **13 PASS y 1 FAIL**. Pasaron `cargo fmt`, Clippy y tests de todo el workspace, build de fixtures, arquitectura, formato/Clippy/tests de Tauri, lint, typecheck, tests y build de la interfaz, además del runner de evidencia. El gate serializa los tests Rust para evitar carreras entre fixtures de workers; la suite completa pasa en Windows con loopback habilitado. Tras mover el acceso a disco del worker de verificación a `spawn_blocking`, pasaron el formato y Clippy de `larm-models`, sus 43 tests y el runner focal de P042 (**8 PASS, 0 FAIL, 1 BLOCKED**). El único fallo del gate es `package_copy`, que detecta las tres divergencias en `docs/contracts/adapter-methods.json`, `docs/contracts/api-operations.json` y `docs/contracts/schemas/larm.schema.json` respecto del paquete canónico. La validación formal de evidencias pasa para todos los informes disponibles.
+
+## Pendientes
+
+- Conectar `derive_availability` con evidencia productiva y durable de compatibilidad, runtime/backend/hardware, load, health, smoke y execution fingerprint. No se debe atribuir eligibility real hasta verificar todas esas fuentes y cualificar el protocolo.
+- P040, P041 y P016 siguen en `BLOCKED_REAL`; el contrato 00 impide cerrar su consumidor en `REAL_PASS` mientras falte cualquiera de esas dependencias.
+- Revisar las tres copias contractuales frente a la fuente canónica del paquete y obtener su revisión antes de reconciliarlas.
+
+La puerta completa queda registrada en [check P042](check_P042_real.json). No se incluyen pruebas no ejecutadas como PASS.

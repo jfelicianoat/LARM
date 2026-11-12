@@ -1,0 +1,60 @@
+{
+  "$defs": {
+    "larm__AuthProbe": {
+      "additionalProperties": false,
+      "properties": {
+        "account_id": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "auth_mode": {
+          "enum": [
+            "NONE",
+            "TOKEN",
+            "BEARER",
+            "API_TOKEN",
+            "OAUTH_DEVICE",
+            "OAUTH_AUTH_CODE_PKCE",
+            "BASIC",
+            "SSH",
+            "COOKIE",
+            "GIT_LFS",
+            "WINDOWS_INTEGRATED"
+          ],
+          "type": "string"
+        },
+        "credential_reference_id": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "auth_mode",
+        "account_id",
+        "credential_reference_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__AuthProbe",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

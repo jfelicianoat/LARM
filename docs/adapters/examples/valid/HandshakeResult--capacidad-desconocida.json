@@ -1,0 +1,16 @@
+{
+  "protocol_version": "1.0",
+  "adapter_version": "0.1.0",
+  "methods": [
+    "core.handshake",
+    "core.cancel",
+    "core.heartbeat",
+    "benchmark.describe",
+    "benchmark.run",
+    "benchmark.validate"
+  ],
+  "capabilities": [
+    "vendor.demo.experimental"
+  ],
+  "nonce": "9f3c1e7a2b4d5f60"
+}

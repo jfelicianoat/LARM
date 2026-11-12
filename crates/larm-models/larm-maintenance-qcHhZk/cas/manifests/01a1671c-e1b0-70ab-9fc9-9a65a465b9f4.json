@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "variant_id": "01a1671c-e1b0-70ab-9fc9-9a65a465b9f4",
+  "written_at": "2026-10-23T04:55:08.487Z",
+  "model": {
+    "name": "Alfa",
+    "upstream_identity": null,
+    "evidence": {
+      "architecture": null,
+      "author": null,
+      "base_model": null,
+      "config_hash": null,
+      "parent_hashes": [],
+      "tokenizer_hash": null
+    }
+  },
+  "distribution": {
+    "source_id": "0192f000-0000-7000-8000-00000000f001",
+    "upstream_namespace": "local",
+    "upstream_model_id": "a#Alfa",
+    "license_id": null
+  },
+  "revision": {
+    "revision_key": "content:3a00a53cec737091dd1ab416d0aed50425651ee5fab8b7fc889f908c457262e6",
+    "manifest_hash": "3a00a53cec737091dd1ab416d0aed50425651ee5fab8b7fc889f908c457262e6",
+    "upstream_commit": null
+  },
+  "variant": {
+    "format": "GGUF",
+    "quantization": null,
+    "architecture": null,
+    "capabilities": []
+  },
+  "artifacts": [
+    {
+      "filename": "README.md",
+      "role": "other",
+      "sha256": "afba066ef6e9a759731fe7309207f3d889a62605b812a70fa77c9d7e3e384904",
+      "size_bytes": 7,
+      "required": false,
+      "blob": "blobs/sha256/af/afba066ef6e9a759731fe7309207f3d889a62605b812a70fa77c9d7e3e384904"
+    },
+    {
+      "filename": "a.gguf",
+      "role": "weights",
+      "sha256": "715c289bf93edb139c21d5708f1f61a51e85d912e2ac3e42f4e5f20704f07d62",
+      "size_bytes": 2060,
+      "required": true,
+      "blob": "blobs/sha256/71/715c289bf93edb139c21d5708f1f61a51e85d912e2ac3e42f4e5f20704f07d62"
+    }
+  ]
+}

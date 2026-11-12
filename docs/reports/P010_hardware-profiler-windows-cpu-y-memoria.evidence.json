@@ -1,0 +1,412 @@
+{
+  "prompt_id": "P010",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "889d6a38603711cf00b2b61c7720e48b2b5b62f4569b42596c6696dc0b531a42",
+  "changed_files": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/hardware.rs",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/hardware.test.tsx",
+    "apps/desktop/src/hardware.tsx",
+    "apps/desktop/src/pages.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-api/src/hardware.rs",
+    "crates/larm-api/src/http.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/security.rs",
+    "crates/larm-api/tests/hardware.rs",
+    "crates/larm-core/src/security/mod.rs",
+    "crates/larm-db/src/hardware.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/tests/hardware.rs",
+    "crates/larm-domain/src/hardware.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-hardware/Cargo.toml",
+    "crates/larm-hardware/src/cim.rs",
+    "crates/larm-hardware/src/cpu.rs",
+    "crates/larm-hardware/src/lib.rs",
+    "crates/larm-hardware/src/memory.rs",
+    "crates/larm-hardware/src/os.rs",
+    "crates/larm-hardware/src/profiler.rs",
+    "docs/api/openapi.json",
+    "docs/operations/hardware.md",
+    "environment.lock.json",
+    "tools/p010_evidence.py",
+    "tools/p010_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P010-UNIT-fingerprint-estable",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- hardware::tests::la_huella_ignora",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "la huella ignora observed_metrics, LUID, evidence_refs y el orden de enumeración (contrato 04)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-fingerprint-estable.log#sha256=115fdce5e659b3ad08e1d6099fc3f0a7eccef0529a073193ba2fbc69061fda7e"
+      ]
+    },
+    {
+      "id": "P010-UNIT-fingerprint-cambia",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- hardware::tests::la_huella_cambia",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "driver, build, RAM, ISA o un componente que pasa a desconocido cambian la huella",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-fingerprint-cambia.log#sha256=84dbbb503aa05166bc2f234c8951e45d127e23f8efe0d1a650aa67a63889bd7c"
+      ]
+    },
+    {
+      "id": "P010-CONTRACT-snapshot-schema",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- hardware::tests::serializa",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "bytes como string decimal, enums GPU/NPU, campos extra rechazados (schema cerrado)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-CONTRACT-snapshot-schema.log#sha256=697cf0613f4b4defc887e66eff6937c0228f5e32b62628b725cea08f731766b5"
+      ]
+    },
+    {
+      "id": "P010-UNIT-invariantes",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- hardware::tests::validate",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "disponible ≤ visible ≤ instalada, físicos ≤ lógicos, uso 0..100; desconocido no es incoherente",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-invariantes.log#sha256=c706f1a73a3f0ee07b3e6ed502653038c6bdf007689c1da936ef4e6d1b20e63e"
+      ]
+    },
+    {
+      "id": "P010-UNIT-mapping-cpu",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-hardware --lib -- cpu::tests",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "texto vacío o cero núcleos = desconocido; ISA ordenada y con jerarquías coherentes (CPUID real)",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-hardware v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-hardware) | Finished `test` profile [unoptimized + debuginfo] target(s) in 3.85s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-mapping-cpu.log#sha256=7a0cf0b016f3ae339be9d15f4ba5a18d8932188a34ddc37ad5a64a783667f7bf"
+      ]
+    },
+    {
+      "id": "P010-UNIT-mapping-os",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-hardware --lib -- os::tests",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "build = CurrentBuild.UBR; sin CurrentBuild o no numérico = desconocido; registro real legible",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-mapping-os.log#sha256=8fc4b6fa17433b3cffda9bec8397140cbb68881c93cba231de987d1300a59959"
+      ]
+    },
+    {
+      "id": "P010-UNIT-mapping-memoria",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-hardware --lib -- memory::tests",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "carve-out de VRAM no sumado como RAM; instalada < visible = incoherente; disponible imposible = desconocido",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-mapping-memoria.log#sha256=e54ce4154eb371bb034089920b1750f930ad10286815fc354f07eff7be154340"
+      ]
+    },
+    {
+      "id": "P010-FAULT-wmi-parse",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-hardware --lib -- cim::tests::interpreta",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "salida CIM vacía, cero, negativa, no numérica o desbordada = wmi_unparseable",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-FAULT-wmi-parse.log#sha256=ab8fcdc9d4f706911b018d1c878c98aa197832762137adc264e1fcb0dbc38d13"
+      ]
+    },
+    {
+      "id": "P010-FAULT-wmi-ausente",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-hardware --lib -- cim::tests::programa_inexistente",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "programa CIM inexistente = wmi_unavailable",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-FAULT-wmi-ausente.log#sha256=bca8ee1216e356b816388460ea61a2b9403d25bc1c59bb07c9ab41fab5e30082"
+      ]
+    },
+    {
+      "id": "P010-FAULT-wmi-colgado",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-hardware --lib -- cim::tests::consulta_colgada",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "PowerShell real colgado 60 s: vence el timeout (1,5 s), se mata el proceso y no bloquea",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-FAULT-wmi-colgado.log#sha256=513f23988ebc6b6a84db6539551a4d98e8430c62e5cd875552090321f178f04d"
+      ]
+    },
+    {
+      "id": "P010-FAULT-wmi-error",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-hardware --lib -- cim::tests::clase_inexistente",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "clase CIM inexistente con PowerShell real = wmi_failed",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-FAULT-wmi-error.log#sha256=4046128984f932894cc6187efdf38e55f0c49734a6873c777624e313b7b07e64"
+      ]
+    },
+    {
+      "id": "P010-FAULT-wmi-sondeo-degradado",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-hardware --lib -- profiler::tests",
+      "fixture_hashes": [
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "con WMI colgado, ausente o con basura el sondeo sigue: RAM instalada null con motivo y el resto observado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-FAULT-wmi-sondeo-degradado.log#sha256=832cda27c7e0dd6e32c4ff6013f366fe689d97e3b8aadeda50198562a1608758"
+      ]
+    },
+    {
+      "id": "P010-INTEGRATION-sqlite",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test hardware",
+      "fixture_hashes": [],
+      "expected": "misma huella actualiza (row_version+1), huella nueva crea perfil; 10 sondeos simultáneos = 1 perfil; snapshot incoherente rechazado sin escribir; fila fuera del schema = INTERNAL",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s | Running tests\\hardware.rs (target\\debug\\deps\\hardware-f39cbd28075a9ccf.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-INTEGRATION-sqlite.log#sha256=163bcb7f02a3f4cda6b966b1d853e90b040f0a0896e6d57bba5ce6d12697d114"
+      ]
+    },
+    {
+      "id": "P010-INTEGRATION-api",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test hardware",
+      "fixture_hashes": [],
+      "expected": "GET /hardware con guard real: forma {items,next_cursor,snapshot_at}, cursor firmado, cursor alterado 400, filtro/limit inválidos 400, sin token 401, sin scope read 403, fallo del repositorio 500",
+      "observed": "exit=0; Compiling larm-core v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-core) | Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 6.49s | Running tests\\hardware.rs (target\\debug\\deps\\hardware-e88eb5480e5b4dbd.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-INTEGRATION-api.log#sha256=b5ecdc8782e16bb74eb69c7e0d4ab2a96063a2b847dc959f8cbf4d30aa87f0bb"
+      ]
+    },
+    {
+      "id": "P010-UNIT-cursor-credenciales",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-api --test security",
+      "fixture_hashes": [],
+      "expected": "la paginación genérica no cambia la de /credentials",
+      "observed": "exit=0; Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.14s | Running tests\\security.rs (target\\debug\\deps\\security-e4ba4ef55f004d63.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-cursor-credenciales.log#sha256=fc6645e96341e7d0ca678b0f1e4c6fa2482761e2ccaacd3789db65406cf32539"
+      ]
+    },
+    {
+      "id": "P010-CONTRACT-openapi",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [],
+      "expected": "OpenAPI al día con GET /api/v1/hardware implementada",
+      "observed": "exit=0; OpenAPI al día: docs/api/openapi.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-CONTRACT-openapi.log#sha256=6267f3b4d03670061282684f6370a8fda73a6971823aad7ea49f2c1d2ddfb341"
+      ]
+    },
+    {
+      "id": "P010-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-cargo-fmt.log#sha256=c42934c0db92f50866c97875d20b8fe60270cb9b8c1b7ab8e3e5a6baadc09ffb"
+      ]
+    },
+    {
+      "id": "P010-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-cargo-clippy.log#sha256=87ed9ced264b45910c42731967d7f3063e42f1c963c94f2900e051882e05ca10"
+      ]
+    },
+    {
+      "id": "P010-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-cargo-test.log#sha256=88ef76139b8097ece828d5b2a6fef4cbebc4c42a546a0d232db4203067d83b57"
+      ]
+    },
+    {
+      "id": "P010-UNIT-desktop-lint",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run lint --silent",
+      "fixture_hashes": [],
+      "expected": "eslint sin avisos",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-desktop-lint.log#sha256=af6f4a9a6240defc90a13a0dbbc573ce75b75bd3f25ac871ca490455cd9103d0"
+      ]
+    },
+    {
+      "id": "P010-UNIT-desktop-typecheck",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run typecheck --silent",
+      "fixture_hashes": [],
+      "expected": "TypeScript sin errores",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-desktop-typecheck.log#sha256=f8fad84555e9049dec4d792d15e93b0d09ec8e83fa25523f6ded2480b4951834"
+      ]
+    },
+    {
+      "id": "P010-UNIT-desktop-test",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run test --silent",
+      "fixture_hashes": [],
+      "expected": "vitest: pantalla Hardware con datos, desconocidos, cursor, vacío y error",
+      "observed": "exit=0; Test Files  2 passed (2) | Tests  22 passed (22) | Start at  15:30:09 | Duration  4.48s (tests 73%, environment 19%, transform 4%, import 4%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-desktop-test.log#sha256=0e9e7c1c7a5835d7cae7a1f49874772ac3f9bbeb049d9c01305beed80e6bb7c3"
+      ]
+    },
+    {
+      "id": "P010-UNIT-desktop-build",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run build --silent",
+      "fixture_hashes": [],
+      "expected": "build de producción del frontend",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-CEodqF_4.js   249.49 kB │ gzip: 77.81 kB | \u001b[32m✓ built in 99ms\u001b[39m",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-UNIT-desktop-build.log#sha256=a1ed2c1ec8f460f447f2d9f7227ed9fa3eada617a38e910378f988630141f60c"
+      ]
+    },
+    {
+      "id": "P010-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "larm-hardware solo depende de larm-domain; la API llega por puertos del dominio",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P010-REAL-lock-coherence",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py lock-coherence",
+      "fixture_hashes": [],
+      "expected": "sysinfo 0.39.6 y windows-registry 0.100.0 coinciden con environment.lock.json",
+      "observed": "exit=0; PASS 44 dependencias usadas coinciden en version y hash con Cargo.lock/package-lock.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-REAL-lock-coherence.log#sha256=41f9cdf32c8c92ceae0e9cb5293bd01bcea5729aaae3ebc2a72221e2ac13c5e6"
+      ]
+    },
+    {
+      "id": "P010-REAL-frente-a-windows",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p010_real.py windows",
+      "fixture_hashes": [],
+      "expected": "sondeo real del PC IA = CIM, reg.exe e IsProcessorFeaturePresent; schema válido; huella reproducible",
+      "observed": "exit=0; [PASS] os: Professional 26200.9457 AMD64 (reg.exe y Win32_OperatingSystem 26200) | [PASS] sin-desconocidos: todos los componentes de OS/CPU/RAM observados en este equipo | [PASS] huella-reproducible: dos sondeos -> 26548c6cec295895… aunque cambien RAM libre y uso de CPU | PASS 12 comprobaciones frente a Windows PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-REAL-frente-a-windows.log#sha256=d3ae56e09c4da951de7fe1ffd1abdd8fe6d4668ff5b6b5a7a11553202df02d7a"
+      ]
+    },
+    {
+      "id": "P010-REAL-api-persistencia",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p010_real.py serve",
+      "fixture_hashes": [],
+      "expected": "daemon real: perfil registrado al arrancar, GET /hardware conforme a hardware_profileList, rearranque con el mismo hardware = mismo perfil row_version 2; 401/403/400",
+      "observed": "exit=0; [PASS] procedencia: profiler {'name': 'larm-hardware', 'version': '0.1.0'}; 11 fuentes | [PASS] rearranque-mismo-perfil: mismo id, row_version 2, probed_at 2026-10-11T14:30:18.390Z -> 2026-10-11T14:30:19.295Z | [PASS] rechazos: sin scope read 403; limit=0 400; filtro q 400 | PASS 5 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P010_runs/P010-REAL-api-persistencia.log#sha256=ab2260a7865002af0e8666bf0d94d9658905dfffdb5e9a6a9edbe330eceff1d2"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P003 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T14:30:20.803Z"
+}

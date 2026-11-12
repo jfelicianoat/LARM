@@ -1,0 +1,611 @@
+{
+  "methods": [
+    {
+      "family": "all",
+      "method": "core.handshake",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/Handshake",
+        "file": "core.handshake.request.schema.json",
+        "sha256": "5bfbaf7ebabfef0c53b6f42b2bdc6220b5d763d2067374733743d5aff4862149"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/HandshakeResult",
+        "file": "core.handshake.response.schema.json",
+        "sha256": "57eb483f47b8ec021c2cf61255048fd8c1b31cfe84c35618854b3dc10a940a4b"
+      }
+    },
+    {
+      "family": "all",
+      "method": "core.cancel",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/CancelRequest",
+        "file": "core.cancel.request.schema.json",
+        "sha256": "3910c61918571a949857097456e58a07afe6674528d04e317df1a6677037ac37"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/CancelResult",
+        "file": "core.cancel.response.schema.json",
+        "sha256": "b2ba5ff82932cc89b18da97adbdba4c4198190efa9c35e242a66dd8aaa2c28e3"
+      }
+    },
+    {
+      "family": "all",
+      "method": "core.heartbeat",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/Empty",
+        "file": "core.heartbeat.request.schema.json",
+        "sha256": "d77f8566bb96e3428f73f880df98a95c57fd64de537508d3a2b7af65a8a4a593"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/Heartbeat",
+        "file": "core.heartbeat.response.schema.json",
+        "sha256": "5cef7510f75566698a2109f0495af6200400330f4c0673739ea4d287174cb8d3"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.discover",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/HostConfig",
+        "file": "runtime.discover.request.schema.json",
+        "sha256": "407551a441a7d4ca44df95b63044a6e43b14377374548f5a9c61bce2c9e86e57"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/RuntimeDiscovery",
+        "file": "runtime.discover.response.schema.json",
+        "sha256": "c0bdc0c26e3dc7180f63bf09e070f1f5256569a25da55227a3e3f7cac2a5e993"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.list_versions",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/VersionQuery",
+        "file": "runtime.list_versions.request.schema.json",
+        "sha256": "5975c0910cc50a3fbf4366b89ee86d93e2bc25266f290be25bfebbb4eb7b9855"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/RuntimeVersionPage",
+        "file": "runtime.list_versions.response.schema.json",
+        "sha256": "2f2b8a708f4b80a43e44a1d864ae7aafc4a4ae8f5c038973898d6233042e23f3"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.install_plan",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/InstallRequest",
+        "file": "runtime.install_plan.request.schema.json",
+        "sha256": "c607bd135148786a478c1223c93642aad8059dc1d2611a856d8aa641b2160575"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/Plan",
+        "file": "runtime.install_plan.response.schema.json",
+        "sha256": "733e8cf5f7916860da570ac811a71e79f0a1405a441ab6f60b37c6d5477dba61"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.install",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/ExecutePlan",
+        "file": "runtime.install.request.schema.json",
+        "sha256": "ee1631b08ac6e8d9220e672b7f1c9fae0a22a11633d1feac8ce5ae90cc0293c6"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/JobReceipt",
+        "file": "runtime.install.response.schema.json",
+        "sha256": "b24ecca3ff862c3e946c1c57c8158d71ff05e10468f3ff8add5dabaaae187511"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.detect_backends",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/InstallationRef",
+        "file": "runtime.detect_backends.request.schema.json",
+        "sha256": "841e147ea7b1fa89e28aa502c26339689d051f0592ac73611ff3a0de6b805aec"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/BackendList",
+        "file": "runtime.detect_backends.response.schema.json",
+        "sha256": "2914a109effa1b53d0d81a85643bc955f05d9fd4f7801d9c9b8e9705a1d9c14e"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.inspect_model",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/ModelPath",
+        "file": "runtime.inspect_model.request.schema.json",
+        "sha256": "6088819ed319c0fc6ea9cb9d880459a29da32efb9208db47a7175842792e4365"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/ModelInspection",
+        "file": "runtime.inspect_model.response.schema.json",
+        "sha256": "43bea1083e82340732f10b3ef1cdbfe4567e5e42a557e94bd3c10691d858c618"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.check_compatibility",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/CompatibilityRequest",
+        "file": "runtime.check_compatibility.request.schema.json",
+        "sha256": "a5b1c6e03f4b4925fa9377bfb5add4c1c1582c56eb14a29cd7eee238908e13b7"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/GateResult",
+        "file": "runtime.check_compatibility.response.schema.json",
+        "sha256": "3a7e3e004c5e939e0979842115b2ae42630cd72ceb110b0cdcf23b1214c2cae2"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.estimate_memory",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/CompatibilityRequest",
+        "file": "runtime.estimate_memory.request.schema.json",
+        "sha256": "a5b1c6e03f4b4925fa9377bfb5add4c1c1582c56eb14a29cd7eee238908e13b7"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/MemoryEstimate",
+        "file": "runtime.estimate_memory.response.schema.json",
+        "sha256": "a18942f9299a91ae44d5204554bff82ae8e0059699e5430973763f9c9c0cfb8e"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.launch_plan",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/LaunchRequest",
+        "file": "runtime.launch_plan.request.schema.json",
+        "sha256": "40a717be726ad8a2399ad1dac1ab37831ded110cc44470348f0a20e99b0cc7db"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/LaunchPlan",
+        "file": "runtime.launch_plan.response.schema.json",
+        "sha256": "768ee95e308c03acb144403e8086175a56748ea6e646e0f8ee878e29488a4e6f"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.start",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/ExecutePlan",
+        "file": "runtime.start.request.schema.json",
+        "sha256": "ee1631b08ac6e8d9220e672b7f1c9fae0a22a11633d1feac8ce5ae90cc0293c6"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/InstanceHandle",
+        "file": "runtime.start.response.schema.json",
+        "sha256": "645cfe740f4fc30ede77ffb880367077ed6439fcc4adf958dd455ebf2073c8ff"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.load",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/LaunchRequest",
+        "file": "runtime.load.request.schema.json",
+        "sha256": "40a717be726ad8a2399ad1dac1ab37831ded110cc44470348f0a20e99b0cc7db"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/InstanceHandle",
+        "file": "runtime.load.response.schema.json",
+        "sha256": "645cfe740f4fc30ede77ffb880367077ed6439fcc4adf958dd455ebf2073c8ff"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.health",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/InstanceRef",
+        "file": "runtime.health.request.schema.json",
+        "sha256": "2e0d488ada5a16710b7c72cacb0e4728d008bb7ce3fc5d3b879617019aad5e8e"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/HealthResult",
+        "file": "runtime.health.response.schema.json",
+        "sha256": "7da2f6ffc1bf0cd35ac1ac51b6a04a6d7bc497198a4efd14050cc5f4d8f2148b"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.stop",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/InstanceRef",
+        "file": "runtime.stop.request.schema.json",
+        "sha256": "2e0d488ada5a16710b7c72cacb0e4728d008bb7ce3fc5d3b879617019aad5e8e"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/StopResult",
+        "file": "runtime.stop.response.schema.json",
+        "sha256": "ed106938c97bb3ab85a895967600f41984a3e6128d16761169879786a5139bbc"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.list_models",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/HostConfig",
+        "file": "runtime.list_models.request.schema.json",
+        "sha256": "407551a441a7d4ca44df95b63044a6e43b14377374548f5a9c61bce2c9e86e57"
+      },
+      "required": false,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/ModelPage",
+        "file": "runtime.list_models.response.schema.json",
+        "sha256": "c0dd4c891de75365ec5d21e2408bd6e4c175464d2356bd5e062e2769ca52caff"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.benchmark",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/Benchmark",
+        "file": "runtime.benchmark.request.schema.json",
+        "sha256": "88fa379d10d60e321d473096133523d0897e19e3c8b7f5f87cd6bfe3dd0d1f81"
+      },
+      "required": false,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/BenchmarkOutput",
+        "file": "runtime.benchmark.response.schema.json",
+        "sha256": "6cc9a062153266179a86ebd1b64d5a078378a2cb3d9fb10853269649c2028d04"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.search",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/SourceSearch",
+        "file": "source.search.request.schema.json",
+        "sha256": "8341bda3352c40e073d4ed7da2def592c1741c77e28416412a99fe587531dff8"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/ModelPage",
+        "file": "source.search.response.schema.json",
+        "sha256": "c0dd4c891de75365ec5d21e2408bd6e4c175464d2356bd5e062e2769ca52caff"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.get_model",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/UpstreamRef",
+        "file": "source.get_model.request.schema.json",
+        "sha256": "8549ead05b1fbe6bd198ae5f5fbb480fd5987506a39f6feaf30fc5d373f2e445"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/ModelInspection",
+        "file": "source.get_model.response.schema.json",
+        "sha256": "43bea1083e82340732f10b3ef1cdbfe4567e5e42a557e94bd3c10691d858c618"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.list_revisions",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/UpstreamRef",
+        "file": "source.list_revisions.request.schema.json",
+        "sha256": "8549ead05b1fbe6bd198ae5f5fbb480fd5987506a39f6feaf30fc5d373f2e445"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/RevisionPage",
+        "file": "source.list_revisions.response.schema.json",
+        "sha256": "44449784be88f74d9a66d130e6d0fe2bdd8273e406147ffa846af1f855b8ced2"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.get_manifest",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/RevisionRef",
+        "file": "source.get_manifest.request.schema.json",
+        "sha256": "7fb52270a49bab243e60022302cedee324e745df0b52dd779971be4e25553eec"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/ArtifactManifest",
+        "file": "source.get_manifest.response.schema.json",
+        "sha256": "b1ff45ebecad17f0f270baf817aad94fb14e71ca5f2a6a3efbbc816a66433ff9"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.estimate_size",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/RevisionRef",
+        "file": "source.estimate_size.request.schema.json",
+        "sha256": "7fb52270a49bab243e60022302cedee324e745df0b52dd779971be4e25553eec"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/StorageEstimate",
+        "file": "source.estimate_size.response.schema.json",
+        "sha256": "1a821b239665df236d94ddc012a5d0e3b7e8aa8f2102e01938bbda958d383953"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.download_plan",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/SourceDownloadPlanRequest",
+        "file": "source.download_plan.request.schema.json",
+        "sha256": "7be00e5e031ade70bbfa4528d98a1df75e1d084fc63e4f3059ea358108dd4211"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/Plan",
+        "file": "source.download_plan.response.schema.json",
+        "sha256": "733e8cf5f7916860da570ac811a71e79f0a1405a441ab6f60b37c6d5477dba61"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.download",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/ExecutePlan",
+        "file": "source.download.request.schema.json",
+        "sha256": "ee1631b08ac6e8d9220e672b7f1c9fae0a22a11633d1feac8ce5ae90cc0293c6"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/JobReceipt",
+        "file": "source.download.response.schema.json",
+        "sha256": "b24ecca3ff862c3e946c1c57c8158d71ff05e10468f3ff8add5dabaaae187511"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.download_chunk",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/SourceDownloadChunkRequest",
+        "file": "source.download_chunk.request.schema.json",
+        "sha256": "dedb70328681c75731cc8f1c06730fc6c49b406df027567388607869430ca1c1"
+      },
+      "required": false,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/SourceDownloadChunk",
+        "file": "source.download_chunk.response.schema.json",
+        "sha256": "3ea6280a086970856adc36e4cc44b19aa4985c3212566e98e134337555680a9f"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.sync",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/SyncRequest",
+        "file": "source.sync.request.schema.json",
+        "sha256": "bfd1f31ab1548571ce2140e5597aa6fb136080b6b9f828b1b3203bfe17297a4a"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/SyncResult",
+        "file": "source.sync.response.schema.json",
+        "sha256": "93771671d0d21edbd6a182149c193220bcf341d1fd819561374d6aaa006fc794"
+      }
+    },
+    {
+      "family": "source",
+      "method": "source.auth_probe",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/AuthProbe",
+        "file": "source.auth_probe.request.schema.json",
+        "sha256": "84b5147c80b25f1356363c5785936758b7e9185c69611263f3bcde8e840b3e85"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/AuthResult",
+        "file": "source.auth_probe.response.schema.json",
+        "sha256": "4356c8a41ad0152959478ee736fd2b2e981b8fe8c887a0c67f4ec7f83d4a8e84"
+      }
+    },
+    {
+      "family": "protocol",
+      "method": "protocol.describe",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/EndpointRef",
+        "file": "protocol.describe.request.schema.json",
+        "sha256": "1531834eeedf0807c056ca3834ee8ba60c66eec94e003683d8d1518397522d68"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/ProtocolDescription",
+        "file": "protocol.describe.response.schema.json",
+        "sha256": "8bb837a4a708c6a96869c502dedf1dd81f44cbff30fe3d0f2f7e59ce2b132e0b"
+      }
+    },
+    {
+      "family": "protocol",
+      "method": "protocol.qualify",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/QualificationRequest",
+        "file": "protocol.qualify.request.schema.json",
+        "sha256": "68f0b43fd23abc2e030b9c7609c80135bf9e7dc25e03881478fa07454b11d7e6"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/QualificationResult",
+        "file": "protocol.qualify.response.schema.json",
+        "sha256": "c9fe973bbf4089b656b75bc9ef8f30b3c1ce36b9ef50ceb58bfbd6d729fd7d58"
+      }
+    },
+    {
+      "family": "protocol",
+      "method": "protocol.invoke",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/CapabilityRequest",
+        "file": "protocol.invoke.request.schema.json",
+        "sha256": "06de9e17b71471040cb59425818a126b1fb91170ff223237787bb6e788db1f7a"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/CapabilityResponse",
+        "file": "protocol.invoke.response.schema.json",
+        "sha256": "f3cad3df803cc151aae64d9cfcfd54d97c24f9e96615bb0e8f140d7169691173"
+      }
+    },
+    {
+      "family": "protocol",
+      "method": "protocol.cancel",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/CancelRequest",
+        "file": "protocol.cancel.request.schema.json",
+        "sha256": "3910c61918571a949857097456e58a07afe6674528d04e317df1a6677037ac37"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/CancelResult",
+        "file": "protocol.cancel.response.schema.json",
+        "sha256": "b2ba5ff82932cc89b18da97adbdba4c4198190efa9c35e242a66dd8aaa2c28e3"
+      }
+    },
+    {
+      "family": "transformation",
+      "method": "transformation.describe",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/Empty",
+        "file": "transformation.describe.request.schema.json",
+        "sha256": "d77f8566bb96e3428f73f880df98a95c57fd64de537508d3a2b7af65a8a4a593"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/TransformationDescription",
+        "file": "transformation.describe.response.schema.json",
+        "sha256": "0c3c720416433694bf8e6a98a8997d926ae87b14bb96f48015dae63a36cca430"
+      }
+    },
+    {
+      "family": "transformation",
+      "method": "transformation.plan",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/Transform",
+        "file": "transformation.plan.request.schema.json",
+        "sha256": "a095f2cd2197d5fd89adebf48200391f978a151d56c08e0a9acea566ce010814"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/Plan",
+        "file": "transformation.plan.response.schema.json",
+        "sha256": "733e8cf5f7916860da570ac811a71e79f0a1405a441ab6f60b37c6d5477dba61"
+      }
+    },
+    {
+      "family": "transformation",
+      "method": "transformation.execute",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/ExecutePlan",
+        "file": "transformation.execute.request.schema.json",
+        "sha256": "ee1631b08ac6e8d9220e672b7f1c9fae0a22a11633d1feac8ce5ae90cc0293c6"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/JobReceipt",
+        "file": "transformation.execute.response.schema.json",
+        "sha256": "b24ecca3ff862c3e946c1c57c8158d71ff05e10468f3ff8add5dabaaae187511"
+      }
+    },
+    {
+      "family": "transformation",
+      "method": "transformation.verify",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/JobRef",
+        "file": "transformation.verify.request.schema.json",
+        "sha256": "0e17f7ca0ccc5a6eccd033e968011eaf9738f3ea6774e0788176c692cfd9fc58"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/ArtifactManifest",
+        "file": "transformation.verify.response.schema.json",
+        "sha256": "b1ff45ebecad17f0f270baf817aad94fb14e71ca5f2a6a3efbbc816a66433ff9"
+      }
+    },
+    {
+      "family": "benchmark",
+      "method": "benchmark.describe",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/Empty",
+        "file": "benchmark.describe.request.schema.json",
+        "sha256": "d77f8566bb96e3428f73f880df98a95c57fd64de537508d3a2b7af65a8a4a593"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/SuiteDescription",
+        "file": "benchmark.describe.response.schema.json",
+        "sha256": "66ffb1b898c10f251d9a6937ed297b626f4c773585c2cb6d5c7676d219092f60"
+      }
+    },
+    {
+      "family": "benchmark",
+      "method": "benchmark.run",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/Benchmark",
+        "file": "benchmark.run.request.schema.json",
+        "sha256": "88fa379d10d60e321d473096133523d0897e19e3c8b7f5f87cd6bfe3dd0d1f81"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/BenchmarkOutput",
+        "file": "benchmark.run.response.schema.json",
+        "sha256": "6cc9a062153266179a86ebd1b64d5a078378a2cb3d9fb10853269649c2028d04"
+      }
+    },
+    {
+      "family": "benchmark",
+      "method": "benchmark.validate",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/BenchmarkOutput",
+        "file": "benchmark.validate.request.schema.json",
+        "sha256": "6cc9a062153266179a86ebd1b64d5a078378a2cb3d9fb10853269649c2028d04"
+      },
+      "required": true,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/ValidationResult",
+        "file": "benchmark.validate.response.schema.json",
+        "sha256": "6c68cef783f0329f6770691f6f6bad18345da0b41d2443accdc5146591577c34"
+      }
+    },
+    {
+      "family": "runtime",
+      "method": "runtime.install_status",
+      "request": {
+        "canonical_ref": "larm.schema.json#/$defs/InstallStatusRequest",
+        "file": "runtime.install_status.request.schema.json",
+        "sha256": "b4e88658325b7bf923545c84f5dc61be095c85894108d511fb262d709ab0c4f2"
+      },
+      "required": false,
+      "response": {
+        "canonical_ref": "larm.schema.json#/$defs/JobReceipt",
+        "file": "runtime.install_status.response.schema.json",
+        "sha256": "b24ecca3ff862c3e946c1c57c8158d71ff05e10468f3ff8add5dabaaae187511"
+      }
+    }
+  ],
+  "schema_version": "1.0",
+  "scope": "generated method schemas only; no worker qualification or capability estimator evidence",
+  "sources": {
+    "adapter-methods.json": "f7425cc346d61e53ac15e0d3e518c5ea5fc2c4ab24ba93363a49fd9cfaf6ae70",
+    "domain.schema.json": "384bed4e270a7011471d185bf3fc647f7beefde7266c8e5cf0608ab5615150c0",
+    "larm.schema.json": "2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8"
+  }
+}

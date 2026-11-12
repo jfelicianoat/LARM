@@ -1,0 +1,76 @@
+{
+  "prompt_id": "P060",
+  "status": "BLOCKED",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "508c48b10e2e2513c122b70a8b494f1d5268bd46a3183e5c5e34a9a0e55eb8bb",
+  "changed_files": [
+    "adapters/runtime/llama-cpp/README.md",
+    "adapters/runtime/llama-cpp/probe.py",
+    "docs/adapters/llama-cpp.md",
+    "docs/implementation/STATE.md",
+    "docs/reports/P060_llama-cpp-descubrimiento-instalacion-y-versiones.md",
+    "tools/p060_evidence.py",
+    "tools/test_p060_llama_cpp_probe.py"
+  ],
+  "tests": [
+    {
+      "id": "P060-CONTRACT-discovery-and-probes",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/test_p060_llama_cpp_probe.py",
+      "fixture_hashes": [
+        "adapters/runtime/llama-cpp/probe.py:388df352c770c843466ed892510c7580c22f4a8142ac5cbcafa4e89b09688e4e"
+      ],
+      "expected": "siete casos prueban builds laterales, límites de búsqueda, hashes, versión desconocida, detección de opciones/dispositivos y entorno mínimo",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 7 tests in 0.115s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P060_runs/P060-CONTRACT-discovery-and-probes.log#sha256=11e7449ef972563efc672ec04f3cb0a451ef334f53798fcc6ef4ae2a91440802"
+      ]
+    },
+    {
+      "id": "P060-REAL-adopt-and-probe",
+      "kind": "REAL",
+      "command": "ejecutar probe harmless de llama.cpp en una instalación Windows encontrada",
+      "fixture_hashes": [],
+      "expected": "captura exacta de versión/build/help/hash y backend observado en una instalación presente",
+      "observed": "NO EJECUTADA: P000 y la resolución actual de PATH no encuentran llama-server, llama-cli, llama-bench ni llama-quantize; no hay raíz configurada para ejecutar un probe real",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P060-CONTRACT-common-quality-gates",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 -c import json,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=json.loads(p.read_text(encoding='utf-8')); assert d.get('prompt')=='P060' and d.get('real') is True and d.get('status')=='PASS'; assert d.get('checks') and all(x.get('result')=='PASS' for x in d['checks']); print('PASS: check.ps1 P060 -Real confirmó todas las puertas comunes') C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\docs\\reports\\check_P060_real.json",
+      "fixture_hashes": [
+        "docs/reports/check_P060_real.json:b42af639bee4cfd197b310d4385f78768294fd14e69b0208b5264fdac6bdfbee"
+      ],
+      "expected": "el recibo de tools/check.ps1 -Prompt P060 -Real contiene fmt, clippy, fixtures, workspace, arquitectura, desktop, frontend y evidencia sin fallos",
+      "observed": "exit=1; File \"<string>\", line 1, in <module> | import json,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=json.loads(p.read_text(encoding='utf-8')); assert d.get('prompt')=='P060' and d.get('real') is True and d.get('status')=='PASS'; assert d.get('checks') and all(x.get('result')=='PASS' for x in d['checks']); print('PASS: check.ps1 P060 -Real confirmó todas las puertas comunes') | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ | AssertionError",
+      "result": "FAIL",
+      "evidence_paths": [
+        "docs/reports/P060_runs/P060-CONTRACT-common-quality-gates.log#sha256=d2ac905e306c3d3571cc0aa6806fedea8ff41cd0b70f878c58416d21746b2756"
+      ]
+    },
+    {
+      "id": "P060-REAL-two-builds-and-managed-store",
+      "kind": "REAL",
+      "command": "probar dos versiones reales y publicación MANAGED side-by-side",
+      "fixture_hashes": [],
+      "expected": "dos builds Windows con source/hash fijados, artifact adecuado al backend verificado, instalación aislada en runtime store y profile locks completos",
+      "observed": "NO EJECUTADA: no hay builds llama.cpp instalados ni una ubicación administrada con dependencias P025/P031/P032/P011/P099 en REAL_PASS",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P060 es una fase parcial: falta implementar y empaquetar el adaptador Runtime Adapter Protocol, el plan de instalación MANAGED, adopción real, dos builds/versiones reales y captura por versión.",
+    "No se anuncia soporte de backends ni compatibilidad por el hecho de que el helper enumere herramientas o lea `--list-devices`.",
+    "dependencia P025 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P031 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P032 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P011 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P099 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-21T21:28:24.935Z"
+}

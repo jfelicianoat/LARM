@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0",
+  "api": {
+    "bind": "127.0.0.1",
+    "port": 8790,
+    "remote_enabled": false,
+    "request_body_bytes": 1048576,
+    "page_default": 50,
+    "page_max": 200,
+    "request_timeout_seconds": 30,
+    "connect_timeout_seconds": 5,
+    "job_status_poll_seconds": 2,
+    "allowed_methods": [
+      "GET",
+      "POST",
+      "PATCH",
+      "DELETE"
+    ]
+  },
+  "storage": {
+    "minimum_margin_bytes": "1073741824",
+    "margin_basis_points": 500,
+    "minimum_free_bytes": "2147483648",
+    "unknown_size_policy": "BLOCK",
+    "ownership_default": "EXTERNAL",
+    "cleanup_default": "DRY_RUN",
+    "allocation_policy": "ASK_ALWAYS",
+    "download_global_concurrency": 3,
+    "download_per_source_concurrency": 2,
+    "artifact_download_streams": 1,
+    "chunk_bytes": 8388608,
+    "retry_seconds": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "retries": 5,
+    "preferred_location_id": null,
+    "model_type_locations": {
+      "LLM": null,
+      "DIFFUSION": null,
+      "AUDIO": null
+    },
+    "auto_download_policy": {
+      "enabled": false,
+      "allowed_source_ids": [],
+      "allowed_capabilities": [],
+      "minimum_trust_score": 80,
+      "max_daily_bytes": "1073741824",
+      "target_storage_location_id": null,
+      "accepted_license_hashes": []
+    },
+    "download_bandwidth_limit_bytes_per_second": null,
+    "low_disk_thresholds": {
+      "mode": "PERCENT",
+      "warning_basis_points": 1500,
+      "critical_basis_points": 500
+    }
+  },
+  "leases": {
+    "ttl_seconds": 120,
+    "min_ttl_seconds": 30,
+    "max_ttl_seconds": 600,
+    "renew_after_seconds": 40,
+    "expiry_grace_seconds": 30,
+    "idle_unload_seconds": 300,
+    "admission_wait_seconds": 300
+  },
+  "process": {
+    "start_timeout_seconds": 120,
+    "load_timeout_seconds": 600,
+    "health_timeout_seconds": 5,
+    "health_interval_seconds": 10,
+    "health_failures_degraded": 2,
+    "health_failures_failed": 5,
+    "stop_grace_seconds": 15,
+    "port_min": 20000,
+    "port_max": 29999,
+    "crash_restart_seconds": [
+      1,
+      5,
+      15
+    ],
+    "crash_window_seconds": 600,
+    "crash_max_restarts": 3
+  },
+  "adapters": {
+    "protocol": "1.0",
+    "frame_max_bytes": 1048576,
+    "handshake_timeout_seconds": 10,
+    "rpc_timeout_seconds": 30,
+    "heartbeat_seconds": 10,
+    "cancel_grace_seconds": 5,
+    "stderr_limit_bytes": 10485760
+  },
+  "events": {
+    "retention_days": 30,
+    "replay_limit": 10000,
+    "heartbeat_seconds": 15,
+    "subscriber_queue": 1024,
+    "notification_dedupe_seconds": 86400
+  },
+  "watchers": {
+    "interval_seconds": 21600,
+    "jitter_max_seconds": 300,
+    "max_backoff_seconds": 86400,
+    "automatic_download": false
+  },
+  "benchmarks": {
+    "warmup": 1,
+    "repetitions": 5,
+    "seed": 42,
+    "max_job_seconds": 1800,
+    "throughput_regression_basis_points": 1000,
+    "latency_regression_basis_points": 1000,
+    "memory_regression_basis_points": 1000,
+    "technical_fit_weights": {
+      "memory": 30,
+      "backend": 20,
+      "maturity": 10,
+      "speed": 15,
+      "storage": 10,
+      "context": 10,
+      "stability": 5
+    },
+    "recommendation_weights": {
+      "technical": 60,
+      "evaluation": 40
+    }
+  },
+  "security": {
+    "allowed_origins": [],
+    "token_backend": "WINDOWS_CREDENTIAL_MANAGER",
+    "default_trust": "UNTRUSTED",
+    "model_mcp_enabled": false,
+    "remote_tls_minimum": "1.2",
+    "approval_ttl_seconds": 900,
+    "remote_cert_path": null,
+    "remote_key_credential_id": null,
+    "registry_url": null,
+    "publisher_keys": {},
+    "registry_allowed_origins": []
+  },
+  "diagnostics": {
+    "log_retention_days": 14,
+    "bundle_max_bytes": 52428800,
+    "include_user_content": false
+  },
+  "scheduler": {
+    "system_reserve_bytes": "4294967296",
+    "system_reserve_basis_points": 1000,
+    "max_starting": 1,
+    "priorities": {
+      "PINNED": 100,
+      "HIGH": 80,
+      "NORMAL": 40,
+      "BACKGROUND": 10
+    },
+    "auto_unload_policy": "IDLE_TIMEOUT",
+    "warm_variant_ids": [],
+    "benchmark_priority": "BACKGROUND"
+  },
+  "service": {
+    "mode": "USER_AGENT",
+    "auto_start": false,
+    "service_install": false,
+    "account_sid": null,
+    "credentials_pipe_allowed_sids": []
+  },
+  "runtime_profiles": {
+    "default_launch_profile": "BALANCED",
+    "allow_backend_fallback": false,
+    "pinned_variant_ids": [],
+    "model_mcp_enabled": false
+  },
+  "paths": {
+    "data_root": "%LOCALAPPDATA%/LARM",
+    "database_relative_path": "state/larm.sqlite",
+    "models_relative_path": "models",
+    "runtimes_relative_path": "runtimes",
+    "logs_relative_path": "logs",
+    "service_data_root": "%PROGRAMDATA%/LARM"
+  },
+  "privacy": {
+    "external_telemetry": false,
+    "include_personal_paths": false
+  },
+  "runtime_versions": {
+    "retention": {
+      "keep_last_validated": 3
+    }
+  }
+}

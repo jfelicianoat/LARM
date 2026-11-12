@@ -1,0 +1,207 @@
+{
+  "prompt_id": "P040",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "6d56365e31270df3d2b879dc68d7b792649ecd39e97a5b803e755aa2d8fde3bd",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/models.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/models.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/models.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/model.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-models/Cargo.toml",
+    "crates/larm-models/src/lib.rs",
+    "crates/larm-models/src/registry.rs",
+    "crates/larm-models/tests/registry.rs",
+    "docs/api/openapi.json",
+    "docs/operations/models.md",
+    "tests/fixtures/models/import-multifuente.json",
+    "tools/p040_evidence.py",
+    "tools/p040_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P040-UNIT-dominio",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- model::tests",
+      "fixture_hashes": [],
+      "expected": "capacidades extensibles con alias y desconocidas no cualificadas; formatos/cuantizaciones como identificadores; claves de revisión upstream/pending/content; reglas de estado; roundtrip y campos desconocidos rechazados; clase de origen de la procedencia",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-UNIT-dominio.log#sha256=e4b442e7f5a189d0c18c4ea9067b91e3bad7829ea1484307ad914f913066a6bb"
+      ]
+    },
+    {
+      "id": "P040-INTEGRATION-multifuente",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test registry -- varias_distribuciones_un_modelo_canonico --exact",
+      "fixture_hashes": [],
+      "expected": "misma identidad upstream por dos fuentes = un modelo con dos distribuciones; filtros; metadata original; eventos en outbox",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\registry.rs (target\\debug\\deps\\registry-46ad2dfdd31f1501.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-INTEGRATION-multifuente.log#sha256=6f90c496cf4464112f42cfdd51c3d256300640bcc976bfbb610ac74dc7c6013d"
+      ]
+    },
+    {
+      "id": "P040-INTEGRATION-sin-fusion-por-nombre",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test registry -- mismo_nombre_sin_upstream_no_se_fusiona --exact",
+      "fixture_hashes": [],
+      "expected": "mismo nombre sin upstream: dos modelos con possible_duplicates mutuos; reimportar no duplica",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\registry.rs (target\\debug\\deps\\registry-46ad2dfdd31f1501.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-INTEGRATION-sin-fusion-por-nombre.log#sha256=273f14e1aafcc7f395aa07b8fe43c4c2a16093047a92b48f7db494a93237cb9d"
+      ]
+    },
+    {
+      "id": "P040-INTEGRATION-identidad",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test registry -- identidad_inmutable_y_conflictos --exact",
+      "fixture_hashes": [],
+      "expected": "idempotente; revision_key inmutable; una CURRENT por distribución; publicación de otro modelo; pending solo PROVISIONAL; capacidad inválida sin escribir",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\registry.rs (target\\debug\\deps\\registry-46ad2dfdd31f1501.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-INTEGRATION-identidad.log#sha256=b016f13822ce5ce8a4737836a7184ece8fd4895473d6270a3c1f963f49a0e535"
+      ]
+    },
+    {
+      "id": "P040-INTEGRATION-roundtrip",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test registry -- revision_roundtrip_y_paginacion --exact",
+      "fixture_hashes": [],
+      "expected": "roundtrip de revisión y paginación estable",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\registry.rs (target\\debug\\deps\\registry-46ad2dfdd31f1501.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-INTEGRATION-roundtrip.log#sha256=b2a8762c19134d8e1358d3bedeba436fdd08cbc8308f359482819ce1a2b30871"
+      ]
+    },
+    {
+      "id": "P040-INTEGRATION-procedencia",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test registry -- procedencia_completa --exact",
+      "fixture_hashes": [],
+      "expected": "procedencia de §19 completa en roundtrip; linaje sin versión rechazado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\registry.rs (target\\debug\\deps\\registry-46ad2dfdd31f1501.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-INTEGRATION-procedencia.log#sha256=049b765800902474e6cdcb1cb4d12cd019f106c739373164ae5901488be3b71c"
+      ]
+    },
+    {
+      "id": "P040-INTEGRATION-api",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test models",
+      "fixture_hashes": [],
+      "expected": "GET /models, /model-distributions y /model-revisions: paginación con cursor ligado al filtro, alias de capacidad, filtros no previstos 400, id inválido 400, 404 y 401",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\models.rs (target\\debug\\deps\\models-d76e0953603ecd87.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-INTEGRATION-api.log#sha256=98afa85f7ccc28dc7d983e6af7259337a156afa92505f8bd3657bdf7487622da"
+      ]
+    },
+    {
+      "id": "P040-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-UNIT-cargo-fmt.log#sha256=3997a81b3a6a2e03afb5d43557876abf00acef88fd74c5b0359a27e776cad272"
+      ]
+    },
+    {
+      "id": "P040-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-UNIT-cargo-clippy.log#sha256=87ed9ced264b45910c42731967d7f3063e42f1c963c94f2900e051882e05ca10"
+      ]
+    },
+    {
+      "id": "P040-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-UNIT-cargo-test.log#sha256=2b4811744e373117807cf739908a7b089efa9057459635d651da8a020abcbc74"
+      ]
+    },
+    {
+      "id": "P040-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-REAL-architecture.log#sha256=9ef9ced5b5d0ad6ece104e1959b066253339ae012566c85f3b4f7ba277db90d7"
+      ]
+    },
+    {
+      "id": "P040-REAL-build-daemon",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.22s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-REAL-build-daemon.log#sha256=312e84cb20d19136d2616f0723bcd656b09dd0d64d6a4499d707151f32e69ff9"
+      ]
+    },
+    {
+      "id": "P040-REAL-openapi",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p005_real.py openapi",
+      "fixture_hashes": [],
+      "expected": "docs/api/openapi.json al día con las 6 rutas de lectura de P040 implementadas",
+      "observed": "exit=0; PASS al día y válido OpenAPI 3.1.0: 142 operaciones, 42 implementadas, 281 schemas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-REAL-openapi.log#sha256=8cc3da9166ae26a4b1c2e8dc009bd14dd4168f7a7facfc9d0c618714cca75849"
+      ]
+    },
+    {
+      "id": "P040-REAL-registro",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p040_real.py serve",
+      "fixture_hashes": [
+        "import-multifuente.json:60051ed68d9bb393819c4d3d9a579a7c4e00fb766d4cc163586926b2e00ce91e"
+      ],
+      "expected": "PC IA: models-import multifuente agrupa por upstream y no por nombre, idempotente, revisión inmutable; API de lectura con filtros, alias, 404/400/401 y eventos",
+      "observed": "exit=0; [PASS] api-modelos: GET /models: 2 grupos; capability=ocr (alias) devuelve Qwen-X; detalle con identidad upstream y metadata | [PASS] api-distribuciones-y-revisiones: por fuente: HF 2 (Qwen-X y la comunitaria), ModelScope 1 del mismo modelo; 2 revisiones CURRENT, 1 PROVISIONAL pending:; metadata original conservada | [PASS] negativos-y-eventos: 404 desconocido; 400 id/filtros no previstos; 401 sin token; 10 eventos model.state_changed (2 modelos + 1 duplicado + 3 distribuciones + 4 revisiones) | PASS 6 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P040_runs/P040-REAL-registro.log#sha256=52934c09335ec1deb62e8f7cd85a9e926084130717bff65b4e95943e8d663db7"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P003 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T20:06:43.210Z"
+}

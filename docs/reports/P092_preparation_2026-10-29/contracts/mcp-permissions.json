@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "scopes": [
+    "read",
+    "search",
+    "download",
+    "install",
+    "start",
+    "stop",
+    "benchmark",
+    "move",
+    "delete",
+    "update",
+    "admin"
+  ],
+  "principal_schema": "larm.schema.json#/$defs/McpPrincipal",
+  "authorization": "MCP_PERMISSION_AND_API_SCOPE; admin is explicit MCP wildcard only, never implicit API privilege.",
+  "tools": [
+    {
+      "tool": "larm.search_models",
+      "permission": "search",
+      "api_operation_id": "P044_post__models_search",
+      "api_scope": "read",
+      "method": "POST",
+      "path": "/api/v1/models/search"
+    },
+    {
+      "tool": "larm.get_hardware",
+      "permission": "read",
+      "api_operation_id": "P010_get__hardware",
+      "api_scope": "read",
+      "method": "GET",
+      "path": "/api/v1/hardware"
+    },
+    {
+      "tool": "larm.plan_download",
+      "permission": "download",
+      "api_operation_id": "P052_post__download_plans",
+      "api_scope": "jobs:write",
+      "method": "POST",
+      "path": "/api/v1/download-plans"
+    },
+    {
+      "tool": "larm.install_model",
+      "permission": "download",
+      "api_operation_id": "P051_post__downloads",
+      "api_scope": "jobs:write",
+      "method": "POST",
+      "path": "/api/v1/downloads"
+    },
+    {
+      "tool": "larm.move_model",
+      "permission": "move",
+      "api_operation_id": "P016_post__models_id_move",
+      "api_scope": "storage:write",
+      "method": "POST",
+      "path": "/api/v1/models/{id}/move"
+    },
+    {
+      "tool": "larm.delete_model",
+      "permission": "delete",
+      "api_operation_id": "P018_delete__models_id_",
+      "api_scope": "models:write",
+      "method": "DELETE",
+      "path": "/api/v1/models/{id}"
+    },
+    {
+      "tool": "larm.install_runtime",
+      "permission": "install",
+      "api_operation_id": "P031_post__runtime_installations",
+      "api_scope": "runtimes:write",
+      "method": "POST",
+      "path": "/api/v1/runtime-installations"
+    },
+    {
+      "tool": "larm.update_runtime",
+      "permission": "update",
+      "api_operation_id": "P032_post__runtime_versions_id_update",
+      "api_scope": "runtimes:write",
+      "method": "POST",
+      "path": "/api/v1/runtime-versions/{id}/update"
+    },
+    {
+      "tool": "larm.start_model",
+      "permission": "start",
+      "api_operation_id": "P100_post__leases",
+      "api_scope": "leases:manage",
+      "method": "POST",
+      "path": "/api/v1/leases"
+    },
+    {
+      "tool": "larm.stop_model",
+      "permission": "stop",
+      "api_operation_id": "P033_post__instances_id_stop",
+      "api_scope": "leases:manage",
+      "method": "POST",
+      "path": "/api/v1/instances/{id}/stop"
+    },
+    {
+      "tool": "larm.run_benchmark",
+      "permission": "benchmark",
+      "api_operation_id": "P110_post__benchmarks",
+      "api_scope": "benchmarks:write",
+      "method": "POST",
+      "path": "/api/v1/benchmarks"
+    },
+    {
+      "tool": "larm.get_job",
+      "permission": "read",
+      "api_operation_id": "P007_get__jobs_id_",
+      "api_scope": "read",
+      "method": "GET",
+      "path": "/api/v1/jobs/{id}"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "P107.md": "bde2fdc5394dc3112c512da3c2b479f14ee8426996bb2f5a5b30e6a7353f86b8",
+  "SHARED_CONTRACT.md": "67622f387f3d6cf336cf717ffc0930c262d91de0502a248dd50da9bad023814a",
+  "manifest.json": "1eb1ad940dbe21154f0b4ae135c25559b578eec7475167bafbe3ba42d474bc38",
+  "LARM_SPEC_V1.md": "909b068319a5e1313836228cb8bfa5e819e3d790b390e16c15286865773e3cb2",
+  "contracts/00_PACKAGE.md": "cddda7d122af903f2aaacfcaf637694acd58fe2d375f4688961f072ad4a3d385",
+  "contracts/11_CONFORMIDAD_V3.md": "8775fa1de4d59bb3fb8411d3c168374ce26554330f2b191673663ac48d332ed5",
+  "contracts/06_ECOSYSTEM.md": "28d196a8f49a92502a082ca9810a7329a024ced183a2b47297bfea30eafa025d",
+  "contracts/07_API_EVENTS_MCP.md": "f7eb9710d27bbde72a024b49b34bacaac31903acc9eb05375ffb1a6b9f2f1fb3",
+  "contracts/defaults.json": "e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+  "contracts/persistence.sql": "9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+  "contracts/api-operations.json": "51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+  "contracts/adapter-methods.json": "3340f1386b8ca2890774c8a9cdb41bb203c15051a331124b0cce234ccf35e9fd",
+  "contracts/capability-contracts.json": "63a539eb5c6855892593c81542616d4d75a59a6720b51f679c38f49ea6c3280f",
+  "schemas/domain.schema.json": "25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635",
+  "schemas/larm.schema.json": "4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+  "fixtures/benchmark-suites.json": "907db757ec3884fc0284a31e5e9b94b908addd6e6a37a6d2da17557ac3b352e2",
+  "contracts/acceptance.json": "0b1a3bec9eb8157424a599f5f2728e4c4aa227b60a3100a67219d55b0d59ddd3",
+  "contracts/external/Client_API_Broker_2.11.md": "f773efab2a7862c5241819b2c17257a842c08d058838e19eff28e3dcdfe731d0"
+}

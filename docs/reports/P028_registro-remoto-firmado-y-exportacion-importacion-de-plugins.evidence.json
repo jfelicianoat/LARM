@@ -1,0 +1,687 @@
+{
+  "prompt_id": "P028",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "214cbcad363fdc2cf7a2ef91f1fe78eeb5f7b0b6d3c0d4fe5dd869322259691d",
+  "changed_files": [
+    "../LARM_prompts_v3/ALL_PROMPTS.md",
+    "../LARM_prompts_v3/VERIFICACION.json",
+    "../LARM_prompts_v3/contracts/03_ADAPTERS_SECURITY.md",
+    "../LARM_prompts_v3/contracts/07_API_EVENTS_MCP.md",
+    "../LARM_prompts_v3/contracts/REVISION_3_9_1_P028.md",
+    "../LARM_prompts_v3/contracts/api-operations.json",
+    "../LARM_prompts_v3/contracts/migrations/0008_p028_registry_url_binding.sql",
+    "../LARM_prompts_v3/contracts/persistence.sql",
+    "../LARM_prompts_v3/manifest.json",
+    "../LARM_prompts_v3/prompts/11_complementos/P028_registro-remoto-firmado-y-exportacion-importacion-de-plugins.md",
+    "../LARM_prompts_v3/schemas/larm.schema.json",
+    "../LARM_prompts_v3/tools/verify_pack.py",
+    "apps/daemon/src/adapters.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/tests/adapter_import_coordinator.rs",
+    "apps/desktop/src-tauri/Cargo.lock",
+    "apps/desktop/src-tauri/Cargo.toml",
+    "apps/desktop/src-tauri/src/commands.rs",
+    "apps/desktop/src-tauri/src/lib.rs",
+    "apps/desktop/src/adapter-export.test.tsx",
+    "apps/desktop/src/adapter-export.tsx",
+    "apps/desktop/src/adapter-import.test.tsx",
+    "apps/desktop/src/adapter-import.tsx",
+    "apps/desktop/src/adapter-registry.test.tsx",
+    "apps/desktop/src/adapter-registry.tsx",
+    "apps/desktop/src/adapters.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-adapter-host/src/import_service.rs",
+    "crates/larm-adapter-host/src/imports.rs",
+    "crates/larm-adapter-host/src/registry.rs",
+    "crates/larm-adapter-sdk/tests/registry_contract.rs",
+    "crates/larm-api/src/adapters.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/adapter_imports.rs",
+    "crates/larm-api/tests/adapter_registry.rs",
+    "crates/larm-api/tests/adapters.rs",
+    "crates/larm-core/src/config/mod.rs",
+    "crates/larm-db/src/adapter_imports.rs",
+    "crates/larm-db/src/adapter_registry.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/tests/adapter_imports.rs",
+    "crates/larm-db/tests/adapter_selection.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-domain/src/adapter_packages.rs",
+    "crates/larm-domain/src/adapter_registry.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P028_registro-remoto-firmado-y-exportacion-importacion-de-plugins.evidence.json",
+    "docs/reports/P028_registro-remoto-firmado-y-exportacion-importacion-de-plugins.md",
+    "docs/reports/P028_runs/P028-ADAPTER-PACKAGE-UI-TEST-FINAL.log",
+    "docs/reports/P028_runs/P028-ADAPTER-PREVIEW-TAURI-CLIPPY-FINAL.log",
+    "docs/reports/P028_runs/P028-ADAPTER-PREVIEW-TAURI-FORMAT.log",
+    "docs/reports/P028_runs/P028-ADAPTER-PREVIEW-TAURI-TEST-FINAL.log",
+    "docs/reports/P028_runs/P028-CLIPPY-FINAL.log",
+    "docs/reports/P028_runs/P028-CLIPPY-IMPORT-FINAL.log",
+    "docs/reports/P028_runs/P028-CONFIG-REGISTRY-RETRY.log",
+    "docs/reports/P028_runs/P028-CONTRACT-VERIFY.log",
+    "docs/reports/P028_runs/P028-DB-SUITE-RETRY.log",
+    "docs/reports/P028_runs/P028-DESKTOP-BUILD-FINAL.log",
+    "docs/reports/P028_runs/P028-DESKTOP-LINT-FINAL.log",
+    "docs/reports/P028_runs/P028-DESKTOP-SUITE-FINAL.log",
+    "docs/reports/P028_runs/P028-DESKTOP-TYPECHECK-FINAL.log",
+    "docs/reports/P028_runs/P028-EVIDENCE-VALIDATION-DESKTOP-FINAL.log",
+    "docs/reports/P028_runs/P028-EVIDENCE-VALIDATION-FINAL-BLOCKED.log",
+    "docs/reports/P028_runs/P028-EVIDENCE-VALIDATION-FINAL.log",
+    "docs/reports/P028_runs/P028-EVIDENCE-VALIDATION-IMPORT-FINAL.log",
+    "docs/reports/P028_runs/P028-EVIDENCE-VALIDATION-PACKAGE-UI-FINAL.log",
+    "docs/reports/P028_runs/P028-EVIDENCE-VALIDATION-REVALIDATION.log",
+    "docs/reports/P028_runs/P028-EXPORT-API-TEST.log",
+    "docs/reports/P028_runs/P028-EXPORT-DAEMON-CHECK.log",
+    "docs/reports/P028_runs/P028-EXPORT-DAEMON-TEST.log",
+    "docs/reports/P028_runs/P028-EXPORT-DOMAIN-TEST.log",
+    "docs/reports/P028_runs/P028-EXPORT-IMPORT-DESKTOP-BUILD-FINAL.log",
+    "docs/reports/P028_runs/P028-EXPORT-IMPORT-DESKTOP-LINT-FINAL.log",
+    "docs/reports/P028_runs/P028-EXPORT-IMPORT-DESKTOP-SUITE-FINAL.log",
+    "docs/reports/P028_runs/P028-EXPORT-IMPORT-DESKTOP-TYPECHECK-FINAL.log",
+    "docs/reports/P028_runs/P028-EXPORT-PACKAGE-SUITE.log",
+    "docs/reports/P028_runs/P028-FORMAT-FINAL.log",
+    "docs/reports/P028_runs/P028-FORMAT-IMPORT-FINAL.log",
+    "docs/reports/P028_runs/P028-IMPORT-API-TEST.log",
+    "docs/reports/P028_runs/P028-IMPORT-DAEMON-TEST.log",
+    "docs/reports/P028_runs/P028-IMPORT-DB-TEST.log",
+    "docs/reports/P028_runs/P028-IMPORT-DESKTOP-BUILD.log",
+    "docs/reports/P028_runs/P028-IMPORT-DESKTOP-LINT.log",
+    "docs/reports/P028_runs/P028-IMPORT-DESKTOP-SUITE.log",
+    "docs/reports/P028_runs/P028-IMPORT-DESKTOP-TEST.log",
+    "docs/reports/P028_runs/P028-IMPORT-DESKTOP-TYPECHECK.log",
+    "docs/reports/P028_runs/P028-IMPORT-TAURI-CLIPPY.log",
+    "docs/reports/P028_runs/P028-IMPORT-TAURI-FORMAT.log",
+    "docs/reports/P028_runs/P028-IMPORT-TAURI-TEST.log",
+    "docs/reports/P028_runs/P028-P026-CAPABILITY-SCHEMA-CHECK.log",
+    "docs/reports/P028_runs/P028-P026-SCHEMA-CHECK.log",
+    "docs/reports/P028_runs/P028-PACKAGE-COPY-CHECK.log",
+    "docs/reports/P028_runs/P028-PACKAGE-COPY-REVALIDATION.log",
+    "docs/reports/P028_runs/P028-PACKAGE-NORMATIVE-HASHES.log",
+    "docs/reports/P028_runs/P028-PACKAGE-VERIFY-BLOCKED.log",
+    "docs/reports/P028_runs/P028-PACKAGE-VERIFY-REVALIDATION.log",
+    "docs/reports/P028_runs/P028-REGISTRY-API-CLIPPY.log",
+    "docs/reports/P028_runs/P028-REGISTRY-API-TEST.log",
+    "docs/reports/P028_runs/P028-REGISTRY-CLIPPY.log",
+    "docs/reports/P028_runs/P028-REGISTRY-DAEMON-TEST.log",
+    "docs/reports/P028_runs/P028-REGISTRY-DB-TEST.log",
+    "docs/reports/P028_runs/P028-REGISTRY-FORMAT.log",
+    "docs/reports/P028_runs/P028-REGISTRY-MIGRATION-FINAL.log",
+    "docs/reports/P028_runs/P028-REGISTRY-MIGRATION-RETRY.log",
+    "docs/reports/P028_runs/P028-REGISTRY-OPENAPI-TEST.log",
+    "docs/reports/P028_runs/P028-REGISTRY-SCHEMA-TEST.log",
+    "docs/reports/P028_runs/P028-REGISTRY-UI-TEST.log",
+    "docs/reports/P028_runs/P028-WORKSPACE-FINAL.log",
+    "docs/reports/P028_runs/P028-WORKSPACE-IMPORT-FINAL.log",
+    "docs/reports/P028_runs/P028-WORKSPACE-IMPORT-LOOPBACK.log",
+    "docs/reports/P028_runs/P028-WORKSPACE-SANDBOX-LOOPBACK.log",
+    "docs/reports/P028_runs/inputs.json",
+    "docs/spec/PACKAGE_COPY_HASHES.json",
+    "docs/spec/manifest.json",
+    "migrations/0009_p028_signed_adapter_registry.sql",
+    "migrations/0010_p028_registry_url_binding.sql",
+    "tools/p026_capability_schemas.py",
+    "tools/p026_schemas.py"
+  ],
+  "tests": [
+    {
+      "id": "P028-CONTRACT-VERIFY",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe ../LARM_prompts_v3/tools/verify_pack.py",
+      "fixture_hashes": [
+        "../LARM_prompts_v3/contracts/REVISION_3_9_1_P028.md:d6bb1cf1ecfd521d76f9ee26ba94d54a5c8ee4f0c6afd7e1af1e1d97030bdd82",
+        "../LARM_prompts_v3/schemas/larm.schema.json:04f86d7a1a1179fcf74580ecf136d264fc6b1b4d3555f93b12372993bdde5eaf",
+        "../LARM_prompts_v3/manifest.json:e3a88cc6b090815c4a1b7894acde230694b00f96198315544870aeb120e1d31e"
+      ],
+      "expected": "La revisión y los schemas contractuales se validan sin hallazgos bloqueantes.",
+      "observed": "PASS; 3,138 checks, 52 negativos y 197 comprobaciones de conformidad; sólo paquete contractual, no software real.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-PACKAGE-VERIFY-REVALIDATION.log#sha256=7ecced1d219833bc5717c5dcef3f36850488e42b6df862f83c0179bd16799d7b"
+      ]
+    },
+    {
+      "id": "P028-PACKAGE-COPY",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "docs/spec/manifest.json:e3a88cc6b090815c4a1b7894acde230694b00f96198315544870aeb120e1d31e",
+        "docs/spec/PACKAGE_COPY_HASHES.json:1a1bb5dd22a76ba1e6a6e23b5539a7580f96e394b0397270c20c6bd2078db61c",
+        "tools/package_copy.py:89896afff425166248cdffd4e307126866588afdb75eb012674048e6e327be28"
+      ],
+      "expected": "Todas las copias del paquete de la aplicación coinciden con el contrato canónico.",
+      "observed": "PASS; 67 copias idénticas al paquete 3.9.1.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-PACKAGE-COPY-REVALIDATION.log#sha256=ea4059f61ac362ba2c303c41356fd8237a1fd3bfcf6d6fd0f65119cc0d92d857"
+      ]
+    },
+    {
+      "id": "P026-METHOD-SCHEMAS",
+      "kind": "CONTRACT",
+      "command": "python tools/p026_schemas.py check",
+      "fixture_hashes": [
+        "tools/p026_schemas.py:f5d8cdcf3eb91483556a27354fe45e9aab36023e752ca65be40e11b0c061d194",
+        "crates/larm-adapter-host/src/registry.rs:6ea494292b5b2380d0f576fe4f9167655ffee9300465ae9e52f9aaea59266bc1"
+      ],
+      "expected": "Métodos, schemas autocontenidos, índice y hashes generados coinciden.",
+      "observed": "PASS; 40 firmas y 80 schemas; restricciones originales conservadas.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-P026-SCHEMA-CHECK.log#sha256=1cc2c3dcc44c39b1b6e5b79278694bca2328f9012746347bf5934bd685e6ea35"
+      ]
+    },
+    {
+      "id": "P026-CAPABILITY-SCHEMAS",
+      "kind": "CONTRACT",
+      "command": "python tools/p026_capability_schemas.py check",
+      "fixture_hashes": [
+        "tools/p026_capability_schemas.py:fbc7c8aa99849070d92e0147d29fce8c50df62a25e4dadce37b2d428bce0e3b4"
+      ],
+      "expected": "Capacidades, schemas e índice Rust coinciden con el schema canónico.",
+      "observed": "PASS; 18 capacidades y 36 schemas; hashes RFC8785 e índice exactos.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-P026-CAPABILITY-SCHEMA-CHECK.log#sha256=03633e13fc93dc4a1da812ccad92964567d9552f89cd6e5dce59173fcc42a830"
+      ]
+    },
+    {
+      "id": "P028-REGISTRY-VERIFIER-UNIT",
+      "kind": "UNIT",
+      "command": "cargo test --workspace -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-adapter-host/src/registry.rs:6ea494292b5b2380d0f576fe4f9167655ffee9300465ae9e52f9aaea59266bc1"
+      ],
+      "expected": "El verificador Ed25519 rechaza firma/key/URLs/tiempo/secuencia/revocaciones inválidas y acepta replay idéntico.",
+      "observed": "PASS; 5 pruebas registry::tests en la suite host; workspace completo 1,163 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-WORKSPACE-FINAL.log#sha256=6fe2440b59ac36b51895c9963d7adfa2a6e8e3cba7a5d0028f557d93416b01a2"
+      ]
+    },
+    {
+      "id": "P028-REGISTRY-CONFIG",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-core config::tests",
+      "fixture_hashes": [
+        "crates/larm-core/src/config/mod.rs:b5fe2b723fc1e2f9167dd160d2c46c140ab2e1be24e6046298d549a8c5d07646"
+      ],
+      "expected": "La configuración exige pins válidos y orígenes HTTPS canónicos, únicos y sin rutas.",
+      "observed": "PASS; 8 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-CONFIG-REGISTRY-RETRY.log#sha256=fe97cdb097dd43d4f0c901ad5705c8f880bce925e3a9d0c69536573024966f5c"
+      ]
+    },
+    {
+      "id": "P028-REGISTRY-MIGRATION",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration migracion_desde_vacia_crea_exactamente_las_tablas_del_ddl",
+      "fixture_hashes": [
+        "migrations/0009_p028_signed_adapter_registry.sql:caef1c7ff156a44d84e0290358174d42ccecdd92b3e354b50bb9b33ff5565c4c",
+        "crates/larm-db/src/migrate.rs:dfa45e9f5ad451efd26cf0d6734b5b03519be66bbbfe7d04dc310b768f1cfe1b",
+        "crates/larm-db/tests/integration.rs:458a81497d5855cc1ed3bdcc05210ab521235f62cfcc2a6797652696d1598967"
+      ],
+      "expected": "La migración registra checkpoints y revocaciones en SQLite desde una base vacía.",
+      "observed": "PASS; 1 passed, 0 failed; migración 0009 registrada.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-REGISTRY-MIGRATION-RETRY.log#sha256=f038f89e2adc30fb9011c2e56c53b3e8ed7db37d12e078b34db1e13fa9c5b8bc"
+      ]
+    },
+    {
+      "id": "P028-DATABASE-SUITE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/migrate.rs:dfa45e9f5ad451efd26cf0d6734b5b03519be66bbbfe7d04dc310b768f1cfe1b",
+        "migrations/0009_p028_signed_adapter_registry.sql:caef1c7ff156a44d84e0290358174d42ccecdd92b3e354b50bb9b33ff5565c4c"
+      ],
+      "expected": "La suite de base de datos completa pasa con la migración P028 y migraciones previas.",
+      "observed": "PASS; 232 pruebas, 0 fallos.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-DB-SUITE-RETRY.log#sha256=09bce888a1e10eaac334bd6df8a49ec0a9902f5b20df51485c27c7b7596531bb"
+      ]
+    },
+    {
+      "id": "P028-LOCAL-PACKAGES",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-adapter-host --test packages -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-adapter-host/src/package.rs:b56936941da3d616ca735b755d51014bc2a40d345a05684cf983c25d244f64fb",
+        "crates/larm-adapter-host/tests/packages.rs:18f81823bdfb09f04ca7a788e2a2157d84b5df63d53455681a62fa65663b3de0"
+      ],
+      "expected": "Export ZIP reproducible y reimportable; los casos de integridad y rutas hostiles fallan cerrados.",
+      "observed": "PASS; 11 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-EXPORT-PACKAGE-SUITE.log#sha256=46e0a32a6869ce77897902512f031a676480c2d69989bfd76733271328c77268"
+      ]
+    },
+    {
+      "id": "P028-WORKSPACE",
+      "kind": "INTEGRATION",
+      "command": "cargo test --workspace -j 1 -- --test-threads=1 (loopback habilitado)",
+      "fixture_hashes": [
+        "Cargo.toml:8f1ec0858952ee008ac6671efac718cfcb6c654554b8f3d52613d226e5cbb95e",
+        "crates/larm-adapter-host/src/registry.rs:6ea494292b5b2380d0f576fe4f9167655ffee9300465ae9e52f9aaea59266bc1",
+        "crates/larm-core/src/config/mod.rs:b5fe2b723fc1e2f9167dd160d2c46c140ab2e1be24e6046298d549a8c5d07646",
+        "migrations/0009_p028_signed_adapter_registry.sql:caef1c7ff156a44d84e0290358174d42ccecdd92b3e354b50bb9b33ff5565c4c"
+      ],
+      "expected": "Todas las suites de Rust pasan, incluidos workers, referencias y migraciones.",
+      "observed": "PASS; 1,175 passed, 0 failed, 0 ignored en 118 grupos; exit=0.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-WORKSPACE-IMPORT-LOOPBACK.log#sha256=90c84a046ae4e7bffc3b0f3ee741529a47c5ccbc95e1919d6b77ba325cf043a1"
+      ]
+    },
+    {
+      "id": "P028-FORMAT",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --all -- --check",
+      "fixture_hashes": [],
+      "expected": "El workspace Rust conserva el formato.",
+      "observed": "PASS; exit=0.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-FORMAT-FINAL.log#sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ]
+    },
+    {
+      "id": "P028-CLIPPY",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [
+        "crates/larm-domain/src/adapter_packages.rs:9baa51fc778c1ceb8f4d10a9b05e0d7a734fa7ff277b791167822a3696044384",
+        "crates/larm-api/src/adapters.rs:0883b1d7ddbfe85c3e3ce4a14df8098f2b067f498a04ee7b985fc93be8e029e8",
+        "apps/daemon/src/adapters.rs:d76eade1a5146414cfb165340ef0aff2d570f1cdb0ac74de93d528418afbe648",
+        "apps/daemon/src/serve.rs:4992f5feb54d68f9d85d07675c53e02e5afaff66569c8c1af4faca97b3fc841f"
+      ],
+      "expected": "Los crates Rust afectados pasan Clippy con warnings como errores.",
+      "observed": "exit=0; Finished dev profile; todos los crates y targets del workspace comprobados.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-CLIPPY-FINAL.log#sha256=ac77f31a8f0a723ba100293249c0954e536010df1295dee77e6e09743e618faa"
+      ]
+    },
+    {
+      "id": "P028-REGISTRY-TRANSPORT",
+      "kind": "INTEGRATION",
+      "command": "Fetch HTTPS restringido, verificación del índice, persistencia transaccional y sincronización del registro",
+      "fixture_hashes": [
+        "apps/daemon/src/adapters.rs:2f09aaf11938a59de342981cce4f511a49daa196733204ec839a232b86c14ca4",
+        "crates/larm-db/src/adapter_registry.rs:deef145aaf2423c17d963e057eb38aa8402097e9b8980334aa4e091f93e04d8b",
+        "crates/larm-domain/src/adapter_registry.rs:a537410ddc91263fae4e63daba355b9ab1fe04b5f9bb283583688d6d04c5329e",
+        "migrations/0010_p028_registry_url_binding.sql:6063941dfd8470253f1edf2bd3d377e40332dbc8328e11bcfc2c9b1c84162094"
+      ],
+      "expected": "El daemon consulta el registro HTTPS, valida el envelope firmado y guarda checkpoint, revocaciones y evento/outbox de forma atómica; replay y conflictos fallan o se resuelven de forma idempotente.",
+      "observed": "PASS; servicio simulado 2/2, persistencia DB 3/3, OpenAPI 8/8 y schemas SDK 1/1. La prueba HTTPS real sigue pendiente.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-REGISTRY-DAEMON-TEST.log#sha256=6d33f69e1fc0330d858820acffec70ad4afce4fc01c5ba3fe03e2b27e0b50b3e",
+        "docs/reports/P028_runs/P028-REGISTRY-DB-TEST.log#sha256=a663377e9542fd68a89ac44ea8d6115a5a8c360924b78503ef49a56598932187",
+        "docs/reports/P028_runs/P028-REGISTRY-OPENAPI-TEST.log#sha256=50da38b51ea32306bcd84161428e454c2d8ff786856e21e8197f936b8f5fa6e5",
+        "docs/reports/P028_runs/P028-REGISTRY-SCHEMA-TEST.log#sha256=af01fd3f253630610305d841ace37b946c362a9be2440c0bc8a4c65bf504efaf",
+        "docs/reports/P028_runs/P028-REGISTRY-API-TEST.log#sha256=b510f9ff869c3d39cab71705c4ccc731f0f6915e526e330e392f31fedaee8262"
+      ]
+    },
+    {
+      "id": "P028-LOCAL-IMPORT-UI",
+      "kind": "INTEGRATION",
+      "command": "npm run test --workspace @larm/desktop -- src/adapter-import.test.tsx src/adapter-export.test.tsx",
+      "fixture_hashes": [],
+      "expected": "La vista previa identifica el paquete y sus permisos, presenta tamaño/hash exactos y exige confirmación antes de iniciar el job.",
+      "observed": "PASS; 3 tests cubren identidad, permisos, tamaño/hash, confirmación, cambio de ruta, fallo de lectura y seguimiento del job.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-ADAPTER-PACKAGE-UI-TEST-FINAL.log#sha256=126c8c4df1c2066f51171851b8562bcbe2bfc5dd2fd17d87850ff112566cbddb"
+      ]
+    },
+    {
+      "id": "P028-REAL-SIGNED-REGISTRY",
+      "kind": "REAL",
+      "command": "Aceptación con registro HTTPS autorizado, fixture firmado y paquete manipulado",
+      "fixture_hashes": [],
+      "expected": "La app instala el paquete firmado y rechaza el manipulado en el flujo conectado.",
+      "observed": "No ejecutada: falta un registro HTTPS autorizado con certificado válido y recorrido de paquete manipulado; P024/P026 continúan BLOCKED_REAL.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P028-WORKSPACE-SANDBOX-LOOPBACK",
+      "kind": "INTEGRATION",
+      "command": "cargo test --workspace -j 1 -- --test-threads=1 (sandbox restringido)",
+      "fixture_hashes": [],
+      "expected": "La batería completa prueba también health HTTP en loopback.",
+      "observed": "BLOCKED por el sandbox; 3 pruebas health_unreachable fallaron al acceder a localhost. Repetición con loopback habilitado: 1,166/1,166 PASS.",
+      "result": "BLOCKED",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-WORKSPACE-SANDBOX-LOOPBACK.log#sha256=9814c3c5f667eff01b441575951cf2c2d13f88f5c3b1daddc62f016364c2ceeb"
+      ]
+    },
+    {
+      "id": "P028-EXPORT-DOMAIN-TEST",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain adapter_export_cerrado_y_validado -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/adapter_packages.rs:9baa51fc778c1ceb8f4d10a9b05e0d7a734fa7ff277b791167822a3696044384"
+      ],
+      "expected": "DTO cerrado y validación de installation UUIDv7 y destino.",
+      "observed": "PASS; 1 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-EXPORT-DOMAIN-TEST.log#sha256=50007a771a88fc5f9791034a319a272637f7ae6619b3340c61d73d5ddbb54535"
+      ]
+    },
+    {
+      "id": "P028-EXPORT-API-TEST",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test adapters export_requiere_scope_validacion_e_idempotencia -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/adapters.rs:0883b1d7ddbfe85c3e3ce4a14df8098f2b067f498a04ee7b985fc93be8e029e8",
+        "crates/larm-api/tests/adapters.rs:91e987c65417a31027dd472df04ea2fbc24e47ff51ad4c95e62e6ea7b878e0d2"
+      ],
+      "expected": "El endpoint exige scope, body cerrado e Idempotency-Key; replay conserva receipt y cuerpo distinto produce conflicto.",
+      "observed": "PASS; 1 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-EXPORT-API-TEST.log#sha256=0e9ca3d6468a9a7037fc1d2df9901c25ff4ec205cf99ffe9f98a379d33f8759d"
+      ]
+    },
+    {
+      "id": "P028-EXPORT-DAEMON-TEST",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon export_service_verifica_el_paquete_y_publica_evento_outbox -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/src/adapters.rs:d76eade1a5146414cfb165340ef0aff2d570f1cdb0ac74de93d528418afbe648",
+        "migrations/0009_p028_signed_adapter_registry.sql:caef1c7ff156a44d84e0290358174d42ccecdd92b3e354b50bb9b33ff5565c4c"
+      ],
+      "expected": "El daemon crea ZIP verificado ligado a la instalación y guarda adapter.exported en event/outbox sin la ruta local.",
+      "observed": "PASS; 1 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-EXPORT-DAEMON-TEST.log#sha256=33a7a559b9e1738873a5039c9584b76e2a27ff61b415e59d04393fac7f58126b"
+      ]
+    },
+    {
+      "id": "P028-EXPORT-DAEMON-CHECK",
+      "kind": "CONTRACT",
+      "command": "cargo check -p larm-daemon -j 1",
+      "fixture_hashes": [
+        "apps/daemon/src/adapters.rs:d76eade1a5146414cfb165340ef0aff2d570f1cdb0ac74de93d528418afbe648",
+        "apps/daemon/src/serve.rs:4992f5feb54d68f9d85d07675c53e02e5afaff66569c8c1af4faca97b3fc841f"
+      ],
+      "expected": "La implementación de exportación y el wiring de composición compilan en el daemon.",
+      "observed": "PASS; Finished dev profile, exit=0.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-EXPORT-DAEMON-CHECK.log#sha256=0072a539e33ac4a007ec28fc06a76ed3ab78dbf4598d70f1115168100b7217b2"
+      ]
+    },
+    {
+      "id": "P028-EVIDENCE-VALIDATION",
+      "kind": "CONTRACT",
+      "command": "python tools/validate_evidence.py docs/reports/P028_registro-remoto-firmado-y-exportacion-importacion-de-plugins.evidence.json",
+      "fixture_hashes": [
+        "docs/contracts/schemas/larm.schema.json:04f86d7a1a1179fcf74580ecf136d264fc6b1b4d3555f93b12372993bdde5eaf",
+        "tools/validate_evidence.py:06be1400d0097e84944aa763f437841ffb4a0e976c84aa9dbabee7278a448485"
+      ],
+      "expected": "La evidencia P028 cumple PromptEvidence del schema contractual.",
+      "observed": "PASS; PromptEvidence conforme al schema contractual usando el entorno Python de herramientas.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-EVIDENCE-VALIDATION-REVALIDATION.log#sha256=c45dd74152e76915c3c13b97d7ae77e8e45d19182a3dd71fca27547d295787a8"
+      ]
+    },
+    {
+      "id": "P028-IMPORT-DATABASE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test adapter_imports -j 1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "Idempotencia, aislamiento, journal, reservas, locks, eventos/outbox y recuperación transaccional pasan.",
+      "observed": "PASS; 5 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-IMPORT-DB-TEST.log#sha256=84ca898cecbd91b3cafaaa9e9caa5ccf274624ec86202e86ab0a201c60a5cd00"
+      ]
+    },
+    {
+      "id": "P028-IMPORT-API",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test adapter_imports -j 1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El endpoint valida scope, body cerrado, clave de idempotencia y recibo de aceptación.",
+      "observed": "PASS; 1 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-IMPORT-API-TEST.log#sha256=d85114a8ec8038e509a23c37497eef2f1ca684e17e81321051c9e70b951621a8"
+      ]
+    },
+    {
+      "id": "P028-IMPORT-WORKER",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test adapter_import_coordinator -j 1 -- --test-threads=1",
+      "fixture_hashes": [],
+      "expected": "El worker instala ZIP local, conserva confianza UNTRUSTED y limpia un archivo con hash inválido.",
+      "observed": "PASS; 2 passed, 0 failed.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-IMPORT-DAEMON-TEST.log#sha256=da77a983372fed9f85c5849f0de71223455cf151cbb49e9b6461d7ee1065c0f6"
+      ]
+    },
+    {
+      "id": "P028-WORKSPACE-IMPORT-SANDBOX",
+      "kind": "INTEGRATION",
+      "command": "cargo test --workspace -j 1 -- --test-threads=1 (sandbox sin loopback)",
+      "fixture_hashes": [],
+      "expected": "La suite completa del workspace termina con cero fallos.",
+      "observed": "BLOCKED por aislamiento de localhost: fallaron 3 pruebas health_unreachable en larm-adapter-host; la repetición con loopback habilitado pasó 1,175/1,175 en 118 grupos.",
+      "result": "BLOCKED",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-WORKSPACE-IMPORT-FINAL.log#sha256=dc4378bf0ce8bd182127c55339950f0b70eb3be8373b0483eda56570715c9261"
+      ]
+    },
+    {
+      "id": "P028-IMPORT-DESKTOP-SUITE",
+      "kind": "INTEGRATION",
+      "command": "npm run test --workspace @larm/desktop",
+      "fixture_hashes": [],
+      "expected": "Todas las pantallas existentes y la nueva importación funcionan en la suite frontend.",
+      "observed": "PASS; 101 passed en 13 archivos.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-EXPORT-IMPORT-DESKTOP-SUITE-FINAL.log#sha256=20e7b53c1d869c05a0d86a4ae05dfa0e12a2efa6e3aa6d0a198f6387e842e1e8"
+      ]
+    },
+    {
+      "id": "P028-IMPORT-TAURI-TEST",
+      "kind": "INTEGRATION",
+      "command": "cargo test --manifest-path apps/desktop/src-tauri/Cargo.toml -j 1",
+      "fixture_hashes": [],
+      "expected": "El comando nativo presenta manifiesto/permisos acotados y calcula tamaño/SHA-256 exactos; rechaza ZIP inválido y permisos cerrados no válidos.",
+      "observed": "PASS; 10 tests, incluidos preview ZIP, validación cerrada de permisos, hash exacto y entradas inválidas.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-ADAPTER-PREVIEW-TAURI-TEST-FINAL.log#sha256=64daff9c48b1e95aa7f56a58830e763fb878058560edd4ea1e2569cf0023419a"
+      ]
+    },
+    {
+      "id": "P028-IMPORT-DESKTOP-QUALITY",
+      "kind": "INTEGRATION",
+      "command": "npm run typecheck/lint/build --workspace @larm/desktop",
+      "fixture_hashes": [],
+      "expected": "TypeScript, lint y compilación de producción pasan.",
+      "observed": "PASS; typecheck, eslint y build de Vite.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-EXPORT-IMPORT-DESKTOP-TYPECHECK-FINAL.log#sha256=36eedd101466971239f038d40d8535dec6988e448d416653de50bdb658b35400",
+        "docs/reports/P028_runs/P028-EXPORT-IMPORT-DESKTOP-LINT-FINAL.log#sha256=88203e830c82a2ac1254672dbe533b98bed0307819645b03db4455587bb3b344",
+        "docs/reports/P028_runs/P028-EXPORT-IMPORT-DESKTOP-BUILD-FINAL.log#sha256=b6440de56807fa87624ecdfa9a502d35f23aa4b02250c45cdb97f53fb780242e"
+      ]
+    },
+    {
+      "id": "P028-IMPORT-TAURI-QUALITY",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --manifest-path apps/desktop/src-tauri/Cargo.toml -- --check; cargo clippy --offline --manifest-path apps/desktop/src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "El código nativo mantiene formato y no introduce avisos Clippy.",
+      "observed": "PASS; formato y Clippy del shell Tauri en modo offline.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-ADAPTER-PREVIEW-TAURI-FORMAT.log#sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "docs/reports/P028_runs/P028-ADAPTER-PREVIEW-TAURI-CLIPPY-FINAL.log#sha256=bb2bd63530db80df09f93f847eb038367bbe41a0e59c82dc95f94cf300b5131a"
+      ]
+    },
+    {
+      "id": "P028-LOCAL-EXPORT-UI",
+      "kind": "INTEGRATION",
+      "command": "npm run test --workspace @larm/desktop -- src/adapter-import.test.tsx src/adapter-export.test.tsx",
+      "fixture_hashes": [],
+      "expected": "La UI exige confirmación antes de exportar, usa Idempotency-Key y presenta identidad, tamaño exacto y SHA-256 del ZIP generado.",
+      "observed": "PASS; exportación idempotente tras confirmar, seguida de huella exacta del paquete exportado.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-ADAPTER-PACKAGE-UI-TEST-FINAL.log#sha256=126c8c4df1c2066f51171851b8562bcbe2bfc5dd2fd17d87850ff112566cbddb"
+      ]
+    },
+    {
+      "id": "P028-REGISTRY-UI",
+      "kind": "INTEGRATION",
+      "command": "npm run test --workspace @larm/desktop -- src/adapter-registry.test.tsx",
+      "fixture_hashes": [
+        "apps/desktop/src/adapter-registry.tsx:641b1bf768a95392055578f0fe38ed4a61dc15591058066c7dc00427a4e6f9af",
+        "apps/desktop/src/adapter-registry.test.tsx:906c0ff1278cc4a88713a327afd4a4b92fa3477b31e8dc90eaccb346c844a977"
+      ],
+      "expected": "Estado, checkpoint y revocaciones se muestran; la sincronización usa Idempotency-Key y refresca el estado.",
+      "observed": "PASS; 2 pruebas focales.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-REGISTRY-UI-TEST.log#sha256=3a6117c8be0d1be71878383d95b7d115cb5b2c82ef46be8c3718d8da98d1075d"
+      ]
+    },
+    {
+      "id": "P028-DESKTOP-SUITE-REGISTRY",
+      "kind": "INTEGRATION",
+      "command": "npm run test --workspace @larm/desktop",
+      "fixture_hashes": [
+        "apps/desktop/src/adapter-registry.tsx:641b1bf768a95392055578f0fe38ed4a61dc15591058066c7dc00427a4e6f9af",
+        "apps/desktop/src/adapter-registry.test.tsx:906c0ff1278cc4a88713a327afd4a4b92fa3477b31e8dc90eaccb346c844a977",
+        "apps/desktop/src/adapters.tsx:4c86f8fb5b085f4aab0f49bad86e2c0d069d37fda40b9dd03ff0229f15e546b6"
+      ],
+      "expected": "Toda la suite de escritorio pasa con el panel del registro integrado.",
+      "observed": "PASS; 103 pruebas en 14 archivos.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-DESKTOP-SUITE-FINAL.log#sha256=117333e598b64e39364599295f08dc264ee11e757f373cf590d0011e5da3a580"
+      ]
+    },
+    {
+      "id": "P028-DESKTOP-QUALITY-REGISTRY",
+      "kind": "CONTRACT",
+      "command": "npm run typecheck/lint/build --workspace @larm/desktop",
+      "fixture_hashes": [
+        "apps/desktop/src/adapter-registry.tsx:641b1bf768a95392055578f0fe38ed4a61dc15591058066c7dc00427a4e6f9af",
+        "apps/desktop/src/adapters.tsx:4c86f8fb5b085f4aab0f49bad86e2c0d069d37fda40b9dd03ff0229f15e546b6"
+      ],
+      "expected": "TypeScript, lint y compilación de producción pasan.",
+      "observed": "PASS; typecheck, eslint y build de Vite.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-DESKTOP-TYPECHECK-FINAL.log#sha256=36eedd101466971239f038d40d8535dec6988e448d416653de50bdb658b35400",
+        "docs/reports/P028_runs/P028-DESKTOP-LINT-FINAL.log#sha256=88203e830c82a2ac1254672dbe533b98bed0307819645b03db4455587bb3b344",
+        "docs/reports/P028_runs/P028-DESKTOP-BUILD-FINAL.log#sha256=40db70b83020a60a2b116f59f0d17d0831e1e5b7f5eeed0bdd3bce8dcd074c37"
+      ]
+    },
+    {
+      "id": "P028-REGISTRY-QUALITY",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --all -- --check; cargo clippy -p larm-daemon -p larm-db -p larm-api -p larm-adapter-sdk --all-targets -j 1 -- -D warnings",
+      "fixture_hashes": [
+        "apps/daemon/src/adapters.rs:2f09aaf11938a59de342981cce4f511a49daa196733204ec839a232b86c14ca4",
+        "crates/larm-db/src/adapter_registry.rs:deef145aaf2423c17d963e057eb38aa8402097e9b8980334aa4e091f93e04d8b",
+        "crates/larm-api/src/adapters.rs:1908b80a6cd14d808d89b1410f6c235df7d385afcb61a80c3488bd809869bd28",
+        "crates/larm-api/tests/adapter_registry.rs:8fcc764159ade363e1f172084c2e967dd9a58e0f316a839692bc1cb6b63b2c3e"
+      ],
+      "expected": "Formato Rust y Clippy de crates afectados pasan sin warnings.",
+      "observed": "PASS; formato y Clippy con warnings como errores.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-REGISTRY-FORMAT.log#sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "docs/reports/P028_runs/P028-REGISTRY-CLIPPY.log#sha256=cc57d20304b0c79c5c8b3624767cd6bd329e689ad8b57b0c44f5c9ff46399e5e",
+        "docs/reports/P028_runs/P028-REGISTRY-API-CLIPPY.log#sha256=908608c18915ec8f933e8eb414acfac27b88e792bdc3aa86bcf72a14439aa221"
+      ]
+    },
+    {
+      "id": "P028-PACKAGE-NORMATIVE-HASHES",
+      "kind": "CONTRACT",
+      "command": "Verificación independiente SHA-256/bytes de manifest.json",
+      "fixture_hashes": [
+        "../LARM_prompts_v3/manifest.json:c838e8ce8a7cf1d14593034bdce32565d0d66ebdec23c34aa21115379378b588"
+      ],
+      "expected": "Todos los archivos normativos coinciden con su tamaño y SHA-256 declarados.",
+      "observed": "PASS; 208/208 hashes y tamaños coinciden.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-PACKAGE-NORMATIVE-HASHES.log#sha256=a866fc5c25bac12dadf1431f197f3d3bd2a49788f0a702adf2f92dd6e750f575"
+      ]
+    },
+    {
+      "id": "P028-PACKAGE-VERIFY-REVALIDATION",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe ../LARM_prompts_v3/tools/verify_pack.py",
+      "fixture_hashes": [
+        "../LARM_prompts_v3/contracts/REVISION_3_9_1_P028.md:d6bb1cf1ecfd521d76f9ee26ba94d54a5c8ee4f0c6afd7e1af1e1d97030bdd82",
+        "../LARM_prompts_v3/schemas/larm.schema.json:04f86d7a1a1179fcf74580ecf136d264fc6b1b4d3555f93b12372993bdde5eaf",
+        "../LARM_prompts_v3/manifest.json:e3a88cc6b090815c4a1b7894acde230694b00f96198315544870aeb120e1d31e"
+      ],
+      "expected": "El verificador integral del paquete 3.9.1 termina sin errores.",
+      "observed": "PASS; paquete 3.9.1: 3,138 checks, 52 negativos; validador de contrato con comprobaciones de conformidad. No acredita software real.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-PACKAGE-VERIFY-REVALIDATION.log#sha256=7ecced1d219833bc5717c5dcef3f36850488e42b6df862f83c0179bd16799d7b"
+      ]
+    },
+    {
+      "id": "P028-REGISTRY-API-ROUTES",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test adapter_registry -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/adapters.rs:1908b80a6cd14d808d89b1410f6c235df7d385afcb61a80c3488bd809869bd28",
+        "crates/larm-api/tests/adapter_registry.rs:8fcc764159ade363e1f172084c2e967dd9a58e0f316a839692bc1cb6b63b2c3e"
+      ],
+      "expected": "GET exige read; POST exige adapters:write, cuerpo cerrado e Idempotency-Key; replay idéntico no duplica la sincronización.",
+      "observed": "PASS; 1 prueba cubre estado, scopes, body inválido y replay de la clave.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-REGISTRY-API-TEST.log#sha256=b510f9ff869c3d39cab71705c4ccc731f0f6915e526e330e392f31fedaee8262"
+      ]
+    },
+    {
+      "id": "P028-REGISTRY-URL-BINDING-MIGRATION",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration migracion_desde_vacia_crea_exactamente_las_tablas_del_ddl -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/tests/integration.rs:5bc7df889b5965d5a04bb9714dd927e4d18ca5a79fa2c07bc3c5929d7316b50b",
+        "crates/larm-db/src/migrate.rs:723994083878781eb9df9cf4bb915d288f3164d7412cb1850745f6558325aeb2",
+        "migrations/0010_p028_registry_url_binding.sql:6063941dfd8470253f1edf2bd3d377e40332dbc8328e11bcfc2c9b1c84162094"
+      ],
+      "expected": "La migración desde base vacía registra la versión 0010 y crea el índice URL único.",
+      "observed": "PASS; 1 prueba verifica secuencia de migraciones, DDL e índice adapter_registry_checkpoint_url_unique.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P028_runs/P028-REGISTRY-MIGRATION-FINAL.log#sha256=02f94e9335c5848e1fc42eb52df0a945cd9bfa61600a98e6c235ca26b83236a7"
+      ]
+    }
+  ],
+  "blockers": [
+    "P024 permanece BLOCKED_REAL; P028 no puede cerrarse como REAL_PASS sin su dependencia REAL_PASS.",
+    "P026 permanece BLOCKED_REAL; P028 no puede cerrarse como REAL_PASS sin su dependencia REAL_PASS.",
+    "Pendiente aceptación con un registro HTTPS autorizado y certificado válido, incluyendo firma/revocación y rechazo de paquete manipulado."
+  ],
+  "generated_at": "2026-10-24T22:48:06.057Z"
+}

@@ -1,0 +1,308 @@
+{
+  "prompt_id": "P023",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+  "inputs_hash": "9f5468e8c9a591d43718b8127af7e44755d2cd60d62a967d778405423e859313",
+  "changed_files": [
+    "Cargo.lock",
+    "adapters/runtime/README.md",
+    "adapters/runtime/generic/README.md",
+    "adapters/runtime/generic/main.rs",
+    "adapters/runtime/generic/wizard.schema.json",
+    "apps/daemon/src/serve.rs",
+    "crates/larm-adapter-host/Cargo.toml",
+    "crates/larm-adapter-host/tests/declarative.rs",
+    "crates/larm-adapter-sdk/Cargo.toml",
+    "crates/larm-adapter-sdk/examples/fake_runtime.rs",
+    "crates/larm-adapter-sdk/src/declarative.rs",
+    "crates/larm-adapter-sdk/src/generic.rs",
+    "crates/larm-adapter-sdk/src/lib.rs",
+    "crates/larm-api/Cargo.toml",
+    "crates/larm-api/src/adapters.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/adapters.rs",
+    "crates/larm-core/Cargo.toml",
+    "crates/larm-core/src/adapters.rs",
+    "crates/larm-core/src/lib.rs",
+    "crates/larm-db/src/adapters.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/tests/adapters.rs",
+    "crates/larm-domain/src/adapters.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "docs/adapters/declarative.md",
+    "tools/p023_evidence.py",
+    "tools/p023_mutations.py",
+    "tools/p023_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P023-REAL-build",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon -p larm-adapter-sdk --bins --examples",
+      "fixture_hashes": [],
+      "expected": "daemon, worker genérico larm-generic-adapter y runtime falso compilados",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.22s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-build.log#sha256=2ad18faa8a07c470066b4fe20d49c490870f1eb1c682b28434b9d35eb36d5441"
+      ]
+    },
+    {
+      "id": "P023-REAL-sondeo-ejecutable-falso",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test declarative -- sondeo_de_version_con_ejecutable_falso --exact",
+      "fixture_hashes": [
+        "wizard.schema.json:9d2e9e793b4095b75b44afbd86ea3855ae28b8c5f7188e5a6cf9c54b74602b9e"
+      ],
+      "expected": "PC IA, procesos reales (host P021 + política P022 + worker genérico + runtime falso): Probe fake executable: versión EXACT_TEXT y JSON_FIELD reales, canal custom (no stable), artifact_hash = sha256 del exe, sondeo colgado Timeout a 10 s, método no aplicable UNSUPPORTED_CAPABILITY sin éxito vacío",
+      "observed": "exit=0; Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) | Compiling larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) | Finished `test` profile [unoptimized + debuginfo] target(s) in 3.24s | Running tests\\declarative.rs (target\\debug\\deps\\declarative-3ad436c9b3dd69d7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-sondeo-ejecutable-falso.log#sha256=47658af738983492ce9ce0a379d4f2f0f6d3b8665d67752cfe52c9fda041ed6d"
+      ]
+    },
+    {
+      "id": "P023-REAL-arranque-entorno-health",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test declarative -- arranque_entorno_health_y_parada_reales --exact",
+      "fixture_hashes": [
+        "wizard.schema.json:9d2e9e793b4095b75b44afbd86ea3855ae28b8c5f7188e5a6cf9c54b74602b9e"
+      ],
+      "expected": "PC IA, procesos reales (host P021 + política P022 + worker genérico + runtime falso): H04 + Health fake server: plan de un solo uso con hash, LARM_TEST llega al proceso y nada del worker se hereda, args expandidos, health READY, parada SIGNAL con el puerto cerrado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\declarative.rs (target\\debug\\deps\\declarative-3ad436c9b3dd69d7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-arranque-entorno-health.log#sha256=4f69a83c7416df1586a65e50278e58c2afda0cfa040d7b85f1cf825a95e1ce36"
+      ]
+    },
+    {
+      "id": "P023-REAL-health-degradado-http",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test declarative -- health_degradado_caido_y_parada_http --exact",
+      "fixture_hashes": [
+        "wizard.schema.json:9d2e9e793b4095b75b44afbd86ea3855ae28b8c5f7188e5a6cf9c54b74602b9e"
+      ],
+      "expected": "PC IA, procesos reales (host P021 + política P022 + worker genérico + runtime falso): health 503 DEGRADED, parada HTTP dentro de la gracia, runtime muerto FAILED process_exited",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\declarative.rs (target\\debug\\deps\\declarative-3ad436c9b3dd69d7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-health-degradado-http.log#sha256=84421e139cd16fd9ebe3bbb6482b496fee33c3b20b45f13e79dd8717dac72eca"
+      ]
+    },
+    {
+      "id": "P023-REAL-negativos-entorno-inyeccion",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test declarative -- entorno_no_autorizado_inyeccion_y_credencial --exact",
+      "fixture_hashes": [
+        "wizard.schema.json:9d2e9e793b4095b75b44afbd86ea3855ae28b8c5f7188e5a6cf9c54b74602b9e"
+      ],
+      "expected": "PC IA, procesos reales (host P021 + política P022 + worker genérico + runtime falso): variable fuera de las dos allowlists rechazada antes de IO; inyección por model_path rechazada por worker y host; credencial sin resolver bloquea sin lanzar; límite de memoria UNSUPPORTED_CAPABILITY",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\declarative.rs (target\\debug\\deps\\declarative-3ad436c9b3dd69d7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-negativos-entorno-inyeccion.log#sha256=797b53613fdaf61a913bad712c8831c41dfeb85e96f2c47532222e4e83231ead"
+      ]
+    },
+    {
+      "id": "P023-REAL-paquete-manipulado",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test declarative -- paquete_manipulado_no_se_autoriza --exact",
+      "fixture_hashes": [
+        "wizard.schema.json:9d2e9e793b4095b75b44afbd86ea3855ae28b8c5f7188e5a6cf9c54b74602b9e"
+      ],
+      "expected": "PC IA, procesos reales (host P021 + política P022 + worker genérico + runtime falso): cambiar declarative.json rompe el hash y la política P022 lo rechaza (package_hash_mismatch)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\declarative.rs (target\\debug\\deps\\declarative-3ad436c9b3dd69d7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-paquete-manipulado.log#sha256=4ad8602fd13cfbc13c7ec4e893746207861128555aeae623f50c190b1daf4672"
+      ]
+    },
+    {
+      "id": "P023-REAL-daemon-extremo-a-extremo",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p023_real.py serve",
+      "fixture_hashes": [
+        "wizard.schema.json:9d2e9e793b4095b75b44afbd86ea3855ae28b8c5f7188e5a6cf9c54b74602b9e"
+      ],
+      "expected": "daemon real: alta por la API con Bearer real, paquete con hash recalculado por un oráculo independiente, fila y evento en SQLite, idempotencia, 403/400 sin efectos, exportar sin secretos e importar UNTRUSTED, worker del paquete manejado por un cliente JSON-RPC independiente: la variable no secreta llega al proceso; credencial sin resolver bloquea; runtime real (Ollama aislado) sondeado, arrancado y parado",
+      "observed": "exit=0; [PASS] ollama-version-desconocida: --version sin servidor imprime dos avisos: version_unparseable, no «Warning: …» como versión | [PASS] ollama-arranque-y-health: ollama serve en 127.0.0.1:61848 con entorno declarado; /api/version = 0.40.3 (oráculo) | [PASS] ollama-parada: árbol terminado y puerto cerrado; la instancia del usuario sigue arriba | PASS 20 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-daemon-extremo-a-extremo.log#sha256=be58eb165299f343d66da2845ce03a3bcd75629b2a5be970ab782eafc4a9e81a"
+      ]
+    },
+    {
+      "id": "P023-UNIT-sdk-declarativo",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-adapter-sdk --lib declarative",
+      "fixture_hashes": [
+        "wizard.schema.json:9d2e9e793b4095b75b44afbd86ea3855ae28b8c5f7188e5a6cf9c54b74602b9e"
+      ],
+      "expected": "valid/invalid manifest y documento, placeholders tipados y desconocidos, inyección, entorno H04 (casos H04-055..058), simulación determinista, materialización con hash real, schema del asistente coherente",
+      "observed": "exit=0; Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.35s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_adapter_sdk-4cdfe41ebfccc62e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-UNIT-sdk-declarativo.log#sha256=afa88bf22bae25aecd20203c51ca0c561b4391228e675721bc5f891235b06c87"
+      ]
+    },
+    {
+      "id": "P023-UNIT-worker-generico",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-adapter-sdk --lib generic",
+      "fixture_hashes": [],
+      "expected": "HTTP chunked, puerto de la URL y bloqueo de credenciales",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_adapter_sdk-4cdfe41ebfccc62e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-UNIT-worker-generico.log#sha256=397f196fc1debf80e2888ee5ad09cfa287d207d3fb73289917aba4977fe73e9b"
+      ]
+    },
+    {
+      "id": "P023-CONTRACT-api",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test adapters",
+      "fixture_hashes": [],
+      "expected": "POST /adapters/declarative con el guard real: 201 adapter_installation exacto, idempotencia, IDEMPOTENCY_CONFLICT, 409 de versión, 403/401, 400 antes de IO sin filas ni carpetas, exportar → importar sin secretos ni confianza",
+      "observed": "exit=0; Compiling larm-core v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-core) | Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 4.89s | Running tests\\adapters.rs (target\\debug\\deps\\adapters-33cf1d13bd74c95e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-CONTRACT-api.log#sha256=9b130e44c1d215e717df0a759183ab5525c72c145f40e5609358b1e2ef7f5e80"
+      ]
+    },
+    {
+      "id": "P023-INTEGRATION-repositorio",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test adapters",
+      "fixture_hashes": [],
+      "expected": "adapter_installation sobre SQLite con la migración del contrato: alta, lectura, búsqueda, evento adapter.updated en la misma transacción y CHECK que anula también el evento",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 3.80s | Running tests\\adapters.rs (target\\debug\\deps\\adapters-b92883b1a241bf66.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-INTEGRATION-repositorio.log#sha256=5c043481a35a073b271bc63b5c1fb89341c2e38626d3be88efe0f6559e9ae06f"
+      ]
+    },
+    {
+      "id": "P023-FAULT-mutaciones",
+      "kind": "FAULT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p023_mutations.py",
+      "fixture_hashes": [],
+      "expected": "24 defectos introducidos a propósito (placeholders, .bat, metacaracteres, loopback, allowlists, secretos, raíces, EXACT_TEXT, plan, health, hash, entorno heredado, credencial, confianza, conflicto): todos hacen fallar alguna prueba; el worker se recompila con cada mutación",
+      "observed": "exit=0; [KILLED] alta sin comprobar rutas reales: autorizacion_y_validacion_antes_de_io | [KILLED] declarativo nace confiable: alta_idempotente_y_paquete_en_disco, exportar_e_importar_sin_secretos_ni_confianza | [KILLED] conflicto de versión ignorado: alta_idempotente_y_paquete_en_disco | 25/25 mutaciones detectadas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-FAULT-mutaciones.log#sha256=b1bd7864fe400a84d2419fc7934b552b8d5d4f8876833254a48b645bc76b7c2e"
+      ]
+    },
+    {
+      "id": "P023-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-UNIT-cargo-fmt.log#sha256=8e6e5366c848d64401c97d693266abb60c5c6132283635cfe5a32573283d19fb"
+      ]
+    },
+    {
+      "id": "P023-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Checking larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) | Checking larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.84s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-UNIT-cargo-clippy.log#sha256=f761346e4e646d049da50b8fe9f1c40813405121322dd5426d13e57735243f72"
+      ]
+    },
+    {
+      "id": "P023-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-UNIT-cargo-test.log#sha256=64d38a3dc776dd1c1553c033b7fbca46456e3650fe769ff22f664c351ae82139"
+      ]
+    },
+    {
+      "id": "P023-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto (larm-core → larm-adapter-sdk, permitido)",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P023-REAL-lock",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py lock-coherence",
+      "fixture_hashes": [],
+      "expected": "dependencias nuevas (chrono en el SDK; sha2/tempfile de prueba) ya fijadas en environment.lock.json",
+      "observed": "exit=0; PASS 45 dependencias usadas coinciden en version y hash con Cargo.lock/package-lock.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-lock.log#sha256=518ae7cdbf9d8218106ecd2c0961bfdea5e087a05a7b2d05005de76661544711"
+      ]
+    },
+    {
+      "id": "P023-REAL-regresion-p021-p022",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host",
+      "fixture_hashes": [],
+      "expected": "host de workers (P021) y política (P022) siguen en verde",
+      "observed": "exit=0; Running tests\\declarative.rs (target\\debug\\deps\\declarative-3ad436c9b3dd69d7.exe) | Running tests\\policy.rs (target\\debug\\deps\\policy-31615dbd48c913c6.exe) | Running tests\\worker.rs (target\\debug\\deps\\worker-2f45c7796e8a49ff.exe) | Doc-tests larm_adapter_host",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P023_runs/P023-REAL-regresion-p021-p022.log#sha256=6577327b05f4a104d0bcc84b2c2f847faa9f59945f797ebc741e1223945a339b"
+      ]
+    },
+    {
+      "id": "P023-REAL-gui",
+      "kind": "REAL",
+      "command": "pantalla Adaptadores → asistente (P037)",
+      "fixture_hashes": [],
+      "expected": "configurar desde la GUI una variable no secreta, guardar/exportar/importar y comprobar que llega al proceso",
+      "observed": "NO EJECUTADA: la GUI final del asistente es de P037 (H04 también es de P037/P140); aquí se probó la misma operación por la API que usa la GUI y el schema del asistente queda publicado",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P023-REAL-credencial-en-worker",
+      "kind": "REAL",
+      "command": "credential_reference resuelta en el worker (P045)",
+      "fixture_hashes": [],
+      "expected": "una variable con credential_reference llega al proceso con el secreto de Credential Manager",
+      "observed": "NO EJECUTADA: la resolución de secretos dentro del worker es de P045; hoy una referencia bloquea sondeo y arranque (credential_not_enrolled), comprobado en real",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P023-REAL-api-export-import",
+      "kind": "REAL",
+      "command": "POST /adapters/export y /adapters/import (P028)",
+      "fixture_hashes": [],
+      "expected": "exportación e importación por sus endpoints",
+      "observed": "NO EJECUTADA: los endpoints son de P028; aquí se exporta el documento del paquete y se importa con POST /adapters/declarative",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "dependencia P020 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P021 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P022 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-15T13:58:17.941Z"
+}

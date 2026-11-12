@@ -1,0 +1,442 @@
+{
+ "id": "0192aaaa-0000-7000-8000-000000000011",
+ "created_at": "2026-10-11T14:17:24.242Z",
+ "updated_at": "2026-10-11T14:17:24.242Z",
+ "row_version": 1,
+ "metadata": {
+  "accelerators": [
+   {
+    "api": "vulkan",
+    "components": [
+     {
+      "path": "C:\\WINDOWS\\System32\\vulkan-1.dll",
+      "sha256": "db433ec2fd680248b46e457e9e419a0bd5ad2014a4892e05cd3a2c2ddbb6ac27",
+      "version": "1.4.309.0"
+     }
+    ],
+    "devices": [
+     "PCI\\VEN_1002&DEV_1586&SUBSYS_10111F55&REV_C1"
+    ],
+    "evidence": "vulkaninfo --summary enumera AMD Radeon(TM) 8060S Graphics",
+    "reason": null,
+    "status": "VERIFIED",
+    "version": "1.4.315"
+   },
+   {
+    "api": "cuda",
+    "components": [],
+    "devices": [],
+    "evidence": "nvcuda.dll no encontrado en 29 carpetas (System32, PATH y SDK)",
+    "reason": null,
+    "status": "ABSENT",
+    "version": null
+   },
+   {
+    "api": "rocm",
+    "components": [
+     {
+      "path": "C:\\WINDOWS\\System32\\amdhip64_6.dll",
+      "sha256": "8fdb9c0d0b32b96454d092845311912e64b28594ea68f27e8511e1bb16db5b6c",
+      "version": "10.0.3652.0"
+     }
+    ],
+    "devices": [
+     "PCI\\VEN_1002&DEV_1586&SUBSYS_10111F55&REV_C1"
+    ],
+    "evidence": "hipGetDeviceCount = 1 con amdhip64_6.dll",
+    "reason": null,
+    "status": "VERIFIED",
+    "version": "6.4.50101"
+   },
+   {
+    "api": "directml",
+    "components": [
+     {
+      "path": "C:\\WINDOWS\\System32\\directml.dll",
+      "sha256": "1a01244e9e7ba66a23f72877626e725f8a23dc81dd6574095877fc9d00ee95ad",
+      "version": "1.15.5.0"
+     }
+    ],
+    "devices": [
+     "PCI\\VEN_1002&DEV_1586&SUBSYS_10111F55&REV_C1"
+    ],
+    "evidence": "IDMLDevice creado sobre un ID3D12Device de la GPU",
+    "reason": null,
+    "status": "VERIFIED",
+    "version": "1.15.5.0"
+   },
+   {
+    "api": "winml",
+    "components": [
+     {
+      "path": "C:\\WINDOWS\\System32\\winml.dll",
+      "sha256": "06a5fa3651404e9ddb8d7cca062e98dca3dbcc67fe14f11db4a5dac0392bc1a9",
+      "version": "10.0.26100.1150"
+     }
+    ],
+    "devices": [
+     "PCI\\VEN_1002&DEV_1586&SUBSYS_10111F55&REV_C1"
+    ],
+    "evidence": "LearningModelDevice DirectXHighPerformance creado en el adaptador 00000000-00010b14",
+    "reason": null,
+    "status": "VERIFIED",
+    "version": null
+   },
+   {
+    "api": "opencl",
+    "components": [
+     {
+      "path": "C:\\WINDOWS\\System32\\OpenCL.dll",
+      "sha256": "943cf553c4ff480810ca4dd2b1cbbd894c36e21c2b203a87470461be54fa5471",
+      "version": "3.0.6.0"
+     }
+    ],
+    "devices": [
+     "PCI\\VEN_1002&DEV_1586&SUBSYS_10111F55&REV_C1"
+    ],
+    "evidence": "clinfo enumera AMD Radeon(TM) 8060S Graphics",
+    "reason": null,
+    "status": "VERIFIED",
+    "version": "OpenCL 2.1 AMD-APP (3652.0)"
+   },
+   {
+    "api": "sycl",
+    "components": [],
+    "devices": [],
+    "evidence": "sycl*.dll no encontrado en 29 carpetas (System32, PATH y SDK)",
+    "reason": null,
+    "status": "ABSENT",
+    "version": null
+   },
+   {
+    "api": "vitisai",
+    "components": [],
+    "devices": [],
+    "evidence": "onnxruntime_vitisai_ep.dll no encontrado en 29 carpetas (System32, PATH y SDK)",
+    "reason": null,
+    "status": "ABSENT",
+    "version": null
+   },
+   {
+    "api": "migraphx",
+    "components": [],
+    "devices": [],
+    "evidence": "migraphx*.dll no encontrado en 29 carpetas (System32, PATH y SDK)",
+    "reason": null,
+    "status": "ABSENT",
+    "version": null
+   },
+   {
+    "api": "openvino",
+    "components": [],
+    "devices": [],
+    "evidence": "openvino.dll no encontrado en 29 carpetas (System32, PATH y SDK)",
+    "reason": null,
+    "status": "ABSENT",
+    "version": null
+   },
+   {
+    "api": "qnn",
+    "components": [],
+    "devices": [],
+    "evidence": "QnnHtp.dll no encontrado en 29 carpetas (System32, PATH y SDK)",
+    "reason": null,
+    "status": "ABSENT",
+    "version": null
+   },
+   {
+    "api": "tensorrt",
+    "components": [],
+    "devices": [],
+    "evidence": "nvinfer*.dll no encontrado en 29 carpetas (System32, PATH y SDK)",
+    "reason": null,
+    "status": "ABSENT",
+    "version": null
+   }
+  ],
+  "coverage": {
+   "pending": [],
+   "probed": [
+    "os",
+    "cpu",
+    "ram",
+    "devices",
+    "dependencies"
+   ]
+  },
+  "pagefile": {
+   "total_bytes": "4294967296"
+  },
+  "profiler": {
+   "name": "larm-hardware",
+   "version": "0.1.0"
+  },
+  "sources": {
+   "cpu": "sysinfo@0.39.6:GetSystemInfo+GetLogicalProcessorInformationEx",
+   "cpu.instruction_sets": "cpuid:is_x86_feature_detected",
+   "devices": "larm-daemon.exe probe-accelerators:DXGI+D3D12+cfgmgr32",
+   "devices.driver_version": "registry:HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class",
+   "opencl": "C:\\WINDOWS\\System32\\clinfo.exe",
+   "os": "registry:HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion",
+   "os.architecture": "registry:HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment",
+   "pagefile": "sysinfo@0.39.6:GetPerformanceInfo",
+   "ram.physical_bytes": "powershell:Get-CimInstance:Win32_PhysicalMemory",
+   "ram.usable_bytes": "sysinfo@0.39.6:GlobalMemoryStatusEx",
+   "vulkan": "C:\\WINDOWS\\System32\\vulkaninfo.exe --summary"
+  },
+  "unknown": [],
+  "storage": {
+   "observed_at": "2026-10-11T14:17:25.054Z",
+   "unknown": [],
+   "volumes": [
+    {
+     "bus": null,
+     "capacity_bytes": "1998992699392",
+     "drive_kind": "REMOTE",
+     "evidence_refs": [
+      "native:GetDiskFreeSpaceExW:\\\\localhost\\Temp"
+     ],
+     "filesystem": "NTFS",
+     "free_bytes": "178137325568",
+     "identity": {
+      "drive_letter": null,
+      "mount_points": [],
+      "unc_path": "\\\\localhost\\Temp",
+      "volume_guid": null,
+      "volume_key": "\\\\localhost\\temp"
+     },
+     "label": null,
+     "online": true,
+     "performance_class": "NETWORK",
+     "read_only": false,
+     "seek_penalty": null
+    },
+    {
+     "bus": null,
+     "capacity_bytes": null,
+     "drive_kind": "REMOTE",
+     "evidence_refs": [
+      "native:GetDiskFreeSpaceExW:\\\\noexiste-larm\\x",
+      "error:GetDiskFreeSpaceExW 0x80070035 No se ha encontrado la ruta de acceso de la red.",
+      "error:GetVolumeInformationW 0x80070035 No se ha encontrado la ruta de acceso de la red."
+     ],
+     "filesystem": null,
+     "free_bytes": null,
+     "identity": {
+      "drive_letter": null,
+      "mount_points": [],
+      "unc_path": "\\\\noexiste-larm\\x",
+      "volume_guid": null,
+      "volume_key": "\\\\noexiste-larm\\x"
+     },
+     "label": null,
+     "online": false,
+     "performance_class": "NETWORK",
+     "read_only": false,
+     "seek_penalty": null
+    },
+    {
+     "bus": "NVME",
+     "capacity_bytes": "1073737728",
+     "drive_kind": "FIXED",
+     "evidence_refs": [
+      "native:FindFirstVolumeW:\\\\?\\Volume{ac318884-e79e-48c8-bde1-f2aaddbc0459}\\",
+      "ioctl:STORAGE_DEVICE_DESCRIPTOR bus=17 product=CT2000P310SSD8",
+      "ioctl:DEVICE_SEEK_PENALTY_DESCRIPTOR incurs=false"
+     ],
+     "filesystem": "NTFS",
+     "free_bytes": "230993920",
+     "identity": {
+      "drive_letter": null,
+      "mount_points": [],
+      "unc_path": null,
+      "volume_guid": "ac318884-e79e-48c8-bde1-f2aaddbc0459",
+      "volume_key": "ac318884-e79e-48c8-bde1-f2aaddbc0459"
+     },
+     "label": "Recovery",
+     "online": true,
+     "performance_class": "NVME",
+     "read_only": false,
+     "seek_penalty": false
+    },
+    {
+     "bus": "NVME",
+     "capacity_bytes": "310378496",
+     "drive_kind": "FIXED",
+     "evidence_refs": [
+      "native:FindFirstVolumeW:\\\\?\\Volume{cdffda3c-4eae-480b-874f-6aacfc2d7658}\\",
+      "ioctl:STORAGE_DEVICE_DESCRIPTOR bus=17 product=CT2000P310SSD8",
+      "ioctl:DEVICE_SEEK_PENALTY_DESCRIPTOR incurs=false"
+     ],
+     "filesystem": "FAT32",
+     "free_bytes": "241139712",
+     "identity": {
+      "drive_letter": null,
+      "mount_points": [],
+      "unc_path": null,
+      "volume_guid": "cdffda3c-4eae-480b-874f-6aacfc2d7658",
+      "volume_key": "cdffda3c-4eae-480b-874f-6aacfc2d7658"
+     },
+     "label": "SYSTEM",
+     "online": true,
+     "performance_class": "NVME",
+     "read_only": false,
+     "seek_penalty": false
+    },
+    {
+     "bus": "NVME",
+     "capacity_bytes": "1998992699392",
+     "drive_kind": "FIXED",
+     "evidence_refs": [
+      "native:FindFirstVolumeW:\\\\?\\Volume{fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3}\\",
+      "ioctl:STORAGE_DEVICE_DESCRIPTOR bus=17 product=CT2000P310SSD8",
+      "ioctl:DEVICE_SEEK_PENALTY_DESCRIPTOR incurs=false"
+     ],
+     "filesystem": "NTFS",
+     "free_bytes": "178137325568",
+     "identity": {
+      "drive_letter": "C:",
+      "mount_points": [
+       "C:\\"
+      ],
+      "unc_path": null,
+      "volume_guid": "fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3",
+      "volume_key": "fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3"
+     },
+     "label": "Windows",
+     "online": true,
+     "performance_class": "NVME",
+     "read_only": false,
+     "seek_penalty": false
+    }
+   ]
+  }
+ },
+ "hardware_fingerprint": "26548c6cec295895de3d5d4f4a20af05a918d7862c3a8abbfb8017509df19b92",
+ "snapshot": {
+  "cpu": {
+   "instruction_sets": [
+    "aes",
+    "avx",
+    "avx2",
+    "avx512bf16",
+    "avx512bitalg",
+    "avx512bw",
+    "avx512cd",
+    "avx512dq",
+    "avx512f",
+    "avx512ifma",
+    "avx512vbmi",
+    "avx512vbmi2",
+    "avx512vl",
+    "avx512vnni",
+    "avx512vpopcntdq",
+    "avxvnni",
+    "bmi1",
+    "bmi2",
+    "f16c",
+    "fma",
+    "lzcnt",
+    "pclmulqdq",
+    "popcnt",
+    "sha",
+    "sse3",
+    "sse4.1",
+    "sse4.2",
+    "ssse3"
+   ],
+   "logical_cores": 32,
+   "model": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+   "physical_cores": 16,
+   "vendor": "AuthenticAMD"
+  },
+  "dependencies": [
+   {
+    "hash": "8fdb9c0d0b32b96454d092845311912e64b28594ea68f27e8511e1bb16db5b6c",
+    "name": "amdhip64_6.dll",
+    "version": "10.0.3652.0"
+   },
+   {
+    "hash": "1a01244e9e7ba66a23f72877626e725f8a23dc81dd6574095877fc9d00ee95ad",
+    "name": "directml.dll",
+    "version": "1.15.5.0"
+   },
+   {
+    "hash": "943cf553c4ff480810ca4dd2b1cbbd894c36e21c2b203a87470461be54fa5471",
+    "name": "opencl.dll",
+    "version": "3.0.6.0"
+   },
+   {
+    "hash": "db433ec2fd680248b46e457e9e419a0bd5ad2014a4892e05cd3a2c2ddbb6ac27",
+    "name": "vulkan-1.dll",
+    "version": "1.4.309.0"
+   },
+   {
+    "hash": "06a5fa3651404e9ddb8d7cca062e98dca3dbcc67fe14f11db4a5dac0392bc1a9",
+    "name": "winml.dll",
+    "version": "10.0.26100.1150"
+   }
+  ],
+  "devices": [
+   {
+    "backends": [
+     "directml",
+     "opencl",
+     "rocm",
+     "vulkan",
+     "winml"
+    ],
+    "dedicated_memory_bytes": "68719476736",
+    "device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_10111F55&REV_C1",
+    "driver_version": "32.0.21030.2001",
+    "evidence_refs": [
+     "dxgi:00000000-00010b14",
+     "pnp:PCI\\VEN_1002&DEV_1586&SUBSYS_10111F55&REV_C1\\4&35fe04f8&0&0041",
+     "registry:Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}\\0000"
+    ],
+    "kind": "GPU",
+    "luid": "00000000-00010b14",
+    "name": "AMD Radeon(TM) 8060S Graphics",
+    "shared_memory_bytes": "51160879104",
+    "unified_pool_id": "system-ram",
+    "vendor": "1002"
+   },
+   {
+    "backends": [],
+    "dedicated_memory_bytes": null,
+    "device_id": "PCI\\VEN_1022&DEV_17F0&SUBSYS_17F01022&REV_11",
+    "driver_version": "32.0.20101.3760",
+    "evidence_refs": [
+     "pnp:PCI\\VEN_1022&DEV_17F0&SUBSYS_17F01022&REV_11\\4&23445453&0&0142",
+     "registry:Control\\Class\\{f01a9d53-3ff6-48d2-9f97-c8a7004be10c}\\0000"
+    ],
+    "kind": "NPU",
+    "luid": null,
+    "name": "NPU Compute Accelerator Device",
+    "shared_memory_bytes": null,
+    "unified_pool_id": null,
+    "vendor": "1022"
+   }
+  ],
+  "observed_metrics": {
+   "available_ram_bytes": "46452674560",
+   "cpu_usage_percent": 10.740242004394531
+  },
+  "os": {
+   "architecture": "AMD64",
+   "build": "26200.9457",
+   "edition": "Professional"
+  },
+  "ram": {
+   "physical_bytes": "137438953472",
+   "pool_id": "system-ram",
+   "usable_bytes": "68340748288"
+  }
+ },
+ "evidence_refs": [
+  "larm-hardware@0.1.0",
+  "sysinfo@0.39.6",
+  "powershell:Get-CimInstance"
+ ],
+ "probed_at": "2026-10-11T14:17:24.242Z"
+}

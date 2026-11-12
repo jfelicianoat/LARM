@@ -1,0 +1,44 @@
+{
+  "$defs": {
+    "larm__decision_evaluate_input": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_type": {
+          "enum": [
+            "binary",
+            "n_ary",
+            "ranking"
+          ],
+          "type": "string"
+        },
+        "input": {
+          "type": "object"
+        },
+        "options": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "threshold_profile": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "use_case": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "use_case",
+        "decision_type",
+        "input",
+        "options",
+        "threshold_profile"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__decision_evaluate_input",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,222 @@
+{
+  "inventory": {
+    "aiHostProcesses": [
+      {
+        "name": "LemonadeServer"
+      },
+      {
+        "name": "lemonade-app"
+      },
+      {
+        "name": "ollama"
+      },
+      {
+        "name": "ollama app"
+      }
+    ],
+    "brokerAuthCheck": "NO_DISPONIBLE_SIN_CREDENCIAL_AUTORIZADA",
+    "brokerCapabilities": {
+      "contractVersion": "2.11",
+      "endpoint": "http://127.0.0.1:8765/api/v1/capabilities",
+      "status": 200
+    },
+    "cpu": {
+      "cores": 16,
+      "description": "AMD64 Family 26 Model 112 Stepping 0",
+      "logicalCores": 32,
+      "manufacturer": "AuthenticAMD",
+      "maxClockMhz": 3000,
+      "name": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          "
+    },
+    "detectedTools": {
+      "docker": {
+        "path": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe",
+        "version": "Docker version 29.7.2, build a7dcaa6"
+      },
+      "git": {
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\git.exe",
+        "version": "git version 2.55.0.windows.3"
+      },
+      "llama-cli": "NO_DISPONIBLE",
+      "llama-server": "NO_DISPONIBLE",
+      "node": {
+        "path": "C:\\Program Files\\nodejs\\node.exe",
+        "version": "v24.18.0"
+      },
+      "npm": {
+        "path": "C:\\Program Files\\nodejs\\npm.ps1",
+        "version": "11.16.0"
+      },
+      "ollama": {
+        "path": "C:\\Users\\pcesp\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "version": "ollama version is 0.40.2"
+      },
+      "python": {
+        "path": "C:\\Python314\\python.exe",
+        "version": "Python 3.14.6"
+      }
+    },
+    "gpus": [
+      {
+        "adapterCompat": "Advanced Micro Devices, Inc.",
+        "driverDate": "2025-09-25",
+        "driverVersion": "32.0.21030.2001",
+        "name": "AMD Radeon(TM) 8060S Graphics",
+        "pnpDeviceId": "PCI\\VEN_1002&DEV_1586&SUBSYS_10111F55&REV_C1\\4&35FE04F8&0&0041",
+        "status": "OK",
+        "vramBytes": "68719476736",
+        "vramSource": "registry:HardwareInformation.qwMemorySize"
+      },
+      {
+        "adapterCompat": "Microsoft",
+        "driverDate": "2006-06-21",
+        "driverVersion": "10.0.26100.9278",
+        "name": "Microsoft Remote Display Adapter",
+        "pnpDeviceId": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0002",
+        "status": "OK",
+        "vramBytes": "NO_DISPONIBLE",
+        "vramSource": "NO_DISPONIBLE: el driver no publica qwMemorySize; AdapterRAM (uint32) no es fiable"
+      }
+    ],
+    "graphicsDrivers": [
+      {
+        "deviceName": "AMD Radeon(TM) 8060S Graphics",
+        "driverDate": "2025-09-25",
+        "driverVersion": "32.0.21030.2001",
+        "infName": "oem20.inf"
+      },
+      {
+        "deviceName": "Microsoft Remote Display Adapter",
+        "driverDate": "2006-06-21",
+        "driverVersion": "10.0.26100.9278",
+        "infName": "rdpidd.inf"
+      }
+    ],
+    "httpsReachability": [
+      {
+        "endpoint": "https://github.com",
+        "reachable": true
+      },
+      {
+        "endpoint": "https://huggingface.co",
+        "reachable": true
+      },
+      {
+        "endpoint": "https://modelscope.cn",
+        "reachable": true
+      },
+      {
+        "endpoint": "https://registry.npmjs.org",
+        "reachable": true
+      },
+      {
+        "endpoint": "https://static.crates.io",
+        "reachable": false
+      },
+      {
+        "endpoint": "https://www.kaggle.com",
+        "reachable": false
+      }
+    ],
+    "normalization": "hash determinista: excluye pids, latencias, mensajes de red transitorios y marcas de tiempo",
+    "npu": [
+      {
+        "class": "ComputeAccelerator",
+        "instanceId": "PCI\\VEN_1022&DEV_17F0&SUBSYS_17F01022&REV_11\\4&23445453&0&0142",
+        "name": "NPU Compute Accelerator Device",
+        "problem": 0,
+        "status": "OK"
+      }
+    ],
+    "os": {
+      "architecture": "64 bits",
+      "build": "26200",
+      "caption": "Microsoft Windows 11 Pro",
+      "displayVersion": "25H2",
+      "domainJoined": false,
+      "hostname": "A9_MEGA",
+      "locale": "es-ES",
+      "timezone": "GMT Standard Time",
+      "ubr": 9457,
+      "version": "10.0.26200"
+    },
+    "ram": {
+      "modules": [
+        {
+          "capacityBytes": 17179869184,
+          "manufacturer": "Micron Technology",
+          "partNumber": "MT62F4G32D8DV-023WT",
+          "speedMhz": 8000
+        },
+        {
+          "capacityBytes": 17179869184,
+          "manufacturer": "Micron Technology",
+          "partNumber": "MT62F4G32D8DV-023WT",
+          "speedMhz": 8000
+        },
+        {
+          "capacityBytes": 17179869184,
+          "manufacturer": "Micron Technology",
+          "partNumber": "MT62F4G32D8DV-023WT",
+          "speedMhz": 8000
+        },
+        {
+          "capacityBytes": 17179869184,
+          "manufacturer": "Micron Technology",
+          "partNumber": "MT62F4G32D8DV-023WT",
+          "speedMhz": 8000
+        },
+        {
+          "capacityBytes": 17179869184,
+          "manufacturer": "Micron Technology",
+          "partNumber": "MT62F4G32D8DV-023WT",
+          "speedMhz": 8000
+        },
+        {
+          "capacityBytes": 17179869184,
+          "manufacturer": "Micron Technology",
+          "partNumber": "MT62F4G32D8DV-023WT",
+          "speedMhz": 8000
+        },
+        {
+          "capacityBytes": 17179869184,
+          "manufacturer": "Micron Technology",
+          "partNumber": "MT62F4G32D8DV-023WT",
+          "speedMhz": 8000
+        },
+        {
+          "capacityBytes": 17179869184,
+          "manufacturer": "Micron Technology",
+          "partNumber": "MT62F4G32D8DV-023WT",
+          "speedMhz": 8000
+        }
+      ],
+      "totalBytes": 68340748288
+    },
+    "volumes": [
+      {
+        "diskNumber": 0,
+        "driveLetter": "NO_DISPONIBLE",
+        "driveType": "Fixed",
+        "fileSystem": "NTFS",
+        "gptPartitionGuid": "ac318884-e79e-48c8-bde1-f2aaddbc0459",
+        "label": "Recovery",
+        "sizeBytes": "1073737728",
+        "volumeGuid": "ac318884-e79e-48c8-bde1-f2aaddbc0459",
+        "volumeGuidPath": "\\\\?\\Volume{ac318884-e79e-48c8-bde1-f2aaddbc0459}\\"
+      },
+      {
+        "diskNumber": 0,
+        "driveLetter": "C",
+        "driveType": "Fixed",
+        "fileSystem": "NTFS",
+        "gptPartitionGuid": "fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3",
+        "label": "Windows",
+        "sizeBytes": "1998992699392",
+        "volumeGuid": "fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3",
+        "volumeGuidPath": "\\\\?\\Volume{fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3}\\"
+      }
+    ]
+  },
+  "inventory_sha256": "21be0dbc8a00cff7cc8bb25936181a50c3f12241104d6890618e8ebfa67f6eee"
+}

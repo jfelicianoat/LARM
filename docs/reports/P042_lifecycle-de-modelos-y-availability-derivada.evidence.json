@@ -1,0 +1,185 @@
+{
+  "prompt_id": "P042",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "4e5123b0eaa1b97598b919df4af5443d509925c9a3d19cd170aee6dd2beefa0e",
+  "changed_files": [
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/src/models.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/models.rs",
+    "crates/larm-db/src/model_verification.rs",
+    "crates/larm-db/src/variants.rs",
+    "crates/larm-db/tests/model_verification.rs",
+    "crates/larm-domain/src/model.rs",
+    "crates/larm-domain/src/model_verification.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-models/src/lib.rs",
+    "crates/larm-models/src/lifecycle.rs",
+    "crates/larm-models/src/verification.rs",
+    "crates/larm-models/tests/bundles.rs",
+    "crates/larm-models/tests/import.rs",
+    "crates/larm-models/tests/maintenance.rs",
+    "crates/larm-models/tests/registry.rs",
+    "crates/larm-models/tests/verification.rs",
+    "crates/larm-storage/src/reconcile.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P042_lifecycle-de-modelos-y-availability-derivada.md",
+    "tools/check.ps1",
+    "tools/p025_host_fixture.py",
+    "tools/p042_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P042-LIFECYCLE-TRANSITIONS-STATUS-AND-SERIALIZATION",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib model::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/model.rs:8db70423682241d71e9e730ae68484cb8abf1de51053bdc4f2bfe117c0207ae2"
+      ],
+      "expected": "La máquina rechaza transiciones no permitidas y reintentos sin nuevo intento; status respeta precedencia y los enums se serializan con valores contractuales.",
+      "observed": "exit=0; warning: `larm-domain` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.57s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-892f2ab81062ba5a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P042_runs/P042-LIFECYCLE-TRANSITIONS-STATUS-AND-SERIALIZATION.log#sha256=680f886b7f920d3ed7ea7594d83fefb6b933c7dde8120b6453a217641e4e9668"
+      ]
+    },
+    {
+      "id": "P042-AVAILABILITY-AND-BROKER-ELIGIBILITY",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-models --lib lifecycle::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-models/src/lifecycle.rs:289bb2d1eb90134322e91f7c7cda844303ac40de367d6faa1d570c088f6d736f",
+        "crates/larm-domain/src/model.rs:8db70423682241d71e9e730ae68484cb8abf1de51053bdc4f2bfe117c0207ae2"
+      ],
+      "expected": "AVAILABLE exige artefactos requeridos verificados, bundle, gates PASS y load/health/smoke con la misma huella; BROKER_ELIGIBLE añade protocolo cualificado.",
+      "observed": "exit=0; warning: `larm-models` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.99s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_models-5449a023436255db.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P042_runs/P042-AVAILABILITY-AND-BROKER-ELIGIBILITY.log#sha256=83aa002922c842332d7e2e4d75458a04974c76710c6da1fa335f50a5303d989c"
+      ]
+    },
+    {
+      "id": "P042-REAL-WINDOWS-OFFLINE-CORRUPT-RECOVERY-AND-UPDATE",
+      "kind": "REAL",
+      "command": "cargo test -p larm-models --test maintenance volumen_offline_y_vuelta_con_reverificacion -j 1 -- --exact --nocapture --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/model.rs:8db70423682241d71e9e730ae68484cb8abf1de51053bdc4f2bfe117c0207ae2",
+        "crates/larm-db/src/variants.rs:8dee2133f11e49c407a1817a2e6b0072954814ef49dd43f4d4c4eaf1dcfa09f3",
+        "crates/larm-storage/src/reconcile.rs:6e802668ded656ace0f1fb0153f8b6e525b55029e894782f7ad8dfe1f711d691",
+        "crates/larm-models/tests/maintenance.rs:bb7069ebcc7f4611c20e46243c2da9bfc6b83d5ab1b563811576c97430f76fc2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "En Windows y SQLite reales, desconectar/reconectar conserva lifecycle y registros, marca OFFLINE, exige hashes reverificados, lleva corrupción a CORRUPT y tras reparar vuelve a VERIFIED/UNKNOWN; update_available conserva la versión instalada.",
+      "observed": "exit=0; warning: `larm-models` (test \"maintenance\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.00s | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-e73406ec9a21465a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P042_runs/P042-REAL-WINDOWS-OFFLINE-CORRUPT-RECOVERY-AND-UPDATE.log#sha256=eac2526f67e8b1ae1aa5865c8eb00d3b05658d0d087d69e48426c8d847ef5d23"
+      ]
+    },
+    {
+      "id": "P042-API-SELECTION-IDEMPOTENCY-AND-SCOPE",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test models seleccion_idempotente_y_detalle_de_variante -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/tests/models.rs:0a1a57801ac27828de3532d3a734dace23582044a95ae6945b565fadbe6fc49a",
+        "crates/larm-api/src/models.rs:9f017b839494ef500ac65e5a442f19c6fd80d9f56511f31c9c3c9a40f0213c98",
+        "crates/larm-api/src/openapi.rs:c24f4c11030ecbb4dde0935d9459caeb374fb3c53b135fae43411ee2801af664"
+      ],
+      "expected": "La selección exige models:write, valida UUIDv7 y JSON estricto, requiere Idempotency-Key, repite la respuesta guardada y rechaza reutilizar la clave con otro cuerpo.",
+      "observed": "exit=0; warning: `larm-api` (test \"models\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.22s | Running tests\\models.rs (target\\debug\\deps\\models-444c943554b233b9.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P042_runs/P042-API-SELECTION-IDEMPOTENCY-AND-SCOPE.log#sha256=638967159072509892f6fdc8c46de2ef636f4e30ea86af761fdf3b5190692769"
+      ]
+    },
+    {
+      "id": "P042-SQLITE-SELECTION-TRANSITION-AND-VARIANT-DETAIL",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-models --test registry seleccionar_variante_y_consultar_detalle_completo -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-models/tests/registry.rs:da6bd76705fa1ad49613d04f07da4c30283ed8c13afe5c9beb74a6c7d05f15b7",
+        "crates/larm-db/src/variants.rs:8dee2133f11e49c407a1817a2e6b0072954814ef49dd43f4d4c4eaf1dcfa09f3",
+        "crates/larm-domain/src/ports.rs:0af9a2977411571f2efca380696ca90638d68cb1b0ae79eafdd270ae9f070d9a",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "SQLite registra DISCOVERED→SELECTED una sola vez con evento; el detalle contiene variante, revisión, distribución, modelo canónico y todos los arrays contractuales.",
+      "observed": "exit=0; warning: `larm-models` (test \"registry\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.98s | Running tests\\registry.rs (target\\debug\\deps\\registry-e5181d6341934b10.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P042_runs/P042-SQLITE-SELECTION-TRANSITION-AND-VARIANT-DETAIL.log#sha256=3f2b40a5ebfba866455ba59ae2c55450191fb8a76d03ea2c2aaf814029860a66"
+      ]
+    },
+    {
+      "id": "P042-API-VERIFY-JOB",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test models verify_encola_con_probe_estricto_y_replay_idempotente -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/tests/models.rs:0a1a57801ac27828de3532d3a734dace23582044a95ae6945b565fadbe6fc49a",
+        "crates/larm-api/src/models.rs:9f017b839494ef500ac65e5a442f19c6fd80d9f56511f31c9c3c9a40f0213c98",
+        "crates/larm-domain/src/model_verification.rs:a1453f7e84787588a981d26a1f596e611404cf71ce2d8af7f24f1515ca8e39c2"
+      ],
+      "expected": "POST verify exige models:write, UUIDv7, Probe estricto e Idempotency-Key; entrega 202, repite el recibo y detecta la reutilización de clave entre variantes distintas.",
+      "observed": "exit=0; warning: `larm-api` (test \"models\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.26s | Running tests\\models.rs (target\\debug\\deps\\models-444c943554b233b9.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P042_runs/P042-API-VERIFY-JOB.log#sha256=404cda5d28258d83b32ff83734b2826596e6b062fb568709cf5c47f769e0c678"
+      ]
+    },
+    {
+      "id": "P042-SQLITE-VERIFY-ATOMIC-JOURNAL-AND-ROLLBACK",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test model_verification job_deduplicates_and_commits_all_verification_state_atomically -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/model_verification.rs:3ce60639bffe069fddd301e91e516c24e4db11c557235c7ad5837d4c9acfcc44",
+        "crates/larm-domain/src/model_verification.rs:a1453f7e84787588a981d26a1f596e611404cf71ce2d8af7f24f1515ca8e39c2",
+        "crates/larm-db/src/events.rs:a8846030442d11faf650c55c1e0788f5a5bd455f78af478d0613a3e051c7fa3c",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "SQLite deduplica jobs activos por variante; actualiza artefacto, bundle, lifecycle y job en una transacción y revierte todo al forzar un fallo SQL.",
+      "observed": "exit=0; warning: `larm-db` (test \"model_verification\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.96s | Running tests\\model_verification.rs (target\\debug\\deps\\model_verification-0b3aaa916657de9c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P042_runs/P042-SQLITE-VERIFY-ATOMIC-JOURNAL-AND-ROLLBACK.log#sha256=eb2433eda7aa19d9595b615350ed3aa08e2c487b57dac3d60227fd912ae55cf1"
+      ]
+    },
+    {
+      "id": "P042-REAL-VERIFY-WORKER-BYTES-AND-CORRUPTION",
+      "kind": "REAL",
+      "command": "cargo test -p larm-models --test verification worker_verifies_bytes_and_marks_a_later_mismatch_corrupt -j 1 -- --exact --nocapture --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-models/tests/verification.rs:1ea144f6d1fd95cd902c0b33de274e35d4223eb6ff54d60959de885ae7c86314",
+        "crates/larm-models/src/verification.rs:e764f32076d023cfd96ceb4fb5aef838a1b118a73114e3e2b32361e0dc8567e5",
+        "crates/larm-db/src/model_verification.rs:3ce60639bffe069fddd301e91e516c24e4db11c557235c7ad5837d4c9acfcc44",
+        "crates/larm-domain/src/model_verification.rs:a1453f7e84787588a981d26a1f596e611404cf71ce2d8af7f24f1515ca8e39c2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "Con ficheros locales y SQLite reales, el worker hashea el bundle, lo deja VERIFIED/UNKNOWN, y al modificar un byte marca réplica, bundle y variante CORRUPT.",
+      "observed": "exit=0; warning: `larm-models` (test \"verification\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.87s | Running tests\\verification.rs (target\\debug\\deps\\verification-7b6c71967dd7bd6a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P042_runs/P042-REAL-VERIFY-WORKER-BYTES-AND-CORRUPTION.log#sha256=1b007ab45c4f5cdbba3091eeff61ab41bd3ecac27788aea44ff3619851cd708d"
+      ]
+    },
+    {
+      "id": "P042-REAL-SAME-FINGERPRINT-LOAD-HEALTH-SMOKE-AND-PROTOCOL",
+      "kind": "REAL",
+      "command": "Verificación de variante mediante runtime/backend/hardware reales y cualificación del protocolo Broker",
+      "fixture_hashes": [],
+      "expected": "Evidence de gates, load, health y smoke vigente en una sola execution_fingerprint; elegibilidad Broker sólo con protocolo cualificado.",
+      "observed": "NO EJECUTADA: El worker verifica bytes y bundle, pero no ejecuta runtime/backend/hardware ni obtiene gates, load, health, smoke y cualificación de protocolo en una execution_fingerprint común. La derivación pura se prueba por separado. Las dependencias P040, P041 y P016 tampoco están en REAL_PASS.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "El worker realiza verificación de bytes y bundle; faltan runtime/backend/hardware y gates/load/health/smoke con una execution_fingerprint común, más cualificación de protocolo para Broker.",
+    "P040, P041 y P016 siguen en BLOCKED_REAL; el contrato 00 impide completar P042 en REAL_PASS mientras cualquiera de esas dependencias siga bloqueada.",
+    "package_copy detecta tres contratos locales distintos del paquete v3 (adapter-methods, api-operations y larm.schema); su reconciliación requiere una revisión de la fuente contractual canónica.",
+    "dependencia P040 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P041 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P016 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T16:41:11.374Z"
+}

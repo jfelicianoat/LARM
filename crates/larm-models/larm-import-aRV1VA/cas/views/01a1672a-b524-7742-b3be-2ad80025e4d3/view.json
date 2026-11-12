@@ -1,0 +1,26 @@
+[
+  {
+    "kind": "REFERENCE",
+    "name": "README.md",
+    "blob": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models\\larm-import-aRV1VA\\cas\\blobs\\sha256\\50\\504dc76a888de8c93dd8f4fc1ef1753750cfb46d357d68c36b248a089236cae8",
+    "reason": "permission denied"
+  },
+  {
+    "kind": "REFERENCE",
+    "name": "mmproj-qwen-x-f16.gguf",
+    "blob": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models\\larm-import-aRV1VA\\cas\\blobs\\sha256\\85\\853e748972f37813268395ae19c05e0cbe75e6d8c5f8a4c1f23477523f2cd837",
+    "reason": "permission denied"
+  },
+  {
+    "kind": "REFERENCE",
+    "name": "qwen-x-Q4_K_M-00001-of-00002.gguf",
+    "blob": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models\\larm-import-aRV1VA\\cas\\blobs\\sha256\\a2\\a291b536dc279bc2647ec638b82c1abc862a1d70cebe47132353f8b08cdb8ae6",
+    "reason": "permission denied"
+  },
+  {
+    "kind": "REFERENCE",
+    "name": "qwen-x-Q4_K_M-00002-of-00002.gguf",
+    "blob": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models\\larm-import-aRV1VA\\cas\\blobs\\sha256\\ab\\abeade3b7ebe2e025531d5876f91b4efb437378f0bfc7a8c2c50c0aa2c448aec",
+    "reason": "permission denied"
+  }
+]

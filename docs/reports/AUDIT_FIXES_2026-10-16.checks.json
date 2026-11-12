@@ -1,0 +1,173 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "quality-gates",
+      "command": [
+        "powershell",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "tools/check.ps1"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\quality-gates.log",
+      "sha256": "1dcf4411c88150225d74239905dede5047c8726f9735dc31c055d2412daa7934"
+    },
+    {
+      "id": "runtime-hardware-regression",
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "larm-runtime",
+        "catalogo_y_lease_usan_hardware_actual"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\runtime-hardware-regression.log",
+      "sha256": "634d23eb23cde3a9f43ba1d60c3ea8e349328988d3d2b237f242794bf69e8bfe"
+    },
+    {
+      "id": "api-method-regression",
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "larm-api",
+        "--test",
+        "app"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\api-method-regression.log",
+      "sha256": "f0c22f9c512c3f7b786aabcf083968442f3a86f4cb137e423c0d456ba3a5e7db"
+    },
+    {
+      "id": "storage-real",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/p014_real.py",
+        "serve"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\storage-real.log",
+      "sha256": "97711b9b240761c2d5aae2e685164b4563b8e1d4808b6c8652d7ac063355cc18"
+    },
+    {
+      "id": "api-hardware-desktop-real",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/audit_fixes_real.py",
+        "--desktop-smoke"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\api-hardware-desktop-real.log",
+      "sha256": "d99500f3e098fd977f39b534930746ccc1871ce12abf4ce0b280ff8e1dfcbb36"
+    },
+    {
+      "id": "bundle-integrity-real",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/ui_bundle_real.py"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\bundle-integrity-real.log",
+      "sha256": "1542c6213b740e6fe08140af494d5a7daad89d81c089bb4ea1b749a26b3a1997"
+    },
+    {
+      "id": "desktop-offline-real",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/p006_real.py",
+        "offline"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\desktop-offline-real.log",
+      "sha256": "47cf4e471a2666fa7300c11d6df5db684cff6c3bb965b1975d4c5a3b8ef28eb9"
+    },
+    {
+      "id": "desktop-online-real",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/p006_real.py",
+        "online"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\desktop-online-real.log",
+      "sha256": "b8ec508b2622bbb7bd5db70364999142ae63d55f98a34c4fd88e43fe583b5611"
+    },
+    {
+      "id": "credentials-real",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/check_integration_credentials.py"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\credentials-real.log",
+      "sha256": "4189cfb989c824adacdb23712c8c8b7fd0185b57c90868c97376517ba9f8d40b"
+    },
+    {
+      "id": "lock-coherence",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/verify_p000.py",
+        "lock-coherence"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\lock-coherence.log",
+      "sha256": "908a9f384fcb5303f1fdf708a611dbf5ae559ef97774f0a50550d85961847df4"
+    },
+    {
+      "id": "evidence-schema",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/validate_evidence.py"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\evidence-schema.log",
+      "sha256": "803f459daa4a003fd2f3c2aa5aad1bf3be75b718de68ab4e9ce7c2bbe9791d34"
+    },
+    {
+      "id": "bundle-negative-real",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/ui_bundle_real.py",
+        "--fault"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\bundle-negative-real.log",
+      "sha256": "dbf6f08ee5cfdacfe3e50b8f2b4fda4fd7e92cefc1f36cc24a9678e9cfc267ab"
+    },
+    {
+      "id": "secret-hygiene",
+      "command": [
+        "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe",
+        "tools/check_integration_credentials.py",
+        "--scan-only"
+      ],
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "docs\\reports\\AUDIT_FIXES_2026-10-16_runs\\secret-hygiene.log",
+      "sha256": "ee4cfbc5098e1fb257d62eb9d4f02218794c02c6a6746df81942713925e03b10"
+    }
+  ],
+  "host": "A9_Mega",
+  "generated_at": "2026-10-16T15:47:48.484875+00:00",
+  "scope": "Correcciones INC-01 a INC-07 sobre la implementación actual; no acredita fases futuras.",
+  "binaries": {
+    "target\\debug\\larm-daemon.exe": "4ad093b1b6a1fa928600e5b70c5fc2e8c07cddc9af6407b069aedf341107ad1f",
+    "apps\\desktop\\src-tauri\\target\\debug\\larm-desktop.exe": "015622102301316eee4d5e46bbdc0f6932d9b8df386c39fbe69d0b1a7a9261db"
+  }
+}

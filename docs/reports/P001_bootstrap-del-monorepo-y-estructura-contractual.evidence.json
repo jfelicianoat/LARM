@@ -1,0 +1,309 @@
+{
+  "prompt_id": "P001",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24",
+  "inputs_hash": "0db58af72ba6eaac9e9aea2ec0fbecfbfdadb02f78e59018caec635fe4ae1992",
+  "changed_files": [
+    ".gitignore",
+    "adapters/benchmark/README.md",
+    "adapters/protocol/README.md",
+    "adapters/runtime/README.md",
+    "adapters/source/README.md",
+    "adapters/transformation/README.md",
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/tests/lifecycle.rs",
+    "apps/desktop/src-tauri/src/commands.rs",
+    "apps/desktop/src-tauri/src/lib.rs",
+    "apps/desktop/src-tauri/tauri.conf.json",
+    "apps/desktop/src/App.test.tsx",
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/tauri.ts",
+    "apps/desktop/vite.config.ts",
+    "docs/contracts/crate-graph.json",
+    "docs/contracts/external/",
+    "docs/spec/LARM_SPEC_BASELINE.md",
+    "docs/spec/LARM_SPEC_ORIGINAL.md",
+    "docs/spec/PACKAGE_COPY_HASHES.json",
+    "docs/spec/PROMPT_INDEX.md",
+    "docs/spec/manifest.json",
+    "package.json",
+    "tools/check.ps1",
+    "tools/daemon_lifecycle.py",
+    "tools/p001_evidence.py",
+    "tools/package_copy.py",
+    "tools/verify_p001.py"
+  ],
+  "tests": [
+    {
+      "id": "P001-CONTRACT-structure",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p001.py structure",
+      "fixture_hashes": [],
+      "expected": "estructura completa de SHARED_CONTRACT, incluidas adapters/<5 familias>",
+      "observed": "exit=0; PASS 45 rutas obligatorias presentes; 16 miembros del workspace",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-CONTRACT-structure.log#sha256=36932ec83ea21c69f0c75af727e590e3c387cb57696786c138e6eaffa3abceee"
+      ]
+    },
+    {
+      "id": "P001-CONTRACT-scripts",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p001.py scripts",
+      "fixture_hashes": [],
+      "expected": "scripts raíz lint/typecheck/test/build/daemon:dev/tauri:dev delegados y funcionales",
+      "observed": "exit=0; PASS scripts raíz completos y delegados; daemon:dev reenvía argumentos; comandos Tauri en apps/desktop",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-CONTRACT-scripts.log#sha256=764739712a316f975e1fe4045f914c8472851be70bc99aa67d075d897368c107"
+      ]
+    },
+    {
+      "id": "P001-CONTRACT-policies",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p001.py policies",
+      "fixture_hashes": [],
+      "expected": "unsafe prohibido, lints heredados, toolchain fijado y activo",
+      "observed": "exit=0; PASS unsafe prohibido salvo winsec.rs (ADR-0009), lints heredados en 17 crates; sin unsafe fuera de esa excepción; toolchain 1.99.0 activo",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-CONTRACT-policies.log#sha256=5c30be7edd608f0dc22ace9681e68d03f29e2e85f4aaa4dfdddf127f24669cd0"
+      ]
+    },
+    {
+      "id": "P001-CONTRACT-package-copy",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "docs/spec/PACKAGE_COPY_HASHES.json:46db4010a16c8bbe81de28e44b5bf58cdc9178e5c84f7518ec8f1419df99f01a"
+      ],
+      "expected": "spec, contratos (con external/), schemas y fixtures copiados íntegros con sha256 del paquete v3",
+      "observed": "exit=0; PASS 53 copias idénticas al paquete v3",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-CONTRACT-package-copy.log#sha256=3c8c573d8cc5b2e1cc6a73e2d47052552f2de2f9ea511364474758ee7547eee5"
+      ]
+    },
+    {
+      "id": "P001-FAULT-package-copy-tampered",
+      "kind": "FAULT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p001.py copy-tamper",
+      "fixture_hashes": [],
+      "expected": "una copia alterada y un snapshot borrado en un repo temporal se detectan como FAIL",
+      "observed": "exit=0; PASS copia intacta PASS; defaults.json alterado y snapshot borrado -> FAIL copia modificada respecto al paquete: docs/contracts/defaults.json / FAIL falta copia: docs/contracts/external/Agora_Runner.md",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-FAULT-package-copy-tampered.log#sha256=c9f9d17922c4cde647c751b7f70e6241736720e28c5912a7e79e46908a6c116c"
+      ]
+    },
+    {
+      "id": "P001-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-cargo-fmt.log#sha256=c42934c0db92f50866c97875d20b8fe60270cb9b8c1b7ab8e3e5a6baadc09ffb"
+      ]
+    },
+    {
+      "id": "P001-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos en todo el workspace",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-cargo-clippy.log#sha256=87ed9ced264b45910c42731967d7f3063e42f1c963c94f2900e051882e05ca10"
+      ]
+    },
+    {
+      "id": "P001-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "todas las pruebas del workspace pasan, ninguna ignorada",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-cargo-test.log#sha256=9f0da38ab5c27d846c8db1e31496983278eb6a64aa079b5660e299f9372ec90c"
+      ]
+    },
+    {
+      "id": "P001-INTEGRATION-daemon-binary",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test lifecycle",
+      "fixture_hashes": [],
+      "expected": "el binario real: --help sale 0; config inválida o inexistente sale 2 sin inicializar logs",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s | Running tests\\lifecycle.rs (target\\debug\\deps\\lifecycle-041a318747dcff58.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-INTEGRATION-daemon-binary.log#sha256=a5eb533c23360223303d79fcad3a1ae93906b2f59b104a6baa45ffd96ab89ba8"
+      ]
+    },
+    {
+      "id": "P001-UNIT-desktop-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --manifest-path apps/desktop/src-tauri/Cargo.toml --check",
+      "fixture_hashes": [],
+      "expected": "shell Tauri formateado",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-desktop-fmt.log#sha256=f23ef4fe31d90f6f85e1a7d7f26cf5c160e2fcb5729d412a196ebf44faa19bbb"
+      ]
+    },
+    {
+      "id": "P001-UNIT-desktop-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --manifest-path apps/desktop/src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "shell Tauri sin avisos de clippy",
+      "observed": "exit=0; Checking larm-desktop v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.77s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-desktop-clippy.log#sha256=d16f008b985486d0f6eb976db944edd00abbed0148318034ebbf1b9d41290b73"
+      ]
+    },
+    {
+      "id": "P001-UNIT-desktop-test",
+      "kind": "UNIT",
+      "command": "cargo test --manifest-path apps/desktop/src-tauri/Cargo.toml",
+      "fixture_hashes": [],
+      "expected": "ping devuelve pong; smoke desactivado sin variable",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 5.25s | Running unittests src\\lib.rs (apps\\desktop\\src-tauri\\target\\debug\\deps\\larm_desktop_lib-755babf34e30725b.exe) | Running unittests src\\main.rs (apps\\desktop\\src-tauri\\target\\debug\\deps\\larm_desktop-ce218ab7de399eb9.exe) | Doc-tests larm_desktop_lib",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-desktop-test.log#sha256=12436cb5708c136dc65f05919128de6dbc530d30019835660b692e934859947e"
+      ]
+    },
+    {
+      "id": "P001-UNIT-npm-lint",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run lint --silent",
+      "fixture_hashes": [],
+      "expected": "npm run lint sin errores",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-npm-lint.log#sha256=1382152932bc7117c445e602437d7c45b5c14c7a653e1614691416a99aecf72a"
+      ]
+    },
+    {
+      "id": "P001-UNIT-npm-typecheck",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run typecheck --silent",
+      "fixture_hashes": [],
+      "expected": "npm run typecheck sin errores",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-npm-typecheck.log#sha256=513a5d89d38a160eae80297228cfae2d00a9d4241bd7115a88d3ee834764885e"
+      ]
+    },
+    {
+      "id": "P001-UNIT-npm-test",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run test --silent",
+      "fixture_hashes": [],
+      "expected": "npm run test sin errores",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  9 passed (9) | Start at  10:17:42 | Duration  1.04s (environment 55%, tests 28%, import 10%, transform 8%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-npm-test.log#sha256=3cee2675289a6a04338db5b455a12b62429a1bd7086b9607665275a4a4405843"
+      ]
+    },
+    {
+      "id": "P001-UNIT-npm-build",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run build --silent",
+      "fixture_hashes": [],
+      "expected": "npm run build sin errores",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-BFNQcmae.js   231.80 kB │ gzip: 73.01 kB | \u001b[32m✓ built in 96ms\u001b[39m",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-UNIT-npm-build.log#sha256=47542083ce34042569de917ceaa7b0824fbe68d26364de41fa6cfdefc9952571"
+      ]
+    },
+    {
+      "id": "P001-REAL-daemon-build",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "binario del daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.20s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-REAL-daemon-build.log#sha256=7edc072d7b3c1db7230675267a4e50dda2e5294c79e49b25962ca1ac5918acc3"
+      ]
+    },
+    {
+      "id": "P001-REAL-daemon-lifecycle",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/daemon_lifecycle.py",
+      "fixture_hashes": [],
+      "expected": "larm-daemon.exe arranca con raíz gestionada, escribe su log, CTRL_BREAK -> exit 0",
+      "observed": "exit=0; PASS: larm-daemon.exe vivo, log en raiz gestionada ['logs/larm.2026-10-11.log']; CTRL_BREAK -> exit 0 (pid=42080)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-REAL-daemon-lifecycle.log#sha256=9de364e1df7f33ce20d25a27a541e5a40cd6b8622eae05e8fc82dfa5e5f5e406"
+      ]
+    },
+    {
+      "id": "P001-REAL-daemon-dev-script",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/daemon_lifecycle.py --npm",
+      "fixture_hashes": [],
+      "expected": "npm run daemon:dev arranca el daemon con argumentos y éste registra el cierre limpio",
+      "observed": "exit=0; PASS: npm run daemon:dev vivo, log en raiz gestionada ['logs/larm.2026-10-11.log']; CTRL_BREAK -> daemon registra cierre limpio; envoltorio npm sale 0xC000013A (pid=42008)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-REAL-daemon-dev-script.log#sha256=146052e290a9ff7c8860377f263ed18f053ebc07b2f5607e600a1127ebb7244f"
+      ]
+    },
+    {
+      "id": "P001-REAL-desktop-build",
+      "kind": "REAL",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd tauri build --debug --no-bundle",
+      "fixture_hashes": [],
+      "expected": "shell Tauri compilado con el frontend embebido",
+      "observed": "exit=0; Running beforeBuildCommand `npm run build` | Compiling larm-desktop v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.85s | Built application at: C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\larm-desktop.exe",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-REAL-desktop-build.log#sha256=20f6d4877cb63d90a2cd3fde2d6fb81499d7f30559791ea0fb0e247dd9dff653"
+      ]
+    },
+    {
+      "id": "P001-REAL-desktop-ping",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\larm-desktop.exe",
+      "fixture_hashes": [],
+      "expected": "la ventana LARM real hace invoke('ping') por WebView2 y recibe 'pong'",
+      "observed": "exit=0; LARM_DESKTOP_SMOKE {\"ping\":\"pong\",\"live\":{\"error\":\"DAEMON_UNREACHABLE\",\"reason\":\"transport\"},\"ready\":{\"error\":\"DAEMON_UNREACHABLE\",\"reason\":\"transport\"}} | [1011/101759.004:ERROR:ui\\gfx\\win\\window_impl.cc:172] Failed to unregister class Chrome_WidgetWin_0. Error = 1412",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-REAL-desktop-ping.log#sha256=39f8227f8f1a27a470c1243f169a8e7a31bd6d33f4c82e49e35a4c2fdb6da414"
+      ]
+    },
+    {
+      "id": "P001-REAL-check-ps1",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check.ps1 -SkipFrontend -SkipDesktop",
+      "fixture_hashes": [],
+      "expected": "tools/check.ps1 se ejecuta en Windows PowerShell 5.1 y devuelve PASS",
+      "observed": "exit=0; ==> architecture | ==> package_copy | STATUS: PASS (5 checks, 0 fallos) -> C:\\Procesos\\Local AI Runtime Manager - LARM\\larm\\docs\\reports\\check.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P001_runs/P001-REAL-check-ps1.log#sha256=3d22f07a15437be0b5ee9c84622b3f23ef86a8a422d300b72481abae6fca6d93"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P000 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T09:18:12.260Z"
+}

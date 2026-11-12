@@ -1,0 +1,147 @@
+{
+  "acceptance_volumes": {
+    "available_count": 1,
+    "pending_real": "G04/G05 exigen un segundo volumen real escribible con GUID distinto. El host solo tiene C: y la particion Recovery (sin letra, de sistema, no utilizable). Opcion para el operador: VHDX montado o segundo disco. No se inventa un GUID.",
+    "second_volume_status": "NO_DISPONIBLE_UNICO_VOLUMEN",
+    "volumes": [
+      {
+        "drive_letter": "C",
+        "file_system": "NTFS",
+        "label": "Windows",
+        "role": "aceptacion_volumen_1",
+        "size_bytes": "1998992699392",
+        "volume_guid": "fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3",
+        "volume_guid_path": "\\\\?\\Volume{fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3}\\"
+      }
+    ]
+  },
+  "created_utc": "2026-10-10T18:23:54Z",
+  "integrity_note": "hashes de fixtures del paquete verificados contra LARM_prompts_v3/fixtures/generated (recalculados en verify_p000)",
+  "llama_cpp_versions": [
+    {
+      "assets": {
+        "cpu": {
+          "name": "llama-b11539-bin-win-cpu-x64.zip",
+          "sha256_downloaded": "PENDING_DESCARGA_P060",
+          "size_bytes": 19519169,
+          "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11539/llama-b11539-bin-win-cpu-x64.zip"
+        },
+        "vulkan": {
+          "name": "llama-b11539-bin-win-vulkan-x64.zip",
+          "sha256_downloaded": "PENDING_DESCARGA_P060",
+          "size_bytes": 33464670,
+          "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11539/llama-b11539-bin-win-vulkan-x64.zip"
+        }
+      },
+      "commit_sha": "10a60cf303566e10d6a7a2774c17d2085503d87b",
+      "license": "MIT",
+      "published_utc": "2026-10-09T22:38:06Z",
+      "selection_rule": "dos builds mas recientes publicadas en GitHub con fecha anterior a la fecha de ejecucion (2026-10-10); todas las builds de llama.cpp se publican como prerelease, se fija por tag+commit",
+      "source_release_url": "https://github.com/ggml-org/llama.cpp/releases/tag/b11539",
+      "tag": "b11539"
+    },
+    {
+      "assets": {
+        "cpu": {
+          "name": "llama-b11538-bin-win-cpu-x64.zip",
+          "sha256_downloaded": "PENDING_DESCARGA_P060",
+          "size_bytes": 19513109,
+          "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11538/llama-b11538-bin-win-cpu-x64.zip"
+        },
+        "vulkan": {
+          "name": "llama-b11538-bin-win-vulkan-x64.zip",
+          "sha256_downloaded": "PENDING_DESCARGA_P060",
+          "size_bytes": 33459184,
+          "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11538/llama-b11538-bin-win-vulkan-x64.zip"
+        }
+      },
+      "commit_sha": "79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6",
+      "license": "MIT",
+      "published_utc": "2026-10-09T20:11:03Z",
+      "selection_rule": "dos builds mas recientes publicadas en GitHub con fecha anterior a la fecha de ejecucion (2026-10-10); todas las builds de llama.cpp se publican como prerelease, se fija por tag+commit",
+      "source_release_url": "https://github.com/ggml-org/llama.cpp/releases/tag/b11538",
+      "tag": "b11538"
+    }
+  ],
+  "lock_version": "1.0.0",
+  "package_generated_fixtures": {
+    "files": [
+      {
+        "bytes": 130,
+        "file": "tensor_identity.onnx",
+        "sha256": "8de2df197dba94a7151d39371e464bf0bd10316ffa7d7006db81b08159210dde"
+      },
+      {
+        "bytes": 16,
+        "file": "tensor_input.f32",
+        "sha256": "ad73b9acd6e4a74b2f5bb5386658ce3bb146cd040a1867646ab3b973fb6632b1"
+      },
+      {
+        "bytes": 1040,
+        "file": "text_grid.png",
+        "sha256": "c4888536a6508ff96d385a3b075e5e861685a0ce932e96f9246693ea590a27b3"
+      },
+      {
+        "bytes": 32044,
+        "file": "tone16k.wav",
+        "sha256": "a6c41754cc16ef9ddac86f2e640bf085d002237668adbc24964ff7199851ba9a"
+      }
+    ],
+    "license": "CC0-1.0",
+    "source": "LARM_prompts_v3/fixtures/generated",
+    "speech_es_wav": "REQUIRES_LICENSED_OPERATOR_OR_TTS_INPUT_LOCK_BEFORE_ASR_REAL_RUN"
+  },
+  "revalidated_utc": "2026-10-11",
+  "small_models": [
+    {
+      "files": [
+        {
+          "bytes": "639446688",
+          "path": "Qwen3-0.6B-Q8_0.gguf",
+          "sha256_declared": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031"
+        }
+      ],
+      "gated": false,
+      "license": "apache-2.0",
+      "metadata_source": "huggingface.co/api/models/Qwen/Qwen3-0.6B-GGUF/revision/23749fefcc72300e3a2ad315e1317431b06b590a?blobs=true (lfs.sha256 declarado por la fuente; recalcular tras descargar)",
+      "purpose": "text_gen_gguf_smoke",
+      "repo": "Qwen/Qwen3-0.6B-GGUF",
+      "revision_sha": "23749fefcc72300e3a2ad315e1317431b06b590a",
+      "sha256_downloaded": "PENDING_DESCARGA"
+    },
+    {
+      "files": [
+        {
+          "bytes": "77691713",
+          "path": "ggml-tiny.bin",
+          "sha256_declared": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21"
+        }
+      ],
+      "gated": false,
+      "license": "mit",
+      "metadata_source": "huggingface.co/api/models/ggerganov/whisper.cpp/revision/5359861c739e955e79d9a303bcbc70fb988958b1?blobs=true (lfs.sha256 declarado por la fuente; recalcular tras descargar)",
+      "notes": "WAV de habla con licencia sigue REQUIRES_LICENSED_OPERATOR_OR_TTS_INPUT_LOCK_BEFORE_ASR_REAL_RUN",
+      "purpose": "asr_ggml_tiny",
+      "repo": "ggerganov/whisper.cpp",
+      "revision_sha": "5359861c739e955e79d9a303bcbc70fb988958b1",
+      "sha256_downloaded": "PENDING_DESCARGA"
+    },
+    {
+      "files": [
+        {
+          "bytes": "41285208",
+          "path": "onnx/model.onnx",
+          "sha256_declared": "2e9b85c0d257537b052060171187ad51b8c5944881afdbd25a3c36dc9bbf6cbc"
+        }
+      ],
+      "gated": false,
+      "license": "NO_DISPONIBLE_EN_CARD",
+      "metadata_source": "huggingface.co/api/models/onnx-community/tiny-random-LlamaForCausalLM-ONNX/revision/6c740230819622316aaab04234ffa38059a8607b?blobs=true (lfs.sha256 declarado por la fuente; recalcular tras descargar)",
+      "notes": "pesos aleatorios para pruebas de pipeline, sin redistribucion. Sustituye a Xenova/tiny-random-LlamaForCausalLM@69acc9dd, cuya revision no contiene ningun .onnx (comprobado 2026-10-11).",
+      "purpose": "onnx_pipeline_smoke",
+      "repo": "onnx-community/tiny-random-LlamaForCausalLM-ONNX",
+      "revision_sha": "6c740230819622316aaab04234ffa38059a8607b",
+      "sha256_downloaded": "PENDING_DESCARGA"
+    }
+  ]
+}

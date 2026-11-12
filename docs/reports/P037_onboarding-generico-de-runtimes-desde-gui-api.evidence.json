@@ -1,0 +1,120 @@
+{
+  "prompt_id": "P037",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "99e40e7a25e52ec8ad11cd5e1d400e026751947004e20f4d9264a9845bc2def1",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/tests/external_hosts.rs",
+    "apps/desktop/src/api/runtimes.ts",
+    "apps/desktop/src/runtime-wizard.test.tsx",
+    "apps/desktop/src/runtime-wizard.tsx",
+    "apps/desktop/src/runtimes.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-api/Cargo.toml",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/runtimes.rs",
+    "crates/larm-domain/Cargo.toml",
+    "crates/larm-domain/src/runtime.rs",
+    "docs/api/openapi.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P037_onboarding-generico-de-runtimes-desde-gui-api.md",
+    "tools/p037_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P037-EXTERNAL-HOST-STRICT-DOMAIN-VALIDATION",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib runtime::external_host_create_tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/runtime.rs:0e208509e170e62b567f02f552df7d486e10b8b326e0e50341b2e6f94ff9dd8e",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "La creación conserva conectividad UNKNOWN y credenciales por referencia; rechaza URL no HTTP(S), userinfo, query/fragment, modo MANAGED y campos secretos/desconocidos.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-892f2ab81062ba5a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P037_runs/P037-EXTERNAL-HOST-STRICT-DOMAIN-VALIDATION.log#sha256=7973ad9a3d3a200767edaed47c46c318477274a06a69c6184bbacce0c18578ca"
+      ]
+    },
+    {
+      "id": "P037-OPENAPI-IMPLEMENTED-CATALOG",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api openapi::implemented_tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/openapi.rs:94ed30992165446923eb0606b5e1a5982cd902cf998e4a241962813b67e8c70f",
+        "docs/api/openapi.json:806c86f8a26546bb0098ddc2608a9be90cbeb0590658660e2f4948ed5f75893d",
+        "docs/contracts/api-operations.json:7c99ada02337618f39e5e891ba6db220a73bdee7f3e8162e6ec1111f6eb45c3f"
+      ],
+      "expected": "La operación POST /external-hosts se anuncia como implementada y coincide con el OpenAPI canónico.",
+      "observed": "exit=0; Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-624c2f2afe1314ba.exe) | Running tests\\models.rs (target\\debug\\deps\\models-444c943554b233b9.exe) | Running tests\\security.rs (target\\debug\\deps\\security-e9af94ac414394e3.exe) | Running tests\\storage.rs (target\\debug\\deps\\storage-df43a143e1a14da2.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P037_runs/P037-OPENAPI-IMPLEMENTED-CATALOG.log#sha256=1e2b207cc18b4cb1563a4068f1178a877a4b202d918b06b70521982243d3c766"
+      ]
+    },
+    {
+      "id": "P037-DECLARATIVE-WIZARD-DRAFT-PREVIEW-SAVE-AND-PROBE",
+      "kind": "INTEGRATION",
+      "command": "cmd.exe /d /c npm run test --workspace @larm/desktop -- runtime-wizard",
+      "fixture_hashes": [
+        "apps/desktop/src/runtime-wizard.tsx:c614c997d93051c9af2e509834116d5a3c589647879189fe62c50b8ad52f0c11",
+        "apps/desktop/src/runtime-wizard.test.tsx:8eca189b22fdd1a0f3372c7e82070b4c1cd1ae5194673203fda296c8cc214288",
+        "apps/desktop/src/runtimes.tsx:3ea93e6944ed7a1950138ddf0de68dda6ed2255edac805cb4bfcbd1f5d6f16cd"
+      ],
+      "expected": "La interfaz rechaza JSON inválido sin llamar a la API, previsualiza comandos/estrategias/permisos, guarda con Idempotency-Key y consulta el job de probe con su identidad.",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  5 passed (5) | Start at  14:58:23 | Duration  1.02s (environment 53%, tests 34%, import 9%, transform 4%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P037_runs/P037-DECLARATIVE-WIZARD-DRAFT-PREVIEW-SAVE-AND-PROBE.log#sha256=7031ac40571f4c45015b437fd25b4dfbe8ce8dfb1d3b3d9860f50bbcadd60854"
+      ]
+    },
+    {
+      "id": "P037-REAL-WINDOWS-LOOPBACK-SQLITE-AND-SCOPE",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test external_hosts windows_real_loopback_external_host_registration_sqlite_and_scope -j 1 -- --exact --nocapture --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/runtimes.rs:bbbb27361476ee97507f0d8809aea19a796b90a33815d94aaca08ce2d86fb58f",
+        "crates/larm-domain/src/runtime.rs:0e208509e170e62b567f02f552df7d486e10b8b326e0e50341b2e6f94ff9dd8e",
+        "apps/daemon/tests/external_hosts.rs:a533700f1582c7e574589837d4698091d8a6d0b4803d06a4d408144435679362",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "Un servidor HTTP loopback real registra el host en SQLite como UNKNOWN/EXTERNAL; URL inválida da 400, lectura sin runtimes:write da 403 y no aparece ninguna fila extra.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.56s | Running tests\\external_hosts.rs (target\\debug\\deps\\external_hosts-60d1e0df1dab717b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P037_runs/P037-REAL-WINDOWS-LOOPBACK-SQLITE-AND-SCOPE.log#sha256=03de7c2221622dbf300cf30599d6ae766893c822ee0cda36eb10c6b588a63cac"
+      ]
+    },
+    {
+      "id": "P037-DRAFT-VALIDATE-AND-DRY-RUN-API-CONTRACT",
+      "kind": "CONTRACT",
+      "command": "API normativa para draft manifest, validate, dry-run probe y health/version probe HTTP",
+      "fixture_hashes": [],
+      "expected": "Una API revisa un borrador sin persistirlo y comprueba salud/versión de un host antes de guardar.",
+      "observed": "NO EJECUTADA: El api-operations.json canónico sólo define POST /external-hosts (registro, sin probe) y POST /adapters/declarative (alta durable). No define rutas, cuerpos ni errores para draft, validate, dry-run o health/version probe de un host. La UI expone preview local y probe de conformidad después del alta mediante P026, sin atribuirle una verificación previa del runtime.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P037-ADAPTER-ENABLE-DISABLE-API-CONTRACT",
+      "kind": "CONTRACT",
+      "command": "API normativa para activar y desactivar adaptadores/runtime declarativos",
+      "fixture_hashes": [],
+      "expected": "El operador habilita o deshabilita de forma durable un adaptador después de revisar sus permisos.",
+      "observed": "NO EJECUTADA: El contrato canónico no contiene una operación enable/disable ni define transiciones de estado para ella. No se inventa una ruta ni se presenta el alta UNTRUSTED como activación.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P037 cubre las operaciones ya publicadas: registrar host externo y crear/probar adaptador declarativo. El alcance genérico completo requiere que el contrato publique draft/validate/dry-run, health/version probe y enable/disable.",
+    "El probe real de salud de un host y la comprobación de executable nonexistent quedan pendientes mientras falten esas operaciones y P023/P030/P031/P036 no estén en REAL_PASS.",
+    "dependencia P023 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P030 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P031 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P036 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T13:58:25.718Z"
+}

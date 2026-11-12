@@ -1,0 +1,420 @@
+{
+  "prompt_id": "P012",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "50168fcacf36af4a01390d4f2248c14c021d05df1e08fe09a29782dc0fcedc69",
+  "changed_files": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "apps/daemon/src/hardware.rs",
+    "apps/daemon/src/main.rs",
+    "apps/desktop/src/hardware.test.tsx",
+    "apps/desktop/src/hardware.tsx",
+    "crates/larm-api/tests/hardware.rs",
+    "crates/larm-core/src/hardware.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/storage.rs",
+    "crates/larm-db/tests/storage.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-domain/src/storage.rs",
+    "crates/larm-hardware/src/lib.rs",
+    "crates/larm-hardware/src/native.rs",
+    "crates/larm-hardware/src/native_report.rs",
+    "crates/larm-hardware/src/storage.rs",
+    "docs/adr/0010-excepcion-unsafe-sondeo-nativo.md",
+    "docs/operations/storage.md",
+    "docs/reports/P012_runs/revalidation-20261025-022404/real/steps.json",
+    "docs/reports/P012_storage-profiler-y-volume-identity-windows.evidence.json",
+    "docs/reports/P012_storage-profiler-y-volume-identity-windows.md",
+    "tests/fixtures/hardware/profile-pcia.json",
+    "tests/fixtures/hardware/storage-pcia.json",
+    "tools/p012_evidence.py",
+    "tools/p012_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P012-UNIT-clasificacion",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- storage::tests::clasifica",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "NVME/SSD/HDD/REMOVABLE/NETWORK solo con bus o penalización observados; sin evidencia o VHD = UNKNOWN",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-clasificacion.log#sha256=5ae321fea7ae0047a1e23f8aaab3ad10e6e6d6da7b6cff05f80a2b86d9643c85"
+      ]
+    },
+    {
+      "id": "P012-UNIT-guid",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- storage::tests::guid",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "\\\\?\\Volume{GUID}\\ -> GUID en minúsculas sin llaves; formatos inválidos rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-guid.log#sha256=571442c24f203b22b9291d77f34d2ac0b17a3108abf9f6067dd314393031a88a"
+      ]
+    },
+    {
+      "id": "P012-UNIT-unc-parser",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- storage::tests::rutas_unc",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "UNC con \\\\?\\UNC\\ y /, clave casefold; dispositivo, sin recurso, '..' y caracteres inválidos rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-unc-parser.log#sha256=9b6bf041096ba1c55fae07bb904654f0a667289f890d1ee48aad0e3275d48e21"
+      ]
+    },
+    {
+      "id": "P012-CONTRACT-enums",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- storage::tests::serializa",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "NVME, REMOTE, FILE_BACKED_VIRTUAL con los nombres del contrato",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-CONTRACT-enums.log#sha256=40d6545636ac2838d4b186ba468bd608741ddd5b692370ca54797e4177d9428c"
+      ]
+    },
+    {
+      "id": "P012-UNIT-estado-observado",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- storage::tests::estado",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "ONLINE/READ_ONLY/UNKNOWN/OFFLINE según lo observado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-estado-observado.log#sha256=c8b78e36c3b46c2ca17c96a60909665ea9655b655a1b6b1456c74e65c5538ba0"
+      ]
+    },
+    {
+      "id": "P012-UNIT-pc-ia",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-hardware --lib -- storage::tests::pc_ia_real",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "fixture real: 3 volúmenes NVMe (2 sin letra) y \\\\localhost\\Temp; servidor inexistente sin datos inventados",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-hardware v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-hardware) | Finished `test` profile [unoptimized + debuginfo] target(s) in 3.88s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-pc-ia.log#sha256=5ec5a39df64eec8a5860fd925db99654d109d189f2ea9a8c672ba345b3519503"
+      ]
+    },
+    {
+      "id": "P012-UNIT-montajes",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-hardware --lib -- storage::tests::varios_montajes",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "letra y montaje en carpeta en el mismo volumen; cambio de letra conserva la volume_key",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-montajes.log#sha256=327139b87ec243232296193439e08928c9c59cd455c2f3d99ca055a2e12a5a8a"
+      ]
+    },
+    {
+      "id": "P012-UNIT-clase-sin-evidencia",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-hardware --lib -- storage::tests::sin_evidencia",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "UNKNOWN declarado; USB = REMOVABLE",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-clase-sin-evidencia.log#sha256=1b39780cc6028fb73958941a1ab309eee5b3d9815f6ee90f38f332bfd22393a6"
+      ]
+    },
+    {
+      "id": "P012-FAULT-guid-ilegible",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-hardware --lib -- storage::tests::guid_ilegible",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "sin GUID verificable no hay volume_key",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-FAULT-guid-ilegible.log#sha256=e4f9aec9d7378645bac275e175f489c0a2a907a4ba8514d1e8719572afb2c7d1"
+      ]
+    },
+    {
+      "id": "P012-UNIT-unidad-mapeada",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-hardware --lib -- storage::tests::unidad_mapeada",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "Z: mapeada y la misma raíz UNC son un volumen; ruta no UNC declarada",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-unidad-mapeada.log#sha256=85d7355b0f8ac20df79439de4f71f4d47e240706e38ee5be6feb947c72556220"
+      ]
+    },
+    {
+      "id": "P012-FAULT-enumeracion",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-hardware --lib -- storage::tests::enumeracion_fallida",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "FindFirstVolumeW fallido = volumes_probe_failed",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-FAULT-enumeracion.log#sha256=f780523f462136b1f5685d2c0d37ba2c47b82c7a000ce425f347661520b0c702"
+      ]
+    },
+    {
+      "id": "P012-FAULT-hijo",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-hardware --lib -- storage::tests::hijo_inexistente",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "hijo inexistente o de otra versión rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-c4ba3b25f16e62e0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-FAULT-hijo.log#sha256=fb041de6193c37ea2ca7b77756a648d7b461a4c70ca38362a504436636e18a20"
+      ]
+    },
+    {
+      "id": "P012-UNIT-refresco",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-core --lib -- hardware::tests::el_refresco_sondea",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "el refresco pide las raíces UNC, guarda la observación en el perfil y la aplica",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-core v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-core) | Finished `test` profile [unoptimized + debuginfo] target(s) in 2.61s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-refresco.log#sha256=4ce203772af191cb84531e143eba17419d0f6737f4b1986aa62eec44b71dc7ed"
+      ]
+    },
+    {
+      "id": "P012-FAULT-refresco",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-core --lib -- hardware::tests::un_fallo_de_almacenamiento",
+      "fixture_hashes": [
+        "tests/fixtures/hardware/storage-pcia.json:b619d37923f22ba0ca69d82eb8efebfddf0a5a0489daae2c065267d1f3c57629",
+        "tests/fixtures/hardware/profile-pcia.json:a37f8a3c958ad7fbe192f9c6e0d3ab4d8f3e9869a4f6aa25e5012b8d66b6cbc5"
+      ],
+      "expected": "fallo de almacenamiento declarado en metadata.storage; perfil registrado; storage_location intacto",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-FAULT-refresco.log#sha256=55320cc0a5fa7eba4f3b2d52870b99f543ac3dfb2a5b4c1e2d6be0c93557ce48"
+      ]
+    },
+    {
+      "id": "P012-INTEGRATION-sqlite",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test storage",
+      "fixture_hashes": [],
+      "expected": "UNKNOWN->ONLINE con versión y evento; solo espacio libre sin versión; cambio de letra; OFFLINE conserva datos y last_seen_at; READ_ONLY; UNC caído; 8 observaciones simultáneas = 1 cambio",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\storage.rs (target\\debug\\deps\\storage-52afdac6364cbef4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-INTEGRATION-sqlite.log#sha256=4351fe97d2ffceed6db148f6afa6e62b4b81ec7e2cd5c6c0209e9c4caa7d8473"
+      ]
+    },
+    {
+      "id": "P012-CONTRACT-unsafe-adr-0010",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p001.py policies",
+      "fixture_hashes": [],
+      "expected": "unsafe solo en winsec.rs y native.rs (ADR-0010 ampliado)",
+      "observed": "exit=0; PASS unsafe prohibido salvo winsec.rs (ADR-0009) y native.rs (ADR-0010), lints heredados en 17 crates; sin unsafe fuera de esa excepción; toolchain 1.99.0 activo",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-CONTRACT-unsafe-adr-0010.log#sha256=56d18d88f63e174bd1f48b08858d18eb69f31487983e21af6dbe53ee070de9f0"
+      ]
+    },
+    {
+      "id": "P012-CONTRACT-adrs",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p002.py adrs",
+      "fixture_hashes": [],
+      "expected": "ADR aceptados",
+      "observed": "exit=0; PASS 10 ADR aceptados con las decisiones del contrato",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-CONTRACT-adrs.log#sha256=85b2a71e4156b63194c499f1b0326ba552a2745ff24aaeb07790564455d9a886"
+      ]
+    },
+    {
+      "id": "P012-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-cargo-fmt.log#sha256=c42934c0db92f50866c97875d20b8fe60270cb9b8c1b7ab8e3e5a6baadc09ffb"
+      ]
+    },
+    {
+      "id": "P012-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-cargo-clippy.log#sha256=87ed9ced264b45910c42731967d7f3063e42f1c963c94f2900e051882e05ca10"
+      ]
+    },
+    {
+      "id": "P012-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-cargo-test.log#sha256=c004c8b7d62120355d641e357333828e70c23af8b9fb7cad9709bc33ee4d1b89"
+      ]
+    },
+    {
+      "id": "P012-UNIT-desktop-lint",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run lint --silent",
+      "fixture_hashes": [],
+      "expected": "eslint sin avisos",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-desktop-lint.log#sha256=af6f4a9a6240defc90a13a0dbbc573ce75b75bd3f25ac871ca490455cd9103d0"
+      ]
+    },
+    {
+      "id": "P012-UNIT-desktop-typecheck",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run typecheck --silent",
+      "fixture_hashes": [],
+      "expected": "TypeScript sin errores",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-desktop-typecheck.log#sha256=8a6cccd078508bbaf3ef89625fbad6104e28b4364541b1a06c512be79f3ee519"
+      ]
+    },
+    {
+      "id": "P012-UNIT-desktop-test",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run test --silent",
+      "fixture_hashes": [],
+      "expected": "vitest: sección Almacenamiento con volúmenes reales, sin letra, red caída y error",
+      "observed": "exit=0; Test Files  3 passed (3) | Tests  29 passed (29) | Start at  15:50:55 | Duration  4.52s (tests 70%, environment 21%, import 4%, transform 4%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-desktop-test.log#sha256=23fbf97cdc4d7056b6db492b987a61fdd6cc395b16f7d3ac71ea92437eae4882"
+      ]
+    },
+    {
+      "id": "P012-UNIT-desktop-build",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run build --silent",
+      "fixture_hashes": [],
+      "expected": "build de producción del frontend",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-BMyc7Qfk.js   260.28 kB │ gzip: 80.74 kB | \u001b[32m✓ built in 96ms\u001b[39m",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-UNIT-desktop-build.log#sha256=fbb2ec9212e2f8df4ebec76b15e2177ecef687f8d4a3b0f63d830e9a56828575"
+      ]
+    },
+    {
+      "id": "P012-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P012-REAL-enumeracion",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p012_real.py windows",
+      "fixture_hashes": [],
+      "expected": "PC IA: GUID y montajes = mountvol; capacidad exacta = GetDiskFreeSpaceExW; NTFS = Get-Volume; NVME = Get-PhysicalDisk; \\\\localhost\\Temp disponible sin GUID; UNC inexistente sin datos; identidad estable",
+      "observed": "exit=0; [PASS] unc-inexistente: \\\\noexiste-larm\\modelos: no disponible, sin capacidad inventada; error real: error:GetVolumeInformationW 0x80070035 No se ha encontrado la ruta de acceso de | [PASS] identidad-estable: dos sondeos dan las mismas volume_key | [PASS] sin-desconocidos: ningún volumen quedó con identidad o clase desconocida | PASS 9 comprobaciones frente a oráculos independientes PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-REAL-enumeracion.log#sha256=04f21fbb362e36a5aa3afdbcb505043019b30aa17dfe24023bb3dba44ed768fc"
+      ]
+    },
+    {
+      "id": "P012-REAL-ultimo-estado",
+      "kind": "REAL",
+      "command": ".venv-tools/Scripts/python.exe -c \"import tools.p012_real as m; m.RUNS = m.REPO / 'docs/reports/P012_runs/revalidation-20261025-022404'; print(m.serve())\"",
+      "fixture_hashes": [],
+      "expected": "daemon real: filas de storage_location ONLINE/OFFLINE/red con capacidad real, 4 eventos en outbox, segundo sondeo sin versión ni eventos, observación en el perfil",
+      "observed": "exit=0; 6 pasos PASS. El daemon real actualizó dos raíces NVMe, un volumen GUID ausente y UNC; escribió cuatro eventos/outbox y refrescó last_seen_at sin subir row_version.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/revalidation-20261025-022404/real/steps.json#sha256=8af66a40d6842df92f752dd500779d12dac845da3a354b5be8351f3f6244ab99"
+      ]
+    },
+    {
+      "id": "P012-REAL-p011-sin-regresion",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p011_real.py serve",
+      "fixture_hashes": [],
+      "expected": "el refresco de hardware sigue funcionando con el almacenamiento integrado",
+      "observed": "exit=0; [PASS] perfil-con-dispositivos: 2 dispositivos y 12 APIs en GET /hardware, conforme a hardware_profileList | [PASS] permisos: lector: refresh 403, job ajeno 404 | [PASS] recuperacion-tras-matar: daemon matado con el job QUEUED -> al volver FAILED job_interrupted | PASS 8 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P012_runs/P012-REAL-p011-sin-regresion.log#sha256=c68408dd4f6bb2200629350706da83507cc5e4d75a7c853f114a7462a2ee727f"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P010 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-25T02:25:42.257Z"
+}

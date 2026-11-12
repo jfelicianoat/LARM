@@ -1,0 +1,199 @@
+{
+  "prompt_id": "P141",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "d6360096e142e05e7df23e5f437b57956853c9ecdee5e48f3694bdadf0409f05",
+  "changed_files": [
+    "../LARM_prompts_v3/contracts/00_PACKAGE.md",
+    "../LARM_prompts_v3/contracts/03_ADAPTERS_SECURITY.md",
+    "../LARM_prompts_v3/contracts/REVISION_3_8_0_P141.md",
+    "../LARM_prompts_v3/contracts/crate-graph.json",
+    "../LARM_prompts_v3/contracts/schemas/larm.schema.json",
+    "adapters/source/p048/Cargo.toml",
+    "adapters/source/p048/src/lib.rs",
+    "apps/daemon/src/source_probes.rs",
+    "apps/desktop/src/sources.test.tsx",
+    "apps/desktop/src/sources.tsx",
+    "crates/larm-adapter-host/tests/source.rs",
+    "crates/larm-adapter-sdk/src/capabilities/builtin.rs",
+    "crates/larm-adapter-sdk/src/source/wire.rs",
+    "crates/larm-adapter-sdk/tests/source_protocol.rs",
+    "docs/adapters/capability-schemas/index.json",
+    "docs/adapters/method-schemas/source.auth_probe.request.schema.json",
+    "docs/api/openapi.json",
+    "docs/contracts/00_PACKAGE.md",
+    "docs/contracts/03_ADAPTERS_SECURITY.md",
+    "docs/contracts/REVISION_3_8_0_P141.md",
+    "docs/contracts/crate-graph.json",
+    "docs/contracts/schemas/larm.schema.json",
+    "docs/reports/P141_revision-contractual-oauth-propuesta.md",
+    "tools/p141_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P141-CONTRACT-SCHEMAS",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_schemas.py check",
+      "fixture_hashes": [
+        "docs/contracts/schemas/larm.schema.json:46a4e8529ace46e0ae6df5fe74c8420ef8157672f475c648de194aafa8e141e1",
+        "docs/adapters/method-schemas/source.auth_probe.request.schema.json:84b5147c80b25f1356363c5785936758b7e9185c69611263f3bcde8e840b3e85"
+      ],
+      "expected": "AuthProbe incluye account_id nullable obligatorio y sus schemas cerrados se generan desde los contratos canónicos.",
+      "observed": "exit=0; PASS: 40 firmas / 80 schemas autocontenidos, índice y hashes exactos; todas las restricciones originales conservadas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-CONTRACT-SCHEMAS.log#sha256=15d2e66b3841e02f37f039eb220f3c3f6b27b6fa5287c7a384a535c57b347c20"
+      ]
+    },
+    {
+      "id": "P141-OPENAPI-SYNC",
+      "kind": "CONTRACT",
+      "command": "cargo run -p larm-daemon -- openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [
+        "crates/larm-api/src/openapi.rs:8f3999de2ad8f177ac6cab81bf525bd832cccdf65f5125077ef9180a0b5596bb",
+        "docs/contracts/schemas/larm.schema.json:46a4e8529ace46e0ae6df5fe74c8420ef8157672f475c648de194aafa8e141e1",
+        "docs/api/openapi.json:e86315a3f41c71587526c4c8a8b4d850e1dc7c0b516a82f1447c71dc546235f1"
+      ],
+      "expected": "El OpenAPI generado conserva account_id nullable y obligatorio en AuthProbe y coincide con el artefacto publicado.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.78s | Running `target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check`",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-OPENAPI-SYNC.log#sha256=0e598b379ba9ab234f7d24d1a0e8565792f78dfc44880758206f23b9d709608e"
+      ]
+    },
+    {
+      "id": "P141-SDK-SOURCE-PROTOCOL",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-sdk --test source_protocol -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-adapter-sdk/src/source/wire.rs:be1aaa43670e99043a808191fd7312b305d75bd8d98319964c21f665f56849ed",
+        "crates/larm-adapter-sdk/tests/source_protocol.rs:fdfdd0b9c731b56ddafb3d2d3ec60df22a499ca2ab30bd5adca61a1ae5d01af9"
+      ],
+      "expected": "El SDK valida AuthProbe cerrado, UUIDv7, account_id/ref y roundtrip contractual de sus peticiones.",
+      "observed": "exit=0; warning: `larm-adapter-sdk` (bin \"larm-generic-adapter\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.42s | Running tests\\source_protocol.rs (target\\debug\\deps\\source_protocol-dcdb98133c718208.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-SDK-SOURCE-PROTOCOL.log#sha256=1f6ee04c02c19fd16cde907cda38fef1bd9bd22d5c0ce3d7e64073b2d6e43973"
+      ]
+    },
+    {
+      "id": "P141-HOST-CREDENTIAL-BINDING",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon source_probes -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/src/source_probes.rs:b4bcbdd35232b8dca1d8d74d9e2362d95e87aafe3e05231202c6206963aa9f91"
+      ],
+      "expected": "El host comprueba propietario, cuenta, referencia, tipo y permiso exacto antes de iniciar el worker; los casos inválidos fallan cerrados.",
+      "observed": "exit=0; Running tests\\lifecycle.rs (target\\debug\\deps\\lifecycle-92c2503251201b20.exe) | Running tests\\move.rs (target\\debug\\deps\\move-11104fd67a44f91b.exe) | Running tests\\reference_adapters.rs (target\\debug\\deps\\reference_adapters-02c90fd1e19a8ec3.exe) | Running tests\\runtime_catalog.rs (target\\debug\\deps\\runtime_catalog-53f1c5d6abb8b96c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-HOST-CREDENTIAL-BINDING.log#sha256=d796bd3724cd5ee036a38e264c7847bef826ae589b88ecb649a72720b5fdb9c4"
+      ]
+    },
+    {
+      "id": "P141-P048-BASIC-PROBE",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-source-p048 -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "adapters/source/p048/src/lib.rs:9c7a7d596f348bcf02c472b6078082b3727c5686cf411cfb7dee7bf8081d8f46",
+        "adapters/source/p048/Cargo.toml:78012a15e59d9a760ad2094c834f3f83df91e027994b5638bb8d8ce61dc69132"
+      ],
+      "expected": "El worker recupera Basic desde el almacén mediante service/account fijados, exige HTTPS salvo loopback de fixture, no sigue redirects y clasifica 401/403 sin revelar secretos.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_source_p048-83d79c1d2fab66e0.exe) | Running unittests src\\main.rs (target\\debug\\deps\\larm_source_p048-1f26cce9b13e33f2.exe) | Doc-tests larm_source_p048",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-P048-BASIC-PROBE.log#sha256=94580d13514754e9a5e2733cbcbdbc08c54ed6a6d3edd1ed8298fa5621d8e0ee"
+      ]
+    },
+    {
+      "id": "P141-SOURCE-ACCOUNT-DB",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test sources -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/tests/sources.rs:84525e7be97a002a2edabd783af686c840cc34ab7912188e25a6b86a5a91f4e5"
+      ],
+      "expected": "La persistencia mantiene las referencias ligadas a su cuenta/fuente y revierte de forma atómica los fallos de outbox.",
+      "observed": "exit=0; warning: `larm-db` (test \"sources\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.44s | Running tests\\sources.rs (target\\debug\\deps\\sources-4de0aa4c77bca8cd.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-SOURCE-ACCOUNT-DB.log#sha256=07aab3ae2833c35eb16b0ba9c6c28b795c35b0921e0e780ba0219c75122487dd"
+      ]
+    },
+    {
+      "id": "P141-DESKTOP-BASIC-ACCESS",
+      "kind": "INTEGRATION",
+      "command": "node node_modules/vitest/vitest.mjs run --pool=threads --maxWorkers=1 --root apps/desktop src/sources.test.tsx",
+      "fixture_hashes": [
+        "apps/desktop/src/sources.tsx:26b5ae988cedc18b7bb998f31258a9aa49bbf9ec7da35dbb8f77d843b01d8ecd",
+        "apps/desktop/src/sources.test.tsx:7891fbe8b538044d32fb53afbe3abf4771907808f9edbdb9c6db88904ae1fe46"
+      ],
+      "expected": "El escritorio crea y vincula cuentas con If-Match, guarda Basic por la ruta protegida y limpia usuario/contraseña al terminar.",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  12 passed (12) | Start at  15:33:45 | Duration  4.62s (tests 51%, environment 31%, transform 11%, import 7%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-DESKTOP-BASIC-ACCESS.log#sha256=a5e8e17453f6d230a6afc0ab7b0f0e591c35af932f5d13bc30cf2383181ca6b2"
+      ]
+    },
+    {
+      "id": "P141-CAPABILITY-INDEX",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_capability_schemas.py check",
+      "fixture_hashes": [
+        "docs/adapters/capability-schemas/index.json:b3487eaca5fcf455e2b2736d4ccf0f2d0a93ab934ca6d65a8cb321929aa657da",
+        "crates/larm-adapter-sdk/src/capabilities/builtin.rs:a6e067e2cb12c540b2e86d72bb4e0532fc3482bc613d45b2aa88bca4acdb5c29"
+      ],
+      "expected": "El índice de capacidades refleja los hashes fuente del schema actualizado y el código Rust derivado coincide.",
+      "observed": "exit=0; PASS: 18 capacidades / 36 schemas con hashes RFC8785 e índice Rust exactos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-CAPABILITY-INDEX.log#sha256=bd1970d3d27147906e52cea3e8e26da3f5a6032a728615ff5ba27b10a0c7d65f"
+      ]
+    },
+    {
+      "id": "P141-PACKAGE-COPY",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "docs/spec/PACKAGE_COPY_HASHES.json:99842c9cec5f512b2de548cc934a12172846223f7226462cc8f3ee0603dd3214",
+        "docs/contracts/REVISION_3_8_0_P141.md:6389f6d962c43750454ba7f5438efb3d41923fc35d77ae183b81602bdd2b6a57"
+      ],
+      "expected": "Las copias normativas locales coinciden byte a byte con el paquete contractual 3.8.0.",
+      "observed": "exit=0; PASS 63 copias idénticas al paquete 3.8.0",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P141_runs/P141-PACKAGE-COPY.log#sha256=f0af838ab5bc05cb4d1769d094c8aeca03d18c33897ca1572f30f700b1c57e2f"
+      ]
+    },
+    {
+      "id": "P141-OAUTH-TOKEN-SSH-COOKIE-GIT-LFS",
+      "kind": "INTEGRATION",
+      "command": "tests de API_TOKEN, OAuth device/PKCE, refresh/revoke, SSH agent/host key, cookies y Git LFS",
+      "fixture_hashes": [],
+      "expected": "Cada mecanismo anunciado tiene perfil cualificado, flujo real, fallos cerrados, redacción y pruebas contractuales propias.",
+      "observed": "NO EJECUTADA: El vínculo de cuenta, el probe Basic de P048 y su recorrido de escritorio están implementados; API_TOKEN, OAuth, SSH, cookies y Git LFS siguen sin implementación cualificada.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P141-PRIVATE-SOURCE-REAL",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P141 -Real con una fuente privada autorizada",
+      "fixture_hashes": [],
+      "expected": "Una fuente privada autorizada completa el probe y verifica renovación/revocación sin filtrar credenciales.",
+      "observed": "NO EJECUTADA: No hay una fuente privada ni una cuenta de prueba autorizadas disponibles en este entorno; no se reutilizan tokens de otras integraciones.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P141 aún no implementa API_TOKEN, OAuth device/PKCE con refresh/revoke, SSH agent/host key, cookies ni Git LFS.",
+    "Falta una prueba con fuente privada y cuenta autorizadas, incluido el ciclo de renovación/revocación.",
+    "dependencia P045 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P046 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P047 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P048 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P049 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-24T14:33:51.546Z"
+}

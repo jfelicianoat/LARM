@@ -1,0 +1,6 @@
+{
+  "provider": "OLLAMA_LIBRARY",
+  "adapter_id": "larm.source.ollama-library",
+  "network_origins": [],
+  "capabilities": []
+}

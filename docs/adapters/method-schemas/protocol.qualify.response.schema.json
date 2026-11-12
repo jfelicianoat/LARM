@@ -1,0 +1,117 @@
+{
+  "$defs": {
+    "larm__EvidenceComponent": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "VERIFIED",
+            "DECLARED",
+            "UNAVAILABLE"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "status",
+        "evidence_refs"
+      ],
+      "type": "object"
+    },
+    "larm__Fingerprint": {
+      "additionalProperties": false,
+      "properties": {
+        "components": {
+          "additionalProperties": {
+            "$ref": "#/$defs/larm__EvidenceComponent"
+          },
+          "minProperties": 1,
+          "type": "object"
+        },
+        "hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "hash",
+        "components"
+      ],
+      "type": "object"
+    },
+    "larm__QualificationResult": {
+      "additionalProperties": false,
+      "properties": {
+        "fingerprint": {
+          "$ref": "#/$defs/larm__Fingerprint"
+        },
+        "qualified": {
+          "type": "boolean"
+        },
+        "tests": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "evidence_refs": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "reason": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNSUPPORTED"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "reason",
+              "evidence_refs"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "qualified",
+        "tests",
+        "fingerprint"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__QualificationResult",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,149 @@
+{
+  "prompt": "P047",
+  "real": true,
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "cargo_fmt",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "cargo_clippy",
+      "result": "PASS",
+      "detail": "exit=0 warning: `larm-adapter-host` (test \"conformance\") generated 1 warning | warning: `larm-db` (test \"adapter_probes\") generated 1 warning | warning: `larm-db` (test \"conformance\") generated 1 warning | warning: `larm-runtime` (test \"install\") generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.94s"
+    },
+    {
+      "check": "test_fixtures",
+      "result": "PASS",
+      "detail": "exit=0 warning: `larm-adapter-host` (example \"fake_adapter\") generated 1 warning | warning: `larm-adapter-host` (example \"fake_source\") generated 1 warning | warning: `larm-adapter-host` (example \"wire_proxy\") generated 1 warning | warning: `larm-adapter-host` (example \"conformance_host\") generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.70s"
+    },
+    {
+      "check": "cargo_test",
+      "result": "PASS",
+      "detail": "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+    },
+    {
+      "check": "architecture",
+      "result": "PASS",
+      "detail": "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager � LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+    },
+    {
+      "check": "package_copy",
+      "result": "PASS",
+      "detail": "exit=0 PASS 59 copias id�nticas al paquete 3.5.0"
+    },
+    {
+      "check": "desktop_fmt",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "desktop_clippy",
+      "result": "PASS",
+      "detail": "exit=0 warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\incremental\\build_script_build-2wvf0lsc4qz6d\\s-hnf5maq8hf-0qo4eij-working` |  | warning: `larm-desktop` (build script) generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.54s"
+    },
+    {
+      "check": "desktop_test",
+      "result": "PASS",
+      "detail": "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+    },
+    {
+      "check": "npm_lint",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "npm_typecheck",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "npm_test",
+      "result": "PASS",
+      "detail": "exit=0    Duration  24.81s (tests 53%, environment 33%, import 12%, transform 2%) |  |     Isolate  9 workers spawned · ~974ms startup each (spawn + environment, per file) |              at least ~7.79s faster with isolate: false — reuses workers across files instead of one per file | "
+    },
+    {
+      "check": "npm_build",
+      "result": "PASS",
+      "detail": "exit=0 dist/assets/index-CmNaxb_B.css   21.27 kB │ gzip:   4.41 kB | dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-CGXXWt1y.js   402.37 kB │ gzip: 115.52 kB |  | ✓ built in 236ms"
+    },
+    {
+      "check": "P047_evidence",
+      "result": "PASS",
+      "detail": "exit=0    BLOQUEO  Autenticación privada y gated continúa pendiente de P045/P141. |    BLOQUEO  Los orígenes de object storage en redirecciones requieren calificación y permiso explícitos antes de habilitar descargas reales. |    BLOQUEO  dependencia P025 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P045 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+    }
+  ],
+  "transcripts": {
+    "cargo_fmt": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/cargo_fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "cargo_clippy": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/cargo_clippy.log",
+      "sha256": "e469e7d3a0d5d4aa3d9a4799eb0e51ab8fd7e35c4605c2d055f25f2c2142c4d3",
+      "exit_code": 0
+    },
+    "test_fixtures": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/test_fixtures.log",
+      "sha256": "2a76104f165b7e0d5cda9aee6d077806dbf4776c029e7c3badaf07d1c45137f6",
+      "exit_code": 0
+    },
+    "cargo_test": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/cargo_test.log",
+      "sha256": "5de3ba2e4d5f94cadfe72bd3be6cc8b3379a2926e89c808f63d91cee0efcb6e5",
+      "exit_code": 0
+    },
+    "architecture": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/architecture.log",
+      "sha256": "9532dd5f24d2c8c4a6048eb5f9f376777c94db379b8d41194a57c46d93b13e89",
+      "exit_code": 0
+    },
+    "package_copy": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/package_copy.log",
+      "sha256": "1c2fb7c62866593cb3da119947b61f4eab23115872dacfce9ea31f7a566bbcf1",
+      "exit_code": 0
+    },
+    "desktop_fmt": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/desktop_fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "desktop_clippy": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/desktop_clippy.log",
+      "sha256": "bdb13b5186fe24b815114895fa1f28765ae68d857732436b1e64789556f0d8e7",
+      "exit_code": 0
+    },
+    "desktop_test": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/desktop_test.log",
+      "sha256": "0bcfc4a72c31503f887d38ef43fa59ac7ee86d15f53dfafb1a14831eba6cb8b3",
+      "exit_code": 0
+    },
+    "npm_lint": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/npm_lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "npm_typecheck": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/npm_typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "npm_test": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/npm_test.log",
+      "sha256": "ec012fe73c96a68084962355d64819e3dd2fbb25a68058bf55bd9c3181153d1a",
+      "exit_code": 0
+    },
+    "npm_build": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/npm_build.log",
+      "sha256": "80e9c6678e37865203a1b26071cf1e838a419190845f13f68520540e7a0837db",
+      "exit_code": 0
+    },
+    "P047_evidence": {
+      "path": "docs/reports/check_runs/20261023T2212501620240Z/P047_evidence.log",
+      "sha256": "6d4686da2031ede25476a680178225602d84b9234fe15f9b51344ff8adb40324",
+      "exit_code": 0
+    }
+  }
+}

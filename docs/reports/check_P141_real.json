@@ -1,0 +1,149 @@
+{
+  "prompt": "P141",
+  "real": true,
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "cargo_fmt",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "cargo_clippy",
+      "result": "PASS",
+      "detail": "exit=0 warning: `larm-db` (test \"model_verification\") generated 1 warning | warning: `larm-runtime` (test \"version_discovery\") generated 1 warning | warning: `larm-db` (test \"security\") generated 1 warning | warning: `larm-db` (test \"adapter_updates\") generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.18s"
+    },
+    {
+      "check": "test_fixtures",
+      "result": "PASS",
+      "detail": "exit=0 warning: `larm-adapter-host` (example \"conformance_host\") generated 1 warning | warning: `larm-adapter-host` (example \"wire_proxy\") generated 1 warning | warning: `larm-adapter-host` (example \"fake_runtime_worker\") generated 1 warning | warning: `larm-adapter-host` (example \"fake_adapter\") generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.47s"
+    },
+    {
+      "check": "cargo_test",
+      "result": "PASS",
+      "detail": "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+    },
+    {
+      "check": "architecture",
+      "result": "PASS",
+      "detail": "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager � LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+    },
+    {
+      "check": "package_copy",
+      "result": "PASS",
+      "detail": "exit=0 PASS 63 copias id�nticas al paquete 3.8.0"
+    },
+    {
+      "check": "desktop_fmt",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "desktop_clippy",
+      "result": "PASS",
+      "detail": "exit=0 warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\incremental\\build_script_build-2wvf0lsc4qz6d\\s-hnf5maq8hf-0qo4eij-working` |  | warning: `larm-desktop` (build script) generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 7.02s"
+    },
+    {
+      "check": "desktop_test",
+      "result": "PASS",
+      "detail": "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+    },
+    {
+      "check": "npm_lint",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "npm_typecheck",
+      "result": "PASS",
+      "detail": "exit=0 "
+    },
+    {
+      "check": "npm_test",
+      "result": "PASS",
+      "detail": "exit=0    Duration  63.73s (environment 57%, tests 31%, import 11%, transform 1%) |  |     Isolate  10 workers spawned · ~3.69s startup each (spawn + environment, per file) |              at least ~33.25s faster with isolate: false — reuses workers across files instead of one per file | "
+    },
+    {
+      "check": "npm_build",
+      "result": "PASS",
+      "detail": "exit=0 dist/assets/index-CDF6uqFC.css   22.95 kB │ gzip:   4.74 kB | dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-lA6Hxdig.js   417.49 kB │ gzip: 119.34 kB |  | ✓ built in 348ms"
+    },
+    {
+      "check": "P141_evidence",
+      "result": "PASS",
+      "detail": "exit=0    BLOQUEO  dependencia P045 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P046 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P047 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P048 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P049 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+    }
+  ],
+  "transcripts": {
+    "cargo_fmt": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/cargo_fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "cargo_clippy": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/cargo_clippy.log",
+      "sha256": "0d1cb7bdf85a02214c2252704cdfafa6d69e47386073f10fee5855d52b18e9e2",
+      "exit_code": 0
+    },
+    "test_fixtures": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/test_fixtures.log",
+      "sha256": "2205ca2c49188c22c5f81db7cf9e44e217515067b0d6f3701d5e67e748580a37",
+      "exit_code": 0
+    },
+    "cargo_test": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/cargo_test.log",
+      "sha256": "043b2734a4543fcdce45a2f209c53368eb53fd7d3fdc9d76661e9db38c6a045d",
+      "exit_code": 0
+    },
+    "architecture": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/architecture.log",
+      "sha256": "13d81e4fe6cd7b4ce3c56df4004843a864d06cace45b153234d1610f4f3a4a54",
+      "exit_code": 0
+    },
+    "package_copy": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/package_copy.log",
+      "sha256": "2c550e4842352ddf08160b81a69b28599129bd3c15075180de2ec97e56c15ca7",
+      "exit_code": 0
+    },
+    "desktop_fmt": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/desktop_fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "desktop_clippy": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/desktop_clippy.log",
+      "sha256": "eeb20332dd96c228c91e18b92bc49464b2670c0c70f1d9fc2d13f4dadc7d4905",
+      "exit_code": 0
+    },
+    "desktop_test": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/desktop_test.log",
+      "sha256": "e8cf30d8e0b0e985f3071cccef3d6140d2172dd3f9e84f7c6d27afeedb923985",
+      "exit_code": 0
+    },
+    "npm_lint": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/npm_lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "npm_typecheck": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/npm_typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "npm_test": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/npm_test.log",
+      "sha256": "38dfdf226a980bc9c3624dae499be75f6b76b8b1f5aac5b37415179b0154f09b",
+      "exit_code": 0
+    },
+    "npm_build": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/npm_build.log",
+      "sha256": "4c75bad9b7303b11d6ba36695115a403c47ec900b52422b9c4236e8202ca58dc",
+      "exit_code": 0
+    },
+    "P141_evidence": {
+      "path": "docs/reports/check_runs/20261024T0905564829347Z/P141_evidence.log",
+      "sha256": "47410b31ca077548835f8f55245c577321aa8c3dfc816bbaf3dd757d49d8a5fa",
+      "exit_code": 0
+    }
+  }
+}

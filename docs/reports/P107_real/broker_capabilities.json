@@ -1,0 +1,77 @@
+{
+  "system1_judgments": false,
+  "system1_semantic_routing": false,
+  "system1_evaluation": false,
+  "contract_version": "2.11",
+  "strategies": [
+    "single",
+    "mixture_of_agents",
+    "agent"
+  ],
+  "presets": {
+    "single": [
+      "fast"
+    ],
+    "mixture_of_agents": [
+      "fast",
+      "slow"
+    ],
+    "agent": [
+      "fast"
+    ]
+  },
+  "scheduling_by_preset": {
+    "fast": [
+      "sequential"
+    ],
+    "slow": [
+      "adaptive",
+      "parallel",
+      "waves",
+      "sequential"
+    ]
+  },
+  "max_active_workflows": 1,
+  "max_parallel_invocations": 3,
+  "exact_target_model": true,
+  "task_timeout": true,
+  "prompt_compression_override": true,
+  "agent_skills": [
+    "web_search",
+    "fetch_url",
+    "calculator",
+    "current_datetime"
+  ],
+  "agent_skills_egress": [
+    "fetch_url",
+    "web_search"
+  ],
+  "proposer_skills": true,
+  "client_tool_passthrough": true,
+  "task_dependencies": true,
+  "task_group_status": true,
+  "mcp_servers": [],
+  "auto_strategy": false,
+  "confidence_escalation": false,
+  "adaptive_strategy_learning": false,
+  "file_ingestion": false,
+  "sandbox_run_code": false,
+  "long_context_map_reduce": true,
+  "ingestion_formats": {},
+  "derived_data_boundary": true,
+  "work_lanes": [
+    "inference"
+  ],
+  "generation_determinism": true,
+  "exclude_from_model_learning": true,
+  "invocation_telemetry": true,
+  "execution_fingerprint": true,
+  "task_artifacts": true,
+  "auxiliary_invocations": false,
+  "auxiliary_invocations_optout": true,
+  "invocation_contract": true,
+  "prompt_compression_echo": true,
+  "canonical_artifacts": true,
+  "local_runtime_resolver": true,
+  "larm_contract_version": "1.0"
+}

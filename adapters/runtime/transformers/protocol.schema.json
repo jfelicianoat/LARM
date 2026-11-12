@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://larm.invalid/private/transformers-worker-v1.schema.json",
+  "title": "Private LARM Transformers worker protocol v1",
+  "oneOf": [
+    {"$ref": "#/$defs/simpleRequest"},
+    {"$ref": "#/$defs/environmentPlanRequest"},
+    {"$ref": "#/$defs/inspectModelRequest"},
+    {"$ref": "#/$defs/generateTextRequest"}
+  ],
+  "$defs": {
+    "uuid7": {"type": "string", "format": "uuid", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "simpleRequest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["protocol_version", "operation"],
+      "properties": {
+        "protocol_version": {"const": "1"},
+        "operation": {"enum": ["probe", "version", "capabilities"]}
+      }
+    },
+    "environmentPlanRequest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["protocol_version", "operation", "payload"],
+      "properties": {
+        "protocol_version": {"const": "1"},
+        "operation": {"const": "environment_plan"},
+        "payload": {
+          "type": "object", "additionalProperties": false,
+          "required": ["runtime_id", "runtime_version_id", "backend_id", "python_version", "dependencies_lock_sha256", "strategy", "announced_strategies"],
+          "properties": {
+            "runtime_id": {"$ref": "#/$defs/uuid7"},
+            "runtime_version_id": {"$ref": "#/$defs/uuid7"},
+            "backend_id": {"$ref": "#/$defs/uuid7"},
+            "python_version": {"type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"},
+            "dependencies_lock_sha256": {"$ref": "#/$defs/sha256"},
+            "strategy": {"enum": ["PIP", "UV", "CONDA", "MAMBA", "PYTHON_VENV"]},
+            "announced_strategies": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+          }
+        }
+      }
+    },
+    "inspectModelRequest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["protocol_version", "operation", "payload"],
+      "properties": {
+        "protocol_version": {"const": "1"},
+        "operation": {"const": "inspect_model"},
+        "payload": {"type": "object", "additionalProperties": false, "required": ["model_id"], "properties": {"model_id": {"type": "string", "minLength": 1, "maxLength": 202}}}
+      }
+    },
+    "generateTextRequest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["protocol_version", "operation", "payload"],
+      "properties": {
+        "protocol_version": {"const": "1"},
+        "operation": {"const": "generate_text"},
+        "payload": {
+          "type": "object", "additionalProperties": false,
+          "required": ["model_id", "backend", "prompt", "max_new_tokens"],
+          "properties": {
+            "model_id": {"type": "string", "minLength": 1, "maxLength": 202},
+            "backend": {"enum": ["CPU", "CUDA", "XPU"]},
+            "prompt": {"type": "string", "minLength": 1, "maxLength": 16000},
+            "max_new_tokens": {"type": "integer", "minimum": 1, "maximum": 256}
+          }
+        }
+      }
+    },
+    "successResponse": {
+      "type": "object", "additionalProperties": false,
+      "required": ["protocol_version", "ok", "result"],
+      "properties": {"protocol_version": {"const": "1"}, "ok": {"const": true}, "result": {"type": "object"}}
+    },
+    "errorResponse": {
+      "type": "object", "additionalProperties": false,
+      "required": ["protocol_version", "ok", "error"],
+      "properties": {
+        "protocol_version": {"const": "1"}, "ok": {"const": false},
+        "error": {"type": "object", "additionalProperties": false, "required": ["code", "reason"], "properties": {"code": {"type": "string"}, "reason": {"type": "string"}}}
+      }
+    }
+  }
+}

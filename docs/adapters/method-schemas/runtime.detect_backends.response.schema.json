@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "domain__runtime_backend": {
+      "additionalProperties": false,
+      "properties": {
+        "backend_type": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "created_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        },
+        "device_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "driver_version": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "limits": {
+          "additionalProperties": false,
+          "properties": {
+            "gpu_sharing": {
+              "type": "boolean"
+            },
+            "max_instances": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "multi_model_support": {
+              "type": "boolean"
+            },
+            "parallel_requests": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "max_instances",
+            "multi_model_support",
+            "parallel_requests",
+            "gpu_sharing"
+          ],
+          "type": "object"
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "row_version": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "runtime_installation_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "AVAILABLE",
+            "UNAVAILABLE",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "updated_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "row_version",
+        "metadata",
+        "runtime_installation_id",
+        "backend_type",
+        "device_id",
+        "driver_version",
+        "status",
+        "evidence_refs",
+        "limits"
+      ],
+      "type": "object"
+    },
+    "larm__BackendList": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/larm__runtime_backend"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "type": "object"
+    },
+    "larm__runtime_backend": {
+      "$ref": "#/$defs/domain__runtime_backend"
+    }
+  },
+  "$ref": "#/$defs/larm__BackendList",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

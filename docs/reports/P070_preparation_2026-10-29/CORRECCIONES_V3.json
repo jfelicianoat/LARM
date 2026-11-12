@@ -1,0 +1,860 @@
+{
+  "date": "2026-10-10",
+  "base_package_version": "2.0.0",
+  "corrected_package_version": "3.0.0",
+  "scope": "PROMPT_PACKAGE_AND_CONTRACTS_ONLY",
+  "original_spec_sha256": "52ea1dfda5a7391181b32776086b1b1ccb87738466e8b080ca9a1c795bb09a19",
+  "findings": [
+    {
+      "id": "H01",
+      "priority": "Alta",
+      "title": "PRERELEASE y COMMIT no caben en el contrato de RuntimeVersion",
+      "sections": [
+        49
+      ],
+      "prompts": [
+        "P030",
+        "P032",
+        "P124"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P030",
+          "file": "prompts/03_runtime_core/P030_dominio-y-persistencia-de-runtimes.md",
+          "line": 38
+        }
+      ],
+      "pointers": [
+        "domain.schema.json#/$defs/runtime_version/properties/channel",
+        "larm.schema.json#/$defs/runtime_versionCreate/properties/channel"
+      ],
+      "requirement": "La especificación enumera STABLE, PRERELEASE, NIGHTLY, COMMIT y CUSTOM; P030 vuelve a exigir esos cinco canales.",
+      "observed": "El enum persistente y el DTO de creación solo admiten stable, nightly, experimental y custom. El CHECK de runtime_version.channel usa la misma lista. No se ha encontrado una equivalencia contractual que preserve PRERELEASE y COMMIT. La diferencia no consiste en mayúsculas/minúsculas.",
+      "impact": "Una versión prerelease o ligada a commit no puede registrarse con su canal real siguiendo simultáneamente P030 y los contratos. Clasificar ambas como custom o experimental perdería la distinción requerida.",
+      "reproduction": "Los valores prerelease y commit se rechazan tanto en el registro de dominio como en el DTO de creación; SQLite también rechaza ambos valores.",
+      "corrections": [
+        "Restituir ambos canales en dominio, DTOs y restricciones SQL; documentar una única representación y cualquier conversión de mayúsculas.",
+        "Alinear P030 y los prompts que descubren, actualizan o presentan versiones. Conservar la elección de política por runtime exigida en §49.",
+        "Revisar fixtures, ejemplos y comprobaciones del paquete para que recorran todos los canales previstos."
+      ],
+      "acceptance": [
+        "Crear, persistir, consultar y mostrar una versión de cada canal; conservar el canal tras exportación/importación.",
+        "Seleccionar una política por runtime y comprobar que distingue prerelease, nightly y commit. Rechazar valores realmente desconocidos según la política documentada."
+      ],
+      "evidence": [
+        {
+          "file": "schemas/domain.schema.json",
+          "line": 1262,
+          "needle": "    \"runtime_version\": {"
+        },
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 3845,
+          "needle": "    \"runtime_versionCreate\": {"
+        },
+        {
+          "file": "contracts/persistence.sql",
+          "line": 195,
+          "needle": "CREATE TABLE runtime_version"
+        }
+      ],
+      "specification": [
+        {
+          "section": 49,
+          "title": "Canales de runtime",
+          "file": "Especificacion tecnica.md",
+          "start_line": 3229,
+          "end_line": 3256
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P030",
+        "P032",
+        "P124",
+        "P031"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json",
+        "schemas/domain.schema.json",
+        "contracts/persistence.sql",
+        "contracts/api-operations.json"
+      ],
+      "documentary_cases": [
+        "H01-001",
+        "H01-002",
+        "H01-003",
+        "H01-004",
+        "H01-005",
+        "H01-006",
+        "H01-007",
+        "H01-008",
+        "H01-009",
+        "H01-010",
+        "H01-011",
+        "H01-012",
+        "H01-013",
+        "H01-014",
+        "H01-015",
+        "H01-016",
+        "H01-017"
+      ]
+    },
+    {
+      "id": "H02",
+      "priority": "Alta",
+      "title": "La lista cerrada de estrategias impide declarar varias previstas por la especificación",
+      "sections": [
+        52,
+        53
+      ],
+      "prompts": [
+        "P020",
+        "P031",
+        "P071",
+        "P140"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P031",
+          "file": "prompts/03_runtime_core/P031_descubrimiento-e-instalacion-de-versiones-de-runtime.md",
+          "line": 37
+        }
+      ],
+      "pointers": [
+        "larm.schema.json#/$defs/InstallRequest/properties/strategy",
+        "domain.schema.json#/$defs/runtime_installation/properties/strategy"
+      ],
+      "requirement": "§52 permite a los adaptadores declarar, entre otras, WINGET, UV, CONDA, MAMBA y CUSTOM. §53 contempla uv, venv y micromamba/conda para entornos aislados.",
+      "observed": "P031 limita expresamente el trabajo a ocho estrategias. Contrato 04, InstallRequest, runtime_installation y SQL cierran la lista en ARCHIVE, MSI_MANAGED, PYTHON_VENV, NUGET, BUILD_FROM_SOURCE, EXTERNAL_ADOPTION, WSL2 y CONTAINER. No hay un discriminador ni una correspondencia normativa que mantenga las cinco opciones señaladas.",
+      "impact": "Un adaptador no puede declarar esas estrategias como tales en la solicitud y el registro de instalación. La selección del mecanismo queda sin contrato. No se considera defecto el mero cambio de nombre de otras estrategias, ni se exige que todos los runtimes implementen todas las opciones.",
+      "reproduction": "WINGET, UV, CONDA, MAMBA y CUSTOM se rechazan en InstallRequest y en el CHECK de runtime_installation.strategy.",
+      "corrections": [
+        "Ampliar la representación o definir una correspondencia explícita y sin pérdida con un discriminador suficiente; cubrir las estrategias originales que un adaptador pueda declarar.",
+        "Actualizar P031, manifest/capabilities del adaptador, perfiles externos, DTO, DB y asistente de instalación de forma conjunta.",
+        "Precisar el aislamiento de cada gestor de entornos sin modificar Python global; mantener las autorizaciones ya previstas para cambios globales."
+      ],
+      "acceptance": [
+        "Con un adaptador de prueba que anuncie cada estrategia, validar su declaración, generar el plan, persistirla y recuperarla sin sustituirla por otra.",
+        "Probar al menos el flujo contractual de selección de uv y conda/micromamba, incluyendo la negativa cuando el mecanismo no esté disponible."
+      ],
+      "evidence": [
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 6705,
+          "needle": "    \"InstallRequest\": {"
+        },
+        {
+          "file": "schemas/domain.schema.json",
+          "line": 1373,
+          "needle": "    \"runtime_installation\": {"
+        },
+        {
+          "file": "contracts/04_RUNTIME_LEASES.md",
+          "line": 3,
+          "needle": "Installation strategies:"
+        }
+      ],
+      "specification": [
+        {
+          "section": 52,
+          "title": "Runtime Installation Strategies",
+          "file": "Especificacion tecnica.md",
+          "start_line": 3349,
+          "end_line": 3390
+        },
+        {
+          "section": 53,
+          "title": "Python Environment Manager",
+          "file": "Especificacion tecnica.md",
+          "start_line": 3391,
+          "end_line": 3444
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P020",
+        "P031",
+        "P071",
+        "P140",
+        "P099",
+        "P037"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json",
+        "schemas/domain.schema.json",
+        "contracts/persistence.sql"
+      ],
+      "documentary_cases": [
+        "H02-018",
+        "H02-019",
+        "H02-020",
+        "H02-021",
+        "H02-022",
+        "H02-023",
+        "H02-024",
+        "H02-025",
+        "H02-026",
+        "H02-027",
+        "H02-028",
+        "H02-029",
+        "H02-030",
+        "H02-031",
+        "H02-032",
+        "H02-033",
+        "H02-034",
+        "H02-035",
+        "H02-036",
+        "H02-037",
+        "H02-038",
+        "H02-039",
+        "H02-040",
+        "H02-041",
+        "H02-042",
+        "H02-043",
+        "H02-044",
+        "H02-045",
+        "H02-046",
+        "H02-047",
+        "H02-048"
+      ]
+    },
+    {
+      "id": "H03",
+      "priority": "Alta",
+      "title": "LaunchProfile omite parámetros de ejecución exigidos",
+      "sections": [
+        56
+      ],
+      "prompts": [
+        "P034",
+        "P033",
+        "P035",
+        "P100",
+        "P124"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P034",
+          "file": "prompts/03_runtime_core/P034_launch-profiles-y-configuracion-reproducible.md",
+          "line": 37
+        },
+        {
+          "code": "P034",
+          "file": "prompts/03_runtime_core/P034_launch-profiles-y-configuracion-reproducible.md",
+          "line": 41
+        }
+      ],
+      "pointers": [
+        "larm.schema.json#/$defs/LaunchParameters",
+        "domain.schema.json#/$defs/launch_profile/properties/parameters",
+        "larm.schema.json#/$defs/launch_profileCreate"
+      ],
+      "requirement": "§56 dice que un perfil contiene memory limit, runtime arguments y environment variables. P034 exige además env refs y adapter_options validados.",
+      "observed": "LaunchParameters es cerrado y solo admite threads, context, batch, concurrency, offload_layers, backend_id, tokenizer_hash, chat_template_hash y generation. Los perfiles persistidos y de creación remiten a ese tipo. No existe un campo equivalente para los tres requisitos ni para adapter_options.",
+      "impact": "La aplicación no puede guardar y reproducir esos ajustes como parte del perfil respetando el schema. LaunchPlan contiene args calculados y una lista de nombres de entorno, pero no resuelve la entrada editable del perfil. Constraints.max_memory_bytes existe para leases; no sustituye un límite persistente propio del perfil.",
+      "reproduction": "Un LaunchParameters válido pasa. Añadir un límite de memoria, argumentos, entorno o adapter_options provoca additionalProperties. Los nombres añadidos son sondas ilustrativas: la ausencia se acredita por la lista completa de propiedades, no por exigir esos nombres concretos.",
+      "corrections": [
+        "Definir campos tipados para límite de memoria, argumentos/opciones del adaptador y entorno o referencias a secretos; hacerlos transitables por creación, persistencia y edición del perfil.",
+        "Definir cómo se combinan el límite del perfil y el constraint de la lease, sin relajar ninguno silenciosamente.",
+        "Actualizar snapshot efectivo y hash del perfil; validar argumentos con el adaptador y aplicar las reglas existentes de secretos y ejecución sin shell."
+      ],
+      "acceptance": [
+        "Guardar dos perfiles que solo difieran en uno de estos ajustes, recargarlos y comprobar parámetros efectivos y hashes diferentes.",
+        "Verificar que el proceso recibe el entorno y argumentos autorizados, respeta el límite aplicable y no expone secretos en respuestas o logs."
+      ],
+      "evidence": [
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 264,
+          "needle": "    \"LaunchParameters\": {"
+        },
+        {
+          "file": "schemas/domain.schema.json",
+          "line": 2589,
+          "needle": "    \"launch_profile\": {"
+        },
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 5164,
+          "needle": "    \"launch_profileCreate\": {"
+        }
+      ],
+      "specification": [
+        {
+          "section": 56,
+          "title": "Launch Profiles",
+          "file": "Especificacion tecnica.md",
+          "start_line": 3557,
+          "end_line": 3614
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P034",
+        "P033",
+        "P035",
+        "P100",
+        "P124",
+        "P013",
+        "P117",
+        "P099"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json",
+        "schemas/domain.schema.json",
+        "contracts/persistence.sql"
+      ],
+      "documentary_cases": [
+        "H03-049",
+        "H03-050",
+        "H03-051",
+        "H03-052",
+        "H03-053",
+        "H03-054",
+        "H03-055"
+      ]
+    },
+    {
+      "id": "H04",
+      "priority": "Media",
+      "title": "El adaptador declarativo no permite configurar variables de entorno",
+      "sections": [
+        13
+      ],
+      "prompts": [
+        "P023",
+        "P037",
+        "P140"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P023",
+          "file": "prompts/02_adapters/P023_adaptador-declarativo-configurable-desde-gui.md",
+          "line": 43
+        }
+      ],
+      "pointers": [
+        "larm.schema.json#/$defs/DeclarativeAdapter",
+        "larm.schema.json#/$defs/DeclarativeAdapter/properties/start",
+        "larm.schema.json#/$defs/AdapterManifest"
+      ],
+      "requirement": "§13 incluye Variables de entorno entre los campos que la GUI permitirá definir. P023 conserva env allowlist en el schema del asistente.",
+      "observed": "DeclarativeAdapter y start tienen additionalProperties:false. start admite executable, args y cwd. El manifest y su executable tampoco incluyen una configuración de entorno. La lista env_allowlist de LaunchPlan es una salida distinta y no proporciona la entrada del asistente.",
+      "impact": "El asistente no puede almacenar una configuración declarativa que necesite una variable de entorno, aunque P023 ordene soportarla. Este hallazgo es independiente del perfil de H03: afecta al alta y exportación del adaptador.",
+      "reproduction": "Un DeclarativeAdapter válido pasa; añadir environment_variables o env_allowlist a start se rechaza. Se verificó que no existe otro campo equivalente en el documento completo.",
+      "corrections": [
+        "Añadir al contrato declarativo una representación de entorno coherente con la política de allowlist y referencias a secretos.",
+        "Alinear validación, expansión, probe, arranque, CRUD y exportación/importación del asistente.",
+        "Reutilizar el mismo mecanismo de tratamiento de entorno que se decida para H03 cuando corresponda, conservando la distinción entre configuración del adaptador y del perfil."
+      ],
+      "acceptance": [
+        "Configurar desde la GUI una variable no secreta, guardar/exportar/importar y comprobar que llega al proceso de prueba.",
+        "Rechazar nombres o referencias no autorizados y demostrar que la exportación no contiene valores secretos."
+      ],
+      "evidence": [
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 10651,
+          "needle": "    \"DeclarativeAdapter\": {"
+        },
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 10200,
+          "needle": "    \"AdapterManifest\": {"
+        }
+      ],
+      "specification": [
+        {
+          "section": 13,
+          "title": "Adaptadores declarativos",
+          "file": "Especificacion tecnica.md",
+          "start_line": 1001,
+          "end_line": 1048
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P023",
+        "P037",
+        "P140",
+        "P099"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json"
+      ],
+      "documentary_cases": [
+        "H04-056",
+        "H04-057",
+        "H04-058"
+      ]
+    },
+    {
+      "id": "H05",
+      "priority": "Alta",
+      "title": "Los filtros de Descubrir no son expresables en Search",
+      "sections": [
+        108
+      ],
+      "prompts": [
+        "P005",
+        "P044",
+        "P121"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P121",
+          "file": "prompts/09_gui/P121_descubrir-busqueda-federada-y-filtros.md",
+          "line": 37
+        },
+        {
+          "code": "P121",
+          "file": "prompts/09_gui/P121_descubrir-busqueda-federada-y-filtros.md",
+          "line": 38
+        },
+        {
+          "code": "P121",
+          "file": "prompts/09_gui/P121_descubrir-busqueda-federada-y-filtros.md",
+          "line": 41
+        }
+      ],
+      "pointers": [
+        "larm.schema.json#/$defs/Search",
+        "contracts/api-operations.json: POST /api/v1/models/search; POST /api/v1/sources/search"
+      ],
+      "requirement": "§108 y P121 requieren filtros de capacidad, arquitectura, parámetros, formato, cuantización, runtime, fuente, licencia, tamaño, compatibilidad, confianza y certificación, junto con las opciones solo ejecutables, solo recomendados y mostrar incompatibles.",
+      "observed": "Las dos rutas de búsqueda remiten a Search, cerrado a q, capabilities, source_ids y compatibility. No hay campos ni gramática de q que representen los demás filtros. El contrato 07, además, ordena rechazar filtros fuera de su lista exacta, que tampoco cubre el requisito completo.",
+      "impact": "El frontend puede dibujar los controles de P121, pero no transmitir su significado por el contrato de búsqueda. Filtrar únicamente los elementos de una página ya recibida no garantiza los resultados ni la paginación exigidos para el catálogo federado.",
+      "reproduction": "Un Search válido pasa. La incorporación de arquitectura, parámetros, formato, cuantización, runtime, licencia, tamaño, confianza, certificación o solo recomendados se rechaza como propiedad adicional.",
+      "corrections": [
+        "Completar el DTO de búsqueda y la lista normativa de filtros, definiendo tipos, rangos, combinaciones y semántica de los tres toggles.",
+        "Conectar P044 y P121 al mismo contrato. Para filtros no soportados por una fuente, definir cómo los resuelve el Core sin dar por filtrado un catálogo incompleto.",
+        "Incluir los filtros efectivos en cursor/filterdigest y restauración del estado de la pantalla."
+      ],
+      "acceptance": [
+        "Probar cada filtro por separado y combinaciones sobre al menos dos páginas y dos fuentes con capacidades diferentes.",
+        "Comprobar que solo recomendados y solo ejecutables producen el conjunto esperado y que cambiar un filtro invalida o reinicia el cursor conforme al contrato."
+      ],
+      "evidence": [
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 1465,
+          "needle": "    \"Search\": {"
+        },
+        {
+          "file": "contracts/07_API_EVENTS_MCP.md",
+          "line": 3,
+          "needle": "Filtros declarados exactos"
+        }
+      ],
+      "specification": [
+        {
+          "section": 108,
+          "title": "Descubrir",
+          "file": "Especificacion tecnica.md",
+          "start_line": 6051,
+          "end_line": 6112
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P005",
+        "P044",
+        "P121",
+        "P043"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json",
+        "contracts/api-operations.json"
+      ],
+      "documentary_cases": [
+        "H05-059",
+        "H05-060",
+        "H05-061",
+        "H05-062",
+        "H05-063",
+        "H05-064",
+        "H05-065",
+        "H05-066",
+        "H05-067",
+        "H05-068",
+        "H05-069",
+        "H05-070",
+        "H05-071",
+        "H05-072",
+        "H05-073",
+        "H05-074",
+        "H05-075",
+        "H05-076"
+      ]
+    },
+    {
+      "id": "H06",
+      "priority": "Alta",
+      "title": "MCP pierde la separación de permisos exigida en §92",
+      "sections": [
+        92
+      ],
+      "prompts": [
+        "P009",
+        "P104",
+        "P131"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P104",
+          "file": "prompts/07_broker_protocol/P104_mcp-administration-server.md",
+          "line": 41
+        }
+      ],
+      "pointers": [
+        "contracts/03_ADAPTERS_SECURITY.md: scopes API",
+        "contracts/07_API_EVENTS_MCP.md: Toolscope mismoAPI",
+        "contracts/api-operations.json: scopes de instalación/actualización y arranque/parada"
+      ],
+      "requirement": "§92 y P104 enumeran permisos separados read, search, download, install, start, stop, benchmark, move, delete, update y admin.",
+      "observed": "El contrato 07 obliga a usar el mismo scope de API para cada herramienta MCP. En la tabla API, instalar y actualizar runtime usan runtimes:write; arrancar mediante lease y detener instancia usan leases:manage. Buscar modelos usa read. No se define una segunda autorización MCP con los permisos de §92.",
+      "impact": "Con el contrato actual no se puede conceder start sin stop ni install sin update. Es una pérdida de granularidad contractual, no una afirmación de explotación observada. Las aprobaciones de acciones destructivas siguen existiendo y no equivalen a esta separación de permisos.",
+      "reproduction": "La lectura de api-operations.json confirma dos parejas de operaciones distintas con scope idéntico; contrato 07 impone esa misma autorización a MCP.",
+      "corrections": [
+        "Conservar permisos por operación para MCP y definir su relación explícita con los scopes de API; puede hacerse con una comprobación adicional o con una revisión coherente de ambos contratos.",
+        "Actualizar P104 y los prompts de autenticación para que una autorización amplia del transporte no otorgue una herramienta no concedida.",
+        "Mantener la aprobación de acciones destructivas como control distinto de los scopes."
+      ],
+      "acceptance": [
+        "Un principal con start puede arrancar y recibe FORBIDDEN al detener; con install puede instalar y recibe FORBIDDEN al actualizar.",
+        "Repetir pruebas negativas para read/search y move/delete; confirmar que ninguna herramienta recibe admin implícitamente."
+      ],
+      "evidence": [
+        {
+          "file": "contracts/03_ADAPTERS_SECURITY.md",
+          "line": 15,
+          "needle": "Scopes read, models:write"
+        },
+        {
+          "file": "contracts/07_API_EVENTS_MCP.md",
+          "line": 11,
+          "needle": "Toolscope mismoAPI"
+        }
+      ],
+      "specification": [
+        {
+          "section": 92,
+          "title": "MCP Permissions",
+          "file": "Especificacion tecnica.md",
+          "start_line": 5411,
+          "end_line": 5454
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P009",
+        "P104",
+        "P131"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json",
+        "contracts/mcp-permissions.json"
+      ],
+      "documentary_cases": [
+        "H06-077",
+        "H06-078",
+        "H06-079",
+        "H06-080"
+      ]
+    },
+    {
+      "id": "H07",
+      "priority": "Alta",
+      "title": "La recuperación ordena persistir un estado que schema y SQL rechazan",
+      "sections": [
+        104
+      ],
+      "prompts": [
+        "P004",
+        "P093",
+        "P125",
+        "P132"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P132",
+          "file": "prompts/10_hardening_release/P132_startup-reconciliation-offline-mode-y-crash-recovery.md",
+          "line": 41
+        }
+      ],
+      "pointers": [
+        "domain.schema.json#/$defs/transformation_job/properties/state",
+        "contracts/persistence.sql: transformation_job.state",
+        "contracts/01_DOMAIN_STATES.md: Download/transform jobs"
+      ],
+      "requirement": "§104 define FAILED_RECOVERABLE para una transformación no reanudable tras interrupción y permite reiniciarla sin dañar el original. P132 lo exige literalmente.",
+      "observed": "El enum de transformation_job.state y el CHECK SQL solo admiten PLANNED, QUEUED, RUNNING, PAUSING, PAUSED, VERIFYING, COMPLETED, CANCELLING, CANCELLED y FAILED. El contrato de transiciones usa FAILED; no declara un alias ni una dimensión persistente equivalente a FAILED_RECOVERABLE.",
+      "impact": "La reconciliación no puede registrar el estado exigido por P132 usando el modelo de persistencia entregado. Usar FAILED sin una equivalencia definida no conserva el contrato solicitado.",
+      "reproduction": "Un transformation_job válido se valida e inserta. Cambiar su estado a FAILED_RECOVERABLE falla por enum en JSON Schema y por CHECK en SQLite.",
+      "corrections": [
+        "Incorporar FAILED_RECOVERABLE y sus transiciones en dominio, SQL, DTOs, eventos y presentación, o formalizar una representación equivalente que preserve explícitamente ese estado público y su semántica.",
+        "Precisar las condiciones del nuevo intento, el preflight y la conservación del artefacto original en P093 y P132.",
+        "Actualizar pruebas de fallo y reinicio, evitando un estado terminal incompatible con el reinicio autorizado."
+      ],
+      "acceptance": [
+        "Interrumpir una transformación no reanudable; reconciliar, persistir y consultar FAILED_RECOVERABLE.",
+        "Reiniciar bajo nuevo preflight y comprobar hash intacto del original, tratamiento de temporales y trazabilidad del intento anterior."
+      ],
+      "evidence": [
+        {
+          "file": "schemas/domain.schema.json",
+          "line": 2923,
+          "needle": "    \"transformation_job\": {"
+        },
+        {
+          "file": "contracts/persistence.sql",
+          "line": 394,
+          "needle": "CREATE TABLE transformation_job"
+        },
+        {
+          "file": "contracts/01_DOMAIN_STATES.md",
+          "line": 15,
+          "needle": "Download/transform jobs:"
+        }
+      ],
+      "specification": [
+        {
+          "section": 104,
+          "title": "Crash recovery",
+          "file": "Especificacion tecnica.md",
+          "start_line": 5869,
+          "end_line": 5908
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P004",
+        "P093",
+        "P125",
+        "P132",
+        "P113"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json",
+        "schemas/domain.schema.json",
+        "contracts/persistence.sql"
+      ],
+      "documentary_cases": [
+        "H07-081",
+        "H07-082"
+      ]
+    },
+    {
+      "id": "H08",
+      "priority": "Media",
+      "title": "Descargas: faltan el límite de ancho de banda y el control de prioridad en los contratos",
+      "sections": [
+        44
+      ],
+      "prompts": [
+        "P003",
+        "P051",
+        "P125",
+        "P140"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P051",
+          "file": "prompts/04_models_sources/P051_download-manager-cola-pausa-reanudacion-y-checksum.md",
+          "line": 47
+        }
+      ],
+      "pointers": [
+        "larm.schema.json#/$defs/Settings/properties/storage",
+        "larm.schema.json#/$defs/DownloadPlanRequest",
+        "domain.schema.json#/$defs/download_job",
+        "larm.schema.json#/$defs/ExecutePlan"
+      ],
+      "requirement": "§44 incluye prioridades y bandwidth limit. P051 especifica que el límite de ancho de banda y la concurrencia sean configurables.",
+      "observed": "Settings.storage define concurrencia, streams, chunk y reintentos, pero no un límite de transferencia. DownloadPlanRequest, ExecutePlan y download_job no contienen una prioridad de descarga y no hay una operación que la cambie. La única tabla de prioridades definida corresponde al scheduler de instancias del contrato 04, no a la cola de descargas.",
+      "impact": "P051 puede implementar el límite como lógica privada, pero el paquete no proporciona cómo configurarlo mediante sus contratos cerrados. Tampoco especifica cómo seleccionar o modificar prioridades en la cola de descargas. La concurrencia máxima y un presupuesto de bytes por día no son una velocidad máxima de transferencia.",
+      "reproduction": "Settings válido rechaza una propiedad adicional para el límite; DownloadPlanRequest rechaza priority. La ausencia se contrastó con el inventario completo de campos y rutas, no solo con el nombre de la sonda.",
+      "corrections": [
+        "Definir dónde se configura el límite, su unidad y el significado de ausencia/sin límite; llevarlo a Settings/API/UI y al gestor de descargas.",
+        "Definir prioridad de descarga, orden y mecanismo de asignación o modificación en los contratos correspondientes, sin confundirla con prioridad de ejecución de modelos.",
+        "Añadir a P051 y P125 casos de aceptación de velocidad y orden de la cola. No es necesario imponer valores numéricos distintos de los que decida el analista."
+      ],
+      "acceptance": [
+        "Modificar el límite mediante la API de configuración y comprobar en un servidor local controlado que la transferencia respeta su semántica y sobrevive al reinicio de configuración.",
+        "Encolar descargas de prioridades distintas y verificar el orden definido; comprobar que pausa/reanudación y cambios de prioridad no corrompen temporales."
+      ],
+      "evidence": [
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 1535,
+          "needle": "    \"Settings\": {"
+        },
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 904,
+          "needle": "    \"DownloadPlanRequest\": {"
+        },
+        {
+          "file": "schemas/domain.schema.json",
+          "line": 2840,
+          "needle": "    \"download_job\": {"
+        }
+      ],
+      "specification": [
+        {
+          "section": 44,
+          "title": "Download Manager",
+          "file": "Especificacion tecnica.md",
+          "start_line": 2943,
+          "end_line": 3014
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P003",
+        "P051",
+        "P125",
+        "P140",
+        "P052",
+        "P119"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json",
+        "schemas/domain.schema.json",
+        "contracts/persistence.sql",
+        "contracts/api-operations.json",
+        "contracts/defaults.json"
+      ],
+      "documentary_cases": [
+        "H08-083",
+        "H08-084",
+        "H08-085",
+        "H08-086",
+        "H08-087",
+        "H08-088",
+        "H08-089",
+        "H08-090",
+        "H08-091",
+        "H08-092",
+        "H08-093",
+        "H08-094",
+        "H08-095"
+      ]
+    },
+    {
+      "id": "H09",
+      "priority": "Media",
+      "title": "No hay configuración de los dos umbrales de espacio libre",
+      "sections": [
+        136
+      ],
+      "prompts": [
+        "P003",
+        "P018",
+        "P113",
+        "P128",
+        "P140"
+      ],
+      "promptEvidence": [
+        {
+          "code": "P128",
+          "file": "prompts/09_gui/P128_notificaciones-watchers-y-actualizaciones.md",
+          "line": 38
+        },
+        {
+          "code": "P140",
+          "file": "prompts/11_complementos/P140_configuracion-completa-y-asistentes-de-runtime-y-fuente.md",
+          "line": 36
+        }
+      ],
+      "pointers": [
+        "larm.schema.json#/$defs/Settings/properties/storage",
+        "contracts/defaults.json: storage",
+        "contracts/02_STORAGE_DOWNLOAD.md: LOW_SPACE"
+      ],
+      "requirement": "§136 define WARNING y CRITICAL con umbrales configurables, mediante porcentaje o GB absolutos. Los valores 15 % y 5 % se presentan como ejemplo, no como valores obligatorios.",
+      "observed": "Settings.storage solo contempla reservas/márgenes y controles de asignación; no tiene los dos umbrales ni una unidad/política equivalente. Los defaults tampoco los contienen. El contrato 02 define LOW_SPACE y P128 una notificación LOW_DISK, sin determinar los dos niveles de §136.",
+      "impact": "El usuario no puede configurar las dos alertas requeridas con el contrato de Settings. Una reserva mínima para admitir trabajos no representa por sí sola dos umbrales de aviso y crítico.",
+      "reproduction": "Settings válido rechaza campos adicionales ilustrativos para warning y critical. La inspección de Settings, defaults y políticas de almacenamiento no encuentra otra representación de esos dos umbrales.",
+      "corrections": [
+        "Definir los dos umbrales configurables y la interpretación de porcentajes o cantidades absolutas; validar su coherencia.",
+        "Conectar la configuración con cálculo de estado/alertas y presentación en P128/P140. Mantener separada su finalidad de la reserva para admitir operaciones.",
+        "No fijar como obligatorios 15 % y 5 % por aparecer en el ejemplo de la especificación."
+      ],
+      "acceptance": [
+        "Configurar ambos niveles por la vía elegida y comprobar los límites exactos de cruce y recuperación.",
+        "Verificar persistencia, edición y generación de alertas distinguibles WARNING/CRITICAL, sin duplicados por cada refresco."
+      ],
+      "evidence": [
+        {
+          "file": "schemas/larm.schema.json",
+          "line": 1535,
+          "needle": "    \"Settings\": {"
+        },
+        {
+          "file": "contracts/02_STORAGE_DOWNLOAD.md",
+          "line": 17,
+          "needle": "LOW_SPACE pausa"
+        }
+      ],
+      "specification": [
+        {
+          "section": 136,
+          "title": "Baja disponibilidad de disco",
+          "file": "Especificacion tecnica.md",
+          "start_line": 7209,
+          "end_line": 7248
+        }
+      ],
+      "review_status": "CONFIRMED",
+      "correction_status": "DOCUMENTARY_CORRECTED",
+      "software_implementation_status": "NOT_RUN",
+      "owners": [
+        "P003",
+        "P018",
+        "P113",
+        "P128",
+        "P140"
+      ],
+      "normative_files": [
+        "contracts/11_CONFORMIDAD_V3.md",
+        "schemas/larm.schema.json",
+        "contracts/defaults.json"
+      ],
+      "documentary_cases": [
+        "H09-096",
+        "H09-097",
+        "H09-098",
+        "H09-099",
+        "H09-100",
+        "H09-101",
+        "H09-102"
+      ]
+    }
+  ]
+}

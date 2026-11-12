@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Qwen-X",
+    "upstream_identity": "hf:Qwen/Qwen-X",
+    "capabilities": ["text.generate", "tool.call", "ocr", "audio.diarize"],
+    "metadata": {"family": "qwen"},
+    "distributions": [
+      {
+        "source_id": "0192f000-0000-7000-8000-00000000f001",
+        "upstream_namespace": "Qwen",
+        "upstream_model_id": "Qwen-X",
+        "license_id": "apache-2.0",
+        "metadata": {"pipeline_tag": "text-generation", "gated": false},
+        "revisions": [
+          {"revision_key": "4d1c1f08e5a3b1b8b9d1a6f6f1a2c3d4e5f60718", "upstream_commit": "4d1c1f08e5a3b1b8b9d1a6f6f1a2c3d4e5f60718",
+           "manifest_hash": "1111111111111111111111111111111111111111111111111111111111111111", "state": "CURRENT",
+           "metadata": {"lastModified": "2026-09-30T10:00:00Z"}},
+          {"revision_key": "0a9b8c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b", "upstream_commit": "0a9b8c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b",
+           "manifest_hash": "2222222222222222222222222222222222222222222222222222222222222222", "state": "SUPERSEDED", "metadata": {}}
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Qwen-X",
+    "upstream_identity": "hf:Qwen/Qwen-X",
+    "capabilities": ["text.generate", "tool.call", "ocr", "audio.diarize"],
+    "metadata": {},
+    "distributions": [
+      {
+        "source_id": "0192f000-0000-7000-8000-00000000f002",
+        "upstream_namespace": "qwen",
+        "upstream_model_id": "Qwen-X-SafeTensors-BF16",
+        "license_id": "apache-2.0",
+        "metadata": {},
+        "revisions": [
+          {"revision_key": "v1.0.0", "upstream_commit": null,
+           "manifest_hash": "3333333333333333333333333333333333333333333333333333333333333333", "state": "CURRENT", "metadata": {}}
+        ]
+      }
+    ]
+  },
+  {
+    "name": "qwen-x",
+    "upstream_identity": null,
+    "capabilities": ["text.generate"],
+    "metadata": {},
+    "distributions": [
+      {
+        "source_id": "0192f000-0000-7000-8000-00000000f001",
+        "upstream_namespace": "comunidad",
+        "upstream_model_id": "qwen-x-gguf",
+        "license_id": null,
+        "metadata": {},
+        "revisions": [
+          {"revision_key": "pending:0192f000-0000-7000-8000-0000000000ee", "upstream_commit": null,
+           "manifest_hash": "4444444444444444444444444444444444444444444444444444444444444444", "state": "PROVISIONAL", "metadata": {}}
+        ]
+      }
+    ]
+  }
+]

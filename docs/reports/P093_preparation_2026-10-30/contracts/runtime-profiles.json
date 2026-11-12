@@ -1,0 +1,1101 @@
+{
+  "note": "Candidatos de sondeo; no afirmación de soporte. Lock exacto producido con versión real y documentación de esa versión. Endpoints candidatos nunca se activan sin comprobación.",
+  "profiles": [
+    {
+      "runtime": "llama.cpp",
+      "owner": "P060",
+      "formats": [
+        "GGUF"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "VULKAN",
+        "CUDA",
+        "HIP"
+      ],
+      "capability_candidates": [
+        "text.generate",
+        "embedding.create",
+        "rerank",
+        "vision.understand"
+      ],
+      "primary_source": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "llama-server",
+        "args": [
+          "--version"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": "/health",
+        "models": "/v1/models"
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "ONNX Runtime",
+      "owner": "P062",
+      "formats": [
+        "ONNX"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "DIRECTML",
+        "CUDA",
+        "OPENVINO"
+      ],
+      "capability_candidates": [
+        "generic.inference"
+      ],
+      "primary_source": "https://onnxruntime.ai/docs/get-started/with-python.html",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "python",
+        "args": [
+          "-c",
+          "import onnxruntime as o; print(o.__version__); print(o.get_available_providers())"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "ORT GenAI",
+      "owner": "P063",
+      "formats": [
+        "ONNX_GENAI"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "DIRECTML",
+        "CUDA"
+      ],
+      "capability_candidates": [
+        "text.generate",
+        "vision.understand"
+      ],
+      "primary_source": "https://onnxruntime.ai/docs/genai/",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "python",
+        "args": [
+          "-c",
+          "import onnxruntime_genai as o; print(o.__version__)"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "Windows ML",
+      "owner": "P064",
+      "formats": [
+        "ONNX"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "DIRECTML",
+        "IHV_EP"
+      ],
+      "capability_candidates": [
+        "generic.inference"
+      ],
+      "primary_source": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/overview",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": null,
+        "args": [],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "stable-diffusion.cpp",
+      "owner": "P066",
+      "formats": [
+        "GGUF",
+        "SAFETENSORS"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "VULKAN",
+        "CUDA",
+        "HIP"
+      ],
+      "capability_candidates": [
+        "image.generate",
+        "video.generate"
+      ],
+      "primary_source": "https://github.com/leejet/stable-diffusion.cpp",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "sd-cli",
+        "args": [
+          "--help"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "whisper.cpp",
+      "owner": "P067",
+      "formats": [
+        "GGML",
+        "GGUF"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "VULKAN",
+        "CUDA"
+      ],
+      "capability_candidates": [
+        "audio.transcribe"
+      ],
+      "primary_source": "https://github.com/ggml-org/whisper.cpp",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "whisper-cli",
+        "args": [
+          "--help"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "Lemonade",
+      "owner": "P068",
+      "formats": [
+        "HOST_CATALOG"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "GPU",
+        "NPU"
+      ],
+      "capability_candidates": [
+        "text.generate",
+        "embedding.create",
+        "image.generate",
+        "audio.transcribe"
+      ],
+      "primary_source": "https://lemonade-server.ai/docs/api/",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": null,
+        "args": [],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": "/api/v1/health",
+        "models": "/api/v1/models"
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "Ollama",
+      "owner": "P070",
+      "formats": [
+        "OLLAMA"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "CUDA",
+        "ROCM",
+        "VULKAN"
+      ],
+      "capability_candidates": [
+        "text.generate",
+        "embedding.create",
+        "vision.understand"
+      ],
+      "primary_source": "https://docs.ollama.com/api/introduction",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "ollama",
+        "args": [
+          "--version"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": "/",
+        "models": "/api/tags"
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "MLC LLM",
+      "owner": "P073",
+      "formats": [
+        "MLC_BUNDLE"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "VULKAN",
+        "CUDA"
+      ],
+      "capability_candidates": [
+        "text.generate"
+      ],
+      "primary_source": "https://llm.mlc.ai/docs/deploy/rest.html",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "mlc_llm",
+        "args": [
+          "serve",
+          "--help"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": "/v1/models"
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "PyTorch/Transformers",
+      "owner": "P071",
+      "formats": [
+        "SAFETENSORS",
+        "PYTORCH"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "CUDA",
+        "XPU"
+      ],
+      "capability_candidates": [
+        "text.generate",
+        "vision.understand",
+        "embedding.create",
+        "rerank",
+        "decision.evaluate",
+        "vision.ocr",
+        "vision.detect",
+        "vision.segment"
+      ],
+      "primary_source": "https://huggingface.co/docs/transformers/installation",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "python",
+        "args": [
+          "-c",
+          "import torch,transformers; print(torch.__version__); print(transformers.__version__)"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "Diffusers",
+      "owner": "P072",
+      "formats": [
+        "DIFFUSERS"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "CUDA"
+      ],
+      "capability_candidates": [
+        "image.generate",
+        "video.generate"
+      ],
+      "primary_source": "https://huggingface.co/docs/diffusers/installation",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "python",
+        "args": [
+          "-c",
+          "import diffusers; print(diffusers.__version__)"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "sherpa-onnx",
+      "owner": "P074",
+      "formats": [
+        "ONNX_BUNDLE"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "CUDA",
+        "DIRECTML"
+      ],
+      "capability_candidates": [
+        "audio.transcribe",
+        "speech.synthesize",
+        "audio.vad",
+        "audio.kws",
+        "audio.speaker",
+        "audio.language",
+        "audio.classify"
+      ],
+      "primary_source": "https://k2-fsa.github.io/sherpa/onnx/index.html",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "python",
+        "args": [
+          "-c",
+          "import sherpa_onnx; print(sherpa_onnx.__version__)"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "OpenVINO",
+      "owner": "P075",
+      "formats": [
+        "OPENVINO_IR",
+        "ONNX"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "INTEL_GPU",
+        "INTEL_NPU"
+      ],
+      "capability_candidates": [
+        "generic.inference"
+      ],
+      "primary_source": "https://docs.openvino.ai/",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "python",
+        "args": [
+          "-c",
+          "import openvino as o; print(o.__version__); print(o.Core().available_devices)"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "Foundry Local",
+      "owner": "P076",
+      "formats": [
+        "HOST_CATALOG"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "GPU",
+        "NPU"
+      ],
+      "capability_candidates": [
+        "text.generate"
+      ],
+      "primary_source": "https://learn.microsoft.com/en-us/azure/foundry-local/what-is-foundry-local",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "foundry",
+        "args": [
+          "--help"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "CTranslate2",
+      "owner": "P077",
+      "formats": [
+        "CT2"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "CUDA"
+      ],
+      "capability_candidates": [
+        "text.generate",
+        "text.generate",
+        "audio.transcribe"
+      ],
+      "primary_source": "https://opennmt.net/CTranslate2/installation.html",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "python",
+        "args": [
+          "-c",
+          "import ctranslate2 as c; print(c.__version__)"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "ComfyUI",
+      "owner": "P078",
+      "formats": [
+        "COMFY_WORKFLOW"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "CUDA",
+        "DIRECTML"
+      ],
+      "capability_candidates": [
+        "image.generate",
+        "video.generate"
+      ],
+      "primary_source": "https://docs.comfy.org/",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "python",
+        "args": [
+          "--version"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": "/system_stats",
+        "models": "/object_info"
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "LM Studio",
+      "owner": "P079",
+      "formats": [
+        "HOST_CATALOG"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "GPU"
+      ],
+      "capability_candidates": [
+        "text.generate",
+        "embedding.create",
+        "vision.understand"
+      ],
+      "primary_source": "https://lmstudio.ai/docs/developer",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": null,
+        "args": [],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": "/v1/models"
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "KoboldCpp",
+      "owner": "P080",
+      "formats": [
+        "GGUF"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "VULKAN",
+        "CUDA"
+      ],
+      "capability_candidates": [
+        "text.generate"
+      ],
+      "primary_source": "https://github.com/LostRuins/koboldcpp",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": "koboldcpp",
+        "args": [
+          "--help"
+        ],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": "/api/v1/model"
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "NCNN",
+      "owner": "P082",
+      "formats": [
+        "NCNN_PARAM_BIN"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "VULKAN"
+      ],
+      "capability_candidates": [
+        "generic.inference",
+        "vision.detect",
+        "vision.segment"
+      ],
+      "primary_source": "https://ncnn.readthedocs.io/en/latest/how-to-build/how-to-build.html",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": null,
+        "args": [],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    },
+    {
+      "runtime": "MNN",
+      "owner": "P083",
+      "formats": [
+        "MNN"
+      ],
+      "backend_candidates": [
+        "CPU",
+        "OPENCL",
+        "VULKAN"
+      ],
+      "capability_candidates": [
+        "generic.inference",
+        "vision.detect",
+        "vision.segment",
+        "text.generate"
+      ],
+      "primary_source": "https://github.com/alibaba/MNN",
+      "version_profile_policy": "EXACT_LOCK_BEFORE_ENABLE",
+      "version_probe": {
+        "executable": null,
+        "args": [],
+        "read_only": true
+      },
+      "endpoint_candidates": {
+        "health": null,
+        "models": null
+      },
+      "support_status": "UNQUALIFIED_UNTIL_VERSION_MODEL_BACKEND_SMOKES",
+      "profile_required_fields": [
+        "upstream_version",
+        "commit_or_build",
+        "artifact_hash",
+        "os_build_range",
+        "architecture",
+        "install_strategy",
+        "dependencies_lock",
+        "executable",
+        "args_template",
+        "env_allowlist",
+        "backend_probe",
+        "model_layout_schema",
+        "protocol_mapping",
+        "request_schema",
+        "response_schema",
+        "error_mapping",
+        "fixture_hashes",
+        "evidence_refs",
+        "installation_strategies",
+        "launch_options_schema",
+        "runtime_arguments_schema",
+        "environment_allowlist"
+      ]
+    }
+  ]
+}

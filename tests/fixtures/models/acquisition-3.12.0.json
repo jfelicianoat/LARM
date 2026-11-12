@@ -1,0 +1,45 @@
+{
+  "id": "0192aaaa-0000-7000-8000-000000000001",
+  "variant_id": "0192aaaa-0000-7000-8000-000000000002",
+  "revision_id": "0192aaaa-0000-7000-8000-000000000003",
+  "source_id": "0192aaaa-0000-7000-8000-000000000004",
+  "source_reference": {
+    "source_id": "0192aaaa-0000-7000-8000-000000000004",
+    "upstream_namespace": "modèles",
+    "upstream_model_id": "fixture",
+    "revision_key": "r1"
+  },
+  "upstream_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "observed_at": "2026-10-27T16:00:00.000Z",
+  "required_artifact_ids": [
+    "0192aaaa-0000-7000-8000-000000000005"
+  ],
+  "optional_artifact_ids": [],
+  "artifacts": [
+    {
+      "artifact_id": "0192aaaa-0000-7000-8000-000000000005",
+      "relative_path": "poids/modèle.bin",
+      "size_bytes": "9007199254740993",
+      "sha256": null,
+      "required": true,
+      "role": "weights",
+      "size_estimate": {
+        "confidence": "HIGH",
+        "bytes": "9007199254740993",
+        "lower_bound_bytes": null,
+        "upper_bound_bytes": "9007199254740993",
+        "source": "HTTP_HEAD",
+        "evidence_refs": [
+          "fixture:head"
+        ],
+        "reason": null
+      }
+    }
+  ],
+  "adapter_installation_id": "0192aaaa-0000-7000-8000-000000000006",
+  "adapter_installation_revision": "2",
+  "adapter_installation_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "conformance_run_id": "0192aaaa-0000-7000-8000-000000000007",
+  "conformance_run_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "snapshot_hash": "f33305cb79cef0b76acc896904753e391b6a5bf3e8bfaa8a25072ce1806bcd5f"
+}

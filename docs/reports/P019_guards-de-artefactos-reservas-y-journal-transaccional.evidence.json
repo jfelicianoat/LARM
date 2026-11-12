@@ -1,0 +1,226 @@
+{
+  "prompt_id": "P019",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "63bb2bdbca94c495d276849ca85c4d742830e9279bb83606c66757b99295edb8",
+  "changed_files": [
+    "crates/larm-db/examples/guard_worker.rs",
+    "crates/larm-db/src/guard.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/reservations.rs",
+    "crates/larm-db/tests/guard.rs",
+    "crates/larm-domain/src/guard.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "docs/operations/guard.md",
+    "tools/p019_evidence.py",
+    "tools/p019_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P019-UNIT-orden-global",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- guard::tests",
+      "fixture_hashes": [],
+      "expected": "orden volumen<variante<artefacto<pool por id; mismo conjunto en otro orden = misma adquisición; exclusivo manda",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-UNIT-orden-global.log#sha256=a58f677deebe865f2a91e5da288a4499859de95bf2d7415d25094d204c44e04e"
+      ]
+    },
+    {
+      "id": "P019-INTEGRATION-modos-y-lease",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard -- compartido_exclusivo",
+      "fixture_hashes": [],
+      "expected": "SHARED+SHARED; EXCLUSIVE rechazado con resource_locked; lease viva = ACTIVE_LEASE",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-INTEGRATION-modos-y-lease.log#sha256=9ff5386d4e0d4df93acb0518dcac400c29228ba795922a42e03cb897cf15bd85"
+      ]
+    },
+    {
+      "id": "P019-FAULT-todo-o-nada",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test guard -- todo_o_nada",
+      "fixture_hashes": [],
+      "expected": "fallo en adquisición: ningún lock ni journal a medias; journal LOCKED/COMPLETED en la misma transacción",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-FAULT-todo-o-nada.log#sha256=8542ccbec096c519d9b8673de5ed6131fe85ae4cc69e699ee5cf6b96bf6a8dc4"
+      ]
+    },
+    {
+      "id": "P019-INTEGRATION-fencing",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard -- fencing",
+      "fixture_hashes": [],
+      "expected": "generación vieja o liberada no escribe; compartido no da escritura",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-INTEGRATION-fencing.log#sha256=b4cb319ba0353c7e2cf9b3bdf70ef754993a0aa9ed31a3fffc243535453945ad"
+      ]
+    },
+    {
+      "id": "P019-FAULT-crash-reconciliacion",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test guard -- reconciliacion",
+      "fixture_hashes": [],
+      "expected": "solo se libera con journal o lease terminados; vivo se conserva; huérfano no se libera por tiempo",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-FAULT-crash-reconciliacion.log#sha256=09a18987415ea9aa4d32c0868be2bb3fe65ced12f482317466c2cfe97adaa864"
+      ]
+    },
+    {
+      "id": "P019-INTEGRATION-carrera",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard -- carrera",
+      "fixture_hashes": [],
+      "expected": "20 rondas: 10 admisiones contra move y delete; nunca escritor con lectores; perdedores con CONFLICT limpio",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-INTEGRATION-carrera.log#sha256=2664e6aa119c467fc5ff4dfcb491170933eeb22d8f1cf4088de898887b489b2d"
+      ]
+    },
+    {
+      "id": "P019-INTEGRATION-sin-interbloqueo",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard -- orden_global",
+      "fixture_hashes": [],
+      "expected": "30 rondas de A,B contra B,A: exactamente uno gana, sin esperas cíclicas",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-INTEGRATION-sin-interbloqueo.log#sha256=b44a0ae44c12e4d5aa0085469b1e90870653389f4c48df83fd8dce5c344314a1"
+      ]
+    },
+    {
+      "id": "P019-INTEGRATION-cas-compartido",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard -- cas_compartido",
+      "fixture_hashes": [],
+      "expected": "blob referenciado por variantes y bloqueado no es borrable",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-INTEGRATION-cas-compartido.log#sha256=001008869e6761faaadec694802d8ece72e3f89562aaf4663a8b095cb5b668c6"
+      ]
+    },
+    {
+      "id": "P019-INTEGRATION-reservas",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard -- dos_raices",
+      "fixture_hashes": [],
+      "expected": "dos raíces del mismo volumen = una reserva; pool con presupuesto, sustitución y desbordamiento",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-INTEGRATION-reservas.log#sha256=96376a803ca62ed52b8b14dd754f1303edc3ccd80b6e27e2b451577ba94fa6e2"
+      ]
+    },
+    {
+      "id": "P019-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-UNIT-cargo-fmt.log#sha256=3997a81b3a6a2e03afb5d43557876abf00acef88fd74c5b0359a27e776cad272"
+      ]
+    },
+    {
+      "id": "P019-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Checking larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.44s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-UNIT-cargo-clippy.log#sha256=9dcb5c85514dfc3ca4391c8c02340f9369b82ff2e02e21dbfef2f374b43befbf"
+      ]
+    },
+    {
+      "id": "P019-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-UNIT-cargo-test.log#sha256=025f9c953368dfb796ee1632e54c65c6cf95fb3ab7dbb6ee6e58d1428bf7ef2e"
+      ]
+    },
+    {
+      "id": "P019-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P019-REAL-build-worker",
+      "kind": "REAL",
+      "command": "cargo build -p larm-db --example guard_worker",
+      "fixture_hashes": [],
+      "expected": "trabajador de prueba compilado",
+      "observed": "exit=0; Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.95s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-REAL-build-worker.log#sha256=30e3bfc5c23146fe05e1bbca2e24b3e68f05c35375d38dcffd16d8841941fcf4"
+      ]
+    },
+    {
+      "id": "P019-REAL-concurrencia",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p019_real.py concurrencia",
+      "fixture_hashes": [],
+      "expected": "PC IA: 30 lectores y 6 movedores en procesos distintos sobre un fichero real entre C: y \\\\localhost\\Temp: sin solapes, hash íntegro, contención real; crash con lock y reconciliación por journal; sin locks al final",
+      "observed": "exit=0; [PASS] hubo-contencion: 289 reintentos por recurso ocupado: la carrera fue real | [PASS] crash-y-reconciliacion: proceso muerto con el lock: journal LOCKED -> se conserva; journal FAILED -> se libera (sin timeout) | [PASS] sin-locks-al-final: 0 locks en resource_lock | PASS 6 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P019_runs/P019-REAL-concurrencia.log#sha256=1be61916801b52052282ddf753133781edeeaf6eaf940ad0bbec4930ac04bd75"
+      ]
+    },
+    {
+      "id": "P019-REAL-dos-volumenes-fisicos",
+      "kind": "REAL",
+      "command": "repetir la concurrencia con el fichero alternando entre dos volúmenes físicos distintos",
+      "fixture_hashes": [],
+      "expected": "mismas invariantes con copia entre discos",
+      "observed": "NO EJECUTADA: el PC IA solo tiene un volumen escribible (bloqueo de P000). La prueba usa C: y \\\\localhost\\Temp: dos volume_key, mismo disco físico",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P019-REAL-leases-reales",
+      "kind": "REAL",
+      "command": "repetir la carrera con leases reales de P100 como titulares de los locks compartidos",
+      "fixture_hashes": [],
+      "expected": "un move contra una lease ACTIVE real recibe ACTIVE_LEASE y no toca el artefacto",
+      "observed": "NO EJECUTADA: P100 (leases) aún no está implementado; el prompt pide repetir la prueba cuando lo esté",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T15:10:03.379Z"
+}

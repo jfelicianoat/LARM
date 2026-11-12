@@ -1,0 +1,27 @@
+{
+  "$defs": {
+    "larm__tool_call_input": {
+      "additionalProperties": false,
+      "properties": {
+        "arguments": {
+          "type": "object"
+        },
+        "input_schema": {
+          "type": "object"
+        },
+        "tool_name": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "tool_name",
+        "arguments",
+        "input_schema"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__tool_call_input",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

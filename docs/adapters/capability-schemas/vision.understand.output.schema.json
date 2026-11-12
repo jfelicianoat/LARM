@@ -1,0 +1,19 @@
+{
+  "$defs": {
+    "larm__vision_understand_output": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__vision_understand_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

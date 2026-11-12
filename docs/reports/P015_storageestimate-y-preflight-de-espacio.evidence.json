@@ -1,0 +1,233 @@
+{
+  "prompt_id": "P015",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "a3a0c0304af7af710739ded27462cab9fd8a576cfbfdae154af9781af63e957f",
+  "changed_files": [
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/preflight.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/reservations.rs",
+    "crates/larm-db/tests/reservations.rs",
+    "crates/larm-domain/src/estimate.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-storage/Cargo.toml",
+    "crates/larm-storage/src/estimate.rs",
+    "crates/larm-storage/src/lib.rs",
+    "docs/operations/storage.md",
+    "tools/p015_evidence.py",
+    "tools/p015_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P015-UNIT-ejemplo-contrato",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- estimate::tests::ejemplo_del_contrato",
+      "fixture_hashes": [],
+      "expected": "fuente existente 30 + temporal 18 + salida 9: total 57 / extra 27; fuente descargada: extra 57",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.66s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-ejemplo-contrato.log#sha256=d6ca3ff75a8f1bbfaa8fe24f5cdabe6e76efe76aaff56c3f82bd28c85eb1cb23"
+      ]
+    },
+    {
+      "id": "P015-UNIT-exact-y-margen",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- estimate::tests::margen",
+      "fixture_hashes": [],
+      "expected": "margen max(1 GiB, ceil 5 %); requerido = pico + margen",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-exact-y-margen.log#sha256=db44ec061624dc3a98c661292dd30cc8a486b4732908f8435a9c3d0053f48917"
+      ]
+    },
+    {
+      "id": "P015-UNIT-insuficiente-y-reserva",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- estimate::tests::espacio_insuficiente",
+      "fixture_hashes": [],
+      "expected": "mínimo de política y reservas de otros respetados; utilizable nunca negativo",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-insuficiente-y-reserva.log#sha256=a75f146966e65d642b820563bf230ac8daf3d783a8d3538721ec96a1a903d9e4"
+      ]
+    },
+    {
+      "id": "P015-UNIT-rango-estimado",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- estimate::tests::estimado_y_rango",
+      "fixture_hashes": [],
+      "expected": "se reserva la cota superior; manda la peor confianza",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-rango-estimado.log#sha256=02380e68194d73b223e873a2fbf94cf0fc7acd4134241e87066c6c153a1cd0a5"
+      ]
+    },
+    {
+      "id": "P015-UNIT-unknown",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- estimate::tests::desconocido",
+      "fixture_hashes": [],
+      "expected": "UNKNOWN sin cota bloquea; presupuesto duro explícito lo acota",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-unknown.log#sha256=4b4c0e231d7f9e45185aef2c844cfba1b286da35e44dda6d1ca4d9bab6e4fbbb"
+      ]
+    },
+    {
+      "id": "P015-FAULT-overflow",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-domain --lib -- estimate::tests::copia_a_otro",
+      "fixture_hashes": [],
+      "expected": "copia a otro volumen reserva el destino íntegro; desbordamiento y volumen ausente son error",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-FAULT-overflow.log#sha256=8b0511c6ed0bfd677d86821207139a37e1d36e48121b55b46ec229b1ac509da6"
+      ]
+    },
+    {
+      "id": "P015-CONTRACT-schema",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- estimate::tests::serializa",
+      "fixture_hashes": [],
+      "expected": "StorageEstimate con la forma exacta del schema",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-CONTRACT-schema.log#sha256=6e925012dca8d2077cc0062df30ba4190b907beb97bdaa1ee56683cbc4cc74d8"
+      ]
+    },
+    {
+      "id": "P015-UNIT-planificador",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- estimate::tests::explica",
+      "fixture_hashes": [],
+      "expected": "evalúa todas las ubicaciones: fits, insufficient_space, state_offline, state_low_space, volume_identity_unknown, fat32_file_too_large; determinista",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-storage v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-storage) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.77s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-300871e38f29e191.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-planificador.log#sha256=99a8f7dbda3dd8149f4f6d2cab72aff5ad27907c2be229015aa45d70bc037860"
+      ]
+    },
+    {
+      "id": "P015-UNIT-minimo-de-politica",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- estimate::tests::minimo",
+      "fixture_hashes": [],
+      "expected": "mínimo del volumen = mayor reserva, no la suma",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-300871e38f29e191.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-minimo-de-politica.log#sha256=e9de170dee8547d1e42cc39e1db3acb151e27c800c9d86f4410cb6209962dc1b"
+      ]
+    },
+    {
+      "id": "P015-UNIT-planificador-unknown",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- estimate::tests::tamano_desconocido",
+      "fixture_hashes": [],
+      "expected": "size_unknown salvo presupuesto duro",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-300871e38f29e191.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-planificador-unknown.log#sha256=1930b221c585fe52bd6f04758017267b273e57110f04b7faf58339afaa4918d6"
+      ]
+    },
+    {
+      "id": "P015-INTEGRATION-reservas",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test reservations",
+      "fixture_hashes": [],
+      "expected": "admisión atómica; propia reserva no se cuenta dos veces; consumo; readmisión; instantánea > 5 s rechazada; caducadas fuera; todo o nada entre volúmenes; 10 admisiones simultáneas = 1",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 3.11s | Running tests\\reservations.rs (target\\debug\\deps\\reservations-9877075cdb7c156f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-INTEGRATION-reservas.log#sha256=c5ba3261f2723a29af71cd5d8831361216cd33385b7befa0d264804cc8b8b5b2"
+      ]
+    },
+    {
+      "id": "P015-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-cargo-fmt.log#sha256=c42934c0db92f50866c97875d20b8fe60270cb9b8c1b7ab8e3e5a6baadc09ffb"
+      ]
+    },
+    {
+      "id": "P015-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-cargo-clippy.log#sha256=87ed9ced264b45910c42731967d7f3063e42f1c963c94f2900e051882e05ca10"
+      ]
+    },
+    {
+      "id": "P015-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-UNIT-cargo-test.log#sha256=f5feee8962c80012172b019a01b368dc899df83c0f5330ea24c5db2a2bd117b3"
+      ]
+    },
+    {
+      "id": "P015-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P015-REAL-preflight",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p015_real.py preflight",
+      "fixture_hashes": [],
+      "expected": "PC IA con ubicaciones reales en C:: utilizable = libre (ctypes) - mayor reserva; insuficiente; rango por cota; UNKNOWN y presupuesto; 30/18/9; desbordamiento; admisión real en volume_reservation; 4 procesos concurrentes",
+      "observed": "exit=0; [PASS] desbordamiento: 9e18 + 9e18 bytes: size_overflow, sin truncar | [PASS] admision-real: job-a reserva 87809923892 bytes en fb4f4fbc…; job-b (otra raíz del mismo volumen) no cabe | [PASS] admisiones-concurrentes: 4 procesos piden el 40 %: 2 admitidos, 138691991962 bytes reservados ≤ utilizable 165109514240 | PASS 9 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-REAL-preflight.log#sha256=89148d62c600af2d841a5e802e8b650ce19cb6ce43cb42f9704926edf88a2f07"
+      ]
+    },
+    {
+      "id": "P015-REAL-p014-sin-regresion",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p014_real.py serve",
+      "fixture_hashes": [],
+      "expected": "las ubicaciones de P014 siguen funcionando",
+      "observed": "exit=0; [PASS] borrado-y-eventos: 204; eventos de Modelos: ['created', 'deleted'] | [PASS] low-space-real: umbral crítico 351693316096 > libre de C: (175846658048): el sondeo de arranque marca LOW_SPACE | [PASS] limpieza: \\\\localhost\\Temp\\larm-p014-59cd8f3c borrada | PASS 12 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P015_runs/P015-REAL-p014-sin-regresion.log#sha256=056893d454cbcc30fecd8540f77c3378bf9594fa6369fbe29b807edca37497b9"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P014 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T15:02:05.373Z"
+}

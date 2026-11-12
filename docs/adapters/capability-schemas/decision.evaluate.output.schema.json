@@ -1,0 +1,74 @@
+{
+  "$defs": {
+    "larm__decision_evaluate_output": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted": {
+          "type": "boolean"
+        },
+        "alternatives": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "confidence": {
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              },
+              "value": {}
+            },
+            "required": [
+              "value",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decision": {
+          "anyOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason_code": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "score_source": {
+          "enum": [
+            "native",
+            "self_reported",
+            "unavailable"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "decision",
+        "confidence",
+        "accepted",
+        "score_source",
+        "alternatives",
+        "reason_code"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__decision_evaluate_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

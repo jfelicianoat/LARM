@@ -1,0 +1,201 @@
+{
+  "prompt_id": "P027",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "26ddc0880405f14f34480b7c956817344421dda81605855ada599e91af6ad2df",
+  "changed_files": [
+    "apps/daemon/src/serve.rs",
+    "apps/desktop/src-tauri/src/api.rs",
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/api/client.ts",
+    "apps/desktop/src/api/customRules.ts",
+    "apps/desktop/src/customRules.test.tsx",
+    "apps/desktop/src/customRules.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-api/src/custom_rules.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-db/src/custom_rules.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-domain/src/custom_rules.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/locations.rs",
+    "crates/larm-domain/tests/custom_rules.rs",
+    "crates/larm-runtime/Cargo.toml",
+    "crates/larm-runtime/src/install.rs",
+    "crates/larm-runtime/src/install_service.rs",
+    "crates/larm-runtime/src/lib.rs",
+    "crates/larm-runtime/src/nuget_lock.rs",
+    "crates/larm-runtime/tests/install.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P027_custom-rules-como-datos-y-estrategia-nuget-gestionada.md",
+    "tools/p027_evidence.py",
+    "tools/p027_schema.py"
+  ],
+  "tests": [
+    {
+      "id": "P027-CUSTOM-RULES-DOMAIN",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --test custom_rules -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/custom_rules.rs:32e80d712d5ec4ce2749be605c860e32a169de0529d4c55cd4c76678e5e02083",
+        "crates/larm-domain/src/locations.rs:0336d245244868e48f86322723be10788514e26fa0f099cb2f2669f4eccc810f",
+        "crates/larm-domain/tests/custom_rules.rs:60fe1b84a0752203c532d8cfa95040b8bc20601aa76697abeef0676df186c1d1"
+      ],
+      "expected": "DSL cerrado, required nullable, operadores, AND, precedencia, límites, contradicciones y targets se validan con los casos positivos y negativos.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.33s | Running tests\\custom_rules.rs (target\\verification-final\\debug\\deps\\custom_rules-3e598b33df8991aa.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-CUSTOM-RULES-DOMAIN.log#sha256=2e818a5d058b4b8b89ab867a574fda3d902bce7ee8533c05b53803ae28957b5b"
+      ]
+    },
+    {
+      "id": "P027-CUSTOM-RULES-PLACEMENT",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-domain --lib custom_rules -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/custom_rules.rs:32e80d712d5ec4ce2749be605c860e32a169de0529d4c55cd4c76678e5e02083",
+        "crates/larm-domain/src/locations.rs:0336d245244868e48f86322723be10788514e26fa0f099cb2f2669f4eccc810f",
+        "crates/larm-domain/tests/custom_rules.rs:60fe1b84a0752203c532d8cfa95040b8bc20601aa76697abeef0676df186c1d1"
+      ],
+      "expected": "CUSTOM_RULES se aplica tras los hard gates de ubicación; denegaciones, requisitos y límites filtran candidatos y el desempate es determinista.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-CUSTOM-RULES-PLACEMENT.log#sha256=3500cf0c88f33bb6bf916160299071aeaab464b09e0d2dd68720d4a3c6a4576e"
+      ]
+    },
+    {
+      "id": "P027-NUGET-LOCK-PLAN-BINDING",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime nuget -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/nuget_lock.rs:41570e353a019e3cde209261a9e89d5732b287e2c54bf3eb00187722e631a5a0",
+        "crates/larm-runtime/src/install.rs:73987e9d3a2739e1f8f73910eddae7a85c8adcc56e4fe7eb39c4c00f7aef5de6",
+        "crates/larm-runtime/src/install_service.rs:ff57418691fcac4e8d7700b8df353ce510378e693a71833e67d9901afcedf152",
+        "crates/larm-runtime/tests/install.rs:8462d3da351ab0f08c25fa2f079dda406e679187c534fe95560081f4557ddfb1",
+        "crates/larm-runtime/Cargo.toml:0b6d31c9bbe44ec34a45846df3795e4d2c4ba839be05a839ac427b585d7dda55"
+      ],
+      "expected": "El lock NuGet fija arquitectura, versiones resueltas y SHA-512 de cada paquete; rechaza rutas, referencias de proyecto y locks incompletos, y cambios del hash invalidan el plan.",
+      "observed": "exit=0; Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_runtime-93d03372030a0bc8.exe) | Running tests\\discovery_service.rs (target\\verification-final\\debug\\deps\\discovery_service-20eb110657970d0e.exe) | Running tests\\install.rs (target\\verification-final\\debug\\deps\\install-4b13f992f4bf05ac.exe) | Running tests\\version_discovery.rs (target\\verification-final\\debug\\deps\\version_discovery-97d038d2f8083d1a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-NUGET-LOCK-PLAN-BINDING.log#sha256=4da2c0860e712b72cb7a5bedfd5b5f38caeb614136650deea05dbf9e42dfb0b6"
+      ]
+    },
+    {
+      "id": "P027-SCHEMA-COMPATIBILITY",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p027_schema.py",
+      "fixture_hashes": [
+        "tools/p027_schema.py:2099017894f14359151e17481ed197633259530556cee4153c52ec18b6a41f3e",
+        "docs/contracts/schemas/larm.schema.json:194302d1de232d41d3417affefb6d66ca269e3aae7f7c8bf68b8c0020e717e2a"
+      ],
+      "expected": "Las formas declarativas permitidas coinciden con el schema público y se rechazan campos u operadores desconocidos.",
+      "observed": "exit=0; CustomRules schema: 7 formas admitidas y 3 casos abiertos rechazados",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-SCHEMA-COMPATIBILITY.log#sha256=9427363d668e137d0eeb4820213b33aee2534705bc7bd4a7ce66ae96f8f3be08"
+      ]
+    },
+    {
+      "id": "P027-SQLITE-CAS",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib custom_rules::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/custom_rules.rs:32e80d712d5ec4ce2749be605c860e32a169de0529d4c55cd4c76678e5e02083",
+        "crates/larm-db/src/custom_rules.rs:f325165ffaccb42d877c978089a5e6fbad854b4bca27fd993cf5dee8bfed5d1f",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "SQLite conserva el DTO, incrementa revisión con CAS, rechaza escrituras obsoletas o inválidas, detecta corrupción y revierte payload, revisión y evento si falla el outbox.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.89s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_db-91b02929f90c5f6c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-SQLITE-CAS.log#sha256=ce71b91e6c7b48da4b5c90ca90b660aca97161b44f0b12a245955f087c02526a"
+      ]
+    },
+    {
+      "id": "P027-API-CAS-ETAG",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --lib custom_rules::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/custom_rules.rs:32e80d712d5ec4ce2749be605c860e32a169de0529d4c55cd4c76678e5e02083",
+        "crates/larm-api/src/custom_rules.rs:7ccfcbfc20d7086f139901cd63e2a8d5cad920968a6700d418ae7399cc48a196",
+        "docs/contracts/api-operations.json:7c99ada02337618f39e5e891ba6db220a73bdee7f3e8162e6ec1111f6eb45c3f"
+      ],
+      "expected": "GET/PATCH exponen ETag, If-Match requiere revisión actual y se rechazan schema y reglas semánticamente inválidos.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.73s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_api-3ad1071c3ed95ca7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-API-CAS-ETAG.log#sha256=51175e552ae3b3e8ce86c538768eea8dbaff5299842d52daf6c05952ee5c6f54"
+      ]
+    },
+    {
+      "id": "P027-DAEMON-WIRING",
+      "kind": "INTEGRATION",
+      "command": "cargo check -p larm-daemon --target-dir target/verification-final -j 1",
+      "fixture_hashes": [
+        "crates/larm-db/src/custom_rules.rs:f325165ffaccb42d877c978089a5e6fbad854b4bca27fd993cf5dee8bfed5d1f",
+        "crates/larm-api/src/custom_rules.rs:7ccfcbfc20d7086f139901cd63e2a8d5cad920968a6700d418ae7399cc48a196",
+        "apps/daemon/src/serve.rs:8191c6fb3f215316b1ed07acc7cebd6834c298df9d3a1b38871db9956149650b"
+      ],
+      "expected": "El daemon compila con la ruta P027 conectada al repositorio SQLite del settings table.",
+      "observed": "exit=0; Checking larm-runtime v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-runtime) | Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.20s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-DAEMON-WIRING.log#sha256=4800b154b9c90ea888973ac0ad4110cde4c3d4b2b49318d312c9f11ac3af860e"
+      ]
+    },
+    {
+      "id": "P027-FRONTEND-PREVIEW-ETAG",
+      "kind": "INTEGRATION",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command npm run test -- src/customRules.test.tsx",
+      "fixture_hashes": [
+        "apps/desktop/src/api/customRules.ts:6d1e20746ebe357188ab5bf8312b3fc15dbfa6c59634ddb051a1ab80f9260414",
+        "apps/desktop/src/customRules.tsx:8df0b777a5e75111c95c804c46297b8433c417e7d03db0c1f9599c3003a4ffed",
+        "apps/desktop/src/customRules.test.tsx:ee5c20c05a96528e178c105a943282b440018e7b18301b23939acb559fed471b"
+      ],
+      "expected": "Configuración lee la revisión HTTP, visualiza la prioridad y el límite y guarda con If-Match.",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed (1) | Start at  11:55:38 | Duration  1.50s (environment 69%, tests 14%, import 11%, transform 6%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-FRONTEND-PREVIEW-ETAG.log#sha256=66a79d1b11270b58853af337952bda16b0b317146f2d19545666aaf5ae54f84a"
+      ]
+    },
+    {
+      "id": "P027-FRONTEND-QUALITY",
+      "kind": "INTEGRATION",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command npm run build",
+      "fixture_hashes": [
+        "apps/desktop/src/api/customRules.ts:6d1e20746ebe357188ab5bf8312b3fc15dbfa6c59634ddb051a1ab80f9260414",
+        "apps/desktop/src/customRules.tsx:8df0b777a5e75111c95c804c46297b8433c417e7d03db0c1f9599c3003a4ffed",
+        "apps/desktop/src/customRules.test.tsx:ee5c20c05a96528e178c105a943282b440018e7b18301b23939acb559fed471b",
+        "apps/desktop/src/App.tsx:ffb522c436fb3e8f925ee4ca3a8f2e701d280df38da43e213918daa243457a0a"
+      ],
+      "expected": "TypeScript, Vite y el empaquetado de interfaz compilan la pantalla y el cliente de reglas.",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-DEA2tAa_.js   313.62 kB │ gzip: 94.42 kB | ✓ built in 191ms",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P027_runs/P027-FRONTEND-QUALITY.log#sha256=c43156eb4a1d2430c5aaef9c00f6d1ae7687c24ba26d0e653235a5497157d66e"
+      ]
+    },
+    {
+      "id": "P027-REAL-NUGET-RESTORE",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P027 -Real",
+      "fixture_hashes": [],
+      "expected": "Restaurar un paquete NuGet pequeño en una instalación LARM lateral y aplicar reglas contra un catálogo local real; comprobar aislamiento, arquitectura, versión, dependencias y hashes.",
+      "observed": "NO EJECUTADA: Se valida y sella el lock, pero todavía no existe el worker de restore con caché privado; P023/P031 siguen sin REAL_PASS y no se declara una restauración real.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La interfaz de gestión y preview de reglas, GET/PATCH y persistencia CAS están implementados; falta enlazar la política guardada con la selección productiva del catálogo.",
+    "El restore NuGet con caché privado y la conexión productiva de CUSTOM_RULES al catálogo siguen pendientes.",
+    "dependencia P023 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P031 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T10:55:44.600Z"
+}

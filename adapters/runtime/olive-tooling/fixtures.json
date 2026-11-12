@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "fixtures": [
+    {
+      "fixture_id": "tensor_identity",
+      "relative_path": "fixtures/tensor_identity.onnx",
+      "sha256": "8de2df197dba94a7151d39371e464bf0bd10316ffa7d7006db81b08159210dde",
+      "size_bytes": 130,
+      "format": "ONNX",
+      "authorized_operations": ["plan", "execute_fixture"]
+    }
+  ]
+}

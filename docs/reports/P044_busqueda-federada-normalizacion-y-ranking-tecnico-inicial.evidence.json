@@ -1,0 +1,140 @@
+{
+  "prompt_id": "P044",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "2705adbb79a0eb315d264d504b29109b0d19b3f02bd40d38a4a7c3ce10cadaf4",
+  "changed_files": [
+    "Cargo.lock",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/model_search.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/src/sources.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/search.rs",
+    "crates/larm-api/tests/app.rs",
+    "crates/larm-core/Cargo.toml",
+    "crates/larm-core/src/lib.rs",
+    "crates/larm-core/src/search.rs",
+    "crates/larm-domain/src/search.rs",
+    "crates/larm-models/Cargo.toml",
+    "crates/larm-models/src/lib.rs",
+    "crates/larm-models/src/search.rs",
+    "tools/p044_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P044-FMT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [
+        "crates/larm-domain/src/search.rs:1717e5ad9bf07fdc7065c9452c846026b2695efa5b0ea9fbdec4ed58fc2d1d1f",
+        "crates/larm-core/src/search.rs:1bd82d48102b1d2171df01b41f1ee74dc59509cfa56896b3205722141eef78df",
+        "crates/larm-models/src/search.rs:0071de34cc74bb1cb96a24669885a76b3820aa31c463da042f2316f237cb58ea",
+        "crates/larm-api/src/search.rs:170c4bc160b74fe2fe85a5a1226a1369b560730e87cb839c8ad213492c99645c",
+        "apps/daemon/src/sources.rs:cdefd831c96f1132b091b5aa4ac9df63b1e021d0621b81a22889acc84f8ddd82",
+        "apps/daemon/src/serve.rs:998d0e7e5265fe9a0b3e78eb20e69a34b916c316cb56ab033db7710f2e4dc90a"
+      ],
+      "expected": "Todo el Rust del workspace está formateado.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P044_runs/P044-FMT.log#sha256=e58a25732db3ccdbe01a54efb4dc8c7470b50cd7662372d3a9bfef1bf292fa79"
+      ]
+    },
+    {
+      "id": "P044-CLIPPY",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [
+        "crates/larm-domain/src/search.rs:1717e5ad9bf07fdc7065c9452c846026b2695efa5b0ea9fbdec4ed58fc2d1d1f",
+        "crates/larm-core/src/search.rs:1bd82d48102b1d2171df01b41f1ee74dc59509cfa56896b3205722141eef78df",
+        "crates/larm-models/src/search.rs:0071de34cc74bb1cb96a24669885a76b3820aa31c463da042f2316f237cb58ea",
+        "crates/larm-api/src/search.rs:170c4bc160b74fe2fe85a5a1226a1369b560730e87cb839c8ad213492c99645c",
+        "apps/daemon/src/sources.rs:cdefd831c96f1132b091b5aa4ac9df63b1e021d0621b81a22889acc84f8ddd82",
+        "apps/daemon/src/serve.rs:998d0e7e5265fe9a0b3e78eb20e69a34b916c316cb56ab033db7710f2e4dc90a"
+      ],
+      "expected": "Clippy termina sin warnings en todos los targets del workspace.",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.05s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P044_runs/P044-CLIPPY.log#sha256=3e265028a2a9e372b03a520f1262504f1d74e442d342d58271da895bad3714e9"
+      ]
+    },
+    {
+      "id": "P044-DOMAIN-SEARCH-H05",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib search::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/search.rs:1717e5ad9bf07fdc7065c9452c846026b2695efa5b0ea9fbdec4ed58fc2d1d1f"
+      ],
+      "expected": "Search estricto valida los filtros, los rangos exactos, los límites y el filter_digest de H05.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.41s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-ef7f7bbfd11c06a2.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P044_runs/P044-DOMAIN-SEARCH-H05.log#sha256=637e790ab3726326411bb0f5e752411c7b0992d162bc2d3aa65711afd845c111"
+      ]
+    },
+    {
+      "id": "P044-FEDERATED-SEARCH-ENGINE",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-models --lib search::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-models/src/search.rs:0071de34cc74bb1cb96a24669885a76b3820aa31c463da042f2316f237cb58ea",
+        "crates/larm-core/src/search.rs:1bd82d48102b1d2171df01b41f1ee74dc59509cfa56896b3205722141eef78df"
+      ],
+      "expected": "Dos fuentes se mezclan y deduplican; se recorren páginas upstream antes del filtrado global; timeout, cancelación, TTL, invalidación, filtros, cursores y advertencias conservan el resultado correcto.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.40s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_models-244678f24e859f72.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P044_runs/P044-FEDERATED-SEARCH-ENGINE.log#sha256=9dca9534039b8254ded83b2b9e2a55a97a0087959fd1f7acef9d02615bb858a5"
+      ]
+    },
+    {
+      "id": "P044-API-SCOPE-IDEMPOTENCY",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test app search_respeta_scope_schema_e_idempotencia -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/search.rs:170c4bc160b74fe2fe85a5a1226a1369b560730e87cb839c8ad213492c99645c",
+        "crates/larm-api/tests/app.rs:137646280dab4aaa2a9b40f192cbe544cf02095579a6b2aaec1e86855700b801"
+      ],
+      "expected": "POST /models/search usa Search estricto, scope read, 201 e Idempotency-Key; replay no repite la búsqueda, la misma clave con otro cuerpo falla y read no autoriza /sources/search.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.63s | Running tests\\app.rs (target\\debug\\deps\\app-405d29a88bbd4b96.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P044_runs/P044-API-SCOPE-IDEMPOTENCY.log#sha256=d4faddf5e65d002ce04c179cf3a56bd692cbdd53ee563cb9bff78d761447e80f"
+      ]
+    },
+    {
+      "id": "P044-DAEMON-NO-FALSE-EMPTY",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-daemon --bin larm-daemon sources::tests::busqueda_no_cualificada_devuelve_error_y_no_catalogo_vacio -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/src/sources.rs:cdefd831c96f1132b091b5aa4ac9df63b1e021d0621b81a22889acc84f8ddd82",
+        "apps/daemon/src/serve.rs:998d0e7e5265fe9a0b3e78eb20e69a34b916c316cb56ab033db7710f2e4dc90a"
+      ],
+      "expected": "Sin un host source cualificado, la búsqueda responde UPSTREAM_UNAVAILABLE y nunca simula un catálogo vacío.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.63s | Running unittests src\\main.rs (target\\debug\\deps\\larm_daemon-822213436c6c0a6b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P044_runs/P044-DAEMON-NO-FALSE-EMPTY.log#sha256=d05827ce66a5aedc02aa7605943c35619af5cf80b2eb1b2e461821d145501b23"
+      ]
+    },
+    {
+      "id": "P044-REAL-WINDOWS-TWO-UPSTREAMS",
+      "kind": "REAL",
+      "command": "Daemon Windows con dos fuentes autenticadas y adaptadores source instalados; buscar en ambas, forzar timeout de una y observar respuesta parcial, grupos y cursor real.",
+      "fixture_hashes": [],
+      "expected": "Dos catálogos upstream reales producen modelos normalizados; una fuente lenta conserva los resultados de la otra y publica una advertencia; la paginación global no duplica ni omite modelos.",
+      "observed": "NO EJECUTADA: El daemon aún no tiene un ejecutor que lance source.search bajo P022 con credenciales por cuenta; su provider devuelve UPSTREAM_UNAVAILABLE. P041 y P043 siguen BLOCKED_REAL, por lo que esta aceptación no se puede declarar PASS.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "No se ejecutó el escenario G02 contra dos fuentes reales: falta el ejecutor productivo de ModelSourceAdapter con autorización y credenciales P022/P045.",
+    "dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P041 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T18:05:41.304Z"
+}

@@ -1,0 +1,46 @@
+{
+  "$defs": {
+    "larm__vision_detect_output": {
+      "additionalProperties": false,
+      "properties": {
+        "detections": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "box": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 4,
+                "minItems": 4,
+                "type": "array"
+              },
+              "label": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "score": {
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              }
+            },
+            "required": [
+              "label",
+              "score",
+              "box"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "detections"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__vision_detect_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

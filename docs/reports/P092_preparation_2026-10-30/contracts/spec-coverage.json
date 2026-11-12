@@ -1,0 +1,2275 @@
+[
+  {
+    "section": 1,
+    "title": "Visión",
+    "spec_line_original": 27,
+    "requirement_sha256": "7d8a84bf9871a2b362827c1ab432bb2cece86526a5a79a17c6e6058d3272f1af",
+    "owners": [
+      "P040",
+      "P102"
+    ],
+    "requirement_text": "# 1. Visión\n\n**Local AI Runtime Manager (LARM)** será la infraestructura local encargada de descubrir, adquirir, transformar, almacenar, ejecutar, versionar, actualizar, supervisar y medir técnicamente modelos de inteligencia artificial y los runtimes necesarios para ejecutarlos.\n\nSu objetivo no será limitarse a LLM.\n\nDeberá poder gestionar cualquier categoría de modelo ejecutable localmente, incluyendo:\n\n- generación de texto;\n\n- modelos multimodales;\n\n- System-1 / decision models;\n\n- embeddings;\n\n- rerankers;\n\n- OCR;\n\n- visión;\n\n- detección y segmentación;\n\n- ASR;\n\n- TTS;\n\n- audio;\n\n- generación de imágenes;\n\n- generación de vídeo;\n\n- modelos ONNX genéricos;\n\n- modelos especializados;\n\n- nuevos tipos que aparezcan en el futuro.\n\nEl principio central será:\n\n> **LARM administra la capacidad local de inferencia.**\n\nAI Broker mantiene otra responsabilidad:\n\n> **AI Broker decide qué capacidad utilizar y proporciona el gateway de inferencia al resto del ecosistema.**\n\nPor tanto, LARM no será un segundo AI Broker.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 2,
+    "title": "Objetivos fundamentales",
+    "spec_line_original": 101,
+    "requirement_sha256": "2712edd49625e6371abfd56575a2ba210070a54c5170cc75c3e9fbc749c26ab2",
+    "owners": [
+      "P138"
+    ],
+    "requirement_text": "# 2. Objetivos fundamentales\n\nLARM deberá:\n\n1. Detectar completamente el hardware y software relevante del equipo.\n\n2. Descubrir runtimes compatibles con Windows.\n\n3. Instalar y mantener múltiples versiones de cada runtime.\n\n4. Permitir añadir nuevos runtimes sin modificar el Core.\n\n5. Buscar modelos en múltiples repositorios.\n\n6. Permitir añadir nuevos repositorios sin modificar el Core.\n\n7. Normalizar modelos procedentes de fuentes diferentes.\n\n8. Detectar variantes, formatos y cuantizaciones.\n\n9. Determinar qué modelos puede ejecutar la máquina.\n\n10. Estimar memoria y almacenamiento necesarios.\n\n11. Mostrar el espacio necesario **antes de descargar**.\n\n12. Permitir elegir en qué unidad/carpeta se almacena cada modelo.\n\n13. Gestionar modelos repartidos entre múltiples discos.\n\n14. Permitir mover posteriormente un modelo a otro disco.\n\n15. Mantener registrada siempre su ubicación física.\n\n16. Descargar con pausa, reanudación y recuperación de errores.\n\n17. Transformar modelos entre formatos cuando sea posible.\n\n18. Ejecutar benchmarks técnicos.\n\n19. Ejecutar diferentes versiones del mismo runtime.\n\n20. Detectar regresiones entre versiones.\n\n21. Arrancar/detener modelos bajo demanda.\n\n22. Exponer endpoints de inferencia.\n\n23. Exponer administración mediante API.\n\n24. Exponer administración agéntica mediante MCP.\n\n25. Permitir opcionalmente acceso MCP a modelos concretos.\n\n26. Integrarse con AI Broker.\n\n27. Integrarse con Agora.\n\n28. Integrarse con Local-AI-Lab.\n\n29. Integrarse con Model Drift.\n\n30. Gestionar instalaciones existentes como Lemonade u Ollama.\n\n31. Avisar de modelos nuevos compatibles.\n\n32. Avisar de actualizaciones de modelos y runtimes.\n\n33. Mantener trazabilidad completa y reproducibilidad.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 3,
+    "title": "No objetivos",
+    "spec_line_original": 181,
+    "requirement_sha256": "dff8927238b34cd082145740f6a1a19962ae05ae00b24fe67412fa9e6afda71d",
+    "owners": [
+      "P002",
+      "P101",
+      "P114",
+      "P116"
+    ],
+    "requirement_text": "# 3. No objetivos\n\nLARM no será:\n\n- un chat;\n\n- un agente generalista;\n\n- un sistema RAG;\n\n- un sistema de memoria;\n\n- un router de negocio;\n\n- un reemplazo de AI Broker;\n\n- un evaluador funcional de calidad;\n\n- un sistema de workflows generales.\n\nEsas funciones permanecen en otros componentes.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 4,
+    "title": "Topología del ecosistema",
+    "spec_line_original": 215,
+    "requirement_sha256": "f7c0a2110ab5f5eaf94008e068cbd2d5738f14c22aeaac60f470297447fc5195",
+    "owners": [
+      "P002",
+      "P101",
+      "P114",
+      "P115",
+      "P000"
+    ],
+    "requirement_text": "# 4. Topología del ecosistema\n\n```text\n\n                    PC PRINCIPAL\n\n┌──────────────────────────────────────────────┐\n\n│                                              │\n\n│ ChatyGPT        Athena       otras apps      │\n\n│     │             │              │           │\n\n│     └─────────────┴──────────────┘           │\n\n│                   │                          │\n\n│                   │ LAN                      │\n\n│                   ▼                          │\n\n│                                              │\n\n│ Local-AI-Lab                                │\n\n│ Model Drift                                  │\n\n│ Agora Control Plane                          │\n\n│                                              │\n\n└────────────────────┬─────────────────────────┘\n\n                     │\n\n═════════════════════│══════════════════════════\n\n                     │\n\n                     ▼\n\n                       PC IA\n\n┌──────────────────────────────────────────────┐\n\n│                                              │\n\n│                AI BROKER                     │\n\n│                     │                        │\n\n│                     │ localhost              │\n\n│                     ▼                        │\n\n│         LOCAL AI RUNTIME MANAGER             │\n\n│                                              │\n\n│ Runtime Manager                              │\n\n│ Model Manager                                │\n\n│ Storage Manager                              │\n\n│ Source Discovery                             │\n\n│ Compatibility Engine                         │\n\n│ Hardware Profiler                            │\n\n│ Benchmark Engine                             │\n\n│ Process Supervisor                           │\n\n│ Protocol Gateway                             │\n\n│                                              │\n\n│ llama.cpp / ONNX / WinML / Lemonade / ...   │\n\n│                                              │\n\n│ Agora Runner                                 │\n\n│                                              │\n\n└──────────────────────────────────────────────┘\n\n```\n\nAI Broker y LARM estarán físicamente en el PC IA.\n\nLa comunicación entre ambos deberá realizarse normalmente por `localhost`.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 5,
+    "title": "Principios arquitectónicos",
+    "spec_line_original": 323,
+    "requirement_sha256": "743e7ee1406f738251681ffffe950d62364836ef18cd0cfabce84419179a7db0",
+    "owners": [
+      "P030",
+      "P081"
+    ],
+    "requirement_text": "# 5. Principios arquitectónicos\n\n## 5.1 Windows First\n\nWindows será plataforma de primera clase.\n\nLARM deberá ser capaz de integrar cualquier runtime que pueda ejecutarse:\n\n- nativamente en Windows;\n\n- mediante un entorno Python Windows;\n\n- mediante Windows ML;\n\n- mediante WSL2;\n\n- mediante un contenedor disponible en Windows;\n\n- mediante un host local externo.\n\nLa GUI deberá distinguir claramente:\n\n```text\n\nWINDOWS_NATIVE\n\nWINDOWS_PYTHON\n\nWINDOWS_ML\n\nWSL2\n\nCONTAINER\n\nEXTERNAL_LOCAL\n\n```\n\nUn runtime Linux ejecutado mediante WSL no deberá aparecer engañosamente como runtime nativo Windows.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 6,
+    "title": "Extensibilidad doble",
+    "spec_line_original": 383,
+    "requirement_sha256": "cdeb4d4bee51e34c65b650249f626872b37dbe84e4a35a88764ff063d23b4792",
+    "owners": [
+      "P020",
+      "P025",
+      "P043",
+      "P026"
+    ],
+    "requirement_text": "# 6. Extensibilidad doble\n\nExistirán dos sistemas independientes de adaptadores:\n\n```text\n\nRuntime Adapter\n\n```\n\ny:\n\n```text\n\nModel Source Adapter\n\n```\n\nEsto significa:\n\n```text\n\nN fuentes de modelos\n\n        │\n\n        ▼\n\n       LARM\n\n        │\n\n        ▼\n\nM runtimes diferentes\n\n```\n\nNi Hugging Face ni llama.cpp serán dependencias conceptuales del Core.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 7,
+    "title": "Modelo conceptual",
+    "spec_line_original": 443,
+    "requirement_sha256": "56b4f57bbaa9c683230e53ec7465e9f78cea23c3794066cf6d6f67db9d0dfce1",
+    "owners": [
+      "P030",
+      "P040",
+      "P062",
+      "P064",
+      "P068"
+    ],
+    "requirement_text": "# 7. Modelo conceptual\n\nSe diferenciarán estrictamente:\n\n## Runtime / Engine\n\nEjecuta las operaciones matemáticas.\n\nEjemplos:\n\n```text\n\nllama.cpp\n\nONNX Runtime\n\nONNX Runtime GenAI\n\nstable-diffusion.cpp\n\nwhisper.cpp\n\nOpenVINO Runtime\n\nMLC LLM\n\nPyTorch\n\nCTranslate2\n\nsherpa-onnx\n\n```\n\n## Backend / Execution Provider\n\nIndica sobre qué hardware se ejecuta.\n\nEjemplos:\n\n```text\n\nCPU\n\nVulkan\n\nCUDA\n\nROCm\n\nDirectML\n\nMIGraphX\n\nVitisAI\n\nQNN\n\nOpenVINO\n\nTensorRT\n\nWebGPU\n\nSYCL\n\nOpenCL\n\n```\n\nWindows ML dispone actualmente de proveedores CPU y DirectML, además de proveedores descargables como AMD MIGraphX y VitisAI, NVIDIA TensorRT RTX, Intel OpenVINO, Qualcomm QNN y WebGPU experimental.\n\n## Host\n\nPrograma que administra uno o más motores.\n\nEjemplos:\n\n```text\n\nLemonade\n\nOllama\n\nLM Studio\n\nFoundry Local\n\nComfyUI\n\nKoboldCpp\n\n```\n\n## Modelo\n\nEjemplos:\n\n```text\n\nLaya\n\nQwen\n\nGemma\n\nWhisper\n\nFLUX\n\nmodelo ONNX\n\nmodelo OCR\n\nmodelo TTS\n\n```\n\n## Variante\n\nUna representación concreta:\n\n```text\n\nGGUF Q4_K_M\n\nGGUF Q8_0\n\nONNX INT4\n\nONNX FP16\n\nSafeTensors BF16\n\nMLC q4f16\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 8,
+    "title": "Catálogo inicial de runtimes",
+    "spec_line_original": 627,
+    "requirement_sha256": "a9c941d07f7da3db245c4e4c70017b42d7e67acc2bf2fd6dbb997e2c9e30aa15",
+    "owners": [
+      "P060",
+      "P062",
+      "P063",
+      "P064",
+      "P066",
+      "P067",
+      "P068",
+      "P070",
+      "P071",
+      "P072",
+      "P073",
+      "P074",
+      "P075",
+      "P076",
+      "P077",
+      "P078",
+      "P079",
+      "P080",
+      "P082",
+      "P083"
+    ],
+    "requirement_text": "# 8. Catálogo inicial de runtimes\n\nLa arquitectura no dependerá de esta lista.\n\nServirá únicamente como conjunto inicial de adaptadores oficiales.\n\n## Prioridad alta\n\n```text\n\nllama.cpp\n\nONNX Runtime\n\nONNX Runtime GenAI\n\nWindows ML\n\nstable-diffusion.cpp\n\nwhisper.cpp\n\nLemonade\n\nOllama\n\nMLC LLM\n\nPyTorch / Transformers\n\nDiffusers\n\nsherpa-onnx\n\nOpenVINO Runtime\n\nFoundry Local\n\n```\n\n## Prioridad posterior\n\n```text\n\nCTranslate2\n\nComfyUI\n\nLM Studio\n\nKoboldCpp\n\nNCNN\n\nMNN\n\notros compatibles con Windows\n\n```\n\nLa aplicación deberá disponer de un **Runtime Adapter Registry** actualizable independientemente del Core.\n\nAsí podrán aparecer nuevos adaptadores sin publicar una nueva versión completa de LARM.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 9,
+    "title": "Tecnologías verificadas actualmente",
+    "spec_line_original": 713,
+    "requirement_sha256": "ae11cea337749a7d0a4c52825508e3b503b078d6b3a6aac94db2a92eb8684216",
+    "owners": [
+      "P062",
+      "P063",
+      "P064",
+      "P066",
+      "P073",
+      "P075",
+      "P076",
+      "P000",
+      "P099"
+    ],
+    "requirement_text": "# 9. Tecnologías verificadas actualmente\n\n`stable-diffusion.cpp` funciona en Windows y admite actualmente CPU, CUDA, Vulkan, Metal, OpenCL y SYCL, además de formatos PyTorch, SafeTensors y GGUF.\n\nMLC LLM soporta Windows/Linux mediante Vulkan y ofrece servidor REST compatible con OpenAI.\n\nONNX Runtime GenAI dispone de builds Windows y proporciona el bucle generativo necesario para LLM, incluyendo KV cache, sampling y gramáticas para tool calling.\n\nFoundry Local funciona directamente sobre Windows, puede seleccionar variantes CPU/GPU/NPU y dispone actualmente de SDK para .NET, Python, JavaScript y Rust.\n\nOpenVINO Runtime también dispone oficialmente de instalación Windows.\n\nEstas tecnologías constituyen ejemplos; no forman una whitelist cerrada.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 10,
+    "title": "Runtime Adapter Architecture",
+    "spec_line_original": 745,
+    "requirement_sha256": "86d6f6b422b67f88a5d4faf51196c53f2f051efff270109b9bffc5b897b94bc5",
+    "owners": [
+      "P020",
+      "P025",
+      "P030",
+      "P026",
+      "P082",
+      "P083",
+      "P099"
+    ],
+    "requirement_text": "# 10. Runtime Adapter Architecture\n\nLos runtimes no se integrarán con `if/else` dentro del Core.\n\nCada uno implementará un contrato.\n\n```text\n\nRuntimeAdapter\n\n```\n\nOperaciones:\n\n```text\n\nprobe()\n\ndiscover_installations()\n\ndiscover_versions()\n\nplan_install()\n\ninstall()\n\nupdate()\n\nrollback()\n\nuninstall()\n\ndiscover_backends()\n\ndiscover_models()\n\nvalidate_installation()\n\nassess_compatibility()\n\nprepare_model()\n\nestimate_runtime_resources()\n\nlaunch()\n\nstop()\n\nrestart()\n\nhealth()\n\nlist_instances()\n\nsmoke_test()\n\nbenchmark()\n\nget_logs()\n\n```\n\nNo todas las operaciones serán obligatorias.\n\nEl manifiesto indicará qué capacidades existen.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 11,
+    "title": "Runtime Adapter Manifest",
+    "spec_line_original": 853,
+    "requirement_sha256": "08b7406b94558339c44acf7e529889afc392883c080cfecf3e155ed81f8c02c1",
+    "owners": [
+      "P020",
+      "P060",
+      "P099"
+    ],
+    "requirement_text": "# 11. Runtime Adapter Manifest\n\nEjemplo:\n\n```yaml\n\nid: llama-cpp\n\nname: llama.cpp\n\nadapter_protocol: 1\n\ntype: inference-engine\n\nplatforms:\n\n  - windows-x64\n\nformats:\n\n  - gguf\n\ncapabilities:\n\n  - text.generate\n\n  - vision.understand\n\n  - embedding.create\n\n  - rerank\n\nbackends:\n\n  - cpu\n\n  - vulkan\n\n  - cuda\n\n  - rocm\n\n  - sycl\n\nversion_source:\n\n  type: github\n\n  repository: ggml-org/llama.cpp\n\nlaunch:\n\n  executable: llama-server\n\nprotocols:\n\n  - openai\n\n  - anthropic\n\nbenchmark:\n\n  executable: llama-bench\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 12,
+    "title": "Adaptadores fuera de proceso",
+    "spec_line_original": 947,
+    "requirement_sha256": "c8e4b10a5cbe98e05661a6f2119b9f3df5bbdf44fb46c2a6a650f84a9117df8e",
+    "owners": [
+      "P020",
+      "P021",
+      "P022",
+      "P026"
+    ],
+    "requirement_text": "# 12. Adaptadores fuera de proceso\n\nLos plugins externos no se cargarán como librerías arbitrarias dentro del Core.\n\nPreferencia:\n\n```text\n\nLARM\n\n ↓\n\nJSON-RPC / stdio\n\n ↓\n\nAdapter Worker\n\n```\n\no socket local.\n\nVentajas:\n\n- aislamiento;\n\n- posibilidad de utilizar Python;\n\n- posibilidad de utilizar Rust/C#/Go;\n\n- un crash del adaptador no tumba LARM;\n\n- mayor seguridad;\n\n- actualizaciones independientes.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 13,
+    "title": "Adaptadores declarativos",
+    "spec_line_original": 1001,
+    "requirement_sha256": "e5628696cf355cd2f7c6b154403ff6be683afbc43dc7bdf79efefbac9e400874",
+    "owners": [
+      "P023",
+      "P037",
+      "P124",
+      "P140",
+      "P099"
+    ],
+    "requirement_text": "# 13. Adaptadores declarativos\n\nPara runtimes sencillos no será necesario programar.\n\nLa GUI permitirá definir:\n\n```text\n\nNombre\n\nEjecutable\n\nArgumentos\n\nComando de versión\n\nComando de arranque\n\nComando de parada\n\nEndpoint\n\nHealth endpoint\n\nProtocolos\n\nFormatos\n\nVariables de entorno\n\n```\n\nLARM generará un adaptador declarativo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H04"
+    ]
+  },
+  {
+    "section": 14,
+    "title": "Model Source Registry",
+    "spec_line_original": 1049,
+    "requirement_sha256": "b268531b54f7cc4660df4a0fbbbd14bf7d639a8925a315551def365249f54f8c",
+    "owners": [
+      "P043",
+      "P046",
+      "P047",
+      "P048",
+      "P049",
+      "P068",
+      "P076",
+      "P099",
+      "P141"
+    ],
+    "requirement_text": "# 14. Model Source Registry\n\nHugging Face no será la única fuente.\n\nFuentes iniciales previstas:\n\n```text\n\nHugging Face\n\nModelScope\n\nKaggle Models\n\nOllama Library\n\nGitHub\n\nOpenXLab\n\nNVIDIA NGC\n\ncatálogos de fabricantes\n\nCivitai\n\nFoundry Catalog\n\nLemonade Registry\n\nHTTP/HTTPS\n\nGit/Git LFS\n\ncarpeta local\n\nNAS/LAN\n\nrepositorios privados\n\n```\n\nHugging Face posee API pública y permite obtener metadata de archivos, incluido su tamaño en bytes antes de descargarlos.\n\nModelScope dispone de API/SDK, búsqueda, descarga selectiva, reanudación, SHA256 y elección de directorio/caché.\n\nKaggle permite descarga de modelos mediante SDK, CLI o API.\n\nOllama mantiene su propio catálogo y actualmente contiene LLM, modelos multimodales, embeddings y modelos de decisión/System-1 como Laya.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 15,
+    "title": "Model Source Adapter",
+    "spec_line_original": 1119,
+    "requirement_sha256": "261bc0b486a520c27f439769e09d5d33bd4dabffa201cacd01af8192635f161b",
+    "owners": [
+      "P043",
+      "P025",
+      "P026",
+      "P099",
+      "P141"
+    ],
+    "requirement_text": "# 15. Model Source Adapter\n\nContrato:\n\n```text\n\nprobe()\n\nauthenticate()\n\nlogout()\n\nsearch()\n\nget_model()\n\nget_versions()\n\nget_artifacts()\n\nget_metadata()\n\nget_capabilities()\n\nget_license()\n\nget_files()\n\nget_file_metadata()\n\nestimate_download_size()\n\ndownload_plan()\n\ndownload()\n\ncheck_updates()\n\nverify_integrity()\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 16,
+    "title": "Fuentes privadas",
+    "spec_line_original": 1191,
+    "requirement_sha256": "5093ae423c5251e98b9647ad52e59e71054b3e119802422ac25ea7d99ffef9e4",
+    "owners": [
+      "P045",
+      "P048",
+      "P049",
+      "P140",
+      "P141"
+    ],
+    "requirement_text": "# 16. Fuentes privadas\n\nLos adaptadores deberán admitir cuando corresponda:\n\n```text\n\nBearer Token\n\nAPI Token\n\nOAuth\n\nBasic Auth\n\nSSH\n\ncookies/tokens específicos\n\n```\n\nLas credenciales no se almacenarán en texto plano en SQLite.\n\nEn Windows deberán utilizar:\n\n```text\n\nWindows Credential Manager\n\ny/o DPAPI\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 17,
+    "title": "Modelo canónico",
+    "spec_line_original": 1239,
+    "requirement_sha256": "e5fade309d52985552cd0ebd985a6afe1ccd13ed519d6b11d2dfd4361ee96ae2",
+    "owners": [
+      "P040",
+      "P041"
+    ],
+    "requirement_text": "# 17. Modelo canónico\n\nEl mismo modelo puede aparecer simultáneamente en múltiples fuentes.\n\nNo deberá mostrarse como modelos completamente distintos cuando pueda determinarse que tienen el mismo origen.\n\nSe introducirán:\n\n```text\n\nCanonicalModel\n\nModelDistribution\n\nModelVariant\n\nModelArtifact\n\n```\n\nEjemplo:\n\n```text\n\nQwen-X\n\n │\n\n ├── Hugging Face\n\n │      └── GGUF Q5_K_M\n\n │\n\n ├── ModelScope\n\n │      └── SafeTensors BF16\n\n │\n\n ├── Vendor\n\n │      └── ONNX INT4\n\n │\n\n └── Ollama\n\n        └── manifest\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 18,
+    "title": "Resolución de identidad",
+    "spec_line_original": 1309,
+    "requirement_sha256": "fee7b93fb29383ebf9cac80872d366585e3b0102ea2752b452d91a07ccd0a2c2",
+    "owners": [
+      "P041"
+    ],
+    "requirement_text": "# 18. Resolución de identidad\n\nSe utilizarán, cuando estén disponibles:\n\n```text\n\narquitectura\n\nmodelo base\n\nautor\n\nrepository metadata\n\nconfig\n\ncommit\n\nSHA256\n\ntensor metadata\n\ntokenizer\n\nlineage\n\n```\n\nLa resolución deberá aceptar grados:\n\n```text\n\nIDENTICAL\n\nPROBABLE_SAME_MODEL\n\nDERIVED_MODEL\n\nUNRELATED\n\nUNKNOWN\n\n```\n\nNunca fusionará automáticamente dos modelos cuando la identidad sea dudosa.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 19,
+    "title": "Procedencia",
+    "spec_line_original": 1371,
+    "requirement_sha256": "4fb0169ce7931b48e7bfeaf713c452d3cc896aade00c5f52ae859f5c342c539a",
+    "owners": [
+      "P040",
+      "P096"
+    ],
+    "requirement_text": "# 19. Procedencia\n\nCada artefacto conservará:\n\n```text\n\nsource\n\nrepository\n\noriginal author\n\nuploader\n\nrevision\n\ncommit\n\ndownload URL\n\nSHA256\n\nlicense\n\ngated status\n\nbase model\n\nquantizer\n\nconversion lineage\n\ndownload date\n\n```\n\nLa UI diferenciará:\n\n```text\n\nOfficial publisher\n\nVerified distribution\n\nCommunity conversion\n\nUnknown origin\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 20,
+    "title": "Capabilities Taxonomy",
+    "spec_line_original": 1435,
+    "requirement_sha256": "e8942d3d10ffa01b04a635f8cf40da452d01d783bfeb5a3e99aa3086c4884c5f",
+    "owners": [
+      "P020",
+      "P040",
+      "P102",
+      "P026",
+      "P082",
+      "P083",
+      "P108"
+    ],
+    "requirement_text": "# 20. Capabilities Taxonomy\n\nLas capacidades no serán un enum rígido.\n\nSe utilizarán identificadores extensibles.\n\nEjemplos:\n\n```text\n\ntext.generate\n\ntext.classify\n\ndecision.evaluate\n\nembedding.create\n\nrerank\n\nvision.understand\n\nvision.ocr\n\nvision.detect\n\nvision.segment\n\nimage.generate\n\nimage.upscale\n\nvideo.generate\n\naudio.transcribe\n\naudio.translate\n\naudio.classify\n\nspeech.synthesize\n\ntool.call\n\ngeneric.inference\n\n```\n\nLos adaptadores podrán registrar nuevas capacidades.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 21,
+    "title": "Model Bundle",
+    "spec_line_original": 1517,
+    "requirement_sha256": "0116be046d19de65ae64e661f06df7ca313155555fc13b91e504b8e17634063a",
+    "owners": [
+      "P041",
+      "P061",
+      "P072",
+      "P074",
+      "P098"
+    ],
+    "requirement_text": "# 21. Model Bundle\n\nMuchos modelos no son un único fichero.\n\nPor ejemplo:\n\n```text\n\nweights\n\ntokenizer\n\nvision projector\n\nVAE\n\ntext encoder\n\nvocoder\n\nprocessor\n\nconfig\n\n```\n\nPor tanto existirá:\n\n```text\n\nModelBundle\n\n```\n\nque agrupará todos los artefactos necesarios para una variante ejecutable.\n\nLa compatibilidad se calculará sobre el bundle, no sólo sobre un archivo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 22,
+    "title": "Hardware Profiler",
+    "spec_line_original": 1575,
+    "requirement_sha256": "e7561e553258a5e1395f01561b74b0a0645c122d024169fb3122df347faa0d96",
+    "owners": [
+      "P010",
+      "P011",
+      "P012",
+      "P000",
+      "P139"
+    ],
+    "requirement_text": "# 22. Hardware Profiler\n\nLARM detectará:\n\n## Sistema\n\n```text\n\nWindows edition\n\nWindows build\n\narchitecture\n\n```\n\n## CPU\n\n```text\n\nmodelo\n\nvendor\n\ncores\n\nthreads\n\ninstruction sets\n\n```\n\n## Memoria\n\n```text\n\nRAM total\n\nRAM disponible\n\nmemoria unificada\n\npagefile\n\n```\n\n## GPU\n\n```text\n\nvendor\n\nmodelo\n\ndriver\n\nVRAM\n\nshared memory\n\nAPIs disponibles\n\n```\n\n## NPU\n\n```text\n\nvendor\n\nmodelo\n\ndriver\n\nexecution providers\n\n```\n\n## APIs/aceleradores\n\n```text\n\nVulkan\n\nCUDA\n\nROCm\n\nDirectML\n\nWindows ML\n\nOpenCL\n\nSYCL\n\nVitisAI\n\nMIGraphX\n\nOpenVINO\n\nQNN\n\nTensorRT\n\n```\n\n## Storage\n\nPara cada volumen:\n\n```text\n\nidentidad\n\ntipo\n\ncapacidad\n\nespacio libre\n\nfilesystem\n\nrendimiento aproximado\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 23,
+    "title": "HardwareFingerprint",
+    "spec_line_original": 1741,
+    "requirement_sha256": "be21764cf63669882626dabdb981a78ecf7011b7165d9d3affedd0a8a9f2772e",
+    "owners": [
+      "P013",
+      "P000"
+    ],
+    "requirement_text": "# 23. HardwareFingerprint\n\nSe generará un fingerprint para cada configuración.\n\nIncluirá:\n\n```text\n\nWindows build\n\nCPU\n\nGPU\n\nNPU\n\nRAM\n\ndrivers\n\nexecution providers\n\nruntime dependencies\n\n```\n\nEl cambio de driver podrá producir un fingerprint nuevo.\n\nEsto es necesario porque:\n\n```text\n\nmodelo idéntico\n\n+\n\nruntime idéntico\n\n+\n\ndriver diferente\n\n```\n\npuede producir resultados diferentes.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 24,
+    "title": "Compatibility Engine",
+    "spec_line_original": 1807,
+    "requirement_sha256": "acb0756178cc1fd3958eceea02590e651c885442c61074e4028d7b94442d4f82",
+    "owners": [
+      "P090"
+    ],
+    "requirement_text": "# 24. Compatibility Engine\n\nLa compatibilidad será una relación entre:\n\n```text\n\nModelVariant\n\n×\n\nRuntimeVersion\n\n×\n\nBackend\n\n×\n\nHardwareFingerprint\n\n×\n\nLaunchProfile\n\n```\n\nEstados:\n\n```text\n\nCOMPATIBLE\n\nCOMPATIBLE_WITH_LIMITATIONS\n\nEXPERIMENTAL\n\nCONVERSION_REQUIRED\n\nRUNTIME_REQUIRED\n\nBACKEND_REQUIRED\n\nINCOMPATIBLE\n\nUNKNOWN\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 25,
+    "title": "Compatibilidad: hard gates",
+    "spec_line_original": 1869,
+    "requirement_sha256": "f90bb5839d5d8a3eccab690c986cbf41236b222c4b2f7603ece1a92536992e5f",
+    "owners": [
+      "P090",
+      "P091"
+    ],
+    "requirement_text": "# 25. Compatibilidad: hard gates\n\nAntes de calcular puntuaciones deberán cumplirse condiciones obligatorias:\n\n```text\n\nformato soportado\n\narquitectura soportada\n\nbackend disponible\n\ndriver válido\n\nmemoria mínima\n\nsistema operativo\n\ndependencias\n\nlicencia aceptada\n\nartefactos completos\n\n```\n\nSi falla una condición obligatoria:\n\n```text\n\nCompatibilityScore = N/A\n\n```\n\nNo se maquillará una incompatibilidad mediante puntuaciones.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 26,
+    "title": "Technical Fit Score",
+    "spec_line_original": 1921,
+    "requirement_sha256": "f5692670bd27c672b8fe81daafc533b7fdc5624ec8a5dd3202e4245f6ecfd0c1",
+    "owners": [
+      "P091"
+    ],
+    "requirement_text": "# 26. Technical Fit Score\n\nPara candidatos compatibles podrá calcularse:\n\n```text\n\nTechnicalFitScore 0-100\n\n```\n\nbasado en:\n\n```text\n\nmemory headroom\n\nbackend suitability\n\nruntime maturity\n\nknown benchmark data\n\nstorage performance\n\ncontext requirements\n\nstability evidence\n\n```\n\nSerá diferente de:\n\n```text\n\nEvaluationScore\n\n```\n\nprocedente de Model Drift.\n\nNo se confundirá rendimiento técnico con calidad del modelo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 27,
+    "title": "Storage Manager",
+    "spec_line_original": 1985,
+    "requirement_sha256": "e9f2e79679c33fb67e8a3cf2b51db643c60fc748fe6f70167fcdbfb87388c81d",
+    "owners": [
+      "P014",
+      "P123",
+      "P139"
+    ],
+    "requirement_text": "# 27. Storage Manager\n\nEl almacenamiento será un subsistema completo.\n\nNo existirá una única carpeta global obligatoria.\n\nEl usuario podrá registrar múltiples:\n\n```text\n\nStorageLocation\n\n```\n\nEjemplo:\n\n```text\n\nC:\\\\AI\\\\Models\n\nD:\\\\ModelosIA\n\nE:\\\\LLM\n\nF:\\\\Diffusion\n\n\\\\\\\\NAS\\\\AI\\\\Models\n\n```\n\nCada ubicación tendrá:\n\n```text\n\nid\n\ndisplay_name\n\nroot_path\n\nvolume_identity\n\nfilesystem\n\nstorage_type\n\ncapacity\n\nfree_space\n\nreserved_space\n\npriority\n\nhealth\n\nenabled\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 28,
+    "title": "Identidad de unidad",
+    "spec_line_original": 2067,
+    "requirement_sha256": "6073e0c6833e5259985197e2888c18b8f729048cd73179232ee863d36a7946db",
+    "owners": [
+      "P012",
+      "P016"
+    ],
+    "requirement_text": "# 28. Identidad de unidad\n\nLARM no dependerá exclusivamente de:\n\n```text\n\nD:\n\n```\n\nCuando sea posible almacenará:\n\n```text\n\nWindows Volume GUID\n\n```\n\nademás de:\n\n```text\n\ndrive letter\n\ncanonical path\n\n```\n\nDe este modo podrá reconocer una unidad aunque cambie la letra.\n\nPara ubicaciones de red se utilizará:\n\n```text\n\nUNC path\n\n```\n\ncuando sea posible.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 29,
+    "title": "Estados de StorageLocation",
+    "spec_line_original": 2133,
+    "requirement_sha256": "4b3b610917de78bd07c302428e9d26d01192e6ccf12260ae7848a4266532c2e2",
+    "owners": [
+      "P014",
+      "P018",
+      "P042"
+    ],
+    "requirement_text": "# 29. Estados de StorageLocation\n\n```text\n\nONLINE\n\nLOW_SPACE\n\nREAD_ONLY\n\nOFFLINE\n\nMISSING\n\nDEGRADED\n\nERROR\n\n```\n\nSi se desconecta un disco externo:\n\n```text\n\nModel = OFFLINE\n\n```\n\nno:\n\n```text\n\nModel = DELETED\n\n```\n\nCuando vuelva a aparecer el volumen, LARM revalidará automáticamente sus modelos.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 30,
+    "title": "Selección del destino antes de descargar",
+    "spec_line_original": 2189,
+    "requirement_sha256": "1d39eb62ec409e4df649b19634c47883851c14bdae86d6aff113118e30670b57",
+    "owners": [
+      "P015",
+      "P052",
+      "P122",
+      "P139"
+    ],
+    "requirement_text": "# 30. Selección del destino antes de descargar\n\nAntes de cada descarga la interfaz mostrará:\n\n```text\n\nModelo:\n\nQwen-X Q5_K_M\n\nDescarga:\n\n18.4 GB\n\nTamaño final estimado:\n\n18.8 GB\n\nEspacio temporal máximo:\n\n19.1 GB\n\nEspacio mínimo recomendado:\n\n21 GB\n\n```\n\nY:\n\n```text\n\nDestino:\n\nD:\\\\ModelosIA\n\nLibre: 312 GB\n\nE:\\\\IA\n\nLibre: 1.42 TB\n\n[ Elegir carpeta... ]\n\n```\n\nEl usuario podrá seleccionar manualmente.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 31,
+    "title": "StorageEstimate",
+    "spec_line_original": 2267,
+    "requirement_sha256": "719929b639837b06191d665f69da1943005e9f295240b9afc582b9071e1286b3",
+    "owners": [
+      "P015"
+    ],
+    "requirement_text": "# 31. StorageEstimate\n\nCada operación de descarga/transformación generará:\n\n```text\n\nStorageEstimate\n\n```\n\ncon:\n\n```text\n\ndownload_bytes\n\nfinal_artifact_bytes\n\ninstalled_bytes\n\nderived_cache_bytes\n\ntemporary_peak_bytes\n\nrequired_free_bytes\n\nconfidence\n\n```\n\n`confidence`:\n\n```text\n\nEXACT\n\nHIGH\n\nESTIMATED\n\nUNKNOWN\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 32,
+    "title": "Cálculo del tamaño previo",
+    "spec_line_original": 2329,
+    "requirement_sha256": "3fee03bc5679e4f2fde06d620608ffbaefa749658ab0c246420316e0e42b32b3",
+    "owners": [
+      "P046",
+      "P047",
+      "P048",
+      "P052"
+    ],
+    "requirement_text": "# 32. Cálculo del tamaño previo\n\nOrden de prioridad:\n\n```text\n\n1. Metadata oficial de la fuente\n\n2. Manifest\n\n3. API del repositorio\n\n4. HTTP Content-Length\n\n5. Git LFS metadata\n\n6. estimación por formato/parámetros\n\n7. UNKNOWN\n\n```\n\nPor ejemplo, Hugging Face puede proporcionar directamente el tamaño de los archivos mediante metadata del repositorio.\n\nSi no existe información suficiente la interfaz deberá decir:\n\n```text\n\nTamaño exacto no disponible.\n\nEstimación: 18–23 GB.\n\n```\n\nNo inventará precisión.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 33,
+    "title": "Espacio de transformaciones",
+    "spec_line_original": 2383,
+    "requirement_sha256": "5522a7f3ac729708e15aaadee8809fe3870a6539dfa34553f6ef43a7d4c84431",
+    "owners": [
+      "P015",
+      "P093"
+    ],
+    "requirement_text": "# 33. Espacio de transformaciones\n\nEjemplo:\n\n```text\n\nSafeTensors original: 30 GB\n\nGGUF temporal:        18 GB\n\ncuantización final:    9 GB\n\n```\n\nDurante el proceso podrían coexistir:\n\n```text\n\n30 + 18 + 9 GB\n\n```\n\nPor tanto el sistema deberá calcular:\n\n```text\n\nPeakDiskUsage\n\n```\n\nantes de iniciar una conversión.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 34,
+    "title": "Política tras conversión",
+    "spec_line_original": 2435,
+    "requirement_sha256": "fec2c3d8f066a10e07e3652bd036443db939db9372bedd88ef760ed298fa5575",
+    "owners": [
+      "P093",
+      "P094",
+      "P097"
+    ],
+    "requirement_text": "# 34. Política tras conversión\n\nEl usuario podrá configurar:\n\n```text\n\nConservar fuente original\n\nEliminar después de verificar derivado\n\nPreguntar\n\n```\n\nNunca se borrará automáticamente un original antes de verificar:\n\n```text\n\nhash\n\nintegridad\n\ncarga del derivado\n\nsmoke test\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 35,
+    "title": "Ubicación de artefactos",
+    "spec_line_original": 2477,
+    "requirement_sha256": "c72016cf67f9ff172e9302b50b339f34341ad11a6526fc8eefbcf7fe5771ed80",
+    "owners": [
+      "P016"
+    ],
+    "requirement_text": "# 35. Ubicación de artefactos\n\nLa base de datos no almacenará únicamente:\n\n```text\n\nmodel_path\n\n```\n\nExistirá:\n\n```text\n\nArtifactLocation\n\n```\n\nrelacionando:\n\n```text\n\nModelArtifact\n\nStorageLocation\n\nrelative_path\n\n```\n\nUn modelo compuesto podrá tener varios artefactos.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 36,
+    "title": "Distribución entre discos",
+    "spec_line_original": 2529,
+    "requirement_sha256": "067d5be211711fa0f0fcf5a89a5c18c079615864f324c81c546780277a6af950",
+    "owners": [
+      "P041",
+      "P016",
+      "P098"
+    ],
+    "requirement_text": "# 36. Distribución entre discos\n\nPor defecto todos los componentes críticos de un ModelBundle se almacenarán juntos.\n\nSin embargo, el modelo de datos permitirá múltiples ubicaciones.\n\nEjemplo:\n\n```text\n\nweights        → E:\n\nvision encoder → E:\n\ncache          → D:\n\n```\n\nSólo se permitirá fragmentar un bundle entre discos cuando el Runtime Adapter confirme que es compatible.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 37,
+    "title": "Mover modelos",
+    "spec_line_original": 2565,
+    "requirement_sha256": "a8bf2430deb5aacea48069cc33c8bda15c7248774054a9045b8775531bc5cf9a",
+    "owners": [
+      "P016",
+      "P019"
+    ],
+    "requirement_text": "# 37. Mover modelos\n\nLa GUI ofrecerá:\n\n```text\n\nMover a...\n\n```\n\nProceso cross-volume:\n\n```text\n\nlock model\n\n ↓\n\ncopy\n\n ↓\n\nverify hashes\n\n ↓\n\nupdate registry\n\n ↓\n\ntest access\n\n ↓\n\ndelete old copy\n\n ↓\n\nunlock\n\n```\n\nSi falla antes del cambio de registry:\n\n```text\n\nubicación original sigue siendo válida\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 38,
+    "title": "Modelos activos",
+    "spec_line_original": 2633,
+    "requirement_sha256": "52af23d4a88346683396cddea3aef9516c58b283e7c33289aa829b3b7b5f3f4b",
+    "owners": [
+      "P016",
+      "P035",
+      "P100",
+      "P019"
+    ],
+    "requirement_text": "# 38. Modelos activos\n\nUn modelo con:\n\n```text\n\nactive RuntimeLease\n\n```\n\nno podrá moverse ni eliminarse.\n\nOpciones:\n\n```text\n\nEsperar\n\nDetener instancia\n\nCancelar operación\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 39,
+    "title": "Deduplicación",
+    "spec_line_original": 2673,
+    "requirement_sha256": "ca2a23aad80247b4a91d83283e18e053a70cd05f77a5ef6784d090ac2cb34857",
+    "owners": [
+      "P017",
+      "P019"
+    ],
+    "requirement_text": "# 39. Deduplicación\n\nEl almacenamiento utilizará hashes de contenido.\n\nDos modelos que compartan exactamente un archivo podrán referenciar el mismo blob cuando sea seguro.\n\nEn NTFS:\n\n```text\n\nhard links\n\n```\n\npodrán utilizarse dentro del mismo volumen.\n\nEntre volúmenes distintos no se asumirá deduplicación física.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 40,
+    "title": "Content Addressed Store",
+    "spec_line_original": 2709,
+    "requirement_sha256": "8a18efaf53f9aacc3b4c316e2a0ee953547866fc69a2544debba4a3589578634",
+    "owners": [
+      "P017"
+    ],
+    "requirement_text": "# 40. Content Addressed Store\n\nOpcionalmente cada StorageLocation podrá funcionar como:\n\n```text\n\nContent Addressed Store\n\n```\n\ncon:\n\n```text\n\nSHA256\n\n```\n\ncomo identidad principal.\n\nLos runtimes podrán recibir una vista compatible:\n\n```text\n\nruntime view\n\n```\n\nmediante enlaces o rutas generadas.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 41,
+    "title": "Storage Ownership",
+    "spec_line_original": 2761,
+    "requirement_sha256": "2d5f19c20953ebfa5086adac1cfbbd9bd3edaa432ac0c1754f35df1e44c68ab1",
+    "owners": [
+      "P017",
+      "P030",
+      "P068",
+      "P070",
+      "P076",
+      "P098"
+    ],
+    "requirement_text": "# 41. Storage Ownership\n\nUn archivo podrá estar:\n\n```text\n\nLARM_MANAGED\n\nHOST_MANAGED\n\nEXTERNAL\n\n```\n\nEjemplo:\n\nUn modelo instalado por Lemonade podrá continuar almacenado en la cache propia de Lemonade.\n\nLARM registra:\n\n```text\n\nhost-managed\n\npath\n\nsize\n\nhash si accesible\n\n```\n\nsin moverlo automáticamente.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 42,
+    "title": "Importación de modelos existentes",
+    "spec_line_original": 2815,
+    "requirement_sha256": "bfb60393cab0d12ce2f04f5dcd76319b0ae47de2967468582cc77dfaa296fb17",
+    "owners": [
+      "P017",
+      "P098"
+    ],
+    "requirement_text": "# 42. Importación de modelos existentes\n\nFunción:\n\n```text\n\nEscanear carpeta\n\n```\n\nLARM detectará:\n\n```text\n\nGGUF\n\nONNX\n\nSafeTensors\n\nPyTorch\n\nMLC\n\nmodel manifests\n\nOllama blobs\n\notros formatos conocidos\n\n```\n\nIntentará identificar el modelo y registrarlo.\n\nEstado:\n\n```text\n\nADOPTED\n\n```\n\nNo será necesario volver a descargarlo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 43,
+    "title": "Limpieza de almacenamiento",
+    "spec_line_original": 2881,
+    "requirement_sha256": "e1409807a17e4a7cc0369eb51f14958a6ee2193e13ea1d063d305f598e19c6c2",
+    "owners": [
+      "P018",
+      "P123",
+      "P098"
+    ],
+    "requirement_text": "# 43. Limpieza de almacenamiento\n\nPanel:\n\n```text\n\nStorage Analyzer\n\n```\n\nMostrará:\n\n```text\n\nmodelos\n\ncopias duplicadas\n\nversiones antiguas\n\ndownloads parciales\n\nconversiones temporales\n\ncaches\n\nartefactos huérfanos\n\nruntimes antiguos\n\n```\n\nY estimará:\n\n```text\n\nEspacio recuperable: XXX GB\n\n```\n\nNunca eliminará elementos automáticamente sin política explícita.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 44,
+    "title": "Download Manager",
+    "spec_line_original": 2943,
+    "requirement_sha256": "53a21348288f0f5a4f4c3fb027ed272a408e70b79ce34ba60342dc01d4a1e7d2",
+    "owners": [
+      "P051",
+      "P003",
+      "P125",
+      "P140",
+      "P052",
+      "P119"
+    ],
+    "requirement_text": "# 44. Download Manager\n\nFunciones:\n\n```text\n\ncola\n\npausa\n\nreanudar\n\ncancelar\n\nprioridades\n\nreintentos\n\nbandwidth limit\n\nparallel downloads\n\nchecksum\n\n```\n\nLos downloads usarán:\n\n```text\n\n*.partial\n\n```\n\nhasta completarse.\n\nTras finalizar:\n\n```text\n\nverify\n\n ↓\n\natomic rename\n\n```\n\ncuando el filesystem lo permita.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H08"
+    ]
+  },
+  {
+    "section": 45,
+    "title": "Preflight de descarga",
+    "spec_line_original": 3015,
+    "requirement_sha256": "beee59ee6110658733c710104414f76736dfb272763f9d7f0983d0fb9aedee72",
+    "owners": [
+      "P015",
+      "P051",
+      "P052",
+      "P122"
+    ],
+    "requirement_text": "# 45. Preflight de descarga\n\nAntes de comenzar:\n\n```text\n\nsource accessible\n\nauthentication valid\n\nlicense accepted\n\ndestination online\n\ndestination writable\n\nrequired space available\n\nruntime compatibility known\n\n```\n\nSi falta espacio:\n\n```text\n\nNo iniciar descarga.\n\n```\n\nLa UI propondrá otras StorageLocations.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 46,
+    "title": "Model Transformation Pipeline",
+    "spec_line_original": 3063,
+    "requirement_sha256": "dc3ba6b72540c63b6262ae0208a6b8e1a465342dabdc68190f4b66ce82df0c0a",
+    "owners": [
+      "P093",
+      "P094",
+      "P095"
+    ],
+    "requirement_text": "# 46. Model Transformation Pipeline\n\nLARM deberá poder producir artefactos derivados.\n\nEjemplos:\n\n```text\n\nSafeTensors\n\n    ↓\n\nGGUF\n\n    ↓\n\nQ5_K_M\n\n```\n\no:\n\n```text\n\nHugging Face\n\n    ↓\n\nOlive\n\n    ↓\n\nONNX\n\n    ↓\n\nINT4\n\n```\n\nCada transformación producirá:\n\n```text\n\nTransformationRecord\n\n```\n\ncon:\n\n```text\n\nsource hash\n\ntool\n\ntool version\n\nparameters\n\noutput hash\n\ndate\n\nlogs\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 47,
+    "title": "Provenance derivada",
+    "spec_line_original": 3155,
+    "requirement_sha256": "35eceaea5354880cf7e7880080669edf0599416586483084f3e31649b710c3d0",
+    "owners": [
+      "P096"
+    ],
+    "requirement_text": "# 47. Provenance derivada\n\nUn GGUF creado localmente conservará la cadena:\n\n```text\n\nModelo original\n\n  ↓\n\nrevision\n\n  ↓\n\nconvert_hf_to_gguf version X\n\n  ↓\n\nllama-quantize version Y\n\n  ↓\n\nQ5_K_M\n\n```\n\nAsí se podrá reproducir posteriormente.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 48,
+    "title": "Runtime Version Manager",
+    "spec_line_original": 3195,
+    "requirement_sha256": "88e418776d2b6df29bb96d3da60dec31336874cb71533d2de1fbbc8c9b5e25f8",
+    "owners": [
+      "P031",
+      "P032"
+    ],
+    "requirement_text": "# 48. Runtime Version Manager\n\nTodas las versiones se instalarán side-by-side cuando sea técnicamente viable.\n\nEjemplo:\n\n```text\n\nllama.cpp\n\n ├── b8500\n\n ├── b8544\n\n └── b8601\n\n```\n\nNunca se sobrescribirá la última versión estable conocida.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 49,
+    "title": "Canales de runtime",
+    "spec_line_original": 3229,
+    "requirement_sha256": "ed49e824b3b5bdac0f57fdf486ee0ba96831bf435e24adbf0482555471eee2b7",
+    "owners": [
+      "P030",
+      "P032",
+      "P124",
+      "P031"
+    ],
+    "requirement_text": "# 49. Canales de runtime\n\n```text\n\nSTABLE\n\nPRERELEASE\n\nNIGHTLY\n\nCOMMIT\n\nCUSTOM\n\n```\n\nEl usuario podrá elegir política por runtime.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H01"
+    ]
+  },
+  {
+    "section": 50,
+    "title": "Actualización de runtime",
+    "spec_line_original": 3257,
+    "requirement_sha256": "54d79b839b21ac333e9922a16bc6cb0ed63c99904624c41bd0fdabd0e0029a7f",
+    "owners": [
+      "P032",
+      "P117"
+    ],
+    "requirement_text": "# 50. Actualización de runtime\n\n```text\n\nUPDATE_DISCOVERED\n\n ↓\n\ndownload\n\n ↓\n\ninstall side-by-side\n\n ↓\n\nvalidate\n\n ↓\n\nsmoke test\n\n ↓\n\ntechnical benchmark\n\n ↓\n\ncompare\n\n ↓\n\npromote\n\n```\n\nSi existe regresión:\n\n```text\n\nNO_PROMOTE\n\n```\n\nLa versión anterior permanece activa.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 51,
+    "title": "Runtime Pinning",
+    "spec_line_original": 3317,
+    "requirement_sha256": "d2d609ade173d712475ed6c0967a873743631ca4bf3e30d7e69d197db8e1e5c7",
+    "owners": [
+      "P032",
+      "P097"
+    ],
+    "requirement_text": "# 51. Runtime Pinning\n\nSerá posible fijar:\n\n```text\n\nModelo X\n\n ↓\n\nllama.cpp b8544\n\n```\n\nindependientemente de la versión predeterminada.\n\nEsto garantizará reproducibilidad.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 52,
+    "title": "Runtime Installation Strategies",
+    "spec_line_original": 3349,
+    "requirement_sha256": "5d592d8102ab141ef519b478231bca877965df45c3d0fb964e0450148d82e3c9",
+    "owners": [
+      "P031",
+      "P065",
+      "P071",
+      "P081",
+      "P027",
+      "P020",
+      "P140",
+      "P099",
+      "P037"
+    ],
+    "requirement_text": "# 52. Runtime Installation Strategies\n\nLos adaptadores podrán declarar:\n\n```text\n\nPREBUILT_BINARY\n\nGITHUB_RELEASE\n\nSOURCE_BUILD\n\nWINGET\n\nPIP\n\nUV\n\nCONDA\n\nMAMBA\n\nNUGET\n\nWSL\n\nCONTAINER\n\nCUSTOM\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H02"
+    ]
+  },
+  {
+    "section": 53,
+    "title": "Python Environment Manager",
+    "spec_line_original": 3391,
+    "requirement_sha256": "8397f9b348a18a6bd9276cd48f38d726f09172c11abebcbb538f7b79020fb099",
+    "owners": [
+      "P071",
+      "P065",
+      "P020",
+      "P031",
+      "P140",
+      "P099",
+      "P037"
+    ],
+    "requirement_text": "# 53. Python Environment Manager\n\nLos runtimes Python estarán aislados.\n\nCada entorno tendrá:\n\n```text\n\nPython version\n\npackages\n\nversions\n\nCUDA/ROCm dependencies\n\npath\n\nhash\n\n```\n\nSe podrán utilizar:\n\n```text\n\nuv\n\nvenv\n\nmicromamba/conda\n\n```\n\nUn runtime no contaminará el Python global.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H02"
+    ]
+  },
+  {
+    "section": 54,
+    "title": "Runtime Instance",
+    "spec_line_original": 3445,
+    "requirement_sha256": "d6105473ccb02827e185926bcf3cc3af70eb14b27e4db428a8999c9be5c7cbb7",
+    "owners": [
+      "P033",
+      "P034",
+      "P036"
+    ],
+    "requirement_text": "# 54. Runtime Instance\n\nUna ejecución concreta se representará como:\n\n```text\n\nRuntimeInstance\n\n```\n\nContendrá:\n\n```text\n\ninstance_id\n\nruntime\n\nruntime_version\n\nbackend\n\nmodel\n\nlaunch_profile\n\nPID\n\nstart_time\n\nendpoint\n\nprotocol\n\nhealth\n\nmemory\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 55,
+    "title": "Runtime Process Supervisor",
+    "spec_line_original": 3499,
+    "requirement_sha256": "bf51d7a325e55e0a6a4596be422857468edfd652520510417ce1556e6a80c2bd",
+    "owners": [
+      "P033"
+    ],
+    "requirement_text": "# 55. Runtime Process Supervisor\n\nEstados:\n\n```text\n\nCREATED\n\nSTARTING\n\nLOADING\n\nREADY\n\nBUSY\n\nDEGRADED\n\nFAILED\n\nSTOPPING\n\nSTOPPED\n\nCRASHED\n\n```\n\nEl Supervisor podrá:\n\n```text\n\nrestart\n\ncollect logs\n\ndetect crash\n\ndetect port conflict\n\ndetect OOM\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 56,
+    "title": "Launch Profiles",
+    "spec_line_original": 3557,
+    "requirement_sha256": "716b200762d3e2da0ffb9e83543a16ed27ec5afebac6f869c49c762463f61994",
+    "owners": [
+      "P034",
+      "P033",
+      "P035",
+      "P100",
+      "P124",
+      "P013",
+      "P117",
+      "P099"
+    ],
+    "requirement_text": "# 56. Launch Profiles\n\nUn modelo podrá tener múltiples configuraciones.\n\nEjemplo:\n\n```text\n\nECO\n\nBALANCED\n\nPERFORMANCE\n\nLONG_CONTEXT\n\nCUSTOM\n\n```\n\nUn perfil contiene:\n\n```text\n\ncontext\n\nthreads\n\nbatch\n\nGPU layers\n\nbackend\n\nmemory limit\n\nruntime arguments\n\nenvironment variables\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H03"
+    ]
+  },
+  {
+    "section": 57,
+    "title": "Memory Estimator",
+    "spec_line_original": 3615,
+    "requirement_sha256": "0a1447417ea0a4a292e221d48e9f84bfa07e495c284333caa6e5bbf676dd0da5",
+    "owners": [
+      "P035"
+    ],
+    "requirement_text": "# 57. Memory Estimator\n\nAntes de cargar un modelo se estimará:\n\n```text\n\nweights\n\nruntime overhead\n\nKV cache\n\nworkspace\n\nvision/audio components\n\ntemporary buffers\n\nsafety margin\n\n```\n\nEn máquinas con memoria unificada se evitará contar RAM y VRAM como memorias independientes cuando no lo sean.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 58,
+    "title": "Protocol Layer",
+    "spec_line_original": 3651,
+    "requirement_sha256": "2e5065d891740b38b7896474a09378ad6b1633b2e358ed804a71fccea26dd412",
+    "owners": [
+      "P036",
+      "P103"
+    ],
+    "requirement_text": "# 58. Protocol Layer\n\nCada RuntimeInstance declarará una o varias interfaces.\n\nEjemplos:\n\n```text\n\nOPENAI_CHAT\n\nOPENAI_RESPONSES\n\nANTHROPIC_MESSAGES\n\nOLLAMA\n\nCUSTOM_REST\n\nGRPC\n\nSTDIO\n\nMCP\n\nCLI\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 59,
+    "title": "Protocol Sidecar",
+    "spec_line_original": 3691,
+    "requirement_sha256": "efe99e3c26c9d708ba1106b4c3899b3b3696e19d1f77738fdec079e2453ae9ac",
+    "owners": [
+      "P063",
+      "P066",
+      "P067",
+      "P072",
+      "P103"
+    ],
+    "requirement_text": "# 59. Protocol Sidecar\n\nCuando un runtime no ofrezca una API conveniente, LARM podrá lanzar:\n\n```text\n\nProtocol Sidecar\n\n```\n\nEjemplo:\n\n```text\n\nruntime CLI\n\n    ↑\n\nsidecar HTTP\n\n    ↑\n\nAI Broker\n\n```\n\nEl Sidecar no realizará routing inteligente.\n\nSólo normalizará el acceso a **ese modelo concreto**.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 60,
+    "title": "Acceso API a modelos",
+    "spec_line_original": 3739,
+    "requirement_sha256": "39cff9d580400c5c479a28d3afb7ef02555f50c2114050bd08e8169b6a79e536",
+    "owners": [
+      "P036",
+      "P103"
+    ],
+    "requirement_text": "# 60. Acceso API a modelos\n\nSe mantiene el requisito original:\n\n> Cada modelo gestionado deberá poder exponerse mediante API cuando técnicamente sea posible.\n\nExistirán dos opciones:\n\n```text\n\nNative Runtime Endpoint\n\n```\n\no:\n\n```text\n\nLARM Protocol Sidecar\n\n```\n\nLARM devuelve el endpoint.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 61,
+    "title": "Acceso MCP a modelos",
+    "spec_line_original": 3783,
+    "requirement_sha256": "42b821d321f15654c36935db7956e9c970f67679c4bde9c9feb7501ba5853f5a",
+    "owners": [
+      "P104",
+      "P105"
+    ],
+    "requirement_text": "# 61. Acceso MCP a modelos\n\nExistirán dos MCP diferentes.\n\n## Administration MCP\n\nHerramientas:\n\n```text\n\nmodels.search\n\nmodels.install\n\nmodels.move\n\nmodels.delete\n\nruntimes.install\n\nruntimes.update\n\nmodels.start\n\nmodels.stop\n\nbenchmark.run\n\nhardware.info\n\n```\n\n## Model Access MCP\n\nOpcional.\n\nPermitirá exponer un modelo seleccionado mediante MCP cuando tenga sentido.\n\nNo será el mecanismo normal de inferencia interna del ecosistema.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 62,
+    "title": "AI Broker sigue siendo el gateway",
+    "spec_line_original": 3853,
+    "requirement_sha256": "ac23b9367b61fa68c2bbb5a5356910077b095c7a1c82e9a6544d2041b8338a21",
+    "owners": [
+      "P002",
+      "P101",
+      "P105",
+      "P107"
+    ],
+    "requirement_text": "# 62. AI Broker sigue siendo el gateway\n\nPara las aplicaciones de la familia:\n\n```text\n\nApp\n\n ↓\n\nAI Broker\n\n ↓\n\nmodelo\n\n```\n\nNo:\n\n```text\n\nApp\n\n ↓\n\nLARM\n\n```\n\nsalvo herramientas de administración explícitas.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 63,
+    "title": "AI Broker Bridge",
+    "spec_line_original": 3901,
+    "requirement_sha256": "e87f7c32b0afabd648e5465705afe198a2772f7f5be4a33010c2436992a35631",
+    "owners": [
+      "P100",
+      "P101",
+      "P107"
+    ],
+    "requirement_text": "# 63. AI Broker Bridge\n\nAI Broker deberá incorporar:\n\n```text\n\nLocalRuntimeResolver\n\n```\n\nOperaciones:\n\n```text\n\nresolve_model()\n\nrequest_lease()\n\nrelease_lease()\n\nget_endpoint()\n\nget_capabilities()\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 64,
+    "title": "Runtime Lease",
+    "spec_line_original": 3941,
+    "requirement_sha256": "676d16a348ee5f2f0b6f39fda6f745e3f35828c8c728418dbf55968ac9a6a44c",
+    "owners": [
+      "P100",
+      "P019",
+      "P107"
+    ],
+    "requirement_text": "# 64. Runtime Lease\n\nEjemplo:\n\n```json\n\n{\n\n  \"model\": \"laya\",\n\n  \"capability\": \"decision.evaluate\",\n\n  \"profile\": \"balanced\"\n\n}\n\n```\n\nRespuesta:\n\n```json\n\n{\n\n  \"lease_id\": \"...\",\n\n  \"instance_id\": \"...\",\n\n  \"endpoint\": \"http://127.0.0.1:18432\",\n\n  \"protocol\": \"openai\",\n\n  \"runtime\": \"llama.cpp\",\n\n  \"runtime_version\": \"...\",\n\n  \"model_revision\": \"...\"\n\n}\n\n```\n\nMientras exista la lease LARM no deberá descargar la instancia.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 65,
+    "title": "Multimodalidad y AI Broker",
+    "spec_line_original": 4001,
+    "requirement_sha256": "c00fd0c38a56d6438a68d7b1afbc29523883e6f08527410b5d80f9a4437fc40e",
+    "owners": [
+      "P102",
+      "P108"
+    ],
+    "requirement_text": "# 65. Multimodalidad y AI Broker\n\nAI Broker deberá evolucionar desde un simple catálogo de LLM hacia contratos de capacidad.\n\nInterfaces previstas:\n\n```text\n\nchat\n\ndecision\n\nembedding\n\nrerank\n\nvision\n\nocr\n\nimage-generation\n\nvideo-generation\n\ntranscription\n\nspeech\n\ngeneric\n\n```\n\nLas aplicaciones actuales que sólo utilicen chat no necesitarán cambios.\n\nLas nuevas capacidades se incorporarán progresivamente mediante el mismo Broker.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 66,
+    "title": "Laya y System-1",
+    "spec_line_original": 4059,
+    "requirement_sha256": "4c2685a1ab2c910737816c0cfb0d2fc3ff3c50357e957278aa5e3aaf26a32d57",
+    "owners": [
+      "P106",
+      "P108"
+    ],
+    "requirement_text": "# 66. Laya y System-1\n\nLaya será un modelo administrado por LARM.\n\nNo una excepción externa.\n\nEjemplo:\n\n```text\n\nCanonicalModel:\n\nLaya\n\ncapability:\n\ndecision.evaluate\n\nrole:\n\nSYSTEM1\n\n```\n\nOtros modelos System-1 podrán descubrirse desde:\n\n```text\n\nHugging Face\n\nOllama\n\nModelScope\n\notros\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 67,
+    "title": "Estados System-1",
+    "spec_line_original": 4119,
+    "requirement_sha256": "27a2639f0e6a31c79f7604e8d06d49608e3cc0c8de84cbcc2cd75d9e75ecd0c6",
+    "owners": [
+      "P106",
+      "P116"
+    ],
+    "requirement_text": "# 67. Estados System-1\n\n```text\n\nSYSTEM1_CANDIDATE\n\nSYSTEM1_TECHNICALLY_VALID\n\nSYSTEM1_EVALUATED\n\nSYSTEM1_CERTIFIED\n\nSYSTEM1_REJECTED\n\n```\n\nLARM determina:\n\n```text\n\ncompatibilidad técnica\n\n```\n\nLocal-AI-Lab genera evidencia.\n\nModel Drift determina:\n\n```text\n\ncertificación funcional\n\n```\n\nAI Broker decide:\n\n```text\n\nrouting\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 68,
+    "title": "Lemonade",
+    "spec_line_original": 4183,
+    "requirement_sha256": "d57c0778fa79fde3ff29cf72d01e4a1112b2a7ccb22b2011aa45f25351731791",
+    "owners": [
+      "P068",
+      "P069"
+    ],
+    "requirement_text": "# 68. Lemonade\n\nLemonade tendrá adaptador nativo.\n\nLa instalación actualmente existente podrá adoptarse:\n\n```text\n\nADOPTED\n\n```\n\nsin reinstalar.\n\nLemonade expone actualmente operaciones para instalar, cargar y descargar modelos, listar descargas, gestionar backends, consultar salud, estadísticas y hardware; también puede buscar repositorios en Hugging Face o ModelScope.\n\nEsto permite una integración mucho más robusta que tratarlo simplemente como un endpoint OpenAI.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 69,
+    "title": "Lemonade Handshake",
+    "spec_line_original": 4219,
+    "requirement_sha256": "9ae71458336fff391fb64746328825ccff33a3067ce23a93130b268537180193",
+    "owners": [
+      "P068"
+    ],
+    "requirement_text": "# 69. Lemonade Handshake\n\nAl detectar Lemonade:\n\n```text\n\n1. Detect installation\n\n2. Detect version\n\n3. Discover configuration\n\n4. GET /v1/health\n\n5. GET /v1/docs\n\n6. GET /v1/models\n\n7. inspect recipes\n\n8. inspect backends\n\n9. inspect loaded models\n\n10. smoke-test each eligible combination\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 70,
+    "title": "Certificación Lemonade → AI Broker",
+    "spec_line_original": 4257,
+    "requirement_sha256": "1f287cb41884f51473a119673d5ddbbe4eee51a832c7922b8bc60e89ffd9ac52",
+    "owners": [
+      "P069"
+    ],
+    "requirement_text": "# 70. Certificación Lemonade → AI Broker\n\nPara cada modelo:\n\n```text\n\nDISCOVERED\n\n ↓\n\nMETADATA_VALID\n\n ↓\n\nBACKEND_AVAILABLE\n\n ↓\n\nLOAD_PASS\n\n ↓\n\nHEALTH_PASS\n\n ↓\n\nPROTOCOL_PASS\n\n ↓\n\nINFERENCE_PASS\n\n ↓\n\nSTREAMING_PASS\n\n ↓\n\nTOOLS_PASS (si procede)\n\n ↓\n\nBROKER_ELIGIBLE\n\n```\n\nEsto permitirá localizar el motivo exacto si vuelve a ocurrir el problema anteriormente observado.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 71,
+    "title": "Errores Lemonade distinguibles",
+    "spec_line_original": 4317,
+    "requirement_sha256": "206a676f3bfdc2b74fe673a993104cc23d0f49093bc3747c11478cd51f0e0f82",
+    "owners": [
+      "P069"
+    ],
+    "requirement_text": "# 71. Errores Lemonade distinguibles\n\nEjemplos:\n\n```text\n\nmodelo aparece pero no está instalado\n\nbackend ausente\n\nrecipe incompatible\n\nload failure\n\nmodel ID mismatch\n\nendpoint mismatch\n\nOpenAI compatibility parcial\n\nstreaming failure\n\ntool calling failure\n\nOOM\n\nbackend crash\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 72,
+    "title": "Technical Benchmark Engine",
+    "spec_line_original": 4357,
+    "requirement_sha256": "60c7ac38e9766e3296a0f8ba0ce01042528c6dd2ba61ff189f467aaaf502f4f2",
+    "owners": [
+      "P110",
+      "P111",
+      "P112"
+    ],
+    "requirement_text": "# 72. Technical Benchmark Engine\n\nSe ejecutará en el PC IA.\n\nMedirá según capacidad:\n\n## Texto\n\n```text\n\nload time\n\nTTFT\n\nprompt tok/s\n\ngeneration tok/s\n\nthroughput\n\nRAM\n\nGPU/NPU memory\n\nCPU/GPU utilization\n\n```\n\n## Imagen\n\n```text\n\nload time\n\nseconds/image\n\nimages/min\n\nmemory peak\n\n```\n\n## ASR\n\n```text\n\nreal-time factor\n\nlatency\n\nmemory\n\n```\n\n## TTS\n\n```text\n\nreal-time factor\n\nlatency\n\n```\n\nOtros adaptadores podrán añadir métricas.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 73,
+    "title": "Benchmark reproducible",
+    "spec_line_original": 4451,
+    "requirement_sha256": "844d0226147a86d6113a2cd9871abecf087370d670ce9b6500d30b9385883f41",
+    "owners": [
+      "P110"
+    ],
+    "requirement_text": "# 73. Benchmark reproducible\n\nTodo benchmark deberá estar vinculado a:\n\n```text\n\nModelArtifact hash\n\nRuntimeVersion\n\nBackend\n\nHardwareFingerprint\n\nLaunchProfile\n\nBenchmarkSuiteVersion\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 74,
+    "title": "Benchmark versus evaluación",
+    "spec_line_original": 4481,
+    "requirement_sha256": "cf1433d202354dc2abf0376ac8fb5dfc0b01d5dcf8c0c3859a683447482d7782",
+    "owners": [
+      "P110",
+      "P115",
+      "P116"
+    ],
+    "requirement_text": "# 74. Benchmark versus evaluación\n\nNo se mezclarán.\n\n```text\n\nTechnical Benchmark\n\n       ↓\n\nLARM\n\n```\n\nmide rendimiento.\n\n```text\n\nEvaluation\n\n       ↓\n\nLocal-AI-Lab / Model Drift\n\n```\n\nmide comportamiento/calidad.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 75,
+    "title": "Benchmark distribuido",
+    "spec_line_original": 4525,
+    "requirement_sha256": "3030d5dd30927186bf6ec7b9626af03576b572c27ef1eb1dec3aa9c7571d67a6",
+    "owners": [
+      "P114",
+      "P115",
+      "P116",
+      "P118"
+    ],
+    "requirement_text": "# 75. Benchmark distribuido\n\nFlujo:\n\n```text\n\nPC IA\n\nmodelo instalado\n\n ↓\n\nLARM benchmark\n\n ↓\n\nTECHNICALLY_READY\n\n ↓\n\nAgora\n\n════════════════════\n\nPC principal\n\nLocal-AI-Lab\n\n ↓\n\nAI Broker\n\n════════════════════\n\nPC IA\n\nAI Broker\n\n ↓\n\nmodelo\n\n════════════════════\n\nPC principal\n\nresultados\n\n ↓\n\nModel Drift\n\n ↓\n\ncertificación\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 76,
+    "title": "ExecutionFingerprint",
+    "spec_line_original": 4613,
+    "requirement_sha256": "9b828a9d84911537a734358ef4d2940325732887627c8f55fca60455026b9135",
+    "owners": [
+      "P013",
+      "P034",
+      "P110",
+      "P116"
+    ],
+    "requirement_text": "# 76. ExecutionFingerprint\n\nCada prueba conservará:\n\n```text\n\nmodel\n\nrevision\n\nartifact SHA256\n\nruntime\n\nruntime version\n\nbackend\n\ndriver\n\nhardware\n\nlaunch profile\n\ncontext\n\nendpoint protocol\n\n```\n\nModel Drift podrá así distinguir:\n\n```text\n\nmodel regression\n\nruntime regression\n\ndriver regression\n\nconfiguration regression\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 77,
+    "title": "Agora",
+    "spec_line_original": 4671,
+    "requirement_sha256": "3ac71acfd24a1ed144a958eac1a7fd0b714e7ca93fd7f8ead9e271fa5eb28664",
+    "owners": [
+      "P113",
+      "P114",
+      "P029",
+      "P118"
+    ],
+    "requirement_text": "# 77. Agora\n\nAgora seguirá siendo el sistema de coordinación distribuida.\n\nNo se creará otro scheduler.\n\nEventos iniciales:\n\n```text\n\nMODEL_DISCOVERED\n\nMODEL_UPDATE_AVAILABLE\n\nMODEL_DOWNLOADED\n\nMODEL_INSTALLED\n\nMODEL_MOVED\n\nRUNTIME_UPDATE_AVAILABLE\n\nRUNTIME_INSTALLED\n\nTECH_BENCHMARK_COMPLETED\n\nEVALUATION_REQUESTED\n\nEVALUATION_COMPLETED\n\nMODEL_CERTIFIED\n\nMODEL_REJECTED\n\nRUNTIME_REGRESSION_DETECTED\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 78,
+    "title": "Model Watcher",
+    "spec_line_original": 4733,
+    "requirement_sha256": "4520d8d0c5844e7ef9c77b6c32453b7554d2be54567af41ff771fd2e3bc0b789",
+    "owners": [
+      "P050",
+      "P128",
+      "P027",
+      "P029",
+      "P119"
+    ],
+    "requirement_text": "# 78. Model Watcher\n\nEl usuario podrá crear suscripciones.\n\nEjemplos:\n\n```text\n\nNuevos System-1\n\nNuevos VLM < 20 GB\n\nNuevos modelos compatibles con este PC\n\nNuevos modelos de código\n\nActualizaciones de Laya\n\nNuevos modelos ONNX optimizados para AMD\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 79,
+    "title": "Source Sync",
+    "spec_line_original": 4767,
+    "requirement_sha256": "9d6399c2b5397892f90989da4bc248d02d2e49a669aa9a70d875d87f540cd7cb",
+    "owners": [
+      "P050",
+      "P029"
+    ],
+    "requirement_text": "# 79. Source Sync\n\nCada Source Adapter implementará cuando sea posible:\n\n```text\n\nincremental sync\n\ncursor\n\nETag\n\nIf-Modified-Since\n\nwebhook\n\n```\n\nEn ausencia de ello:\n\n```text\n\nscheduled polling\n\n```\n\ncon backoff.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 80,
+    "title": "Notificaciones",
+    "spec_line_original": 4811,
+    "requirement_sha256": "a27beccfffdc95c584171100489c00ffae339e040bb51ab30ae3074e4086ca9c",
+    "owners": [
+      "P113",
+      "P128",
+      "P029",
+      "P119"
+    ],
+    "requirement_text": "# 80. Notificaciones\n\nTipos:\n\n```text\n\nNEW_MODEL\n\nNEW_COMPATIBLE_MODEL\n\nMODEL_UPDATE\n\nRUNTIME_UPDATE\n\nLOW_DISK_SPACE\n\nSTORAGE_OFFLINE\n\nMODEL_REGRESSION\n\nRUNTIME_REGRESSION\n\nDOWNLOAD_COMPLETED\n\n```\n\nNo se descargará automáticamente un modelo nuevo salvo política explícita.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 81,
+    "title": "Modelo de datos lógico",
+    "spec_line_original": 4851,
+    "requirement_sha256": "c074bac0ab343a42e72c86ecb98609102ac18b0e64e630d2e4f6b5833fd987d2",
+    "owners": [
+      "P004",
+      "P030",
+      "P040",
+      "P100",
+      "P110",
+      "P113",
+      "P116"
+    ],
+    "requirement_text": "# 81. Modelo de datos lógico\n\nTablas principales:\n\n```text\n\ncanonical_model\n\nmodel_distribution\n\nmodel_revision\n\nmodel_variant\n\nmodel_bundle\n\nmodel_artifact\n\nartifact_provenance\n\nartifact_location\n\nmodel_source\n\nmodel_source_adapter\n\nmodel_source_account\n\nruntime\n\nruntime_adapter\n\nruntime_version\n\nruntime_installation\n\nruntime_backend\n\nruntime_instance\n\nexternal_host\n\nhardware_profile\n\nstorage_location\n\ncompatibility_record\n\nlaunch_profile\n\nruntime_lease\n\ninference_endpoint\n\ndownload_job\n\ntransformation_job\n\ntechnical_benchmark\n\nevaluation_reference\n\ncertification\n\nsource_watch\n\nnotification\n\nevent\n\ncredential_reference\n\nadapter_installation\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 82,
+    "title": "artifact_location",
+    "spec_line_original": 4963,
+    "requirement_sha256": "895ebce21de45e48ad42f2ef46b3e1a17303dacbfeb998cc53149d9fe5dc6486",
+    "owners": [
+      "P016"
+    ],
+    "requirement_text": "# 82. artifact_location\n\nCampos mínimos:\n\n```text\n\nid\n\nartifact_id\n\nstorage_location_id\n\nrelative_path\n\nfile_size\n\nsha256\n\nstate\n\nverified_at\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 83,
+    "title": "storage_location",
+    "spec_line_original": 4997,
+    "requirement_sha256": "ebd29e3ad914c15e8da3ee6a680fe5ce88632962696dd361bfea46d58b4de9e4",
+    "owners": [
+      "P014"
+    ],
+    "requirement_text": "# 83. storage_location\n\nCampos:\n\n```text\n\nid\n\nname\n\nroot_path\n\ncanonical_path\n\nvolume_guid\n\ndrive_letter\n\nunc_path\n\nfilesystem\n\nstorage_type\n\ncapacity_bytes\n\nfree_bytes\n\nreserved_bytes\n\npriority\n\nauto_placement\n\nstate\n\nlast_seen_at\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 84,
+    "title": "model_artifact",
+    "spec_line_original": 5063,
+    "requirement_sha256": "b7eba5e2cce99259bf2850938fab7fc91c3b98fc4c3f919c40e2b1c223862e40",
+    "owners": [
+      "P040"
+    ],
+    "requirement_text": "# 84. model_artifact\n\nCampos:\n\n```text\n\nid\n\nvariant_id\n\nfilename\n\nformat\n\nquantization\n\nexpected_size\n\nactual_size\n\nsha256\n\nsource_url\n\nrequired\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 85,
+    "title": "runtime_version",
+    "spec_line_original": 5111,
+    "requirement_sha256": "729e083a2d1e9cbef687c5b307826ad60ab647f33feaba7c9375b8ac1b8cf23c",
+    "owners": [
+      "P030"
+    ],
+    "requirement_text": "# 85. runtime_version\n\nNo se asumirá SemVer.\n\nCampos:\n\n```text\n\nversion_string\n\ncommit\n\nbuild\n\nchannel\n\nreleased_at\n\n```\n\nporque proyectos como llama.cpp pueden utilizar identificadores propios.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 86,
+    "title": "Base de datos",
+    "spec_line_original": 5147,
+    "requirement_sha256": "9159c9a15c0b73f04b03326f4f39b74fa0b568fb0bea462179025d6b3b5792b6",
+    "owners": [
+      "P004"
+    ],
+    "requirement_text": "# 86. Base de datos\n\nSQLite será suficiente para metadata local.\n\nConfiguración:\n\n```text\n\nWAL mode\n\nforeign keys\n\nmigrations\n\ntransactional updates\n\n```\n\nNo se almacenarán modelos como blobs dentro de SQLite.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 87,
+    "title": "API administrativa",
+    "spec_line_original": 5181,
+    "requirement_sha256": "1b04f7b18af753c1c3e42ab33211157a40e962f1a6683f71c8c9a37efd7bc0f3",
+    "owners": [
+      "P005",
+      "P014",
+      "P040",
+      "P100"
+    ],
+    "requirement_text": "# 87. API administrativa\n\nNamespace:\n\n```text\n\n/api/v1\n\n```\n\nÁreas:\n\n```text\n\n/hardware\n\n/storage\n\n/storage/locations\n\n/sources\n\n/sources/search\n\n/models\n\n/models/{id}\n\n/models/{id}/variants\n\n/models/{id}/move\n\n/runtimes\n\n/runtimes/{id}/versions\n\n/runtimes/{id}/instances\n\n/compatibility\n\n/downloads\n\n/transformations\n\n/leases\n\n/benchmarks\n\n/notifications\n\n/events\n\n/adapters\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 88,
+    "title": "Eventos API",
+    "spec_line_original": 5275,
+    "requirement_sha256": "928423db2fe62ae0c8466246b58680768e705c5fbff62d826ca5d1c4c6345c9e",
+    "owners": [
+      "P005",
+      "P113",
+      "P029"
+    ],
+    "requirement_text": "# 88. Eventos API\n\nPara progreso:\n\n```text\n\nSSE\n\n```\n\no WebSocket donde sea necesario.\n\nEjemplos:\n\n```text\n\ndownload progress\n\nmodel load\n\nruntime install\n\nbenchmark progress\n\nconversion progress\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 89,
+    "title": "API versioning",
+    "spec_line_original": 5319,
+    "requirement_sha256": "b1ab346bc12a85744b272e0834abcf8a9c2d7b424d09db90335d33e50681ae4e",
+    "owners": [
+      "P002",
+      "P005",
+      "P101"
+    ],
+    "requirement_text": "# 89. API versioning\n\nCambios incompatibles requerirán:\n\n```text\n\n/api/v2\n\n```\n\nNunca se romperá silenciosamente AI Broker por una actualización de LARM.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 90,
+    "title": "Seguridad de API",
+    "spec_line_original": 5343,
+    "requirement_sha256": "a695e2fa859d5467ad319d31353ab8dd384a2139332a77de49532f211a3dc927",
+    "owners": [
+      "P003",
+      "P005",
+      "P131",
+      "P009",
+      "P140",
+      "P143"
+    ],
+    "requirement_text": "# 90. Seguridad de API\n\nPor defecto:\n\n```text\n\nbind 127.0.0.1\n\n```\n\nNo:\n\n```text\n\n0.0.0.0\n\n```\n\nEl acceso remoto tendrá que activarse explícitamente.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 91,
+    "title": "Autenticación local",
+    "spec_line_original": 5379,
+    "requirement_sha256": "67fa1ee20692fb4d90ed1919da00bbb63a9ddb69e791e35f1184de362acc04c5",
+    "owners": [
+      "P045",
+      "P101",
+      "P131",
+      "P009",
+      "P141",
+      "P143"
+    ],
+    "requirement_text": "# 91. Autenticación local\n\nAI Broker utilizará una credencial local dedicada.\n\nPodrá emplearse:\n\n```text\n\nAPI token\n\n```\n\no mecanismo local equivalente.\n\nLas credenciales se guardarán con protección del sistema operativo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 92,
+    "title": "MCP Permissions",
+    "spec_line_original": 5411,
+    "requirement_sha256": "471a3c30cd0c4aea40690d7cacd273cbba0465dc617ae2c8ba08679f9c23fdaa",
+    "owners": [
+      "P104",
+      "P131",
+      "P009",
+      "P143"
+    ],
+    "requirement_text": "# 92. MCP Permissions\n\nScopes:\n\n```text\n\nread\n\nsearch\n\ndownload\n\ninstall\n\nstart\n\nstop\n\nbenchmark\n\nmove\n\ndelete\n\nupdate\n\nadmin\n\n```\n\nUna herramienta MCP no recibirá automáticamente `admin`.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H06"
+    ]
+  },
+  {
+    "section": 93,
+    "title": "Seguridad de modelos",
+    "spec_line_original": 5455,
+    "requirement_sha256": "e5aaa3e511959c1fed22438bc7764874e9c084e7ff2ffc2cf33d1f714f4cc54d",
+    "owners": [
+      "P071",
+      "P078",
+      "P130",
+      "P009",
+      "P143"
+    ],
+    "requirement_text": "# 93. Seguridad de modelos\n\nEspecial atención a:\n\n```text\n\ntrust_remote_code\n\ncustom Python\n\ncustom operators\n\nComfyUI custom nodes\n\nexecutables\n\nDLLs\n\nscripts\n\n```\n\nUn modelo que requiera ejecutar código externo mostrará:\n\n```text\n\nREMOTE_CODE_REQUIRED\n\n```\n\ny no se ejecutará silenciosamente.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 94,
+    "title": "Sandboxing",
+    "spec_line_original": 5503,
+    "requirement_sha256": "9ff2ccbab7c861857b5d5a1ca0a97108dcac43ab66e33945df09ee85b6290f07",
+    "owners": [
+      "P021",
+      "P071",
+      "P130",
+      "P009",
+      "P143"
+    ],
+    "requirement_text": "# 94. Sandboxing\n\nSiempre que sea viable:\n\n```text\n\nmodelo/routine peligroso\n\n ↓\n\nproceso aislado\n\n```\n\nNo dentro del proceso Core.\n\nLos runtimes Python utilizarán entornos separados.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 95,
+    "title": "Integridad",
+    "spec_line_original": 5535,
+    "requirement_sha256": "903fd6fc049d82ae1da6c850d4d0603c8e9c5597b61d0b6d28491c43952d578e",
+    "owners": [
+      "P017",
+      "P051"
+    ],
+    "requirement_text": "# 95. Integridad\n\nSiempre que la fuente proporcione hash:\n\n```text\n\nverify\n\n```\n\nSi no existe:\n\nLARM calculará al menos:\n\n```text\n\nSHA256\n\n```\n\ndespués de la descarga y conservará ese valor.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 96,
+    "title": "Licencias",
+    "spec_line_original": 5575,
+    "requirement_sha256": "e61423bf665ed570e8c549103037a7647fbba592bb2c69223dfe0cf4bbe4502c",
+    "owners": [
+      "P045",
+      "P046",
+      "P122",
+      "P141"
+    ],
+    "requirement_text": "# 96. Licencias\n\nAntes de descargar se mostrará:\n\n```text\n\nlicense\n\ngated\n\ncommercial restrictions\n\nunknown license\n\n```\n\nLARM no aceptará automáticamente licencias en nombre del usuario cuando el proveedor requiera aceptación explícita.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 97,
+    "title": "Trust Score",
+    "spec_line_original": 5605,
+    "requirement_sha256": "229a6b547945797819f061f7fa5f5e8dc8af36b0ab82a0f46829f69a6bf2cb35",
+    "owners": [
+      "P022",
+      "P091",
+      "P092"
+    ],
+    "requirement_text": "# 97. Trust Score\n\nSeparado de CompatibilityScore.\n\nPosibles señales:\n\n```text\n\nofficial publisher\n\nverified source\n\nsigned release\n\nhash available\n\ncommunity uploader\n\nunknown provenance\n\nremote code\n\n```\n\nNo afirmará que un modelo es “seguro”; mostrará evidencia y riesgo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 98,
+    "title": "Observabilidad",
+    "spec_line_original": 5645,
+    "requirement_sha256": "1c41ed921e5b0c71101d224923fc21aa04ef6b63671531f073f26aaf47141391",
+    "owners": [
+      "P003",
+      "P113",
+      "P029"
+    ],
+    "requirement_text": "# 98. Observabilidad\n\nLogs estructurados:\n\n```text\n\ntimestamp\n\ncomponent\n\nruntime\n\ninstance\n\nmodel\n\nseverity\n\nevent\n\ncorrelation_id\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 99,
+    "title": "Logs por modelo/instancia",
+    "spec_line_original": 5679,
+    "requirement_sha256": "682ebf6db9927fa0abebc7eb6a76d66c061ed8603f9a7219d71aba9d2797ee15",
+    "owners": [
+      "P124",
+      "P125",
+      "P134"
+    ],
+    "requirement_text": "# 99. Logs por modelo/instancia\n\nDesde GUI:\n\n```text\n\nRuntime logs\n\nAdapter logs\n\nDownload logs\n\nConversion logs\n\nBroker handshake logs\n\n```\n\nEsto será particularmente útil para Lemonade.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 100,
+    "title": "Metrics",
+    "spec_line_original": 5711,
+    "requirement_sha256": "be023864cbfe90fb5b9c56d85a5b7986b8001b06b909c71e760c04a37375cc63",
+    "owners": [
+      "P011",
+      "P110",
+      "P134",
+      "P136"
+    ],
+    "requirement_text": "# 100. Metrics\n\nMétricas locales:\n\n```text\n\nCPU\n\nRAM\n\nGPU\n\nNPU\n\ndisk\n\nrequests\n\nlatency\n\nerrors\n\nruntime crashes\n\n```\n\nOpcionalmente endpoint compatible con Prometheus.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 101,
+    "title": "Servicio de fondo",
+    "spec_line_original": 5751,
+    "requirement_sha256": "8ea1664fe2249128b8d8d1e894bc5df925ae7f3c1448f8e8c6af1533a8e9ad93",
+    "owners": [
+      "P001",
+      "P006",
+      "P137",
+      "P140"
+    ],
+    "requirement_text": "# 101. Servicio de fondo\n\nLARM se dividirá en:\n\n```text\n\nLARM Core/Daemon\n\nLARM Desktop GUI\n\n```\n\nCerrar la GUI no detendrá runtimes gestionados.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 102,
+    "title": "Modos de daemon Windows",
+    "spec_line_original": 5777,
+    "requirement_sha256": "c24f876750bebe59c5e170d1b8034a22eec4875ca7603c74766adbe25caca13c",
+    "owners": [
+      "P137"
+    ],
+    "requirement_text": "# 102. Modos de daemon Windows\n\nDos modos:\n\n## User Background Agent\n\nPredeterminado.\n\nVentajas:\n\n```text\n\nno necesita servicio privilegiado\n\nacceso natural a carpetas del usuario\n\nmejor acceso a unidades mapeadas\n\n```\n\n## Windows Service\n\nOpcional para funcionamiento unattended.\n\nLa arquitectura del Core funcionará en ambos.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 103,
+    "title": "Recuperación después de reinicio",
+    "spec_line_original": 5825,
+    "requirement_sha256": "d861910a8be46cdae3c7cd6558f527df732f6a79f06466027da03ab77f59a968",
+    "owners": [
+      "P132"
+    ],
+    "requirement_text": "# 103. Recuperación después de reinicio\n\nAl arrancar:\n\n```text\n\nscan database\n\n ↓\n\ndetect orphan processes\n\n ↓\n\ndetect runtime installations\n\n ↓\n\nvalidate StorageLocations\n\n ↓\n\nreconcile active instances\n\n ↓\n\nreconcile downloads\n\n```\n\nNo deberá asumir que el estado persistido coincide con la realidad.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 104,
+    "title": "Crash recovery",
+    "spec_line_original": 5869,
+    "requirement_sha256": "ab3414f567ce1738175d7a569c83df5a01a849e9a955c4a4d2118a138ddf7e91",
+    "owners": [
+      "P051",
+      "P093",
+      "P132",
+      "P004",
+      "P125",
+      "P113"
+    ],
+    "requirement_text": "# 104. Crash recovery\n\nUna descarga interrumpida:\n\n```text\n\nPAUSED/INTERRUPTED\n\n```\n\ny podrá reanudarse.\n\nUna transformación no reanudable:\n\n```text\n\nFAILED_RECOVERABLE\n\n```\n\npodrá reiniciarse sin dañar el artefacto original.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H07"
+    ]
+  },
+  {
+    "section": 105,
+    "title": "Puertos",
+    "spec_line_original": 5909,
+    "requirement_sha256": "4c0f2e5e4a3d4bf838b9ca433090138ebbf32e73f778ff5fd3ec65f833b0cc98",
+    "owners": [
+      "P033"
+    ],
+    "requirement_text": "# 105. Puertos\n\nLos RuntimeInstances recibirán puertos dinámicos de un rango configurable.\n\nLARM verificará:\n\n```text\n\nport free\n\n```\n\nantes de lanzar.\n\nEl endpoint nunca se reconstruirá suponiendo un puerto fijo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 106,
+    "title": "Interfaz gráfica principal",
+    "spec_line_original": 5941,
+    "requirement_sha256": "c3f87c1ca8c4cbf374df2e50f053fa24bd590c90d39b7aa40117070cb5b51f6a",
+    "owners": [
+      "P006",
+      "P120",
+      "P121",
+      "P122",
+      "P123",
+      "P124",
+      "P125",
+      "P126",
+      "P127",
+      "P128",
+      "P129",
+      "P139",
+      "P140"
+    ],
+    "requirement_text": "# 106. Interfaz gráfica principal\n\nMenú propuesto:\n\n```text\n\nInicio\n\nDescubrir\n\nMis modelos\n\nRuntimes\n\nInstancias\n\nHardware\n\nAlmacenamiento\n\nDescargas\n\nBenchmarks\n\nActualizaciones\n\nFuentes\n\nAdaptadores\n\nNotificaciones\n\nConfiguración\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 107,
+    "title": "Inicio",
+    "spec_line_original": 6013,
+    "requirement_sha256": "bc49cf77c0f13244052b5085e76dca5e2e9b1bab1635fdfce6b1f5991336a1b1",
+    "owners": [
+      "P120"
+    ],
+    "requirement_text": "# 107. Inicio\n\nDashboard:\n\n```text\n\nModelos instalados\n\nEspacio ocupado\n\nEspacio libre por disco\n\nRuntimes activos\n\nModelos cargados\n\nRAM disponible\n\nGPU/NPU\n\nDownloads\n\nActualizaciones\n\nAlertas\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 108,
+    "title": "Descubrir",
+    "spec_line_original": 6051,
+    "requirement_sha256": "084669132313601ada2102ff12e511d907ecebc79046dd834f5a057abfcf70de",
+    "owners": [
+      "P044",
+      "P121",
+      "P005",
+      "P043"
+    ],
+    "requirement_text": "# 108. Descubrir\n\nBuscador federado.\n\nFiltros:\n\n```text\n\ncapability\n\narchitecture\n\nparameters\n\nformat\n\nquantization\n\nruntime\n\nsource\n\nlicense\n\nsize\n\ntechnical compatibility\n\ntrust\n\ncertification\n\n```\n\nOpciones:\n\n```text\n\nSólo ejecutables en este PC\n\nSólo recomendados\n\nMostrar incompatibles\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H05"
+    ]
+  },
+  {
+    "section": 109,
+    "title": "Resultado de búsqueda",
+    "spec_line_original": 6113,
+    "requirement_sha256": "5413c922f7de08d4d445dd3656f7cf4c21b42ee7d2d54385703dcdd77ae7bd5b",
+    "owners": [
+      "P121",
+      "P122"
+    ],
+    "requirement_text": "# 109. Resultado de búsqueda\n\nEjemplo:\n\n```text\n\nModelo X\n\nFuentes: 4\n\nVariantes: 13\n\nMejor variante para este PC:\n\nONNX INT4\n\n12.8 GB\n\nRuntime: ONNX Runtime GenAI\n\nBackend: NPU/GPU\n\nTechnical Fit: 97\n\n[Detalles]\n\n[Descargar]\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 110,
+    "title": "Comparación de variantes",
+    "spec_line_original": 6161,
+    "requirement_sha256": "d313c48f3563df58a7263f1fd4da153bb2774d5c16e0b525f5d47a771688ed2d",
+    "owners": [
+      "P122",
+      "P126"
+    ],
+    "requirement_text": "# 110. Comparación de variantes\n\n```text\n\n             ONNX INT4   GGUF Q5    GGUF Q8\n\nDisco         12 GB       18 GB      29 GB\n\nRuntime       ORT         llama      llama\n\nBackend       NPU/GPU     Vulkan     Vulkan\n\nRAM estim.    ...\n\nBenchmark     ...\n\nEvaluación    ...\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 111,
+    "title": "Pantalla de descarga",
+    "spec_line_original": 6191,
+    "requirement_sha256": "74a0bb495892995cac7538c7ae14dc0fe07d0f29aaf949a2784dfa710a3aa193",
+    "owners": [
+      "P122"
+    ],
+    "requirement_text": "# 111. Pantalla de descarga\n\nAntes de confirmar:\n\n```text\n\nDescarga            18.4 GB\n\nInstalado           18.8 GB\n\nPico temporal        19.1 GB\n\nEspacio recomendado  21 GB\n\nDestino:\n\nE:\\\\ModelosIA\n\nLibre:\n\n1.42 TB\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 112,
+    "title": "Pantalla Almacenamiento",
+    "spec_line_original": 6229,
+    "requirement_sha256": "e732047d6bee2361456ea46d87c87434a8d8917f7d25019a59c258738a21ad14",
+    "owners": [
+      "P014",
+      "P123",
+      "P139"
+    ],
+    "requirement_text": "# 112. Pantalla Almacenamiento\n\nEjemplo:\n\n```text\n\nC:\\\\AI\n\n95 GB libres\n\nSYSTEM\n\nD:\\\\Modelos\n\n210 GB libres\n\nLOW SPACE\n\nE:\\\\IA\n\n1.42 TB libres\n\nPREFERRED\n\n\\\\\\\\NAS\\\\IA\n\n4.2 TB libres\n\nNETWORK\n\n```\n\nAcciones:\n\n```text\n\nEstablecer predeterminado\n\nCambiar reserva\n\nAnalizar\n\nMover modelos\n\nDesactivar\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 113,
+    "title": "Auto-placement",
+    "spec_line_original": 6297,
+    "requirement_sha256": "7b18b9a5db7a89a30a0c7ef3f12ff177f00bcad1fe23f8490810e8b722ba18f1",
+    "owners": [
+      "P014",
+      "P027",
+      "P119",
+      "P139"
+    ],
+    "requirement_text": "# 113. Auto-placement\n\nPolíticas:\n\n```text\n\nASK_ALWAYS\n\nPREFERRED_LOCATION\n\nMOST_FREE_SPACE\n\nFASTEST_STORAGE\n\nBY_MODEL_TYPE\n\nCUSTOM_RULES\n\n```\n\nEjemplo:\n\n```text\n\nLLM        → E:\n\nDiffusion  → F:\n\nAudio      → D:\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 114,
+    "title": "Reserva de espacio",
+    "spec_line_original": 6343,
+    "requirement_sha256": "292f140d0ea267bb57749c4eb55a84aaedfa0f9a2599c6b697d8d10eb418a110",
+    "owners": [
+      "P014",
+      "P015",
+      "P119",
+      "P139"
+    ],
+    "requirement_text": "# 114. Reserva de espacio\n\nCada StorageLocation podrá mantener:\n\n```text\n\nreserved_bytes\n\n```\n\nEjemplo:\n\n```text\n\nNo permitir que E: baje de 100 GB libres.\n\n```\n\nAuto-placement respetará esa reserva.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 115,
+    "title": "Storage Performance Class",
+    "spec_line_original": 6379,
+    "requirement_sha256": "08c443a70e5a5e7ef30d4ab75df4ebb315f8a8b8d5068c39b0511a49d01c0d09",
+    "owners": [
+      "P012",
+      "P091",
+      "P139"
+    ],
+    "requirement_text": "# 115. Storage Performance Class\n\nClasificación:\n\n```text\n\nNVME\n\nSSD\n\nHDD\n\nNETWORK\n\nREMOVABLE\n\nUNKNOWN\n\n```\n\nPodrá influir en recomendaciones.\n\nUn HDD enorme puede ser adecuado para almacenamiento frío pero no para modelos utilizados continuamente.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 116,
+    "title": "Ciclo de vida del modelo",
+    "spec_line_original": 6417,
+    "requirement_sha256": "62a27c6aeb9ef31b86ad208881f5b9daf2f784658d32d1583cf1b3631613d9de",
+    "owners": [
+      "P042"
+    ],
+    "requirement_text": "# 116. Ciclo de vida del modelo\n\n```text\n\nDISCOVERED\n\n ↓\n\nSELECTED\n\n ↓\n\nDOWNLOAD_PLANNED\n\n ↓\n\nDOWNLOADING\n\n ↓\n\nDOWNLOADED\n\n ↓\n\nVERIFIED\n\n ↓\n\nPREPARED\n\n ↓\n\nTECHNICALLY_VALIDATED\n\n ↓\n\nAVAILABLE\n\n ↓\n\nRUNNING\n\n```\n\nEstados adicionales:\n\n```text\n\nOFFLINE\n\nCORRUPT\n\nUPDATE_AVAILABLE\n\nFAILED\n\nREJECTED\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 117,
+    "title": "Ciclo de vida runtime",
+    "spec_line_original": 6489,
+    "requirement_sha256": "7b0dfb930c9d064b0d676a4f0428c707a85bef33ee75f034bdd8506fee7738b6",
+    "owners": [
+      "P030",
+      "P031",
+      "P032"
+    ],
+    "requirement_text": "# 117. Ciclo de vida runtime\n\n```text\n\nDISCOVERED\n\n ↓\n\nINSTALL_PLANNED\n\n ↓\n\nINSTALLING\n\n ↓\n\nINSTALLED\n\n ↓\n\nVALIDATED\n\n ↓\n\nACTIVE\n\n```\n\no:\n\n```text\n\nDEGRADED\n\nBROKEN\n\nROLLED_BACK\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 118,
+    "title": "Instalaciones externas",
+    "spec_line_original": 6541,
+    "requirement_sha256": "35eff90b7388ba0afe7fc6d6160cd3b007679d6eb4794d6aa915721cd506dd02",
+    "owners": [
+      "P030",
+      "P068",
+      "P079"
+    ],
+    "requirement_text": "# 118. Instalaciones externas\n\nEstados:\n\n```text\n\nMANAGED\n\nADOPTED\n\nEXTERNAL\n\n```\n\nLemonade empezará previsiblemente como:\n\n```text\n\nADOPTED\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 119,
+    "title": "Actualización de modelos",
+    "spec_line_original": 6577,
+    "requirement_sha256": "0a22f092a40311a6ce53cea4d592867b4bb3aa889c020f2c20339615d26339a3",
+    "owners": [
+      "P042",
+      "P117",
+      "P128",
+      "P097"
+    ],
+    "requirement_text": "# 119. Actualización de modelos\n\nUna revisión nueva nunca sobrescribirá inmediatamente la versión anterior.\n\n```text\n\nrevision A\n\nrevision B\n\n```\n\npodrán coexistir hasta validación.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 120,
+    "title": "Model promotion",
+    "spec_line_original": 6603,
+    "requirement_sha256": "3a0feba8af05bf977111b5214b18e9f059ff3f3bfa4586c53ca14ec416d5b4d2",
+    "owners": [
+      "P042",
+      "P106",
+      "P116",
+      "P117",
+      "P097"
+    ],
+    "requirement_text": "# 120. Model promotion\n\nUna nueva variante podrá ser:\n\n```text\n\nCANDIDATE\n\nTECHNICALLY_APPROVED\n\nEVALUATION_APPROVED\n\nDEFAULT\n\n```\n\nAI Broker sólo utilizará automáticamente las categorías permitidas por su política.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 121,
+    "title": "Integración Local-AI-Lab",
+    "spec_line_original": 6633,
+    "requirement_sha256": "b8de936be02e9ea2d992b5692cc9492e205ca9ec89926257d0af1760e6185243",
+    "owners": [
+      "P101",
+      "P115",
+      "P118"
+    ],
+    "requirement_text": "# 121. Integración Local-AI-Lab\n\nLocal-AI-Lab podrá solicitar mediante AI Broker:\n\n```text\n\nmodelo\n\nvariante\n\nperfil\n\n```\n\ny recibir junto con el resultado:\n\n```text\n\nExecutionFingerprint\n\n```\n\nNo tendrá que saber en qué carpeta física está el modelo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 122,
+    "title": "Integración Model Drift",
+    "spec_line_original": 6673,
+    "requirement_sha256": "4b0c4a2a888a0f4137297a3894283ffbb53d5287d36f5e1f5b61484a36623c07",
+    "owners": [
+      "P116",
+      "P118"
+    ],
+    "requirement_text": "# 122. Integración Model Drift\n\nModel Drift deberá conservar:\n\n```text\n\nmodel revision\n\nruntime version\n\nbackend\n\nfingerprint\n\n```\n\npara poder detectar regresiones correctamente.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 123,
+    "title": "Integración Agora",
+    "spec_line_original": 6703,
+    "requirement_sha256": "b65f39d026a3d14fc6e0c7a3777d230bac77deab1f134871f3a1310d74c928a2",
+    "owners": [
+      "P114",
+      "P118"
+    ],
+    "requirement_text": "# 123. Integración Agora\n\nAgora no gestionará directamente archivos o runtimes.\n\nCoordinará trabajos:\n\n```text\n\nbenchmark\n\nevaluation\n\ncertification\n\nrevalidation\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 124,
+    "title": "Integración de otras aplicaciones",
+    "spec_line_original": 6733,
+    "requirement_sha256": "e22cfc4e53039df3575c03a59e975cacad496f415dd163dcab84a5e726282edd",
+    "owners": [
+      "P101",
+      "P104",
+      "P108"
+    ],
+    "requirement_text": "# 124. Integración de otras aplicaciones\n\nChatyGPT y las aplicaciones que ya utilicen AI Broker para inferencia no necesitarán cambios para seguir haciendo lo mismo.\n\nAthena sólo necesitará acceso MCP a LARM cuando quiera:\n\n```text\n\nbuscar\n\ninstalar\n\nactualizar\n\nmover\n\nbenchmark\n\n```\n\nun modelo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 125,
+    "title": "Recomendación de modelo",
+    "spec_line_original": 6769,
+    "requirement_sha256": "cff41f9f989a0f351a175ed9a538a8bb26e98576f0cdd4e924a230c123dea34a",
+    "owners": [
+      "P091",
+      "P092"
+    ],
+    "requirement_text": "# 125. Recomendación de modelo\n\nExistirán dos puntuaciones diferentes:\n\n```text\n\nTechnicalFitScore\n\nEvaluationScore\n\n```\n\nSi ambos existen podrá calcularse:\n\n```text\n\nRecommendationScore\n\n```\n\ncon pesos configurables.\n\nSi no existe evaluación:\n\n```text\n\nRecomendación basada únicamente en compatibilidad técnica.\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 126,
+    "title": "Nunca fingir evaluación",
+    "spec_line_original": 6819,
+    "requirement_sha256": "6d8cafdab40ec18528b534d99a7083342d782ed0610bc16ab93e760a527ce0eb",
+    "owners": [
+      "P044",
+      "P091",
+      "P092"
+    ],
+    "requirement_text": "# 126. Nunca fingir evaluación\n\nPopularidad, downloads o estrellas no equivalen a calidad.\n\nSe podrán mostrar como metadata, pero Model Drift será la fuente de evaluación interna.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 127,
+    "title": "Stack tecnológico",
+    "spec_line_original": 6835,
+    "requirement_sha256": "321171f0dcf75ef2372f27fe5deb6c91827e2ed8a9ac3f9e7cb3b9ed105923b1",
+    "owners": [
+      "P001",
+      "P002",
+      "P000"
+    ],
+    "requirement_text": "# 127. Stack tecnológico\n\nBaseline propuesta:\n\n## Core\n\n```text\n\nRust\n\nTokio\n\n```\n\n## API\n\n```text\n\nAxum\n\nJSON\n\nSSE/WebSocket\n\n```\n\n## Desktop\n\n```text\n\nTauri 2\n\nReact\n\nTypeScript\n\n```\n\n## Database\n\n```text\n\nSQLite\n\nSQLx\n\n```\n\n## HTTP/download\n\n```text\n\nreqwest\n\n```\n\n## Logging\n\n```text\n\ntracing\n\n```\n\nLa versión concreta de cada dependencia se fijará al comenzar la implementación y se mantendrá mediante lockfiles.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 128,
+    "title": "Razón de separar GUI y Core",
+    "spec_line_original": 6935,
+    "requirement_sha256": "2c0250c497b6426fbd577bc0b98e432b4488f7b7777fba3e808b256bf5b6cd29",
+    "owners": [
+      "P001",
+      "P006",
+      "P137"
+    ],
+    "requirement_text": "# 128. Razón de separar GUI y Core\n\nPermite:\n\n```text\n\ncerrar GUI sin detener modelos\n\nactualizar GUI independientemente\n\nautomatizar vía API\n\nusar MCP\n\nintegrarse con AI Broker\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 129,
+    "title": "Sistema de plugins",
+    "spec_line_original": 6963,
+    "requirement_sha256": "8716bd06f0685ad9cad005706b75979d06cf497a58011df9976c2714038788b3",
+    "owners": [
+      "P020",
+      "P093",
+      "P103",
+      "P110",
+      "P026"
+    ],
+    "requirement_text": "# 129. Sistema de plugins\n\nTipos:\n\n```text\n\nRuntimeAdapterPlugin\n\nModelSourceAdapterPlugin\n\nProtocolAdapterPlugin\n\nTransformationPlugin\n\nBenchmarkPlugin\n\n```\n\nTodos declararán:\n\n```text\n\nplugin API version\n\ncapabilities\n\npermissions\n\npublisher\n\nversion\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 130,
+    "title": "Plugin Registry",
+    "spec_line_original": 7011,
+    "requirement_sha256": "024cef4df45b9a616deb6f1e958affdbeb26c0f2d16648258edf0a062ac37d2e",
+    "owners": [
+      "P024",
+      "P028"
+    ],
+    "requirement_text": "# 130. Plugin Registry\n\nLARM podrá consultar un registro firmado de adaptadores conocidos.\n\nTambién permitirá:\n\n```text\n\nInstalar archivo local\n\nAñadir repositorio\n\nAñadir adaptador personalizado\n\n```\n\nNo dependerá obligatoriamente de dicho registro.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 131,
+    "title": "Firma de plugins",
+    "spec_line_original": 7043,
+    "requirement_sha256": "88b5981c0effcd1255a596c67257e052b54f9b8a9436a0c45ef069bcb66b222f",
+    "owners": [
+      "P022",
+      "P024",
+      "P028"
+    ],
+    "requirement_text": "# 131. Firma de plugins\n\nLos plugins oficiales podrán estar firmados.\n\nEstados:\n\n```text\n\nOFFICIAL\n\nSIGNED_THIRD_PARTY\n\nUNSIGNED\n\nCUSTOM\n\n```\n\nLa UI deberá mostrarlo claramente.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 132,
+    "title": "Actualización de LARM",
+    "spec_line_original": 7077,
+    "requirement_sha256": "5f5e694bc9430b23189f7e34d019843ead1c13d70b902289ba05b354cde996ad",
+    "owners": [
+      "P133"
+    ],
+    "requirement_text": "# 132. Actualización de LARM\n\nLARM también se actualizará side-by-side cuando sea posible.\n\nLa base de datos tendrá migrations reversibles cuando técnicamente sea viable y siempre backup previo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 133,
+    "title": "Backup",
+    "spec_line_original": 7093,
+    "requirement_sha256": "eb59e6ec1d0ddbbc6b7d4ace311eaba90b3242a9238fdc9ba5d457b0ecdb6cdb",
+    "owners": [
+      "P133",
+      "P098"
+    ],
+    "requirement_text": "# 133. Backup\n\nLARM deberá poder exportar:\n\n```text\n\nconfiguración\n\nregistry metadata\n\nstorage map\n\nruntimes\n\nmodel registry\n\nbenchmarks\n\ncertifications\n\n```\n\nNo incluirá obligatoriamente cientos de GB de modelos.\n\nLos modelos podrán reindexarse a partir de sus ubicaciones.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 134,
+    "title": "Portable Recovery",
+    "spec_line_original": 7133,
+    "requirement_sha256": "c5947430255795bfd278a7a8ecfd13399c27b5c8eb1e43d53ceb30d11d5a16fa",
+    "owners": [
+      "P018",
+      "P133",
+      "P098"
+    ],
+    "requirement_text": "# 134. Portable Recovery\n\nSi la base de datos se pierde, una operación:\n\n```text\n\nRebuild Registry\n\n```\n\ndeberá poder escanear los StorageLocations y recuperar todo lo posible.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 135,
+    "title": "Modelos desconectados",
+    "spec_line_original": 7157,
+    "requirement_sha256": "a1902efab79821dee189cac87b31a5a76203f41870bba277c5446afbe3eabb56",
+    "owners": [
+      "P018",
+      "P042"
+    ],
+    "requirement_text": "# 135. Modelos desconectados\n\nSi:\n\n```text\n\nE:\n\n```\n\nno está disponible:\n\n```text\n\nmodelo.estado = OFFLINE_STORAGE\n\n```\n\nAI Broker no deberá seleccionarlo.\n\nCuando vuelva:\n\n```text\n\nverify\n\n ↓\n\nAVAILABLE\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 136,
+    "title": "Baja disponibilidad de disco",
+    "spec_line_original": 7209,
+    "requirement_sha256": "e7f9bc403b78ada64be01941065888ce04f2b532943e6a2a867667b3cca4af0d",
+    "owners": [
+      "P014",
+      "P128",
+      "P003",
+      "P018",
+      "P113",
+      "P140"
+    ],
+    "requirement_text": "# 136. Baja disponibilidad de disco\n\nUmbrales:\n\n```text\n\nWARNING\n\nCRITICAL\n\n```\n\nEjemplo configurable:\n\n```text\n\nWARNING < 15 %\n\nCRITICAL < 5 %\n\n```\n\no mediante GB absolutos.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED",
+    "corrections_v3": [
+      "H09"
+    ]
+  },
+  {
+    "section": 137,
+    "title": "Descarga bloqueada por espacio",
+    "spec_line_original": 7249,
+    "requirement_sha256": "e9d872d9adc2477e6135b9fa333191edb2d5bcab4701cec70de916aa14041152",
+    "owners": [
+      "P015",
+      "P051"
+    ],
+    "requirement_text": "# 137. Descarga bloqueada por espacio\n\nSi el destino no tiene:\n\n```text\n\nrequired_free_bytes + reserve\n\n```\n\nla descarga no comienza.\n\nLa UI propondrá:\n\n```text\n\notro StorageLocation\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 138,
+    "title": "Performance de almacenamiento",
+    "spec_line_original": 7285,
+    "requirement_sha256": "e989d07ec3699399bf255ea76b26e00ba14756b39bb624c65c6cd16d4ced5dd4",
+    "owners": [
+      "P110",
+      "P111",
+      "P112"
+    ],
+    "requirement_text": "# 138. Performance de almacenamiento\n\nLos benchmarks técnicos podrán registrar también:\n\n```text\n\nmodel load source volume\n\nstorage class\n\nread throughput\n\n```\n\nAsí podrá observarse si mover un modelo de HDD a NVMe mejora su carga.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 139,
+    "title": "Source selection",
+    "spec_line_original": 7313,
+    "requirement_sha256": "db79eb4501023c9f2be60e5ce8f1606f49e2aab87675929c31283ec4dcbbb186",
+    "owners": [
+      "P052",
+      "P092",
+      "P119"
+    ],
+    "requirement_text": "# 139. Source selection\n\nSi el mismo artefacto existe en múltiples fuentes podrá elegirse según:\n\n```text\n\ntrust\n\navailability\n\ndownload speed\n\nintegrity\n\nlicense\n\nrevision\n\n```\n\nNo simplemente por orden fijo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 140,
+    "title": "Offline Mode",
+    "spec_line_original": 7347,
+    "requirement_sha256": "84c6a4c29db14e162f468e02c39a615e9e2eee9d73a34dcd06ed50ccb6b9cce7",
+    "owners": [
+      "P132"
+    ],
+    "requirement_text": "# 140. Offline Mode\n\nLARM podrá funcionar sin Internet con:\n\n```text\n\nmodelos existentes\n\nruntimes existentes\n\nregistry cache\n\nbenchmarks\n\n```\n\nLas búsquedas remotas aparecerán no disponibles.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 141,
+    "title": "Import/export de adaptadores",
+    "spec_line_original": 7377,
+    "requirement_sha256": "1aef8d51d4c15010cbf99266bb5adf2a822e6e82310c76401aecebcae04acb26",
+    "owners": [
+      "P024",
+      "P127",
+      "P028",
+      "P140"
+    ],
+    "requirement_text": "# 141. Import/export de adaptadores\n\nSerá posible exportar una configuración de runtime/source para utilizarla en otra instalación LARM.\n\nNo incluirá secretos.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 142,
+    "title": "Testing Strategy",
+    "spec_line_original": 7393,
+    "requirement_sha256": "285fbfbb8d79b63f7e0f763cebf89aea04000c0437578d8c998e898a1ffc18ae",
+    "owners": [
+      "P007",
+      "P025",
+      "P135",
+      "P138",
+      "P142"
+    ],
+    "requirement_text": "# 142. Testing Strategy\n\nCada módulo tendrá:\n\n```text\n\nunit tests\n\ncontract tests\n\nintegration tests\n\nfailure tests\n\nreal hardware tests\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 143,
+    "title": "Contract tests de Runtime Adapter",
+    "spec_line_original": 7421,
+    "requirement_sha256": "17874d5bab781220ecd1d057c4a57d8efb7f15db25c42c5d09bf2da6d1963c6f",
+    "owners": [
+      "P025",
+      "P060",
+      "P061",
+      "P062",
+      "P063",
+      "P064",
+      "P066",
+      "P067",
+      "P068",
+      "P069",
+      "P070",
+      "P071",
+      "P072",
+      "P073",
+      "P074",
+      "P075",
+      "P076",
+      "P077",
+      "P078",
+      "P079",
+      "P080",
+      "P026"
+    ],
+    "requirement_text": "# 143. Contract tests de Runtime Adapter\n\nTodo adaptador oficial deberá pasar:\n\n```text\n\nprobe\n\ninstall\n\nversion\n\nlaunch\n\nhealth\n\nstop\n\ncrash recovery\n\ninvalid model\n\ninvalid backend\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 144,
+    "title": "Contract tests de Model Source Adapter",
+    "spec_line_original": 7457,
+    "requirement_sha256": "f2a750f1a8b96a975a7c9c597aec71f308f8e3a7af454d739746cd96b4d6d39e",
+    "owners": [
+      "P025",
+      "P043",
+      "P046",
+      "P047",
+      "P048",
+      "P049",
+      "P026"
+    ],
+    "requirement_text": "# 144. Contract tests de Model Source Adapter\n\n```text\n\nsearch\n\nmetadata\n\nsize estimate\n\ndownload\n\nresume\n\nchecksum\n\nauthentication failure\n\nrate limit\n\nnetwork interruption\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 145,
+    "title": "Storage tests",
+    "spec_line_original": 7489,
+    "requirement_sha256": "6a745b054e0dd98b051c8787e46127cb347f1344ca31043d8e2d1a624b02b7d2",
+    "owners": [
+      "P016",
+      "P018",
+      "P051",
+      "P135"
+    ],
+    "requirement_text": "# 145. Storage tests\n\nObligatorios:\n\n```text\n\ndownload insufficient space\n\ndrive disconnected\n\ndrive letter changed\n\nmove same volume\n\nmove different volume\n\ncopy interrupted\n\nhash mismatch\n\ndestination disappears\n\nduplicate artifact\n\nnetwork share unavailable\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 146,
+    "title": "Lemonade tests",
+    "spec_line_original": 7545,
+    "requirement_sha256": "9b100a8911ec0b8da7d295116002977b14bef186a1995935e4bae5087ecc60d8",
+    "owners": [
+      "P068",
+      "P069"
+    ],
+    "requirement_text": "# 146. Lemonade tests\n\nEspecialmente:\n\n```text\n\nhealth\n\nmodel discovery\n\nbackend discovery\n\npull\n\nload\n\nunload\n\nchat\n\nstream\n\ntools\n\nmultimodal cuando proceda\n\ninvalid recipe\n\nmissing backend\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 147,
+    "title": "AI Broker integration tests",
+    "spec_line_original": 7587,
+    "requirement_sha256": "fa697b652faa1e48933b3722731ebded7a11925e9b4eee9e2bb379d12c58d834",
+    "owners": [
+      "P100",
+      "P101",
+      "P135",
+      "P107"
+    ],
+    "requirement_text": "# 147. AI Broker integration tests\n\n```text\n\nresolve\n\nlease\n\nload model\n\ninfer\n\nrelease\n\nmodel offline\n\nruntime crash\n\nfallback\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 148,
+    "title": "Benchmark validation",
+    "spec_line_original": 7617,
+    "requirement_sha256": "6760950134380f160edd45f4267d132c7dfc665901a048d62db269bba4e2b654",
+    "owners": [
+      "P110",
+      "P117"
+    ],
+    "requirement_text": "# 148. Benchmark validation\n\nUn benchmark deberá poder repetirse bajo el mismo fingerprint y detectar variaciones anómalas.\n\nNunca se compararán directamente benchmarks de configuraciones diferentes sin indicarlo.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 149,
+    "title": "Performance del propio LARM",
+    "spec_line_original": 7633,
+    "requirement_sha256": "66721961514ccb92e9923a385765424f0454a587f9470288d8e0c9d7fb43da90",
+    "owners": [
+      "P035",
+      "P136"
+    ],
+    "requirement_text": "# 149. Performance del propio LARM\n\nEl daemon deberá consumir recursos mínimos cuando esté idle.\n\nNo deberá mantener modelos en memoria sin necesidad salvo:\n\n```text\n\npinned\n\nactive lease\n\nconfigured warm model\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 150,
+    "title": "Política de auto-unload",
+    "spec_line_original": 7661,
+    "requirement_sha256": "3730c130037b75909853117681e2bcaa9eaacf34939088d072328385dcd7139d",
+    "owners": [
+      "P035",
+      "P100"
+    ],
+    "requirement_text": "# 150. Política de auto-unload\n\nConfigurable:\n\n```text\n\nnever\n\nidle timeout\n\nmemory pressure\n\nLRU\n\n```\n\nAI Broker podrá solicitar:\n\n```text\n\npin\n\n```\n\npara modelos críticos.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 151,
+    "title": "Model Scheduler",
+    "spec_line_original": 7703,
+    "requirement_sha256": "f83c8539ede685685de73c24c8a2e42a2555235c223290e7bd2efd61095841c7",
+    "owners": [
+      "P035"
+    ],
+    "requirement_text": "# 151. Model Scheduler\n\nLARM podrá decidir qué instancia descargar cuando haya presión de memoria.\n\nNo elegirá **qué modelo responde al usuario**.\n\nEso sigue siendo responsabilidad de AI Broker.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 152,
+    "title": "Prioridad de instancias",
+    "spec_line_original": 7723,
+    "requirement_sha256": "e36777537b396299cd55f7be6dc7e5c96bedf1ae2d399697f205ea4225a666b4",
+    "owners": [
+      "P035",
+      "P110"
+    ],
+    "requirement_text": "# 152. Prioridad de instancias\n\n```text\n\nPINNED\n\nHIGH\n\nNORMAL\n\nBACKGROUND\n\n```\n\nUn benchmark no deberá expulsar un modelo crítico salvo política explícita.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 153,
+    "title": "Concurrencia",
+    "spec_line_original": 7749,
+    "requirement_sha256": "956d5610e25745a4ca7447910e3d6a1f89048e876532f5ea6e48b40b5a49c1d7",
+    "owners": [
+      "P020",
+      "P035",
+      "P019"
+    ],
+    "requirement_text": "# 153. Concurrencia\n\nLos Runtime Adapters declararán:\n\n```text\n\nmax_instances\n\nmulti_model_support\n\nparallel_requests\n\nGPU sharing\n\n```\n\nEl Scheduler respetará esas limitaciones.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 154,
+    "title": "Errores normalizados",
+    "spec_line_original": 7779,
+    "requirement_sha256": "52a37b0f41b854df82b5f283ac2dda72be5bd7d8ba3b8b601a8ada7392a0f30f",
+    "owners": [
+      "P003"
+    ],
+    "requirement_text": "# 154. Errores normalizados\n\nLARM definirá códigos propios:\n\n```text\n\nSTORAGE_INSUFFICIENT\n\nMODEL_NOT_FOUND\n\nMODEL_OFFLINE\n\nMODEL_CORRUPT\n\nRUNTIME_NOT_INSTALLED\n\nRUNTIME_INCOMPATIBLE\n\nRUNTIME_CRASH\n\nBACKEND_UNAVAILABLE\n\nAUTH_REQUIRED\n\nLICENSE_REQUIRED\n\nDOWNLOAD_FAILED\n\nLOAD_OOM\n\nPROTOCOL_ERROR\n\n```\n\nLos errores originales permanecerán adjuntos.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 155,
+    "title": "Diagnostics Bundle",
+    "spec_line_original": 7841,
+    "requirement_sha256": "4161ead33c491bb6233fc70e72acc2032874e13447fc5fc2b9948be030c03b31",
+    "owners": [
+      "P124",
+      "P134",
+      "P140"
+    ],
+    "requirement_text": "# 155. Diagnostics Bundle\n\nDesde GUI:\n\n```text\n\nCrear paquete diagnóstico\n\n```\n\nIncluirá:\n\n```text\n\nversions\n\nhardware\n\ndrivers\n\nadapter states\n\nlogs seleccionados\n\nerrors\n\n```\n\nNo incluirá tokens.\n\nEsto será especialmente útil para depurar AI Broker ↔ Lemonade.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 156,
+    "title": "Privacidad",
+    "spec_line_original": 7891,
+    "requirement_sha256": "30482c6922e98873334e42f35d9c018077b2ea8d184825f8dabbb9e0715d3cc2",
+    "owners": [
+      "P003",
+      "P134",
+      "P143"
+    ],
+    "requirement_text": "# 156. Privacidad\n\nPor defecto:\n\n```text\n\nsin telemetría externa\n\n```\n\nCualquier telemetría futura deberá ser opt-in.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 157,
+    "title": "Desarrollo modular",
+    "spec_line_original": 7915,
+    "requirement_sha256": "e6987153cfe1d300bda305715f39711e9856fcbbe553b2565330cad87d0e47d4",
+    "owners": [
+      "P138",
+      "P142"
+    ],
+    "requirement_text": "# 157. Desarrollo modular\n\nNo habrá una MVP reducida.\n\nSe desarrollará el producto completo mediante módulos independientes y verificables.\n\nNingún módulo se considerará terminado sin pruebas reales.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 158,
+    "title": "Orden de implementación recomendado",
+    "spec_line_original": 7935,
+    "requirement_sha256": "b106a497ef60d6d8caeeae2cf5d81e452d893d2a90fb14264f24b2f702e7c68a",
+    "owners": [
+      "P001",
+      "P008",
+      "P016",
+      "P025",
+      "P065",
+      "P073",
+      "P100",
+      "P103",
+      "P082",
+      "P083"
+    ],
+    "requirement_text": "# 158. Orden de implementación recomendado\n\n## Módulo 0 — Bootstrap\n\n```text\n\nrepo\n\nCI\n\nlogging\n\nconfig\n\nSQLite\n\nmigrations\n\ndaemon\n\nGUI shell\n\nAPI skeleton\n\n```\n\n## Módulo 1 — Hardware Profiler\n\n```text\n\nCPU\n\nRAM\n\nGPU\n\nNPU\n\ndrivers\n\nbackends\n\nstorage\n\nfingerprint\n\n```\n\n## Módulo 2 — Storage Manager\n\n```text\n\nmulti-volume\n\nVolume GUID\n\nfree space\n\nreservation\n\noffline disks\n\nartifact paths\n\nmove\n\nscan\n\n```\n\n## Módulo 3 — Adapter Framework\n\n```text\n\nout-of-process protocol\n\nmanifest\n\npermissions\n\nlifecycle\n\n```\n\n## Módulo 4 — Runtime Registry\n\n```text\n\nruntime\n\nversions\n\ninstallations\n\nbackends\n\n```\n\n## Módulo 5 — Model Registry\n\n```text\n\ncanonical models\n\nvariants\n\nartifacts\n\nbundles\n\nprovenance\n\n```\n\n## Módulo 6 — Model Source Framework\n\n```text\n\nsearch\n\nmetadata\n\ndownload plans\n\nauth\n\nsize estimates\n\n```\n\n## Módulo 7 — Hugging Face Adapter\n\nPrimer Source Adapter de referencia.\n\n## Módulo 8 — ModelScope Adapter\n\nSegundo adapter para demostrar que el Core no depende de HF.\n\n## Módulo 9 — Download Manager\n\n```text\n\nqueue\n\nresume\n\nchecksum\n\nstorage preflight\n\n```\n\n## Módulo 10 — llama.cpp Adapter\n\nIncluyendo versiones múltiples.\n\n## Módulo 11 — ONNX Runtime / Windows ML\n\nDesde el principio del producto, no como ampliación opcional.\n\n## Módulo 12 — Compatibility Engine\n\n## Módulo 13 — Model Transformation Pipeline\n\n## Módulo 14 — Runtime Supervisor\n\n## Módulo 15 — Protocol Layer\n\n## Módulo 16 — AI Broker Bridge\n\n## Módulo 17 — stable-diffusion.cpp\n\n## Módulo 18 — whisper.cpp\n\n## Módulo 19 — Lemonade Adapter\n\nIncluyendo adopción de la instalación existente y diagnóstico exhaustivo.\n\n## Módulo 20 — Ollama\n\n## Módulo 21 — PyTorch/Transformers/Diffusers\n\n## Módulo 22 — MLC LLM\n\n## Módulo 23 — sherpa-onnx\n\n## Módulo 24 — OpenVINO\n\n## Módulo 25 — Foundry Local\n\n## Módulo 26 — Otros runtimes Windows\n\n## Módulo 27 — Benchmark Engine\n\n## Módulo 28 — Agora Bridge\n\n## Módulo 29 — Local-AI-Lab / Model Drift\n\n## Módulo 30 — MCP Administration\n\n## Módulo 31 — Model Access MCP\n\n## Módulo 32 — Source Watcher\n\n## Módulo 33 — Actualizaciones y rollback\n\n## Módulo 34 — Hardening\n\n## Módulo 35 — UX final y pruebas end-to-end\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 159,
+    "title": "Regla de avance entre módulos",
+    "spec_line_original": 8249,
+    "requirement_sha256": "4c345ffc1d7234e46eb7bbe644ffc0c97599bbff4011d3586ba58008db79d67c",
+    "owners": [
+      "P007",
+      "P138",
+      "P142"
+    ],
+    "requirement_text": "# 159. Regla de avance entre módulos\n\nUn módulo sólo permite comenzar el siguiente cuando:\n\n```text\n\nspec implemented\n\nunit tests PASS\n\nintegration tests PASS\n\nreal test PASS\n\nacceptance criteria PASS\n\ndocumentation updated\n\n```\n\nNo se aplazarán errores estructurales con:\n\n```text\n\nTODO\n\n```\n\nsin una decisión explícita.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 160,
+    "title": "Criterios de aceptación global",
+    "spec_line_original": 8295,
+    "requirement_sha256": "6aebff8cecbc11dd12b2d2ec65ffc43d3bd888d084c5f3827ecfe42d1f856413",
+    "owners": [
+      "P135",
+      "P138",
+      "P142"
+    ],
+    "requirement_text": "# 160. Criterios de aceptación global\n\nLa aplicación completa deberá demostrar, al menos:\n\n### Runtimes\n\nInstalar y mantener múltiples versiones del mismo runtime.\n\n### Sources\n\nBuscar el mismo tipo de modelo en múltiples repositorios.\n\n### Storage\n\nMostrar el tamaño antes de descargar.\n\n### Multi-disk\n\nDescargar dos modelos en discos diferentes.\n\n### Move\n\nMover un modelo sin perder su registro.\n\n### Drive loss\n\nDetectar correctamente una unidad desconectada.\n\n### Compatibility\n\nDistinguir compatible/no compatible.\n\n### AI Broker\n\nResolver un modelo, arrancarlo e inferir.\n\n### Laya/System-1\n\nAdministrarlo como modelo normal del sistema.\n\n### Lemonade\n\nDetectarlo, adoptarlo, diagnosticarlo y exponer sólo modelos verificados.\n\n### Benchmark\n\nComparar dos runtimes/versiones.\n\n### Updates\n\nActualizar un runtime y revertirlo.\n\n### Discovery\n\nDetectar un nuevo modelo compatible.\n\n### MCP\n\nAdministrar LARM mediante un agente.\n\n### Recovery\n\nRecuperar correctamente tras reinicio/crash.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 161,
+    "title": "Reglas arquitectónicas inmutables",
+    "spec_line_original": 8427,
+    "requirement_sha256": "6fd92c7ac9d7c07b63e47a87d7fcabf7abcaa887c0b2197f3b0d5020348732be",
+    "owners": [
+      "P002",
+      "P032",
+      "P042",
+      "P101"
+    ],
+    "requirement_text": "# 161. Reglas arquitectónicas inmutables\n\nDurante el desarrollo deberán respetarse estas reglas:\n\n> **LARM administra la capacidad local de inferencia.**\n\n> **AI Broker administra la selección y el acceso a dicha capacidad.**\n\n> **Local-AI-Lab ejecuta experimentación y genera evidencia.**\n\n> **Model Drift evalúa y certifica comportamiento.**\n\n> **Agora coordina trabajos distribuidos entre máquinas.**\n\n> **Un runtime nuevo no debe requerir modificar el Core.**\n\n> **Una fuente nueva de modelos no debe requerir modificar el Core.**\n\n> **La ruta física de un modelo nunca debe quedar embebida como conocimiento de otra aplicación.**\n\n> **AI Broker identifica modelos lógicamente; LARM resuelve dónde están y cómo ejecutarlos.**\n\n> **Ninguna actualización debe destruir automáticamente la última combinación conocida como funcional.**\n\n> **Ningún modelo aparecerá como utilizable únicamente porque haya podido descargarse.**\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 162,
+    "title": "Estado final deseado",
+    "spec_line_original": 8483,
+    "requirement_sha256": "3441d90856d26926cc4c97352f86e99f0640cd4e42104d805bbcc445b415b96c",
+    "owners": [
+      "P121",
+      "P122",
+      "P135"
+    ],
+    "requirement_text": "# 162. Estado final deseado\n\nEl flujo ideal será:\n\n```text\n\nUsuario busca:\n\n\"modelo multimodal pequeño\"\n\n        │\n\n        ▼\n\nLARM consulta múltiples fuentes\n\n        │\n\n        ▼\n\nnormaliza duplicados\n\n        │\n\n        ▼\n\ndetecta variantes\n\n        │\n\n        ▼\n\ncruza runtimes disponibles\n\n        │\n\n        ▼\n\ncruza hardware\n\n        │\n\n        ▼\n\nestima memoria\n\n        │\n\n        ▼\n\nestima almacenamiento\n\n        │\n\n        ▼\n\nmuestra candidatos compatibles\n\n```\n\nEl usuario elige:\n\n```text\n\nModelo X\n\nONNX INT4\n\n12.6 GB\n\n```\n\nLARM muestra:\n\n```text\n\nDescarga:         12.6 GB\n\nInstalación:      12.9 GB\n\nPico temporal:    13.8 GB\n\nC:\\\\   64 GB libres\n\nD:\\\\  107 GB libres\n\nE:\\\\ 1.4 TB libres\n\nDestino recomendado: E:\n\n```\n\nDespués:\n\n```text\n\ndownload\n\n ↓\n\nverify\n\n ↓\n\nregister\n\n ↓\n\nruntime compatibility\n\n ↓\n\nload test\n\n ↓\n\nbenchmark\n\n ↓\n\nAVAILABLE\n\n```\n\nAI Broker recibe:\n\n```text\n\nmodelo X disponible\n\ncapabilities = [...]\n\n```\n\nPosteriormente una aplicación pide:\n\n```text\n\nmodelo X\n\n```\n\ny:\n\n```text\n\nApp\n\n ↓\n\nAI Broker\n\n ↓\n\nLARM.resolve\n\n ↓\n\nruntime instance\n\n ↓\n\ninference\n\n```\n\nLa aplicación cliente jamás necesita saber:\n\n```text\n\nqué runtime\n\nqué versión\n\nqué puerto\n\nqué carpeta\n\nqué disco\n\nqué backend\n\n```\n\nTodo ello queda encapsulado por LARM.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 163,
+    "title": "Objetivo estratégico",
+    "spec_line_original": 8713,
+    "requirement_sha256": "36385eb6b71425618f543c47006e5d4961fa5e5c056bdac0b25ebfbd385b0a1d",
+    "owners": [
+      "P020",
+      "P025",
+      "P043",
+      "P102"
+    ],
+    "requirement_text": "# 163. Objetivo estratégico\n\nCuando esté terminado, Local AI Runtime Manager no será simplemente:\n\n> “un gestor de llama.cpp”.\n\nNi:\n\n> “un sustituto de LM Studio”.\n\nSerá una capa de infraestructura capaz de conectar:\n\n```text\n\nmuchos repositorios de modelos\n\n          ↓\n\nmuchos formatos\n\n          ↓\n\nmuchos discos\n\n          ↓\n\nmuchos runtimes\n\n          ↓\n\nmuchos backends de hardware\n\n          ↓\n\nuna interfaz de capacidad unificada\n\n```\n\nsobre la cual AI Broker y el resto del ecosistema podrán trabajar sin depender de las particularidades de cada motor.\n\nLa arquitectura queda expresamente diseñada para que dentro de varios años puedan aparecer:\n\n```text\n\nnuevos formatos\n\nnuevos runtimes\n\nnuevos aceleradores\n\nnuevos repositorios\n\nnuevos tipos de modelo\n\n```\n\nsin tener que rediseñar el Core.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 164,
+    "title": "Baseline tecnológica externa — octubre de 2026",
+    "spec_line_original": 8797,
+    "requirement_sha256": "e1c77bb6d84e1c635ef1e09a01922796fd41d884fc50ec85776fff0a34adcb06",
+    "owners": [
+      "P046",
+      "P047",
+      "P060",
+      "P062",
+      "P063",
+      "P064",
+      "P066",
+      "P067",
+      "P068",
+      "P073",
+      "P076",
+      "P000",
+      "P099"
+    ],
+    "requirement_text": "# 164. Baseline tecnológica externa — octubre de 2026\n\nLa arquitectura anterior está deliberadamente desacoplada del estado puntual del ecosistema, pero la implementación comienza con una situación tecnológica especialmente favorable:\n\n- Hugging Face permite obtener metadata de archivos y tamaños antes de descargar.\n\n- ModelScope ofrece búsqueda, descargas selectivas, caché configurable, reanudación y verificación SHA256.\n\n- Windows ML ofrece proveedores descargables para hardware AMD, NVIDIA, Intel y Qualcomm.\n\n- ONNX Runtime GenAI ofrece actualmente builds Windows y una capa generativa sobre ONNX Runtime.\n\n- Foundry Local selecciona variantes apropiadas al hardware Windows y mantiene un catálogo/cache local.\n\n- MLC LLM soporta Windows/Vulkan y servidor REST compatible con OpenAI.\n\n- `stable-diffusion.cpp` funciona en Windows y soporta varios backends y formatos.\n\n- `llama.cpp` puede compilarse en Windows con backend Vulkan, entre otros.\n\n- `whisper.cpp` dispone de soporte Windows y el propio proyecto publica tamaños concretos de sus modelos.\n\n- Lemonade ofrece APIs de administración de modelos, backends, descargas, sistema y búsquedas de catálogo, lo que permite tratarlo como un host administrable en lugar de un simple endpoint OpenAI.\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 165,
+    "title": "Decisiones cerradas",
+    "spec_line_original": 8831,
+    "requirement_sha256": "74b160158e8786ad7c2617bbf98c7c3eebd11c237abb272307301ea6eecffa0f",
+    "owners": [
+      "P002",
+      "P138"
+    ],
+    "requirement_text": "# 165. Decisiones cerradas\n\nSe consideran decisiones de diseño aceptadas:\n\n```text\n\nNombre:\n\nLocal AI Runtime Manager / LARM\n\nPlataforma:\n\nWindows First\n\nPC:\n\nPC IA\n\nAI Broker:\n\nPC IA\n\nCore:\n\nindependiente de GUI\n\nRuntimes:\n\nextensibles por adaptadores\n\nModel Sources:\n\nextensibles por adaptadores\n\nllama.cpp:\n\nsoporte oficial\n\nONNX/Windows ML:\n\nsoporte oficial desde el desarrollo inicial\n\nstable-diffusion.cpp:\n\nsoporte oficial\n\nwhisper.cpp:\n\nsoporte oficial\n\nLemonade:\n\nsoporte nativo y adopción\n\nSystem-1:\n\ngestionado por LARM\n\nHugging Face:\n\nuna fuente, no la única\n\nStorage:\n\nmultidisco\n\nTamaño:\n\nestimado antes de descarga\n\nRuta:\n\nseleccionable por modelo\n\nMove:\n\nsoportado\n\nInferencia del ecosistema:\n\nAI Broker\n\nMCP:\n\nadministración + acceso opcional a modelos\n\nBenchmark técnico:\n\nPC IA\n\nEvaluación:\n\nPC principal\n\nOrquestación:\n\nAgora\n\nActualizaciones:\n\nside-by-side + rollback\n\nModelos:\n\nhash + revision + provenance\n\nRuntimes futuros:\n\nsin modificar Core\n\nRepositorios futuros:\n\nsin modificar Core\n\n```\n\n---\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  },
+  {
+    "section": 166,
+    "title": "Resultado",
+    "spec_line_original": 9009,
+    "requirement_sha256": "d1daf30572cb2384fcbfc11d55ca86d1b61f41fbb1329e7eb38f9861b8796c15",
+    "owners": [
+      "P001",
+      "P005",
+      "P020",
+      "P040",
+      "P138",
+      "P142"
+    ],
+    "requirement_text": "# 166. Resultado\n\nEsta especificación constituye la **baseline técnica completa del producto**.\n\nLa siguiente fase ya no debería consistir en seguir inventando arquitectura, sino en convertir cada módulo definido aquí en:\n\n```text\n\nespecificación detallada del módulo\n\ncontratos\n\nmodelo de datos concreto\n\nAPI concreta\n\ntests\n\ncriterios de aceptación\n\nprompt de implementación\n\n```\n\ny desarrollarlos secuencialmente hasta completar LARM.\n\n",
+    "status": "ASSIGNED_TO_IMPLEMENTATION_NOT_EXECUTED"
+  }
+]

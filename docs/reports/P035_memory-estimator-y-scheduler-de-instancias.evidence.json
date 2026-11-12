@@ -1,0 +1,149 @@
+{
+  "prompt_id": "P035",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "67bb923c89991dcd85d0ca4a2c01612b62461221d91e935bcad95395bcc39362",
+  "changed_files": [
+    "crates/larm-db/src/guard.rs",
+    "crates/larm-db/tests/guard.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-runtime/Cargo.toml",
+    "crates/larm-runtime/src/lib.rs",
+    "crates/larm-runtime/src/memory.rs",
+    "crates/larm-runtime/src/scheduler.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P035_memory-estimator-y-scheduler-de-instancias.md",
+    "tools/p035_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P035-MEMORY-ESTIMATE-AND-PREFLIGHT",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-runtime --lib memory::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/memory.rs:a789e22259f0773ee80b62b8371c3a90f64aa4bc5c6871bea21efd76196c0a39",
+        "crates/larm-domain/src/estimate.rs:dbcb4ba73f0d00fc31f3a5ff99ca8fa88ee40031aaa41e60e4475902b3158d2c",
+        "crates/larm-domain/src/hardware.rs:6f6515466a52ada90db631c63c444187bb0478040a75ad0cff6b8967c66db427"
+      ],
+      "expected": "Fórmula KV con ceil, overhead y margen, metadata incompleta UNKNOWN, multimodal delegado al adapter, memoria unificada deduplicada, mínimo de límites perfil/lease/budget, cero/overflow y reserva insuficiente.",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Compiling larm-runtime v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-runtime) | Finished `test` profile [unoptimized + debuginfo] target(s) in 10.76s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_runtime-6f9fa88e4f014d9f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P035_runs/P035-MEMORY-ESTIMATE-AND-PREFLIGHT.log#sha256=f480dafadf7b24eece6d3efce8be30561174e54f57a327b0374c62645161e8b2"
+      ]
+    },
+    {
+      "id": "P035-SCHEDULER-PRIORITY-AND-UNLOAD",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-runtime --lib scheduler::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/scheduler.rs:1f521c6d67c0ad5f0bea8e9f4c48d677a297787b866aa5a18ed0c1850066d1da",
+        "crates/larm-core/src/config/mod.rs:152ab6bdfd36d3bbe8cd45f5373831ef4a1b123ad5ce5ae0ac4c87a16b41e1ba",
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877"
+      ],
+      "expected": "Prioridades PINNED/HIGH/NORMAL/BACKGROUND, FIFO de starts, límite de arranques, IDLE_TIMEOUT, MEMORY_PRESSURE y LRU protegen leases, warm, PINNED y procesos externos.",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.37s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_runtime-6f9fa88e4f014d9f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P035_runs/P035-SCHEDULER-PRIORITY-AND-UNLOAD.log#sha256=13805ea0f4f7054ca82a4f9701389586062e8f8bcac9da2de9e37de6e36681c6"
+      ]
+    },
+    {
+      "id": "P035-ATOMIC-MULTI-POOL-RESERVATION",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard reserva_de_pools -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/guard.rs:ad74631705ed4c3a63b20d2c4cc2e25e0205e4eaac4662c7658b02c5e060d435",
+        "crates/larm-db/tests/guard.rs:6be35b2225fe52b985aca9da974cc083fc3e2b60a39df370544d8aaef8fd0a49",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "SQLite conserva reservas existentes si falla un pool, rechaza claves repetidas y sustituye el conjunto multi-pool de forma atómica.",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.74s | Running tests\\guard.rs (target\\verification-final\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P035_runs/P035-ATOMIC-MULTI-POOL-RESERVATION.log#sha256=5def51a0c5c421da4e6be0061ddac33279ebeeafd1b6a014997d9bdcebc896c6"
+      ]
+    },
+    {
+      "id": "P035-SINGLE-POOL-COMPATIBILITY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard reserva_de_un_pool_conserva_otros_pools_del_titular -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/guard.rs:ad74631705ed4c3a63b20d2c4cc2e25e0205e4eaac4662c7658b02c5e060d435",
+        "crates/larm-db/tests/guard.rs:6be35b2225fe52b985aca9da974cc083fc3e2b60a39df370544d8aaef8fd0a49"
+      ],
+      "expected": "Actualizar una reserva individual sustituye su pool sin borrar reservas del mismo titular en otros pools.",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\guard.rs (target\\verification-final\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P035_runs/P035-SINGLE-POOL-COMPATIBILITY.log#sha256=90a13f548c92bb38c48a4215e048695e5f76978404b5f6673055e441a197d9f8"
+      ]
+    },
+    {
+      "id": "P035-GUARD-AND-SQLITE-ADMISSION",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib memory::tests::admission_real_reserva_en_sqlite_bajo_guard_p019 -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/memory.rs:a789e22259f0773ee80b62b8371c3a90f64aa4bc5c6871bea21efd76196c0a39",
+        "crates/larm-db/src/guard.rs:ad74631705ed4c3a63b20d2c4cc2e25e0205e4eaac4662c7658b02c5e060d435",
+        "crates/larm-db/src/guard.rs:ad74631705ed4c3a63b20d2c4cc2e25e0205e4eaac4662c7658b02c5e060d435",
+        "crates/larm-domain/src/guard.rs:7ea3e75741a4bc2c06e02a7d986100096c9aeecd9cdfc5db119576714dad61e8"
+      ],
+      "expected": "El estimate supera preflight, adquiere guards P019, registra la reserva SQLite por pool y libera los guards temporales tras la confirmación.",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.34s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_runtime-6f9fa88e4f014d9f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P035_runs/P035-GUARD-AND-SQLITE-ADMISSION.log#sha256=a1874e67dc7b4f1243866ae841e18dedd0d26a5c2dbc9fe41963d8e47f39ee47"
+      ]
+    },
+    {
+      "id": "P035-OPERATOR-HARD-BUDGET-ADMISSION",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-runtime --lib memory::tests::admission_unknown_persistida_exige_override_y_budget_duro -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/memory.rs:a789e22259f0773ee80b62b8371c3a90f64aa4bc5c6871bea21efd76196c0a39",
+        "crates/larm-db/src/guard.rs:ad74631705ed4c3a63b20d2c4cc2e25e0205e4eaac4662c7658b02c5e060d435",
+        "crates/larm-db/src/guard.rs:ad74631705ed4c3a63b20d2c4cc2e25e0205e4eaac4662c7658b02c5e060d435"
+      ],
+      "expected": "UNKNOWN no crea una reserva automática; sólo el modo explícito OperatorHardBudget y un límite duro por pool permiten persistir el límite verificado en SQLite bajo P019.",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_runtime-6f9fa88e4f014d9f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P035_runs/P035-OPERATOR-HARD-BUDGET-ADMISSION.log#sha256=61552694df0df4ff1f14d5134015347040e491b668af6f077fdee7f2827b53bc"
+      ]
+    },
+    {
+      "id": "P035-REAL-WINDOWS-MEMORY-PREFLIGHT",
+      "kind": "REAL",
+      "command": "cargo test -p larm-runtime --lib memory::tests::hardware_real_de_windows_verifica_admision_con_memoria_observada -j 1 -- --exact --nocapture --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-runtime/src/memory.rs:a789e22259f0773ee80b62b8371c3a90f64aa4bc5c6871bea21efd76196c0a39",
+        "crates/larm-domain/src/hardware.rs:6f6515466a52ada90db631c63c444187bb0478040a75ad0cff6b8967c66db427"
+      ],
+      "expected": "En Windows, GlobalMemoryStatusEx observa RAM real y el mismo preflight P035 admite o rechaza por capacidad disponible, sin fixture de capacidad del host.",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.37s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_runtime-6f9fa88e4f014d9f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P035_runs/P035-REAL-WINDOWS-MEMORY-PREFLIGHT.log#sha256=41c90f6bb9e758848ffa6020e59fdc268a773cd90c32daefcb04c2ed22d6ff91"
+      ]
+    },
+    {
+      "id": "P035-REAL-LAUNCH-AND-PERSISTED-INSTANCE",
+      "kind": "REAL",
+      "command": "LaunchProfile guardado → LaunchPlan → RuntimeInstance/lease → memory reservation → proceso supervisado",
+      "fixture_hashes": [],
+      "expected": "Un perfil persistido participa en el launch real y la instancia conserva la admisión hasta detenerse.",
+      "observed": "NO EJECUTADA: P034 y P033 siguen BLOCKED_REAL en la integración productiva LaunchPlan→RuntimeInstance; P011 y P019 tampoco alcanzan REAL_PASS, por lo que no se puede declarar cualificada la admisión de un consumidor.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La reserva multi-pool y el preflight funcionan en pruebas, pero P035 aún no está conectado al flujo productivo de LaunchPlan/RuntimeInstance/lease; no se declara admisión real de un modelo gestionado.",
+    "dependencia P011 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P034 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T12:51:49.163Z"
+}

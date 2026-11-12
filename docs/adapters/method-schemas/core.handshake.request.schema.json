@@ -1,0 +1,28 @@
+{
+  "$defs": {
+    "larm__Handshake": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "nonce": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "protocol_version": {
+          "const": "1.0"
+        }
+      },
+      "required": [
+        "protocol_version",
+        "adapter_id",
+        "nonce"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__Handshake",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

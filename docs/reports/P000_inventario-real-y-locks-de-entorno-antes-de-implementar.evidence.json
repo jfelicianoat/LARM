@@ -1,0 +1,248 @@
+{
+  "prompt_id": "P000",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+  "inputs_hash": "8e99969e74bc0a3ec31580ac182c1b2ae66a7bd1ffe8aeace9c6eae8c92d4b91",
+  "changed_files": [
+    ".gitignore",
+    "docs/implementation/inventory.json",
+    "docs/implementation/inventory.raw.json",
+    "environment.lock.json",
+    "fixtures.lock.json",
+    "tools/capture_inventory.ps1",
+    "tools/check_integration_credentials.py",
+    "tools/evidence.py",
+    "tools/normalize_inventory.py",
+    "tools/p000_evidence.py",
+    "tools/validate_evidence.py",
+    "tools/verify_p000.py"
+  ],
+  "tests": [
+    {
+      "id": "P000-CONTRACT-json",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py json",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "inventory/environment/fixtures son JSON validos con claves minimas y hash registrado igual al recalculado",
+      "observed": "exit=0; PASS 3 JSON validos; claves ['os', 'cpu', 'ram', 'gpus', 'npu', 'volumes', 'detectedTools', 'httpsReachability'] presentes; inventory_sha256=21be0dbc8a00cff7cc8bb25936181a50c3f12241104d6890618e8ebfa67f6eee",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-CONTRACT-json.log#sha256=93593aeb260b8b9c5a60411a1edecf9dabff52821fb7194cd65d53ff99fc426a"
+      ]
+    },
+    {
+      "id": "P000-CONTRACT-secrets",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py secrets",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "ningun patron de token/secreto en inventario, captura cruda y locks",
+      "observed": "exit=0; PASS sin coincidencias de patrones de secreto en 4 ficheros",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-CONTRACT-secrets.log#sha256=2fe98cf4787c8f73094807932810ca7f530c5e30a7be52fdb87bb3d41ec81e3e"
+      ]
+    },
+    {
+      "id": "P000-FAULT-unknown-default",
+      "kind": "FAULT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py unknown",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "inventario real sin unknown rellenado; mutantes con 0/''/uint32 saturado rechazados",
+      "observed": "exit=0; PASS real limpio; 4/4 mutantes con default detectados (incluye AdapterRAM uint32 saturado)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-FAULT-unknown-default.log#sha256=84bfde93a491fa87e97ccf074792da7dffeda2d98d684e57ee31588b5ed4fd30"
+      ]
+    },
+    {
+      "id": "P000-FAULT-schema-invalid",
+      "kind": "FAULT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py schema-neg",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "inventario sin os/volumes/npu rechazado",
+      "observed": "exit=0; PASS missing required key: os; missing required key: volumes; missing required key: npu",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-FAULT-schema-invalid.log#sha256=bd3c60d848dd424e0f2688431b1af48cca794b7bcb1a067b06492e00f1c27f54"
+      ]
+    },
+    {
+      "id": "P000-CONTRACT-package-fixtures",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py fixtures",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "sha256 y tamano recalculados de fixtures/generated coinciden con fixtures.lock",
+      "observed": "exit=0; PASS 4 fixtures recalculados coinciden: tensor_identity.onnx, tensor_input.f32, text_grid.png, tone16k.wav",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-CONTRACT-package-fixtures.log#sha256=70fe284e2256b8733ded422f12a50619b34ae15ca898091b609f0457ac3e11e4"
+      ]
+    },
+    {
+      "id": "P000-CONTRACT-llamacpp-two-versions",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py llamacpp",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "dos tags distintos de llama.cpp con commit de 40 hex",
+      "observed": "exit=0; PASS versiones b11539@10a60cf303, b11538@79e2e74eb1",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-CONTRACT-llamacpp-two-versions.log#sha256=8101ac83c015a7dfbf413d96beed1bbf8d05a89215e1f791bd39147fd88222c1"
+      ]
+    },
+    {
+      "id": "P000-CONTRACT-acceptance-volumes",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py volumes",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "volumenes con Windows Volume GUID; segundo volumen NO_DISPONIBLE sin GUID inventado",
+      "observed": "exit=0; PASS 2 volumenes con GUID; aceptacion: 1 real(es), segundo=NO_DISPONIBLE_UNICO_VOLUMEN",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-CONTRACT-acceptance-volumes.log#sha256=b6e59a170e53de1078bd5abeea6c0f2c5727a25c19410f28dfd709c8868162b5"
+      ]
+    },
+    {
+      "id": "P000-CONTRACT-environment-lock",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py env",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "toolchains fijados; cada crate con sha256 y cada paquete npm con integrity",
+      "observed": "exit=0; PASS 42 crates con sha256, 13 paquetes npm con integrity; rustc=1.99.0 node=v24.18.0",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-CONTRACT-environment-lock.log#sha256=eb96151d7e400fe0ab58d225d4563fa96635a783a7ea54d47174cde3bea66366"
+      ]
+    },
+    {
+      "id": "P000-CONTRACT-lock-coherence",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py lock-coherence",
+      "fixture_hashes": [
+        "environment.lock.json:0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+        "fixtures.lock.json:a09ad1528c2da21bacedaab0270972c429711911c90ae0f4d63cb5b85d3a7f02"
+      ],
+      "expected": "environment.lock coincide con Cargo.toml, Cargo.lock y package-lock en version y hash",
+      "observed": "exit=0; PASS 45 dependencias usadas coinciden en version y hash con Cargo.lock/package-lock.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-CONTRACT-lock-coherence.log#sha256=518ae7cdbf9d8218106ecd2c0961bfdea5e087a05a7b2d05005de76661544711"
+      ]
+    },
+    {
+      "id": "P000-REAL-capture-pcia-a",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/capture_inventory.ps1 -OutFile C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\docs\\reports\\P000_runs\\capture_a.raw.json",
+      "fixture_hashes": [],
+      "expected": "captura read-only del PC IA escrita en UTF-8 sin error",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-REAL-capture-pcia-a.log#sha256=edf83477877e8f05264a76b19c280fda1f5a9d100a1d872c9ad34e58808508b6"
+      ]
+    },
+    {
+      "id": "P000-REAL-capture-pcia-b",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/capture_inventory.ps1 -OutFile C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\docs\\reports\\P000_runs\\capture_b.raw.json",
+      "fixture_hashes": [],
+      "expected": "captura read-only del PC IA escrita en UTF-8 sin error",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-REAL-capture-pcia-b.log#sha256=3f3c277b330202fbc26ce7d4c4551ffb8c3cb40da40c0efe208358e420711cdd"
+      ]
+    },
+    {
+      "id": "P000-REAL-capture-deterministic",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py compare C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\docs\\reports\\P000_runs\\capture_a.raw.json C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\docs\\reports\\P000_runs\\capture_b.raw.json",
+      "fixture_hashes": [
+        "docs/reports/P000_runs/capture_a.raw.json:02e22ceb6cd90658ccf25f1004b8d62b06691b6eae11dc2506b8cc00d841d2b2",
+        "docs/reports/P000_runs/capture_b.raw.json:2c3a6e377bccceff4d782dd02e40a86c8225a5abc63ae7e67448108bbff19527"
+      ],
+      "expected": "dos capturas reales independientes, normalizadas sin metricas volatiles, dan el mismo hash",
+      "observed": "exit=0; PASS dos capturas independientes -> mismo hash 4456314bab5e5e434561d22253515dc92771c2ecfeddb1194c0875fc03ad3100",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-REAL-capture-deterministic.log#sha256=96e204bc6fd6eae9e63cddc892e77730680ac65be643b0d755650af959c42718"
+      ]
+    },
+    {
+      "id": "P000-REAL-https-topology",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -c import json,sys;r=json.load(open(sys.argv[1]));assert len(r)==6 and all('endpoint' in x and 'ok' in x for x in r);print('; '.join(f\"{x['endpoint']} ok={x['ok']} status={x.get('status')}\" for x in r)) C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\docs\\reports\\P000_runs\\https_reachability.json",
+      "fixture_hashes": [],
+      "expected": "accesibilidad HTTPS real registrada para 6 endpoints, con status observado y sin relleno",
+      "observed": "exit=0; https://huggingface.co ok=True status=200; https://github.com ok=True status=200; https://modelscope.cn ok=True status=200; https://www.kaggle.com ok=False status=404; https://registry.npmjs.org ok=True status=200; https://static.crates.io ok=False status=403",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-REAL-https-topology.log#sha256=02187a482d4c6767dbfc5d09bedca478938c04932f12dafb8fb76c4ad4504ceb"
+      ]
+    },
+    {
+      "id": "P000-REAL-broker-capabilities",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -c import json,sys;c=json.load(open(sys.argv[1]))['brokerCapabilities'];assert c['status']==200 and c['contractVersion'];print(c) C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\docs\\reports\\P000_runs\\capture_a.raw.json",
+      "fixture_hashes": [],
+      "expected": "GET /api/v1/capabilities (publico) del Broker local responde 200 con contract_version",
+      "observed": "exit=0; {'endpoint': 'http://127.0.0.1:8765/api/v1/capabilities', 'status': 200, 'contractVersion': '2.11', 'bodySha256': '4a2bc78c538dd25ed7859ce3c22890d2b42b0bc20408f43e7f433bc05e9c3df3'}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-REAL-broker-capabilities.log#sha256=5bb5ccd99e44cbf08900fd30d59b7aec2c39aefc64b88bf30d61daf1f8969bb4"
+      ]
+    },
+    {
+      "id": "P000-REAL-broker-auth-check",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/check_integration_credentials.py --broker-only",
+      "fixture_hashes": [],
+      "expected": "auth/check con la credencial autorizada por el operador: 200, authenticated y auth_required true; sin secretos en la salida",
+      "observed": "exit=0; PASS: credencial ai-broker recuperable desde Credential Manager | PASS: Broker auth/check HTTP 200, authenticated=true, auth_required=true",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P000_runs/P000-REAL-broker-auth-check.log#sha256=88b14fb21e23cd006db18f02871c0a2292552cb85b2f77779190386ab4188373"
+      ]
+    },
+    {
+      "id": "P000-REAL-capture-pc-principal",
+      "kind": "REAL",
+      "command": "powershell -File tools/capture_inventory.ps1 -OutFile <ruta> (en el PC principal)",
+      "fixture_hashes": [],
+      "expected": "captura read-only del PC principal y su accesibilidad hacia el PC IA",
+      "observed": "NO EJECUTADA: esta sesion solo tiene acceso al PC IA (A9_MEGA); el script es portable y queda listo para ejecutarse alli",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "segundo volumen de aceptacion: NO_DISPONIBLE_UNICO_VOLUMEN (G04/G05); requiere VHDX o disco autorizado por el operador",
+    "captura en el PC principal no ejecutada: sin acceso desde esta sesion"
+  ],
+  "generated_at": "2026-10-16T15:48:17.832Z"
+}

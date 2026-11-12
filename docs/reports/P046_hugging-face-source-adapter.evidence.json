@@ -1,0 +1,90 @@
+{
+  "prompt_id": "P046",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "55c3d46f5d3af4c0e49d9e12f5402fdddd8e8d00f53945fe07e36c23c9945b11",
+  "changed_files": [
+    "adapters/source/huggingface/__init__.py",
+    "adapters/source/huggingface/adapter.py",
+    "adapters/source/huggingface/main.py",
+    "adapters/source/huggingface/package.py",
+    "docs/adapters/huggingface.md",
+    "docs/contracts/REVISION_3_4_0_P046.md",
+    "docs/contracts/source-profiles.json",
+    "docs/reports/P046_hugging-face-source-adapter.md",
+    "docs/spec/PACKAGE_COPY_HASHES.json",
+    "docs/spec/manifest.json",
+    "tests/integration/huggingface_adapter.py",
+    "tools/p046_evidence.py",
+    "tools/p046_live_probe.py",
+    "tools/p046_package_smoke.py"
+  ],
+  "tests": [
+    {
+      "id": "P046-HUB-CONTRACT-INTEGRATION",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -m unittest tests.integration.huggingface_adapter -v",
+      "fixture_hashes": [
+        "adapters/source/huggingface/adapter.py:646090a7274a91c96860abc24e01e008ae5b1850c67b0f3dcf7b7e15a15fec03",
+        "adapters/source/huggingface/main.py:de1e266ea99bf103e6f15db442b527df515f7f98b533cfd76e9a67a743de5cf2",
+        "adapters/source/huggingface/package.py:9eb3e1682b199dc121b8971c8b3c48b617d4581904d57084c82c1b9df150b6ff",
+        "tests/integration/huggingface_adapter.py:f13cad70d84812a96cc64e31464432ddfe737ef0052e8703797dba69176134a9",
+        "docs/contracts/source-profiles.json:051742bff9a5aba246bccfd8cf2391c6e6996242d53ce654777c2a5199a2e297",
+        "docs/contracts/schemas/larm.schema.json:feda3d66c09f322f558846789f84c4908db5a096dd206ea4d6e92c2e1e641a08",
+        "docs/adapters/method-schemas/index.json:688ec6ae869275ef5b6611f82d260332cd0c4ade55442ed7d7c638dedb47dd15",
+        "docs/contracts/02_STORAGE_DOWNLOAD.md:f2a607a04e8d52fed208fb300206d855061b3b635a8dee2428bf1c88edf66dc1"
+      ],
+      "expected": "Los métodos source cumplen sus schemas y las fixtures cubren búsqueda, formatos, tamaños, revisiones, acceso y rangos.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 19 tests in 6.807s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P046_runs/P046-HUB-CONTRACT-INTEGRATION.log#sha256=ba8d9c256ed4c6d1f70939f48fc66a7abe6da4f76b2c3f28152ceeaa3d23666e"
+      ]
+    },
+    {
+      "id": "P046-PORTABLE-WORKER",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p046_package_smoke.py",
+      "fixture_hashes": [
+        "adapters/source/huggingface/adapter.py:646090a7274a91c96860abc24e01e008ae5b1850c67b0f3dcf7b7e15a15fec03",
+        "adapters/source/huggingface/main.py:de1e266ea99bf103e6f15db442b527df515f7f98b533cfd76e9a67a743de5cf2",
+        "adapters/source/huggingface/package.py:9eb3e1682b199dc121b8971c8b3c48b617d4581904d57084c82c1b9df150b6ff",
+        "tests/integration/huggingface_adapter.py:f13cad70d84812a96cc64e31464432ddfe737ef0052e8703797dba69176134a9",
+        "docs/contracts/source-profiles.json:051742bff9a5aba246bccfd8cf2391c6e6996242d53ce654777c2a5199a2e297",
+        "docs/contracts/schemas/larm.schema.json:feda3d66c09f322f558846789f84c4908db5a096dd206ea4d6e92c2e1e641a08",
+        "docs/adapters/method-schemas/index.json:688ec6ae869275ef5b6611f82d260332cd0c4ade55442ed7d7c638dedb47dd15",
+        "docs/contracts/02_STORAGE_DOWNLOAD.md:f2a607a04e8d52fed208fb300206d855061b3b635a8dee2428bf1c88edf66dc1",
+        "tools/p046_package_smoke.py:fb4aa976ab50dd60c5ef284e4ee1121cb1f90d65935a17385f1e547330ce5d4e"
+      ],
+      "expected": "El paquete portable conserva su hash, arranca Python aislado y completa handshake y auth probe anónimo.",
+      "observed": "exit=0; PASS portable package hash, isolated worker handshake, and public auth probe",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P046_runs/P046-PORTABLE-WORKER.log#sha256=90a4317ec910f77f8d511561610965fe3ccddbe713113189b29acc894d857ba8"
+      ]
+    },
+    {
+      "id": "P046-HF-PUBLIC-SEARCH",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p046_live_probe.py",
+      "fixture_hashes": [
+        "tools/p046_live_probe.py:b31fe7ccdf04d501148026487e9f88153adf3c55d30a3c92b2137b4962f200e1",
+        "adapters/source/huggingface/adapter.py:646090a7274a91c96860abc24e01e008ae5b1850c67b0f3dcf7b7e15a15fec03",
+        "adapters/source/huggingface/package.py:9eb3e1682b199dc121b8971c8b3c48b617d4581904d57084c82c1b9df150b6ff"
+      ],
+      "expected": "El worker completa una búsqueda pública read-only sin credenciales y valida la respuesta Hub.",
+      "observed": "Consulta pública de solo lectura completada; items=2",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P046_runs/P046-HF-PUBLIC-SEARCH.log#sha256=c71c28f3ca20daa3185f136f23a3676faf17eeec2bc1706b621e825677fc5ec7"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P025 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P045 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T21:38:45.258Z"
+}

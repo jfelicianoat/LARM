@@ -1,0 +1,206 @@
+{
+  "prompt_id": "P090",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "4470beba172b5fd9275f2e8cceb74c4ba7d66ce7729aff8cf75a0653191ad38d",
+  "changed_files": [
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/src/compatibility.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-core/src/compatibility.rs",
+    "crates/larm-core/src/lib.rs",
+    "crates/larm-db/src/compatibility.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/tests/compatibility.rs",
+    "crates/larm-domain/src/compatibility.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "docs/api/openapi.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P090_compatibility-engine-hard-gates.md",
+    "tools/p090_evidence.py",
+    "tools/p090_schema_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P090-FMT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [
+        "crates/larm-domain/src/compatibility.rs:8316edadafd6b4e02b60d10c9b975efa85d5ca9d9b2230f8833743424872859d",
+        "crates/larm-core/src/compatibility.rs:90c807df8fe4b1c0f5805b2fa454814af41d1748fff132a90f597b898c09ef89",
+        "crates/larm-api/src/compatibility.rs:d097246d6ca37af5fae30736a8cacd45022c48303cf2612d21abeda7bf975b59",
+        "crates/larm-db/src/compatibility.rs:5e62cc21d1b40abbea8e37f7f34ec2bfdc20c24f74efc3d80c3bd4ea1794e779",
+        "crates/larm-api/src/openapi.rs:967ed7ae0aeff1d6d17ddc5212030f682ce8a48cd89e5e8edc53edc2aa499572"
+      ],
+      "expected": "El workspace Rust cumple el formato establecido.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-FMT.log#sha256=e2de109077c49cbdc881f2398a741dec20cdd8c4ba7e68a6df7752aca081922b"
+      ]
+    },
+    {
+      "id": "P090-DOMAIN-SCHEMA-AND-IDENTITY",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain compatibility::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/compatibility.rs:8316edadafd6b4e02b60d10c9b975efa85d5ca9d9b2230f8833743424872859d"
+      ],
+      "expected": "El DTO cerrado valida UUIDv7, timestamps, hashes, gates requeridos y scoring condicionado.",
+      "observed": "exit=0; Running tests\\conformance.rs (target\\debug\\deps\\conformance-c2c891ef9d2c1eda.exe) | Running tests\\custom_rules.rs (target\\debug\\deps\\custom_rules-78bda039b5895b6d.exe) | Running tests\\runtime.rs (target\\debug\\deps\\runtime-5ab61c727ee58569.exe) | Running tests\\runtime_install.rs (target\\debug\\deps\\runtime_install-6758a07ce56f6a40.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-DOMAIN-SCHEMA-AND-IDENTITY.log#sha256=86c68fe88e08af9555b75c04675381050f3046efa947d4037ae387b3a780cc17"
+      ]
+    },
+    {
+      "id": "P090-ENGINE-HARD-GATES",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-core compatibility::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility.rs:90c807df8fe4b1c0f5805b2fa454814af41d1748fff132a90f597b898c09ef89",
+        "crates/larm-domain/src/compatibility.rs:8316edadafd6b4e02b60d10c9b975efa85d5ca9d9b2230f8833743424872859d"
+      ],
+      "expected": "Format FAIL, arquitectura UNKNOWN, backend ausente, memoria insuficiente y bundle incompleto se resuelven sin score.",
+      "observed": "exit=0; warning: `larm-core` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 6.49s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-f2cc9d3befc95cc1.exe) | Running tests\\conformance.rs (target\\debug\\deps\\conformance-7abeab4692f92c7e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-ENGINE-HARD-GATES.log#sha256=a03ceca3fe22972948a66350d8f62fec1102b394c32837120559d9a2149dcb18"
+      ]
+    },
+    {
+      "id": "P090-API-LIST",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api compatibility::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/compatibility.rs:d097246d6ca37af5fae30736a8cacd45022c48303cf2612d21abeda7bf975b59",
+        "crates/larm-api/src/openapi.rs:967ed7ae0aeff1d6d17ddc5212030f682ce8a48cd89e5e8edc53edc2aa499572"
+      ],
+      "expected": "GET /api/v1/compatibility devuelve {items,next_cursor,snapshot_at} bajo el contrato de respuesta.",
+      "observed": "exit=0; Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-1d5842bca7b5e123.exe) | Running tests\\models.rs (target\\debug\\deps\\models-3b73eddd556e0df4.exe) | Running tests\\security.rs (target\\debug\\deps\\security-8b1444e17dae4aa7.exe) | Running tests\\storage.rs (target\\debug\\deps\\storage-5a8f26ae19ca8ae1.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-API-LIST.log#sha256=8231c687a5ae80e03d473e4978cd0d10bb985afcd9787c627a7332dfe5fe37bf"
+      ]
+    },
+    {
+      "id": "P090-OPENAPI-IMPLEMENTATION",
+      "kind": "CONTRACT",
+      "command": "cargo run -p larm-daemon -- openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [
+        "crates/larm-api/src/openapi.rs:967ed7ae0aeff1d6d17ddc5212030f682ce8a48cd89e5e8edc53edc2aa499572",
+        "docs/api/openapi.json:5a56c51359e2e316c6713a4660bfe436b8f022cf36c5e7f31621fc80415f6926"
+      ],
+      "expected": "OpenAPI refleja GET /api/v1/compatibility como implementado desde el router real.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 12.23s | Running `target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check`",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-OPENAPI-IMPLEMENTATION.log#sha256=836ee1e45e78ce40e6248b2579c544df88967f3ea90236d3a398ce53738b3a10"
+      ]
+    },
+    {
+      "id": "P090-SQLITE-READ",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test compatibility -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/compatibility.rs:5e62cc21d1b40abbea8e37f7f34ec2bfdc20c24f74efc3d80c3bd4ea1794e779",
+        "crates/larm-domain/src/compatibility.rs:8316edadafd6b4e02b60d10c9b975efa85d5ca9d9b2230f8833743424872859d"
+      ],
+      "expected": "El repositorio lee el registro contractual desde SQLite migrado y devuelve una lista vacía válida.",
+      "observed": "exit=0; warning: `larm-db` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.89s | Running tests\\compatibility.rs (target\\debug\\deps\\compatibility-15b415348bf43ce5.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-SQLITE-READ.log#sha256=218a95061636a717338c56ed10687134f33dbc1e8d434032fdf5919c38fa2f0b"
+      ]
+    },
+    {
+      "id": "P090-CANONICAL-JSON-SCHEMA",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/p090_schema_evidence.py",
+      "fixture_hashes": [
+        "tools/p090_schema_evidence.py:fee6ab24362cba605849fbd7bb2502aa3377300e3baf8d8e84cf197b91e861ba"
+      ],
+      "expected": "El schema v3 acepta el registro canónico y rechaza campo extra, enum inválido, campo ausente y SHA malformado.",
+      "observed": "exit=0; PASS: CompatibilityRecord válido y 4 mutaciones inválidas rechazadas por schema v3",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-CANONICAL-JSON-SCHEMA.log#sha256=9326038f19b49c4d1c86ba9480334fed85f3ffefd2d0226b629391ec4050e28c"
+      ]
+    },
+    {
+      "id": "P090-CLIPPY-FOCAL",
+      "kind": "CONTRACT",
+      "command": "cargo clippy -p larm-domain -p larm-core -p larm-db -p larm-api --all-targets -j 1 -- -D warnings",
+      "fixture_hashes": [
+        "crates/larm-domain/src/compatibility.rs:8316edadafd6b4e02b60d10c9b975efa85d5ca9d9b2230f8833743424872859d",
+        "crates/larm-core/src/compatibility.rs:90c807df8fe4b1c0f5805b2fa454814af41d1748fff132a90f597b898c09ef89",
+        "crates/larm-db/src/compatibility.rs:5e62cc21d1b40abbea8e37f7f34ec2bfdc20c24f74efc3d80c3bd4ea1794e779",
+        "crates/larm-api/src/compatibility.rs:d097246d6ca37af5fae30736a8cacd45022c48303cf2612d21abeda7bf975b59"
+      ],
+      "expected": "Dominio, motor, persistencia y API pasan Clippy sin warnings.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_domain-1q2445wbnfgco\\s-hngiro9mj4-0akf842-working` | warning: `larm-domain` (lib test) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.07s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-CLIPPY-FOCAL.log#sha256=c7f0dd997a192346d66795a40060e11aadeacae24572ee68aba56ba949e44aae"
+      ]
+    },
+    {
+      "id": "P090-ARCHITECTURE",
+      "kind": "CONTRACT",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/compatibility.rs:8316edadafd6b4e02b60d10c9b975efa85d5ca9d9b2230f8833743424872859d",
+        "crates/larm-core/src/compatibility.rs:90c807df8fe4b1c0f5805b2fa454814af41d1748fff132a90f597b898c09ef89",
+        "crates/larm-db/src/compatibility.rs:5e62cc21d1b40abbea8e37f7f34ec2bfdc20c24f74efc3d80c3bd4ea1794e779",
+        "crates/larm-api/src/compatibility.rs:d097246d6ca37af5fae30736a8cacd45022c48303cf2612d21abeda7bf975b59",
+        "docs/contracts/crate-graph.json:e4e83534c9115b8b847d47f2b7dc2c191deb505540f1582bcac87dfefe6484cd"
+      ],
+      "expected": "El grafo de dependencias conserva los límites de dominio, core, DB y API.",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-ARCHITECTURE.log#sha256=1f3cb4d0cda7f482d3773c01add713c98f0400ea685f989ffc0003abd2145e64"
+      ]
+    },
+    {
+      "id": "P090-REAL-WINDOWS-ENGINE",
+      "kind": "REAL",
+      "command": "cargo test -p larm-core compatibility::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility.rs:90c807df8fe4b1c0f5805b2fa454814af41d1748fff132a90f597b898c09ef89",
+        "crates/larm-domain/src/compatibility.rs:8316edadafd6b4e02b60d10c9b975efa85d5ca9d9b2230f8833743424872859d"
+      ],
+      "expected": "El motor ejecuta sus fixtures de rechazo y UNKNOWN en el host Windows actual; la salida incluye host y versiones en PromptEvidence.",
+      "observed": "exit=0; warning: `larm-core` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.75s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-f2cc9d3befc95cc1.exe) | Running tests\\conformance.rs (target\\debug\\deps\\conformance-7abeab4692f92c7e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P090_runs/P090-REAL-WINDOWS-ENGINE.log#sha256=000f8ea74e56f4f2478e72123bc4472b13845ffcc40f39519ba9bdb01d548641"
+      ]
+    },
+    {
+      "id": "P090-REAL-RUNTIME-ADMISSION",
+      "kind": "REAL",
+      "command": "Evaluar y persistir gates contra un modelo, runtime, backend y perfil cualificados en Windows",
+      "fixture_hashes": [],
+      "expected": "El registro refleja evidencia real del tuple y sólo es COMPATIBLE cuando todas las puertas requeridas pasan.",
+      "observed": "NO EJECUTADA: El módulo sólo consume observaciones; no está conectado aún a support matrix/version probe, perfiles, hardware/bundle, admisión ni persistencia de evaluaciones. Las dependencias P013/P035/P041/P030/P019 no tienen REAL_PASS.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La combinación pura y el DTO están implementados, pero la adquisición de evidencias de Adapter, hardware, bundle, licencia y memory admission aún no compone el tuple real.",
+    "La API canónica es de solo lectura: el cálculo no tiene operación contractual de escritura ni worker/repository para persistir un nuevo CompatibilityRecord.",
+    "P013, P035, P041, P030 y P019 no tienen REAL_PASS; P090 queda BLOCKED_REAL según contrato 00.",
+    "TechnicalFitScore pertenece a P091; P090 deja technical_fit null incluso con PASS y no declara puntuaciones antes de ese incremento.",
+    "dependencia P013 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P035 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P041 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P030 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T20:42:10.259Z"
+}

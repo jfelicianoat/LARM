@@ -1,0 +1,438 @@
+{
+  "prompt_id": "P016",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "2260f806b801d4a6f4d8620f3123b629e8bfec5e10632cc417bdc596534b8659",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/hardware.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/tests/move.rs",
+    "crates/larm-api/src/artifacts.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/artifacts.rs",
+    "crates/larm-core/src/hardware.rs",
+    "crates/larm-db/examples/guard_worker.rs",
+    "crates/larm-db/src/artifacts.rs",
+    "crates/larm-db/src/guard.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/storage.rs",
+    "crates/larm-db/tests/guard.rs",
+    "crates/larm-db/tests/storage.rs",
+    "crates/larm-domain/src/artifacts.rs",
+    "crates/larm-domain/src/guard.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-storage/Cargo.toml",
+    "crates/larm-storage/src/artifacts.rs",
+    "crates/larm-storage/src/lib.rs",
+    "crates/larm-storage/src/locations.rs",
+    "crates/larm-storage/src/move_job.rs",
+    "docs/api/openapi.json",
+    "docs/operations/guard.md",
+    "docs/operations/moves.md",
+    "docs/operations/storage.md",
+    "tools/p016_evidence.py",
+    "tools/p016_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P016-UNIT-rutas-y-resolutor",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- artifacts::tests",
+      "fixture_hashes": [],
+      "expected": "rutas relativas sin absolutas, unidad, ADS, ./.. ni nombres reservados; raíz desde el GUID con letra cambiada, sin letra (\\\\?\\Volume{…}) y montaje en carpeta; desconectado no inventa ruta; fases y serialización",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.90s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-UNIT-rutas-y-resolutor.log#sha256=03a060c9b3905d0c7e3d69c75078e481f4701ef1b26521c4347c135aa604ea54"
+      ]
+    },
+    {
+      "id": "P016-UNIT-plan",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- artifacts::tests",
+      "fixture_hashes": [],
+      "expected": "RENAME en el mismo volumen, COPY entre volúmenes; EXTERNAL, HOST_MANAGED y compartidos se conservan; locks en orden global; espacio solo de las copias; hash determinista que cambia con row_version; negativos de estado",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-storage v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-storage) | Finished `test` profile [unoptimized + debuginfo] target(s) in 2.37s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-09f55593bf6e03b0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-UNIT-plan.log#sha256=8efaef35916bcd7cbc33720f5f10fe34d261ddd75b201d558b0930b3a2520816"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-mismo-volumen",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test move -- mismo_volumen_renombra --exact",
+      "fixture_hashes": [],
+      "expected": "renombrado atómico, registro v2, evento artifact.moved, sin locks",
+      "observed": "exit=0; Compiling larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.49s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-mismo-volumen.log#sha256=57eefcbd5aebd5f9fd57f827ed587d98df6a826aec60b73dcb546b6fdc8ee8c5"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-otro-volumen",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test move -- otro_volumen_copia_verifica_y_borra --exact",
+      "fixture_hashes": [],
+      "expected": "copia+flush+hash releído, reserva durante el job, origen borrado, plan de un uso",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-otro-volumen.log#sha256=6dbfc2ed312764f23f0223a09c524c957614e122086cbeb44825f1d727bf1476"
+      ]
+    },
+    {
+      "id": "P016-FAULT-hash-distinto",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- hash_distinto_conserva_el_origen --exact",
+      "fixture_hashes": [],
+      "expected": "copia corrupta: INTEGRITY_FAILED, origen válido, sin provisionales",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-hash-distinto.log#sha256=51210ffab225c430e3b9725126f1f03ea1da841c696de0ac66150b2e00586342"
+      ]
+    },
+    {
+      "id": "P016-FAULT-destino-desaparece",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- destino_desaparece_antes_del_commit --exact",
+      "fixture_hashes": [],
+      "expected": "destino borrado antes del cambio: origen sigue siendo el registrado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-destino-desaparece.log#sha256=77659ed907754964c85974d0000b15e0f0ab4c39d5018e3807282071756f84a0"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-lease-activa",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test move -- lease_activa_bloquea_y_al_soltarla_se_mueve --exact",
+      "fixture_hashes": [],
+      "expected": "ACTIVE_LEASE 409 bajo el lock, plan intacto; al soltar la lease se mueve",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-lease-activa.log#sha256=753f3e6f2bd53fac0a7589e12e7ad9f4b6e089702ff72f1877186051437e0f94"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-bloqueado",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test move -- bloqueado_por_otra_operacion --exact",
+      "fixture_hashes": [],
+      "expected": "otro titular: CONFLICT resource_locked reintentable",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-bloqueado.log#sha256=33c6707fee62e196b45c66ccfec98a4752850cb5ccb6e7e533cbc894692ee5b8"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-plan-obsoleto",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test move -- plan_obsoleto_caducado_o_ausente --exact",
+      "fixture_hashes": [],
+      "expected": "sin hash, hash inventado, otro destino, fila cambiada, caducado, variante/destino/origen ausentes",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-plan-obsoleto.log#sha256=46758fc5cc0d1d1b247a6b56c681848127344d0f9cee792246c03c3f60a079bb"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-external-compartido",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test move -- external_y_compartidos_se_conservan --exact",
+      "fixture_hashes": [],
+      "expected": "EXTERNAL no se mueve ni se borra",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-external-compartido.log#sha256=a406bc439cb54f2ca398c613a5395bffbd0d55da643b8f87941f0289fc6d1721"
+      ]
+    },
+    {
+      "id": "P016-FAULT-acceso-fallido",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- acceso_fallido_tras_el_cambio_devuelve_el_registro --exact",
+      "fixture_hashes": [],
+      "expected": "destino ilegible tras el cambio: registro vuelve al origen con CAS, ambas copias",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-acceso-fallido.log#sha256=2088a65eff877c63b10d49dc4a68c64e3cc6a4238460e3bc5f71f3d9d3e123ff"
+      ]
+    },
+    {
+      "id": "P016-FAULT-caida-copiando",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- caida_copiando_recupera_al_origen --exact",
+      "fixture_hashes": [],
+      "expected": "caída en COPYING: el lock sobrevive; recuperación deshace",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-caida-copiando.log#sha256=6ec8706d679c59484a0adabf7de05861fe5bd2841a9a03f9725bb534fca3b081"
+      ]
+    },
+    {
+      "id": "P016-FAULT-caida-verificado",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- caida_verificado_retira_la_copia_colocada --exact",
+      "fixture_hashes": [],
+      "expected": "caída tras colocar la copia: se retira, origen válido",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-caida-verificado.log#sha256=b76d992df1eb3d0e16de5dc50fa83bd06d13895ea6f82ff95980d1f40d45f256"
+      ]
+    },
+    {
+      "id": "P016-FAULT-caida-tras-cambio",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- caida_tras_cambio_de_registro_termina --exact",
+      "fixture_hashes": [],
+      "expected": "caída en DB_SWITCHED: la recuperación prueba acceso, borra origen y completa",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-caida-tras-cambio.log#sha256=734c1a7028ff9300acb0ab02410b89538ad4261b5a76cd8a7580874e5d7056dc"
+      ]
+    },
+    {
+      "id": "P016-FAULT-caida-tras-cambio-sin-destino",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- caida_tras_cambio_con_destino_perdido_vuelve_al_origen --exact",
+      "fixture_hashes": [],
+      "expected": "caída en DB_SWITCHED y destino perdido: vuelve al origen",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-caida-tras-cambio-sin-destino.log#sha256=ba414161030d7b22c30f35e565066b17c79b44fcb598449df1db036c80805bd9"
+      ]
+    },
+    {
+      "id": "P016-FAULT-caida-borrando",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- caida_borrando_el_origen_termina --exact",
+      "fixture_hashes": [],
+      "expected": "caída en ACCESS_TESTED: la recuperación termina el borrado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-caida-borrando.log#sha256=c952b4aeb072fec6c2a2730f3ccea2871960c101e2dc5f907650eb0538da59e4"
+      ]
+    },
+    {
+      "id": "P016-FAULT-caida-renombrando",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- caida_renombrando_se_deshace --exact",
+      "fixture_hashes": [],
+      "expected": "caída con el renombrado hecho: se deshace",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-caida-renombrando.log#sha256=a7eaf96938de414e7d7dc50f899ba7552697da8378cc811112812578a7c8fcea"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-cambio-con-fencing",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test move -- cambio_de_registro_exige_lock_y_version --exact",
+      "fixture_hashes": [],
+      "expected": "sin lock exclusivo o con versión vieja no cambia nada; con ambos, fila+journal+evento",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-cambio-con-fencing.log#sha256=7c0ac43a1e1bde7341583cc1fd3f6b71a21b19f262a933f72838caf5dda4f136"
+      ]
+    },
+    {
+      "id": "P016-FAULT-sin-lock-no-borra",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test move -- sin_lock_no_se_borra_el_origen --exact",
+      "fixture_hashes": [],
+      "expected": "lock perdido: se detiene antes de borrar el origen",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s | Running tests\\move.rs (target\\debug\\deps\\move-da207d44b9a9f66e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-FAULT-sin-lock-no-borra.log#sha256=a472f80dcdb3ac4f27532b19a7003ccd77ec9941bb01cd2206aabaa450faeca9"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-guard-lease-variante",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard -- lease_de_la_variante_bajo_el_mismo_lock",
+      "fixture_hashes": [],
+      "expected": "exclusivo sobre una variante con lease viva: ACTIVE_LEASE en la misma transacción; compartido convive",
+      "observed": "exit=0; Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 2.21s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-guard-lease-variante.log#sha256=08f28b79c909a4e080b217de5d6df52a5f9eea19e142e4a7da2c41d4d5701458"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-journal-desde-fase",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test guard -- journal_solo_desde_las_fases_esperadas",
+      "fixture_hashes": [],
+      "expected": "un plan PLANNED solo se bloquea una vez: el segundo uso es CONFLICT journal_phase_conflict sin locks",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s | Running tests\\guard.rs (target\\debug\\deps\\guard-71d41b0e9cc29af4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-journal-desde-fase.log#sha256=adc6277b8aa42b7b1e11364ccc4d0601d042d7f8e6e846e04bf9bd8cd8d4918e"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-sondeo-concurrente",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test storage -- ubicacion_creada_durante_el_sondeo_no_se_marca_offline",
+      "fixture_hashes": [],
+      "expected": "defecto heredado de P012/P014: una ubicación creada durante un sondeo ya no se marca OFFLINE",
+      "observed": "exit=0; Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.01s | Running tests\\storage.rs (target\\debug\\deps\\storage-52afdac6364cbef4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-sondeo-concurrente.log#sha256=e1c749ecd644322c40be26c8ee9020e318a548063e209138e0359e9153c9a74a"
+      ]
+    },
+    {
+      "id": "P016-INTEGRATION-api",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test artifacts",
+      "fixture_hashes": [],
+      "expected": "POST /models/{id}/move: scopes 401/403, schema y patrones 400, Idempotency-Key, ACTIVE_LEASE/STALE_REVISION tal cual, aprobación ligada a plan_hash y recursos y de un uso; GET /artifact-locations paginado con cursor firmado y 404",
+      "observed": "exit=0; Compiling larm-core v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-core) | Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 4.07s | Running tests\\artifacts.rs (target\\debug\\deps\\artifacts-8c39a372db9c6f70.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-INTEGRATION-api.log#sha256=e6669b0a42279265a2b59705f0036fcfb64fb945cd13493268767efa53ec6617"
+      ]
+    },
+    {
+      "id": "P016-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-UNIT-cargo-fmt.log#sha256=3997a81b3a6a2e03afb5d43557876abf00acef88fd74c5b0359a27e776cad272"
+      ]
+    },
+    {
+      "id": "P016-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Checking larm-hardware v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-hardware) | Checking larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.26s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-UNIT-cargo-clippy.log#sha256=bb880c93dae9b605bfd8ac5479d783bb35341b0384b9c0c8784a6568f6833fe7"
+      ]
+    },
+    {
+      "id": "P016-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-UNIT-cargo-test.log#sha256=62dfb338dded1b86a9405cc0bf3b3afaf0985c010c5801b6d7f209b77a69847a"
+      ]
+    },
+    {
+      "id": "P016-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P016-REAL-build-daemon",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.24s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-REAL-build-daemon.log#sha256=4cd6ee9e5de508a3a22f45c6fe5efcb7bb87f10527e6804a9be366b313c78236"
+      ]
+    },
+    {
+      "id": "P016-REAL-openapi",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p005_real.py openapi",
+      "fixture_hashes": [],
+      "expected": "docs/api/openapi.json al día con POST /models/{id}/move y GET /artifact-locations implementados",
+      "observed": "exit=0; PASS al día y válido OpenAPI 3.1.0: 142 operaciones, 29 implementadas, 281 schemas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-REAL-openapi.log#sha256=061fa43c22555a289d683f38579dd3f81d86901a9fbd707bc40a2ba0a8399e2d"
+      ]
+    },
+    {
+      "id": "P016-REAL-movimiento",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p016_real.py serve",
+      "fixture_hashes": [],
+      "expected": "PC IA con el daemon: plan y renombrado en C:, copia verificada a \\\\localhost\\Temp y vuelta, lease ACTIVE 409, plan obsoleto 409, hash distinto real, TerminateProcess copiando 1 GiB y recuperación desde el journal",
+      "observed": "exit=0; [PASS] caida-copiando: TerminateProcess con 72 MiB copiados: journal COPYING y 5 locks sobreviven a la caída | [PASS] recuperacion-del-journal: al rearrancar: FAILED job_interrupted; staging borrado; los dos orígenes íntegros y registrados; sin locks ni reservas | [PASS] limpieza: \\\\localhost\\Temp\\larm-p016-e7c1868a y el fichero de 1 GiB borrados | PASS 11 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P016_runs/P016-REAL-movimiento.log#sha256=679516ca8ef8096bf6f2a201d5929907ccde6f7b9b0b2c7b473ac30c67bee36f"
+      ]
+    },
+    {
+      "id": "P016-REAL-G05-dos-volumenes-fisicos",
+      "kind": "REAL",
+      "command": "G05: mover la variante entre dos volúmenes físicos con cortes tras cada fase del journal",
+      "fixture_hashes": [],
+      "expected": "lease bloquea; origen hasta hash+cambio+acceso; estado final, ruta y hash correctos tras recovery",
+      "observed": "NO EJECUTADA: el PC IA solo tiene un volumen escribible (bloqueo de P000). \\\\localhost\\Temp es otra volume_key sobre el mismo disco",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P016-REAL-letra-cambiada",
+      "kind": "REAL",
+      "command": "cambiar la letra de un volumen con modelos y resolver sus rutas desde el GUID",
+      "fixture_hashes": [],
+      "expected": "el modelo se abre en la letra nueva sin tocar el registro",
+      "observed": "NO EJECUTADA: necesita un segundo volumen cuya letra se pueda cambiar (bloqueo de P000); el resolutor está probado con observaciones",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P016-REAL-lease-p100",
+      "kind": "REAL",
+      "command": "repetir el bloqueo con una lease real de P100 en vez de una fila sembrada",
+      "fixture_hashes": [],
+      "expected": "POST /move contra un modelo con lease ACTIVE real devuelve ACTIVE_LEASE",
+      "observed": "NO EJECUTADA: P100 (leases) aún no está implementado",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "dependencia P014 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P015 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T19:38:53.945Z"
+}

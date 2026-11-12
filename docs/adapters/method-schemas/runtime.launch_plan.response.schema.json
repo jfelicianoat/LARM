@@ -1,0 +1,497 @@
+{
+  "$defs": {
+    "larm__EnvironmentBinding": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "credential_reference": {
+              "minLength": 6,
+              "pattern": "^larm/",
+              "type": "string"
+            },
+            "name": {
+              "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "credential_reference"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "larm__EnvironmentConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "allowlist": {
+          "items": {
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "variables": {
+          "items": {
+            "$ref": "#/$defs/larm__EnvironmentBinding"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "allowlist",
+        "variables"
+      ],
+      "type": "object"
+    },
+    "larm__Generation": {
+      "additionalProperties": false,
+      "properties": {
+        "max_output_tokens": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "seed": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "temperature": {
+          "anyOf": [
+            {
+              "maximum": 2,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "top_p": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "temperature",
+        "top_p",
+        "seed",
+        "max_output_tokens"
+      ],
+      "type": "object"
+    },
+    "larm__LaunchParameters": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_options": {
+          "type": "object"
+        },
+        "backend_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "batch": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "chat_template_hash": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "concurrency": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "context": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "environment": {
+          "$ref": "#/$defs/larm__EnvironmentConfig"
+        },
+        "generation": {
+          "$ref": "#/$defs/larm__Generation"
+        },
+        "memory_limit_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^[1-9][0-9]*$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "offload_layers": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runtime_arguments": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "threads": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "tokenizer_hash": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "threads",
+        "context",
+        "batch",
+        "concurrency",
+        "offload_layers",
+        "backend_id",
+        "tokenizer_hash",
+        "chat_template_hash",
+        "generation",
+        "memory_limit_bytes",
+        "runtime_arguments",
+        "environment",
+        "adapter_options"
+      ],
+      "type": "object"
+    },
+    "larm__LaunchPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "artifact_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "cwd": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "effective_memory_limit_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effective_parameters": {
+          "$ref": "#/$defs/larm__LaunchParameters"
+        },
+        "env_allowlist": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "environment": {
+          "$ref": "#/$defs/larm__EnvironmentConfig"
+        },
+        "executable": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "expires_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        },
+        "memory_estimate": {
+          "$ref": "#/$defs/larm__MemoryEstimate"
+        },
+        "plan_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "plan_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "port": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "plan_id",
+        "plan_hash",
+        "executable",
+        "args",
+        "cwd",
+        "env_allowlist",
+        "port",
+        "memory_estimate",
+        "artifact_ids",
+        "expires_at",
+        "effective_parameters",
+        "environment",
+        "effective_memory_limit_bytes"
+      ],
+      "type": "object"
+    },
+    "larm__MemoryEstimate": {
+      "additionalProperties": false,
+      "properties": {
+        "activation_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "EXACT",
+            "HIGH",
+            "ESTIMATED",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kv_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "multimodal_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "overhead_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "per_pool": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "pool_key": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "required_bytes": {
+                "maxLength": 19,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string",
+                "x-maximum-decimal": "9223372036854775807"
+              }
+            },
+            "required": [
+              "pool_key",
+              "required_bytes"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "safety_margin_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "temporary_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "total_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weights_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "workspace_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "weights_bytes",
+        "kv_bytes",
+        "activation_bytes",
+        "workspace_bytes",
+        "overhead_bytes",
+        "total_bytes",
+        "per_pool",
+        "confidence",
+        "evidence_refs",
+        "multimodal_bytes",
+        "temporary_bytes",
+        "safety_margin_bytes"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__LaunchPlan",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

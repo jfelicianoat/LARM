@@ -1,0 +1,1549 @@
+{
+  "entries": [
+    {
+      "estimator_id": "reference.source.buffers.v1",
+      "fixture": {
+        "input": {
+          "capabilities": [],
+          "cursor": null,
+          "limit": 1,
+          "q": "llama",
+          "source_id": "0192aaaa-0000-7000-8000-000000000001"
+        },
+        "output": {
+          "items": [
+            {
+              "architecture": null,
+              "availability": "UNKNOWN",
+              "bundle_hash": null,
+              "capabilities": [
+                "text.generate"
+              ],
+              "created_at": "2026-10-16T00:00:00.000Z",
+              "format": "GGUF",
+              "id": "0192aaaa-0000-7000-8000-000000000011",
+              "lifecycle": "DISCOVERED",
+              "metadata": {
+                "display_name": "llama fixture",
+                "vendor_unrecognized": {
+                  "nested": [
+                    1,
+                    true,
+                    null
+                  ]
+                }
+              },
+              "model_limits": {
+                "architecture_metadata_hash": null,
+                "context_limit": null,
+                "head_dim": null,
+                "kv_bits": null,
+                "kv_heads": null,
+                "layers": null,
+                "model_max_memory_bytes": null,
+                "parameter_count": null
+              },
+              "ownership": "EXTERNAL",
+              "promotion": "NONE",
+              "quantization": null,
+              "revision_id": "0192aaaa-0000-7000-8000-000000000021",
+              "row_version": 1,
+              "status": "DISCOVERED",
+              "system1_state": null,
+              "system_role": "GENERAL",
+              "update_available": false,
+              "updated_at": "2026-10-16T00:00:00.000Z"
+            }
+          ],
+          "next_cursor": "page-2",
+          "snapshot_at": "2026-10-16T00:00:00.000Z"
+        }
+      },
+      "fixture_sha256": "eb9ae99a6716c8b9c60bdd538fc702500246b961c22db7a72ce77133c5c76e44",
+      "id": "source.search",
+      "input_schema": {
+        "$defs": {
+          "larm__SourceSearch": {
+            "additionalProperties": false,
+            "properties": {
+              "capabilities": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "cursor": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "limit": {
+                "maximum": 200,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "q": {
+                "maxLength": 500,
+                "type": "string"
+              },
+              "source_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_id",
+              "q",
+              "capabilities",
+              "cursor",
+              "limit"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__SourceSearch",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "input_sha256": "4316a4833f609680bc89da5f92a5f441913a575ca8c8ceef3ab63533703e4058",
+      "mapping": "reference.source.search.v1",
+      "output_schema": {
+        "$defs": {
+          "domain__model_variant": {
+            "additionalProperties": false,
+            "properties": {
+              "architecture": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "availability": {
+                "enum": [
+                  "UNKNOWN",
+                  "OFFLINE",
+                  "INCOMPATIBLE",
+                  "PREPARING",
+                  "AVAILABLE",
+                  "DEGRADED",
+                  "CORRUPT"
+                ],
+                "type": "string"
+              },
+              "bundle_hash": {
+                "anyOf": [
+                  {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "capabilities": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "created_at": {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+                "type": "string"
+              },
+              "format": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              },
+              "lifecycle": {
+                "enum": [
+                  "DISCOVERED",
+                  "SELECTED",
+                  "DOWNLOAD_PLANNED",
+                  "DOWNLOADING",
+                  "DOWNLOADED",
+                  "VERIFIED",
+                  "PREPARED",
+                  "TECHNICALLY_VALIDATED",
+                  "AVAILABLE",
+                  "RUNNING",
+                  "FAILED",
+                  "REJECTED",
+                  "CORRUPT"
+                ],
+                "type": "string"
+              },
+              "metadata": {
+                "properties": {
+                  "source_v1": {
+                    "properties": {
+                      "normalized": {
+                        "properties": {
+                          "catalog_reference": {
+                            "$ref": "#/$defs/larm__SourceCatalogReference"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "model_limits": {
+                "additionalProperties": false,
+                "properties": {
+                  "architecture_metadata_hash": {
+                    "anyOf": [
+                      {
+                        "pattern": "^[0-9a-f]{64}$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "context_limit": {
+                    "anyOf": [
+                      {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "head_dim": {
+                    "anyOf": [
+                      {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "kv_bits": {
+                    "anyOf": [
+                      {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "kv_heads": {
+                    "anyOf": [
+                      {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "layers": {
+                    "anyOf": [
+                      {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "model_max_memory_bytes": {
+                    "anyOf": [
+                      {
+                        "maxLength": 19,
+                        "pattern": "^(0|[1-9][0-9]*)$",
+                        "type": "string",
+                        "x-maximum-decimal": "9223372036854775807"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "parameter_count": {
+                    "anyOf": [
+                      {
+                        "maxLength": 19,
+                        "pattern": "^(0|[1-9][0-9]*)$",
+                        "type": "string",
+                        "x-maximum-decimal": "9223372036854775807"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "parameter_count",
+                  "layers",
+                  "kv_heads",
+                  "head_dim",
+                  "context_limit",
+                  "kv_bits",
+                  "model_max_memory_bytes",
+                  "architecture_metadata_hash"
+                ],
+                "type": "object"
+              },
+              "ownership": {
+                "enum": [
+                  "LARM_MANAGED",
+                  "HOST_MANAGED",
+                  "EXTERNAL",
+                  "SHARED"
+                ],
+                "type": "string"
+              },
+              "promotion": {
+                "enum": [
+                  "NONE",
+                  "CANDIDATE",
+                  "TECHNICALLY_APPROVED",
+                  "EVALUATION_APPROVED",
+                  "DEFAULT",
+                  "PINNED",
+                  "REJECTED"
+                ],
+                "type": "string"
+              },
+              "quantization": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "revision_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              },
+              "row_version": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "status": {
+                "enum": [
+                  "DISCOVERED",
+                  "SELECTED",
+                  "DOWNLOAD_PLANNED",
+                  "DOWNLOADING",
+                  "DOWNLOADED",
+                  "VERIFIED",
+                  "PREPARED",
+                  "TECHNICALLY_VALIDATED",
+                  "AVAILABLE",
+                  "RUNNING",
+                  "OFFLINE",
+                  "CORRUPT",
+                  "UPDATE_AVAILABLE",
+                  "FAILED",
+                  "REJECTED"
+                ],
+                "type": "string"
+              },
+              "system1_state": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "SYSTEM1_CANDIDATE",
+                      "SYSTEM1_TECHNICALLY_VALID",
+                      "SYSTEM1_EVALUATED",
+                      "SYSTEM1_CERTIFIED",
+                      "SYSTEM1_REJECTED"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "system_role": {
+                "enum": [
+                  "GENERAL",
+                  "SYSTEM1",
+                  "AUXILIARY"
+                ],
+                "type": "string"
+              },
+              "update_available": {
+                "type": "boolean"
+              },
+              "updated_at": {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "created_at",
+              "updated_at",
+              "row_version",
+              "metadata",
+              "revision_id",
+              "format",
+              "quantization",
+              "architecture",
+              "bundle_hash",
+              "lifecycle",
+              "availability",
+              "ownership",
+              "promotion",
+              "system_role",
+              "capabilities",
+              "model_limits",
+              "system1_state",
+              "update_available",
+              "status"
+            ],
+            "type": "object"
+          },
+          "larm__ModelPage": {
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/domain__model_variant"
+                },
+                "type": "array"
+              },
+              "next_cursor": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "snapshot_at": {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "items",
+              "next_cursor",
+              "snapshot_at"
+            ],
+            "type": "object"
+          },
+          "larm__SourceCatalogReference": {
+            "additionalProperties": false,
+            "properties": {
+              "revision_key": {
+                "maxLength": 4096,
+                "minLength": 1,
+                "type": "string"
+              },
+              "source_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              },
+              "upstream_model_id": {
+                "maxLength": 4096,
+                "minLength": 1,
+                "type": "string"
+              },
+              "upstream_namespace": {
+                "maxLength": 4096,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_id",
+              "upstream_namespace",
+              "upstream_model_id",
+              "revision_key"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__ModelPage",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "output_sha256": "360edc66215de9d79d9e52733046c50b76959e78f0373233673a59b9c023c999",
+      "version": "1.0"
+    },
+    {
+      "estimator_id": "reference.source.buffers.v1",
+      "fixture": {
+        "input": {
+          "source_id": "0192aaaa-0000-7000-8000-000000000001",
+          "upstream_model_id": "llama",
+          "upstream_namespace": "fixture"
+        },
+        "output": {
+          "items": [
+            {
+              "created_at": "2026-10-16T00:00:00.000Z",
+              "distribution_id": "0192aaaa-0000-7000-8000-000000000041",
+              "id": "0192aaaa-0000-7000-8000-000000000021",
+              "manifest_hash": "509725aaa4fe7260cd870ed4b10443147635756909446cb6d805d423f6840506",
+              "metadata": {},
+              "revision_key": "commit:fixture-v1",
+              "row_version": 1,
+              "state": "CANDIDATE",
+              "updated_at": "2026-10-16T00:00:00.000Z",
+              "upstream_commit": "fixture-v1"
+            }
+          ],
+          "next_cursor": null,
+          "snapshot_at": "2026-10-16T00:00:00.000Z"
+        }
+      },
+      "fixture_sha256": "f268fd308018a75af32f54b0465eea3bc84e8e830440e27e66d07c4a60339b89",
+      "id": "source.revisions",
+      "input_schema": {
+        "$defs": {
+          "larm__UpstreamRef": {
+            "additionalProperties": false,
+            "properties": {
+              "source_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              },
+              "upstream_model_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "upstream_namespace": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_id",
+              "upstream_namespace",
+              "upstream_model_id"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__UpstreamRef",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "input_sha256": "45c2a28a22a1b373a5acb60d16006596d46bb748f0730d5ac5844c05539d7814",
+      "mapping": "reference.source.revisions.v1",
+      "output_schema": {
+        "$defs": {
+          "domain__model_revision": {
+            "additionalProperties": false,
+            "properties": {
+              "created_at": {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+                "type": "string"
+              },
+              "distribution_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              },
+              "id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              },
+              "manifest_hash": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "revision_key": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "row_version": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "state": {
+                "enum": [
+                  "PROVISIONAL",
+                  "CANDIDATE",
+                  "CURRENT",
+                  "RETIRED",
+                  "REJECTED",
+                  "SUPERSEDED"
+                ],
+                "type": "string"
+              },
+              "updated_at": {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+                "type": "string"
+              },
+              "upstream_commit": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "created_at",
+              "updated_at",
+              "row_version",
+              "metadata",
+              "distribution_id",
+              "revision_key",
+              "upstream_commit",
+              "manifest_hash",
+              "state"
+            ],
+            "type": "object"
+          },
+          "larm__RevisionPage": {
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/domain__model_revision"
+                },
+                "type": "array"
+              },
+              "next_cursor": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "snapshot_at": {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "items",
+              "next_cursor",
+              "snapshot_at"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__RevisionPage",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "output_sha256": "7b71ede2216542235ee87fe0073e61506256a63139eb5aae69afa3a250c565b4",
+      "version": "1.0"
+    },
+    {
+      "estimator_id": "reference.source.buffers.v1",
+      "fixture": {
+        "input": {
+          "approval_id": null,
+          "plan_hash": "46488763ff6bc6b222319471a9214f47b347f3cf9b0c64e13e4a68f7e1df638f",
+          "plan_id": "0192aaaa-0000-7000-8000-000000000031"
+        },
+        "output": {
+          "job_id": "0192aaaa-0000-7000-8000-000000000051",
+          "state": "QUEUED",
+          "status_url": "/api/v1/jobs/0192aaaa-0000-7000-8000-000000000051"
+        }
+      },
+      "fixture_sha256": "c17f589b04356ed0bd0f77787208c5db98d3611680e061073956bfe8e0162870",
+      "id": "source.resume",
+      "input_schema": {
+        "$defs": {
+          "larm__ExecutePlan": {
+            "additionalProperties": false,
+            "properties": {
+              "approval_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "plan_hash": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "plan_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "plan_id",
+              "plan_hash",
+              "approval_id"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__ExecutePlan",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "input_sha256": "836bad4476c0d9ea2ddb6165e713678410106e241282e246debd677f4ba58de5",
+      "mapping": "reference.source.range-download.v1",
+      "output_schema": {
+        "$defs": {
+          "larm__JobReceipt": {
+            "additionalProperties": false,
+            "properties": {
+              "job_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              },
+              "state": {
+                "enum": [
+                  "QUEUED",
+                  "RUNNING",
+                  "COMPLETED",
+                  "FAILED",
+                  "CANCELLED"
+                ],
+                "type": "string"
+              },
+              "status_url": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "job_id",
+              "status_url",
+              "state"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__JobReceipt",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "output_sha256": "4d3d3d8b52ce54043af2d5621407990e2368643222caf18b10d74b92d6a5727a",
+      "version": "1.0"
+    },
+    {
+      "estimator_id": "reference.source.buffers.v1",
+      "fixture": {
+        "input": {
+          "revision_key": "commit:fixture-v1",
+          "source_id": "0192aaaa-0000-7000-8000-000000000001",
+          "upstream_model_id": "llama",
+          "upstream_namespace": "fixture"
+        },
+        "output": {
+          "artifacts": [
+            {
+              "relative_path": "weights.gguf",
+              "required": true,
+              "role": "weights",
+              "sha256": "c62864ff58ad519ae0d0caab067b7459b5c9e117973d92eec22ad69ac7cef3c1",
+              "size_bytes": "18"
+            }
+          ],
+          "manifest_hash": "509725aaa4fe7260cd870ed4b10443147635756909446cb6d805d423f6840506",
+          "revision_key": "commit:fixture-v1"
+        }
+      },
+      "fixture_sha256": "c50a24a584570401b06f89eff3e378a2203e803d25861781f5496e4d71729ca7",
+      "id": "source.sha256",
+      "input_schema": {
+        "$defs": {
+          "larm__RevisionRef": {
+            "additionalProperties": false,
+            "properties": {
+              "revision_key": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "source_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              },
+              "upstream_model_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "upstream_namespace": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_id",
+              "upstream_namespace",
+              "upstream_model_id",
+              "revision_key"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__RevisionRef",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "input_sha256": "861654e4bb454bb28399575664194bba5a17408a0e842d210f9d0c850f0215ae",
+      "mapping": "reference.source.sha256-manifest.v1",
+      "output_schema": {
+        "$defs": {
+          "larm__ArtifactManifest": {
+            "additionalProperties": false,
+            "properties": {
+              "artifacts": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "relative_path": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sha256": {
+                      "anyOf": [
+                        {
+                          "pattern": "^[0-9a-f]{64}$",
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "size_bytes": {
+                      "anyOf": [
+                        {
+                          "maxLength": 19,
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "type": "string",
+                          "x-maximum-decimal": "9223372036854775807"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "size_estimate": {
+                      "$ref": "#/$defs/larm__ArtifactSizeEstimate"
+                    }
+                  },
+                  "required": [
+                    "relative_path",
+                    "size_bytes",
+                    "sha256",
+                    "required",
+                    "role"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "manifest_hash": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "revision_key": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "revision_key",
+              "manifest_hash",
+              "artifacts"
+            ],
+            "type": "object"
+          },
+          "larm__ArtifactSizeEstimate": {
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "confidence": {
+                      "const": "EXACT"
+                    }
+                  },
+                  "required": [
+                    "confidence"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "bytes": {
+                      "maxLength": 19,
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string",
+                      "x-maximum-decimal": "9223372036854775807"
+                    },
+                    "lower_bound_bytes": {
+                      "maxLength": 19,
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string",
+                      "x-maximum-decimal": "9223372036854775807"
+                    },
+                    "source": {
+                      "const": "MANIFEST"
+                    },
+                    "upper_bound_bytes": {
+                      "maxLength": 19,
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string",
+                      "x-maximum-decimal": "9223372036854775807"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "confidence": {
+                      "const": "HIGH"
+                    }
+                  },
+                  "required": [
+                    "confidence"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "bytes": {
+                      "maxLength": 19,
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string",
+                      "x-maximum-decimal": "9223372036854775807"
+                    },
+                    "lower_bound_bytes": {
+                      "type": "null"
+                    },
+                    "source": {
+                      "enum": [
+                        "CONTENT_LENGTH",
+                        "GIT_LFS_METADATA",
+                        "HTTP_HEAD",
+                        "SOURCE_METADATA"
+                      ]
+                    },
+                    "upper_bound_bytes": {
+                      "maxLength": 19,
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "type": "string",
+                      "x-maximum-decimal": "9223372036854775807"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "confidence": {
+                      "const": "ESTIMATED"
+                    }
+                  },
+                  "required": [
+                    "confidence"
+                  ]
+                },
+                "then": {
+                  "anyOf": [
+                    {
+                      "properties": {
+                        "bytes": {
+                          "maxLength": 19,
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "type": "string",
+                          "x-maximum-decimal": "9223372036854775807"
+                        },
+                        "lower_bound_bytes": {
+                          "type": "null"
+                        },
+                        "upper_bound_bytes": {
+                          "maxLength": 19,
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "type": "string",
+                          "x-maximum-decimal": "9223372036854775807"
+                        }
+                      }
+                    },
+                    {
+                      "properties": {
+                        "bytes": {
+                          "type": "null"
+                        },
+                        "lower_bound_bytes": {
+                          "maxLength": 19,
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "type": "string",
+                          "x-maximum-decimal": "9223372036854775807"
+                        },
+                        "upper_bound_bytes": {
+                          "maxLength": 19,
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "type": "string",
+                          "x-maximum-decimal": "9223372036854775807"
+                        }
+                      }
+                    }
+                  ],
+                  "properties": {
+                    "source": {
+                      "not": {
+                        "const": "UNKNOWN"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "confidence": {
+                      "const": "UNKNOWN"
+                    }
+                  },
+                  "required": [
+                    "confidence"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "bytes": {
+                      "type": "null"
+                    },
+                    "lower_bound_bytes": {
+                      "type": "null"
+                    },
+                    "reason": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "source": {
+                      "const": "UNKNOWN"
+                    },
+                    "upper_bound_bytes": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            ],
+            "properties": {
+              "bytes": {
+                "anyOf": [
+                  {
+                    "maxLength": 19,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string",
+                    "x-maximum-decimal": "9223372036854775807"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "confidence": {
+                "enum": [
+                  "EXACT",
+                  "HIGH",
+                  "ESTIMATED",
+                  "UNKNOWN"
+                ],
+                "type": "string"
+              },
+              "evidence_refs": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "lower_bound_bytes": {
+                "anyOf": [
+                  {
+                    "maxLength": 19,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string",
+                    "x-maximum-decimal": "9223372036854775807"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "reason": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source": {
+                "enum": [
+                  "MANIFEST",
+                  "CONTENT_LENGTH",
+                  "GIT_LFS_METADATA",
+                  "HTTP_HEAD",
+                  "SOURCE_METADATA",
+                  "USER_DECLARED",
+                  "LOCAL_OBSERVATION",
+                  "UNKNOWN"
+                ],
+                "type": "string"
+              },
+              "upper_bound_bytes": {
+                "anyOf": [
+                  {
+                    "maxLength": 19,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string",
+                    "x-maximum-decimal": "9223372036854775807"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "confidence",
+              "bytes",
+              "lower_bound_bytes",
+              "upper_bound_bytes",
+              "source",
+              "evidence_refs",
+              "reason"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__ArtifactManifest",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "output_sha256": "ea09a4557682492b677cdf2afb7d8490088493e317cd1cad3a90dbaaa5a360a4",
+      "version": "1.0"
+    },
+    {
+      "estimator_id": "reference.source.buffers.v1",
+      "fixture": {
+        "input": {
+          "cursor": null,
+          "etag": null,
+          "query": {
+            "vendor_query": {
+              "unknown": true
+            }
+          },
+          "source_id": "0192aaaa-0000-7000-8000-000000000001"
+        },
+        "output": {
+          "changed": true,
+          "cursor": "sync-2",
+          "etag": "fixture-etag",
+          "models": [
+            {
+              "architecture": null,
+              "artifacts": [
+                {
+                  "relative_path": "weights.gguf",
+                  "required": true,
+                  "role": "weights",
+                  "sha256": "c62864ff58ad519ae0d0caab067b7459b5c9e117973d92eec22ad69ac7cef3c1",
+                  "size_bytes": "18"
+                }
+              ],
+              "capabilities": [
+                "text.generate"
+              ],
+              "evidence_refs": [
+                "fixture:source/1"
+              ],
+              "format": "GGUF",
+              "license": null,
+              "limits": {
+                "vendor_new_field": {
+                  "context": null,
+                  "evidence": [
+                    "declared"
+                  ]
+                }
+              },
+              "quantization": null,
+              "upstream_identity": null
+            }
+          ]
+        }
+      },
+      "fixture_sha256": "c6fc4fd1dd86b032b62eca5f534249075fb71718bd0596abb12b65673b7f2a1f",
+      "id": "source.sync",
+      "input_schema": {
+        "$defs": {
+          "larm__SyncRequest": {
+            "additionalProperties": false,
+            "properties": {
+              "cursor": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "etag": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "query": {
+                "type": "object"
+              },
+              "source_id": {
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_id",
+              "cursor",
+              "etag",
+              "query"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__SyncRequest",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "input_sha256": "da2a5b07a99e80489e203c1918790e8c6d482b4957ec1fbc3828cc39e2647781",
+      "mapping": "reference.source.sync.v1",
+      "output_schema": {
+        "$defs": {
+          "larm__ModelInspection": {
+            "additionalProperties": false,
+            "properties": {
+              "architecture": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "artifacts": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "relative_path": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sha256": {
+                      "anyOf": [
+                        {
+                          "pattern": "^[0-9a-f]{64}$",
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "size_bytes": {
+                      "anyOf": [
+                        {
+                          "maxLength": 19,
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "type": "string",
+                          "x-maximum-decimal": "9223372036854775807"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "relative_path",
+                    "size_bytes",
+                    "sha256",
+                    "required",
+                    "role"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "capabilities": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "evidence_refs": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "format": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "license": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "limits": {
+                "type": "object"
+              },
+              "quantization": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "upstream_identity": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "upstream_identity",
+              "architecture",
+              "format",
+              "quantization",
+              "capabilities",
+              "limits",
+              "artifacts",
+              "license",
+              "evidence_refs"
+            ],
+            "type": "object"
+          },
+          "larm__RateLimit": {
+            "additionalProperties": false,
+            "properties": {
+              "limit": {
+                "anyOf": [
+                  {
+                    "maxLength": 19,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string",
+                    "x-maximum-decimal": "9223372036854775807"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "remaining": {
+                "anyOf": [
+                  {
+                    "maxLength": 19,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string",
+                    "x-maximum-decimal": "9223372036854775807"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "reset_at": {
+                "anyOf": [
+                  {
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "retry_after_seconds": {
+                "anyOf": [
+                  {
+                    "maxLength": 19,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string",
+                    "x-maximum-decimal": "9223372036854775807"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "limit",
+              "remaining",
+              "reset_at",
+              "retry_after_seconds"
+            ],
+            "type": "object"
+          },
+          "larm__SyncResult": {
+            "additionalProperties": false,
+            "properties": {
+              "changed": {
+                "type": "boolean"
+              },
+              "cursor": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "etag": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "models": {
+                "items": {
+                  "$ref": "#/$defs/larm__ModelInspection"
+                },
+                "type": "array"
+              },
+              "rate_limit": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/larm__RateLimit"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "cursor",
+              "etag",
+              "changed",
+              "models"
+            ],
+            "type": "object"
+          }
+        },
+        "$ref": "#/$defs/larm__SyncResult",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "output_sha256": "02989222ea3d5fb96da9e576bda0b3e618c9cc70c5992bbb3d7b94487ed4b58d",
+      "version": "1.0"
+    }
+  ],
+  "schema_version": "1.0"
+}

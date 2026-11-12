@@ -1,0 +1,59 @@
+{
+  "entries": [
+    {
+      "estimator_id": "reference.echo.buffers.v1",
+      "fixture": {
+        "input": {
+          "text": "LARM ✓"
+        },
+        "output": {
+          "echo": {
+            "text": "LARM ✓"
+          }
+        }
+      },
+      "fixture_sha256": "730edfb314fc1d5c8458055fbf9ff4dbe2111ab4e066d04865b5a3f85971b123",
+      "id": "vendor.reference.echo",
+      "input_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "maxLength": 2048,
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "type": "object"
+      },
+      "input_sha256": "7385ffa577431b99911d3ca83b176f536751e13f4d8708d719d9ecbc879c2487",
+      "mapping": "reference.http.echo.v1",
+      "output_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "echo": {
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "maxLength": 2048,
+                "type": "string"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "echo"
+        ],
+        "type": "object"
+      },
+      "output_sha256": "1dac65e7a7b3ccff268d7a324652da0e651423a841acf9d5f48ffb1bbb5afeb7",
+      "version": "1.0"
+    }
+  ],
+  "schema_version": "1.0"
+}

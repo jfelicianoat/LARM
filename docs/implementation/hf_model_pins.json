@@ -1,0 +1,277 @@
+{
+  "Qwen/Qwen3-0.6B-GGUF": {
+    "revision_sha": "23749fefcc72300e3a2ad315e1317431b06b590a",
+    "license": "apache-2.0",
+    "private": false,
+    "gated": false,
+    "purpose": "text_gen_gguf",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "LICENSE",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "Qwen3-0.6B-Q8_0.gguf",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "README.md",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "params",
+        "size_bytes": "PENDING"
+      }
+    ]
+  },
+  "ggerganov/whisper.cpp": {
+    "revision_sha": "5359861c739e955e79d9a303bcbc70fb988958b1",
+    "license": "mit",
+    "private": false,
+    "gated": false,
+    "purpose": "asr_ggml",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "README.md",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-base-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-base-q5_1.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-base-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-base.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-base.en-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-base.en-q5_1.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-base.en-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-base.en.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v1-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v1.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v2-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v2-q5_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v2-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v2.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v3-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v3-q5_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v3-turbo-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v3-turbo-q5_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v3-turbo-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v3-turbo.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-large-v3.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-medium-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-medium-q5_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-medium-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-medium.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-medium.en-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-medium.en-q5_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-medium.en-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-medium.en.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-small-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-small-q5_1.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-small-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-small.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-small.en-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-small.en-q5_1.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-small.en-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-small.en.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-tiny-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-tiny-q5_1.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-tiny-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-tiny.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-tiny.en-encoder.mlmodelc.zip",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-tiny.en-q5_1.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-tiny.en-q8_0.bin",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "ggml-tiny.en.bin",
+        "size_bytes": "PENDING"
+      }
+    ]
+  },
+  "Xenova/tiny-random-LlamaForCausalLM": {
+    "revision_sha": "69acc9ddbb0a8f27efcca54f0c7c6369f13e2633",
+    "license": null,
+    "private": false,
+    "gated": false,
+    "purpose": "onnx_test_tiny",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "README.md",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "chat_template.jinja",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "config.json",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "generation_config.json",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "model.safetensors",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "tokenizer.json",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "tokenizer.model",
+        "size_bytes": "PENDING"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "size_bytes": "PENDING"
+      }
+    ]
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "protocol": "JSON-RPC 2.0 NDJSON",
+  "contract_version": "1.1",
+  "mandatory_common": [
+    "core.handshake",
+    "core.cancel",
+    "core.heartbeat"
+  ],
+  "methods": [
+    {
+      "method": "core.handshake",
+      "family": "all",
+      "request_schema": "larm.schema.json#/$defs/Handshake",
+      "response_schema": "larm.schema.json#/$defs/HandshakeResult",
+      "required": true
+    },
+    {
+      "method": "core.cancel",
+      "family": "all",
+      "request_schema": "larm.schema.json#/$defs/CancelRequest",
+      "response_schema": "larm.schema.json#/$defs/CancelResult",
+      "required": true
+    },
+    {
+      "method": "core.heartbeat",
+      "family": "all",
+      "request_schema": "larm.schema.json#/$defs/Empty",
+      "response_schema": "larm.schema.json#/$defs/Heartbeat",
+      "required": true
+    },
+    {
+      "method": "runtime.discover",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/HostConfig",
+      "response_schema": "larm.schema.json#/$defs/RuntimeDiscovery",
+      "required": true
+    },
+    {
+      "method": "runtime.list_versions",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/VersionQuery",
+      "response_schema": "larm.schema.json#/$defs/RuntimeVersionPage",
+      "required": true
+    },
+    {
+      "method": "runtime.install_plan",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/InstallRequest",
+      "response_schema": "larm.schema.json#/$defs/Plan",
+      "required": true
+    },
+    {
+      "method": "runtime.install",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "required": true
+    },
+    {
+      "method": "runtime.detect_backends",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/InstallationRef",
+      "response_schema": "larm.schema.json#/$defs/BackendList",
+      "required": true
+    },
+    {
+      "method": "runtime.inspect_model",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/ModelPath",
+      "response_schema": "larm.schema.json#/$defs/ModelInspection",
+      "required": true
+    },
+    {
+      "method": "runtime.check_compatibility",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/CompatibilityRequest",
+      "response_schema": "larm.schema.json#/$defs/GateResult",
+      "required": true
+    },
+    {
+      "method": "runtime.estimate_memory",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/CompatibilityRequest",
+      "response_schema": "larm.schema.json#/$defs/MemoryEstimate",
+      "required": true
+    },
+    {
+      "method": "runtime.launch_plan",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/LaunchRequest",
+      "response_schema": "larm.schema.json#/$defs/LaunchPlan",
+      "required": true
+    },
+    {
+      "method": "runtime.start",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/InstanceHandle",
+      "required": true
+    },
+    {
+      "method": "runtime.load",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/LaunchRequest",
+      "response_schema": "larm.schema.json#/$defs/InstanceHandle",
+      "required": true
+    },
+    {
+      "method": "runtime.health",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/InstanceRef",
+      "response_schema": "larm.schema.json#/$defs/HealthResult",
+      "required": true
+    },
+    {
+      "method": "runtime.stop",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/InstanceRef",
+      "response_schema": "larm.schema.json#/$defs/StopResult",
+      "required": true
+    },
+    {
+      "method": "runtime.list_models",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/HostConfig",
+      "response_schema": "larm.schema.json#/$defs/ModelPage",
+      "required": false
+    },
+    {
+      "method": "runtime.benchmark",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/Benchmark",
+      "response_schema": "larm.schema.json#/$defs/BenchmarkOutput",
+      "required": false
+    },
+    {
+      "method": "source.search",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/SourceSearch",
+      "response_schema": "larm.schema.json#/$defs/ModelPage",
+      "required": true,
+      "catalog_reference_schema": "larm.schema.json#/$defs/SourceCatalogReference"
+    },
+    {
+      "method": "source.get_model",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/UpstreamRef",
+      "response_schema": "larm.schema.json#/$defs/ModelInspection",
+      "required": true
+    },
+    {
+      "method": "source.list_revisions",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/UpstreamRef",
+      "response_schema": "larm.schema.json#/$defs/RevisionPage",
+      "required": true
+    },
+    {
+      "method": "source.get_manifest",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/RevisionRef",
+      "response_schema": "larm.schema.json#/$defs/ArtifactManifest",
+      "required": true
+    },
+    {
+      "method": "source.estimate_size",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/RevisionRef",
+      "response_schema": "larm.schema.json#/$defs/StorageEstimate",
+      "required": true
+    },
+    {
+      "method": "source.download_plan",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/SourceDownloadPlanRequest",
+      "response_schema": "larm.schema.json#/$defs/Plan",
+      "required": true
+    },
+    {
+      "method": "source.download",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "required": true
+    },
+    {
+      "method": "source.download_chunk",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/SourceDownloadChunkRequest",
+      "response_schema": "larm.schema.json#/$defs/SourceDownloadChunk",
+      "required": false
+    },
+    {
+      "method": "source.sync",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/SyncRequest",
+      "response_schema": "larm.schema.json#/$defs/SyncResult",
+      "required": true
+    },
+    {
+      "method": "source.auth_probe",
+      "family": "source",
+      "request_schema": "larm.schema.json#/$defs/AuthProbe",
+      "response_schema": "larm.schema.json#/$defs/AuthResult",
+      "required": true
+    },
+    {
+      "method": "protocol.describe",
+      "family": "protocol",
+      "request_schema": "larm.schema.json#/$defs/EndpointRef",
+      "response_schema": "larm.schema.json#/$defs/ProtocolDescription",
+      "required": true
+    },
+    {
+      "method": "protocol.qualify",
+      "family": "protocol",
+      "request_schema": "larm.schema.json#/$defs/QualificationRequest",
+      "response_schema": "larm.schema.json#/$defs/QualificationResult",
+      "required": true
+    },
+    {
+      "method": "protocol.invoke",
+      "family": "protocol",
+      "request_schema": "larm.schema.json#/$defs/CapabilityRequest",
+      "response_schema": "larm.schema.json#/$defs/CapabilityResponse",
+      "required": true
+    },
+    {
+      "method": "protocol.cancel",
+      "family": "protocol",
+      "request_schema": "larm.schema.json#/$defs/CancelRequest",
+      "response_schema": "larm.schema.json#/$defs/CancelResult",
+      "required": true
+    },
+    {
+      "method": "transformation.describe",
+      "family": "transformation",
+      "request_schema": "larm.schema.json#/$defs/Empty",
+      "response_schema": "larm.schema.json#/$defs/TransformationDescription",
+      "required": true
+    },
+    {
+      "method": "transformation.plan",
+      "family": "transformation",
+      "request_schema": "larm.schema.json#/$defs/Transform",
+      "response_schema": "larm.schema.json#/$defs/Plan",
+      "required": true
+    },
+    {
+      "method": "transformation.execute",
+      "family": "transformation",
+      "request_schema": "larm.schema.json#/$defs/ExecutePlan",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "required": true
+    },
+    {
+      "method": "transformation.verify",
+      "family": "transformation",
+      "request_schema": "larm.schema.json#/$defs/JobRef",
+      "response_schema": "larm.schema.json#/$defs/ArtifactManifest",
+      "required": true
+    },
+    {
+      "method": "benchmark.describe",
+      "family": "benchmark",
+      "request_schema": "larm.schema.json#/$defs/Empty",
+      "response_schema": "larm.schema.json#/$defs/SuiteDescription",
+      "required": true
+    },
+    {
+      "method": "benchmark.run",
+      "family": "benchmark",
+      "request_schema": "larm.schema.json#/$defs/Benchmark",
+      "response_schema": "larm.schema.json#/$defs/BenchmarkOutput",
+      "required": true
+    },
+    {
+      "method": "benchmark.validate",
+      "family": "benchmark",
+      "request_schema": "larm.schema.json#/$defs/BenchmarkOutput",
+      "response_schema": "larm.schema.json#/$defs/ValidationResult",
+      "required": true
+    },
+    {
+      "method": "runtime.install_status",
+      "family": "runtime",
+      "request_schema": "larm.schema.json#/$defs/InstallStatusRequest",
+      "response_schema": "larm.schema.json#/$defs/JobReceipt",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "provider": "KAGGLE",
+  "adapter_id": "larm.source.kaggle",
+  "network_origins": [],
+  "capabilities": []
+}

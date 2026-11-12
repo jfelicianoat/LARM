@@ -1,0 +1,315 @@
+{
+  "prompt_id": "P107",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "db930a2b494bcea0ba82c7d8c79b187531a636b84497685b36594fdb1a90a052",
+  "inputs_hash": "8f5072f656e3d3d041c367aeb268033afdf790c06417a7390a4dbac7be1da425",
+  "changed_files": [
+    "AI_Broker/app/config.py",
+    "AI_Broker/app/db.py",
+    "AI_Broker/app/execution_fingerprint.py",
+    "AI_Broker/app/invocation_context.py",
+    "AI_Broker/app/larm.py",
+    "AI_Broker/app/main.py",
+    "AI_Broker/app/providers/base.py",
+    "AI_Broker/app/providers/larm.py",
+    "AI_Broker/app/providers/routing.py",
+    "AI_Broker/app/repository.py",
+    "AI_Broker/app/schemas.py",
+    "AI_Broker/docs/Client_API.md",
+    "AI_Broker/docs/Configuration_Reference.md",
+    "AI_Broker/docs/larm-integration/STATE.md",
+    "AI_Broker/scripts/larm_p107_real.py",
+    "AI_Broker/tests/larm_fake.py",
+    "AI_Broker/tests/test_larm_bridge.py",
+    "AI_Broker/tests/test_larm_bridge_edges.py",
+    "AI_Broker/tests/fixtures/larm/larm.schema.json",
+    "AI_Broker/tests/fixtures/larm/domain.schema.json",
+    "larm/Cargo.toml",
+    "larm/Cargo.lock",
+    "larm/apps/daemon/Cargo.toml",
+    "larm/apps/daemon/src/main.rs",
+    "larm/apps/daemon/src/bridge.rs",
+    "larm/crates/larm-domain/src/lib.rs",
+    "larm/crates/larm-domain/src/bridge.rs",
+    "larm/crates/larm-core/Cargo.toml",
+    "larm/crates/larm-core/src/lib.rs",
+    "larm/crates/larm-core/src/bridge.rs",
+    "larm/crates/larm-runtime/Cargo.toml",
+    "larm/crates/larm-runtime/src/lib.rs",
+    "larm/crates/larm-runtime/src/external_adoption.rs",
+    "larm/crates/larm-runtime/src/external_adoption/tests.rs",
+    "larm/crates/larm-runtime/src/credentials_pipe.rs",
+    "larm/crates/larm-api/Cargo.toml",
+    "larm/crates/larm-api/src/lib.rs",
+    "larm/crates/larm-api/src/broker.rs",
+    "larm/crates/larm-api/src/broker/tests.rs",
+    "larm/tools/p107_evidence.py",
+    "larm/docs/implementation/STATE.md",
+    "larm/docs/reports/P107_cambio-companero-en-ai-broker-localruntimeresolver-real.md",
+    "larm/docs/reports/P107_real/"
+  ],
+  "tests": [
+    {
+      "id": "BROKER-ruff",
+      "kind": "UNIT",
+      "command": "python -m ruff check .",
+      "fixture_hashes": [],
+      "expected": "sin hallazgos",
+      "observed": "All checks passed (exit 0)",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "BROKER-mypy",
+      "kind": "UNIT",
+      "command": "python -m mypy app",
+      "fixture_hashes": [],
+      "expected": "sin errores",
+      "observed": "Success: no issues found in 58 source files",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "BROKER-compileall",
+      "kind": "UNIT",
+      "command": "python -m compileall -q app tests",
+      "fixture_hashes": [],
+      "expected": "exit 0",
+      "observed": "exit 0",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "BROKER-pytest-suite",
+      "kind": "INTEGRATION",
+      "command": "python -m pytest -q --cov=app",
+      "fixture_hashes": [],
+      "expected": "todas las pruebas pasan",
+      "observed": "1071 passed, 4 skipped, 0 failed (incluye 29+21 contract tests del puente)",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "BROKER-coverage-gate",
+      "kind": "UNIT",
+      "command": "python -m pytest -q --cov=app (fail_under=90)",
+      "fixture_hashes": [],
+      "expected": "cobertura total >= 90 %",
+      "observed": "88.97 % (gate rojo antes del cambio: 87.86 % en main); app/larm.py 94 %, app/providers/larm.py 98 %",
+      "result": "FAIL",
+      "evidence_paths": []
+    },
+    {
+      "id": "BROKER-contract-larm-schemas",
+      "kind": "CONTRACT",
+      "command": "python -m pytest -q tests/test_larm_bridge.py tests/test_larm_bridge_edges.py",
+      "fixture_hashes": [
+        "tests/fixtures/larm/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "tests/fixtures/larm/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "oráculos P107 (off/offline, scope, variante desconocida, lease perdida, timeout de carga, backend, idempotencia, rotación, cancelación, reinicio, sin fallback) con peticiones y respuestas validadas contra schemas v3",
+      "observed": "50 passed",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "BROKER-fault-named-pipe",
+      "kind": "FAULT",
+      "command": "python -m pytest -q tests/test_larm_bridge.py -k pipe",
+      "fixture_hashes": [],
+      "expected": "handshake nonce+Bearer sobre named pipe real de Windows; rechazo sin filtrar token",
+      "observed": "3 passed",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "LARM-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all -- --check",
+      "fixture_hashes": [],
+      "expected": "exit 0",
+      "observed": "exit 0",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "LARM-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --exclude larm-db --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "sin warnings",
+      "observed": "exit 0",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "LARM-tests",
+      "kind": "INTEGRATION",
+      "command": "cargo test --workspace --exclude larm-db",
+      "fixture_hashes": [],
+      "expected": "todas pasan",
+      "observed": "66 passed, 0 failed (adopción externa contra runtime HTTP simulado, pipe, API axum, daemon)",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "LARM-architecture",
+      "kind": "CONTRACT",
+      "command": "python tools/check_architecture.py && python tools/check_architecture.py --selftest",
+      "fixture_hashes": [],
+      "expected": "grafo de crates conforme a crate-graph.json",
+      "observed": "PASS 16 crates; selftest 4 negativos PASS",
+      "result": "PASS",
+      "evidence_paths": []
+    },
+    {
+      "id": "LARM-larm-db-preexisting",
+      "kind": "UNIT",
+      "command": "cargo clippy -p larm-db -- -D warnings; cargo test -p larm-db",
+      "fixture_hashes": [],
+      "expected": "verde (P004)",
+      "observed": "FAIL previo y ajeno a P107: manual_async_fn en tx.rs; storage_location sin columna status",
+      "result": "FAIL",
+      "evidence_paths": []
+    },
+    {
+      "id": "LARM-check-P101-real",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P101 -Real",
+      "fixture_hashes": [],
+      "expected": "pruebas reales del extremo servidor P101",
+      "observed": "sin pruebas -Real registradas para P101; 2 fallos (larm-db)",
+      "result": "BLOCKED",
+      "evidence_paths": [
+        "docs/reports/check_P101_real.json"
+      ]
+    },
+    {
+      "id": "P107-REAL-01-capabilities",
+      "kind": "REAL",
+      "command": "python scripts/larm_p107_real.py --larm-repo <larm> --model gemma4:12b --out docs/reports/P107_real",
+      "fixture_hashes": [
+        "broker_capabilities.json:5338e1f8c6047e7eb403b8ffc53b4f84e8f839b53edc8b2d40ba564c4169d02b"
+      ],
+      "expected": "local_runtime_resolver=true, larm_contract_version=1.0, contract_version=2.11",
+      "observed": "local_runtime_resolver=True, larm_contract_version=1.0, contract_version=2.11",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P107_real/broker_capabilities.json"
+      ]
+    },
+    {
+      "id": "P107-REAL-02-catalog",
+      "kind": "REAL",
+      "command": "python scripts/larm_p107_real.py --larm-repo <larm> --model gemma4:12b --out docs/reports/P107_real",
+      "fixture_hashes": [
+        "larm_catalog.json:b726f27a21454e6400678d311e01cfc578349cf9b0eb46867dbe288bfb664f68"
+      ],
+      "expected": "la variante adoptada aparece como BROKER_ELIGIBLE con huella verificada",
+      "observed": "items=['01a127e0-7e03-7599-863e-abb96ef7db4e']",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P107_real/larm_catalog.json"
+      ]
+    },
+    {
+      "id": "P107-REAL-03-served-by-exact",
+      "kind": "REAL",
+      "command": "python scripts/larm_p107_real.py --larm-repo <larm> --model gemma4:12b --out docs/reports/P107_real",
+      "fixture_hashes": [
+        "task_completed_state.json:abaa6e3610031b505c19b2a23cb6ab74162bd95166b7199e027faa9958fbe22d"
+      ],
+      "expected": "status=completed y served_by=larm/local/01a127e0-7e03-7599-863e-abb96ef7db4e sin fallback",
+      "observed": "status=completed, served_by=larm/local/01a127e0-7e03-7599-863e-abb96ef7db4e, fallback_used=False, error=None",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P107_real/task_completed_state.json"
+      ]
+    },
+    {
+      "id": "P107-REAL-04-canonical-artifact",
+      "kind": "REAL",
+      "command": "python scripts/larm_p107_real.py --larm-repo <larm> --model gemma4:12b --out docs/reports/P107_real",
+      "fixture_hashes": [
+        "task_artifacts.json:55810ae309a2553400788b7176e1c86efb77d10db6de7f3dc0e55e7bdb661746",
+        "final_artifact.bin:07924af1dc9138816d0a303f08f347033fdc90d38a5fcc0165dfe137dc90d885"
+      ],
+      "expected": "exactamente un artefacto final disponible y su SHA-256 casa con los bytes descargados",
+      "observed": "finales=1, sha256 descargado=07924af1dc9138816d0a303f08f347033fdc90d38a5fcc0165dfe137dc90d885, declarado=07924af1dc9138816d0a303f08f347033fdc90d38a5fcc0165dfe137dc90d885, bytes=1696",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P107_real/task_artifacts.json",
+        "docs/reports/P107_real/final_artifact.bin"
+      ]
+    },
+    {
+      "id": "P107-REAL-05-fingerprint-extension",
+      "kind": "REAL",
+      "command": "python scripts/larm_p107_real.py --larm-repo <larm> --model gemma4:12b --out docs/reports/P107_real",
+      "fixture_hashes": [
+        "task_invocations.json:b6509d5c74e4dc8ce118b03f5dfeaa4237023b1b4e8cfe7c9b4c4ec967926167"
+      ],
+      "expected": "invocación contractual con extensión larm.v1 source=lease, variante exacta y backend efectivo verificado",
+      "observed": "invocaciones contractuales=1, source=lease, variant=01a127e0-7e03-7599-863e-abb96ef7db4e, backend={'value': 'GPU', 'status': 'VERIFIED'}, generation={'temperature': 0.0, 'max_output_tokens': 1200, 'seed': 42, 'seed_status': 'sent', 'top_p': None, 'top_p_status': 'not_requested'}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P107_real/task_invocations.json"
+      ]
+    },
+    {
+      "id": "P107-REAL-06-lease-renewed-and-released",
+      "kind": "REAL",
+      "command": "python scripts/larm_p107_real.py --larm-repo <larm> --model gemma4:12b --out docs/reports/P107_real",
+      "fixture_hashes": [
+        "larm_leases_after_task.json:445ede2f2401f08f5ed76e7819e2830f57ef3a6534162de46ee49b962b2ab014"
+      ],
+      "expected": "la lease de la invocación se renovó (row_version > 3) y quedó RELEASED",
+      "observed": "lease=01a127e0-8649-7165-8bde-f2203622c0d8, state=RELEASED, row_version=7, request_id=task_1abaadcf6ac94aeea42777be4fb924dc:inv_de83d66e53b148b195bc4b8a1ae7b938",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P107_real/larm_leases_after_task.json"
+      ]
+    },
+    {
+      "id": "P107-REAL-07-cancel-releases",
+      "kind": "REAL",
+      "command": "python scripts/larm_p107_real.py --larm-repo <larm> --model gemma4:12b --out docs/reports/P107_real",
+      "fixture_hashes": [
+        "larm_leases_after_cancel.json:8f6c3841b2ffc824633672904d423183e83999bec1fc8d26b75c78d1c53847c1",
+        "task_cancelled_state.json:e8a3d9c1ae59f9ae1c14c539d8ed0312276bfdf217410bc8f9eb4d58c6d22166"
+      ],
+      "expected": "tarea cancelada y su lease RELEASED",
+      "observed": "status=cancelled, leases=[('01a127e1-7249-7083-ac55-394907aacd12', 'RELEASED')]",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P107_real/larm_leases_after_cancel.json",
+        "docs/reports/P107_real/task_cancelled_state.json"
+      ]
+    },
+    {
+      "id": "P107-REAL-08-unknown-variant-no-fallback",
+      "kind": "REAL",
+      "command": "python scripts/larm_p107_real.py --larm-repo <larm> --model gemma4:12b --out docs/reports/P107_real",
+      "fixture_hashes": [
+        "task_unknown_variant_state.json:be7c989daed575d5de6dfe21fc7fda731b862ff161628ba6e48adf40b10ea866"
+      ],
+      "expected": "failed con MODEL_UNAVAILABLE y sin invocar ningún modelo",
+      "observed": "status=failed, code=MODEL_UNAVAILABLE",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P107_real/task_unknown_variant_state.json"
+      ]
+    }
+  ],
+  "blockers": [
+    "Dependencias P099 y P101 sin REAL_PASS (LARM en P003): el extremo servidor usado es la rebanada EXTERNAL_ADOPTION de esta entrega, no P100/P101",
+    "Prueba real con el cliente en el PC IA, no desde el PC principal: pendiente repetirla desde el PC principal",
+    "tools/check.ps1 -Prompt P101 -Real sin pruebas registradas (P101 no implementado)",
+    "Pipe de credenciales con DACL por defecto: fijar los SID configurados exige unsafe, prohibido en el workspace",
+    "Espera de admisión de 300 s no implementada en la rebanada (devuelve RESOURCE_UNAVAILABLE reintentable al instante)",
+    "Gate de cobertura del Broker al 88.97 % (90 % exigido), rojo desde antes del cambio",
+    "larm-db (P004 en curso) falla clippy y un test de integración, ajeno a P107"
+  ],
+  "generated_at": "2026-10-10T22:18:00.564Z"
+}

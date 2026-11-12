@@ -1,0 +1,219 @@
+{
+  "echo": {
+    "estimator_id": "reference.echo.buffers.v1",
+    "fixture": {
+      "input": {
+        "text": "LARM ✓"
+      },
+      "output": {
+        "echo": {
+          "text": "LARM ✓"
+        }
+      }
+    },
+    "fixture_sha256": "730edfb314fc1d5c8458055fbf9ff4dbe2111ab4e066d04865b5a3f85971b123",
+    "id": "vendor.reference.echo",
+    "input_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 2048,
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "type": "object"
+    },
+    "input_sha256": "7385ffa577431b99911d3ca83b176f536751e13f4d8708d719d9ecbc879c2487",
+    "mapping": "reference.http.echo.v1",
+    "output_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "echo": {
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "maxLength": 2048,
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "echo"
+      ],
+      "type": "object"
+    },
+    "output_sha256": "1dac65e7a7b3ccff268d7a324652da0e651423a841acf9d5f48ffb1bbb5afeb7",
+    "version": "1.0"
+  },
+  "embedding": {
+    "estimator_id": "fixture.unknown",
+    "fixture": {
+      "input": {
+        "inputs": [
+          "fixture schema only"
+        ]
+      },
+      "output": {
+        "dimension": 2,
+        "normalized": false,
+        "vectors": [
+          [
+            0.25,
+            -0.5
+          ]
+        ]
+      }
+    },
+    "fixture_sha256": "9893376d3e666218e0a33d6716684713d02c211ee19150a3404a251a7c31879f",
+    "id": "embedding.create",
+    "input_schema": {
+      "$defs": {
+        "larm__embedding_create_input": {
+          "additionalProperties": false,
+          "properties": {
+            "inputs": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "inputs"
+          ],
+          "type": "object"
+        }
+      },
+      "$ref": "#/$defs/larm__embedding_create_input",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "input_sha256": "dafe82d9a61f996fa78c0776b5a61647ff9128b45a601213caaec158a5e77a18",
+    "mapping": "fixture.schema.only",
+    "output_schema": {
+      "$defs": {
+        "larm__embedding_create_output": {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "normalized": {
+              "type": "boolean"
+            },
+            "vectors": {
+              "items": {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "dimension",
+            "vectors",
+            "normalized"
+          ],
+          "type": "object"
+        }
+      },
+      "$ref": "#/$defs/larm__embedding_create_output",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "output_sha256": "5358f01ac55d6ec83a9ac905dcb897a13b1886f0cd585edd393fb97b6d49f2aa",
+    "version": "1.0"
+  },
+  "jcs_vectors": [
+    {
+      "canonical": "{\"\\r\":4,\"a\":[true,null,\"x\"],\"b\":1,\"€\":3,\"😀\":2}",
+      "sha256": "343ad767bbc569b2f15c0e05ba5f2b7ccd8e251bcceeed12a64e7c2c5d41693d",
+      "value": {
+        "\r": 4,
+        "a": [
+          true,
+          null,
+          "x"
+        ],
+        "b": 1,
+        "€": 3,
+        "😀": 2
+      }
+    },
+    {
+      "canonical": "{\"n\":-7,\"p\":1,\"t\":0.7}",
+      "sha256": "8191a9bf0622b582b03e0004df50210fbfc6dd316a734dc05cbbd282f3608bfb",
+      "value": {
+        "n": -7,
+        "p": 1.0,
+        "t": 0.7
+      }
+    },
+    {
+      "canonical": "{\"value\":9007199254740992}",
+      "sha256": "3b0d9a238f369ef1d4cb7182e6ca467e10b5501cbab84e9c80d1d91053253504",
+      "value": {
+        "value": 9007199254740992
+      }
+    },
+    {
+      "canonical": "{\"value\":-9007199254740992}",
+      "sha256": "f90641db2d34a12b1031df0a732b1386073d883ef4340b20541a1c110c0ce386",
+      "value": {
+        "value": -9007199254740992
+      }
+    },
+    {
+      "canonical": "{\"numbers\":[0,0.000001,1e-7,100000000000000000000,1e+21,1e+23,333333333.3333333,0.1,0.002]}",
+      "sha256": "e1b4bb7b66791533feed1b99c2de73b48a57d3bb0558b03a002308754cc069b5",
+      "value": {
+        "numbers": [
+          -0.0,
+          1e-06,
+          1e-07,
+          1e+20,
+          1e+21,
+          1e+23,
+          333333333.3333333,
+          0.1,
+          0.002
+        ]
+      }
+    },
+    {
+      "canonical": "{\"value\":1.7976931348623157e+308}",
+      "sha256": "17579ea1287f0c7ed8799e2047914a528123a4c6fb86f604b1d37aa75b09303a",
+      "value": {
+        "value": 1.7976931348623157e+308
+      }
+    },
+    {
+      "canonical": "{\"value\":5e-324}",
+      "sha256": "8f275eb622ce665f3cf21739b40600308dcea7c36627451f1c210a4152343c85",
+      "value": {
+        "value": 5e-324
+      }
+    },
+    {
+      "canonical": "{\"𐀀\":1,\"\":2}",
+      "sha256": "4045c21a23c8ae8f8d9add81f54bd506bee65885099876fb4afb378b1f2c3516",
+      "value": {
+        "": 2,
+        "𐀀": 1
+      }
+    }
+  ],
+  "schema_version": "1.0",
+  "scope": "descriptor/schema/JCS corpus only, not inference qualification"
+}

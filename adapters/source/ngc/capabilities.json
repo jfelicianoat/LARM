@@ -1,0 +1,10 @@
+{
+  "provider": "NGC",
+  "api_reference": "https://docs.nvidia.com/ngc/latest/ngc-catalog-user-guide.html",
+  "search_applicable": false,
+  "supported_methods": [],
+  "status": "UNSUPPORTED",
+  "limitations": [
+    "El catálogo ofrece UI y CLI con acceso público o con entitlement; este perfil no anuncia consulta hasta fijar un contrato y credenciales verificables."
+  ]
+}

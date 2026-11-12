@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "larm:adapters/runtime/generic/wizard.schema.json",
+  "title": "Asistente de adaptador declarativo (P023)",
+  "description": "Schema publicado del asistente de adaptadores declarativos (spec §13; contrato 03; contrato 11 H04). Restringe larm.schema.json#/$defs/DeclarativeAdapter a lo que el worker genérico ejecuta. La GUI final (P037) se construye sobre este schema; la API (POST /api/v1/adapters/declarative) aplica además las reglas que JSON Schema no expresa (rutas reales dentro de las raíces, plantillas, entorno).",
+  "x-larm-schema-version": "1.0",
+  "allOf": [
+    {
+      "$ref": "../../../docs/contracts/schemas/larm.schema.json#/$defs/DeclarativeAdapter"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "manifest": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^[0-9A-Za-z][0-9A-Za-z.+_-]{0,63}$"
+            },
+            "family": {
+              "const": "runtime"
+            },
+            "executable": {
+              "type": "object",
+              "properties": {
+                "relative_path": {
+                  "const": "bin/larm-generic-adapter.exe"
+                },
+                "args": {
+                  "type": "array",
+                  "maxItems": 0
+                }
+              }
+            },
+            "installation_strategies": {
+              "type": "array",
+              "maxItems": 0
+            },
+            "signature": {
+              "type": "null"
+            },
+            "permissions": {
+              "type": "object",
+              "properties": {
+                "read_roots": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]:\\\\"
+                  }
+                },
+                "write_roots": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z]:\\\\"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "version_probe": {
+          "type": "object",
+          "properties": {
+            "executable": {
+              "$ref": "#/$defs/Executable"
+            }
+          }
+        },
+        "start": {
+          "type": "object",
+          "properties": {
+            "executable": {
+              "$ref": "#/$defs/Executable"
+            },
+            "cwd": {
+              "type": "string",
+              "pattern": "^[A-Za-z]:\\\\"
+            }
+          }
+        },
+        "stop": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "enum": [
+                "SIGNAL",
+                "HTTP"
+              ]
+            }
+          }
+        },
+        "health": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "$ref": "#/$defs/LoopbackUrl"
+            },
+            "expected_status": {
+              "minimum": 100,
+              "maximum": 599
+            }
+          }
+        },
+        "protocol_profile_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"
+        },
+        "formats": {
+          "type": "array",
+          "minItems": 1
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Executable": {
+      "description": "Ruta absoluta y real de un .exe dentro de una raíz de lectura del manifiesto. Nunca un .bat/.cmd ni un comando de shell: se lanza con argumentos estructurados.",
+      "type": "string",
+      "pattern": "^[A-Za-z]:\\\\[^<>|&;$`\"'*?%^]*\\.[Ee][Xx][Ee]$"
+    },
+    "LoopbackUrl": {
+      "description": "http://127.0.0.1, localhost o [::1] con puerto explícito o {PORT}; sin usuario, sin query ni fragmento (la URL no admite tokens como texto).",
+      "type": "string",
+      "pattern": "^http://(127\\.0\\.0\\.1|localhost|\\[::1\\]):([0-9]{1,5}|\\{PORT\\})(/[^?#@]*)?$"
+    },
+    "LaunchOptions": {
+      "description": "launch_options_schema del perfil de un adaptador declarativo: LaunchParameters.adapter_options. Claves desconocidas se rechazan antes de IO. runtime_arguments debe ir vacío: un adaptador declarativo no publica runtime_arguments_schema.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "config_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "port": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 65535
+        }
+      }
+    }
+  },
+  "x-larm-placeholders": {
+    "syntax": "{NOMBRE} dentro de un elemento de args; {{ y }} son llaves literales. Un nombre desconocido o una llave sin cerrar se rechazan. Sin expansión de shell ni de variables de entorno: el valor se inserta tal cual dentro de ese único argumento.",
+    "names": {
+      "MODEL_PATH": {
+        "type": "path",
+        "source": "adapter_options.model_path",
+        "rule": "fichero real dentro de read_roots"
+      },
+      "CONFIG_PATH": {
+        "type": "path",
+        "source": "adapter_options.config_path",
+        "rule": "fichero real dentro de read_roots"
+      },
+      "PORT": {
+        "type": "integer 1..65535",
+        "source": "adapter_options.port"
+      },
+      "THREADS": {
+        "type": "integer >= 1",
+        "source": "LaunchParameters.threads"
+      },
+      "CONTEXT": {
+        "type": "integer >= 1",
+        "source": "LaunchParameters.context (null = no disponible)"
+      }
+    },
+    "allowed_in": {
+      "start.args": [
+        "MODEL_PATH",
+        "CONFIG_PATH",
+        "PORT",
+        "THREADS",
+        "CONTEXT"
+      ],
+      "health.url": [
+        "PORT"
+      ],
+      "stop.endpoint": [
+        "PORT"
+      ],
+      "version_probe.args": [],
+      "start.cwd": [],
+      "start.executable": [],
+      "version_probe.executable": [],
+      "environment": []
+    }
+  },
+  "x-larm-environment": "EnvironmentConfig del contrato 11 (H04): cada variable en allowlist; value no secreto o credential_reference bajo larm/ declarada en manifest.permissions.secret_refs. Una variable cuyo nombre indica un secreto (TOKEN, SECRET, PASSWORD, PASSWD, API_KEY, APIKEY, CREDENTIAL, PRIVATE_KEY) solo admite credential_reference. Los valores nunca se expanden. Al arrancar con perfil, el binding del perfil sustituye al del mismo nombre y cada variable efectiva debe estar en las dos allowlists."
+}

@@ -1,0 +1,60 @@
+{
+  "$id": "https://larm.local/adapters/frame.progress.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "jsonrpc": {
+      "const": "2.0"
+    },
+    "method": {
+      "const": "core.progress"
+    },
+    "params": {
+      "additionalProperties": false,
+      "properties": {
+        "completed_bytes": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "message_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phase": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "request_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "total_bytes": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "request_id",
+        "phase",
+        "completed_bytes",
+        "total_bytes",
+        "message_code"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "jsonrpc",
+    "method",
+    "params"
+  ],
+  "type": "object"
+}

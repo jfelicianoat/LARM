@@ -1,0 +1,41 @@
+{
+  "$defs": {
+    "larm__TransformationDescription": {
+      "additionalProperties": false,
+      "properties": {
+        "formats_input": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "formats_output": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "parameter_schema": {
+          "type": "object"
+        },
+        "pause_supported": {
+          "type": "boolean"
+        },
+        "tool_version": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "formats_input",
+        "formats_output",
+        "parameter_schema",
+        "tool_version",
+        "pause_supported"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__TransformationDescription",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

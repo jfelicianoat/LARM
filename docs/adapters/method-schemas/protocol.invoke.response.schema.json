@@ -1,0 +1,127 @@
+{
+  "$defs": {
+    "larm__CapabilityResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "capability": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "fingerprint": {
+          "$ref": "#/$defs/larm__Fingerprint"
+        },
+        "output": {
+          "type": "object"
+        },
+        "request_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "usage": {
+          "additionalProperties": false,
+          "properties": {
+            "latency_ms": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "tokens_input": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "tokens_output": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "tokens_input",
+            "tokens_output",
+            "latency_ms"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "request_id",
+        "capability",
+        "output",
+        "fingerprint",
+        "usage"
+      ],
+      "type": "object"
+    },
+    "larm__EvidenceComponent": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "VERIFIED",
+            "DECLARED",
+            "UNAVAILABLE"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "status",
+        "evidence_refs"
+      ],
+      "type": "object"
+    },
+    "larm__Fingerprint": {
+      "additionalProperties": false,
+      "properties": {
+        "components": {
+          "additionalProperties": {
+            "$ref": "#/$defs/larm__EvidenceComponent"
+          },
+          "minProperties": 1,
+          "type": "object"
+        },
+        "hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "hash",
+        "components"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__CapabilityResponse",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "variant_id": "01a16731-aa8e-7429-8528-8da6c531af83",
+  "written_at": "2026-10-23T05:17:50.703Z",
+  "model": {
+    "name": "Qwen X",
+    "upstream_identity": null,
+    "evidence": {
+      "architecture": "qwen2",
+      "author": null,
+      "base_model": null,
+      "config_hash": null,
+      "parent_hashes": [],
+      "tokenizer_hash": null
+    }
+  },
+  "distribution": {
+    "source_id": "0192f000-0000-7000-8000-00000000f001",
+    "upstream_namespace": "local",
+    "upstream_model_id": "qwen#Qwen X",
+    "license_id": null
+  },
+  "revision": {
+    "revision_key": "content:714d13528a2c1d8e1973b94de6db6207bca6d9ad51658c782f7a7a3f7226c636",
+    "manifest_hash": "714d13528a2c1d8e1973b94de6db6207bca6d9ad51658c782f7a7a3f7226c636",
+    "upstream_commit": null
+  },
+  "variant": {
+    "format": "GGUF",
+    "quantization": "Q4_K_M",
+    "architecture": "qwen2",
+    "capabilities": []
+  },
+  "artifacts": [
+    {
+      "filename": "README.md",
+      "role": "other",
+      "sha256": "504dc76a888de8c93dd8f4fc1ef1753750cfb46d357d68c36b248a089236cae8",
+      "size_bytes": 8,
+      "required": false,
+      "blob": "blobs/sha256/50/504dc76a888de8c93dd8f4fc1ef1753750cfb46d357d68c36b248a089236cae8"
+    },
+    {
+      "filename": "mmproj-qwen-x-f16.gguf",
+      "role": "mmproj",
+      "sha256": "853e748972f37813268395ae19c05e0cbe75e6d8c5f8a4c1f23477523f2cd837",
+      "size_bytes": 604,
+      "required": true,
+      "blob": "blobs/sha256/85/853e748972f37813268395ae19c05e0cbe75e6d8c5f8a4c1f23477523f2cd837"
+    },
+    {
+      "filename": "qwen-x-Q4_K_M-00001-of-00002.gguf",
+      "role": "weights",
+      "sha256": "a291b536dc279bc2647ec638b82c1abc862a1d70cebe47132353f8b08cdb8ae6",
+      "size_bytes": 4107,
+      "required": true,
+      "blob": "blobs/sha256/a2/a291b536dc279bc2647ec638b82c1abc862a1d70cebe47132353f8b08cdb8ae6"
+    },
+    {
+      "filename": "qwen-x-Q4_K_M-00002-of-00002.gguf",
+      "role": "weights",
+      "sha256": "abeade3b7ebe2e025531d5876f91b4efb437378f0bfc7a8c2c50c0aa2c448aec",
+      "size_bytes": 3107,
+      "required": true,
+      "blob": "blobs/sha256/ab/abeade3b7ebe2e025531d5876f91b4efb437378f0bfc7a8c2c50c0aa2c448aec"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "registry_open": true,
+  "unknown_capability_policy": "REQUIRE_SCHEMA_AND_QUALIFICATION",
+  "aliases_read_only": {
+    "embedding": "embedding.create",
+    "vision": "vision.understand",
+    "ocr": "vision.ocr",
+    "tensor.infer": "generic.inference",
+    "audio.synthesize": "speech.synthesize",
+    "text.translate": "text.generate",
+    "audio.tagging": "audio.classify"
+  },
+  "contracts": [
+    {
+      "id": "text.generate",
+      "input_schema": "larm.schema.json#/$defs/text_generate_input",
+      "output_schema": "larm.schema.json#/$defs/text_generate_output",
+      "streaming": true,
+      "version": "1.0"
+    },
+    {
+      "id": "text.classify",
+      "input_schema": "larm.schema.json#/$defs/text_classify_input",
+      "output_schema": "larm.schema.json#/$defs/text_classify_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "decision.evaluate",
+      "input_schema": "larm.schema.json#/$defs/decision_evaluate_input",
+      "output_schema": "larm.schema.json#/$defs/decision_evaluate_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "embedding.create",
+      "input_schema": "larm.schema.json#/$defs/embedding_create_input",
+      "output_schema": "larm.schema.json#/$defs/embedding_create_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "rerank",
+      "input_schema": "larm.schema.json#/$defs/rerank_input",
+      "output_schema": "larm.schema.json#/$defs/rerank_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "vision.understand",
+      "input_schema": "larm.schema.json#/$defs/vision_understand_input",
+      "output_schema": "larm.schema.json#/$defs/vision_understand_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "vision.ocr",
+      "input_schema": "larm.schema.json#/$defs/vision_ocr_input",
+      "output_schema": "larm.schema.json#/$defs/vision_ocr_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "vision.detect",
+      "input_schema": "larm.schema.json#/$defs/vision_detect_input",
+      "output_schema": "larm.schema.json#/$defs/vision_detect_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "vision.segment",
+      "input_schema": "larm.schema.json#/$defs/vision_segment_input",
+      "output_schema": "larm.schema.json#/$defs/vision_segment_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "image.generate",
+      "input_schema": "larm.schema.json#/$defs/image_generate_input",
+      "output_schema": "larm.schema.json#/$defs/image_generate_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "image.upscale",
+      "input_schema": "larm.schema.json#/$defs/image_upscale_input",
+      "output_schema": "larm.schema.json#/$defs/image_upscale_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "video.generate",
+      "input_schema": "larm.schema.json#/$defs/video_generate_input",
+      "output_schema": "larm.schema.json#/$defs/video_generate_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "audio.transcribe",
+      "input_schema": "larm.schema.json#/$defs/audio_transcribe_input",
+      "output_schema": "larm.schema.json#/$defs/audio_transcribe_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "audio.translate",
+      "input_schema": "larm.schema.json#/$defs/audio_translate_input",
+      "output_schema": "larm.schema.json#/$defs/audio_translate_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "audio.classify",
+      "input_schema": "larm.schema.json#/$defs/audio_classify_input",
+      "output_schema": "larm.schema.json#/$defs/audio_classify_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "speech.synthesize",
+      "input_schema": "larm.schema.json#/$defs/speech_synthesize_input",
+      "output_schema": "larm.schema.json#/$defs/speech_synthesize_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "tool.call",
+      "input_schema": "larm.schema.json#/$defs/tool_call_input",
+      "output_schema": "larm.schema.json#/$defs/tool_call_output",
+      "streaming": false,
+      "version": "1.0"
+    },
+    {
+      "id": "generic.inference",
+      "input_schema": "larm.schema.json#/$defs/generic_inference_input",
+      "output_schema": "larm.schema.json#/$defs/generic_inference_output",
+      "streaming": false,
+      "version": "1.0"
+    }
+  ]
+}

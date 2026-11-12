@@ -1,0 +1,69 @@
+{
+  "prompt_id": "P065",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "e87a8ce652464350561f0db4fe21cfd8b66c5669989446af0f1508f25d686566",
+  "changed_files": [
+    "adapters/runtime/olive-tooling/fixtures.json",
+    "adapters/runtime/olive-tooling/fixtures/tensor_identity.onnx",
+    "adapters/runtime/olive-tooling/olive_runner.py",
+    "adapters/runtime/olive-tooling/protocol.schema.json",
+    "adapters/runtime/olive-tooling/tests/test_worker.py",
+    "adapters/runtime/olive-tooling/worker.py",
+    "docs/adapters/olive-tooling.md",
+    "docs/implementation/STATE.md",
+    "docs/reports/P065_microsoft-olive-transformacion-y-optimizacion-onnx.md",
+    "tools/p065_evidence.py",
+    "tools/p065_real_probe.py"
+  ],
+  "tests": [
+    {
+      "id": "P065-INTEGRATION-private-worker-contract",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -m unittest discover -s adapters/runtime/olive-tooling/tests -p test_worker.py -v",
+      "fixture_hashes": [
+        "adapters/runtime/olive-tooling/fixtures/tensor_identity.onnx:8de2df197dba94a7151d39371e464bf0bd10316ffa7d7006db81b08159210dde"
+      ],
+      "expected": "Las 12 pruebas validan schema cerrado, fixture autorizada por hash, versiones, provider, plan sin escritura, candidato con provenance, timeout, fallo de proceso, IO y recuperación de reintento en un venv temporal.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 12 tests in 7.831s | OK; Python=3.14.6; Olive=1.0.0 (fake metadata); ONNX Runtime=1.20.0 (fake metadata); provider=CPUExecutionProvider (fake); fixture=tensor_identity ONNX 130 bytes",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P065_runs/P065-INTEGRATION-private-worker-contract.log#sha256=c59e393ba9e986c2a1ba44cdb65c1560a5733722a1945a4b1e45e4925b16892a"
+      ]
+    },
+    {
+      "id": "P065-REAL-managed-environment-probe",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p065_real_probe.py",
+      "fixture_hashes": [
+        "adapters/runtime/olive-tooling/fixtures/tensor_identity.onnx:8de2df197dba94a7151d39371e464bf0bd10316ffa7d7006db81b08159210dde"
+      ],
+      "expected": "En Windows, el worker identifica la ausencia de un entorno de runtime gestionado, informa paquetes como desconocidos y no intenta instalaciones globales.",
+      "observed": "exit=0; {\"global_install_attempted\": false, \"managed_python\": false, \"olive_ai_installed\": null, \"onnxruntime_installed\": null}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P065_runs/P065-REAL-managed-environment-probe.log#sha256=065a387e961b5c62ba36e67b999d6ce4a85cd5e4216a43ad51bd545b2fc90fa3"
+      ]
+    },
+    {
+      "id": "P065-REAL-olive-transform-on-onnx",
+      "kind": "REAL",
+      "command": "Ejecutar Olive sobre tensor_identity.onnx con un provider ONNX Runtime disponible dentro del entorno Python gestionado por LARM",
+      "fixture_hashes": [],
+      "expected": "Registrar versiones reales y provider, conservar intacta la fixture, verificar la salida ONNX, hashes y provenance, y publicar sólo una candidata aislada.",
+      "observed": "NO EJECUTADA: No existe todavía un entorno Python gestionado por P071 ni evidencia REAL_PASS de P062/P071/P093; Olive y ONNX Runtime tampoco están instalados en el Python de herramientas. No se instala nada en el Python global. La simulación aislada cubre el contrato y los límites locales, pero no acredita compatibilidad ni optimización real.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P062/P071/P093 deben llegar a REAL_PASS antes de completar el consumidor; P093 continúa sin conectar este worker al job durable, preflight, reserva, verificación/smoke y model store.",
+    "Falta cualificar y fijar versiones exactas de Olive, ONNX Runtime y provider en el entorno gestionado P071/P099.",
+    "La prueba real de optimización sobre PC IA y la gestión de cancelación por el host Windows siguen pendientes.",
+    "dependencia P062 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P071 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P093 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T12:19:42.776Z"
+}

@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "larm__tool_call_output": {
+      "additionalProperties": false,
+      "properties": {
+        "arguments": {
+          "type": "object"
+        },
+        "tool_name": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "tool_name",
+        "arguments"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__tool_call_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

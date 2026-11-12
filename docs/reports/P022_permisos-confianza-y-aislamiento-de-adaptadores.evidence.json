@@ -1,0 +1,218 @@
+{
+  "prompt_id": "P022",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "0ae4607e7215d8f33fa8d9c90afc462765fa383886002e1b0d1c3a27825cf4a6",
+  "inputs_hash": "5a575c9ba4bfbcef38c1166a6fa64ea5c1ee4e6f02a971c66cd74518ddfbd551",
+  "changed_files": [
+    "Cargo.toml",
+    "crates/larm-adapter-host/Cargo.toml",
+    "crates/larm-adapter-host/src/lib.rs",
+    "crates/larm-adapter-host/src/policy.rs",
+    "crates/larm-adapter-host/tests/policy.rs",
+    "crates/larm-adapter-sdk/Cargo.toml",
+    "crates/larm-adapter-sdk/src/lib.rs",
+    "crates/larm-adapter-sdk/src/permissions.rs",
+    "docs/adapters/security.md",
+    "environment.lock.json",
+    "tools/p022_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P022-REAL-build-fake",
+      "kind": "REAL",
+      "command": "cargo build -p larm-adapter-host --example fake_adapter",
+      "fixture_hashes": [],
+      "expected": "adaptador falso compilado",
+      "observed": "exit=0; Compiling larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.74s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-build-fake.log#sha256=9829be5af527c363c72f5ea63ef33324cac4914018f0b56d50419f2b30be9fd9"
+      ]
+    },
+    {
+      "id": "P022-REAL-permiso-denegado",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test policy -- permiso_denegado_en_cada_operacion --exact",
+      "fixture_hashes": [
+        "manifest.json:0c1d9f8b4c453090b5ef0379969d70a89fb24df46d122bd6726c4c24cf9795cd",
+        "demo-benchmark.manifest.json:1816f6e35f0c8bc37450718b5071f4d4e1422ac4f57cb7e2345b3c93a4cca056"
+      ],
+      "expected": "PC IA, procesos y ficheros reales: adaptador firmado VERIFIED: lectura/escritura/red/proceso/secreto fuera de permisos FORBIDDEN sin llegar al worker; manifiesto distinto del autorizado no arranca",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\policy.rs (target\\debug\\deps\\policy-1b87fcee4b7d1912.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-permiso-denegado.log#sha256=57e5b9c1b74820fdd00c2b7d910328f175299383c74656d10c427dc36575d132"
+      ]
+    },
+    {
+      "id": "P022-REAL-sin-firma",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test policy -- sin_firma_solo_con_concesion_trusted_only --exact",
+      "fixture_hashes": [
+        "manifest.json:0c1d9f8b4c453090b5ef0379969d70a89fb24df46d122bd6726c4c24cf9795cd",
+        "demo-benchmark.manifest.json:1816f6e35f0c8bc37450718b5071f4d4e1422ac4f57cb7e2345b3c93a4cca056"
+      ],
+      "expected": "PC IA, procesos y ficheros reales: UNSIGNED y CUSTOM: APPROVAL_REQUIRED sin concesión; aprobaciones de otro publicador/permisos/hash/digest/actor o caducadas rechazadas; con concesión ejecuta sin secretos salvo concesión explícita; paquete manipulado package_hash_mismatch",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\policy.rs (target\\debug\\deps\\policy-1b87fcee4b7d1912.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-sin-firma.log#sha256=3f55240c198c7839a2c1914cda1732c220b2e811bfd9e3b233197805f05bb268"
+      ]
+    },
+    {
+      "id": "P022-REAL-revocado-elevado",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test policy -- revocado_firma_invalida_y_elevado_bloquean --exact",
+      "fixture_hashes": [
+        "manifest.json:0c1d9f8b4c453090b5ef0379969d70a89fb24df46d122bd6726c4c24cf9795cd",
+        "demo-benchmark.manifest.json:1816f6e35f0c8bc37450718b5071f4d4e1422ac4f57cb7e2345b3c93a4cca056"
+      ],
+      "expected": "PC IA, procesos y ficheros reales: clave o paquete revocados REVOKED y FORBIDDEN; firma falsificada signature_invalid; LARM elevado elevated_process",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\policy.rs (target\\debug\\deps\\policy-1b87fcee4b7d1912.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-revocado-elevado.log#sha256=55a5dd7bca9f6f22816e77b21e7f0ec6f3976ca1fa6a40bb7a152a5bd5674e49"
+      ]
+    },
+    {
+      "id": "P022-REAL-elevacion-permisos",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test policy -- elevacion_de_permisos_requiere_aprobacion --exact",
+      "fixture_hashes": [
+        "manifest.json:0c1d9f8b4c453090b5ef0379969d70a89fb24df46d122bd6726c4c24cf9795cd",
+        "demo-benchmark.manifest.json:1816f6e35f0c8bc37450718b5071f4d4e1422ac4f57cb7e2345b3c93a4cca056"
+      ],
+      "expected": "PC IA, procesos y ficheros reales: delta de permisos: APPROVAL_REQUIRED con delta exacto; aprobación del delta lo acepta; otro delta u otro actor no",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running tests\\policy.rs (target\\debug\\deps\\policy-1b87fcee4b7d1912.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-elevacion-permisos.log#sha256=cf2aaac821ad8d0c76144e0a14a8ce9e6ca44e2be082c11d769fba7ac40184cf"
+      ]
+    },
+    {
+      "id": "P022-REAL-integridad",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test policy -- nivel_de_integridad_real_de_este_proceso --exact",
+      "fixture_hashes": [
+        "manifest.json:0c1d9f8b4c453090b5ef0379969d70a89fb24df46d122bd6726c4c24cf9795cd",
+        "demo-benchmark.manifest.json:1816f6e35f0c8bc37450718b5071f4d4e1422ac4f57cb7e2345b3c93a4cca056"
+      ],
+      "expected": "PC IA, procesos y ficheros reales: whoami /groups real: integridad media (no elevado) en el PC IA",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running tests\\policy.rs (target\\debug\\deps\\policy-1b87fcee4b7d1912.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-integridad.log#sha256=6ee436da47cb2d5d28f3e582ea06ec771422b7ede9092cef73b7868adf77c237"
+      ]
+    },
+    {
+      "id": "P022-UNIT-permisos-sdk",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-adapter-sdk --lib permissions",
+      "fixture_hashes": [],
+      "expected": "firma Ed25519 y manipulación, delta, comprobación de rutas/orígenes/procesos/secretos",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_adapter_sdk-19a1a481857ec8ad.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-UNIT-permisos-sdk.log#sha256=661c8553cbe85bc0980a6c23c161195354e3e007f7c3afe0c891967b1e4b6590"
+      ]
+    },
+    {
+      "id": "P022-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-UNIT-cargo-fmt.log#sha256=8e6e5366c848d64401c97d693266abb60c5c6132283635cfe5a32573283d19fb"
+      ]
+    },
+    {
+      "id": "P022-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-UNIT-cargo-clippy.log#sha256=55808347b4d9ca2b5d8809dc7a1b643ec4fea56e96d5f10f5f7815acc0745962"
+      ]
+    },
+    {
+      "id": "P022-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-UNIT-cargo-test.log#sha256=ee50a2c0544c79fd967902586a7e30cb50ada49d38f9914f380743df13cc7269"
+      ]
+    },
+    {
+      "id": "P022-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P022-REAL-lock",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py lock-coherence",
+      "fixture_hashes": [],
+      "expected": "ed25519-dalek fijado en environment.lock.json",
+      "observed": "exit=0; PASS 45 dependencias usadas coinciden en version y hash con Cargo.lock/package-lock.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-lock.log#sha256=518ae7cdbf9d8218106ecd2c0961bfdea5e087a05a7b2d05005de76661544711"
+      ]
+    },
+    {
+      "id": "P022-REAL-regresion-p021",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test worker",
+      "fixture_hashes": [],
+      "expected": "host de workers (P021) sigue en verde",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\worker.rs (target\\debug\\deps\\worker-9bb2ae5a6f6d2b6b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P022_runs/P022-REAL-regresion-p021.log#sha256=bafa98f9b9270df81be1c5cf05e72ada340bb46a12d7f14446fa997b9fd8ade3"
+      ]
+    },
+    {
+      "id": "P022-REAL-elevado-real",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test policy (consola elevada, LARM_EXPECT_ELEVATED=1)",
+      "fixture_hashes": [],
+      "expected": "LARM ejecutado como administrador rechaza lanzar adaptadores (observado con whoami real)",
+      "observed": "NO EJECUTADA: requiere que el operador ejecute las pruebas elevado con LARM_EXPECT_ELEVATED=1; aquí sólo hay integridad media",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P022-REAL-appcontainer",
+      "kind": "REAL",
+      "command": "worker en AppContainer (P130)",
+      "fixture_hashes": [],
+      "expected": "AppContainer con capability de red y ACL por SID de paquete como frontera del SO",
+      "observed": "NO EJECUTADA: no implementado: P130; toda ejecución es TRUSTED_ONLY",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "dependencia P020 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P021 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-12T07:29:56.163Z"
+}

@@ -1,0 +1,167 @@
+{
+  "prompt_id": "P007",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24",
+  "inputs_hash": "5660607e65ee48adf775ecb0dad5da25f9bdad06faf922c4a2ef55e9e97b4724",
+  "changed_files": [
+    ".gitignore",
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/src/broker.rs",
+    "crates/larm-api/src/jobs.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/tests/jobs.rs",
+    "crates/larm-domain/src/ports.rs",
+    "docs/operations/testing.md",
+    "rust-toolchain.toml",
+    "tests/fixtures/http/http_fake.py",
+    "tests/fixtures/workers/jsonrpc_fake.py",
+    "tools/check.ps1",
+    "tools/make_sparse.py",
+    "tools/p007_evidence.py",
+    "tools/test-integration.ps1",
+    "tools/verify_fixtures.py",
+    "tools/verify_p007.py"
+  ],
+  "tests": [
+    {
+      "id": "P007-CONTRACT-tags",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p007.py tags",
+      "fixture_hashes": [],
+      "expected": "ningún test omitido sin etiqueta real-hardware/network/destructive-disabled",
+      "observed": "exit=0; PASS sin tests omitidos sin etiqueta en 3 árboles (real-hardware, network, destructive-disabled)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-CONTRACT-tags.log#sha256=8ef49d86c287b48c8c6de885eb3e8cd44f30a89cf3b3d359ec1aac18e0dc1d2a"
+      ]
+    },
+    {
+      "id": "P007-FAULT-tags-untagged",
+      "kind": "FAULT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p007.py tags-neg",
+      "fixture_hashes": [],
+      "expected": "omisiones sin etiqueta detectadas; etiquetadas aceptadas",
+      "observed": "exit=0; PASS 3 omisiones sin etiqueta detectadas; las etiquetadas (real-hardware, [network]) se aceptan",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-FAULT-tags-untagged.log#sha256=b2cb5c065b04ecd1a1e244062d571764e12e321112323f2b1e3bcae989fe522a"
+      ]
+    },
+    {
+      "id": "P007-CONTRACT-selector",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p007.py selector",
+      "fixture_hashes": [],
+      "expected": "selector por prompt y escenario; escenario sin runner -> BLOCKED (exit 2)",
+      "observed": "exit=0; PASS 10 prompts con runner (P000, P001, P002, P003, P004, P005, P006, P007, P009, P107); escenario sin runner -> BLOCKED",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-CONTRACT-selector.log#sha256=787a1f49cfd68b9e5f499263c848379cad06b52d7f5acfbc836c724f19cf6bc7"
+      ]
+    },
+    {
+      "id": "P007-INTEGRATION-jobs",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test jobs",
+      "fixture_hashes": [],
+      "expected": "GET /jobs/{id}: fuentes registradas, visibilidad por principal, 400/404/503",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\jobs.rs (target\\debug\\deps\\jobs-63a3181b122090be.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-INTEGRATION-jobs.log#sha256=dd1c4d00423a90042383b604501bfd98626843a3a72e4d1d5790888edf5227d5"
+      ]
+    },
+    {
+      "id": "P007-INTEGRATION-fixture-jsonrpc",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_fixtures.py jsonrpc",
+      "fixture_hashes": [],
+      "expected": "worker JSON-RPC falso: 9 modos con procesos reales",
+      "observed": "exit=0; PASS 9 modos verificados: normal, bad-nonce, bad-version, crash-after, hang, no-heartbeat, garbage, oversize, stderr-flood",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-INTEGRATION-fixture-jsonrpc.log#sha256=6907a5a3e7d86bb9ac4efab25e0572e11035e66059def79a7e4be0fca2ab7e38"
+      ]
+    },
+    {
+      "id": "P007-INTEGRATION-fixture-http",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_fixtures.py http",
+      "fixture_hashes": [],
+      "expected": "servidor HTTP falso: Range, ETag, 429, HEAD, corte, registro sin secretos",
+      "observed": "exit=0; PASS JSON, Range 206, 416, ETag 304, HEAD, 429 Retry-After, corte a 1000 bytes, registro sin secretos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-INTEGRATION-fixture-http.log#sha256=5e044768f89eb082b0cc46b165e4d712c481f8ebfc5df56fc88a8dbff59ffe21"
+      ]
+    },
+    {
+      "id": "P007-INTEGRATION-fixture-sparse",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_fixtures.py sparse",
+      "fixture_hashes": [],
+      "expected": "fichero sparse de 8 GiB que ocupa KiB; denso exacto",
+      "observed": "exit=0; PASS 8 GiB lógicos con 65536 bytes en disco; 4 KiB denso con contenido conocido",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-INTEGRATION-fixture-sparse.log#sha256=3e2f9487e756fad740f0080518b99a0babb7d7e4bdbba620671ebb873a5b8fa7"
+      ]
+    },
+    {
+      "id": "P007-UNIT-db-temp-helper",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-db --test integration -- helper_de_base_temporal",
+      "fixture_hashes": [],
+      "expected": "base temporal migrada por prueba que se borra al soltarla",
+      "observed": "exit=0; Compiling larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) | Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 3.41s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-UNIT-db-temp-helper.log#sha256=c708055a5b63da83723077fec862212acf9608d73e8b78bba289ee6b4faa95ce"
+      ]
+    },
+    {
+      "id": "P007-REAL-check-ps1",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check.ps1",
+      "fixture_hashes": [],
+      "expected": "tools/check.ps1 completo (Rust, shell Tauri, arquitectura, copia, frontend) en PASS",
+      "observed": "exit=0; ==> npm_test | ==> npm_build | STATUS: PASS (12 checks, 0 fallos) -> C:\\Procesos\\Local AI Runtime Manager - LARM\\larm\\docs\\reports\\check.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-REAL-check-ps1.log#sha256=bfb7d116c497ddc5b233bc1768a132891b86e2cac9905b5f1507d403dd26a2e6"
+      ]
+    },
+    {
+      "id": "P007-REAL-integration-suite",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/test-integration.ps1",
+      "fixture_hashes": [],
+      "expected": "suite de integración base en PASS",
+      "observed": "exit=0; Running tests\\security.rs (target\\debug\\deps\\security-57c59898c7e82c4a.exe) | Running tests\\lifecycle.rs (target\\debug\\deps\\lifecycle-041a318747dcff58.exe) | Running tests\\integration.rs (target\\debug\\deps\\integration-c5ce4c0ac2c2c217.exe) | Running tests\\security.rs (target\\debug\\deps\\security-01d1d3df902b1522.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-REAL-integration-suite.log#sha256=6a0a989376e4ccd1aacfcba17b40ed285d4bcda367e28470c891ce3577b4ec1e"
+      ]
+    },
+    {
+      "id": "P007-REAL-coverage",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check.ps1 -SkipFrontend -SkipDesktop -Coverage",
+      "fixture_hashes": [],
+      "expected": "cobertura medida con cargo-llvm-cov 0.9.1 fijado en tools/.bin",
+      "observed": "exit=0; ==> package_copy | ==> coverage | STATUS: PASS (6 checks, 0 fallos) -> C:\\Procesos\\Local AI Runtime Manager - LARM\\larm\\docs\\reports\\check.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P007_runs/P007-REAL-coverage.log#sha256=33be3849cbba6c3438fed6a79136a45c7fc51c1a9f30eff2857154e0b2700235"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P001 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P006 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P005 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T09:27:43.922Z"
+}

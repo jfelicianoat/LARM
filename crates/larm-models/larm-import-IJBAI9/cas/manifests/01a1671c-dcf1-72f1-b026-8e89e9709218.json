@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "variant_id": "01a1671c-dcf1-72f1-b026-8e89e9709218",
+  "written_at": "2026-10-23T04:55:07.283Z",
+  "model": {
+    "name": "st",
+    "upstream_identity": null,
+    "evidence": {
+      "architecture": "llama",
+      "author": null,
+      "base_model": null,
+      "config_hash": null,
+      "parent_hashes": [],
+      "tokenizer_hash": null
+    }
+  },
+  "distribution": {
+    "source_id": "0192f000-0000-7000-8000-00000000f001",
+    "upstream_namespace": "local",
+    "upstream_model_id": "st#st",
+    "license_id": null
+  },
+  "revision": {
+    "revision_key": "content:5dc0cd2b897874efec63eebd8a09911f21e2dce816c138c41e4176a90954bd4b",
+    "manifest_hash": "5dc0cd2b897874efec63eebd8a09911f21e2dce816c138c41e4176a90954bd4b",
+    "upstream_commit": null
+  },
+  "variant": {
+    "format": "SafeTensors",
+    "quantization": null,
+    "architecture": "llama",
+    "capabilities": []
+  },
+  "artifacts": [
+    {
+      "filename": "config.json",
+      "role": "config",
+      "sha256": "fd11fd11fceeb9df51a63f347cec3af4051d086fccb030e78777a83a4d3289e8",
+      "size_bytes": 22,
+      "required": true,
+      "blob": "blobs/sha256/fd/fd11fd11fceeb9df51a63f347cec3af4051d086fccb030e78777a83a4d3289e8"
+    },
+    {
+      "filename": "model.safetensors",
+      "role": "weights",
+      "sha256": "1b8465de5fa5589417cd88380b2ff73de24beb33894e59d85a749ad16b277ce7",
+      "size_bytes": 2020,
+      "required": true,
+      "blob": "blobs/sha256/1b/1b8465de5fa5589417cd88380b2ff73de24beb33894e59d85a749ad16b277ce7"
+    },
+    {
+      "filename": "tokenizer.json",
+      "role": "tokenizer",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size_bytes": 2,
+      "required": true,
+      "blob": "blobs/sha256/44/44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    }
+  ]
+}

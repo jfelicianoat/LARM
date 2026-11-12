@@ -1,0 +1,51 @@
+{
+  "units": "bytes; GB examples use decimal 1000000000, UI renders IEC with exact bytes",
+  "cases": [
+    {
+      "id": "existing_source_same_volume",
+      "existing_bytes": "30000000000",
+      "new_phases": [
+        {
+          "phase": "convert",
+          "live_bytes": "27000000000"
+        }
+      ],
+      "peak_extra_bytes": "27000000000",
+      "total_peak_bytes": "57000000000",
+      "margin_bytes": "1350000000",
+      "required_free_bytes": "28350000000"
+    },
+    {
+      "id": "fresh_source_same_volume",
+      "existing_bytes": "0",
+      "new_phases": [
+        {
+          "phase": "download",
+          "live_bytes": "30000000000"
+        },
+        {
+          "phase": "convert",
+          "live_bytes": "57000000000"
+        }
+      ],
+      "peak_extra_bytes": "57000000000",
+      "total_peak_bytes": "57000000000",
+      "margin_bytes": "2850000000",
+      "required_free_bytes": "59850000000"
+    },
+    {
+      "id": "small_file_minimum_margin",
+      "existing_bytes": "0",
+      "new_phases": [
+        {
+          "phase": "copy",
+          "live_bytes": "1024"
+        }
+      ],
+      "peak_extra_bytes": "1024",
+      "total_peak_bytes": "1024",
+      "margin_bytes": "1073741824",
+      "required_free_bytes": "1073742848"
+    }
+  ]
+}

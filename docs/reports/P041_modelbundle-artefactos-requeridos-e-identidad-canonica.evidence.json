@@ -1,0 +1,278 @@
+{
+  "prompt_id": "P041",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "f04e469a1930a7354880be4815737f9de6f95233549070d220ddc2fad932ac89",
+  "changed_files": [
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/src/models.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/models.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/models.rs",
+    "crates/larm-db/src/variants.rs",
+    "crates/larm-domain/src/model.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-models/Cargo.toml",
+    "crates/larm-models/src/bundle.rs",
+    "crates/larm-models/src/identity.rs",
+    "crates/larm-models/src/lib.rs",
+    "crates/larm-models/src/registry.rs",
+    "crates/larm-models/tests/bundles.rs",
+    "crates/larm-models/tests/registry.rs",
+    "docs/api/openapi.json",
+    "docs/operations/models.md",
+    "tools/p041_evidence.py",
+    "tools/p041_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P041-UNIT-bundle",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- model::bundle_tests",
+      "fixture_hashes": [],
+      "expected": "hash del bundle determinista e independiente del orden; identidad solo con requeridos; rutas POSIX, duplicados sin mayúsculas, sha256 y rango; estados VERIFIED/INCOMPLETE/CORRUPT; roles necesarios por formato",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-UNIT-bundle.log#sha256=13d4db18636c992af98f2d55a7297c0592c2f14d918d6968775ac7a128a74919"
+      ]
+    },
+    {
+      "id": "P041-UNIT-identidad",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-models --lib -- identity::tests",
+      "fixture_hashes": [],
+      "expected": "IDENTICAL por upstream o hashes+config+tokenizador; UNRELATED por arquitectura; derivada por base/hashes padre; PROBABLE sin fusión; nombre solo = UNKNOWN; serialización",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_models-4ec57745bae4d811.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-UNIT-identidad.log#sha256=5818d7fa97c47edc0e37018eaff8535b47b5d5b55c1d428c7e2dc9cec70770c5"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-hashes-identicos",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test bundles -- hashes_identicos_agrupan --exact",
+      "fixture_hashes": [],
+      "expected": "otra fuente y nombre con los mismos bytes: un modelo; identidad sin opcionales",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\bundles.rs (target\\debug\\deps\\bundles-4949ff5fbb2bb4c0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-hashes-identicos.log#sha256=0dbda4e44e6919b98d5cf08761c661bc0847035ac53eccdb6ad167b329b62cb6"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-mismo-nombre",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test bundles -- mismo_nombre_modelo_distinto --exact",
+      "fixture_hashes": [],
+      "expected": "mismo nombre y otra arquitectura: UNRELATED, sin duplicado, motivos guardados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\bundles.rs (target\\debug\\deps\\bundles-4949ff5fbb2bb4c0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-mismo-nombre.log#sha256=d6d8f5e5eeebb95f6180c0889f11cc284e8c282a72af86d6990b95218344bdab"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-derivada",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test bundles -- cuantizacion_derivada_conserva_linaje --exact",
+      "fixture_hashes": [],
+      "expected": "cuantización con base_model y hashes padre: DERIVED_MODEL con linaje",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\bundles.rs (target\\debug\\deps\\bundles-4949ff5fbb2bb4c0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-derivada.log#sha256=87e299362dfaecb546a63bbcf87b312ac012ae07981a07a944fb42782372fdeb"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-probable",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test bundles -- probable_no_se_fusiona --exact",
+      "fixture_hashes": [],
+      "expected": "PROBABLE_SAME_MODEL no fusiona: possible_duplicates en los dos",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\bundles.rs (target\\debug\\deps\\bundles-4949ff5fbb2bb4c0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-probable.log#sha256=e9f8e8f4140aaaf883a921688df2f157910dca17577b01fde8df0608b9ea9dcd"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-probable-por-evidencia",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test bundles -- probable_por_evidencia_sin_nombre_ni_bytes_comunes --exact",
+      "fixture_hashes": [],
+      "expected": "candidatos por evidencia declarada (regresión del defecto hallado en real)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\bundles.rs (target\\debug\\deps\\bundles-4949ff5fbb2bb4c0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-probable-por-evidencia.log#sha256=8f138a4778e8a6f4d613e75940d0136b911ebbc4cc9a528b03c87a1bb7ec8350"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-sin-evidencia",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test bundles -- sin_evidencia_suficiente_no_se_anota_duplicado --exact",
+      "fixture_hashes": [],
+      "expected": "UNKNOWN por falta de evidencia no se anota",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\bundles.rs (target\\debug\\deps\\bundles-4949ff5fbb2bb4c0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-sin-evidencia.log#sha256=8350b45a9c0abfbaf15f5a6d8cdef0f9fea2a602cd42f2a6a0ff54a1d446b8aa"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-bundle-en-disco",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test bundles -- bundle_verificado_incompleto_y_corrupto --exact",
+      "fixture_hashes": [],
+      "expected": "ficheros reales: VERIFIED, shard ausente INCOMPLETE, byte cambiado CORRUPT, opcional ausente VERIFIED; CAS; idempotente",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\bundles.rs (target\\debug\\deps\\bundles-4949ff5fbb2bb4c0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-bundle-en-disco.log#sha256=1bd705d98f96872b2b78d43e39e3d4e01b34085e9d1ec1fe88b16809705378f1"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-completitud",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test bundles -- completitud_segun_variante_y_negativos --exact",
+      "fixture_hashes": [],
+      "expected": "rol mmproj faltante INCOMPLETE; sin hash no hay bundle; rutas no POSIX o duplicadas sin escribir; formato desconocido sin requisitos inventados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\bundles.rs (target\\debug\\deps\\bundles-4949ff5fbb2bb4c0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-completitud.log#sha256=1fee8d77b1fb6cff698625c849dcf53a42ea1f99b0e45fd5ac00e53824757586"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-registro-p040",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test registry",
+      "fixture_hashes": [],
+      "expected": "las reglas de P040 siguen con el registro ampliado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\registry.rs (target\\debug\\deps\\registry-46ad2dfdd31f1501.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-registro-p040.log#sha256=622bb8b07e2648a15db2530fb485702c191940f8b2326e2c2a8f79a8c673268a"
+      ]
+    },
+    {
+      "id": "P041-INTEGRATION-api",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test models",
+      "fixture_hashes": [],
+      "expected": "GET /variants, /models/{id}/variants (404 si el modelo no existe), /model-bundles?state, /model-artifacts?q, detalle, filtros no previstos 400 y 404",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\models.rs (target\\debug\\deps\\models-d76e0953603ecd87.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-INTEGRATION-api.log#sha256=98afa85f7ccc28dc7d983e6af7259337a156afa92505f8bd3657bdf7487622da"
+      ]
+    },
+    {
+      "id": "P041-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-UNIT-cargo-fmt.log#sha256=3997a81b3a6a2e03afb5d43557876abf00acef88fd74c5b0359a27e776cad272"
+      ]
+    },
+    {
+      "id": "P041-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-UNIT-cargo-clippy.log#sha256=39daf2f24bc1be8f6b7063af8afd152063043f319980af0a7a88d91fb6638bb4"
+      ]
+    },
+    {
+      "id": "P041-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-UNIT-cargo-test.log#sha256=91cceebdd92c457af2fa94af92c0b458c4946370c2ffa02b858af346d768c9fb"
+      ]
+    },
+    {
+      "id": "P041-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P041-REAL-build-daemon",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.22s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-REAL-build-daemon.log#sha256=312e84cb20d19136d2616f0723bcd656b09dd0d64d6a4499d707151f32e69ff9"
+      ]
+    },
+    {
+      "id": "P041-REAL-openapi",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p005_real.py openapi",
+      "fixture_hashes": [],
+      "expected": "docs/api/openapi.json al día con las 7 rutas de lectura de P041 implementadas",
+      "observed": "exit=0; PASS al día y válido OpenAPI 3.1.0: 142 operaciones, 42 implementadas, 281 schemas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-REAL-openapi.log#sha256=15236ac435774a1eb083426da51aaeb1b2d32d9c93507f63a88b269721753f47"
+      ]
+    },
+    {
+      "id": "P041-REAL-identidad-y-bundle",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p041_real.py serve",
+      "fixture_hashes": [],
+      "expected": "PC IA: IDENTICAL por bytes agrupa, DERIVED con linaje, PROBABLE sin fusión, UNRELATED aparte; bundle-verify sobre ficheros reales VERIFIED/INCOMPLETE/CORRUPT; rol faltante; API",
+      "observed": "exit=0; [PASS] bundle-en-disco: 2 shards + mmproj + README: VERIFIED; sin un shard INCOMPLETE; un byte del mmproj CORRUPT; restaurado y sin el README opcional VERIFIED (CAS v5) | [PASS] rol-faltante: GGUF de visión sin mmproj: ficheros completos pero INCOMPLETE por rol necesario | [PASS] api: 6 variantes; 2 del modelo agrupado; 1 bundle VERIFIED; artefacto por nombre; detalle con bundle_hash; 404 y 400 | PASS 7 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-REAL-identidad-y-bundle.log#sha256=34ca8e246c537268ea0770034125161b9ba277e4129d5f44a645b07e0f5d8af7"
+      ]
+    },
+    {
+      "id": "P041-REAL-regresion-p040",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p040_real.py serve",
+      "fixture_hashes": [
+        "import-multifuente.json:60051ed68d9bb393819c4d3d9a579a7c4e00fb766d4cc163586926b2e00ce91e"
+      ],
+      "expected": "la prueba real de P040 sigue en verde con el registro ampliado",
+      "observed": "exit=0; [PASS] api-modelos: GET /models: 2 grupos; capability=ocr (alias) devuelve Qwen-X; detalle con identidad upstream y metadata | [PASS] api-distribuciones-y-revisiones: por fuente: HF 2 (Qwen-X y la comunitaria), ModelScope 1 del mismo modelo; 2 revisiones CURRENT, 1 PROVISIONAL pending:; metadata original conservada | [PASS] negativos-y-eventos: 404 desconocido; 400 id/filtros no previstos; 401 sin token; 10 eventos model.state_changed (2 modelos + 1 duplicado + 3 distribuciones + 4 revisiones) | PASS 6 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P041_runs/P041-REAL-regresion-p040.log#sha256=eb8648c418e2b8f774a539b9b5117e546443b7499589018d13487a6fcd4def49"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P040 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T20:07:10.433Z"
+}

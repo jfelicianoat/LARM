@@ -1,0 +1,14 @@
+{
+  "provider": "CIVITAI",
+  "adapter_id": "larm.source.civitai",
+  "network_origins": [
+    "https://civitai.com:443"
+  ],
+  "capabilities": [
+    "source.search",
+    "source.get_model",
+    "source.list_revisions",
+    "source.get_manifest",
+    "source.estimate_size"
+  ]
+}

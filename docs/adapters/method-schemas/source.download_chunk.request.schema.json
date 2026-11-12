@@ -1,0 +1,152 @@
+{
+  "$defs": {
+    "larm__RevisionRef": {
+      "additionalProperties": false,
+      "properties": {
+        "revision_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "upstream_model_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "upstream_namespace": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "upstream_namespace",
+        "upstream_model_id",
+        "revision_key"
+      ],
+      "type": "object"
+    },
+    "larm__SourceDownloadChunkRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "job_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "max_bytes": {
+          "description": "Must be between 1 and 524288 bytes inclusive.",
+          "pattern": "^[1-9][0-9]*$",
+          "type": "string"
+        },
+        "offset": {
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "plan_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "plan_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "relative_path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        "revision": {
+          "$ref": "#/$defs/larm__RevisionRef"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "validator": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/larm__SourceDownloadResumeValidator"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "source_id",
+        "job_id",
+        "plan_id",
+        "plan_hash",
+        "approval_id",
+        "revision",
+        "relative_path",
+        "offset",
+        "max_bytes",
+        "validator"
+      ],
+      "type": "object"
+    },
+    "larm__SourceDownloadResumeValidator": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "STRONG_ETAG"
+            },
+            "value": {
+              "maxLength": 1024,
+              "minLength": 2,
+              "pattern": "^\"[!#-~]*\"$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "value"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "LAST_MODIFIED_AND_SHA256"
+            },
+            "last_modified": {
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "last_modified",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "$ref": "#/$defs/larm__SourceDownloadChunkRequest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "larm__InstallStatusRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "plan_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "plan_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "plan_id",
+        "plan_hash"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__InstallStatusRequest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,1839 @@
+{
+  "schema_version": "1.0",
+  "scope": "DOCUMENTARY_CONTRACT_VALIDATION_ONLY",
+  "cases": [
+    {
+      "id": "H01-001",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"stable\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_version",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "stable"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-002",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"stable\"]]",
+      "schema": "larm.schema.json#/$defs/runtime_versionCreate",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "stable"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-003",
+      "finding": "H01",
+      "label": "[[[\"allowed_channels\"],[\"stable\"]]]",
+      "schema": "larm.schema.json#/$defs/RuntimeChannelPolicy",
+      "changes": [
+        [
+          [
+            "allowed_channels"
+          ],
+          [
+            "stable"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-004",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"prerelease\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_version",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "prerelease"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-005",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"prerelease\"]]",
+      "schema": "larm.schema.json#/$defs/runtime_versionCreate",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "prerelease"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-006",
+      "finding": "H01",
+      "label": "[[[\"allowed_channels\"],[\"prerelease\"]]]",
+      "schema": "larm.schema.json#/$defs/RuntimeChannelPolicy",
+      "changes": [
+        [
+          [
+            "allowed_channels"
+          ],
+          [
+            "prerelease"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-007",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"nightly\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_version",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "nightly"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-008",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"nightly\"]]",
+      "schema": "larm.schema.json#/$defs/runtime_versionCreate",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "nightly"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-009",
+      "finding": "H01",
+      "label": "[[[\"allowed_channels\"],[\"nightly\"]]]",
+      "schema": "larm.schema.json#/$defs/RuntimeChannelPolicy",
+      "changes": [
+        [
+          [
+            "allowed_channels"
+          ],
+          [
+            "nightly"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-010",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"commit\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_version",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "commit"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-011",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"commit\"]]",
+      "schema": "larm.schema.json#/$defs/runtime_versionCreate",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "commit"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-012",
+      "finding": "H01",
+      "label": "[[[\"allowed_channels\"],[\"commit\"]]]",
+      "schema": "larm.schema.json#/$defs/RuntimeChannelPolicy",
+      "changes": [
+        [
+          [
+            "allowed_channels"
+          ],
+          [
+            "commit"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-013",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"custom\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_version",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "custom"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-014",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"custom\"]]",
+      "schema": "larm.schema.json#/$defs/runtime_versionCreate",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "custom"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-015",
+      "finding": "H01",
+      "label": "[[[\"allowed_channels\"],[\"custom\"]]]",
+      "schema": "larm.schema.json#/$defs/RuntimeChannelPolicy",
+      "changes": [
+        [
+          [
+            "allowed_channels"
+          ],
+          [
+            "custom"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H01-016",
+      "finding": "H01",
+      "label": "[[[\"allowed_channels\"],[]]]",
+      "schema": "larm.schema.json#/$defs/RuntimeChannelPolicy",
+      "changes": [
+        [
+          [
+            "allowed_channels"
+          ],
+          []
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H01-017",
+      "finding": "H01",
+      "label": "[[[\"channel\"],\"NOT_A_CHANNEL\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_version",
+      "changes": [
+        [
+          [
+            "channel"
+          ],
+          "NOT_A_CHANNEL"
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H02-018",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"PREBUILT_BINARY\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "PREBUILT_BINARY"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-019",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"PREBUILT_BINARY\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "PREBUILT_BINARY"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-020",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"GITHUB_RELEASE\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "GITHUB_RELEASE"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-021",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"GITHUB_RELEASE\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "GITHUB_RELEASE"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-022",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"SOURCE_BUILD\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "SOURCE_BUILD"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-023",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"SOURCE_BUILD\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "SOURCE_BUILD"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-024",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"WINGET\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "WINGET"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-025",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"WINGET\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "WINGET"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-026",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"PIP\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "PIP"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-027",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"PIP\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "PIP"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-028",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"UV\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "UV"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-029",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"UV\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "UV"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-030",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"CONDA\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "CONDA"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-031",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"CONDA\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "CONDA"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-032",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"MAMBA\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "MAMBA"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-033",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"MAMBA\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "MAMBA"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-034",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"NUGET\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "NUGET"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-035",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"NUGET\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "NUGET"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-036",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"WSL\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "WSL"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-037",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"WSL\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "WSL"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-038",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"CONTAINER\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "CONTAINER"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-039",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"CONTAINER\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "CONTAINER"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-040",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"CUSTOM\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "CUSTOM"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-041",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"CUSTOM\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "CUSTOM"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-042",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"MSI_MANAGED\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "MSI_MANAGED"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-043",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"MSI_MANAGED\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "MSI_MANAGED"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-044",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"PYTHON_VENV\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "PYTHON_VENV"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-045",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"PYTHON_VENV\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "PYTHON_VENV"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-046",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"EXTERNAL_ADOPTION\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "EXTERNAL_ADOPTION"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-047",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"EXTERNAL_ADOPTION\"]]",
+      "schema": "domain.schema.json#/$defs/runtime_installation",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "EXTERNAL_ADOPTION"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H02-048",
+      "finding": "H02",
+      "label": "[[[\"strategy\"],\"FAKE\"]]",
+      "schema": "larm.schema.json#/$defs/InstallRequest",
+      "changes": [
+        [
+          [
+            "strategy"
+          ],
+          "FAKE"
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H03-049",
+      "finding": "H03",
+      "label": "[[[\"memory_limit_bytes\"],\"1073741824\"],[[\"runtime_arguments\"],[\"--example\"]],[[\"environment\"],{\"allowlist\":[\"LARM_TEST\"],\"variables\":[{\"name\":\"LARM_TEST\",\"value\":\"ok\"}]}],[[\"adapter_options\"],{\"example_mode\":true}]]",
+      "schema": "larm.schema.json#/$defs/LaunchParameters",
+      "changes": [
+        [
+          [
+            "memory_limit_bytes"
+          ],
+          "1073741824"
+        ],
+        [
+          [
+            "runtime_arguments"
+          ],
+          [
+            "--example"
+          ]
+        ],
+        [
+          [
+            "environment"
+          ],
+          {
+            "allowlist": [
+              "LARM_TEST"
+            ],
+            "variables": [
+              {
+                "name": "LARM_TEST",
+                "value": "ok"
+              }
+            ]
+          }
+        ],
+        [
+          [
+            "adapter_options"
+          ],
+          {
+            "example_mode": true
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H03-050",
+      "finding": "H03",
+      "label": "[[[\"environment\"],{\"allowlist\":[\"LARM_TEST\"],\"variables\":[{\"name\":\"LARM_TEST\",\"credential_reference\":\"larm/test/key\"}]}]]",
+      "schema": "larm.schema.json#/$defs/LaunchParameters",
+      "changes": [
+        [
+          [
+            "environment"
+          ],
+          {
+            "allowlist": [
+              "LARM_TEST"
+            ],
+            "variables": [
+              {
+                "name": "LARM_TEST",
+                "credential_reference": "larm/test/key"
+              }
+            ]
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H03-051",
+      "finding": "H03",
+      "label": "[[[\"memory_limit_bytes\"],\"0\"]]",
+      "schema": "larm.schema.json#/$defs/LaunchParameters",
+      "changes": [
+        [
+          [
+            "memory_limit_bytes"
+          ],
+          "0"
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H03-052",
+      "finding": "H03",
+      "label": "[[[\"memory_limit_bytes\"],\"9223372036854775808\"]]",
+      "schema": "larm.schema.json#/$defs/LaunchParameters",
+      "changes": [
+        [
+          [
+            "memory_limit_bytes"
+          ],
+          "9223372036854775808"
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H03-053",
+      "finding": "H03",
+      "label": "[[[\"environment\"],{\"allowlist\":[],\"variables\":[{\"name\":\"LARM_TEST\",\"value\":\"ok\"}]}]]",
+      "schema": "larm.schema.json#/$defs/LaunchParameters",
+      "changes": [
+        [
+          [
+            "environment"
+          ],
+          {
+            "allowlist": [],
+            "variables": [
+              {
+                "name": "LARM_TEST",
+                "value": "ok"
+              }
+            ]
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H03-054",
+      "finding": "H03",
+      "label": "[[[\"environment\"],{\"allowlist\":[\"LARM_TEST\"],\"variables\":[{\"name\":\"LARM_TEST\",\"value\":\"x\",\"credential_reference\":\"larm/test/key\"}]}]]",
+      "schema": "larm.schema.json#/$defs/LaunchParameters",
+      "changes": [
+        [
+          [
+            "environment"
+          ],
+          {
+            "allowlist": [
+              "LARM_TEST"
+            ],
+            "variables": [
+              {
+                "name": "LARM_TEST",
+                "value": "x",
+                "credential_reference": "larm/test/key"
+              }
+            ]
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H03-055",
+      "finding": "H03",
+      "label": "[[[\"environment\"],{\"allowlist\":[\"LARM_TEST\"],\"variables\":[{\"name\":\"LARM_TEST\",\"value\":\"x\"},{\"name\":\"larm_test\",\"value\":\"y\"}]}]]",
+      "schema": "larm.schema.json#/$defs/LaunchParameters",
+      "changes": [
+        [
+          [
+            "environment"
+          ],
+          {
+            "allowlist": [
+              "LARM_TEST"
+            ],
+            "variables": [
+              {
+                "name": "LARM_TEST",
+                "value": "x"
+              },
+              {
+                "name": "larm_test",
+                "value": "y"
+              }
+            ]
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H04-056",
+      "finding": "H04",
+      "label": "[[[\"environment\"],{\"allowlist\":[\"LARM_TEST\"],\"variables\":[{\"name\":\"LARM_TEST\",\"value\":\"ok\"}]}]]",
+      "schema": "larm.schema.json#/$defs/DeclarativeAdapter",
+      "changes": [
+        [
+          [
+            "environment"
+          ],
+          {
+            "allowlist": [
+              "LARM_TEST"
+            ],
+            "variables": [
+              {
+                "name": "LARM_TEST",
+                "value": "ok"
+              }
+            ]
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H04-057",
+      "finding": "H04",
+      "label": "[[[\"environment\"],{\"allowlist\":[\"LARM_TEST\"],\"variables\":[{\"name\":\"LARM_TEST\",\"credential_reference\":\"larm/test/key\"}]}]]",
+      "schema": "larm.schema.json#/$defs/DeclarativeAdapter",
+      "changes": [
+        [
+          [
+            "environment"
+          ],
+          {
+            "allowlist": [
+              "LARM_TEST"
+            ],
+            "variables": [
+              {
+                "name": "LARM_TEST",
+                "credential_reference": "larm/test/key"
+              }
+            ]
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H04-058",
+      "finding": "H04",
+      "label": "[[[\"environment\"],{\"allowlist\":[\"LARM_TEST\"],\"variables\":[{\"name\":\"LARM_TEST\",\"credential_reference\":\"ai-broker/key\"}]}]]",
+      "schema": "larm.schema.json#/$defs/DeclarativeAdapter",
+      "changes": [
+        [
+          [
+            "environment"
+          ],
+          {
+            "allowlist": [
+              "LARM_TEST"
+            ],
+            "variables": [
+              {
+                "name": "LARM_TEST",
+                "credential_reference": "ai-broker/key"
+              }
+            ]
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H05-059",
+      "finding": "H05",
+      "label": "[[[\"architectures\"],[\"transformer\"]],[[\"formats\"],[\"GGUF\"]],[[\"quantizations\"],[\"Q4_K_M\"]],[[\"runtime_ids\"],[\"00000000-0000-7000-8000-000000000001\"]],[[\"licenses\"],[\"example-license\"]],[[\"parameter_count\"],{\"minimum\":\"1000000000\",\"maximum\":\"7000000000\"}],[[\"size_bytes\"],{\"minimum\":\"1024\",\"maximum\":\"9007199254740993\"}],[[\"trust_score\"],{\"minimum\":60,\"maximum\":100}],[[\"certification_statuses\"],[\"CERTIFIED\"]],[[\"only_executable\"],true],[[\"only_recommended\"],true],[[\"show_incompatible\"],false],[[\"cursor\"],null],[[\"limit\"],50]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "architectures"
+          ],
+          [
+            "transformer"
+          ]
+        ],
+        [
+          [
+            "formats"
+          ],
+          [
+            "GGUF"
+          ]
+        ],
+        [
+          [
+            "quantizations"
+          ],
+          [
+            "Q4_K_M"
+          ]
+        ],
+        [
+          [
+            "runtime_ids"
+          ],
+          [
+            "00000000-0000-7000-8000-000000000001"
+          ]
+        ],
+        [
+          [
+            "licenses"
+          ],
+          [
+            "example-license"
+          ]
+        ],
+        [
+          [
+            "parameter_count"
+          ],
+          {
+            "minimum": "1000000000",
+            "maximum": "7000000000"
+          }
+        ],
+        [
+          [
+            "size_bytes"
+          ],
+          {
+            "minimum": "1024",
+            "maximum": "9007199254740993"
+          }
+        ],
+        [
+          [
+            "trust_score"
+          ],
+          {
+            "minimum": 60,
+            "maximum": 100
+          }
+        ],
+        [
+          [
+            "certification_statuses"
+          ],
+          [
+            "CERTIFIED"
+          ]
+        ],
+        [
+          [
+            "only_executable"
+          ],
+          true
+        ],
+        [
+          [
+            "only_recommended"
+          ],
+          true
+        ],
+        [
+          [
+            "show_incompatible"
+          ],
+          false
+        ],
+        [
+          [
+            "cursor"
+          ],
+          null
+        ],
+        [
+          [
+            "limit"
+          ],
+          50
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-060",
+      "finding": "H05",
+      "label": "[[[\"architectures\"],[\"transformer\"]]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "architectures"
+          ],
+          [
+            "transformer"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-061",
+      "finding": "H05",
+      "label": "[[[\"formats\"],[\"GGUF\"]]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "formats"
+          ],
+          [
+            "GGUF"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-062",
+      "finding": "H05",
+      "label": "[[[\"quantizations\"],[\"Q4_K_M\"]]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "quantizations"
+          ],
+          [
+            "Q4_K_M"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-063",
+      "finding": "H05",
+      "label": "[[[\"runtime_ids\"],[\"00000000-0000-7000-8000-000000000001\"]]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "runtime_ids"
+          ],
+          [
+            "00000000-0000-7000-8000-000000000001"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-064",
+      "finding": "H05",
+      "label": "[[[\"licenses\"],[\"example-license\"]]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "licenses"
+          ],
+          [
+            "example-license"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-065",
+      "finding": "H05",
+      "label": "[[[\"parameter_count\"],{\"minimum\":\"1000000000\",\"maximum\":\"7000000000\"}]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "parameter_count"
+          ],
+          {
+            "minimum": "1000000000",
+            "maximum": "7000000000"
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-066",
+      "finding": "H05",
+      "label": "[[[\"size_bytes\"],{\"minimum\":\"1024\",\"maximum\":\"9007199254740993\"}]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "size_bytes"
+          ],
+          {
+            "minimum": "1024",
+            "maximum": "9007199254740993"
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-067",
+      "finding": "H05",
+      "label": "[[[\"trust_score\"],{\"minimum\":60,\"maximum\":100}]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "trust_score"
+          ],
+          {
+            "minimum": 60,
+            "maximum": 100
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-068",
+      "finding": "H05",
+      "label": "[[[\"certification_statuses\"],[\"CERTIFIED\"]]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "certification_statuses"
+          ],
+          [
+            "CERTIFIED"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-069",
+      "finding": "H05",
+      "label": "[[[\"only_executable\"],true]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "only_executable"
+          ],
+          true
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-070",
+      "finding": "H05",
+      "label": "[[[\"only_recommended\"],true]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "only_recommended"
+          ],
+          true
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-071",
+      "finding": "H05",
+      "label": "[[[\"show_incompatible\"],false]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "show_incompatible"
+          ],
+          false
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-072",
+      "finding": "H05",
+      "label": "[[[\"cursor\"],null]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "cursor"
+          ],
+          null
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-073",
+      "finding": "H05",
+      "label": "[[[\"limit\"],50]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "limit"
+          ],
+          50
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H05-074",
+      "finding": "H05",
+      "label": "[[[\"parameter_count\"],{\"minimum\":\"5\",\"maximum\":\"4\"}]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "parameter_count"
+          ],
+          {
+            "minimum": "5",
+            "maximum": "4"
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H05-075",
+      "finding": "H05",
+      "label": "[[[\"trust_score\"],{\"minimum\":90,\"maximum\":60}]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "trust_score"
+          ],
+          {
+            "minimum": 90,
+            "maximum": 60
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H05-076",
+      "finding": "H05",
+      "label": "[[[\"limit\"],201]]",
+      "schema": "larm.schema.json#/$defs/Search",
+      "changes": [
+        [
+          [
+            "limit"
+          ],
+          201
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H06-077",
+      "finding": "H06",
+      "label": "[[[\"mcp_scopes\"],[\"start\"]],[[\"api_scopes\"],[\"leases:manage\"]]]",
+      "schema": "larm.schema.json#/$defs/McpPrincipal",
+      "changes": [
+        [
+          [
+            "mcp_scopes"
+          ],
+          [
+            "start"
+          ]
+        ],
+        [
+          [
+            "api_scopes"
+          ],
+          [
+            "leases:manage"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H06-078",
+      "finding": "H06",
+      "label": "[[[\"mcp_scopes\"],[\"start\",\"admin\"]],[[\"api_scopes\"],[\"leases:manage\"]]]",
+      "schema": "larm.schema.json#/$defs/McpPrincipal",
+      "changes": [
+        [
+          [
+            "mcp_scopes"
+          ],
+          [
+            "start",
+            "admin"
+          ]
+        ],
+        [
+          [
+            "api_scopes"
+          ],
+          [
+            "leases:manage"
+          ]
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H06-079",
+      "finding": "H06",
+      "label": "[[[\"mcp_scopes\"],[\"FAKE\"]]]",
+      "schema": "larm.schema.json#/$defs/McpPrincipal",
+      "changes": [
+        [
+          [
+            "mcp_scopes"
+          ],
+          [
+            "FAKE"
+          ]
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H06-080",
+      "finding": "H06",
+      "label": "[[[\"token_audience\"],\"ai-broker\"]]",
+      "schema": "larm.schema.json#/$defs/McpPrincipal",
+      "changes": [
+        [
+          [
+            "token_audience"
+          ],
+          "ai-broker"
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H07-081",
+      "finding": "H07",
+      "label": "[[[\"state\"],\"FAILED_RECOVERABLE\"]]",
+      "schema": "domain.schema.json#/$defs/transformation_job",
+      "changes": [
+        [
+          [
+            "state"
+          ],
+          "FAILED_RECOVERABLE"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H07-082",
+      "finding": "H07",
+      "label": "[[[\"state\"],\"FAILED_RECOVERABLE\"]]",
+      "schema": "larm.schema.json#/$defs/transformation_jobCreate",
+      "changes": [
+        [
+          [
+            "state"
+          ],
+          "FAILED_RECOVERABLE"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-083",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"BACKGROUND\"]]",
+      "schema": "larm.schema.json#/$defs/DownloadPlanRequest",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "BACKGROUND"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-084",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"BACKGROUND\"]]",
+      "schema": "domain.schema.json#/$defs/download_job",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "BACKGROUND"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-085",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"BACKGROUND\"]]",
+      "schema": "larm.schema.json#/$defs/DownloadPriorityUpdate",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "BACKGROUND"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-086",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"NORMAL\"]]",
+      "schema": "larm.schema.json#/$defs/DownloadPlanRequest",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "NORMAL"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-087",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"NORMAL\"]]",
+      "schema": "domain.schema.json#/$defs/download_job",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "NORMAL"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-088",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"NORMAL\"]]",
+      "schema": "larm.schema.json#/$defs/DownloadPriorityUpdate",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "NORMAL"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-089",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"HIGH\"]]",
+      "schema": "larm.schema.json#/$defs/DownloadPlanRequest",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "HIGH"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-090",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"HIGH\"]]",
+      "schema": "domain.schema.json#/$defs/download_job",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "HIGH"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-091",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"HIGH\"]]",
+      "schema": "larm.schema.json#/$defs/DownloadPriorityUpdate",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "HIGH"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-092",
+      "finding": "H08",
+      "label": "[[[\"storage\",\"download_bandwidth_limit_bytes_per_second\"],null]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "download_bandwidth_limit_bytes_per_second"
+          ],
+          null
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-093",
+      "finding": "H08",
+      "label": "[[[\"storage\",\"download_bandwidth_limit_bytes_per_second\"],\"1048576\"]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "download_bandwidth_limit_bytes_per_second"
+          ],
+          "1048576"
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H08-094",
+      "finding": "H08",
+      "label": "[[[\"storage\",\"download_bandwidth_limit_bytes_per_second\"],\"0\"]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "download_bandwidth_limit_bytes_per_second"
+          ],
+          "0"
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H08-095",
+      "finding": "H08",
+      "label": "[[[\"priority\"],\"PINNED\"]]",
+      "schema": "larm.schema.json#/$defs/DownloadPriorityUpdate",
+      "changes": [
+        [
+          [
+            "priority"
+          ],
+          "PINNED"
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H09-096",
+      "finding": "H09",
+      "label": "[[[\"storage\",\"low_disk_thresholds\"],{\"mode\":\"PERCENT\",\"warning_basis_points\":1500,\"critical_basis_points\":500}]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "low_disk_thresholds"
+          ],
+          {
+            "mode": "PERCENT",
+            "warning_basis_points": 1500,
+            "critical_basis_points": 500
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H09-097",
+      "finding": "H09",
+      "label": "[[[\"storage\",\"low_disk_thresholds\"],{\"mode\":\"BYTES\",\"warning_bytes\":\"15000000000\",\"critical_bytes\":\"5000000000\"}]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "low_disk_thresholds"
+          ],
+          {
+            "mode": "BYTES",
+            "warning_bytes": "15000000000",
+            "critical_bytes": "5000000000"
+          }
+        ]
+      ],
+      "expected_valid": true
+    },
+    {
+      "id": "H09-098",
+      "finding": "H09",
+      "label": "[[[\"storage\",\"low_disk_thresholds\"],{\"mode\":\"PERCENT\",\"warning_basis_points\":500,\"critical_basis_points\":500}]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "low_disk_thresholds"
+          ],
+          {
+            "mode": "PERCENT",
+            "warning_basis_points": 500,
+            "critical_basis_points": 500
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H09-099",
+      "finding": "H09",
+      "label": "[[[\"storage\",\"low_disk_thresholds\"],{\"mode\":\"PERCENT\",\"warning_basis_points\":500,\"critical_basis_points\":1500}]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "low_disk_thresholds"
+          ],
+          {
+            "mode": "PERCENT",
+            "warning_basis_points": 500,
+            "critical_basis_points": 1500
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H09-100",
+      "finding": "H09",
+      "label": "[[[\"storage\",\"low_disk_thresholds\"],{\"mode\":\"BYTES\",\"warning_bytes\":\"5\",\"critical_bytes\":\"5\"}]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "low_disk_thresholds"
+          ],
+          {
+            "mode": "BYTES",
+            "warning_bytes": "5",
+            "critical_bytes": "5"
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H09-101",
+      "finding": "H09",
+      "label": "[[[\"storage\",\"low_disk_thresholds\"],{\"mode\":\"BYTES\",\"warning_bytes\":\"5\",\"critical_bytes\":\"6\"}]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "low_disk_thresholds"
+          ],
+          {
+            "mode": "BYTES",
+            "warning_bytes": "5",
+            "critical_bytes": "6"
+          }
+        ]
+      ],
+      "expected_valid": false
+    },
+    {
+      "id": "H09-102",
+      "finding": "H09",
+      "label": "[[[\"storage\",\"low_disk_thresholds\"],{\"mode\":\"PERCENT\",\"warning_basis_points\":1500,\"critical_basis_points\":500,\"warning_bytes\":\"5\"}]]",
+      "schema": "larm.schema.json#/$defs/Settings",
+      "changes": [
+        [
+          [
+            "storage",
+            "low_disk_thresholds"
+          ],
+          {
+            "mode": "PERCENT",
+            "warning_basis_points": 1500,
+            "critical_basis_points": 500,
+            "warning_bytes": "5"
+          }
+        ]
+      ],
+      "expected_valid": false
+    }
+  ]
+}

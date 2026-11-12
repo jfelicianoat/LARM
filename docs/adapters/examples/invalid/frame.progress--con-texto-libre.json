@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "method": "core.progress",
+  "params": {
+    "request_id": "0192f000-0000-7000-8000-000000000001",
+    "phase": "X",
+    "completed_bytes": 1,
+    "total_bytes": 2,
+    "message_code": null,
+    "message": "Hola usuario"
+  }
+}

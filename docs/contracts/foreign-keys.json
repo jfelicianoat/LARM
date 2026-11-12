@@ -1,0 +1,106 @@
+{
+  "model_distribution": {
+    "canonical_model_id": "canonical_model",
+    "source_id": "model_source"
+  },
+  "model_revision": {
+    "distribution_id": "model_distribution"
+  },
+  "model_variant": {
+    "revision_id": "model_revision"
+  },
+  "model_bundle": {
+    "variant_id": "model_variant"
+  },
+  "model_artifact": {
+    "variant_id": "model_variant"
+  },
+  "artifact_provenance": {
+    "artifact_id": "model_artifact",
+    "source_id": "model_source"
+  },
+  "artifact_location": {
+    "artifact_id": "model_artifact",
+    "storage_location_id": "storage_location"
+  },
+  "model_source": {
+    "account_id": "model_source_account",
+    "adapter_id": "model_source_adapter"
+  },
+  "model_source_account": {
+    "source_id": "model_source",
+    "credential_reference_id": "credential_reference"
+  },
+  "runtime_version": {
+    "runtime_id": "runtime"
+  },
+  "runtime_installation": {
+    "runtime_version_id": "runtime_version",
+    "storage_location_id": "storage_location",
+    "external_host_id": "external_host"
+  },
+  "runtime_backend": {
+    "runtime_installation_id": "runtime_installation"
+  },
+  "runtime_instance": {
+    "runtime_installation_id": "runtime_installation",
+    "variant_id": "model_variant",
+    "backend_id": "runtime_backend",
+    "launch_profile_id": "launch_profile"
+  },
+  "compatibility_record": {
+    "variant_id": "model_variant",
+    "runtime_version_id": "runtime_version",
+    "backend_id": "runtime_backend"
+  },
+  "runtime_lease": {
+    "instance_id": "runtime_instance",
+    "endpoint_id": "inference_endpoint"
+  },
+  "inference_endpoint": {
+    "instance_id": "runtime_instance",
+    "credential_reference_id": "credential_reference"
+  },
+  "download_job": {
+    "variant_id": "model_variant",
+    "storage_location_id": "storage_location"
+  },
+  "transformation_job": {
+    "input_variant_id": "model_variant",
+    "output_variant_id": "model_variant"
+  },
+  "technical_benchmark": {
+    "variant_id": "model_variant"
+  },
+  "evaluation_reference": {
+    "variant_id": "model_variant"
+  },
+  "certification": {
+    "evaluation_reference_id": "evaluation_reference",
+    "variant_id": "model_variant",
+    "runtime_version_id": "runtime_version",
+    "backend_id": "runtime_backend"
+  },
+  "source_watch": {
+    "source_id": "model_source"
+  },
+  "model_source_adapter": {
+    "adapter_installation_id": "adapter_installation"
+  },
+  "runtime": {
+    "adapter_id": "runtime_adapter",
+    "default_version_id": "runtime_version"
+  },
+  "runtime_adapter": {
+    "adapter_installation_id": "adapter_installation"
+  },
+  "external_host": {
+    "credential_reference_id": "credential_reference"
+  },
+  "model_acquisition_manifest": {
+    "variant_id": "model_variant",
+    "revision_id": "model_revision",
+    "source_id": "model_source",
+    "adapter_installation_id": "adapter_installation"
+  }
+}

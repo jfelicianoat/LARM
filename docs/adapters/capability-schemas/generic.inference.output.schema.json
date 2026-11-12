@@ -1,0 +1,85 @@
+{
+  "$defs": {
+    "larm__generic_inference_output": {
+      "additionalProperties": false,
+      "properties": {
+        "outputs": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "additionalProperties": false,
+                "properties": {
+                  "artifact_id": {
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                    "type": "string"
+                  },
+                  "media_type": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  },
+                  "size_bytes": {
+                    "maxLength": 19,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "type": "string",
+                    "x-maximum-decimal": "9223372036854775807"
+                  }
+                },
+                "required": [
+                  "artifact_id",
+                  "sha256",
+                  "media_type",
+                  "size_bytes"
+                ],
+                "type": "object"
+              },
+              "dtype": {
+                "enum": [
+                  "float32",
+                  "float64",
+                  "int8",
+                  "uint8",
+                  "int32",
+                  "int64",
+                  "bool"
+                ],
+                "type": "string"
+              },
+              "name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "shape": {
+                "items": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "name",
+              "dtype",
+              "shape",
+              "data"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "outputs"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__generic_inference_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

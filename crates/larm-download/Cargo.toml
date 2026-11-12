@@ -1,0 +1,28 @@
+[package]
+name = "larm-download"
+description = "Gestor de descargas: cola, reanudación, checksums y admisión autorizada."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+larm-domain = { workspace = true }
+larm-adapter-sdk = { workspace = true }
+larm-db = { workspace = true }
+larm-storage = { workspace = true }
+async-trait = { workspace = true }
+chrono = { workspace = true }
+hex = { workspace = true }
+uuid = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+tokio = { workspace = true }
+
+[dev-dependencies]
+larm-models = { workspace = true }
+tempfile = { workspace = true }
+sqlx = { workspace = true }
+
+[lints]
+workspace = true

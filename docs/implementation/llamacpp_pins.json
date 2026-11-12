@@ -1,0 +1,46 @@
+[
+  {
+    "tag": "b11539",
+    "commit_sha": "10a60cf303566e10d6a7a2774c17d2085503d87b",
+    "published_utc": "2026-10-09T22:38:06Z",
+    "license": "MIT",
+    "source_release_url": "https://github.com/ggml-org/llama.cpp/releases/tag/b11539",
+    "selection_rule": "dos builds mas recientes publicadas en GitHub con fecha anterior a la fecha de ejecucion (2026-10-10); todas las builds de llama.cpp se publican como prerelease, se fija por tag+commit",
+    "assets": {
+      "cpu": {
+        "name": "llama-b11539-bin-win-cpu-x64.zip",
+        "size_bytes": 19519169,
+        "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11539/llama-b11539-bin-win-cpu-x64.zip",
+        "sha256_downloaded": "PENDING_DESCARGA_P060"
+      },
+      "vulkan": {
+        "name": "llama-b11539-bin-win-vulkan-x64.zip",
+        "size_bytes": 33464670,
+        "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11539/llama-b11539-bin-win-vulkan-x64.zip",
+        "sha256_downloaded": "PENDING_DESCARGA_P060"
+      }
+    }
+  },
+  {
+    "tag": "b11538",
+    "commit_sha": "79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6",
+    "published_utc": "2026-10-09T20:11:03Z",
+    "license": "MIT",
+    "source_release_url": "https://github.com/ggml-org/llama.cpp/releases/tag/b11538",
+    "selection_rule": "dos builds mas recientes publicadas en GitHub con fecha anterior a la fecha de ejecucion (2026-10-10); todas las builds de llama.cpp se publican como prerelease, se fija por tag+commit",
+    "assets": {
+      "cpu": {
+        "name": "llama-b11538-bin-win-cpu-x64.zip",
+        "size_bytes": 19513109,
+        "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11538/llama-b11538-bin-win-cpu-x64.zip",
+        "sha256_downloaded": "PENDING_DESCARGA_P060"
+      },
+      "vulkan": {
+        "name": "llama-b11538-bin-win-vulkan-x64.zip",
+        "size_bytes": 33459184,
+        "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11538/llama-b11538-bin-win-vulkan-x64.zip",
+        "sha256_downloaded": "PENDING_DESCARGA_P060"
+      }
+    }
+  }
+]

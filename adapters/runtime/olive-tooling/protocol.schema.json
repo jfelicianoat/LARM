@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://larm.local/schemas/olive-tooling-protocol-1.0.json",
+  "title": "LARM private Olive tooling protocol 1.0",
+  "oneOf": [
+    { "$ref": "#/$defs/request" },
+    { "$ref": "#/$defs/response" }
+  ],
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "fixture_id": { "type": "string", "enum": ["tensor_identity"] },
+    "provider": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9_]+$" },
+    "precision": { "type": "string", "enum": ["fp32", "fp16", "int8", "int4"] },
+    "request": {
+      "oneOf": [
+        { "$ref": "#/$defs/probe_request" },
+        { "$ref": "#/$defs/version_request" },
+        { "$ref": "#/$defs/capabilities_request" },
+        { "$ref": "#/$defs/plan_request" },
+        { "$ref": "#/$defs/execute_request" }
+      ]
+    },
+    "probe_request": {
+      "type": "object", "additionalProperties": false,
+      "properties": { "protocol_version": { "const": "1.0" }, "operation": { "const": "probe" } },
+      "required": ["protocol_version", "operation"]
+    },
+    "version_request": {
+      "type": "object", "additionalProperties": false,
+      "properties": { "protocol_version": { "const": "1.0" }, "operation": { "const": "version" } },
+      "required": ["protocol_version", "operation"]
+    },
+    "capabilities_request": {
+      "type": "object", "additionalProperties": false,
+      "properties": { "protocol_version": { "const": "1.0" }, "operation": { "const": "capabilities" } },
+      "required": ["protocol_version", "operation"]
+    },
+    "plan_request": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "protocol_version": { "const": "1.0" }, "operation": { "const": "plan" },
+        "fixture_id": { "$ref": "#/$defs/fixture_id" }, "provider_target": { "$ref": "#/$defs/provider" },
+        "precision": { "$ref": "#/$defs/precision" }
+      },
+      "required": ["protocol_version", "operation", "fixture_id", "provider_target", "precision"]
+    },
+    "execute_request": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "protocol_version": { "const": "1.0" }, "operation": { "const": "execute_fixture" },
+        "fixture_id": { "$ref": "#/$defs/fixture_id" }, "provider_target": { "$ref": "#/$defs/provider" },
+        "precision": { "$ref": "#/$defs/precision" }, "plan_hash": { "$ref": "#/$defs/hash" }
+      },
+      "required": ["protocol_version", "operation", "fixture_id", "provider_target", "precision", "plan_hash"]
+    },
+    "response": {
+      "oneOf": [
+        { "$ref": "#/$defs/success_response" },
+        { "$ref": "#/$defs/error_response" }
+      ]
+    },
+    "success_response": {
+      "oneOf": [
+        { "$ref": "#/$defs/probe_response" },
+        { "$ref": "#/$defs/version_response" },
+        { "$ref": "#/$defs/capabilities_response" },
+        { "$ref": "#/$defs/plan_response" },
+        { "$ref": "#/$defs/execute_response" }
+      ]
+    },
+    "response_envelope": {
+      "type": "object", "additionalProperties": false,
+      "properties": { "protocol_version": { "const": "1.0" }, "ok": { "const": true }, "operation": { "type": "string" }, "result": { "type": "object" } },
+      "required": ["protocol_version", "ok", "operation", "result"]
+    },
+    "probe_response": {
+      "allOf": [
+        { "$ref": "#/$defs/response_envelope" },
+        { "properties": { "operation": { "const": "probe" }, "result": { "$ref": "#/$defs/probe_result" } } }
+      ]
+    },
+    "version_response": {
+      "allOf": [
+        { "$ref": "#/$defs/response_envelope" },
+        { "properties": { "operation": { "const": "version" }, "result": { "$ref": "#/$defs/version_result" } } }
+      ]
+    },
+    "capabilities_response": {
+      "allOf": [
+        { "$ref": "#/$defs/response_envelope" },
+        { "properties": { "operation": { "const": "capabilities" }, "result": { "$ref": "#/$defs/capabilities_result" } } }
+      ]
+    },
+    "plan_response": {
+      "allOf": [
+        { "$ref": "#/$defs/response_envelope" },
+        { "properties": { "operation": { "const": "plan" }, "result": { "$ref": "#/$defs/plan_result" } } }
+      ]
+    },
+    "execute_response": {
+      "allOf": [
+        { "$ref": "#/$defs/response_envelope" },
+        { "properties": { "operation": { "const": "execute_fixture" }, "result": { "$ref": "#/$defs/execute_result" } } }
+      ]
+    },
+    "nullable_string": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+    "nullable_providers": {
+      "anyOf": [
+        { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        { "type": "null" }
+      ]
+    },
+    "probe_result": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "managed_python": { "type": "boolean" },
+        "olive_ai_installed": { "anyOf": [{ "type": "boolean" }, { "type": "null" }] },
+        "onnxruntime_installed": { "anyOf": [{ "type": "boolean" }, { "type": "null" }] },
+        "available_providers": { "$ref": "#/$defs/nullable_providers" }
+      },
+      "required": ["managed_python", "olive_ai_installed", "onnxruntime_installed", "available_providers"]
+    },
+    "version_result": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "managed_python": { "type": "boolean" }, "python": { "type": "string", "minLength": 1 },
+        "olive_ai": { "$ref": "#/$defs/nullable_string" }, "onnxruntime": { "$ref": "#/$defs/nullable_string" },
+        "onnx": { "$ref": "#/$defs/nullable_string" }
+      },
+      "required": ["managed_python", "python", "olive_ai", "onnxruntime", "onnx"]
+    },
+    "capabilities_result": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "operations": { "type": "array", "const": ["probe", "version", "capabilities", "plan", "execute_fixture"] },
+        "fixture_ids": { "type": "array", "const": ["tensor_identity"] },
+        "providers": { "$ref": "#/$defs/nullable_providers" },
+        "execute_fixture_available": { "type": "boolean" },
+        "input_formats": { "type": "array", "const": ["ONNX"] },
+        "output_format": { "const": "ONNX" }
+      },
+      "required": ["operations", "fixture_ids", "providers", "execute_fixture_available", "input_formats", "output_format"]
+    },
+    "estimate": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "bytes": { "anyOf": [{ "type": "string", "pattern": "^(0|[1-9][0-9]*)$" }, { "type": "null" }] },
+        "confidence": { "enum": ["EXACT", "ESTIMATED", "UNKNOWN"] },
+        "reason": { "type": "string" }
+      },
+      "required": ["bytes", "confidence"]
+    },
+    "dependency_versions": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "managed_python": { "type": "boolean" }, "python": { "type": "string", "minLength": 1 },
+        "olive_ai": { "$ref": "#/$defs/nullable_string" }, "onnxruntime": { "$ref": "#/$defs/nullable_string" },
+        "onnx": { "$ref": "#/$defs/nullable_string" }
+      },
+      "required": ["managed_python", "python", "olive_ai", "onnxruntime", "onnx"]
+    },
+    "artifact_descriptor": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "relative_path": { "type": "string", "minLength": 1 }, "sha256": { "$ref": "#/$defs/hash" },
+        "size_bytes": { "type": "string", "pattern": "^(0|[1-9][0-9]*)$" }
+      },
+      "required": ["relative_path", "sha256", "size_bytes"]
+    },
+    "plan_result": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "fixture": {
+          "type": "object", "additionalProperties": false,
+          "properties": { "fixture_id": { "$ref": "#/$defs/fixture_id" }, "sha256": { "$ref": "#/$defs/hash" }, "size_bytes": { "type": "string", "pattern": "^(0|[1-9][0-9]*)$" }, "format": { "const": "ONNX" } },
+          "required": ["fixture_id", "sha256", "size_bytes", "format"]
+        },
+        "input_estimate": { "$ref": "#/$defs/estimate" }, "output_estimate": { "$ref": "#/$defs/estimate" },
+        "dependencies": { "$ref": "#/$defs/dependency_versions" }, "provider_target": { "$ref": "#/$defs/provider" },
+        "provider_target_available": { "anyOf": [{ "type": "boolean" }, { "type": "null" }] },
+        "parameters": {
+          "type": "object", "additionalProperties": false,
+          "properties": { "precision": { "$ref": "#/$defs/precision" }, "provider_target": { "$ref": "#/$defs/provider" }, "trust_remote_code": { "const": false } },
+          "required": ["precision", "provider_target", "trust_remote_code"]
+        },
+        "eligible": { "type": "boolean" }, "blockers": { "type": "array", "items": { "type": "string" } }, "plan_hash": { "$ref": "#/$defs/hash" }
+      },
+      "required": ["fixture", "input_estimate", "output_estimate", "dependencies", "provider_target", "provider_target_available", "parameters", "eligible", "blockers", "plan_hash"]
+    },
+    "execute_result": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "candidate_id": { "$ref": "#/$defs/hash" }, "candidate_relative_path": { "type": "string", "pattern": "^candidates/[0-9a-f]{64}$" },
+        "bundle_sha256": { "$ref": "#/$defs/hash" }, "output_size_bytes": { "type": "string", "pattern": "^(0|[1-9][0-9]*)$" },
+        "output_artifacts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/artifact_descriptor" } },
+        "provenance_sha256": { "$ref": "#/$defs/hash" }
+      },
+      "required": ["candidate_id", "candidate_relative_path", "bundle_sha256", "output_size_bytes", "output_artifacts", "provenance_sha256"]
+    },
+    "error_response": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "protocol_version": { "const": "1.0" }, "ok": { "const": false },
+        "error": {
+          "type": "object", "additionalProperties": false,
+          "properties": { "code": { "type": "string", "minLength": 1 }, "message": { "type": "string", "minLength": 1 } },
+          "required": ["code", "message"]
+        }
+      },
+      "required": ["protocol_version", "ok", "error"]
+    }
+  }
+}

@@ -1,0 +1,445 @@
+{
+  "suite_version": "1.0",
+  "binary_fixture_policy": "tools/generate_fixtures.py creates deterministic media/tensor; speech_es.wav must be operator supplied or synthesized with license/provenance before lock, no silent substitute",
+  "suites": [
+    {
+      "id": "LLM_TEXT",
+      "version": "1.0",
+      "capability": "text.generate",
+      "input": {
+        "messages": [
+          {
+            "role": "user",
+            "text": "Escribe los números del 1 al 100 separados por comas, sin explicación ni texto adicional.",
+            "media": [],
+            "tool_call_id": null
+          }
+        ],
+        "tools": []
+      },
+      "oracle": "Texto UTF8 no vacío y finish válido; para throughput requiere más de1 output token y duración positiva. No medir exactitud matemática como quality en esta suite técnica.",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "JSON",
+      "version": "1.0",
+      "capability": "text.generate",
+      "input": {
+        "messages": [
+          {
+            "role": "user",
+            "text": "Devuelve sólo {\"ok\":true}.",
+            "media": [],
+            "tool_call_id": null
+          }
+        ],
+        "tools": []
+      },
+      "oracle": "JSON válido y ok boolean,true",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "TOOLS",
+      "version": "1.0",
+      "capability": "tool.call",
+      "input": {
+        "tool_name": "echo",
+        "arguments": {
+          "text": "test"
+        },
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "oracle": "Nombre echo y argumentos schema válidos; no ejecutar",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "EMBED",
+      "version": "1.0",
+      "capability": "embedding.create",
+      "input": {
+        "inputs": [
+          "uno",
+          "dos"
+        ]
+      },
+      "oracle": "Dos vectores misma dimensión fija, todos valores finitos",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "DECISION",
+      "version": "1.0",
+      "capability": "decision.evaluate",
+      "input": {
+        "use_case": "goal_completion",
+        "decision_type": "binary",
+        "input": {
+          "goal": "2+2=4",
+          "evidence": {
+            "answer": 4
+          }
+        },
+        "options": [
+          "true",
+          "false"
+        ],
+        "threshold_profile": "default"
+      },
+      "oracle": "Decisión conforme, score_source nativo sólo con evidencia runtime",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "IMAGE",
+      "version": "1.0",
+      "capability": "image.generate",
+      "input": {
+        "prompt": "A red square on a white background",
+        "negative_prompt": "",
+        "width": 256,
+        "height": 256,
+        "steps": 10,
+        "seed": 42
+      },
+      "oracle": "PNG/JPEG decodificable,256x256,no exigir semántica visual",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "VIDEO",
+      "version": "1.0",
+      "capability": "video.generate",
+      "input": {
+        "prompt": "A red square moving",
+        "width": 256,
+        "height": 256,
+        "frames": 8,
+        "fps": 4,
+        "seed": 42
+      },
+      "oracle": "8 frames decodificables,4fps,duración2s±0.25s",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "ASR",
+      "version": "1.0",
+      "capability": "audio.transcribe",
+      "input": {
+        "fixture": "speech_es.wav",
+        "language": "es"
+      },
+      "oracle": "Texto no vacío,WAV licenciaLARMfixture humano9s hashlock,no WER funcional",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "TTS",
+      "version": "1.0",
+      "capability": "speech.synthesize",
+      "input": {
+        "text": "Prueba técnica del sistema.",
+        "voice": null,
+        "language": "es",
+        "sample_rate": 16000
+      },
+      "oracle": "WAV16000Hz,finite,duración0.1..60s",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "TENSOR",
+      "version": "1.0",
+      "capability": "generic.inference",
+      "input": {
+        "fixture": "tensor_identity.onnx"
+      },
+      "oracle": "Identityf32 [1,4] input[1,2,3,4]outputeq abs1e-5rel1e-4",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "OCR",
+      "version": "1.0",
+      "capability": "vision.ocr",
+      "input": {
+        "fixture": "text_grid.png",
+        "language": "es"
+      },
+      "oracle": "Schema OCR válido,text no vacío,boxes dentro512x256",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "VISION",
+      "version": "1.0",
+      "capability": "vision.understand",
+      "input": {
+        "fixture": "text_grid.png",
+        "prompt": "Describe la imagen brevemente."
+      },
+      "oracle": "Texto no vacío y media aceptado",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "DETECT",
+      "version": "1.0",
+      "capability": "vision.detect",
+      "input": {
+        "fixture": "text_grid.png",
+        "threshold": 0.5
+      },
+      "oracle": "Schema válido,score finite0..1,boxes normalizadas0..1",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "SEGMENT",
+      "version": "1.0",
+      "capability": "vision.segment",
+      "input": {
+        "fixture": "text_grid.png"
+      },
+      "oracle": "Máscara decodificable de la resolución de entrada",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "RERANK",
+      "version": "1.0",
+      "capability": "rerank",
+      "input": {
+        "query": "rojo",
+        "documents": [
+          "rojo",
+          "azul"
+        ],
+        "top_n": 2
+      },
+      "oracle": "Indices únicos0..1,scores finitos,orden descendente",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "UPSCALE",
+      "version": "1.0",
+      "capability": "image.upscale",
+      "input": {
+        "fixture": "text_grid.png",
+        "scale": 2
+      },
+      "oracle": "Output1024x512",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "CLASSIFY",
+      "version": "1.0",
+      "capability": "text.classify",
+      "input": {
+        "text": "prueba",
+        "labels": [
+          "a",
+          "b"
+        ]
+      },
+      "oracle": "Label enlista,scores0..1",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "AUDIO_CLASSIFY",
+      "version": "1.0",
+      "capability": "audio.classify",
+      "input": {
+        "fixture": "tone16k.wav",
+        "labels": [
+          "silence",
+          "tone"
+        ]
+      },
+      "oracle": "Label enlista,scores finitos",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    },
+    {
+      "id": "AUDIO_TRANSLATE",
+      "version": "1.0",
+      "capability": "audio.translate",
+      "input": {
+        "fixture": "speech_es.wav",
+        "target_language": "en"
+      },
+      "oracle": "Texto no vacío,campo válido",
+      "warmup": 1,
+      "repetitions": 5,
+      "seed": 42,
+      "settings": {
+        "temperature": 0,
+        "top_p": 1,
+        "max_output_tokens": 256,
+        "batch": 1
+      },
+      "mandatory_if_announced": true
+    }
+  ]
+}

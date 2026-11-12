@@ -1,0 +1,32 @@
+{
+  "$defs": {
+    "larm__rerank_input": {
+      "additionalProperties": false,
+      "properties": {
+        "documents": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "query": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "top_n": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "query",
+        "documents",
+        "top_n"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__rerank_input",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,1111 @@
+{
+  "prompt_id": "P026",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "e285c973beaef1b70831a226be250efde74565b171b2931d79386e519e1c26b9",
+  "changed_files": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "adapters/benchmark/reference/adapter.py",
+    "adapters/benchmark/reference/config.py",
+    "adapters/benchmark/reference/ledger.py",
+    "adapters/benchmark/reference/main.py",
+    "adapters/benchmark/reference/package.py",
+    "adapters/benchmark/reference/stats.py",
+    "adapters/benchmark/reference/transport.py",
+    "adapters/protocol/reference/adapter.py",
+    "adapters/protocol/reference/main.py",
+    "adapters/protocol/reference/package.py",
+    "adapters/runtime/reference/capabilities.json",
+    "adapters/runtime/reference/echo.rs",
+    "adapters/runtime/reference/main.rs",
+    "adapters/runtime/reference/package.py",
+    "adapters/sdk/python/README.md",
+    "adapters/sdk/python/larm_adapter_sdk/__init__.py",
+    "adapters/sdk/python/larm_adapter_sdk/access.py",
+    "adapters/sdk/python/larm_adapter_sdk/capabilities.py",
+    "adapters/sdk/python/larm_adapter_sdk/contracts.py",
+    "adapters/sdk/python/larm_adapter_sdk/server.py",
+    "adapters/source/reference/adapter.py",
+    "adapters/source/reference/capabilities.json",
+    "adapters/source/reference/package.py",
+    "adapters/source/reference/state.py",
+    "adapters/source/reference/transfer.py",
+    "adapters/transformation/reference/adapter.py",
+    "adapters/transformation/reference/files.py",
+    "adapters/transformation/reference/main.py",
+    "adapters/transformation/reference/package.py",
+    "adapters/transformation/reference/state.py",
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/adapters.rs",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/probe_profiles.rs",
+    "apps/daemon/src/probes.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/src/sources.rs",
+    "apps/daemon/tests/adapter_coordinator.rs",
+    "apps/daemon/tests/adapter_probe_service.rs",
+    "apps/daemon/tests/reference_adapters.rs",
+    "crates/larm-adapter-host/Cargo.toml",
+    "crates/larm-adapter-host/examples/conformance_host.rs",
+    "crates/larm-adapter-host/examples/fake_adapter.rs",
+    "crates/larm-adapter-host/examples/fake_source.rs",
+    "crates/larm-adapter-host/examples/wire_proxy.rs",
+    "crates/larm-adapter-host/src/conformance.rs",
+    "crates/larm-adapter-host/src/conformance/benchmark.rs",
+    "crates/larm-adapter-host/src/conformance/catalog.rs",
+    "crates/larm-adapter-host/src/conformance/fixtures/reference-runtime.requests.json",
+    "crates/larm-adapter-host/src/conformance/profiles.rs",
+    "crates/larm-adapter-host/src/conformance/protocol.rs",
+    "crates/larm-adapter-host/src/conformance/qualification.rs",
+    "crates/larm-adapter-host/src/conformance/raw.rs",
+    "crates/larm-adapter-host/src/conformance/runtime.rs",
+    "crates/larm-adapter-host/src/conformance/service.rs",
+    "crates/larm-adapter-host/src/conformance/source.rs",
+    "crates/larm-adapter-host/src/conformance/transformation.rs",
+    "crates/larm-adapter-host/src/conformance/wire.rs",
+    "crates/larm-adapter-host/src/framing.rs",
+    "crates/larm-adapter-host/src/lib.rs",
+    "crates/larm-adapter-host/src/policy.rs",
+    "crates/larm-adapter-host/src/worker.rs",
+    "crates/larm-adapter-host/tests/conformance.rs",
+    "crates/larm-adapter-host/tests/conformance_profiles.rs",
+    "crates/larm-adapter-host/tests/declarative.rs",
+    "crates/larm-adapter-host/tests/worker.rs",
+    "crates/larm-adapter-sdk/Cargo.toml",
+    "crates/larm-adapter-sdk/examples/demo_adapter.rs",
+    "crates/larm-adapter-sdk/src/capabilities/builtin.rs",
+    "crates/larm-adapter-sdk/src/capabilities/mod.rs",
+    "crates/larm-adapter-sdk/src/contracts/generated.rs",
+    "crates/larm-adapter-sdk/src/contracts/mod.rs",
+    "crates/larm-adapter-sdk/src/generic.rs",
+    "crates/larm-adapter-sdk/src/lib.rs",
+    "crates/larm-adapter-sdk/src/server.rs",
+    "crates/larm-adapter-sdk/src/source/handler.rs",
+    "crates/larm-adapter-sdk/tests/capabilities.rs",
+    "crates/larm-adapter-sdk/tests/capability_session.rs",
+    "crates/larm-adapter-sdk/tests/contracts.rs",
+    "crates/larm-adapter-sdk/tests/contracts_session.rs",
+    "crates/larm-adapter-sdk/tests/server_limits.rs",
+    "crates/larm-adapter-sdk/tests/session.rs",
+    "crates/larm-api/src/adapters.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/adapter_probes.rs",
+    "crates/larm-core/src/conformance.rs",
+    "crates/larm-core/src/lib.rs",
+    "crates/larm-core/tests/conformance.rs",
+    "crates/larm-db/src/adapter_probes.rs",
+    "crates/larm-db/src/adapter_selection.rs",
+    "crates/larm-db/src/conformance.rs",
+    "crates/larm-db/src/conformance_profiles.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/sources.rs",
+    "crates/larm-db/tests/adapter_probes.rs",
+    "crates/larm-db/tests/adapter_selection.rs",
+    "crates/larm-db/tests/conformance.rs",
+    "crates/larm-db/tests/conformance_profiles.rs",
+    "crates/larm-db/tests/sources.rs",
+    "crates/larm-domain/src/adapter_probes.rs",
+    "crates/larm-domain/src/conformance.rs",
+    "crates/larm-domain/src/conformance_profiles.rs",
+    "crates/larm-domain/src/hardware.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-domain/tests/conformance.rs",
+    "docs/adapters/authoring.md",
+    "docs/adapters/capabilities.md",
+    "docs/adapters/capability-schemas/audio.classify.input.schema.json",
+    "docs/adapters/capability-schemas/audio.classify.output.schema.json",
+    "docs/adapters/capability-schemas/audio.transcribe.input.schema.json",
+    "docs/adapters/capability-schemas/audio.transcribe.output.schema.json",
+    "docs/adapters/capability-schemas/audio.translate.input.schema.json",
+    "docs/adapters/capability-schemas/audio.translate.output.schema.json",
+    "docs/adapters/capability-schemas/decision.evaluate.input.schema.json",
+    "docs/adapters/capability-schemas/decision.evaluate.output.schema.json",
+    "docs/adapters/capability-schemas/embedding.create.input.schema.json",
+    "docs/adapters/capability-schemas/embedding.create.output.schema.json",
+    "docs/adapters/capability-schemas/generic.inference.input.schema.json",
+    "docs/adapters/capability-schemas/generic.inference.output.schema.json",
+    "docs/adapters/capability-schemas/image.generate.input.schema.json",
+    "docs/adapters/capability-schemas/image.generate.output.schema.json",
+    "docs/adapters/capability-schemas/image.upscale.input.schema.json",
+    "docs/adapters/capability-schemas/image.upscale.output.schema.json",
+    "docs/adapters/capability-schemas/index.json",
+    "docs/adapters/capability-schemas/rerank.input.schema.json",
+    "docs/adapters/capability-schemas/rerank.output.schema.json",
+    "docs/adapters/capability-schemas/speech.synthesize.input.schema.json",
+    "docs/adapters/capability-schemas/speech.synthesize.output.schema.json",
+    "docs/adapters/capability-schemas/text.classify.input.schema.json",
+    "docs/adapters/capability-schemas/text.classify.output.schema.json",
+    "docs/adapters/capability-schemas/text.generate.input.schema.json",
+    "docs/adapters/capability-schemas/text.generate.output.schema.json",
+    "docs/adapters/capability-schemas/tool.call.input.schema.json",
+    "docs/adapters/capability-schemas/tool.call.output.schema.json",
+    "docs/adapters/capability-schemas/video.generate.input.schema.json",
+    "docs/adapters/capability-schemas/video.generate.output.schema.json",
+    "docs/adapters/capability-schemas/vision.detect.input.schema.json",
+    "docs/adapters/capability-schemas/vision.detect.output.schema.json",
+    "docs/adapters/capability-schemas/vision.ocr.input.schema.json",
+    "docs/adapters/capability-schemas/vision.ocr.output.schema.json",
+    "docs/adapters/capability-schemas/vision.segment.input.schema.json",
+    "docs/adapters/capability-schemas/vision.segment.output.schema.json",
+    "docs/adapters/capability-schemas/vision.understand.input.schema.json",
+    "docs/adapters/capability-schemas/vision.understand.output.schema.json",
+    "docs/adapters/conformance.md",
+    "docs/adapters/declarative.md",
+    "docs/adapters/host.md",
+    "docs/adapters/method-schemas/benchmark.describe.request.schema.json",
+    "docs/adapters/method-schemas/benchmark.describe.response.schema.json",
+    "docs/adapters/method-schemas/benchmark.run.request.schema.json",
+    "docs/adapters/method-schemas/benchmark.run.response.schema.json",
+    "docs/adapters/method-schemas/benchmark.validate.request.schema.json",
+    "docs/adapters/method-schemas/benchmark.validate.response.schema.json",
+    "docs/adapters/method-schemas/core.cancel.request.schema.json",
+    "docs/adapters/method-schemas/core.cancel.response.schema.json",
+    "docs/adapters/method-schemas/core.handshake.request.schema.json",
+    "docs/adapters/method-schemas/core.handshake.response.schema.json",
+    "docs/adapters/method-schemas/core.heartbeat.request.schema.json",
+    "docs/adapters/method-schemas/core.heartbeat.response.schema.json",
+    "docs/adapters/method-schemas/index.json",
+    "docs/adapters/method-schemas/protocol.cancel.request.schema.json",
+    "docs/adapters/method-schemas/protocol.cancel.response.schema.json",
+    "docs/adapters/method-schemas/protocol.describe.request.schema.json",
+    "docs/adapters/method-schemas/protocol.describe.response.schema.json",
+    "docs/adapters/method-schemas/protocol.invoke.request.schema.json",
+    "docs/adapters/method-schemas/protocol.invoke.response.schema.json",
+    "docs/adapters/method-schemas/protocol.qualify.request.schema.json",
+    "docs/adapters/method-schemas/protocol.qualify.response.schema.json",
+    "docs/adapters/method-schemas/runtime.benchmark.request.schema.json",
+    "docs/adapters/method-schemas/runtime.benchmark.response.schema.json",
+    "docs/adapters/method-schemas/runtime.check_compatibility.request.schema.json",
+    "docs/adapters/method-schemas/runtime.check_compatibility.response.schema.json",
+    "docs/adapters/method-schemas/runtime.detect_backends.request.schema.json",
+    "docs/adapters/method-schemas/runtime.detect_backends.response.schema.json",
+    "docs/adapters/method-schemas/runtime.discover.request.schema.json",
+    "docs/adapters/method-schemas/runtime.discover.response.schema.json",
+    "docs/adapters/method-schemas/runtime.estimate_memory.request.schema.json",
+    "docs/adapters/method-schemas/runtime.estimate_memory.response.schema.json",
+    "docs/adapters/method-schemas/runtime.health.request.schema.json",
+    "docs/adapters/method-schemas/runtime.health.response.schema.json",
+    "docs/adapters/method-schemas/runtime.inspect_model.request.schema.json",
+    "docs/adapters/method-schemas/runtime.inspect_model.response.schema.json",
+    "docs/adapters/method-schemas/runtime.install.request.schema.json",
+    "docs/adapters/method-schemas/runtime.install.response.schema.json",
+    "docs/adapters/method-schemas/runtime.install_plan.request.schema.json",
+    "docs/adapters/method-schemas/runtime.install_plan.response.schema.json",
+    "docs/adapters/method-schemas/runtime.launch_plan.request.schema.json",
+    "docs/adapters/method-schemas/runtime.launch_plan.response.schema.json",
+    "docs/adapters/method-schemas/runtime.list_models.request.schema.json",
+    "docs/adapters/method-schemas/runtime.list_models.response.schema.json",
+    "docs/adapters/method-schemas/runtime.list_versions.request.schema.json",
+    "docs/adapters/method-schemas/runtime.list_versions.response.schema.json",
+    "docs/adapters/method-schemas/runtime.load.request.schema.json",
+    "docs/adapters/method-schemas/runtime.load.response.schema.json",
+    "docs/adapters/method-schemas/runtime.start.request.schema.json",
+    "docs/adapters/method-schemas/runtime.start.response.schema.json",
+    "docs/adapters/method-schemas/runtime.stop.request.schema.json",
+    "docs/adapters/method-schemas/runtime.stop.response.schema.json",
+    "docs/adapters/method-schemas/source.auth_probe.request.schema.json",
+    "docs/adapters/method-schemas/source.auth_probe.response.schema.json",
+    "docs/adapters/method-schemas/source.download.request.schema.json",
+    "docs/adapters/method-schemas/source.download.response.schema.json",
+    "docs/adapters/method-schemas/source.download_plan.request.schema.json",
+    "docs/adapters/method-schemas/source.download_plan.response.schema.json",
+    "docs/adapters/method-schemas/source.estimate_size.request.schema.json",
+    "docs/adapters/method-schemas/source.estimate_size.response.schema.json",
+    "docs/adapters/method-schemas/source.get_manifest.request.schema.json",
+    "docs/adapters/method-schemas/source.get_manifest.response.schema.json",
+    "docs/adapters/method-schemas/source.get_model.request.schema.json",
+    "docs/adapters/method-schemas/source.get_model.response.schema.json",
+    "docs/adapters/method-schemas/source.list_revisions.request.schema.json",
+    "docs/adapters/method-schemas/source.list_revisions.response.schema.json",
+    "docs/adapters/method-schemas/source.search.request.schema.json",
+    "docs/adapters/method-schemas/source.search.response.schema.json",
+    "docs/adapters/method-schemas/source.sync.request.schema.json",
+    "docs/adapters/method-schemas/source.sync.response.schema.json",
+    "docs/adapters/method-schemas/transformation.describe.request.schema.json",
+    "docs/adapters/method-schemas/transformation.describe.response.schema.json",
+    "docs/adapters/method-schemas/transformation.execute.request.schema.json",
+    "docs/adapters/method-schemas/transformation.execute.response.schema.json",
+    "docs/adapters/method-schemas/transformation.plan.request.schema.json",
+    "docs/adapters/method-schemas/transformation.plan.response.schema.json",
+    "docs/adapters/method-schemas/transformation.verify.request.schema.json",
+    "docs/adapters/method-schemas/transformation.verify.response.schema.json",
+    "docs/api/openapi.json",
+    "docs/contracts/adapter-methods.json",
+    "docs/contracts/capability-contracts.json",
+    "docs/contracts/schemas/domain.schema.json",
+    "docs/contracts/schemas/larm.schema.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P026_conformance-sdk-para-las-cinco-familias-de-plugins.md",
+    "tests/fixtures/adapters/benchmark_support.rs",
+    "tests/fixtures/adapters/capability-registry.json",
+    "tests/fixtures/adapters/conformance_persistence.rs",
+    "tests/fixtures/adapters/method-schema-corpus.json",
+    "tests/fixtures/adapters/python_sdk_worker.py",
+    "tools/adapter-conformance/runner.py",
+    "tools/adapter-conformance/session.py",
+    "tools/check.ps1",
+    "tools/check_architecture.ps1",
+    "tools/check_integration_credentials.py",
+    "tools/evidence.py",
+    "tools/p005_real.py",
+    "tools/p020_real.py",
+    "tools/p023_real.py",
+    "tools/p024_api_real.py",
+    "tools/p024_update_real.py",
+    "tools/p025_host_fixture.py",
+    "tools/p025_runtime_real.py",
+    "tools/p025_source_real.py",
+    "tools/p026_benchmark_real.py",
+    "tools/p026_capability_fixtures.py",
+    "tools/p026_capability_schemas.py",
+    "tools/p026_evidence.py",
+    "tools/p026_native_audit.py",
+    "tools/p026_native_engine_prepare.py",
+    "tools/p026_negotiation_real.py",
+    "tools/p026_oracle.py",
+    "tools/p026_prepare_evidence.py",
+    "tools/p026_probe_api_real.py",
+    "tools/p026_profile_api_real.py",
+    "tools/p026_protocol_real.py",
+    "tools/p026_reference_capabilities.py",
+    "tools/p026_schema_corpus.py",
+    "tools/p026_schemas.py",
+    "tools/p026_server_real.py",
+    "tools/p026_source_api_real.py",
+    "tools/p026_transformation_real.py",
+    "tools/p026_wire_real.py",
+    "tools/p043_sources_real.py",
+    "tools/package_copy.py",
+    "tools/requirements-rfc8785.txt",
+    "tools/requirements.txt",
+    "tools/test_capability_negotiation.py",
+    "tools/test_capability_registry.py",
+    "tools/test_p026_schemas.py",
+    "tools/test_python_adapter_sdk.py",
+    "tools/test_python_contracts.py",
+    "tools/test_reference_benchmark.py",
+    "tools/test_reference_transfer.py",
+    "tools/test_reference_transformation.py",
+    "tools/test_secret_scan.py",
+    "tools/verify_p000.py"
+  ],
+  "tests": [
+    {
+      "id": "P026-CONTRACT-build",
+      "kind": "CONTRACT",
+      "command": "cargo build -p larm-adapter-sdk -p larm-adapter-host -p larm-daemon --bins --examples",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Daemon, SDK y host/examples compilados con la toolchain fijada antes de ejecutar los workers.",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.67s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-build.log#sha256=76b0f64e13f779d69ab923482e46a2acd9e7591415c2326c211a0260b2c15541"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-fmt",
+      "kind": "CONTRACT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Formato Rust de todo el workspace conforme.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-fmt.log#sha256=a49146918e3f2ac33754c49c97ece3aebcb65aac77996b9e205744abf31441be"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-clippy",
+      "kind": "CONTRACT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Todos los targets del workspace sin advertencias.",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.34s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-clippy.log#sha256=5aa1eebf434894bf5d49c2605ddecaf8895f5c07dc19b81a1fecd2c598b1679f"
+      ]
+    },
+    {
+      "id": "P026-INTEGRATION-workspace-tests",
+      "kind": "INTEGRATION",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Workspace Rust completo: ninguna prueba fallida ni ignorada.",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-INTEGRATION-workspace-tests.log#sha256=e62a57e1cef64b915da4042d83e0966be100241824e22def2384f5c1bf7c295f"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-generated-schemas",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_schemas.py check",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_schemas.py:3635a6f0da7bd785eb471dd3a0bc13b439387ee68bcf8b2e9056d725e7bfa15c"
+      ],
+      "expected": "76 schemas request/reply para las 38 firmas, iguales a los contratos.",
+      "observed": "exit=0; PASS: 38 firmas / 76 schemas autocontenidos, índice y hashes exactos; todas las restricciones originales conservadas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-generated-schemas.log#sha256=646838f267b7c9cf8d6728a83501f609cf8deec411d9cd4c491c94e88cf46d3a"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-capability-schemas",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_capability_schemas.py check",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_capability_schemas.py:fbc7c8aa99849070d92e0147d29fce8c50df62a25e4dadce37b2d428bce0e3b4"
+      ],
+      "expected": "Schemas de descriptor/negociación íntegros y sin referencias ausentes.",
+      "observed": "exit=0; PASS: 18 capacidades / 36 schemas con hashes RFC8785 e índice Rust exactos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-capability-schemas.log#sha256=2b94ace7740b81a641f2d3960a0ab505a976bc6ed61200fb6c4b1cd98d085047"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-capability-fixtures",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_capability_fixtures.py check",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_capability_fixtures.py:dfc4d9b4867155d36b7c895b1e2ddff601afc96057e92ee89d1ebe0316dc24dc"
+      ],
+      "expected": "Las fixtures cumplen sus schemas y fijan input/output/estimador.",
+      "observed": "exit=0; PASS: dos descriptores compartidos y ocho vectores JCS independientes",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-capability-fixtures.log#sha256=2026ad46c98d554c288eb6da053a1c21ef8e860ee6aab2aafe68933f87e81ebd"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-reference-capability-descriptors",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_reference_capabilities.py check",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_reference_capabilities.py:687a9d928f1ac1e28c91a11e20aaee732e6518091b6b130fc01b31c95989b928"
+      ],
+      "expected": "Descriptores completos y coherentes para las cinco referencias.",
+      "observed": "exit=0; PASS: seis descriptores fijados (runtime echo y cinco operaciones source); fixtures sólo de contrato",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-reference-capability-descriptors.log#sha256=8ae24fef6aad7d75423d51896a07f58de21e6de392b7d9386cf28f273e9944e0"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-shared-corpus",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_schema_corpus.py check",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_schema_corpus.py:6277fce50f56cb9bd9621ddb48061d485c97bea5b9a5214c3cafe4b6eb182f97"
+      ],
+      "expected": "8544 casos compartidos reproducibles sin cambiar el corpus.",
+      "observed": "exit=0; PASS: corpus independiente compartido, 8544 casos de las 76 direcciones; no cualifica workers",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-shared-corpus.log#sha256=1d2ad10d26411767a9f80a1d19ac6e1a061938032f132c0c9c06c082180d738c"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-differential",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_p026_schemas.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_p026_schemas.py:b74eb17b63828bc16a7a18466a2b32b15add66fe02a45341f38ef0b6dcb08968"
+      ],
+      "expected": "Rust/Python/JSON Schema concuerdan sobre válidos e inválidos del corpus.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 3 tests in 1.534s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-differential.log#sha256=9d3ae3e6664cc02c94211d2cf8ccf7f391c5c15fd63dc7202e9965de1a7a31d1"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-python-contracts",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_python_contracts.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_python_contracts.py:957481bf86a257a32e4c559f2e633c5554a7778bdababce7c6ed71e93d5e1f70"
+      ],
+      "expected": "Validación Python estricta de firmas, replies, IDs, nulables y errores.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 3 tests in 2.388s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-python-contracts.log#sha256=36f61a7c4a9c283b2c3eb78823a5f8a775cb58c68ccf8ea2ae21981c33ed5371"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-python-capabilities",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_capability_registry.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_capability_registry.py:b398f1e4f3eef890083299dd5cefc5b3b366b6d85638c8a1fd04c067163a2858"
+      ],
+      "expected": "Registro obligatorio de capacidades/schema/estimador; desconocidas no se cualifican.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 5 tests in 0.283s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-python-capabilities.log#sha256=cf1f064904cd56f253df568ec5ab5b08c66aa7f531bceb7a71c6570435773b00"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-python-negotiation",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_capability_negotiation.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_capability_negotiation.py:55b291eb266262a5389ba05f58e4278896db798a9d29da52a2e8faa9e3793855"
+      ],
+      "expected": "Negociación estricta de capacidades sin convertir desconocido en soporte.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 5 tests in 3.469s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-python-negotiation.log#sha256=cca32e3b94a8f575fe11a79ff628001b11f4e50baf43002a06e76a555fa28a8f"
+      ]
+    },
+    {
+      "id": "P026-INTEGRATION-rust-sdk",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-adapter-sdk",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "SDK Rust: decoder, servidor, contratos, permisos, capacidades y cinco ejemplos sin fallos ni omisiones.",
+      "observed": "exit=0; Running tests\\session.rs (target\\debug\\deps\\session-9732eebe8a3d86e9.exe) | Running tests\\source.rs (target\\debug\\deps\\source-66d58a46819555da.exe) | Running tests\\source_protocol.rs (target\\debug\\deps\\source_protocol-b923f6317430f087.exe) | Doc-tests larm_adapter_sdk",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-INTEGRATION-rust-sdk.log#sha256=b76a2a27d22eb54e0e45144cb2682cca21048ac0a52878f44cd05a3709aee0ec"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-domain-conformance",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Invariantes/hash/binding/transiciones del dominio, sin autoridad de IO ficticia.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe) | Running tests\\conformance.rs (target\\debug\\deps\\conformance-f47bb3f0788db3f4.exe) | Doc-tests larm_domain",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-domain-conformance.log#sha256=eef146109bfecfefc5f81ec0a2d55277777f79f021a401206087c022683a7428"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-core-conformance",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-core --test conformance",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "El kernel resuelve instalación/actor; commit/replay/fallo preservan autoridad y error original.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.34s | Running tests\\conformance.rs (target\\debug\\deps\\conformance-1c78cbfc6b04890c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-core-conformance.log#sha256=b51853581363ba50910e11147c2d340bc53f8776a4aea9c3134cc9dd904fe212"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-probe-api-contract",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test adapter_probes",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Probe contractual exacto, guard antes de aceptar y privacidad del job; servicio controlado CODE_PASS.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.30s | Running tests\\adapter_probes.rs (target\\debug\\deps\\adapter_probes-dbf1c0c106b1f761.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-probe-api-contract.log#sha256=752564d7755893b9f5ebea6123ce18b62cffad4fa56420393a7d6333554622c8"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-profile-contract",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-host --test conformance_profiles",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Perfiles cerrados: actor, raíces, caducidad efectiva y renovación cambian el binding; sin Proof externo.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.90s | Running tests\\conformance_profiles.rs (target\\debug\\deps\\conformance_profiles-dd7b61588da5c047.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-profile-contract.log#sha256=8e5cbf824b452187300a2a629cd61c06cc75e0bd5c0c6cc7bbca7414fc05e227"
+      ]
+    },
+    {
+      "id": "P026-FAULT-profile-persistence",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test conformance_profiles",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "SQLite real: CAS/consumo/outbox/reapertura/rollback/corrupción/escrituras ignoradas; no cualificación de workers.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s | Running tests\\conformance_profiles.rs (target\\debug\\deps\\conformance_profiles-7967678614e444c3.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-FAULT-profile-persistence.log#sha256=0dbe28053b368da0f3a63164b846dcdcdbacc582c5e399ddec96199ddde258d9"
+      ]
+    },
+    {
+      "id": "P026-REAL-profile-api-real",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_profile_api_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_profile_api_real.py:f42f63989801c54f493c71ad1519d6d2b35fa99c91f22bc1842f58c9c58d5591"
+      ],
+      "expected": "25 checks daemon/TCP: perfil runtime/consumo/reinicio/17 observaciones/selección CLI/input cambiado/desactivar.",
+      "observed": "exit=0; [PASS] cli-final-selection-disabled: fixture termina deshabilitada y sin runtimes activos | [PASS] persisted-grant-not-transferable: actor ajeno no ejecuta ni invalida el recibo histórico confirmado | [PASS] completed-job-survives-second-restart: recibo y perfil sobreviven sin reejecución ni mutación | [PASS] owned-processes-graceful-shutdown: daemon y workers propios drenados; sin tocar procesos del operador",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-profile-api-real.log#sha256=7af96ba72a2f536390faeb9d25a69cd9e3d8c038489dfd0d7004287e05874be4"
+      ]
+    },
+    {
+      "id": "P026-REAL-source-api-real",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_source_api_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_source_api_real.py:0558bc97339e1fce814401d2c9163271abb36289e291864cd25688a59831bc63"
+      ],
+      "expected": "25 checks daemon/TCP: Source nativa 21 observaciones y CRUD habilitado con guard, actor/CAS/input/rollback/reinicio.",
+      "observed": "exit=0; [PASS] source-gate-after-daemon-restart: nuevo proceso reconstruye perfil y contexto, sin otra suite ni requests al servidor fuente | [PASS] final-sources-disabled-and-receipt-intact: sin nuevos workers/downloads, todas las fuentes deshabilitadas y recibo/paquete originales intactos | [PASS] independent-core-receipt-hashes: reconstrucción JCS independiente de Run/Outcome/recibo tras CRUD y reinicio | [PASS] owned-services-closed: daemon, workers y servidor de fixture propios cerrados",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-source-api-real.log#sha256=163862ef781717fba2f5c5513211f919167beace0efb5bec462604ec28b65f67"
+      ]
+    },
+    {
+      "id": "P026-FAULT-probe-persistence",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test adapter_probes",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "SQLite real: job/recibo/instalación/evento/outbox atómicos y replay aislado; observaciones CODE_PASS.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s | Running tests\\adapter_probes.rs (target\\debug\\deps\\adapter_probes-5aef47aefbbcf0fe.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-FAULT-probe-persistence.log#sha256=343a66d1235ecbd54e2876a49f1b9aaa75d9025db35e7756950e0583ce404042"
+      ]
+    },
+    {
+      "id": "P026-FAULT-probe-service-lifecycle",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test adapter_probe_service",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Aceptar sobrevive cancelación; shutdown espera IO y RUNNING heredado exige recuperación; ejecutor CODE_PASS.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.74s | Running tests\\adapter_probe_service.rs (target\\debug\\deps\\adapter_probe_service-1ceda87d16ccce73.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-FAULT-probe-service-lifecycle.log#sha256=03a9c5a74a827c1e87207cb9d6104757a8f76292a878fd90a02ecc5afb7192be"
+      ]
+    },
+    {
+      "id": "P026-REAL-probe-api-real",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_probe_api_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_probe_api_real.py:f598dc2b0143ec275a43eb1b86aa1d00fb9b7ad7f2971fce304e1d6e7ad40a09"
+      ],
+      "expected": "14 checks daemon/TCP/auth/SQLite: sin perfil registrado no se ejecuta ni valida el paquete.",
+      "observed": "exit=0; [PASS] owner-private: propietario/admin, sin fuga por ID | [PASS] graceful-shutdown: cierre de admisión y drenaje de servicios | [PASS] reopen-terminal-job: nuevo proceso conserva resultado y no lo reejecuta | PASS: 14 checks daemon/TCP/auth/SQLite; rechazo de suite ausente, sin cualificación funcional",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-probe-api-real.log#sha256=03fd848b12d7e3e04784f4c7445632823ab719da4cbd3256f34498c7d85db76b"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-probe-openapi",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "OpenAPI publicado coincide con la ruta y DTO Probe contractuales.",
+      "observed": "exit=0; OpenAPI al día: docs/api/openapi.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-probe-openapi.log#sha256=f30134f32f6867de462bcb90b72280e6719bcb836250f1769d45584b2440bfe5"
+      ]
+    },
+    {
+      "id": "P026-FAULT-persistence-conformance",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test conformance",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Recibo/journal/snapshot de conformidad atómicos, replay y corrupción; Proof de fixture CODE_PASS.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s | Running tests\\conformance.rs (target\\debug\\deps\\conformance-8e5fb373ad18ae87.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-FAULT-persistence-conformance.log#sha256=222093e357712b3621638584a1766f912167218c8c425a787f97233a7d210025"
+      ]
+    },
+    {
+      "id": "P026-FAULT-selection-conformance",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test adapter_selection",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Promoción/enable/rollback requieren recibo y guard; error físico no deja escrituras; desactivar permitido.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s | Running tests\\adapter_selection.rs (target\\debug\\deps\\adapter_selection-abc726457b0e7fea.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-FAULT-selection-conformance.log#sha256=cc79572547325940e0bfcba5f50056e6f7caea2a18c444c4438cc4d3a14a57e9"
+      ]
+    },
+    {
+      "id": "P026-FAULT-source-conformance",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test sources",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Fuentes habilitadas requieren conformidad vigente y guard; disabled/replay no transfieren autoridad.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s | Running tests\\sources.rs (target\\debug\\deps\\sources-8df247788a4c6c90.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-FAULT-source-conformance.log#sha256=8fd8c05488ceb9e9285efd7862ec7f8b713ad13a80e3063dcc89dcf0f0749790"
+      ]
+    },
+    {
+      "id": "P026-FAULT-update-coordinator-conformance",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-daemon --test adapter_coordinator",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Coordinador P024 conserva publicación/rollback/last-good y sus recursos ante fallos.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s | Running tests\\adapter_coordinator.rs (target\\debug\\deps\\adapter_coordinator-fb123a9ca46b8c1d.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-FAULT-update-coordinator-conformance.log#sha256=fa73a981009cd9c3ca2bd5d3555d70ef104922c69cf830c585c1d0bc15eb427b"
+      ]
+    },
+    {
+      "id": "P026-INTEGRATION-python-sdk",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_python_adapter_sdk.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_python_adapter_sdk.py:c86026b59963bfc900af8ccada11defb8808bc222cfaea5aa2aaf61a3c6c53cd"
+      ],
+      "expected": "Servidor SDK Python fuera de proceso: frames, callbacks, cola, cancelación y EOF.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 9 tests in 4.007s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-INTEGRATION-python-sdk.log#sha256=95c9f86bdc5fcbd01ccab9c03fc0cf84a0dc3aa5006d75ff47e73648479acd58"
+      ]
+    },
+    {
+      "id": "P026-INTEGRATION-host-regressions",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-adapter-host --lib --test declarative --test worker --test policy --test source",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Regresiones del host/P022/declarativo/source con límites y permisos; no sustituyen oráculos funcionales.",
+      "observed": "exit=0; Running tests\\declarative.rs (target\\debug\\deps\\declarative-400ec39df9842de3.exe) | Running tests\\policy.rs (target\\debug\\deps\\policy-d49b6e22ab43b5d9.exe) | Running tests\\source.rs (target\\debug\\deps\\source-2aa34c5cda4783b6.exe) | Running tests\\worker.rs (target\\debug\\deps\\worker-5d9dedc0a7808fc7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-INTEGRATION-host-regressions.log#sha256=7ec850eae5b88e7ce3ca0a7fd6ddefda20c1ca7215104777e6f722c88183d65b"
+      ]
+    },
+    {
+      "id": "P026-FAULT-native-conformance-engine",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-adapter-host --test conformance",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Binding/ownership/IO/cancel/shutdown/gate físico con procesos propios; observaciones sintéticas CODE_PASS.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s | Running tests\\conformance.rs (target\\debug\\deps\\conformance-442b81574e642876.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-FAULT-native-conformance-engine.log#sha256=1b2064d99f8538fe90a9f8f6f7cb08c5e598927b5b5caca6fef24d83ed21adc2"
+      ]
+    },
+    {
+      "id": "P026-REAL-protocol-process",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p020_real.py stdio",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p020_real.py:6b5b5b21a4cd4c4736ef3ba876cf629249fe0a654ba2c97ecf6f4028478d88ab"
+      ],
+      "expected": "NDJSON/handshake/nonce/versiones/errores reales de proceso en Windows.",
+      "observed": "exit=0; [PASS] progreso-heartbeat-cancel: 3 progresos válidos con su request_id; heartbeat con el id en curso; cancel → cancelled y la ejecución termina cancelada, una respuesta por id | [PASS] stdout-solo-frames: 13 líneas en stdout, todas frames JSON-RPC; stdin cerrado → exit 0; stderr aparte (0 B) | [PASS] version-incompatible: el handler intenta anunciar 2.0: el SDK normaliza el reply inválido y no habilita la sesión | PASS 8 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-protocol-process.log#sha256=2c6174f6284a11cdc8a914a474b8739756c14d84ecf8a28f4242b0cd217bf85c"
+      ]
+    },
+    {
+      "id": "P026-REAL-server-process-limits",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_server_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_server_real.py:e0a43f32b0cb9b95a4c026d5f85fd98341f288d690dd526a2b7038511c5a0b15"
+      ],
+      "expected": "Procesos SDK: límites de frame/cola, duplicados, cancelación y EOF, sin éxito ficticio.",
+      "observed": "exit=0; PASS queued-cancel-without-callback | PASS capacity-recovered-after-reply | PASS eof-finishes-all-accepted-calls | PASS package-preserved-and-pipes-closed",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-server-process-limits.log#sha256=4b2afdcfe806888ba4df7dbd07521b390ae7aa5dbf67dd17bbdcdd14c8b69be8"
+      ]
+    },
+    {
+      "id": "P026-REAL-protected-references",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test reference_adapters",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4"
+      ],
+      "expected": "Cinco workers reales por P022/perfiles persistentes/router/Core/SQLite: 89 observaciones completas, 45 parciales y 45 checks físicos; también runtime negativo.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s | Running tests\\reference_adapters.rs (target\\debug\\deps\\reference_adapters-89ce15120b1d65fe.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-protected-references.log#sha256=2a29ae628c22db165f1315fd5ed2d07667d67412b997e9e8840aec079498ea3a"
+      ]
+    },
+    {
+      "id": "P026-REAL-five-family-negotiation",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_negotiation_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_negotiation_real.py:b5529afc74c25b00c5a1a56b47c786c81e5a2120e9ff0af324a92e5b1ece57e8"
+      ],
+      "expected": "36 pasos reales de negociación/ownership por las cinco familias, sin promover cobertura parcial.",
+      "observed": "exit=0; PASS benchmark/unregistered-estimator | PASS benchmark/changed-schema-hash | PASS benchmark/external-schema-ref | PASS benchmark/foreign-lock-preserved-and-failed-owner-released",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-five-family-negotiation.log#sha256=ce2d60bde3158ca634eba2bc3ad03faec069eb0f1805eda7845a72f1d2facdaf"
+      ]
+    },
+    {
+      "id": "P026-REAL-five-family-wire",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_wire_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_wire_real.py:1432af57da4a02dd90dfd266afa87e4532875f85720e2e48cd2e19a50daf4506"
+      ],
+      "expected": "145 casos wire/host con extra fields, major, IDs, duplicados, JSON/frame/cancel timeout/crash/stderr; mutantes no cualifican el original.",
+      "observed": "exit=0; PASS benchmark/host/invalid-result | PASS benchmark/host/stall | PASS benchmark/host/crash | PASS benchmark/host/stderr-long",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-five-family-wire.log#sha256=caa28ece81a28c480115206769d773250329e4a12e75cad53ae141664d20f3ac"
+      ]
+    },
+    {
+      "id": "P026-REAL-declarative-regression",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p023_real.py serve",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p023_real.py:818f8955dc10ca1d65bc82039f408c1702bd80b0d7fd51064fbf74180129f297"
+      ],
+      "expected": "Daemon/worker declarativo/SQLite reales: alta UNTRUSTED, comandos acotados, auth, export/import y cierre.",
+      "observed": "exit=0; [PASS] ollama-version-desconocida: --version sin servidor imprime dos avisos: version_unparseable, no «Warning: …» como versión | [PASS] ollama-arranque-y-health: ollama serve en 127.0.0.1:61255 con entorno declarado; /api/version = 0.40.6 (oráculo) | [PASS] ollama-parada: árbol terminado y puerto cerrado; la instancia del usuario sigue arriba | PASS 20 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-declarative-regression.log#sha256=434955349760c2b23489ba3a84562fde6ef2f4e307f65baeefa3545b8f4dd4eb"
+      ]
+    },
+    {
+      "id": "P026-REAL-runtime-reference",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p025_runtime_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p025_runtime_real.py:4f596d7f24c36b8be9b7e14d385ef5ca1a12e3a6b98cbae529cd9480380b4155"
+      ],
+      "expected": "Referencia runtime completa aplicable: versión/hash, planes, procesos/HTTP/stop/cancel/crash y recuperación; no inferencia.",
+      "observed": "exit=0; PASS core-registers-and-discovers-reference | PASS installed-uncontracted-capability-denied | PASS installed-launcher-executes-actual-echo | PASS installed-worker-eof-cleanup",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-runtime-reference.log#sha256=0ce3cac201e4d54bce94dbd498fd33612976a67e23b496daeae70b1825f36343"
+      ]
+    },
+    {
+      "id": "P026-REAL-source-reference",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p025_source_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p025_source_real.py:fd367daa524d22f289de6c83615bb257571e03f0010c4dc82476e21515c0ebbf"
+      ],
+      "expected": "Referencia source: búsqueda/inspección/transferencia/Range/hash/ledger/fallos/cancel/crash/replay reales; no P050.",
+      "observed": "exit=0; PASS work-profile-bound-to-ledger | PASS reusable-conformance-source | PASS core-discovers-portable-source-package | PASS immutable-package-and-no-auth-header",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-source-reference.log#sha256=ee86d54a0455218538784851d9f8ad44d542d0e0a76019c38b83ef40f25ae9d5"
+      ]
+    },
+    {
+      "id": "P026-INTEGRATION-source-transfer",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_reference_transfer.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_reference_transfer.py:0ddba0c66b71f4b37b2036a3c18d2766b7f95f716775086462eaa1d8cef8acc8"
+      ],
+      "expected": "Transporte source: paths/origin/redirect/reanudación y fallos contra servidor propio.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 9 tests in 4.833s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-INTEGRATION-source-transfer.log#sha256=e97eab01a530d7488afe9b6c7cac8ef8d7d64a9fbd9618f78423efac68374c79"
+      ]
+    },
+    {
+      "id": "P026-REAL-protocol-reference",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_protocol_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_protocol_real.py:1dab951cbd339bd6142ab9a3e98a2bc7ee34464001a017ce2e5ccacfb8332473"
+      ],
+      "expected": "Protocol HTTP/echo con backend Rust real, cuatro firmas, errores y fingerprint; no inferencia ni leases Core.",
+      "observed": "exit=0; PASS real-backend-crash-and-recovery | PASS tampered-descriptor-no-handshake | PASS common-conformance-and-eof | PASS immutable-and-no-auth-header",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-protocol-reference.log#sha256=1bca8f6ae7385aa741878bf6c80459a4075a9993b8bcf2acda3b82f44646a8a2"
+      ]
+    },
+    {
+      "id": "P026-INTEGRATION-transformation-files",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_reference_transformation.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_reference_transformation.py:bdc24cd79babd055686635c35c8cfee0e4ea2115089ac5d215cfe46707dbe396"
+      ],
+      "expected": "Archivos reales: rutas, symlinks, presupuesto, publicación y recuperación Base64.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 7 tests in 0.362s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-INTEGRATION-transformation-files.log#sha256=cc5a78bae6df17d59891477e284c5b8437b6e79378296e8b773826f75b401fab"
+      ]
+    },
+    {
+      "id": "P026-REAL-transformation-reference",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_transformation_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_transformation_real.py:32947e90b100d6b5ce052e7a77b7c1cadab8417ced28343f90bbb9f4fef03746"
+      ],
+      "expected": "Transformation: cuatro firmas, bytes Base64/oráculo independiente, provenance/ledger/cancel/crash/fault recovery reales.",
+      "observed": "exit=0; PASS combined-fault-restart-verifies-original | PASS eof-cancels-active-and-drains | PASS common-conformance | PASS immutable-package-and-input",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-transformation-reference.log#sha256=d3a268fbf27a8afd9bba2b446dcc909ce741f5c5c0713606847c9efaf09c5c1c"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-benchmark-statistics",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_reference_benchmark.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_reference_benchmark.py:31a7d75e9005902d660ff356b14dbb20fcf228baa2adbb809eaec76429f97754"
+      ],
+      "expected": "Fórmulas de estadísticas y fingerprint contrastadas sin promover unknown.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 4 tests in 0.001s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-benchmark-statistics.log#sha256=56a9084d491f8884476f2334629c352311c55b0b71c735e8106554effaad0681"
+      ]
+    },
+    {
+      "id": "P026-REAL-benchmark-reference",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_benchmark_real.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/p026_benchmark_real.py:948c0e1343a3a6498cf248a166a6dcd6245aaae304def39de645324cf43a1e8f"
+      ],
+      "expected": "Benchmark: tres firmas, muestras HTTP/tiempos/fórmulas/wire/ledger/cancel/crash y recuperación; no inferencia.",
+      "observed": "exit=0; PASS backend-restarted-next-measurement | PASS eof-cancels-owned-measurement | PASS common-conformance | PASS immutable-package-and-consistent-ledger",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-REAL-benchmark-reference.log#sha256=e388a8ef99181a7dfc4f35ef4b46c98afd35458a70ab9abda765b079f881d04d"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-package-copy",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/package_copy.py:a5d0da370c765c17a79071529824f1f5ded5d9282dce20b14f871c7b6b7f6567"
+      ],
+      "expected": "Copias normativas iguales al paquete vigente.",
+      "observed": "exit=0; PASS 53 copias idénticas al paquete v3",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-package-copy.log#sha256=3c8c573d8cc5b2e1cc6a73e2d47052552f2de2f9ea511364474758ee7547eee5"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-architecture",
+      "kind": "CONTRACT",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/check_architecture.ps1:a6b60a25c1ca86c43f5cd325bcef70d43c9646ebf179767c92d8fa87af939a97"
+      ],
+      "expected": "Grafo de crates y límites arquitectónicos conformes.",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-lock",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/verify_p000.py lock-coherence",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/verify_p000.py:f329bf5b28c2ec041701e44adddb46f0e041cfd4dffedceafd527989c99f530e"
+      ],
+      "expected": "Dependencias/estrategias/perfiles coherentes con environment.lock.",
+      "observed": "exit=0; PASS 47 dependencias usadas coinciden en version y hash con Cargo.lock/package-lock.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-lock.log#sha256=25474a44e8b6554e5a2a78b997fa79c9101cfb8287503dc7a93abe121a675796"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-secret-scan-contract",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/test_secret_scan.py",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/test_secret_scan.py:b814d450f55d28ed02be47fe7b7253967679f09118fa987b78c60f5cb167fda2"
+      ],
+      "expected": "Seis pruebas: UTF-8/UTF-16 y patrones entre bloques, lectura binaria completa, conteo concurrente, errores/ausencias y alcance sin omisiones.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 6 tests in 0.171s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-secret-scan-contract.log#sha256=44be355add08f710a180f710203b4ca7f5c94cdbb9fb16ad59d5918d77ce030c"
+      ]
+    },
+    {
+      "id": "P026-INTEGRATION-secret-storage",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/check_integration_credentials.py --scan-only",
+      "fixture_hashes": [
+        "tools/p026_evidence.py:38baeccef81db000fca3a633d6b211399340596f09ccb0304464305f19327844",
+        "environment.lock.json:c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+        "tools/check_integration_credentials.py:08d56950455c2d03716911512dc0798f6744956b29f5b12cf97bca94259f51c8"
+      ],
+      "expected": "Credenciales autorizadas recuperables y ausentes de los archivos inspeccionados; valores no impresos.",
+      "observed": "exit=0; PASS: credencial ai-broker recuperable desde Credential Manager | PASS: credencial agora recuperable desde Credential Manager | SCAN_PROGRESS: files=134148 bytes=2351062689 | PASS: tokens ausentes de 210398 archivos de código, datos operativos, documentación, builds y logs; bytes=3752266648; workers=8",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-INTEGRATION-secret-storage.log#sha256=78ced13f45854706062050dfe398c8df4d5667eb65fd8151409812f79b648754"
+      ]
+    },
+    {
+      "id": "P026-CONTRACT-independent-native-audit",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_native_audit.py --checks docs/reports/P026_runs/preparation.checks.json",
+      "fixture_hashes": [
+        "tools/p026_native_audit.py:df016324722d7b503cf88ecb28838567b14beab956da13d609610a5a68970c32"
+      ],
+      "expected": "Fuentes/logs congelados, Run/observaciones/Proof/Outcome/recibos/perfiles/consumo y ledgers reconstruidos; HTTP real fresco con trazas sin tokens.",
+      "observed": "exit=0; PASS: benchmark independent native evidence | PASS: probe fresh real daemon/API evidence (14 checks) | PASS: profile fresh real daemon/API evidence (25 checks) | PASS: source fresh real daemon/API evidence (25 checks)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P026_runs/P026-CONTRACT-independent-native-audit.log#sha256=b057c7e8fb53d30128c5e77859f57abc9413249f60e2b49a7bc1c0735d63f462"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P025 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-20T12:55:02.611Z"
+}

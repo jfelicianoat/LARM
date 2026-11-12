@@ -1,0 +1,533 @@
+{
+  "prompt_id": "P051",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "772deffa058b29d245cc86f125695f0f41ffd291a818721cb6ca5c4237cf8bf0",
+  "changed_files": [
+    "apps/daemon/src/download_execution.rs",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/tests/lifecycle.rs",
+    "apps/desktop/src/api/settings.ts",
+    "apps/desktop/src/downloads.test.tsx",
+    "apps/desktop/src/downloads.tsx",
+    "apps/desktop/src/settings.test.tsx",
+    "apps/desktop/src/settings.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-adapter-host/examples/fake_source.rs",
+    "crates/larm-adapter-sdk/src/source/wire.rs",
+    "crates/larm-adapter-sdk/tests/source_protocol.rs",
+    "crates/larm-api/src/download_plans.rs",
+    "crates/larm-api/src/downloads.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/settings.rs",
+    "crates/larm-api/tests/download_plans.rs",
+    "crates/larm-api/tests/downloads.rs",
+    "crates/larm-core/src/config/mod.rs",
+    "crates/larm-db/src/artifacts.rs",
+    "crates/larm-db/src/download_jobs.rs",
+    "crates/larm-db/src/download_plans.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/models.rs",
+    "crates/larm-db/src/settings.rs",
+    "crates/larm-domain/src/download.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-download/Cargo.toml",
+    "crates/larm-download/src/activation_service.rs",
+    "crates/larm-download/src/consumer.rs",
+    "crates/larm-download/src/lib.rs",
+    "crates/larm-download/src/policy.rs",
+    "crates/larm-download/src/preview_service.rs",
+    "crates/larm-download/src/transfer.rs",
+    "docs/api/openapi.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P003_configuracion-errores-y-logging-estructurado.md",
+    "docs/reports/P005_api-administrativa-axum-v1-y-openapi.md",
+    "docs/reports/P051_alineacion_paquete_contractual.md",
+    "docs/reports/P051_download-manager-cola-pausa-reanudacion-y-checksum.md",
+    "tools/p051_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P051-CONTRACT-PACKAGE",
+      "kind": "CONTRACT",
+      "command": "python tools/package_copy.py check",
+      "fixture_hashes": [
+        "docs/contracts/00_PACKAGE.md:7bfaebd02bd04894bc6a6828296c92b543e2cb808d8a24c73447453b74da2170",
+        "docs/contracts/REVISION_3_1_0_P052.md:0a09116084c66a4eb6a64faa20870c0718a73a03cb5f4860ac68f8c5c3a477c0",
+        "docs/contracts/02_STORAGE_DOWNLOAD.md:e4ea2b4c55a9fd6ead86c4e80fbab81790ab201fa1b516203331fb3f39db1dbe",
+        "docs/contracts/schemas/larm.schema.json:5ccfa061f3f06b02ebd90cfc9e0fa2710553e512012395100831ae2728ad91ef",
+        "docs/reports/P051_alineacion_paquete_contractual.md:d4714042ae3cb8a0274bebdd97256cbeca2ae8d6d1c8ea1bcecb065f31012ec3"
+      ],
+      "expected": "El paquete contractual fuente y las 71 copias locales coinciden con 3.10.2; P052 3.1.0 define IDs opcionales e intervalos por artefacto.",
+      "observed": "exit=0; PASS 71 copias idénticas al paquete 3.10.2",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-CONTRACT-PACKAGE.log#sha256=72491253feffd90b05994cb173f56055fbec851305723194c4b4cb1f0eede74c"
+      ]
+    },
+    {
+      "id": "P051-FMT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [
+        "crates/larm-domain/src/download.rs:e7ca4c3cb51b3fa8b6bde3b0eb7fc21d8132135ffdd2582b11a5ee1a27226b48",
+        "crates/larm-adapter-sdk/src/source/wire.rs:618b4e60be87957964cfbe67d05f2451b3c132e8b975331847ab6496993111a4",
+        "crates/larm-download/src/policy.rs:d59cef4ad6e25c319bf787e9a7b69309f31b92739c646d0220948ed5507abfcb",
+        "crates/larm-download/src/activation_service.rs:199b25b00fc6d4bcfc8312924d5dd81e47c388a666550159a5850204f77ce924",
+        "crates/larm-api/src/download_plans.rs:449bfa8de6ee863af8b60b92f65e7aed170472e794f0715a92cd9e5b53f00d58",
+        "crates/larm-adapter-sdk/src/source/wire.rs:618b4e60be87957964cfbe67d05f2451b3c132e8b975331847ab6496993111a4"
+      ],
+      "expected": "Todo el Rust del workspace está formateado.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-FMT.log#sha256=f239a97605b2ec0a2760a77a2e15b3749f9b3fd40cd8082e33d01cb92ed0ffea"
+      ]
+    },
+    {
+      "id": "P051-DOMAIN-STATE",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib download::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/download.rs:e7ca4c3cb51b3fa8b6bde3b0eb7fc21d8132135ffdd2582b11a5ee1a27226b48"
+      ],
+      "expected": "Prioridades, DTO estricto, transiciones y reintento con preflight coinciden con el contrato.",
+      "observed": "exit=0; warning: `larm-domain` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.33s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-11b22671b55091d0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DOMAIN-STATE.log#sha256=1b4ef0bcc6d7080564f562f54e4677214bad617e7aac3f508937eb7ea227ecd7"
+      ]
+    },
+    {
+      "id": "P051-TRANSFER-POLICY",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-download --lib policy::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/policy.rs:d59cef4ad6e25c319bf787e9a7b69309f31b92739c646d0220948ed5507abfcb"
+      ],
+      "expected": "La cola, Range/ETag, 200/206/416, retry, checksum y límite agregado obedecen sus reglas.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.30s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-TRANSFER-POLICY.log#sha256=1f144740a35cb2af961e8991fbf7e6204339946e6cea8a26dca9d6fd8117288a"
+      ]
+    },
+    {
+      "id": "P051-DOWNLOAD-LIB-ALL",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-download --lib -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/activation_service.rs:199b25b00fc6d4bcfc8312924d5dd81e47c388a666550159a5850204f77ce924",
+        "crates/larm-download/src/planner.rs:0c86f33bf7a1826e33b808d9cb94383b3ec7ce10a64a8bd419803f5f5ffa421c",
+        "crates/larm-download/src/policy.rs:d59cef4ad6e25c319bf787e9a7b69309f31b92739c646d0220948ed5507abfcb",
+        "crates/larm-download/src/preview_service.rs:b2ad7ae69334502f9bc84fd1819e0801cdcfa370a054f9f92ae8077f70d70d29"
+      ],
+      "expected": "El conjunto completo del gestor valida planner, política, preflight y activación.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DOWNLOAD-LIB-ALL.log#sha256=ca5406c9e5ec775216a03a33e4dc777e36410ff60374fb48db05b72c8c03787b"
+      ]
+    },
+    {
+      "id": "P051-TRANSFER-STAGING",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-download --lib transfer::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/transfer.rs:eac6467687924086eba12644b0501fe7a3078f0f832b43027b96d403c31b0984"
+      ],
+      "expected": "Staging local verifica bytes y SHA-256, pausa/cancelación, reanudación desde offset SQLite, ETag cambiado, límites, fallo de checkpoint y StorageFull con cola parcial descartada al reanudar.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.30s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-TRANSFER-STAGING.log#sha256=2db5e660ec719b2b1ca8ab9d344cf3378361b2a6a20b95cae09bcf0e4fa2294b"
+      ]
+    },
+    {
+      "id": "P051-CONSUMER-END-TO-END",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-download --lib consumer::tests::consumidor_reintenta_en_mirror_y_guarda_procedencia_tras_verificar -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e1cd59052b151516e09e6614b978ad1743b967bea12f1b3f9245c142eb684e83",
+        "crates/larm-download/src/transfer.rs:eac6467687924086eba12644b0501fe7a3078f0f832b43027b96d403c31b0984",
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0"
+      ],
+      "expected": "El consumidor en SQLite prueba el failover de mirror desde offset cero, cierra ambas sesiones y verifica staging, promoción CAS, procedencia, catálogo y liberación de reserva.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.31s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-CONSUMER-END-TO-END.log#sha256=991a3c3ca94c465321de11947dd068cbc73c2a5ca7c24a32f7297a968d85edf1"
+      ]
+    },
+    {
+      "id": "P051-STORAGE-FULL-ERROR-MAPPING",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-download --lib consumer::tests::disco_lleno_se_informa_como_espacio_insuficiente -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e1cd59052b151516e09e6614b978ad1743b967bea12f1b3f9245c142eb684e83"
+      ],
+      "expected": "El consumidor convierte StorageFull a STORAGE_INSUFFICIENT con un mensaje seguro y detalle técnico solo para logs.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.30s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-STORAGE-FULL-ERROR-MAPPING.log#sha256=b21836e67673154bee97d79d2b6bff6dd8a468c3d341c24a787cf06bdc793515"
+      ]
+    },
+    {
+      "id": "P051-STORAGE-FULL-CONSUMER",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-download --lib consumer::tests::consumidor_persiste_storage_full_y_libera_reserva_sin_fallback -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e1cd59052b151516e09e6614b978ad1743b967bea12f1b3f9245c142eb684e83",
+        "crates/larm-download/src/transfer.rs:eac6467687924086eba12644b0501fe7a3078f0f832b43027b96d403c31b0984",
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0"
+      ],
+      "expected": "El fallo de staging recorre el consumidor y SQLite: el job guarda STORAGE_INSUFFICIENT, cierra la sesión, conserva el checkpoint, libera la reserva y no prueba mirrors por un error local.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-STORAGE-FULL-CONSUMER.log#sha256=0375fc565a31484b91f2172740900969b2f063c8b105c040962abc1717e15af0"
+      ]
+    },
+    {
+      "id": "P051-CONSUMER-PROCESS-CRASH-RECOVERY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-download --lib consumer::tests::consumidor_recupera_descarga_despues_de_caida_del_proceso -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/consumer.rs:e1cd59052b151516e09e6614b978ad1743b967bea12f1b3f9245c142eb684e83",
+        "crates/larm-download/src/transfer.rs:eac6467687924086eba12644b0501fe7a3078f0f832b43027b96d403c31b0984",
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0",
+        "crates/larm-storage/src/cas.rs:587de13779a6a8c29f74b58b0ea2238d10e42539b4df47bb9d0e4956a190c656"
+      ],
+      "expected": "Un proceso hijo termina abruptamente tras un checkpoint durable; el consumer reabre SQLite/staging, descarta la cola no reconocida, reanuda en offset cuatro con el mismo ETag y completa el CAS.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-CONSUMER-PROCESS-CRASH-RECOVERY.log#sha256=1ca27a927510bbd8e3806b69fcc7c8d79743bc1d693e4ea7a7138edf21ef0f60"
+      ]
+    },
+    {
+      "id": "P051-DAEMON-PROCESS-RESTART-RECOVERY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --test lifecycle proceso_real_reinicia_api_y_recupera_descarga_running_con_checkpoint -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/tests/lifecycle.rs:756c5d8bfd82435b74df0ed46b9baaa6f7866013fbd763d2c3103d79a2ed4437",
+        "apps/daemon/src/serve.rs:0f51aee78381142f55e01f8b2fa569068c1a5212bf30b456b1de2cd742f10c21",
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0"
+      ],
+      "expected": "El daemon real arranca, sirve health/live y se reinicia con un job RUNNING en SQLite; verifica recuperación durable, checkpoint conservado, evento único y reclamación segura sin un plan sellado.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.42s | Running tests\\lifecycle.rs (target\\debug\\deps\\lifecycle-359cde4d16fb9f6c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DAEMON-PROCESS-RESTART-RECOVERY.log#sha256=911212e803ba01aa12adcc398bd4c7e350e770abc026dcfa93ab3ac7b8dd7f1d"
+      ]
+    },
+    {
+      "id": "P051-H08-SETTINGS-CODE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api -p larm-db --lib settings::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/settings.rs:b55f8a08f8256865ae35a2437115c688673db2a260e1a22b1a6ab27612ffb648",
+        "crates/larm-db/src/settings.rs:2db3971d84dd58498fee8299f3e157fe3b285d43afbbe866ed8ad4ab8fc23a5f",
+        "crates/larm-domain/src/ports.rs:7a99ce181befecb2736f3ce3034ef81d89898325eceeb1d29d5253a7ca095f30"
+      ],
+      "expected": "Settings GET/PATCH publican ETag, exigen If-Match, validan el límite, actualizan el limitador activo y guardan Settings con CAS y outbox atómico.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.41s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_api-253f089f3b7a9ff5.exe) | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-81f0a20f3147e168.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-H08-SETTINGS-CODE.log#sha256=fc68b2d889686680b62a2d38913e6e5225d350ce158ea3626d1a3fd28884c093"
+      ]
+    },
+    {
+      "id": "P051-DAEMON-DOWNLOAD-GUARD",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-daemon download_execution::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/src/download_execution.rs:0c8e8ef42a4d88eb4a5da82976cb9011fd66a8dd910fe63d6ef1182f6d67a0dd"
+      ],
+      "expected": "La composición daemon limita los orígenes al manifiesto y falla cerrada para auth, workers sin chunks y bindings no ejecutables.",
+      "observed": "exit=0; Running tests\\lifecycle.rs (target\\debug\\deps\\lifecycle-359cde4d16fb9f6c.exe) | Running tests\\move.rs (target\\debug\\deps\\move-32346e5f15f417d5.exe) | Running tests\\reference_adapters.rs (target\\debug\\deps\\reference_adapters-6ac2b70ba6e733b2.exe) | Running tests\\runtime_catalog.rs (target\\debug\\deps\\runtime_catalog-5748a54b68958983.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DAEMON-DOWNLOAD-GUARD.log#sha256=64bc3d66af50a1c22b4d13154e727317f16a4fd329f508352cd3121e3dfc1d8c"
+      ]
+    },
+    {
+      "id": "P051-DAEMON-DOWNLOAD-SUPERVISOR",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --bin larm-daemon serve::download_consumer_supervision_tests::supervisor_continua_despues_de_fallo_de_espacio_y_cierra_con_shutdown -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/src/serve.rs:0f51aee78381142f55e01f8b2fa569068c1a5212bf30b456b1de2cd742f10c21",
+        "crates/larm-download/src/consumer.rs:e1cd59052b151516e09e6614b978ad1743b967bea12f1b3f9245c142eb684e83"
+      ],
+      "expected": "El supervisor registra un job fallido por espacio, sigue atendiendo la cola y termina ordenadamente al recibir shutdown.",
+      "observed": "exit=0; warning: `larm-models` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s | Running unittests src\\main.rs (target\\debug\\deps\\larm_daemon-a7f23875edf1612a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DAEMON-DOWNLOAD-SUPERVISOR.log#sha256=049c862b07f87ec7dbbac450ae20c86ed7ea61a0bb9ebe0917077667772d7d04"
+      ]
+    },
+    {
+      "id": "P051-SOURCE-PRIORITY-WIRE",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-sdk --test source_protocol presupuesto_y_prioridad_no_desaparecen_y_unknown_no_es_cero -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-adapter-sdk/src/source/wire.rs:618b4e60be87957964cfbe67d05f2451b3c132e8b975331847ab6496993111a4",
+        "crates/larm-download/src/policy.rs:d59cef4ad6e25c319bf787e9a7b69309f31b92739c646d0220948ed5507abfcb"
+      ],
+      "expected": "DownloadPriority conserva su serialización y no convierte tamaños desconocidos en cero.",
+      "observed": "exit=0; warning: `larm-adapter-sdk` (bin \"larm-generic-adapter\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s | Running tests\\source_protocol.rs (target\\debug\\deps\\source_protocol-e0bf8d49076768c7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-SOURCE-PRIORITY-WIRE.log#sha256=00495c33ee716478863daaf3026f5d35d31a82128a3dde1593e4019046705781"
+      ]
+    },
+    {
+      "id": "P051-DURABLE-ACTIVATION",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --lib download_plans::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/download_plans.rs:a0aae40ae1ef06f67097e3ddfb7fe9e798875ca33aa5a4922290270fd24451db",
+        "crates/larm-domain/src/download.rs:e7ca4c3cb51b3fa8b6bde3b0eb7fc21d8132135ffdd2582b11a5ee1a27226b48"
+      ],
+      "expected": "La confirmación explícita crea job, reserva, journal, outbox e idempotencia en una única transacción SQLite.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DURABLE-ACTIVATION.log#sha256=89f42219d711c84ed97701bde97cda27899f4cc8b36963eb719b3e132592b22f"
+      ]
+    },
+    {
+      "id": "P051-DURABLE-TERMINAL-RESULT",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --lib download_jobs::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0",
+        "crates/larm-db/src/artifacts.rs:e5508e68566ec55c06c74fb26f88c206ab6c8b4b515b3dcbb37d32957389ff25",
+        "crates/larm-db/src/models.rs:7adb51d38900c560d6babdac57e32273a93709eab92b742afdb4576a61e93cd2",
+        "crates/larm-db/src/download_plans.rs:a0aae40ae1ef06f67097e3ddfb7fe9e798875ca33aa5a4922290270fd24451db"
+      ],
+      "expected": "Los estados VERIFYING/FAILED y la publicación final de catálogo, procedencia, journal, outbox y reserva se confirman o revierten atómicamente.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DURABLE-TERMINAL-RESULT.log#sha256=b6ed30d3a82e87991c2ea8ccc76576d0a27ad70eaa3839214b82d5740eac9561"
+      ]
+    },
+    {
+      "id": "P051-PREVIEW-HASH",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-download --lib preview_service::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/preview_service.rs:b2ad7ae69334502f9bc84fd1819e0801cdcfa370a054f9f92ae8077f70d70d29"
+      ],
+      "expected": "El preflight conserva tamaños, destinos y el hash sellado después de compartir su cálculo con la validación de ejecución.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-PREVIEW-HASH.log#sha256=5fdfd42ee1edba8e49bf087bff495dc6260e55a022bbb14b66ac7ecf628f9124"
+      ]
+    },
+    {
+      "id": "P051-ACTIVATION-SEAL",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-download --lib activation_service::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-download/src/activation_service.rs:199b25b00fc6d4bcfc8312924d5dd81e47c388a666550159a5850204f77ce924",
+        "crates/larm-download/src/preview_service.rs:b2ad7ae69334502f9bc84fd1819e0801cdcfa370a054f9f92ae8077f70d70d29"
+      ],
+      "expected": "El servicio exige confirmación expresa y el hash exacto, y falla cerrado si falta un worker cualificado.",
+      "observed": "exit=0; warning: `larm-storage` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_download-d4bf33400111809c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-ACTIVATION-SEAL.log#sha256=dc927cc4123397520558a067c8c3948cc535b48685f82d5e9b307e5aaf7a3d95"
+      ]
+    },
+    {
+      "id": "P051-API-CONFIRMATION",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test download_plans -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/download_plans.rs:449bfa8de6ee863af8b60b92f65e7aed170472e794f0715a92cd9e5b53f00d58",
+        "crates/larm-api/tests/download_plans.rs:f964516d26da8c8f566a36d86ed75fbc02459e9aecbc39e147b4ab50f3e3ddc4",
+        "crates/larm-domain/src/download.rs:e7ca4c3cb51b3fa8b6bde3b0eb7fc21d8132135ffdd2582b11a5ee1a27226b48"
+      ],
+      "expected": "La API rechaza confirmación ausente y campos ajenos, y reproduce el receipt de forma idempotente.",
+      "observed": "exit=0; warning: `larm-api` (test \"download_plans\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.31s | Running tests\\download_plans.rs (target\\debug\\deps\\download_plans-410defaf270928bf.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-API-CONFIRMATION.log#sha256=60c33db2b73e88ea813b06eb7cd2de4fc1078f9b4d96255a2e2ab4654e1c9cfb"
+      ]
+    },
+    {
+      "id": "P051-PRIORITY-DB",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --lib download_jobs::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/download_jobs.rs:cab93429d17ba97ff6637a9b5794e838ee2b1038fa8cfef89ae753f4799c33c0",
+        "crates/larm-domain/src/ports.rs:7a99ce181befecb2736f3ce3034ef81d89898325eceeb1d29d5253a7ca095f30"
+      ],
+      "expected": "El cambio de prioridad usa CAS, limita estados y actor, emite outbox atómico y conserva el plan y la reserva.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-PRIORITY-DB.log#sha256=da7eacf120ede6df054b7fcc019b13bda43ba712b660997588275a3bf6bdb0db"
+      ]
+    },
+    {
+      "id": "P051-PRIORITY-API",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test downloads -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/downloads.rs:782247ee596c4b1328ef643f658badc1a43c811fc3457cbf5df295fbb227ca79",
+        "crates/larm-api/tests/downloads.rs:4e7db74f69ea4033e4cf275377381bb2c72e784048b2914e3c59de170d80b430"
+      ],
+      "expected": "PATCH /downloads/{id}/priority valida If-Match, transporta el actor y devuelve el job actualizado con ETag.",
+      "observed": "exit=0; warning: `larm-api` (test \"downloads\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.37s | Running tests\\downloads.rs (target\\debug\\deps\\downloads-2819a32b38c6cf7c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-PRIORITY-API.log#sha256=248d6b4926c2cfaa5afb2233649e2cf444f30cff239d110cc564f9d39a82c2cf"
+      ]
+    },
+    {
+      "id": "P051-PRIORITY-DESKTOP",
+      "kind": "UNIT",
+      "command": "node ../../node_modules/vitest/vitest.mjs run --pool=threads --maxWorkers=1",
+      "fixture_hashes": [
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8",
+        "apps/desktop/src/downloads.test.tsx:b7e0326947d1bbd1886178e07f88c40e7eb3e14d5db098e44179ffa8584004a5"
+      ],
+      "expected": "La interfaz permite preparar y confirmar el cambio de prioridad con la row_version observada.",
+      "observed": "exit=0; Duration  27.48s (tests 54%, environment 36%, import 7%, transform 2%) | Isolate  15 workers spawned · ~716ms startup each (spawn + environment, per file) | at least ~10.03s faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-PRIORITY-DESKTOP.log#sha256=f9c97a2621690cb90999f59fecc56c48c304b1c644cbb576fcd8c2c6ccb20b2e"
+      ]
+    },
+    {
+      "id": "P051-DESKTOP-LINT",
+      "kind": "UNIT",
+      "command": "node ../../node_modules/eslint/bin/eslint.js .",
+      "fixture_hashes": [
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8",
+        "apps/desktop/src/downloads.test.tsx:b7e0326947d1bbd1886178e07f88c40e7eb3e14d5db098e44179ffa8584004a5"
+      ],
+      "expected": "El frontend mantiene las reglas de lint.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DESKTOP-LINT.log#sha256=3b3173d53099c425db02c198da04132077482475af5c29a3eea7fa2c257ebf33"
+      ]
+    },
+    {
+      "id": "P051-DESKTOP-TYPECHECK",
+      "kind": "UNIT",
+      "command": "node ../../node_modules/typescript/bin/tsc -b",
+      "fixture_hashes": [
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8"
+      ],
+      "expected": "Los tipos del control de prioridad coinciden con el cliente API.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DESKTOP-TYPECHECK.log#sha256=efae9219469380732300607ec33e6a1bddad4bfd77efa9ef4c3b8681046e5d18"
+      ]
+    },
+    {
+      "id": "P051-DESKTOP-BUILD",
+      "kind": "UNIT",
+      "command": "node ../../node_modules/vite/bin/vite.js build",
+      "fixture_hashes": [
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8",
+        "apps/desktop/src/styles.css:686fa469e42eb4baf131c226c0fa5b2708ca59416da32c7ccb6ef901c0ba6b82"
+      ],
+      "expected": "El bundle de escritorio se compila con el control de prioridad.",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-BkoyPntx.js   445.20 kB │ gzip: 125.83 kB | ✓ built in 166ms",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-DESKTOP-BUILD.log#sha256=66fb8cb67e6ab7fcc3d2060224aa17687c848dea2e774a185346a65d3ce1a61b"
+      ]
+    },
+    {
+      "id": "P051-OPENAPI",
+      "kind": "CONTRACT",
+      "command": "cargo run -p larm-daemon -- openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [
+        "crates/larm-api/src/downloads.rs:782247ee596c4b1328ef643f658badc1a43c811fc3457cbf5df295fbb227ca79",
+        "docs/api/openapi.json:7d38b20e92367bc0f52ed3851639d481e3db8f29987d6bdd42fa4141cb72c453"
+      ],
+      "expected": "OpenAPI generado conserva la operación de prioridad declarada por el contrato.",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.39s | Running `target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check`",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-OPENAPI.log#sha256=2f5db80cd92ec681afcd36653978fcacfcfd85bd6eb641a170969ebdde5dd78e"
+      ]
+    },
+    {
+      "id": "P051-SOURCE-ARTIFACT-ESTIMATE",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-sdk --test source_protocol -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-adapter-sdk/src/source/wire.rs:618b4e60be87957964cfbe67d05f2451b3c132e8b975331847ab6496993111a4",
+        "crates/larm-adapter-sdk/tests/source_protocol.rs:481f5f52bae1a1b6ad7eb465de5d4fb743b73c954464598291a17d5a5c31f82b",
+        "docs/contracts/schemas/larm.schema.json:5ccfa061f3f06b02ebd90cfc9e0fa2710553e512012395100831ae2728ad91ef"
+      ],
+      "expected": "La suite completa de protocolo de fuentes conserva intervalos en manifiestos, rechaza contradicciones exactas y mantiene strictness de schemas.",
+      "observed": "exit=0; warning: `larm-adapter-sdk` (bin \"larm-reference-echo\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s | Running tests\\source_protocol.rs (target\\debug\\deps\\source_protocol-e0bf8d49076768c7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-SOURCE-ARTIFACT-ESTIMATE.log#sha256=0d948d21569cc642f3194d2faef4c8a38bc5d9f83ead7f231c05a60cdd524a9e"
+      ]
+    },
+    {
+      "id": "P051-CLIPPY-FOCAL",
+      "kind": "CONTRACT",
+      "command": "cargo clippy -p larm-domain -p larm-adapter-sdk -p larm-adapter-host -p larm-download -p larm-db -p larm-api -p larm-daemon --all-targets -j 1 -- -D warnings",
+      "fixture_hashes": [
+        "crates/larm-domain/src/download.rs:e7ca4c3cb51b3fa8b6bde3b0eb7fc21d8132135ffdd2582b11a5ee1a27226b48",
+        "crates/larm-adapter-sdk/src/source/wire.rs:618b4e60be87957964cfbe67d05f2451b3c132e8b975331847ab6496993111a4",
+        "crates/larm-download/src/policy.rs:d59cef4ad6e25c319bf787e9a7b69309f31b92739c646d0220948ed5507abfcb",
+        "crates/larm-db/src/download_plans.rs:a0aae40ae1ef06f67097e3ddfb7fe9e798875ca33aa5a4922290270fd24451db"
+      ],
+      "expected": "Los crates afectados y todos sus targets pasan Clippy sin warnings.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_domain-1cm3aqwq43y5e\\s-hnj71h0agu-11af08p-working` | warning: `larm-domain` (lib test) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.49s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P051_runs/P051-CLIPPY-FOCAL.log#sha256=a77721cfe8fd706a1e73d6dd9f68ae7084f80d0d1b83116e20224bcde13c9eff"
+      ]
+    },
+    {
+      "id": "P051-REAL-TRANSFER-AND-FAULTS",
+      "kind": "REAL",
+      "command": "Daemon + DownloadManager + servidor HTTP local controlado en Windows",
+      "fixture_hashes": [],
+      "expected": "La ejecución Windows del daemon/worker con servidor local controlado cubre pausa/reanudación, ETag cambiado, hash incorrecto, cancelación, disco lleno y reinicio completo tras caída.",
+      "observed": "NO EJECUTADA: Las pruebas CODE inyectan StorageFull en staging y lo recorren por consumidor/SQLite: estado FAILED, error seguro, checkpoint, cierre y reserva liberada; además, el supervisor continúa tras el fallo y acepta shutdown. Hay pruebas separadas para caída del proceso consumer y reinicio del daemon: esta última comprueba health/live, requeue, checkpoint de 4 bytes, evento de recuperación único y reclamación segura, pero el job fixture no tiene un plan sellado y falla antes de abrir una fuente. Aún falta la aceptación del daemon/worker completo con plan y fuente controlados y demostrar la reanudación de transferencia tras reinicio; las fixtures no se promueven a REAL.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P051-REAL-H08-BANDWIDTH",
+      "kind": "REAL",
+      "command": "Cambiar Settings por API y medir dos transferencias concurrentes contra servidor local",
+      "fixture_hashes": [],
+      "expected": "El caudal agregado cambia mediante PATCH /settings, afecta el siguiente bloque, respeta la ráfaga de un segundo y persiste tras reiniciar configuración.",
+      "observed": "NO EJECUTADA: El consumidor ahora reserva cada bloque en el límite compartido, PATCH /settings lo cambia en caliente y los workers respetan concurrencia global/por fuente; pasan pruebas de API/SQLite/política y UI. Falta la aceptación Windows con dos transferencias reales, medir ráfaga/caudal agregado y comprobar la persistencia reiniciando el daemon.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "Faltan REAL_PASS de P015, P043, P019 y P029, dependencias obligatorias de P051.",
+    "El consumidor supervisado y la ruta de bloques hacia staging/CAS están conectados; auth/licencia P045, mirrors P043 y cualificación real siguen cerrando la admisión.",
+    "El daemon real ya se reinicia y recupera un job de SQLite con checkpoint; la fixture se detiene con fallo seguro porque no contiene un plan de descarga sellado. Falta aceptar StorageFull en daemon/worker real, reanudar transferencia tras reinicio con plan/fuente válidos, aceptar en Windows ETag/hash/pausa/cancelación y medir caudal H08.",
+    "dependencia P015 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P029 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-25T06:20:31.244Z"
+}

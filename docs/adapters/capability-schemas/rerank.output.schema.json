@@ -1,0 +1,35 @@
+{
+  "$defs": {
+    "larm__rerank_output": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "index": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "score": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "index",
+              "score"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__rerank_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

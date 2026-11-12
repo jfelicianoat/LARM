@@ -1,0 +1,361 @@
+{
+  "prompt_id": "P004",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24",
+  "inputs_hash": "5c198443fb7cf624d774f2cf6866392e4642b926e5e0c5dc605e8ababf259217",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/main.rs",
+    "crates/larm-db/Cargo.toml",
+    "crates/larm-db/src/backup.rs",
+    "crates/larm-db/src/dto.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/pool.rs",
+    "crates/larm-db/src/testing.rs",
+    "crates/larm-db/src/tx.rs",
+    "crates/larm-db/tests/integration.rs",
+    "docs/operations/database.md",
+    "tools/p004_evidence.py",
+    "tools/p004_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P004-INTEGRATION-pragmas",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration -- pragmas_del_contrato",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "WAL, foreign_keys=ON, busy_timeout=5000, quick_check ok",
+      "observed": "exit=0; Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.25s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-INTEGRATION-pragmas.log#sha256=73e74dd762dd5dee71d1b1c1d71b562ab15a034fe6b68459d741eb340a3a586b"
+      ]
+    },
+    {
+      "id": "P004-CONTRACT-ddl-tables",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test integration -- migracion_desde_vacia",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "desde vacía: exactamente las 43 tablas del DDL (34 entidades + 9 auxiliares) + schema_metadata con sha256 y applied_at ms+Z",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-CONTRACT-ddl-tables.log#sha256=21e1bffd52088c36f94ae48289dced94ee8117c07d2d55df896b5569b04d1882"
+      ]
+    },
+    {
+      "id": "P004-INTEGRATION-idempotent",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration -- reaplicar_migraciones",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "reaplicar (y tras reabrir) no cambia esquema ni schema_metadata",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-INTEGRATION-idempotent.log#sha256=6ec440cabce6f9f9d20d36301e34b644199c2f7a666389ed7deac6ce8fe6c688"
+      ]
+    },
+    {
+      "id": "P004-FAULT-migration-atomic",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test integration -- migracion_que_falla",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "migración rota a mitad no deja tablas ni registro; corregida se aplica una vez",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-FAULT-migration-atomic.log#sha256=bc49af752917fdded9734be4a19592a0001baadf3716ea3165f52e9441af423c"
+      ]
+    },
+    {
+      "id": "P004-FAULT-migration-drift",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test integration -- migracion_aplicada_modificada",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "migración aplicada con otro contenido -> CONFLICT",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-FAULT-migration-drift.log#sha256=4d1a8494efb1e34b4461e082ea17b6d8ec779b93c85ffb8b4212bc38249ee8a8"
+      ]
+    },
+    {
+      "id": "P004-FAULT-tx-rollback",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test integration -- rollback_transaccional",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "fallo inducido revierte la inserción válida; una transacción correcta persiste",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-FAULT-tx-rollback.log#sha256=1e901d1e4ad39970d65edd1437a758893bab1b1ee7e2a6041f39f8cf30be7591"
+      ]
+    },
+    {
+      "id": "P004-FAULT-fk-deferred",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test integration -- fk_diferida",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "FK huérfana rechazada en COMMIT; borrar un padre referenciado falla",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-FAULT-fk-deferred.log#sha256=9ce0d7e676ed98855fe0f4e8807affc40146303b7a52de3addf4c340e3ae8d3c"
+      ]
+    },
+    {
+      "id": "P004-CONTRACT-h07",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test integration -- h07_transformation",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "FAILED_RECOVERABLE con causa persistida; estado fuera del contrato rechazado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-CONTRACT-h07.log#sha256=f13e767b6c4bd54deec182c4f10ea10388d4b65f8823eb7fea6c7e1a3f42a8b8"
+      ]
+    },
+    {
+      "id": "P004-CONTRACT-h01-h02-h08",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test integration -- enums_del_ddl",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "5 canales, 15 estrategias y 3 prioridades persisten; valores ajenos rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-CONTRACT-h01-h02-h08.log#sha256=a246f870bd95c549c9b1dbef074afa9a33727a764ebb6ef81492f14ec6e13b15"
+      ]
+    },
+    {
+      "id": "P004-CONTRACT-bytes-i64",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test integration -- bytes_hasta_i64_max",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "i64::MAX roundtrip como string decimal; negativo rechazado por CHECK",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-CONTRACT-bytes-i64.log#sha256=7825a61955a5de3eeaee4bcf8b7c461c9f1b2886829351698683ac522a3fbe58"
+      ]
+    },
+    {
+      "id": "P004-INTEGRATION-backup-restore",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test integration -- backup_y_restore",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "backup verificado por filas; cambio detectado; restore devuelve filas y conserva la previa",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-INTEGRATION-backup-restore.log#sha256=d793b51e2830bd2aec2b3b5e2b40cf15de3c1120c219cf8f807f4acd3c57f376"
+      ]
+    },
+    {
+      "id": "P004-FAULT-restore-invalid",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-db --test integration -- restore_de_un_fichero",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "backup no SQLite o inexistente no toca la base viva",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-FAULT-restore-invalid.log#sha256=32e2c20db56e9cdcc31f74805b219183987bd51117852922dca13b237c4e6b57"
+      ]
+    },
+    {
+      "id": "P004-UNIT-temp-db-helper",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-db --test integration -- helper_de_base_temporal",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "helper crea base migrada sana y la borra al soltarla",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\integration.rs (target\\debug\\deps\\integration-60792ddec203f84f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-UNIT-temp-db-helper.log#sha256=b3613cdb0a7918558bfe20cd709ffb6c8fb2ed5c8e2a77e9fb529b7bec9540a2"
+      ]
+    },
+    {
+      "id": "P004-UNIT-db-lib",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-db --lib",
+      "fixture_hashes": [],
+      "expected": "dto: bytes hasta i64::MAX y negativo -> INTEGRITY_FAILED; pool: bloqueo -> RESOURCE_UNAVAILABLE reintentable",
+      "observed": "exit=0; Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.54s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-91b02929f90c5f6c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-UNIT-db-lib.log#sha256=38b3abacd16f2fcfb4d17cfe7bffc8ea8d10033f74eca716112ce6cb9773ce9f"
+      ]
+    },
+    {
+      "id": "P004-CONTRACT-ddl-verbatim",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -c import sys;d=open(sys.argv[1],encoding='utf-8').read().replace('\\r','');m=open(sys.argv[2],encoding='utf-8').read().replace('\\r','');assert m.endswith(d), 'la migracion no termina con el DDL literal';print('0001_bootstrap contiene el DDL contractual literal') C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\docs\\contracts\\persistence.sql C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\migrations\\0001_bootstrap.sql",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "migrations/0001_bootstrap.sql = cabecera de comentarios + persistence.sql literal",
+      "observed": "exit=0; 0001_bootstrap contiene el DDL contractual literal",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-CONTRACT-ddl-verbatim.log#sha256=edb32e9d329785272beead03a545c05c14f3d83748a72f082801c220c9c114e4"
+      ]
+    },
+    {
+      "id": "P004-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-UNIT-cargo-fmt.log#sha256=841ddf8d91a2388de3cb0a0e61f26aa4a5cb523ba61e6ff8f22d2af28b780603"
+      ]
+    },
+    {
+      "id": "P004-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos en todo el workspace (incluido larm-db)",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-UNIT-cargo-clippy.log#sha256=3b55e63566cbf2c44b53753ca216c8798370f9647d210746015d5ccafdb272d3"
+      ]
+    },
+    {
+      "id": "P004-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-UNIT-cargo-test.log#sha256=23215eab7be5432dfa49995d91940841a38eebba43f3dc74a82e27705afe7032"
+      ]
+    },
+    {
+      "id": "P004-REAL-daemon-build",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "binario del daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.20s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-REAL-daemon-build.log#sha256=7edc072d7b3c1db7230675267a4e50dda2e5294c79e49b25962ca1ac5918acc3"
+      ]
+    },
+    {
+      "id": "P004-REAL-dbinfo",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p004_real.py dbinfo",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "db-info dos veces: migra y luego nada; base sana; 44 tablas; sin rutas personales",
+      "observed": "exit=0; PASS 1ª: migra 0001_bootstrap sha256 a3c80076e1c7…; 2ª: nada; 44 tablas; WAL/FK/busy 5000; SQLite 3.51.3; sin rutas personales",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-REAL-dbinfo.log#sha256=dd1a3c2e1940560f20a27e34aede53ab5a96535f3cd2e188cd82e00468cc9780"
+      ]
+    },
+    {
+      "id": "P004-REAL-backup-restore",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p004_real.py backup-restore",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "25 filas -> db-backup -> borradas -> db-restore -> 25 filas; previa conservada",
+      "observed": "exit=0; PASS 25 filas -> backup verificado -> borradas -> restore -> 25 filas; previa en larm.sqlite.pre-restore; base sana",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-REAL-backup-restore.log#sha256=1e2d901c7e69057d7b3406a9abde1f967919bab698e508174830034d2bc49e64"
+      ]
+    },
+    {
+      "id": "P004-REAL-restore-in-use",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p004_real.py restore-in-use",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "base abierta por otro proceso -> RESOURCE_UNAVAILABLE, base intacta y sin restos",
+      "observed": "exit=0; PASS con la base abierta por otro proceso: exit 1 RESOURCE_UNAVAILABLE; 7 filas intactas y sin restos",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-REAL-restore-in-use.log#sha256=8c1f84566fe46714124de7e3094d39d6d304f9a187bfcc77ea42aaefec97ed43"
+      ]
+    },
+    {
+      "id": "P004-REAL-busy-timeout",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p004_real.py busy-timeout",
+      "fixture_hashes": [
+        "docs/contracts/persistence.sql:9865aa3e57a5258ebe9b6e2bdf2649dc9927f6d696e9125aa5f5f498c10448b2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "bloqueo retenido -> RESOURCE_UNAVAILABLE tras busy_timeout sin esquema a medias; liberado migra",
+      "observed": "exit=0; PASS bloqueo retenido: db-info exit 1 tras 5.6s (RESOURCE_UNAVAILABLE), 0 tablas a medias; liberado: migra entera; backup convive con un escritor en WAL",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P004_runs/P004-REAL-busy-timeout.log#sha256=a29226e803c95038c2d801e1dcf8e6744ef91b87dc62e6c6f1e9da4a129e6d8d"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P001 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P002 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P003 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T05:10:31.798Z"
+}

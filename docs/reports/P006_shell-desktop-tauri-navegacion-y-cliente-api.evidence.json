@@ -1,0 +1,274 @@
+{
+  "prompt_id": "P006",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24",
+  "inputs_hash": "07ac258a4a0beb0d0b576ce0bbb63093ba04f0e7b6be10a954e75d2d85701217",
+  "changed_files": [
+    "apps/desktop/src-tauri/Cargo.toml",
+    "apps/desktop/src-tauri/src/api.rs",
+    "apps/desktop/src-tauri/src/commands.rs",
+    "apps/desktop/src-tauri/src/lib.rs",
+    "apps/desktop/src/App.test.tsx",
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/api/client.ts",
+    "apps/desktop/src/api/status.ts",
+    "apps/desktop/src/components.tsx",
+    "apps/desktop/src/hooks.ts",
+    "apps/desktop/src/main.tsx",
+    "apps/desktop/src/pages.tsx",
+    "apps/desktop/src/screens.ts",
+    "apps/desktop/src/smoke.ts",
+    "apps/desktop/src/styles.css",
+    "docs/reports/P006_runs/shell_offline_hardware.png",
+    "tools/p001_evidence.py",
+    "tools/p006_evidence.py",
+    "tools/p006_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P006-UNIT-client-envelope",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t convierte el envelope",
+      "fixture_hashes": [],
+      "expected": "envelope del contrato -> ApiError sin inventar campos",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:33 | Duration  758ms (environment 76%, import 14%, transform 10%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-client-envelope.log#sha256=573296c014168353e88171c1a5ca15f2beca117216ceac8a135eae44ecf15fac"
+      ]
+    },
+    {
+      "id": "P006-FAULT-client-path",
+      "kind": "FAULT",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t rechaza rutas fuera",
+      "fixture_hashes": [],
+      "expected": "rutas fuera de /api/v1 rechazadas antes de salir",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:34 | Duration  723ms (environment 76%, import 13%, transform 10%, tests 1%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-FAULT-client-path.log#sha256=f6f1978e44f3bb73e90bef16586bd36cecbca4c23155187f17fce12761883cd0"
+      ]
+    },
+    {
+      "id": "P006-FAULT-client-transport",
+      "kind": "FAULT",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t un fallo de transporte",
+      "fixture_hashes": [],
+      "expected": "fallo de transporte -> DAEMON_UNREACHABLE reintentable",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:36 | Duration  747ms (environment 75%, import 14%, transform 10%, worker 1%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-FAULT-client-transport.log#sha256=ea3014a98599a657dd344638b26ebab79b5a928c9bef0c99887c8118d946d267"
+      ]
+    },
+    {
+      "id": "P006-UNIT-status",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t ONLINE, DEGRADED y OFFLINE",
+      "fixture_hashes": [],
+      "expected": "estado derivado de live/ready",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:37 | Duration  745ms (environment 75%, import 14%, transform 10%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-status.log#sha256=c27a18881bc88e0e3514223db038f1e7fb23e69a699afa438a3a0de1dcc5c76c"
+      ]
+    },
+    {
+      "id": "P006-INTEGRATION-shell-online",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t muestra las 14 pantallas",
+      "fixture_hashes": [],
+      "expected": "14 pantallas del contrato 08 y daemon en línea",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:39 | Duration  860ms (environment 64%, tests 15%, import 12%, transform 9%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-INTEGRATION-shell-online.log#sha256=f492be9c1ec9cb0437f8f5a5d28e4bef10a6aef32db562ff9eef08e6a6cf5ef6"
+      ]
+    },
+    {
+      "id": "P006-INTEGRATION-shell-offline",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t sin daemon",
+      "fixture_hashes": [],
+      "expected": "sin daemon: OFFLINE, pantalla offline y diagnóstico con el error",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:41 | Duration  883ms (environment 63%, tests 16%, import 11%, transform 10%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-INTEGRATION-shell-offline.log#sha256=1888e60fad9f2d8ffbbb83dec66b0e28804e51e402d32024b0411d804a3b5be8"
+      ]
+    },
+    {
+      "id": "P006-FAULT-reconnect",
+      "kind": "FAULT",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t pasa de offline a online",
+      "fixture_hashes": [],
+      "expected": "reconexión detectada y aviso no intrusivo",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:43 | Duration  880ms (environment 64%, tests 14%, import 12%, transform 9%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-FAULT-reconnect.log#sha256=646198f1947bf8777044fc38285c28b1b32f600eb69da7eec978f4c34f3da283"
+      ]
+    },
+    {
+      "id": "P006-UNIT-a11y-focus",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t navegar mueve el foco",
+      "fixture_hashes": [],
+      "expected": "cambiar de pantalla mueve el foco al título; aria-current",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:44 | Duration  880ms (environment 63%, tests 15%, import 12%, transform 9%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-a11y-focus.log#sha256=47450b625db68a3c1b1024e5766a8fe6d479b946491b63d8a5355e156e2b6cad"
+      ]
+    },
+    {
+      "id": "P006-UNIT-smoke",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd vitest run -t solo actúa con smoke",
+      "fixture_hashes": [],
+      "expected": "humo solo con la variable; informe ping+salud",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 8 skipped (9) | Start at  10:18:46 | Duration  805ms (environment 75%, import 14%, transform 10%, tests 1%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-smoke.log#sha256=82e01fcc6ded1c24db8cf090737040aa8cc970edaece5da4b3788ade6a516432"
+      ]
+    },
+    {
+      "id": "P006-UNIT-npm-lint",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run lint --silent",
+      "fixture_hashes": [],
+      "expected": "npm run lint sin errores",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-npm-lint.log#sha256=af6f4a9a6240defc90a13a0dbbc573ce75b75bd3f25ac871ca490455cd9103d0"
+      ]
+    },
+    {
+      "id": "P006-UNIT-npm-typecheck",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run typecheck --silent",
+      "fixture_hashes": [],
+      "expected": "npm run typecheck sin errores",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-npm-typecheck.log#sha256=8a6cccd078508bbaf3ef89625fbad6104e28b4364541b1a06c512be79f3ee519"
+      ]
+    },
+    {
+      "id": "P006-UNIT-npm-build",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run build --silent",
+      "fixture_hashes": [],
+      "expected": "npm run build sin errores",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-BFNQcmae.js   231.80 kB │ gzip: 73.01 kB | \u001b[32m✓ built in 112ms\u001b[39m",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-npm-build.log#sha256=4c8eb509be2ced6682377f71dd80b8ce7baf526507695199993279b173ceed5f"
+      ]
+    },
+    {
+      "id": "P006-UNIT-desktop-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --manifest-path apps/desktop/src-tauri/Cargo.toml --check",
+      "fixture_hashes": [],
+      "expected": "shell Tauri formateado",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-desktop-fmt.log#sha256=8daadd8283e3d372db6772e515f11a184eb699bc000bb9577fb344738a415025"
+      ]
+    },
+    {
+      "id": "P006-UNIT-desktop-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --manifest-path apps/desktop/src-tauri/Cargo.toml --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "shell Tauri sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.37s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-desktop-clippy.log#sha256=cd552cc44183abe8da4bdaf59f0e330bbd6e97f79c63bee119cf2909a5df5161"
+      ]
+    },
+    {
+      "id": "P006-UNIT-desktop-transport",
+      "kind": "UNIT",
+      "command": "cargo test --manifest-path apps/desktop/src-tauri/Cargo.toml",
+      "fixture_hashes": [],
+      "expected": "transporte: métodos/rutas/cabeceras permitidos, base solo loopback, nombre del pipe",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 8.75s | Running unittests src\\lib.rs (apps\\desktop\\src-tauri\\target\\debug\\deps\\larm_desktop_lib-755babf34e30725b.exe) | Running unittests src\\main.rs (apps\\desktop\\src-tauri\\target\\debug\\deps\\larm_desktop-ce218ab7de399eb9.exe) | Doc-tests larm_desktop_lib",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-UNIT-desktop-transport.log#sha256=3f35542c13f7fb7ba8821c5e364ba9f59e41bb36d64e1068a31f37b2c813dff0"
+      ]
+    },
+    {
+      "id": "P006-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "el shell sigue sin depender de crates internos (solo API)",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P006-REAL-tauri-build",
+      "kind": "REAL",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd tauri build --debug --no-bundle",
+      "fixture_hashes": [],
+      "expected": "build Tauri con el frontend embebido",
+      "observed": "exit=0; Running beforeBuildCommand `npm run build` | Compiling larm-desktop v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 10.98s | Built application at: C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\larm-desktop.exe",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-REAL-tauri-build.log#sha256=0fc0e1e2b1d83d6e75ea47fd6601c969fcda377d1ec76c81df3b04ad06231fe9"
+      ]
+    },
+    {
+      "id": "P006-REAL-daemon-build",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "binario del daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.84s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-REAL-daemon-build.log#sha256=eb031e79a2dc7a495396e203d02000fd5dd7f2440149ade268992d5da73ccc96"
+      ]
+    },
+    {
+      "id": "P006-REAL-window-offline",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p006_real.py offline",
+      "fixture_hashes": [],
+      "expected": "ventana real sin daemon: live/ready -> DAEMON_UNREACHABLE",
+      "observed": "exit=0; PASS sin daemon: ping=pong y live/ready -> DAEMON_UNREACHABLE (pipe de bootstrap no disponible)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-REAL-window-offline.log#sha256=796adee9426dc19fa2d00dcb28fd410a95af0252a358108158e069ce326829c9"
+      ]
+    },
+    {
+      "id": "P006-REAL-window-online",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p006_real.py online",
+      "fixture_hashes": [],
+      "expected": "ventana real contra daemon real: token por bootstrap en el backend, live LIVE y ready READY",
+      "observed": "exit=0; PASS ventana real: ping=pong, health/live LIVE y health/ready READY vía backend Tauri + pipe de bootstrap (principal desktop creado); daemon exit 0",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P006_runs/P006-REAL-window-online.log#sha256=c130ab3d52e3909792643c17d76ae292744a8d0a8240939f12cdc5465ec1f53a"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P005 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T09:19:21.213Z"
+}

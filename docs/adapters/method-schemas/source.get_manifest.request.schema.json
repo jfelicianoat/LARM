@@ -1,0 +1,34 @@
+{
+  "$defs": {
+    "larm__RevisionRef": {
+      "additionalProperties": false,
+      "properties": {
+        "revision_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "upstream_model_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "upstream_namespace": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "upstream_namespace",
+        "upstream_model_id",
+        "revision_key"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__RevisionRef",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

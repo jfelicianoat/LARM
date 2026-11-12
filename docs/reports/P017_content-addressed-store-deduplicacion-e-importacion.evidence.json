@@ -1,0 +1,238 @@
+{
+  "prompt_id": "P017",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "862e58205dc86458385b1ac3e7e8409b67e461fa950b02fb0b89c5f73565f4f9",
+  "changed_files": [
+    "apps/daemon/src/main.rs",
+    "crates/larm-api/tests/artifacts.rs",
+    "crates/larm-api/tests/models.rs",
+    "crates/larm-db/src/artifacts.rs",
+    "crates/larm-db/src/models.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-models/Cargo.toml",
+    "crates/larm-models/src/import.rs",
+    "crates/larm-models/src/lib.rs",
+    "crates/larm-models/src/registry.rs",
+    "crates/larm-models/src/scan.rs",
+    "crates/larm-models/tests/import.rs",
+    "crates/larm-storage/src/cas.rs",
+    "crates/larm-storage/src/import.rs",
+    "crates/larm-storage/src/lib.rs",
+    "docs/operations/import-cas.md",
+    "tools/p017_evidence.py",
+    "tools/p017_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P017-UNIT-cas",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- cas::tests",
+      "fixture_hashes": [],
+      "expected": "SHA-256 en streaming; caché por tamaño+mtime que se descarta al cambiar; blob verificado, de solo lectura y sin duplicar; hash falso descartado sin blob; vista con hard links e idempotente",
+      "observed": "exit=0; Compiling larm-storage v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-storage) | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.90s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-09f55593bf6e03b0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-UNIT-cas.log#sha256=5e1e5373dd5b68db7f4995b2f9a9cbef7ec39d450c6893b223af468113f4c91d"
+      ]
+    },
+    {
+      "id": "P017-UNIT-recorrido",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- import::tests",
+      "fixture_hashes": [],
+      "expected": "recorrido determinista con cabeceras acotadas; junction (mklink /J) no seguida e informada",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-09f55593bf6e03b0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-UNIT-recorrido.log#sha256=48f6e02d324d5b7eb1ef4fbb6443fc9814021bd5b0d1dfb73d501cca704f9d8e"
+      ]
+    },
+    {
+      "id": "P017-UNIT-escaner",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-models --lib -- scan::tests",
+      "fixture_hashes": [],
+      "expected": "cabecera GGUF con límites; detección por contenido de GGUF/SafeTensors/índices/ONNX/external_data/PyTorch (pickle marcado)/config/tokenizer; desconocidos ignorados con motivo; agrupación determinista en variantes",
+      "observed": "exit=0; Compiling larm-models v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.02s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_models-0b44e2732bf50e33.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-UNIT-escaner.log#sha256=ad06d4397a3a0a2f2650b9efc74a0bd8be8f410497384f19b207c0d29287d333"
+      ]
+    },
+    {
+      "id": "P017-INTEGRATION-carpeta-mixta",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import -- carpeta_mixta_adoptada_sin_tocar_nada --exact",
+      "fixture_hashes": [],
+      "expected": "adopción de carpeta mixta: 3 variantes EXTERNAL/ADOPTED, desconocidos informados, ni un byte ni una fecha cambiados",
+      "observed": "exit=0; Compiling larm-models v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.73s | Running tests\\import.rs (target\\debug\\deps\\import-4331a82bfe4f1efc.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-INTEGRATION-carpeta-mixta.log#sha256=4765427429614c4ffc4e03211123aff7e7ea415da1ac95a2403088b6ba266ba6"
+      ]
+    },
+    {
+      "id": "P017-INTEGRATION-cache",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import -- reimportar_usa_la_cache_y_no_duplica --exact",
+      "fixture_hashes": [],
+      "expected": "reimportación desde la caché sin filas nuevas; cambio releído; revisión anterior SUPERSEDED; caché no verifica",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s | Running tests\\import.rs (target\\debug\\deps\\import-4331a82bfe4f1efc.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-INTEGRATION-cache.log#sha256=4f158dfb1961a321eceb6ac0d391c6222c9abdad4628bf0685172dff4705b211"
+      ]
+    },
+    {
+      "id": "P017-INTEGRATION-duplicados",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import -- duplicados_por_hash_sin_borrar --exact",
+      "fixture_hashes": [],
+      "expected": "duplicado por hash con ahorro posible; nada borrado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\import.rs (target\\debug\\deps\\import-4331a82bfe4f1efc.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-INTEGRATION-duplicados.log#sha256=26e2f146ee9a223ce0ab3f41d74ef956c0945f51ae5968b8aa4bd15f5e12f939"
+      ]
+    },
+    {
+      "id": "P017-INTEGRATION-cas-y-vista",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import -- copia_al_cas_compartido_y_vista --exact",
+      "fixture_hashes": [],
+      "expected": "copia al CAS: blobs inmutables, compartidos SHARED, original intacto, vista con enlaces, repetir no copia",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\import.rs (target\\debug\\deps\\import-4331a82bfe4f1efc.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-INTEGRATION-cas-y-vista.log#sha256=d87f569f0d48140696cb64275b44fa5c83f45bea40af5977b3e2ecb213deb9a8"
+      ]
+    },
+    {
+      "id": "P017-INTEGRATION-volumenes",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import -- entre_volumenes_no_se_asume_ahorro_fisico --exact",
+      "fixture_hashes": [],
+      "expected": "copias en volúmenes distintos: duplicate_bytes sí, reclaimable 0",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\import.rs (target\\debug\\deps\\import-4331a82bfe4f1efc.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-INTEGRATION-volumenes.log#sha256=21d70a8207e3fefb0f0d6685c047115101699d5877eb284cfbd9fe6b53208d5f"
+      ]
+    },
+    {
+      "id": "P017-INTEGRATION-negativos",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models --test import -- negativos --exact",
+      "fixture_hashes": [],
+      "expected": "carpeta fuera de la ubicación, propiedad inválida al adoptar, carpeta inexistente; HOST_MANAGED",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s | Running tests\\import.rs (target\\debug\\deps\\import-4331a82bfe4f1efc.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-INTEGRATION-negativos.log#sha256=318f7025ee269b199a1bf980c3d0865e1c7e3df919c1c7a5e12d5938b86f3a74"
+      ]
+    },
+    {
+      "id": "P017-INTEGRATION-modelos",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-models",
+      "fixture_hashes": [],
+      "expected": "registro, bundles e identidad siguen en verde con la sustitución de revisiones",
+      "observed": "exit=0; Running tests\\bundles.rs (target\\debug\\deps\\bundles-1afa18f713de80b6.exe) | Running tests\\import.rs (target\\debug\\deps\\import-4331a82bfe4f1efc.exe) | Running tests\\registry.rs (target\\debug\\deps\\registry-9d2aaa9bb00d5a98.exe) | Doc-tests larm_models",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-INTEGRATION-modelos.log#sha256=cc30396e817414df51216c7d44ed35871169397ac6b47bc82775d01762a39093"
+      ]
+    },
+    {
+      "id": "P017-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-UNIT-cargo-fmt.log#sha256=3997a81b3a6a2e03afb5d43557876abf00acef88fd74c5b0359a27e776cad272"
+      ]
+    },
+    {
+      "id": "P017-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-UNIT-cargo-clippy.log#sha256=55808347b4d9ca2b5d8809dc7a1b643ec4fea56e96d5f10f5f7815acc0745962"
+      ]
+    },
+    {
+      "id": "P017-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-UNIT-cargo-test.log#sha256=42f66685fdf20215f46d6fa64e01247e6cad1fc03f3d0d87c4bc05e4902b97d3"
+      ]
+    },
+    {
+      "id": "P017-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "grafo de crates intacto",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P017-REAL-build-daemon",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.23s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-REAL-build-daemon.log#sha256=2ed3debcf080006450ef9217d60a6c32d20ee295a5ede6a2719ba6ab0d6ccb55"
+      ]
+    },
+    {
+      "id": "P017-REAL-importacion",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p017_real.py serve",
+      "fixture_hashes": [],
+      "expected": "PC IA: adopción de carpeta mixta sin tocar nada, caché, duplicados, copia al CAS con blobs inmutables y compartidos, vista con hard links en C: y referencias en \\\\localhost\\Temp",
+      "observed": "exit=0; [PASS] copia-al-cas: 9 blobs copiados y verificados de solo lectura; mmproj y README una vez para dos variantes (4 filas SHARED); original intacto; repetir no copia | [PASS] vista-y-fallback: C:: 3 hard links (st_nlink [2, 2, 2]); \\\\localhost\\Temp: sin enlace posible (cross-device link or rename), referencias en view.json y ningún blob copiado | [PASS] limpieza: \\\\localhost\\Temp\\larm-p017-7fe094b9 borrada | PASS 6 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-REAL-importacion.log#sha256=d20716b14553afb638d98420f830b14d885296700148ff7283ce505ce2171064"
+      ]
+    },
+    {
+      "id": "P017-REAL-regresion-p041",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p041_real.py serve",
+      "fixture_hashes": [],
+      "expected": "bundles e identidad (P041) siguen en verde",
+      "observed": "exit=0; [PASS] bundle-en-disco: 2 shards + mmproj + README: VERIFIED; sin un shard INCOMPLETE; un byte del mmproj CORRUPT; restaurado y sin el README opcional VERIFIED (CAS v5) | [PASS] rol-faltante: GGUF de visión sin mmproj: ficheros completos pero INCOMPLETE por rol necesario | [PASS] api: 6 variantes; 2 del modelo agrupado; 1 bundle VERIFIED; artefacto por nombre; detalle con bundle_hash; 404 y 400 | PASS 7 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P017_runs/P017-REAL-regresion-p041.log#sha256=1ef40f858727b3d7d528cc6216647e7a541cf208256a4524f32de2cd141e416d"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P016 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P041 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T20:20:13.208Z"
+}

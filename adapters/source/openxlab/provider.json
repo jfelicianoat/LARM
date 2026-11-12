@@ -1,0 +1,6 @@
+{
+  "provider": "OPENXLAB",
+  "adapter_id": "larm.source.openxlab",
+  "network_origins": [],
+  "capabilities": []
+}

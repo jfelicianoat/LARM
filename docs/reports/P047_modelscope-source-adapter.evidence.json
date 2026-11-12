@@ -1,0 +1,130 @@
+{
+  "prompt_id": "P047",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "dbcc92d14bff9bdfe36e10ae77d567b024075ad4d11abdd61551a1a2627de141",
+  "changed_files": [
+    "adapters/source/modelscope/__init__.py",
+    "adapters/source/modelscope/adapter.py",
+    "adapters/source/modelscope/main.py",
+    "adapters/source/modelscope/package.py",
+    "docs/adapters/modelscope.md",
+    "docs/contracts/REVISION_3_5_0_P047.md",
+    "docs/contracts/source-profiles.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P047_modelscope-source-adapter.evidence.json",
+    "docs/reports/P047_modelscope-source-adapter.md",
+    "docs/spec/PACKAGE_COPY_HASHES.json",
+    "docs/spec/manifest.json",
+    "tests/integration/modelscope_adapter.py",
+    "tools/p047_evidence.py",
+    "tools/p047_live_probe.py",
+    "tools/p047_package_smoke.py"
+  ],
+  "tests": [
+    {
+      "id": "P047-MODELSCOPE-MOCK-CONTRACT",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -m unittest tests.integration.modelscope_adapter -v",
+      "fixture_hashes": [
+        "adapters/source/modelscope/__init__.py:96d99438fcc77176cba6485f1c1ac4448e5075b8de10384cb48593ee1084cc75",
+        "adapters/source/modelscope/adapter.py:17e6c5aa5192430787a468c8c5be052d01aa79a7e8d8e14bf916e8f02ed5017f",
+        "adapters/source/modelscope/main.py:6e5baf704f8e9b879cfc6b9b59a3999f913cf225429dd4a7aa2b3d6c3e76aade",
+        "adapters/source/modelscope/package.py:edd9d9a5043ee4883a99c62cd50031aa0ce772d54816f1af6a3b2151d6e12029",
+        "tests/integration/modelscope_adapter.py:c3ca72dcf7e5858a43b77ece71d6f3063da6d4bcbe474d2506d9e028ffd6d4f5",
+        "docs/adapters/modelscope.md:9ece55984a1b524e6b8bea21fd56a404ee8f067facf475f257bb2a5f1e85dcdb",
+        "docs/contracts/source-profiles.json:d8c808878f98ceea42e492ef1992b55580ef88356a962ff4309bbd84bc01fe40",
+        "docs/contracts/REVISION_3_5_0_P047.md:7b7fd5b4bfd1f2adb48fa4375c7757d7663fa02c7c8e0f2d0f8f18735cc9cb4f"
+      ],
+      "expected": "El contrato y los fixtures cubren identidad, metadatos, hash/tamaño, versiones, descarga por rangos, acceso, timeout, cancelación, errores y recuperación.",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 18 tests in 6.440s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P047_runs/P047-MODELSCOPE-MOCK-CONTRACT.log#sha256=4da95173de65bc0a26cb9ad520d894c75643876f89034b1aee3faa2007b19b7d"
+      ]
+    },
+    {
+      "id": "P047-PORTABLE-WORKER",
+      "kind": "INTEGRATION",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p047_package_smoke.py",
+      "fixture_hashes": [
+        "adapters/source/modelscope/__init__.py:96d99438fcc77176cba6485f1c1ac4448e5075b8de10384cb48593ee1084cc75",
+        "adapters/source/modelscope/adapter.py:17e6c5aa5192430787a468c8c5be052d01aa79a7e8d8e14bf916e8f02ed5017f",
+        "adapters/source/modelscope/main.py:6e5baf704f8e9b879cfc6b9b59a3999f913cf225429dd4a7aa2b3d6c3e76aade",
+        "adapters/source/modelscope/package.py:edd9d9a5043ee4883a99c62cd50031aa0ce772d54816f1af6a3b2151d6e12029",
+        "tests/integration/modelscope_adapter.py:c3ca72dcf7e5858a43b77ece71d6f3063da6d4bcbe474d2506d9e028ffd6d4f5",
+        "docs/adapters/modelscope.md:9ece55984a1b524e6b8bea21fd56a404ee8f067facf475f257bb2a5f1e85dcdb",
+        "docs/contracts/source-profiles.json:d8c808878f98ceea42e492ef1992b55580ef88356a962ff4309bbd84bc01fe40",
+        "docs/contracts/REVISION_3_5_0_P047.md:7b7fd5b4bfd1f2adb48fa4375c7757d7663fa02c7c8e0f2d0f8f18735cc9cb4f",
+        "tools/p047_package_smoke.py:7f9baefb4ba3224b27a7a071b2f92cfa1bec8cb2021067d5ef854f6a47056f62"
+      ],
+      "expected": "El paquete portable conserva el hash y completa handshake aislado y auth probe anónimo.",
+      "observed": "exit=0; PASS portable package hash, isolated worker handshake, and anonymous auth probe",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P047_runs/P047-PORTABLE-WORKER.log#sha256=6d7a2f3066150a5f8597cefe56a8b298b80e8ffb0ee3469282f9bb4eab986955"
+      ]
+    },
+    {
+      "id": "P047-CANONICAL-PACKAGE-COPY",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "tools/package_copy.py:89896afff425166248cdffd4e307126866588afdb75eb012674048e6e327be28",
+        "docs/spec/PACKAGE_COPY_HASHES.json:e9f83e123c5ad1422875818d16385501366ee2d9412d7aa3b99f5f51413d7dc4"
+      ],
+      "expected": "Las copias de los contratos locales coinciden con el paquete canónico 3.5.0.",
+      "observed": "exit=0; PASS 59 copias idénticas al paquete 3.5.0",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P047_runs/P047-CANONICAL-PACKAGE-COPY.log#sha256=52ebecc547ce01e2736307e233e21738430cf5814f74e411b31be484e3819a49"
+      ]
+    },
+    {
+      "id": "P047-PYTHON-COMPILE",
+      "kind": "UNIT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -m py_compile adapters/source/modelscope/__init__.py adapters/source/modelscope/adapter.py adapters/source/modelscope/main.py adapters/source/modelscope/package.py tests/integration/modelscope_adapter.py tools/p047_package_smoke.py tools/p047_live_probe.py",
+      "fixture_hashes": [
+        "adapters/source/modelscope/__init__.py:96d99438fcc77176cba6485f1c1ac4448e5075b8de10384cb48593ee1084cc75",
+        "adapters/source/modelscope/adapter.py:17e6c5aa5192430787a468c8c5be052d01aa79a7e8d8e14bf916e8f02ed5017f",
+        "adapters/source/modelscope/main.py:6e5baf704f8e9b879cfc6b9b59a3999f913cf225429dd4a7aa2b3d6c3e76aade",
+        "adapters/source/modelscope/package.py:edd9d9a5043ee4883a99c62cd50031aa0ce772d54816f1af6a3b2151d6e12029",
+        "tests/integration/modelscope_adapter.py:c3ca72dcf7e5858a43b77ece71d6f3063da6d4bcbe474d2506d9e028ffd6d4f5",
+        "docs/adapters/modelscope.md:9ece55984a1b524e6b8bea21fd56a404ee8f067facf475f257bb2a5f1e85dcdb",
+        "docs/contracts/source-profiles.json:d8c808878f98ceea42e492ef1992b55580ef88356a962ff4309bbd84bc01fe40",
+        "docs/contracts/REVISION_3_5_0_P047.md:7b7fd5b4bfd1f2adb48fa4375c7757d7663fa02c7c8e0f2d0f8f18735cc9cb4f"
+      ],
+      "expected": "Todos los módulos del adaptador, pruebas y herramientas compilan.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P047_runs/P047-PYTHON-COMPILE.log#sha256=8be582395282270021bdc92749098861a814fc1eb80554df2aa73be2deed8ba5"
+      ]
+    },
+    {
+      "id": "P047-MODELSCOPE-PUBLIC-SEARCH",
+      "kind": "REAL",
+      "command": "python tools/p047_live_probe.py",
+      "fixture_hashes": [
+        "tools/p047_live_probe.py:cf5fc71322b12e173c9ea52f1090c7f088becc9bec6ac68ec6ba6786eec76708",
+        "adapters/source/modelscope/adapter.py:17e6c5aa5192430787a468c8c5be052d01aa79a7e8d8e14bf916e8f02ed5017f"
+      ],
+      "expected": "Una búsqueda pública anónima en vivo completa desde el worker portable sin descargar archivos.",
+      "observed": "Búsqueda pública read-only ejecutada por el worker; items=2",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P047_runs/P047-MODELSCOPE-PUBLIC-SEARCH.log#sha256=0d57dda44879fa7cd19c255a773813763275268b008d6b9db146e4de993bcad3"
+      ]
+    }
+  ],
+  "blockers": [
+    "P047 no puede cerrar hasta que P025, P043 y P045 tengan REAL_PASS.",
+    "Autenticación privada y gated continúa pendiente de P045/P141.",
+    "Los orígenes de object storage en redirecciones requieren calificación y permiso explícitos antes de habilitar descargas reales.",
+    "dependencia P025 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P043 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P045 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-23T22:33:49.940Z"
+}

@@ -1,0 +1,155 @@
+{
+  "prompt_id": "P091",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "e9efc93277a64b4ba566ee407609426fe5382128797085b4111d5eec39f9545e",
+  "changed_files": [
+    "crates/larm-core/src/compatibility/score.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P091_configured_fit_2026-10-29.md",
+    "docs/reports/P091_estimacion-de-recursos-y-technicalfitscore.evidence.json",
+    "docs/reports/P091_estimacion-de-recursos-y-technicalfitscore.md",
+    "docs/reports/P091_runs/configured-fit-20261029/run_checks.py",
+    "docs/reports/P091_runs/configured-fit-20261029/publish_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P091-CONFIGURED-FORMAT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all -- --check",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:cce808dae40a7183d62a8bb59bee062075262f1a5c84f2fdba98c1dd040a2410",
+        "crates/larm-core/src/config/mod.rs:cefb85ec0eb51b543e6c29d5d0dff9887561fd0d4a73edebff80f6ca5a77f26a",
+        "docs/contracts/defaults.json:92b203728494d28a6606d7a81a83edaf775600633a950640e06ad93b5b39552a",
+        "docs/contracts/05_BENCHMARK_FINGERPRINT.md:6d4a4e875c3bb4fd059689a91e8835d0c1ef5277da410db87d4d6f234d4bd4fd",
+        "docs/contracts/schemas/larm.schema.json:2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8",
+        "Cargo.lock:18d8541cee3a9552451cf86e1441782cd4c4b3d0ea632e71bd6c5b8dbc4ffd89"
+      ],
+      "expected": "Formato del workspace Rust válido.",
+      "observed": "exit0; 6.574s; raw log retained. Formato del workspace Rust válido.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/configured-fit-20261029/format.log#sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "docs/reports/P091_runs/configured-fit-20261029/format.command.json"
+      ]
+    },
+    {
+      "id": "P091-CONFIGURED-CORE-LIB",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-core --lib --offline -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:cce808dae40a7183d62a8bb59bee062075262f1a5c84f2fdba98c1dd040a2410",
+        "crates/larm-core/src/config/mod.rs:cefb85ec0eb51b543e6c29d5d0dff9887561fd0d4a73edebff80f6ca5a77f26a",
+        "docs/contracts/defaults.json:92b203728494d28a6606d7a81a83edaf775600633a950640e06ad93b5b39552a",
+        "docs/contracts/05_BENCHMARK_FINGERPRINT.md:6d4a4e875c3bb4fd059689a91e8835d0c1ef5277da410db87d4d6f234d4bd4fd",
+        "docs/contracts/schemas/larm.schema.json:2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8",
+        "Cargo.lock:18d8541cee3a9552451cf86e1441782cd4c4b3d0ea632e71bd6c5b8dbc4ffd89"
+      ],
+      "expected": "64 pruebas Core incluidas 19 de TechnicalFit: defaults intactos, pesos de Settings, coverage60, desconocidos, ceros, overflow, huellas y hard gates.",
+      "observed": "exit0; 14.862s; raw log retained. 64 pruebas Core incluidas 19 de TechnicalFit: defaults intactos, pesos de Settings, coverage60, desconocidos, ceros, overflow, huellas y hard gates.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/configured-fit-20261029/core-lib.log#sha256=3c2b6c3c1932d4ecd34d2f431decdaf8a821e81ce271f9f388cef98ec8cca207",
+        "docs/reports/P091_runs/configured-fit-20261029/core-lib.command.json"
+      ]
+    },
+    {
+      "id": "P091-CONFIGURED-CORE-CLIPPY",
+      "kind": "CONTRACT",
+      "command": "cargo clippy -p larm-core --all-targets --offline -- -D warnings",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:cce808dae40a7183d62a8bb59bee062075262f1a5c84f2fdba98c1dd040a2410",
+        "crates/larm-core/src/config/mod.rs:cefb85ec0eb51b543e6c29d5d0dff9887561fd0d4a73edebff80f6ca5a77f26a",
+        "docs/contracts/defaults.json:92b203728494d28a6606d7a81a83edaf775600633a950640e06ad93b5b39552a",
+        "docs/contracts/05_BENCHMARK_FINGERPRINT.md:6d4a4e875c3bb4fd059689a91e8835d0c1ef5277da410db87d4d6f234d4bd4fd",
+        "docs/contracts/schemas/larm.schema.json:2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8",
+        "Cargo.lock:18d8541cee3a9552451cf86e1441782cd4c4b3d0ea632e71bd6c5b8dbc4ffd89"
+      ],
+      "expected": "Clippy de larm-core para todos sus targets con warnings de código denegados.",
+      "observed": "exit0; 35.502s; raw log retained. Clippy de larm-core para todos sus targets con warnings de código denegados.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/configured-fit-20261029/core-clippy.log#sha256=6134246793dad7c90c6a997c00c0301ecfdb533ab9875fe8655b6f3811876ab9",
+        "docs/reports/P091_runs/configured-fit-20261029/core-clippy.command.json"
+      ]
+    },
+    {
+      "id": "P091-CONFIGURED-ARCHITECTURE",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/check_architecture.py",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:cce808dae40a7183d62a8bb59bee062075262f1a5c84f2fdba98c1dd040a2410",
+        "crates/larm-core/src/config/mod.rs:cefb85ec0eb51b543e6c29d5d0dff9887561fd0d4a73edebff80f6ca5a77f26a",
+        "docs/contracts/defaults.json:92b203728494d28a6606d7a81a83edaf775600633a950640e06ad93b5b39552a",
+        "docs/contracts/05_BENCHMARK_FINGERPRINT.md:6d4a4e875c3bb4fd059689a91e8835d0c1ef5277da410db87d4d6f234d4bd4fd",
+        "docs/contracts/schemas/larm.schema.json:2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8",
+        "Cargo.lock:18d8541cee3a9552451cf86e1441782cd4c4b3d0ea632e71bd6c5b8dbc4ffd89"
+      ],
+      "expected": "17 crates respetan el grafo autorizado.",
+      "observed": "exit0; 0.996s; raw log retained. 17 crates respetan el grafo autorizado.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/configured-fit-20261029/architecture.log#sha256=dc2d755df4bffa967acad5b4a7c69e55e6efdd487b5893cd9134038235c72400",
+        "docs/reports/P091_runs/configured-fit-20261029/architecture.command.json"
+      ]
+    },
+    {
+      "id": "P091-CONFIGURED-CONTRACTS",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/package_copy.py check",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:cce808dae40a7183d62a8bb59bee062075262f1a5c84f2fdba98c1dd040a2410",
+        "crates/larm-core/src/config/mod.rs:cefb85ec0eb51b543e6c29d5d0dff9887561fd0d4a73edebff80f6ca5a77f26a",
+        "docs/contracts/defaults.json:92b203728494d28a6606d7a81a83edaf775600633a950640e06ad93b5b39552a",
+        "docs/contracts/05_BENCHMARK_FINGERPRINT.md:6d4a4e875c3bb4fd059689a91e8835d0c1ef5277da410db87d4d6f234d4bd4fd",
+        "docs/contracts/schemas/larm.schema.json:2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8",
+        "Cargo.lock:18d8541cee3a9552451cf86e1441782cd4c4b3d0ea632e71bd6c5b8dbc4ffd89"
+      ],
+      "expected": "78 copias idénticas al paquete contractual3.12.1.",
+      "observed": "exit0; 1.927s; raw log retained. 78 copias idénticas al paquete contractual3.12.1.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/configured-fit-20261029/contracts.log#sha256=1221765ab986b8d70e9a57b5a009bb2f6067b3b1ee45da0dcef41e8835fdabe6",
+        "docs/reports/P091_runs/configured-fit-20261029/contracts.command.json"
+      ]
+    },
+    {
+      "id": "P091-CONFIGURED-SCHEMA",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/p091_schema_evidence.py",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:cce808dae40a7183d62a8bb59bee062075262f1a5c84f2fdba98c1dd040a2410",
+        "crates/larm-core/src/config/mod.rs:cefb85ec0eb51b543e6c29d5d0dff9887561fd0d4a73edebff80f6ca5a77f26a",
+        "docs/contracts/defaults.json:92b203728494d28a6606d7a81a83edaf775600633a950640e06ad93b5b39552a",
+        "docs/contracts/05_BENCHMARK_FINGERPRINT.md:6d4a4e875c3bb4fd059689a91e8835d0c1ef5277da410db87d4d6f234d4bd4fd",
+        "docs/contracts/schemas/larm.schema.json:2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8",
+        "Cargo.lock:18d8541cee3a9552451cf86e1441782cd4c4b3d0ea632e71bd6c5b8dbc4ffd89"
+      ],
+      "expected": "El schema sigue admitiendo sólo technical_fit escalar nullable; rechaza score>100 y campos públicos no definidos.",
+      "observed": "exit0; 1.453s; raw log retained. El schema sigue admitiendo sólo technical_fit escalar nullable; rechaza score>100 y campos públicos no definidos.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/configured-fit-20261029/schema.log#sha256=3f7ac923958d4f05b5cb2cd337172bacabf18dbd98009dfe18ecec5523b91981",
+        "docs/reports/P091_runs/configured-fit-20261029/schema.command.json"
+      ]
+    },
+    {
+      "id": "P091-QUALIFIED-LOCAL-BENCHMARK",
+      "kind": "REAL",
+      "command": "Cualificar y ejecutar modelo/runtime/backend reales con fingerprint y cinco muestras locales",
+      "fixture_hashes": [],
+      "expected": "Conectar las mediciones reales al productor de assessment y recomendación, conservando el contexto efectivo.",
+      "observed": "NO EJECUTADO en este incremento: P090/P015/P035 permanecen BLOCKED_REAL y no hay productor de benchmark cualificado conectado al score. Las 64 pruebas son unitarias; no se etiquetan REAL.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P090, P015 y P035 no acreditan REAL_PASS; la aceptación de P091 no se cierra.",
+    "El nuevo cálculo configurado es opt-in e interno. Falta composición desde Settings versionado y candidatos reales cualificados; no se habilita un endpoint ni se cambia el schema de CompatibilityRecord.",
+    "P092 requiere tuplas completas, top-N, evaluación externa comparable y selección de fuentes equivalentes. Este incremento prepara su dependencia; no declara implementada la recomendación.",
+    "La GUI sigue pendiente por GetCursorPos AccessDenied; la confirmación de sesión Windows activa continúa pendiente, sin usar un sustituto de la prueba visual."
+  ],
+  "generated_at": "2026-10-29T20:13:50.344Z"
+}

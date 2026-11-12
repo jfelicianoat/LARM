@@ -1,0 +1,65 @@
+{
+  "adoption": {
+    "host_id": "01a127e0-7f24-76fb-b02f-a31caab22083",
+    "runtime": "Ollama",
+    "base_url": "http://127.0.0.1:11434",
+    "accept_external_local_trusted": true,
+    "runtime_version_id": "01a127e0-7f24-76fb-b02f-a31d07bb97be",
+    "memory_budget_bytes": "51539607552",
+    "gateway_base_url": "http://127.0.0.1:8790/api/v1/gateway",
+    "launch_profile": {
+      "id": "01a127e0-7f24-76fb-b02f-a31eae575196",
+      "created_at": "2026-10-10T22:13:06.468Z",
+      "updated_at": "2026-10-10T22:13:06.468Z",
+      "row_version": 1,
+      "metadata": {
+        "source": "external_adoption",
+        "applied_by_runtime": false
+      },
+      "name": "BALANCED",
+      "parameters": {
+        "threads": 31,
+        "context": 4096,
+        "batch": 1,
+        "concurrency": 1,
+        "offload_layers": null,
+        "backend_id": "01a127e0-7f24-76fb-b02f-a31f9c5f1b77",
+        "tokenizer_hash": null,
+        "chat_template_hash": null,
+        "generation": {
+          "temperature": 0.0,
+          "top_p": 1.0,
+          "seed": 42,
+          "max_output_tokens": 512
+        },
+        "memory_limit_bytes": null,
+        "runtime_arguments": [],
+        "environment": {
+          "allowlist": [],
+          "variables": []
+        },
+        "adapter_options": {}
+      },
+      "profile_hash": "edb86b10c5a8d3c5eb1859471b881fee533ebc237976a768c717de94c2454f50",
+      "backend_id": null
+    },
+    "variants": [
+      {
+        "variant_id": "01a127e0-7e03-7599-863e-abb96ef7db4e",
+        "model": "gemma4:12b",
+        "capabilities": [
+          "text.generate"
+        ]
+      }
+    ]
+  },
+  "principals": [
+    {
+      "name": "ai-broker",
+      "scopes": [
+        "read",
+        "leases:manage"
+      ]
+    }
+  ]
+}

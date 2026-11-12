@@ -1,0 +1,85 @@
+{
+ "report_version": 1,
+ "volumes_probe": {
+  "status": "VERIFIED",
+  "detail": "3 volúmenes",
+  "version": null,
+  "devices": 3,
+  "luid": null,
+  "library": null
+ },
+ "volumes": [
+  {
+   "volume_path": "\\\\?\\Volume{fb4f4fbc-5441-4427-a73a-0e1ea94ad8d3}\\",
+   "mount_points": [
+    "C:\\"
+   ],
+   "label": "Windows",
+   "filesystem": "NTFS",
+   "read_only": false,
+   "drive_type": 3,
+   "capacity_bytes": 1998992699392,
+   "free_bytes": 178337665024,
+   "bus_type": 17,
+   "seek_penalty": false,
+   "removable_media": false,
+   "product": "CT2000P310SSD8",
+   "errors": []
+  },
+  {
+   "volume_path": "\\\\?\\Volume{ac318884-e79e-48c8-bde1-f2aaddbc0459}\\",
+   "mount_points": [],
+   "label": "Recovery",
+   "filesystem": "NTFS",
+   "read_only": false,
+   "drive_type": 3,
+   "capacity_bytes": 1073737728,
+   "free_bytes": 230993920,
+   "bus_type": 17,
+   "seek_penalty": false,
+   "removable_media": false,
+   "product": "CT2000P310SSD8",
+   "errors": []
+  },
+  {
+   "volume_path": "\\\\?\\Volume{cdffda3c-4eae-480b-874f-6aacfc2d7658}\\",
+   "mount_points": [],
+   "label": "SYSTEM",
+   "filesystem": "FAT32",
+   "read_only": false,
+   "drive_type": 3,
+   "capacity_bytes": 310378496,
+   "free_bytes": 241139712,
+   "bus_type": 17,
+   "seek_penalty": false,
+   "removable_media": false,
+   "product": "CT2000P310SSD8",
+   "errors": []
+  }
+ ],
+ "shares": [
+  {
+   "unc_path": "\\\\localhost\\Temp",
+   "drive_letter": null,
+   "available": true,
+   "filesystem": "NTFS",
+   "read_only": false,
+   "capacity_bytes": 1998992699392,
+   "free_bytes": 178337665024,
+   "errors": []
+  },
+  {
+   "unc_path": "\\\\noexiste-larm\\x",
+   "drive_letter": null,
+   "available": false,
+   "filesystem": null,
+   "read_only": false,
+   "capacity_bytes": null,
+   "free_bytes": null,
+   "errors": [
+    "GetDiskFreeSpaceExW 0x80070035 No se ha encontrado la ruta de acceso de la red.",
+    "GetVolumeInformationW 0x80070035 No se ha encontrado la ruta de acceso de la red."
+   ]
+  }
+ ]
+}

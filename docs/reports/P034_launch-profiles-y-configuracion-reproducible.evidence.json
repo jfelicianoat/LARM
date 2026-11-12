@@ -1,0 +1,205 @@
+{
+  "prompt_id": "P034",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "49d2bc8239fdab1cae595de646b977e55bbcfa0d632a9c66222d9360549e4939",
+  "changed_files": [
+    "apps/daemon/src/serve.rs",
+    "apps/desktop/src/api/launchProfiles.ts",
+    "apps/desktop/src/launchProfiles.tsx",
+    "apps/desktop/src/runtimes.test.tsx",
+    "apps/desktop/src/runtimes.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-adapter-host/tests/worker.rs",
+    "crates/larm-api/Cargo.toml",
+    "crates/larm-api/src/broker.rs",
+    "crates/larm-api/src/launch_profiles.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-db/src/launch_profiles.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-domain/src/launch_profile.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-runtime/src/lib.rs",
+    "crates/larm-runtime/src/profiles.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P034_launch-profiles-y-configuracion-reproducible.md",
+    "tools/p034_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P034-DOMAIN-HASH-AND-DIFF",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib launch_profile -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/launch_profile.rs:a72daf93a653cf4f47db8cbefddf94c3fe3d7a9fb91b90241316de3c7de0084d",
+        "crates/larm-domain/src/launch.rs:f8800637db42f6bd60a84e78f43a6187c2ec332925fb623a6d4146bd61bc3a6c"
+      ],
+      "expected": "DTO cerrado, campos nullable obligatorios, hash sensible a parámetros/backend, diff JSON Pointer estable y corrupción rechazada.",
+      "observed": "exit=0; warning: `larm-domain` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-DOMAIN-HASH-AND-DIFF.log#sha256=b85da5db35957c7a80b70eb2263fa152a869169cea26856097910dfdfae33dd2"
+      ]
+    },
+    {
+      "id": "P034-BUILTIN-MATERIALIZATION",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-runtime --lib profiles::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/launch_profile.rs:a72daf93a653cf4f47db8cbefddf94c3fe3d7a9fb91b90241316de3c7de0084d",
+        "crates/larm-runtime/src/profiles.rs:4cc0ac2ceeb1d0dcad7ee1faed07afab8b73571beedab31f6f0ab6e70493d0c5"
+      ],
+      "expected": "ECO/BALANCED/PERFORMANCE/LONG_CONTEXT materializan fórmulas de contrato 04 usando sólo hardware/contexto observado y parámetros explícitos.",
+      "observed": "exit=0; warning: `larm-adapter-host` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.10s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_runtime-93d03372030a0bc8.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-BUILTIN-MATERIALIZATION.log#sha256=8393b3e1d9480965c7bccc3d3b3eb2c7b418112aed991dfbb72b1befded17ed6"
+      ]
+    },
+    {
+      "id": "P034-SQLITE-CRUD-IDEMPOTENCY-OUTBOX",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib launch_profiles::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/launch_profile.rs:a72daf93a653cf4f47db8cbefddf94c3fe3d7a9fb91b90241316de3c7de0084d",
+        "crates/larm-db/src/launch_profiles.rs:be02f5d06d24d774a261f0ce6a6a66a447b105bac28d4434813092c99cb79ee2",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "Create/replay/conflicto, edición CAS, borrado, recarga de dos parámetros y hashes, detección de corrupción y rollback conjunto de perfil/outbox/idempotencia.",
+      "observed": "exit=0; warning: `larm-domain` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.68s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_db-91b02929f90c5f6c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-SQLITE-CRUD-IDEMPOTENCY-OUTBOX.log#sha256=8194d96f7db454548d4dfab00f95e414aba8637365fd5eb36851ca231f26cadd"
+      ]
+    },
+    {
+      "id": "P034-API-AUTH-CRUD-ETAG",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --lib launch_profiles::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/launch_profile.rs:a72daf93a653cf4f47db8cbefddf94c3fe3d7a9fb91b90241316de3c7de0084d",
+        "crates/larm-api/src/launch_profiles.rs:c0b819ea2c2eb24d09d57182dbf2c402cb7764125ebd62fe948a4617b5d856b8",
+        "crates/larm-api/src/openapi.rs:4b7b573a22439993fc2278e84d0cd7237332c92b61233558318a9dbb599e03fe",
+        "docs/contracts/api-operations.json:7c99ada02337618f39e5e891ba6db220a73bdee7f3e8162e6ec1111f6eb45c3f"
+      ],
+      "expected": "Cinco operaciones contractuales, scope runtimes:write, query/body estrictos, idempotencia y ETag/If-Match se prueban con el puerto de repositorio; la persistencia real se prueba en el caso SQLite separado.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.78s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_api-3ad1071c3ed95ca7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-API-AUTH-CRUD-ETAG.log#sha256=1236f259ad77ad4bae3d250a98294529672c550f2581dee5876c62b1ba075171"
+      ]
+    },
+    {
+      "id": "P034-INVALID-ADAPTER-OPTIONS-AND-ENV",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-sdk --lib declarative::tests::simulacion_sin_ejecutar_e_inyeccion -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-adapter-sdk/src/declarative.rs:ba52abfb5cbdfb9786d9f60c9e8f4eaa3c81b13f91c94d73722bcee3047dc056",
+        "crates/larm-domain/src/launch.rs:f8800637db42f6bd60a84e78f43a6187c2ec332925fb623a6d4146bd61bc3a6c"
+      ],
+      "expected": "El adaptador declarativo rechaza opciones desconocidas, argumentos extra y rutas inseguras antes de IO, y limita entorno al allowlist cualificado.",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.56s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_adapter_sdk-a6f544fc4dac98d5.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-INVALID-ADAPTER-OPTIONS-AND-ENV.log#sha256=8eb683be29d2fc5a5444fed527af109e2850dc35152f76e4da0aaf32d494647c"
+      ]
+    },
+    {
+      "id": "P034-SNAPSHOT-IMMUTABILITY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-domain --lib instances::tests::snapshot_persistido_detecta_cambios_en_plan_o_en_hash_exterior -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/instances.rs:491905282e3d4674015760de61de01e8cd8ee7c9a2fc88dc05ac47372a7af2d8"
+      ],
+      "expected": "Un cambio del plan efectivo o del hash externo invalida el snapshot inmutable de RuntimeInstance.",
+      "observed": "exit=0; warning: `larm-domain` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-SNAPSHOT-IMMUTABILITY.log#sha256=44a75bbfc894593dcd1e776c3f2c52f38cf0f04d79adc702a2ae27c9d4b88ba9"
+      ]
+    },
+    {
+      "id": "P034-SNAPSHOT-SQLITE-ROUNDTRIP",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib instances::tests::create_transition_and_outbox_are_atomic_and_use_cas -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/instances.rs:491905282e3d4674015760de61de01e8cd8ee7c9a2fc88dc05ac47372a7af2d8",
+        "crates/larm-db/src/instances.rs:3f0cc648bb6b1cbb6bd5d915836572582312e29a2935ae494d120876228ea449",
+        "migrations/0001_bootstrap.sql:a3c80076e1c79a5594e0595a8a146759ad6760d4b88b684cbd49415a63c22db9"
+      ],
+      "expected": "El snapshot del plan y sus parámetros efectivos sobreviven a create/lectura SQLite junto a transición CAS y outbox atómico.",
+      "observed": "exit=0; warning: `larm-domain` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.68s | Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_db-91b02929f90c5f6c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-SNAPSHOT-SQLITE-ROUNDTRIP.log#sha256=13800b1f67a2bc7621305a16e50ab64e8dbff63554618c4e327ad49c9acc23aa"
+      ]
+    },
+    {
+      "id": "P034-DESKTOP-PROFILE-WORKFLOW",
+      "kind": "INTEGRATION",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command npm run test -- src/runtimes.test.tsx -t 'crea, copia, compara y edita perfiles reproducibles con If-Match'",
+      "fixture_hashes": [
+        "apps/desktop/src/api/launchProfiles.ts:bd1a2cacfecc7bde946916cb33bc962808329fbbd378b67c9f827df1431ccf8f",
+        "apps/desktop/src/launchProfiles.tsx:53dc4a8259b4e0d683aa96e58bd41f256fdd41aa104c9ae712bb565f30c7ad3d",
+        "apps/desktop/src/runtimes.tsx:da8dd1834a53f52e095997bf7d351db9e53a48c17b6fa0daceb48a76365b8f64",
+        "apps/desktop/src/runtimes.test.tsx:3f594d60e201408fbd6638f6bada93cc5f9c6358d2f9adbbd961a780d39e4f5a"
+      ],
+      "expected": "La pantalla crea y copia perfiles, muestra los cambios efectivos y guarda una revisión con If-Match.",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  1 passed | 18 skipped (19) | Start at  12:58:00 | Duration  3.87s (environment 57%, tests 21%, import 11%, transform 11%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-DESKTOP-PROFILE-WORKFLOW.log#sha256=d931484452e6c7ea21e9c2c57eb6e8a3f5a34702ba64ca2582c0a6e1ea632c35"
+      ]
+    },
+    {
+      "id": "P034-DAEMON-WIRING",
+      "kind": "INTEGRATION",
+      "command": "cargo check -p larm-daemon -j 1",
+      "fixture_hashes": [
+        "crates/larm-db/src/launch_profiles.rs:be02f5d06d24d774a261f0ce6a6a66a447b105bac28d4434813092c99cb79ee2",
+        "crates/larm-api/src/launch_profiles.rs:c0b819ea2c2eb24d09d57182dbf2c402cb7764125ebd62fe948a4617b5d856b8",
+        "apps/daemon/src/serve.rs:b6988407a8d3b0c4ec3e6a5e67a0b465dc82eb166392a2106987403007a44103"
+      ],
+      "expected": "El daemon compila con el repositorio LaunchProfile durable montado en las rutas contractuales.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\verification-final\\debug\\incremental\\larm_hardware-05n7gtiqny3nu\\s-hng4mt4499-136fnb2-working` | warning: `larm-hardware` (lib) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.21s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-DAEMON-WIRING.log#sha256=db7ca9dc1669ee7ff4a6e1bcf84b91ed93d5c41115aab35e5d3212be94cc9fde"
+      ]
+    },
+    {
+      "id": "P034-WINDOWS-EFFECTIVE-PROCESS",
+      "kind": "REAL",
+      "command": "cargo test -p larm-adapter-host --test runtime sesion_cualificada_inicia_proceso_propio_desde_snapshot_efectivo -j 1 -- --exact --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/instances.rs:491905282e3d4674015760de61de01e8cd8ee7c9a2fc88dc05ac47372a7af2d8",
+        "crates/larm-adapter-host/tests/runtime.rs:7ae85a76fae5674a0bb33aa5ce885f0ce951238cea6629702c5f21b740ce1f22"
+      ],
+      "expected": "En Windows, un worker fixture inicia un proceso propio con argumentos y entorno autorizados, observa el límite y snapshot efectivo, termina gracefulmente y no escribe el valor secreto en logs.",
+      "observed": "exit=0; warning: `larm-adapter-sdk` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.91s | Running tests\\runtime.rs (target\\verification-final\\debug\\deps\\runtime-05bd422a8a63130e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P034_runs/P034-WINDOWS-EFFECTIVE-PROCESS.log#sha256=15f4f719d1a3920243496c6af90d53d81b036358d3f07a0e9091bec5e3715037"
+      ]
+    },
+    {
+      "id": "P034-REAL-PERSISTED-PROFILE-TO-PROCESS",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P034 -Real",
+      "fixture_hashes": [],
+      "expected": "Seleccionar un LaunchProfile cargado desde SQLite, resolverlo contra el adaptador cualificado, iniciar el proceso real desde ese perfil y comprobar snapshot y hash persistidos en RuntimeInstance.",
+      "observed": "NO EJECUTADA: La prueba de proceso existente verifica parámetros efectivos construidos directamente, pero el daemon todavía no enlaza LaunchProfile guardado con LaunchPlan/RuntimeInstance; P033 mantiene ese flujo productivo bloqueado.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "Los perfiles CRUD ya son editables y comparables, pero aún no se consumen desde el flujo productivo LaunchPlan→RuntimeInstance; no se declara cumplimiento real H03 para un perfil guardado.",
+    "La ruta de lista contractual P034 ahora devuelve perfiles durables; el antiguo GET configurado del Broker deja de ser la fuente de esa ruta y su consumidor debe migrar al catálogo después de cerrar el flujo P033/P030.",
+    "dependencia P030 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P033 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T11:58:27.224Z"
+}

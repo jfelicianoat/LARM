@@ -1,0 +1,44 @@
+[package]
+name = "larm-adapter-sdk"
+description = "SDK para las cinco familias de plugins (runtime/source/protocol/transformation/benchmark)."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+larm-domain = { workspace = true }
+base64 = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+ed25519-dalek = { workspace = true }
+hex = { workspace = true }
+sha2 = { workspace = true }
+sysinfo = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+async-trait = { workspace = true }
+tokio = { workspace = true, features = ["io-std"] }
+jsonschema = { workspace = true }
+
+
+[[bin]]
+name = "larm-generic-adapter"
+path = "../../adapters/runtime/generic/main.rs"
+test = false
+
+[[bin]]
+name = "larm-reference-echo"
+path = "../../adapters/runtime/reference/echo.rs"
+test = false
+
+[[bin]]
+name = "larm-reference-runtime"
+path = "../../adapters/runtime/reference/main.rs"
+test = false
+
+[lints]
+workspace = true
+
+[dev-dependencies]
+tempfile = { workspace = true }

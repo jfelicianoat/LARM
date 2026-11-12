@@ -1,0 +1,34 @@
+# P048 — GitHub Releases, HTTP, local y UNC
+
+**Estado: `BLOCKED_REAL`** (2026-10-24). El worker fuente P048 funciona en Windows y pasa sus pruebas locales. El gate oficial terminó `PASS` (14/14 controles, 0 fallos); el consumidor no puede cerrarse hasta que P043, P045 y P017 alcancen `REAL_PASS`.
+
+Ampliación posterior del 2026-10-27: [Settings y descarga P048 TCP](P003_settings_file_2026-10-27.md) pasan 49 pruebas focales y dos nativas (6,54 s y 182,98 s). La API usa la misma prioridad del fichero que el arranque y conserva la base guardada; sin override de fichero, P048 mantiene 65.536 bytes/s después de dos reinicios y recupera con bloques acotados hasta SHA/CAS/procedencia. Se repiten confirmación/replay, rechazo de corrupción y cierre de reservas/outbox. Cualificación 39/16, Clippy/fmt y package_copy 74/74 pasan; 37 inputs y binarios contrastados. Continúan pendientes H08 agregado, disco lleno, ingestión P043, GUI conjunta y dependencias; frontend/workspace/runners completos no se repiten. Los recibos anteriores conservan su alcance histórico.
+
+Ampliación 2026-10-27: la [prueba del daemon TCP con P048 original](P048_daemon_tcp_2026-10-27.md) pasa 1/1 en 103,93 s, con cualificación real del perfil controlado de 39 casos/16 observaciones. El Core rechaza corrupción sin publicar ni registrar CAS/procedencia, conserva una pausa tras reiniciar y recupera otra caída en RUNNING con Range/If-Range hasta completar 1.048.832 bytes con SHA/CAS/procedencia. Preview, confirmación y replay pasan; ambos journals y sus reservas/outbox quedan cerrados, principal temporal revocado. Clippy y sintaxis pasan y se contrastan 28 inputs y ambos ejecutables. El catálogo se prepara desde metadatos RPC; faltan ingestión P043, GUI conjunta y las demás aceptaciones reales. Este incremento no repite frontend, workspace ni el runner formal completo. Los incrementos anteriores conservan su alcance histórico.
+
+Ampliación 2026-10-27: el [perfil HTTP de producto controlado](P048_native_http_2026-10-27.md) supera 39 casos y 16 observaciones con el ejecutable original, perfil persistente, P022 y Core/SQLite. La prueba completa pasa 1/1 en 24,00 s y confirma la admisión física sin RPC. Se añaden progreso/cancelación de red y conservación del ID de variante del consumidor. Pasan 161 pruebas focales, cuatro recorridos CLI de persistencia y el smoke LOCAL con progreso; Clippy/formato y 74 copias pasan. Sólo se cualifica el perfil loopback fijado; siguen pendientes el recorrido TCP de descarga/CAS, otro URL/upstream, UNC y las dependencias. No se repiten el runner formal completo ni el gate global.
+
+Ampliación HTTP 416 del 2026-10-26: 20/20 pruebas P048 y 48/48 del motor pasan. El cliente sólo presenta EOF candidato con total válido, offset coincidente y SHA fijado; el Core comprueba el fichero completo. Se reconstruye el worker y pasa su smoke LOCAL empaquetado, Clippy y formato. Las dos fases Windows de [P051](P051_http416_2026-10-26.md) usan el adaptador de referencia; aún falta cualificación y descarga productiva de P048 mediante Core. Los siguientes incrementos conservan su alcance histórico.
+
+Ampliación 2026-10-26: P048 envía If-Range al reanudar, comunica el validador real de un 206 y exige reinicio ante HTTP 200 en un offset positivo. Pasa 17/17 pruebas, Clippy/fmt, reconstrucción del ejecutable y smoke LOCAL empaquetado. La [prueba integrada de P051](P051_integrity_2026-10-26.md) pasa ETag cambiado y hash corrupto con el adaptador Python de referencia; no se atribuye esa cualificación al worker P048 ni a su proveedor. Las cifras siguientes corresponden a la verificación original.
+
+P048 añade un worker Rust empaquetado por perfil para GitHub Releases, una URL HTTP explícita, una carpeta local o una share UNC. GitHub consulta un solo repositorio configurado; HTTP no sigue redirecciones; LOCAL/UNC delega la indexación a P017 y revalida la raíz y las rutas antes de entregar bloques. El adaptador entrega bytes de hasta 512 KiB al Download Manager, no escribe destinos ni crea jobs. Git LFS permanece sin ejecutar.
+
+La revisión contractual 3.6.0 declara `source.download_chunk` en los cuatro perfiles; la 3.6.1 incorpora `larm-source-p048` y sus dependencias autorizadas al grafo contractual. Las reglas P052 conservan tamaños `EXACT`/`HIGH`/`ESTIMATED`/`UNKNOWN` y exigen preflight de destino y confirmación expresa. P017 proporciona observaciones locales; no se recorren ni se hashean pesos completos durante cada indexación o lectura de bloque.
+
+## Verificación
+
+- `cargo test -p larm-source-p048`: 12 pruebas pasan en Windows. Cubren path traversal, symlink escape, UNC ausente, HTTP sin tamaño, `206`/`Content-Range`, ETag de reanudación, rate limit GitHub, SHA/tamaño y límite explícito de paginación.
+- `cargo test -p larm-adapter-sdk --test capability_session`: 5 pruebas pasan. La regresión confirma que `source.search` se anuncia como operación source sin pedir un estimador de memoria; las capacidades de ejecución siguen pasando por sus descriptores.
+- Worker LOCAL empaquetado: handshake JSON-RPC, escaneo P017, modelo/revisión/manifiesto, estimación `ESTIMATED`, bloque de archivo, rechazo de `source.search` import-only y verificación de que el origen no cambió.
+- Worker GITHUB empaquetado: consulta pública anónima a `ggml-org/whisper.cpp`; devuelve una release sin credenciales ni transferencia de activos.
+- La primera consulta de cualificación usó un repositorio con más de 1.000 releases y alcanzó el límite de 10 páginas. El worker devolvió `RESOURCE_UNAVAILABLE` retryable en vez de presentar resultados parciales; la prueba live se repitió con un repositorio dentro del límite.
+- Workspace Rust serial: 1.100 tests pasan, 0 fallan y 0 quedan ignorados. Incluye los 12 tests de P048 y las suites de workers de referencia.
+- Gate oficial (`tools/check.ps1 -Prompt P048 -Real`): **PASS, 14/14 controles, 0 fallos**. Pasan formato y Clippy Rust, fixtures, workspace, arquitectura (17 crates), `package_copy` (61/61), formato/Clippy/tests de escritorio, lint/typecheck/tests/build del frontend y recibo P048.
+- Evidencia P048: 7 comprobaciones `PASS`, 0 `FAIL` y 1 `BLOCKED`; la prueba positiva UNC requiere una share y una identidad Windows autorizadas.
+
+## Pendientes para `REAL_PASS`
+
+P043, P045 y P017 siguen sin `REAL_PASS`; las evidencias bloqueantes se registran en el recibo. Falta probar una UNC privada con share e identidad Windows autorizadas. La autenticación privada/gated continúa bajo P045/P141. Git LFS queda excluido hasta que exista resolución segura y cualificada. Una prueba HTTP de loopback valida HEAD y rango, pero no sustituye la cualificación de un origen de distribución externo.
+
+El recibo estructurado con hashes de entradas, fixtures, transcripciones y bloqueos está en [P048 evidence](P048_github-releases-url-directa-local-y-unc-source-adapters.evidence.json); la puerta común se publica en [check P048](check_P048_real.json).

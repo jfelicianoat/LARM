@@ -1,0 +1,392 @@
+{
+  "$defs": {
+    "domain__model_variant": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "availability": {
+          "enum": [
+            "UNKNOWN",
+            "OFFLINE",
+            "INCOMPATIBLE",
+            "PREPARING",
+            "AVAILABLE",
+            "DEGRADED",
+            "CORRUPT"
+          ],
+          "type": "string"
+        },
+        "bundle_hash": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "created_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        },
+        "format": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "lifecycle": {
+          "enum": [
+            "DISCOVERED",
+            "SELECTED",
+            "DOWNLOAD_PLANNED",
+            "DOWNLOADING",
+            "DOWNLOADED",
+            "VERIFIED",
+            "PREPARED",
+            "TECHNICALLY_VALIDATED",
+            "AVAILABLE",
+            "RUNNING",
+            "FAILED",
+            "REJECTED",
+            "CORRUPT"
+          ],
+          "type": "string"
+        },
+        "metadata": {
+          "properties": {
+            "source_v1": {
+              "properties": {
+                "normalized": {
+                  "properties": {
+                    "catalog_reference": {
+                      "$ref": "#/$defs/larm__SourceCatalogReference"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "model_limits": {
+          "additionalProperties": false,
+          "properties": {
+            "architecture_metadata_hash": {
+              "anyOf": [
+                {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "context_limit": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "head_dim": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kv_bits": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kv_heads": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "layers": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "model_max_memory_bytes": {
+              "anyOf": [
+                {
+                  "maxLength": 19,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string",
+                  "x-maximum-decimal": "9223372036854775807"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "parameter_count": {
+              "anyOf": [
+                {
+                  "maxLength": 19,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "type": "string",
+                  "x-maximum-decimal": "9223372036854775807"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "parameter_count",
+            "layers",
+            "kv_heads",
+            "head_dim",
+            "context_limit",
+            "kv_bits",
+            "model_max_memory_bytes",
+            "architecture_metadata_hash"
+          ],
+          "type": "object"
+        },
+        "ownership": {
+          "enum": [
+            "LARM_MANAGED",
+            "HOST_MANAGED",
+            "EXTERNAL",
+            "SHARED"
+          ],
+          "type": "string"
+        },
+        "promotion": {
+          "enum": [
+            "NONE",
+            "CANDIDATE",
+            "TECHNICALLY_APPROVED",
+            "EVALUATION_APPROVED",
+            "DEFAULT",
+            "PINNED",
+            "REJECTED"
+          ],
+          "type": "string"
+        },
+        "quantization": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revision_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "row_version": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "DISCOVERED",
+            "SELECTED",
+            "DOWNLOAD_PLANNED",
+            "DOWNLOADING",
+            "DOWNLOADED",
+            "VERIFIED",
+            "PREPARED",
+            "TECHNICALLY_VALIDATED",
+            "AVAILABLE",
+            "RUNNING",
+            "OFFLINE",
+            "CORRUPT",
+            "UPDATE_AVAILABLE",
+            "FAILED",
+            "REJECTED"
+          ],
+          "type": "string"
+        },
+        "system1_state": {
+          "anyOf": [
+            {
+              "enum": [
+                "SYSTEM1_CANDIDATE",
+                "SYSTEM1_TECHNICALLY_VALID",
+                "SYSTEM1_EVALUATED",
+                "SYSTEM1_CERTIFIED",
+                "SYSTEM1_REJECTED"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "system_role": {
+          "enum": [
+            "GENERAL",
+            "SYSTEM1",
+            "AUXILIARY"
+          ],
+          "type": "string"
+        },
+        "update_available": {
+          "type": "boolean"
+        },
+        "updated_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "row_version",
+        "metadata",
+        "revision_id",
+        "format",
+        "quantization",
+        "architecture",
+        "bundle_hash",
+        "lifecycle",
+        "availability",
+        "ownership",
+        "promotion",
+        "system_role",
+        "capabilities",
+        "model_limits",
+        "system1_state",
+        "update_available",
+        "status"
+      ],
+      "type": "object"
+    },
+    "larm__ModelPage": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/domain__model_variant"
+          },
+          "type": "array"
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_at": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_at"
+      ],
+      "type": "object"
+    },
+    "larm__SourceCatalogReference": {
+      "additionalProperties": false,
+      "properties": {
+        "revision_key": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "upstream_model_id": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        "upstream_namespace": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "upstream_namespace",
+        "upstream_model_id",
+        "revision_key"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__ModelPage",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

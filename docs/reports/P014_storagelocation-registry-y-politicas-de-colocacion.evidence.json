@@ -1,0 +1,351 @@
+{
+  "prompt_id": "P014",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "5c7b69fd913e5f297749f344e4c7c4ff6482b4913eff458bead899cfa80b4733",
+  "inputs_hash": "e8dea4a697dae8a036df456512de23bb029060fe197ff503758df575bd21b68e",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/hardware.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/storage.test.tsx",
+    "apps/desktop/src/storage.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/storage.rs",
+    "crates/larm-api/tests/hardware.rs",
+    "crates/larm-api/tests/storage.rs",
+    "crates/larm-core/src/hardware.rs",
+    "crates/larm-core/src/lib.rs",
+    "crates/larm-core/src/locations.rs",
+    "crates/larm-db/src/hardware.rs",
+    "crates/larm-db/src/jobs.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/locations.rs",
+    "crates/larm-db/src/storage.rs",
+    "crates/larm-db/tests/hardware.rs",
+    "crates/larm-db/tests/locations.rs",
+    "crates/larm-db/tests/storage.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/locations.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-domain/src/storage.rs",
+    "crates/larm-storage/Cargo.toml",
+    "crates/larm-storage/src/lib.rs",
+    "crates/larm-storage/src/locations.rs",
+    "docs/api/openapi.json",
+    "docs/operations/storage.md",
+    "docs/reports/P014_runs/revalidation-20261025-022400/serve-steps.json",
+    "docs/reports/P014_storagelocation-registry-y-politicas-de-colocacion.evidence.json",
+    "docs/reports/P014_storagelocation-registry-y-politicas-de-colocacion.md",
+    "tools/p014_evidence.py",
+    "tools/p014_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P014-UNIT-niveles-h09",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- locations::tests::niveles",
+      "fixture_hashes": [],
+      "expected": "PERCENT y BYTES; igualdad no cruza; sin capacidad no hay nivel; sin desbordamiento",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-niveles-h09.log#sha256=537caa2fd6bd148afb7cd8abbb514624858c4b55ff9c9fd838addefc894b5673"
+      ]
+    },
+    {
+      "id": "P014-UNIT-espacio-reservado",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- locations::tests::espacio",
+      "fixture_hashes": [],
+      "expected": "usable = libre - reserva, nunca negativo; volumen: mayor reserva, no la suma",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-espacio-reservado.log#sha256=dc5ca324b71a4c096fbc2187d5a2660944a2907874d781c8c762693ec9994875"
+      ]
+    },
+    {
+      "id": "P014-UNIT-politicas",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- locations::tests::politicas",
+      "fixture_hashes": [],
+      "expected": "ASK_ALWAYS, PREFERRED_LOCATION, MOST_FREE_SPACE, FASTEST_STORAGE, BY_MODEL_TYPE y CUSTOM_RULES (solo modelo); empates por prioridad e id",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-politicas.log#sha256=aa00889792ec60ebc338528e45c725f1054c47f624cc97014dc49689d2287b5d"
+      ]
+    },
+    {
+      "id": "P014-UNIT-hard-gates",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- locations::tests::hard_gates",
+      "fixture_hashes": [],
+      "expected": "LOW_SPACE, sin auto-placement, identidad desconocida y FAT32 > 4 GiB excluidos",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-hard-gates.log#sha256=0671c61b4b9c47ac9d899924059a2b5d5f96fb37e7bdbbb07507d927da7d5ddf"
+      ]
+    },
+    {
+      "id": "P014-CONTRACT-dto",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- locations::tests::registro",
+      "fixture_hashes": [],
+      "expected": "DTO de escritura cerrado: GUID no editable; estados del schema",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-CONTRACT-dto.log#sha256=d93267b68e0977d55ec05eca520b2033ef51bcd2ea15d2e6edef6e1d54b899a8"
+      ]
+    },
+    {
+      "id": "P014-UNIT-estados",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- storage::tests::estado",
+      "fixture_hashes": [],
+      "expected": "OFFLINE, READ_ONLY, MISSING, UNKNOWN, LOW_SPACE y ONLINE según lo observado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-estados.log#sha256=c8b78e36c3b46c2ca17c96a60909665ea9655b655a1b6b1456c74e65c5538ba0"
+      ]
+    },
+    {
+      "id": "P014-UNIT-sintaxis-raiz",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- locations::tests::sintaxis",
+      "fixture_hashes": [],
+      "expected": "relativa, ADS, '..', dispositivo, GLOBALROOT y espacios rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-9a7f0cc35ab9b027.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-sintaxis-raiz.log#sha256=93640a56945dec454ec6eba68fd66a93b779581a877fb8ff95789252911735e3"
+      ]
+    },
+    {
+      "id": "P014-UNIT-solapamiento",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- locations::tests::solapamiento",
+      "fixture_hashes": [],
+      "expected": "por componentes y sin distinguir mayúsculas; C:\\IA no contiene C:\\IA2",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-9a7f0cc35ab9b027.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-solapamiento.log#sha256=c6ad52c48912e60c542bbe55d5d3ef593dec439aabb4ed0160efb0c7a340931e"
+      ]
+    },
+    {
+      "id": "P014-FAULT-raiz-real",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-storage --lib -- locations::tests::raiz_real",
+      "fixture_hashes": [],
+      "expected": "carpeta inexistente, fichero y junction real (mklink /J) rechazados; el fichero de prueba de escritura se borra",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-9a7f0cc35ab9b027.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-FAULT-raiz-real.log#sha256=15bca709a634c1ccc3d8245e92ee98df5410062993d1f36a16cb39d96aea51a1"
+      ]
+    },
+    {
+      "id": "P014-UNIT-presupuesto",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-storage --lib -- locations::tests::presupuesto",
+      "fixture_hashes": [],
+      "expected": "presupuesto compartido por volumen; offline sin espacio",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_storage-9a7f0cc35ab9b027.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-presupuesto.log#sha256=be5fb34bb54f017f035e8aec29234f508a5c1751b65f6a9ead1a5ae379d53594"
+      ]
+    },
+    {
+      "id": "P014-INTEGRATION-sqlite-crud",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test locations",
+      "fixture_hashes": [],
+      "expected": "CRUD con ida y vuelta exacta, If-Match, NOT_FOUND, eventos created/updated/deleted en outbox; borrado con artefactos rechazado sin evento; paginación y filtros q/state",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s | Running tests\\locations.rs (target\\debug\\deps\\locations-86995dd72e02565c.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-INTEGRATION-sqlite-crud.log#sha256=8c62a7b54e1504d3e15983f2398f760da7566e63dafdb16f35d8fa9689373459"
+      ]
+    },
+    {
+      "id": "P014-INTEGRATION-sqlite-estado",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test storage",
+      "fixture_hashes": [],
+      "expected": "volumen offline, MISSING, LOW_SPACE con igualdad que no cruza, observaciones simultáneas",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s | Running tests\\storage.rs (target\\debug\\deps\\storage-52afdac6364cbef4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-INTEGRATION-sqlite-estado.log#sha256=435a81d75bedbd98b5e02f1b57252f959dae7078e40b3c6d51846659e1beb0cd"
+      ]
+    },
+    {
+      "id": "P014-INTEGRATION-api",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test storage",
+      "fixture_hashes": [],
+      "expected": "guard real: 201 idempotente y 409 con otro cuerpo, 428/409 de If-Match, 409 con artefactos, 204; schema cerrado; 403 sin storage:write; alias /storage; filtros y cursor ligado a los filtros; sondeo como job",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\storage.rs (target\\debug\\deps\\storage-7e1a3c039ec90511.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-INTEGRATION-api.log#sha256=f5fd9b766e51d1c499f4a77578a792d629b05e14422081d058c86af7a004100a"
+      ]
+    },
+    {
+      "id": "P014-CONTRACT-openapi",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [],
+      "expected": "OpenAPI al día con las 8 operaciones de P014",
+      "observed": "exit=0; OpenAPI al día: docs/api/openapi.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-CONTRACT-openapi.log#sha256=6267f3b4d03670061282684f6370a8fda73a6971823aad7ea49f2c1d2ddfb341"
+      ]
+    },
+    {
+      "id": "P014-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-cargo-fmt.log#sha256=c42934c0db92f50866c97875d20b8fe60270cb9b8c1b7ab8e3e5a6baadc09ffb"
+      ]
+    },
+    {
+      "id": "P014-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Checking larm-storage v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-storage) | Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-cargo-clippy.log#sha256=f067ce51daf67166054b76486502d07f8596c3737ef0ebb0f66eefa713af5500"
+      ]
+    },
+    {
+      "id": "P014-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-cargo-test.log#sha256=1d0989ffbbf41abf584c7fe6ad1a9338eca6828f62c00eeaaa97365403d9aba8"
+      ]
+    },
+    {
+      "id": "P014-UNIT-desktop-lint",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run lint --silent",
+      "fixture_hashes": [],
+      "expected": "eslint sin avisos",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-desktop-lint.log#sha256=af6f4a9a6240defc90a13a0dbbc573ce75b75bd3f25ac871ca490455cd9103d0"
+      ]
+    },
+    {
+      "id": "P014-UNIT-desktop-typecheck",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run typecheck --silent",
+      "fixture_hashes": [],
+      "expected": "TypeScript sin errores",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-desktop-typecheck.log#sha256=8a6cccd078508bbaf3ef89625fbad6104e28b4364541b1a06c512be79f3ee519"
+      ]
+    },
+    {
+      "id": "P014-UNIT-desktop-test",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run test --silent",
+      "fixture_hashes": [],
+      "expected": "vitest: Almacenamiento vacía, estados, presupuesto compartido, alta con bytes exactos, edición con If-Match, quitar con confirmación y análisis",
+      "observed": "exit=0; Test Files  3 passed (3) | Tests  29 passed (29) | Start at  15:53:03 | Duration  4.57s (tests 70%, environment 21%, import 4%, transform 4%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-desktop-test.log#sha256=7845db0455a467a0ef1c0a3349889125f99377f32cd1ba9a5fd7aee44ea0a5a8"
+      ]
+    },
+    {
+      "id": "P014-UNIT-desktop-build",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\npm.cmd run build --silent",
+      "fixture_hashes": [],
+      "expected": "build de producción del frontend",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-BMyc7Qfk.js   260.28 kB │ gzip: 80.74 kB | \u001b[32m✓ built in 101ms\u001b[39m",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-UNIT-desktop-build.log#sha256=14ecbf8c400a7fca750fb15a47d15847845f84c1ad3120dd9b75f47cfb5b81d1"
+      ]
+    },
+    {
+      "id": "P014-REAL-architecture",
+      "kind": "REAL",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/check_architecture.ps1",
+      "fixture_hashes": [],
+      "expected": "larm-storage solo depende de larm-domain; la API llega por puertos",
+      "observed": "exit=0; \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", | \"crates_checked\": 1, | \"failures\": [] | }",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-REAL-architecture.log#sha256=51c00c77559be457694bdc1f6d101d175ae2518a6d799dad8c82824090b1324b"
+      ]
+    },
+    {
+      "id": "P014-REAL-daemon",
+      "kind": "REAL",
+      "command": ".venv-tools/Scripts/python.exe -c \"import tools.p014_real as m; m.RUNS = m.REPO / 'docs/reports/P014_runs/revalidation-20261025-022400'; print(m.serve())\"",
+      "fixture_hashes": [],
+      "expected": "PC IA: alta con GUID y capacidad reales; 6 rechazos antes de guardar (junction incluida); presupuesto compartido; reserva > libre = 0; UNC; MISSING real; If-Match; artefactos protegidos; eventos; LOW_SPACE real; limpieza",
+      "observed": "exit=0; 13 pasos PASS. Windows verificó GUID/capacidad NVMe, altas/replay, rechazos, presupuesto, UNC, MISSING↔ONLINE, If-Match, protección de artefactos, outbox, LOW_SPACE y limpieza.",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/revalidation-20261025-022400/serve-steps.json#sha256=003707cb65f87ec0f2a1a086ac6269b07fa9d4e06020b18e56a640519d39cb97"
+      ]
+    },
+    {
+      "id": "P014-REAL-p012-sin-regresion",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p012_real.py serve",
+      "fixture_hashes": [],
+      "expected": "el último estado de P012 sigue funcionando con MISSING y umbrales",
+      "observed": "exit=0; [PASS] eventos-outbox: 4 storage.state_changed con su fila de outbox (uno por cambio) | [PASS] segundo-sondeo-sin-version: refresco COMPLETED: last_seen_at 2026-10-11T14:53:13.353Z -> 2026-10-11T14:53:14.383Z, row_version 2 y sin eventos nuevos (solo espacio libre y última vez visto) | [PASS] observacion-en-el-perfil: metadata.storage del perfil con 4 volúmenes, incluida la raíz UNC registrada | PASS 6 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P014_runs/P014-REAL-p012-sin-regresion.log#sha256=31c7811a1df0990a1ba6edade40081838426e59c3e88be6891a0b340c2d590c5"
+      ]
+    },
+    {
+      "id": "P014-REAL-volumen-offline",
+      "kind": "REAL",
+      "command": "registrar una ubicación en un segundo volumen (disco externo o VHDX) y desconectarlo",
+      "fixture_hashes": [],
+      "expected": "la ubicación pasa a OFFLINE conservando sus datos y last_seen_at; al volver, ONLINE",
+      "observed": "NO EJECUTADA: el PC IA solo tiene un volumen escribible (bloqueo de P000: segundo volumen con GUID propio). OFFLINE está probado con observaciones en SQLite real; crear un VHDX necesita autorización del operador",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "dependencia P012 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-25T02:25:42.256Z"
+}

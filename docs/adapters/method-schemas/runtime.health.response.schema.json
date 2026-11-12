@@ -1,0 +1,48 @@
+{
+  "$defs": {
+    "larm__HealthResult": {
+      "additionalProperties": false,
+      "properties": {
+        "backend_effective": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reason": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "READY",
+            "DEGRADED",
+            "FAILED",
+            "LOADING"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "backend_effective",
+        "reason",
+        "evidence_refs"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__HealthResult",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

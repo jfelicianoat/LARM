@@ -1,0 +1,238 @@
+{
+  "prompt_id": "P125",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "abdd2d1305f8687ae9765a67dbc19abdb239b0a32f6482e7b42b00de391b3132",
+  "changed_files": [
+    "apps/daemon/src/serve.rs",
+    "apps/desktop/src/App.test.tsx",
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/downloads.test.tsx",
+    "apps/desktop/src/downloads.tsx",
+    "apps/desktop/src/styles.css",
+    "crates/larm-api/src/downloads.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/tests/downloads.rs",
+    "crates/larm-db/src/download_jobs.rs",
+    "crates/larm-domain/src/ports.rs",
+    "docs/api/openapi.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P125_descargas-y-transformaciones.evidence.json",
+    "docs/reports/P125_descargas-y-transformaciones.md",
+    "tools/p125_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P125-DOWNLOAD-API",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test downloads -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/downloads.rs:782247ee596c4b1328ef643f658badc1a43c811fc3457cbf5df295fbb227ca79",
+        "crates/larm-api/tests/downloads.rs:4e7db74f69ea4033e4cf275377381bb2c72e784048b2914e3c59de170d80b430"
+      ],
+      "expected": "La cola devuelve registros paginados con cursor firmado bajo el principal autenticado.",
+      "observed": "exit=0; warning: `larm-api` (test \"downloads\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 2.04s | Running tests\\downloads.rs (target\\debug\\deps\\downloads-ed13ac6f6a43cb1b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-DOWNLOAD-API.log#sha256=46044c9f536045406431b11b66c12c70a775c4b3edb4901687557177166ae6a6"
+      ]
+    },
+    {
+      "id": "P125-DOWNLOAD-DB-OWNERSHIP",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib download_jobs::tests::lista_solo_descargas_del_actor_y_pagina_por_fecha_e_id -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/download_jobs.rs:22d19bd7c8e36ff27e0c20d95480af0a0ec9527981bf8ca280190ab5ea2dd7f2"
+      ],
+      "expected": "SQLite filtra por actor y pagina de forma estable por fecha e ID.",
+      "observed": "exit=0; warning: `larm-db` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.52s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-c463ce497a7a8126.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-DOWNLOAD-DB-OWNERSHIP.log#sha256=d05c3361cdfd36e76ffabe829a313e36de47af28ac0f2713fdf3516599df911d"
+      ]
+    },
+    {
+      "id": "P125-FOCUSED-UI",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js exec -- vitest run src/downloads.test.tsx src/App.test.tsx --pool=threads --maxWorkers=1",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:7d34d6f9f3d36e7ed70fab5ba3d2cd8aa6f5805edee04e3db35ac32543ff4cef",
+        "apps/desktop/src/App.test.tsx:1c33ea447a910c4dbc42f84ecc1bc1de7f6c1150831f8422455297af1eef8e59",
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8",
+        "apps/desktop/src/downloads.test.tsx:b7e0326947d1bbd1886178e07f88c40e7eb3e14d5db098e44179ffa8584004a5",
+        "apps/desktop/src/styles.css:1b5d22c6bf18f06dcd15972686d779451b01b85b914b03333930a490c9e2380b"
+      ],
+      "expected": "Descargas y transformaciones muestran estados, desconocidos, hash fallido y diagnóstico recuperable.",
+      "observed": "exit=0; Duration  2.42s (environment 54%, tests 24%, transform 12%, import 10%) | Isolate  2 workers spawned · ~684ms startup each (spawn + environment, per file) | at least ~684ms faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-FOCUSED-UI.log#sha256=40786c497af07ba35624bd73f07828a677877f7d72d8566b315cff1bc2230324"
+      ]
+    },
+    {
+      "id": "P125-DESKTOP-SUITE",
+      "kind": "INTEGRATION",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run test",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:7d34d6f9f3d36e7ed70fab5ba3d2cd8aa6f5805edee04e3db35ac32543ff4cef",
+        "apps/desktop/src/App.test.tsx:1c33ea447a910c4dbc42f84ecc1bc1de7f6c1150831f8422455297af1eef8e59",
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8",
+        "apps/desktop/src/downloads.test.tsx:b7e0326947d1bbd1886178e07f88c40e7eb3e14d5db098e44179ffa8584004a5",
+        "apps/desktop/src/styles.css:1b5d22c6bf18f06dcd15972686d779451b01b85b914b03333930a490c9e2380b"
+      ],
+      "expected": "La suite completa del escritorio pasa sin regresiones.",
+      "observed": "exit=0; Duration  20.92s (tests 62%, environment 30%, import 6%, transform 2%) | Isolate  10 workers spawned · ~682ms startup each (spawn + environment, per file) | at least ~6.13s faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-DESKTOP-SUITE.log#sha256=af3f7bfee613e2f2f5ce4b40f2c149ce8a5de9e868b7c49eefedd4d156f11ebe"
+      ]
+    },
+    {
+      "id": "P125-LINT",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run lint",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:7d34d6f9f3d36e7ed70fab5ba3d2cd8aa6f5805edee04e3db35ac32543ff4cef",
+        "apps/desktop/src/App.test.tsx:1c33ea447a910c4dbc42f84ecc1bc1de7f6c1150831f8422455297af1eef8e59",
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8",
+        "apps/desktop/src/downloads.test.tsx:b7e0326947d1bbd1886178e07f88c40e7eb3e14d5db098e44179ffa8584004a5",
+        "apps/desktop/src/styles.css:1b5d22c6bf18f06dcd15972686d779451b01b85b914b03333930a490c9e2380b"
+      ],
+      "expected": "ESLint termina sin errores.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 lint | > eslint .",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-LINT.log#sha256=5909b167da840969d66fe39bc12c3e6c2ad8d92ae7963807b8df727cf1dfd470"
+      ]
+    },
+    {
+      "id": "P125-TYPECHECK",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run typecheck",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:7d34d6f9f3d36e7ed70fab5ba3d2cd8aa6f5805edee04e3db35ac32543ff4cef",
+        "apps/desktop/src/App.test.tsx:1c33ea447a910c4dbc42f84ecc1bc1de7f6c1150831f8422455297af1eef8e59",
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8",
+        "apps/desktop/src/downloads.test.tsx:b7e0326947d1bbd1886178e07f88c40e7eb3e14d5db098e44179ffa8584004a5",
+        "apps/desktop/src/styles.css:1b5d22c6bf18f06dcd15972686d779451b01b85b914b03333930a490c9e2380b"
+      ],
+      "expected": "TypeScript compila todos los proyectos.",
+      "observed": "exit=0; > @larm/desktop@0.1.0 typecheck | > tsc -b",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-TYPECHECK.log#sha256=81c5a0ca8075b9cd8fbfa613cc66e42ec1613ffbee44d9ecf65552b49966b346"
+      ]
+    },
+    {
+      "id": "P125-BUILD",
+      "kind": "UNIT",
+      "command": "C:\\Program Files\\nodejs\\node.EXE C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js run build",
+      "fixture_hashes": [
+        "apps/desktop/src/App.tsx:7d34d6f9f3d36e7ed70fab5ba3d2cd8aa6f5805edee04e3db35ac32543ff4cef",
+        "apps/desktop/src/App.test.tsx:1c33ea447a910c4dbc42f84ecc1bc1de7f6c1150831f8422455297af1eef8e59",
+        "apps/desktop/src/downloads.tsx:d38aa9398aebff9e574faeccff0d86323490859d508e4fc800302b5a8dfff9f8",
+        "apps/desktop/src/downloads.test.tsx:b7e0326947d1bbd1886178e07f88c40e7eb3e14d5db098e44179ffa8584004a5",
+        "apps/desktop/src/styles.css:1b5d22c6bf18f06dcd15972686d779451b01b85b914b03333930a490c9e2380b"
+      ],
+      "expected": "El escritorio genera el bundle de producción.",
+      "observed": "exit=0; dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-Cj8_P-AA.js   412.01 kB │ gzip: 117.97 kB | ✓ built in 140ms",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-BUILD.log#sha256=4e2a13c37710eca5be5f3dc18b39f096d362f5830492daf8ac8a0b662e2c6c3e"
+      ]
+    },
+    {
+      "id": "P125-CRATE-SUITE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-domain -p larm-db -p larm-api -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-domain/src/ports.rs:18ee39299e581188d48c0cf1782fa1e686a3d269e0bd7f61fb05398e8f32b8a6",
+        "crates/larm-db/src/download_jobs.rs:22d19bd7c8e36ff27e0c20d95480af0a0ec9527981bf8ca280190ab5ea2dd7f2",
+        "crates/larm-api/src/downloads.rs:782247ee596c4b1328ef643f658badc1a43c811fc3457cbf5df295fbb227ca79"
+      ],
+      "expected": "Las suites de dominio, persistencia y API pasan en serie.",
+      "observed": "exit=0; Running tests\\runtime_install.rs (target\\debug\\deps\\runtime_install-4cd16f601bf7a52d.exe) | Doc-tests larm_api | Doc-tests larm_db | Doc-tests larm_domain",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-CRATE-SUITE.log#sha256=d002833dcdd02f529fa4555ec0f66ac53daaba9ebdc0d8308dac69fceabc5632"
+      ]
+    },
+    {
+      "id": "P125-DAEMON-UNIT-SUITE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --bin larm-daemon -j1 -- --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/src/serve.rs:fa169ab0a0c2ee37ce1bffb50eed9404bb44c036072ed7ea3b3997efeef5e3c5"
+      ],
+      "expected": "El binario del daemon compila y registra la ruta de descargas.",
+      "observed": "exit=0; warning: `larm-models` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.22s | Running unittests src\\main.rs (target\\debug\\deps\\larm_daemon-30538ec63c50205f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-DAEMON-UNIT-SUITE.log#sha256=205dc3ebf8d85e6417dc0e03e239e57ecc9011759aaf34524a80da7a889ad770"
+      ]
+    },
+    {
+      "id": "P125-OPENAPI",
+      "kind": "INTEGRATION",
+      "command": "cargo run -p larm-daemon -- openapi --out docs/api/openapi.json --check",
+      "fixture_hashes": [
+        "crates/larm-api/src/openapi.rs:f49edec583e4001d1ad1af86e532d40ea7cb44742c82854faf7c72490cd5823e",
+        "docs/api/openapi.json:085611ea7579805cde1dd649a7bf5b74d8811aeba69f42ba9c7a2adfa4ebe8ab"
+      ],
+      "expected": "OpenAPI declara GET /api/v1/downloads como operación implementada.",
+      "observed": "exit=0; warning: `larm-download` (lib) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.33s | Running `target\\debug\\larm-daemon.exe openapi --out docs/api/openapi.json --check`",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-OPENAPI.log#sha256=ba461d2c18c34e5b8aded47b4f6e91948eb2a06fa13e4c920a8e6a3b5ed0a844"
+      ]
+    },
+    {
+      "id": "P125-RUST-FORMAT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all -- --check",
+      "fixture_hashes": [
+        "Cargo.toml:8f1ec0858952ee008ac6671efac718cfcb6c654554b8f3d52613d226e5cbb95e"
+      ],
+      "expected": "El workspace Rust conserva el formato requerido.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-RUST-FORMAT.log#sha256=86d40a82b17b2863bc1a4ccfade51c8dbe2050c90c9c99ed6a9ea98045593b7f"
+      ]
+    },
+    {
+      "id": "P125-CLIPPY",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -j1 -- -D warnings",
+      "fixture_hashes": [
+        "Cargo.toml:8f1ec0858952ee008ac6671efac718cfcb6c654554b8f3d52613d226e5cbb95e"
+      ],
+      "expected": "Clippy termina sin advertencias en el workspace.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_domain-1q2445wbnfgco\\s-hnhy5mplqc-0caskdl-working` | warning: `larm-domain` (lib test) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.26s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P125_runs/P125-CLIPPY.log#sha256=d4a882992d8dc93a9e8d57a66eb57a5277744bceb77f50f49b8a6663c6e978cc"
+      ]
+    },
+    {
+      "id": "P125-WINDOWS-DOWNLOAD-TRANSFORM-REAL",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P125 -Real",
+      "fixture_hashes": [],
+      "expected": "Descarga con pausa/reanudación, hash fail y transformación interrumpida/reiniciada en Windows.",
+      "observed": "NO EJECUTADA: P051 y P093 siguen BLOCKED_REAL: falta conectar el worker durable y sus acciones de control; no hay recorrido real que pueda ejecutar esta pantalla.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La vista implementa lectura y supervisión; las rutas contractuales de pausa, reanudación, cancelación y prioridad todavía no están conectadas a la API.",
+    "La transformación no expone una operación HTTP de reinicio con nuevo preflight; la UI conserva el diagnóstico y no ofrece un reinicio ficticio.",
+    "El worker durable de transferencias/transformaciones no está cualificado en Windows, por lo que quedan pendientes speed/ETA real, pausa/reanudación, hash fail y crash/restart end-to-end.",
+    "dependencia P051 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P093 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-24T04:34:03.321Z"
+}

@@ -1,0 +1,18 @@
+{
+  "$defs": {
+    "larm__CancelResult": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cancelled"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__CancelResult",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

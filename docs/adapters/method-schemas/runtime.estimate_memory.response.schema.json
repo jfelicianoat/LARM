@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "larm__MemoryEstimate": {
+      "additionalProperties": false,
+      "properties": {
+        "activation_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "EXACT",
+            "HIGH",
+            "ESTIMATED",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kv_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "multimodal_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "overhead_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "per_pool": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "pool_key": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "required_bytes": {
+                "maxLength": 19,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "type": "string",
+                "x-maximum-decimal": "9223372036854775807"
+              }
+            },
+            "required": [
+              "pool_key",
+              "required_bytes"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "safety_margin_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "temporary_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "total_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weights_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "workspace_bytes": {
+          "anyOf": [
+            {
+              "maxLength": 19,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "type": "string",
+              "x-maximum-decimal": "9223372036854775807"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "weights_bytes",
+        "kv_bytes",
+        "activation_bytes",
+        "workspace_bytes",
+        "overhead_bytes",
+        "total_bytes",
+        "per_pool",
+        "confidence",
+        "evidence_refs",
+        "multimodal_bytes",
+        "temporary_bytes",
+        "safety_margin_bytes"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__MemoryEstimate",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

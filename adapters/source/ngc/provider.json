@@ -1,0 +1,6 @@
+{
+  "provider": "NGC",
+  "adapter_id": "larm.source.ngc",
+  "network_origins": [],
+  "capabilities": []
+}

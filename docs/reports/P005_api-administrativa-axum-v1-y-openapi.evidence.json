@@ -1,0 +1,283 @@
+{
+  "prompt_id": "P005",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24",
+  "inputs_hash": "4a990a46688ef08e6b10703e2ee26407db007d82b1fb673bda7a98abd23703b3",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/Cargo.toml",
+    "crates/larm-api/src/app.rs",
+    "crates/larm-api/src/broker.rs",
+    "crates/larm-api/src/broker/tests.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/security.rs",
+    "crates/larm-api/tests/app.rs",
+    "crates/larm-db/src/events.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/search.rs",
+    "docs/api/openapi.json",
+    "tools/p005_evidence.py",
+    "tools/p005_real.py",
+    "tools/requirements.txt"
+  ],
+  "tests": [
+    {
+      "id": "P005-INTEGRATION-health",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test app -- live_publico",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "live público; ready exige read; READY/DEGRADED; 503 si no se comprueba",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s | Running tests\\app.rs (target\\debug\\deps\\app-951102b335d94949.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-INTEGRATION-health.log#sha256=4e890d0f80f8e74afc02f708cd7f637aee7e08b12afd3efb76a4403ed3c33532"
+      ]
+    },
+    {
+      "id": "P005-CONTRACT-envelope",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test app -- envelope_en_rutas",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "404 con envelope del contrato para rutas desconocidas y no implementadas; 413 -> 400 body_too_large",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\app.rs (target\\debug\\deps\\app-951102b335d94949.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-CONTRACT-envelope.log#sha256=0716b234afa1a5325c8dd77ad2b14a10a1a0fe1cba13aefc236abedd87f16e12"
+      ]
+    },
+    {
+      "id": "P005-FAULT-timeout",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-api --test app -- timeout_devuelve",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "timeout -> 504 TIMEOUT reintentable sin esperar al handler",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running tests\\app.rs (target\\debug\\deps\\app-951102b335d94949.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-FAULT-timeout.log#sha256=fb22f9578f5444474596895fa3f6f8d92d7c4b9fa41ca68eac9532c57f22f8d1"
+      ]
+    },
+    {
+      "id": "P005-CONTRACT-cors",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --test app -- cors_desactivado",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "CORS desactivado por defecto; con orígenes, solo coincidencia exacta",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\app.rs (target\\debug\\deps\\app-951102b335d94949.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-CONTRACT-cors.log#sha256=67e0ab62ddfe305e7c70a59c09e67ce614af9efa94b9cc9442aef877c4f397ed"
+      ]
+    },
+    {
+      "id": "P005-INTEGRATION-gateway",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test app -- gateway_fuera_del_guard",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "el gateway de inferencia queda fuera del guard y sin normalizar",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\app.rs (target\\debug\\deps\\app-951102b335d94949.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-INTEGRATION-gateway.log#sha256=2ce2f51e18b77c30cdde3b7c646bab87248c94e235362d229ce5a0041e519b2a"
+      ]
+    },
+    {
+      "id": "P005-INTEGRATION-sse",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test app -- sse_conecta",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "SSE exige read, entrega eventos del bus y libera la suscripción al cerrar",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\app.rs (target\\debug\\deps\\app-951102b335d94949.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-INTEGRATION-sse.log#sha256=b9008340668210d1e6257d2e294f39660ee558524ea3056cadc2a1caf96fb8af"
+      ]
+    },
+    {
+      "id": "P005-FAULT-sse-overflow",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-api --test app -- sse_cola_desbordada",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "cola de 1024 desbordada -> resync_required y cierre",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\app.rs (target\\debug\\deps\\app-951102b335d94949.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-FAULT-sse-overflow.log#sha256=df8f4949d03adc127e6258f8e4280b3063ab4d8bc7aea1c85a6def5b4ae8158b"
+      ]
+    },
+    {
+      "id": "P005-FAULT-sse-shutdown",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-api --test app -- cerrar_el_bus",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "cerrar el bus termina los streams (apagado ordenado)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s | Running tests\\app.rs (target\\debug\\deps\\app-951102b335d94949.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-FAULT-sse-shutdown.log#sha256=60cf406833d74dcf08c3cc821ccdce845eb85f84886df17306232275187b50a0"
+      ]
+    },
+    {
+      "id": "P005-CONTRACT-openapi",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --lib openapi",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "142 operaciones, sin referencias rotas, Search en las dos rutas, ids únicos, determinista, implementadas en el contrato",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_api-451a9b917fae11a4.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-CONTRACT-openapi.log#sha256=7520171763470336110e4a0055341397dc21b05a9d6d9a33f8937191efc56fa2"
+      ]
+    },
+    {
+      "id": "P005-CONTRACT-search-h05",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib search",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "Search acepta todos los filtros/rangos/toggles y rechaza propiedades, tipos y rangos inválidos; digest sin cursor/limit",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-CONTRACT-search-h05.log#sha256=ec3aeb5ae1bcfccb13f2be8d2847e9c698fab69e08a5c0aed9afae5fd877c4a0"
+      ]
+    },
+    {
+      "id": "P005-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-UNIT-cargo-fmt.log#sha256=c42934c0db92f50866c97875d20b8fe60270cb9b8c1b7ab8e3e5a6baadc09ffb"
+      ]
+    },
+    {
+      "id": "P005-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-UNIT-cargo-clippy.log#sha256=98205a6c58dd1558d33b22d9bc8ac27f9cc976d9059a4aa3d200a7ed850a6c20"
+      ]
+    },
+    {
+      "id": "P005-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-UNIT-cargo-test.log#sha256=8f0f14437c9a265bc46615cbdb527f99983072f220cd2590642c77b67fab2f0c"
+      ]
+    },
+    {
+      "id": "P005-REAL-daemon-build",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "binario del daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.21s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-REAL-daemon-build.log#sha256=977e8d6a7f85d40fc6bd61cfc57f718acff1dbe89d02426116d68056032ed241"
+      ]
+    },
+    {
+      "id": "P005-REAL-openapi",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p005_real.py openapi",
+      "fixture_hashes": [
+        "docs/contracts/api-operations.json:51e39c51722aa8f66c8f12726af773e01395fdf92f3912877132797e2f114335",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3",
+        "docs/contracts/schemas/domain.schema.json:25e24600f01ed044830fa9027433e7ae4591c70134db01f7109d298657f00635"
+      ],
+      "expected": "docs/api/openapi.json coincide con el generado y valida con openapi-spec-validator",
+      "observed": "exit=0; PASS al día y válido OpenAPI 3.1.0: 142 operaciones, 16 implementadas, 281 schemas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-REAL-openapi.log#sha256=0ad96689c4ad437e38a01d964a559d8e7683e2d60c0986c357055a6623588a42"
+      ]
+    },
+    {
+      "id": "P005-REAL-bind",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p005_real.py bind",
+      "fixture_hashes": [],
+      "expected": "bind 0.0.0.0 sin remote_enabled no arranca ni escucha",
+      "observed": "exit=0; buffer.append(fh.read()) | ~~~~~~~^^ | File \"<frozen codecs>\", line 325, in decode | UnicodeDecodeError: 'utf-8' codec can't decode byte 0xa2 in position 221: invalid start byte",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-REAL-bind.log#sha256=ff1855d1db4ef3e8aa0bf6fba5b65b4b59a5e5d8ec933b952ecd4d761bf231b7"
+      ]
+    },
+    {
+      "id": "P005-REAL-api",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p005_real.py serve",
+      "fixture_hashes": [],
+      "expected": "daemon real: escucha solo en 127.0.0.1, live/ready, envelope y correlación, límite de cuerpo, CORS off, SSE con evento de una mutación real, apagado con SSE abierto, log de peticiones sin secretos",
+      "observed": "exit=0; [PASS] sse-evento-real: POST /credentials -> evento credential.created por SSE (sin secreto) | [PASS] apagado-con-sse-abierto: exit 0 en 0.0s con un cliente SSE conectado | [PASS] log-peticiones: 10 peticiones registradas sin tokens ni cuerpos | PASS 9 pasos PASS",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P005_runs/P005-REAL-api.log#sha256=c8addbc3aa88c39cd2f2ebaffecfe85dc9f39d93a9081bce360f5d41e009124b"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P003 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P009 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T09:18:31.959Z"
+}

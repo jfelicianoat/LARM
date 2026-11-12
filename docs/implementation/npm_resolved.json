@@ -1,0 +1,80 @@
+{
+  "@tanstack/react-query": {
+    "dist_tags_latest": "5.104.1",
+    "integrity_sha512_base64": "sha512-Zz70EgjahNI7aCz8BZxM3vUGU44ycxEAzMuCUjLeA7SVhhOkg3ZgPjPJPvHjs6Rmky/dtmnu1WzjGHNHmhCoZQ==",
+    "released": "2026-10-02",
+    "version": "5.104.1"
+  },
+  "@tauri-apps/api": {
+    "dist_tags_latest": "2.12.3",
+    "integrity_sha512_base64": "sha512-9s0PKw0p4r3kFq92jhpivYSp+cSht15o0gXpZxuQd0+dV9KCexEVkNaLELVoLdJWyoH4KlfQo5h3W2LIM8siJg==",
+    "released": "2026-10-10",
+    "version": "2.12.3"
+  },
+  "@tauri-apps/cli": {
+    "dist_tags_latest": "2.12.1",
+    "integrity_sha512_base64": "sha512-kEDEiGzG+yAc5FeLxtXpES/VN+F2C8H0r4gDVtfRLKxT9np9101d9REG/Kgo2lr0hKi0IpDsODiHnU3+naOmLg==",
+    "released": "2026-09-30",
+    "version": "2.12.1"
+  },
+  "@testing-library/react": {
+    "dist_tags_latest": "16.3.3",
+    "integrity_sha512_base64": "sha512-Uo193NgQbPMz6lrrhtRQQFcMC6Re/ELLFbbuVL30WDlZxlpZf9/lMHTAVxPRLw1q1iu9OJmR1c2BLiENRstdBg==",
+    "released": "2026-08-27",
+    "version": "16.3.3"
+  },
+  "@typescript-eslint/parser": {
+    "dist_tags_latest": "8.71.1",
+    "integrity_sha512_base64": "sha512-oM/5sAqz/l1v/zYK1qTOPrn2+JIrBGC1V6uNYucRO5gh6eT9vWJ/RhPbGE59byvZEUQ4VP6XkLBaS5Jti5jpvw==",
+    "released": "2026-10-05",
+    "version": "8.71.1"
+  },
+  "@vitejs/plugin-react": {
+    "dist_tags_latest": "6.1.2",
+    "integrity_sha512_base64": "sha512-fhJNGUdscQa4HkI0xFxwonWyhnVReCPDbXI7FH7jmzpnVCrFQI7PRrhWecO263610vOrs9tr2Y4xcf8uAdFxbw==",
+    "released": "2026-10-05",
+    "version": "6.1.2"
+  },
+  "eslint": {
+    "dist_tags_latest": "10.12.0",
+    "integrity_sha512_base64": "sha512-npHjrHb2o4ehH3mE+YuxABR+0gyb0aVWCIolgJDArwCiHEIsonBm3ZKjel5b0U5+a+MbEvIyRCGCzD3eKKK2NA==",
+    "released": "2026-10-02",
+    "version": "10.12.0"
+  },
+  "react": {
+    "dist_tags_latest": "19.3.0",
+    "integrity_sha512_base64": "sha512-E8LUcbtBWt20bbl2YoHfx4ZDBdxVTfOKtCZn9cDSJ4l6/nuoApcpIBcj47t2wZoVX8g2ZHuMHbiShgCR1T5Sog==",
+    "released": "2026-09-09",
+    "version": "19.3.0"
+  },
+  "react-dom": {
+    "dist_tags_latest": "19.3.0",
+    "integrity_sha512_base64": "sha512-JDk8dgif51OjFoDE70+OT9ICyYr+69HlmihNwp1+Nsfbna3t5sIiCa9ZJktDmQ4/1b/rn26hIAR2uYXDMr5r0Q==",
+    "released": "2026-09-09",
+    "version": "19.3.0"
+  },
+  "typescript": {
+    "dist_tags_latest": "7.0.2",
+    "integrity_sha512_base64": "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==",
+    "released": "2026-07-08",
+    "version": "7.0.2"
+  },
+  "vite": {
+    "dist_tags_latest": "8.3.4",
+    "integrity_sha512_base64": "sha512-IftLE8phJhdNRIGNEV4JCCvfNScoZQVfcXaN8TQropWGJtOHcu+iAB9pHcuGvmEb/kddw0LBe/jS8ztdC6xdiQ==",
+    "released": "2026-10-08",
+    "version": "8.3.4"
+  },
+  "vitest": {
+    "dist_tags_latest": "5.0.3",
+    "integrity_sha512_base64": "sha512-xMw97S3rjdtj5dkVat7jCsqWBpvchs3RlpQctUqwJD0KkERk40vz2fJ77lDwW/Vzh/pk18eItYAzkodhSes3jQ==",
+    "released": "2026-09-30",
+    "version": "5.0.3"
+  },
+  "zustand": {
+    "dist_tags_latest": "5.0.15",
+    "integrity_sha512_base64": "sha512-MpSEjRiBkA9crSYeOUH32rJC7SVqAbm0Fqcqge/bUi2PPoLcBWKOsG+C8mevmpr8TwXHBVkChbbJiyvkE+i/3A==",
+    "released": "2026-08-13",
+    "version": "5.0.15"
+  }
+}

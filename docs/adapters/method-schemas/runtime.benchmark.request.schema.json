@@ -1,0 +1,49 @@
+{
+  "$defs": {
+    "larm__Benchmark": {
+      "additionalProperties": false,
+      "properties": {
+        "backend_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "fixture_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "launch_profile_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "runtime_version_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "settings_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "suite_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "variant_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "variant_id",
+        "runtime_version_id",
+        "backend_id",
+        "launch_profile_id",
+        "suite_id",
+        "fixture_hash",
+        "settings_hash"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__Benchmark",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,248 @@
+{
+  "prompt_id": "P127",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "25826bbef9fb0d4332d5cb23dca171032030f5d01b0501170e5650469d3d72ac",
+  "changed_files": [
+    "apps/daemon/src/source_watches.rs",
+    "apps/desktop/src/App.tsx",
+    "apps/desktop/src/adapter-import.test.tsx",
+    "apps/desktop/src/adapter-import.tsx",
+    "apps/desktop/src/adapters.test.tsx",
+    "apps/desktop/src/adapters.tsx",
+    "apps/desktop/src/sources.test.tsx",
+    "apps/desktop/src/sources.tsx",
+    "crates/larm-adapter-sdk/src/source/wire.rs",
+    "crates/larm-adapter-sdk/tests/source_protocol.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/source_watches.rs",
+    "crates/larm-db/tests/source_watches.rs",
+    "crates/larm-domain/src/ports.rs",
+    "crates/larm-domain/src/sources.rs",
+    "crates/larm-domain/src/watchers.rs",
+    "crates/larm-models/src/watcher.rs",
+    "docs/contracts/REVISION_3_10_2_P127.md",
+    "docs/contracts/migrations/0009_p127_source_operational_snapshot.sql",
+    "docs/contracts/schemas/domain.schema.json",
+    "docs/contracts/schemas/larm.schema.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P127_fuentes-cuentas-y-adaptadores.md",
+    "docs/reports/check_P127_real.json",
+    "docs/spec/PACKAGE_COPY_HASHES.json",
+    "migrations/0011_p127_source_operational_snapshot.sql",
+    "tools/p127_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P127-CONTRACT-SCHEMAS",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p026_schemas.py check",
+      "fixture_hashes": [
+        "docs/contracts/schemas/larm.schema.json:5ccfa061f3f06b02ebd90cfc9e0fa2710553e512012395100831ae2728ad91ef",
+        "docs/contracts/schemas/domain.schema.json:3b1f957175d5b4ddeab066cf50cca4620a2493b8e42d6f380fa67169cb620831"
+      ],
+      "expected": "Los schemas de API y capacidades derivados conservan los contratos publicados.",
+      "observed": "exit=0; PASS: 40 firmas / 80 schemas autocontenidos, índice y hashes exactos; todas las restricciones originales conservadas",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-CONTRACT-SCHEMAS.log#sha256=4201ecdc46abf33aad6995175ba8a75ada237539355b47bdaffb28dc3ee99794"
+      ]
+    },
+    {
+      "id": "P127-SOURCE-SYNC-WORKER",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-models watcher::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-models/src/watcher.rs:586670e7d125005c78162c2e29000cc3647d61632bbbda253112c805dacb0766",
+        "crates/larm-domain/src/sources.rs:268db04a65830d063e599e1c2c80e3040cd02131e5ead0946d5c9c0cbf086c61"
+      ],
+      "expected": "El worker conserva compatibilidad, persiste telemetría observada y clasifica auth, 429 y fallos sin inferir valores.",
+      "observed": "exit=0; Running tests\\import_worker.rs (target\\debug\\deps\\import_worker-0321165935416ac6.exe) | Running tests\\maintenance.rs (target\\debug\\deps\\maintenance-649f93df1ac5c903.exe) | Running tests\\registry.rs (target\\debug\\deps\\registry-fc8a79800f55fb2f.exe) | Running tests\\verification.rs (target\\debug\\deps\\verification-fe6b34da5ce804d2.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-SOURCE-SYNC-WORKER.log#sha256=f62fc4bad8d10bde10514baa46def070504e04e2932efa5a2e2436f44545a3af"
+      ]
+    },
+    {
+      "id": "P127-SOURCE-SYNC-PERSISTENCE",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test source_watches -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/source_watches.rs:f518cfb57b807712357f67a68cf21f90916c5f132892c7080ce15df6d140a958",
+        "crates/larm-db/tests/source_watches.rs:62b4cf0765641399b862b82239ea38287756ffca55de0e1a690749f749dafcfb"
+      ],
+      "expected": "SQLite persiste UNKNOWN, SYNCING, resultados y límites observados, mantiene row_version y recupera sincronizaciones interrumpidas con evento/outbox atómicos.",
+      "observed": "exit=0; warning: `larm-db` (test \"source_watches\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 9.52s | Running tests\\source_watches.rs (target\\debug\\deps\\source_watches-e3a68689b9b65455.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-SOURCE-SYNC-PERSISTENCE.log#sha256=efeebf60611d401e110f96a6b1649cfbb74bf7f540e5639574187cddba17345b"
+      ]
+    },
+    {
+      "id": "P127-SOURCE-SYNC-MIGRATION",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --lib p127_migration_seeds_existing_sources_and_defaults_future_sources -j 1",
+      "fixture_hashes": [
+        "migrations/0011_p127_source_operational_snapshot.sql:bcea42a883271463d27b98bec59a8fc33259d6f7210331ccbd0c47b84c3da0bc",
+        "crates/larm-db/src/migrate.rs:985ec3ea6c2f3f7d351c24030967d687a1709b1f10e6d4032f935a3779a05da4"
+      ],
+      "expected": "La migración P127 siembra fuentes existentes y crea UNKNOWN para fuentes nuevas.",
+      "observed": "exit=0; warning: `larm-domain` (lib) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_db-9bb26c88d8c58254.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-SOURCE-SYNC-MIGRATION.log#sha256=f1d3a86a8244aa11dd35ca862717e313b630ee72e2bcd25e0c32455cb32cde23"
+      ]
+    },
+    {
+      "id": "P127-SOURCE-SYNC-PROTOCOL",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-adapter-sdk --test source_protocol -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-adapter-sdk/src/source/wire.rs:618b4e60be87957964cfbe67d05f2451b3c132e8b975331847ab6496993111a4",
+        "crates/larm-adapter-sdk/tests/source_protocol.rs:481f5f52bae1a1b6ad7eb465de5d4fb743b73c954464598291a17d5a5c31f82b"
+      ],
+      "expected": "SyncResult acepta telemetría opcional compatible y rechaza límites observados incoherentes.",
+      "observed": "exit=0; warning: `larm-adapter-sdk` (bin \"larm-reference-echo\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 20.48s | Running tests\\source_protocol.rs (target\\debug\\deps\\source_protocol-e0bf8d49076768c7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-SOURCE-SYNC-PROTOCOL.log#sha256=8a3c072b7c7d8bff96323dbdcf7754d1cae8001930242983955fed135b4da7da"
+      ]
+    },
+    {
+      "id": "P127-DAEMON-STARTUP-RECOVERY",
+      "kind": "INTEGRATION",
+      "command": "cargo check -p larm-daemon -j 1",
+      "fixture_hashes": [
+        "apps/daemon/src/source_watches.rs:40be600cf5cba8d6293e1874da4126da8ea124047392aa1166e9799b1eab678e"
+      ],
+      "expected": "El daemon compone la recuperación de source.sync interrumpidos con el worker P050 al arrancar.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_daemon-2owt7j21rls5m\\s-hnjt1iqt3p-19jcdpe-working` | warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 17.16s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-DAEMON-STARTUP-RECOVERY.log#sha256=e77e7ab46280b25a9011ecebbd50b7f8d2ef15603b35284d61330c85467275c6"
+      ]
+    },
+    {
+      "id": "P127-SOURCES-ADAPTERS-UI",
+      "kind": "INTEGRATION",
+      "command": "node node_modules/vitest/vitest.mjs run --pool=threads --maxWorkers=1 --root apps/desktop src/sources.test.tsx src/adapters.test.tsx",
+      "fixture_hashes": [
+        "apps/desktop/src/sources.tsx:de639711714ccc5bdc3e1f4ad29757d05aae9b875f83a28763d5db0634fb0b55",
+        "apps/desktop/src/sources.test.tsx:43e54487ca94ae9f23024387d20b2708ab5ad50c6e9dea56afcffd5b5bc3a578",
+        "apps/desktop/src/adapters.tsx:4c86f8fb5b085f4aab0f49bad86e2c0d069d37fda40b9dd03ff0229f15e546b6",
+        "apps/desktop/src/adapters.test.tsx:f4d46c618027bfd70b0e8bde9e6eed52558ae9d2d2ca08bb88280c85d3b6879d"
+      ],
+      "expected": "La UI enmascara secretos, limpia campos Basic, avisa de firma ausente y protocolo incompatible, muestra permisos y permite reintentar lecturas.",
+      "observed": "exit=0; Duration  3.87s (environment 48%, tests 33%, import 10%, transform 9%) | Isolate  2 workers spawned · ~978ms startup each (spawn + environment, per file) | at least ~978ms faster with isolate: false — reuses workers across files instead of one per file",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-SOURCES-ADAPTERS-UI.log#sha256=c81e0c607286fc476e23d5baa42322f5ca7517300c219924d4a62c1f7e5d1a55"
+      ]
+    },
+    {
+      "id": "P127-PACKAGE-COPY",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/package_copy.py check",
+      "fixture_hashes": [
+        "docs/spec/PACKAGE_COPY_HASHES.json:57a606440cb2ca15d3e6bfbe8fef9711209fdc54d6529ec890d684b309c258fc",
+        "docs/contracts/00_PACKAGE.md:7bfaebd02bd04894bc6a6828296c92b543e2cb808d8a24c73447453b74da2170"
+      ],
+      "expected": "La copia normativa local coincide con el paquete contractual vigente 3.10.2.",
+      "observed": "exit=0; PASS 71 copias idénticas al paquete 3.10.2",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-PACKAGE-COPY.log#sha256=4c9736925af4a7bf4f1a75b873c490a4275c40a5a0c8d8df5dc78c31f1963151"
+      ]
+    },
+    {
+      "id": "P127-PACKAGE-VERIFY",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe ../LARM_prompts_v3/tools/verify_pack.py",
+      "fixture_hashes": [
+        "docs/contracts/REVISION_3_10_2_P127.md:95dd58cc3c788750a5c2dccc1fe2c789953ba02fcd2698ad8384ecf6be72274b",
+        "docs/contracts/migrations/0009_p127_source_operational_snapshot.sql:bcea42a883271463d27b98bec59a8fc33259d6f7210331ccbd0c47b84c3da0bc"
+      ],
+      "expected": "El paquete 3.10.2 supera las reglas contractuales, la migración SQLite y los hashes normativos.",
+      "observed": "exit=0; {\"conformity_v3\": {\"status\": \"PASS\", \"scope\": \"DOCUMENTARY_CONTRACT_ONLY\", \"software_real_tests_run\": false, \"positive_cases\": 81, \"negative_cases\": 21, \"checks\": 197}, \"status\": \"PASS\", \"scope\": \"PROMPT_PACKAGE_ONLY\", \"checks\": 3154, \"negative_cases\": 52, \"prompts\": 128, \"findings\": 33, \"sections\": 166, \"operations\": 148, \"adapter_methods\": 40, \"original_files_preserved\": null, \"original_preservation_status\": \"NOT_CHECKED_CURRENT_HOST\", \"software_implemented\": false, \"software_real_tests_run\": false}",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-PACKAGE-VERIFY.log#sha256=4639244a15c83435c048893a8f8337c55895586ed3ccea986f5d2a217e160fb6"
+      ]
+    },
+    {
+      "id": "P127-DESKTOP-TYPECHECK",
+      "kind": "INTEGRATION",
+      "command": "node ../../node_modules/typescript/bin/tsc -b",
+      "fixture_hashes": [
+        "apps/desktop/src/sources.tsx:de639711714ccc5bdc3e1f4ad29757d05aae9b875f83a28763d5db0634fb0b55"
+      ],
+      "expected": "La UI tipada consume el snapshot operativo publicado por el contrato.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-DESKTOP-TYPECHECK.log#sha256=55b42730243259f27f718fa4143b62d382ed708692028feb42b3f855892721ab"
+      ]
+    },
+    {
+      "id": "P127-DESKTOP-LINT",
+      "kind": "INTEGRATION",
+      "command": "node ../../node_modules/eslint/bin/eslint.js .",
+      "fixture_hashes": [
+        "apps/desktop/src/sources.tsx:de639711714ccc5bdc3e1f4ad29757d05aae9b875f83a28763d5db0634fb0b55",
+        "apps/desktop/src/sources.test.tsx:43e54487ca94ae9f23024387d20b2708ab5ad50c6e9dea56afcffd5b5bc3a578"
+      ],
+      "expected": "La interfaz de Fuentes y las pruebas cumplen las reglas del proyecto.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-DESKTOP-LINT.log#sha256=3b3173d53099c425db02c198da04132077482475af5c29a3eea7fa2c257ebf33"
+      ]
+    },
+    {
+      "id": "P127-ACCOUNT-CREDENTIAL-DELETE",
+      "kind": "INTEGRATION",
+      "command": "Borrado de cuenta y su CredentialReference asociado desde Fuentes",
+      "fixture_hashes": [],
+      "expected": "El borrado retira de forma coordinada la referencia y el secreto protegido sin dejar credenciales huérfanas.",
+      "observed": "NO EJECUTADA: La revisión automática rechazó el cambio por la eliminación permanente del secreto y requiere autorización explícita del operador.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P127-ADAPTER-PACKAGE-PREVIEW",
+      "kind": "INTEGRATION",
+      "command": "node node_modules/vitest/vitest.mjs run --pool=threads --maxWorkers=1 --root apps/desktop src/adapter-import.test.tsx",
+      "fixture_hashes": [
+        "apps/desktop/src/adapter-import.tsx:c8f45945a01e2c4e87c2995ce0e0c2c507656b32798045c625d21fcf3a20caf2",
+        "apps/desktop/src/adapter-import.test.tsx:4d027401f00f5007f0cb4a5dc8f031a0e07c15576b9f4040843767460a1ef486"
+      ],
+      "expected": "La revisión local muestra identidad, publicador, permisos, tamaño exacto y SHA-256; invalida la confirmación al cambiar la ruta y sólo crea el job tras confirmación explícita.",
+      "observed": "exit=0; Test Files  1 passed (1) | Tests  3 passed (3) | Start at  19:35:41 | Duration  1.46s (environment 69%, tests 14%, import 13%, transform 4%)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P127_runs/P127-ADAPTER-PACKAGE-PREVIEW.log#sha256=5be49b105728add320c9a6cfc344d9457c2d6110ff9c6eb69a310757ccc955ae"
+      ]
+    },
+    {
+      "id": "P127-SOURCE-OPERATIONS-REAL",
+      "kind": "REAL",
+      "command": "tools/check.ps1 -Prompt P127 -Real en un PC IA con fuentes autorizadas",
+      "fixture_hashes": [],
+      "expected": "Verificar estado operativo, límite de solicitudes y última sincronización con resultados del origen, sin inventar valores.",
+      "observed": "NO EJECUTADA: La revisión 3.10.2 ya tipa y persiste estas observaciones; falta ejecutar el worker contra una fuente real autorizada y revisar sus resultados.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "La eliminación segura de cuentas con credenciales requiere autorización explícita tras el rechazo de revisión automática.",
+    "La prueba contra una fuente real autorizada no se ha ejecutado.",
+    "dependencia P024 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P045 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P049 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P141 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P028 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-25T19:35:43.012Z"
+}

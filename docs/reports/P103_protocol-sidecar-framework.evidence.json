@@ -1,0 +1,56 @@
+{
+  "prompt_id": "P103",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "5435d6f46bb2eb1314816a8ea5ac55467b7870aa513497553011b25eeea2fc22",
+  "changed_files": [
+    "adapters/runtime/reference-sidecar/README.md",
+    "adapters/runtime/reference-sidecar/echo_cli.rs",
+    "adapters/runtime/reference-sidecar/main.rs",
+    "crates/larm-protocol/Cargo.toml",
+    "crates/larm-protocol/src/lib.rs",
+    "crates/larm-protocol/src/sidecar.rs",
+    "crates/larm-protocol/tests/sidecar_http.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P103_protocol-sidecar-framework.md",
+    "tools/p103_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P103-CONTRACT-sidecar-http-and-cli-fixture",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-protocol --all-targets -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-protocol/src/sidecar.rs:a75dd2892d469b79dcfde3b72f186e7300e149e791b04125bc038722d4d47dd0",
+        "crates/larm-protocol/tests/sidecar_http.rs:b64cfb6deb4913ee152b547d314d02b439cfb625212de52d6de59ae0cb73bccd",
+        "adapters/runtime/reference-sidecar/main.rs:30068d4bcf9d2a7eb9bd6e814499214ff2289700c3673ab230e1ef45e581c81e",
+        "adapters/runtime/reference-sidecar/echo_cli.rs:57d816e6dc7cde6c3d03b1da5ce62966865fef113c2c4fcc81e9cdf2b96e3baa"
+      ],
+      "expected": "suite de unidad e integración: CLI fixture ejecutado por el binario sidecar separado, HTTP loopback, autenticación efímera, cancelación, límites y rechazo de features/input inválidos",
+      "observed": "exit=0; Running unittests src\\lib.rs (target\\verification-final\\debug\\deps\\larm_protocol-bc86dcba5ab45ae2.exe) | Running unittests ..\\..\\adapters\\runtime\\reference-sidecar\\main.rs (target\\verification-final\\debug\\deps\\larm_protocol_sidecar-c91e7899b087ff55.exe) | Running unittests ..\\..\\adapters\\runtime\\reference-sidecar\\echo_cli.rs (target\\verification-final\\debug\\deps\\larm_sidecar_reference_cli-a7415a80f4826920.exe) | Running tests\\sidecar_http.rs (target\\verification-final\\debug\\deps\\sidecar_http-6ebab327fa493282.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P103_runs/P103-CONTRACT-sidecar-http-and-cli-fixture.log#sha256=9562acf50715920989a66e8df2b335728cecb28ffda0dbc206c1f9291cca848c"
+      ]
+    },
+    {
+      "id": "P103-REAL-runtime-instance-and-consumer",
+      "kind": "REAL",
+      "command": "integrar el sidecar con una RuntimeInstance cualificada y un consumidor real",
+      "fixture_hashes": [],
+      "expected": "endpoint de instancia con auth efímera, correlation/cancel/timeout, lifecycle y subsets declarados verificados contra un runtime real",
+      "observed": "NO EJECUTADA: el proceso de prueba usa únicamente el CLI fixture echo; P036 no tiene evidencia, y P021/P026 siguen BLOCKED_REAL, así que no existe todavía una integración real que pueda cualificarse",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P103 solo prepara un sidecar REST personalizado de texto; no anuncia compatibilidad OpenAI ni está integrado aún al lifecycle RuntimeInstance/lease.",
+    "El echo CLI es un fixture, no un modelo. Faltan cualificación de runtimes/prompt templates, contención de árbol de procesos y aceptación real del consumidor.",
+    "dependencia P036 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P021 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P026 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-21T22:12:03.560Z"
+}

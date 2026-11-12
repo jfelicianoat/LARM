@@ -1,0 +1,55 @@
+{
+  "$defs": {
+    "larm__video_generate_input": {
+      "additionalProperties": false,
+      "properties": {
+        "fps": {
+          "exclusiveMinimum": 0,
+          "maximum": 120,
+          "type": "number"
+        },
+        "frames": {
+          "maximum": 2048,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "height": {
+          "maximum": 4096,
+          "minimum": 64,
+          "type": "integer"
+        },
+        "prompt": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "seed": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "width": {
+          "maximum": 4096,
+          "minimum": 64,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt",
+        "width",
+        "height",
+        "frames",
+        "fps",
+        "seed"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__video_generate_input",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

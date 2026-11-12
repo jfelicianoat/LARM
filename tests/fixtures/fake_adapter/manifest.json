@@ -1,0 +1,16 @@
+{
+  "id": "larm.fake-adapter",
+  "version": "0.1.0",
+  "family": "benchmark",
+  "protocol_version": "1.0",
+  "publisher": "LARM (pruebas)",
+  "executable": {"relative_path": "bin/fake_adapter.exe", "args": ["--manifest", "manifest.json", "--mode", "ok"]},
+  "platforms": ["windows"],
+  "architectures": ["x86_64"],
+  "methods": ["core.handshake", "core.cancel", "core.heartbeat", "benchmark.describe", "benchmark.run", "benchmark.validate"],
+  "permissions": {"read_roots": [], "write_roots": [], "network_origins": [], "process_allowlist": [], "secret_refs": []},
+  "capabilities": ["benchmark.fake"],
+  "package_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "signature": null,
+  "installation_strategies": []
+}

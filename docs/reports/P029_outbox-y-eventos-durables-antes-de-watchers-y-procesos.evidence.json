@@ -1,0 +1,147 @@
+{
+  "prompt_id": "P029",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "4cbadf3852036ce87c5216070d90d29f52f280da14a723d2699d60fbff7f3e51",
+  "changed_files": [
+    "apps/daemon/src/serve.rs",
+    "crates/larm-api/src/app.rs",
+    "crates/larm-api/tests/app.rs",
+    "crates/larm-core/src/config/mod.rs",
+    "crates/larm-db/src/events.rs",
+    "crates/larm-db/tests/events.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P029_outbox-y-eventos-durables-antes-de-watchers-y-procesos.md",
+    "tools/p029_evidence.py",
+    "tools/p029_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P029-ENV-VERSIONS",
+      "kind": "CONTRACT",
+      "command": "powershell -NoProfile -Command cargo --version; rustc --version",
+      "fixture_hashes": [],
+      "expected": "registrar las versiones exactas de Cargo y Rust usadas en esta corrida",
+      "observed": "exit=0; cargo 1.99.0 (5f94df478 2026-08-27) | rustc 1.99.0 (b940084d7 2026-09-28)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-ENV-VERSIONS.log#sha256=ffa56ab3c2bab19f7ef42036bc00f9b086ef71e4847a1eef0cb32274f2d035d1"
+      ]
+    },
+    {
+      "id": "P029-DB-OUTBOX-ATOMIC-AND-ACK",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-db --test events -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-db/src/events.rs:a8846030442d11faf650c55c1e0788f5a5bd455f78af478d0613a3e051c7fa3c",
+        "crates/larm-db/tests/events.rs:9504300ee868b12f0cd8efab9375d91a45a2fd6be99967e65447d907a9809d29"
+      ],
+      "expected": "append transaccional de evento+outbox, rollback, ack idempotente, replay ordenado, cursor expirado/límite y poda que conserva outbox pendiente",
+      "observed": "exit=0; warning: `larm-db` (test \"events\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s | Running tests\\events.rs (target\\debug\\deps\\events-774613d5bd321b41.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-DB-OUTBOX-ATOMIC-AND-ACK.log#sha256=6146f97f93c0404e2dea0038589cb13b3d1672152fd54d670409d9ad7f0944d5"
+      ]
+    },
+    {
+      "id": "P029-DAEMON-DISPATCH-RETRY",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-daemon --bin larm-daemon event_feed_tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "apps/daemon/src/serve.rs:bfee0601ff17198a50cbedf603b0172ebfe155ecee87e2af18607efc1ed15bf5",
+        "crates/larm-api/src/app.rs:ff92e7a7de714d9212de0dbfdd586a6dbcd82645a65a1b8fc0144937e8e4a6d0"
+      ],
+      "expected": "el dispatcher espera suscriptor, publica en orden, reintenta el mismo event_id tras fallo de ack, y SQLite proyecta el historial al envelope SSE",
+      "observed": "exit=0; warning: `larm-daemon` (bin \"larm-daemon\" test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.63s | Running unittests src\\main.rs (target\\debug\\deps\\larm_daemon-c339f5af87b8300a.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-DAEMON-DISPATCH-RETRY.log#sha256=45b29e16d8aa17dcf30bedfc6a79e4a1402bbfb287a1638b3b50032e4b3d5205"
+      ]
+    },
+    {
+      "id": "P029-API-SSE-AUTH-QUEUE-SHUTDOWN",
+      "kind": "INTEGRATION",
+      "command": "cargo test -p larm-api --test app -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-api/src/app.rs:ff92e7a7de714d9212de0dbfdd586a6dbcd82645a65a1b8fc0144937e8e4a6d0",
+        "crates/larm-api/tests/app.rs:96ad05add761d0f14d39806f15a527a1cbacc88281d821fa77a9a5f782e17cb2"
+      ],
+      "expected": "la suite API verifica auth read, Last-Event-ID, replay antes de eventos vivos, dedupe en la carrera replay/bus, 410 antes de SSE, cursor inválido, cola lenta y cierre ordenado",
+      "observed": "exit=0; warning: `larm-api` (test \"app\") generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.47s | Running tests\\app.rs (target\\debug\\deps\\app-a618e45624568ea5.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-API-SSE-AUTH-QUEUE-SHUTDOWN.log#sha256=590eddb7f489a6ef24b64adbcac3901e069d79b07b06f990caa210739b0679ea"
+      ]
+    },
+    {
+      "id": "P029-FMT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all -- --check",
+      "fixture_hashes": [],
+      "expected": "todo el workspace cumple rustfmt",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-FMT.log#sha256=ef4f3a9791f87d34246c02b6e720e60252b72bf709e08bae305f8acab9bcc9b5"
+      ]
+    },
+    {
+      "id": "P029-CLIPPY",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -j 1 -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "Clippy del workspace y todos los targets sin avisos",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_download-0224lpt6e472a\\s-hnfr6lkqsq-18r5a1m-working` | warning: `larm-download` (lib) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.75s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-CLIPPY.log#sha256=952135765407650f5df6681efcdb3ad2e281c96441e90e05588a9c97ffb2488b"
+      ]
+    },
+    {
+      "id": "P029-WORKSPACE-TESTS",
+      "kind": "UNIT",
+      "command": "cargo test --workspace -j 1",
+      "fixture_hashes": [],
+      "expected": "pruebas de todos los crates y adaptadores del workspace",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-WORKSPACE-TESTS.log#sha256=9e85779452bd913e0af3e9dfdc9f3177496429390e990ba61bea63b0d69a0161"
+      ]
+    },
+    {
+      "id": "P029-DAEMON-BUILD",
+      "kind": "UNIT",
+      "command": "cargo build -p larm-daemon -j 1",
+      "fixture_hashes": [],
+      "expected": "binario servidor actualizado para ejecutar la prueba REAL de reinicio",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_db-208b7v64i122x\\s-hnftaluiq7-15fhh51-working` | warning: `larm-db` (lib) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.68s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-DAEMON-BUILD.log#sha256=ba2142d5bd1a71772556a2b6f0af7ca1b1fad123eaec7751bf2ea68200024d31"
+      ]
+    },
+    {
+      "id": "P029-REAL-DAEMON-RESTART-WRITE-AND-CONSUMER-REPLAY",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p029_real.py",
+      "fixture_hashes": [
+        "tools/p029_real.py:55b2d7a575616361d1cbc708600f1a1f02c44583f6ed09efb735ea1aee06614a",
+        "crates/larm-db/src/events.rs:a8846030442d11faf650c55c1e0788f5a5bd455f78af478d0613a3e051c7fa3c"
+      ],
+      "expected": "reiniciar el proceso daemon con escrituras concurrentes en vuelo; replay SSE recupera todas las filas confirmadas una sola vez y la escritura live posterior no repite IDs",
+      "observed": "exit=0; PASS: proceso reiniciado con 39 escrituras en curso; 2 filas durables replayadas sin duplicados",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P029_runs/P029-REAL-DAEMON-RESTART-WRITE-AND-CONSUMER-REPLAY.log#sha256=1fb7f2018df2b36aee04a8c6c68a4224ce9ce5d7eb9a37a517eb7e6b1f137106"
+      ]
+    }
+  ],
+  "blockers": [
+    "contrato 07 pide snapshot_url al expirar un cursor, pero el schema Error del paquete canónico prohíbe campos adicionales y api-operations.json no define un endpoint de snapshot; el contrato debe aclararse antes de añadir una URL no enrutable",
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P005 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T05:10:29.889Z"
+}

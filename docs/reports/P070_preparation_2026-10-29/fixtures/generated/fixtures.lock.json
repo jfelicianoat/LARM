@@ -1,0 +1,27 @@
+{
+  "generator_version": "1.0",
+  "license": "CC0-1.0",
+  "speech_es_wav": "REQUIRES_LICENSED_OPERATOR_OR_TTS_INPUT_LOCK_BEFORE_ASR_REAL_RUN",
+  "files": [
+    {
+      "file": "tensor_identity.onnx",
+      "bytes": 130,
+      "sha256": "8de2df197dba94a7151d39371e464bf0bd10316ffa7d7006db81b08159210dde"
+    },
+    {
+      "file": "tensor_input.f32",
+      "bytes": 16,
+      "sha256": "ad73b9acd6e4a74b2f5bb5386658ce3bb146cd040a1867646ab3b973fb6632b1"
+    },
+    {
+      "file": "text_grid.png",
+      "bytes": 1040,
+      "sha256": "c4888536a6508ff96d385a3b075e5e861685a0ce932e96f9246693ea590a27b3"
+    },
+    {
+      "file": "tone16k.wav",
+      "bytes": 32044,
+      "sha256": "a6c41754cc16ef9ddac86f2e640bf085d002237668adbc24964ff7199851ba9a"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+    "prompt":  "P033",
+    "real":  true,
+    "status":  "FAIL",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 warning: `larm-db` (test \"hardware\") generated 1 warning | warning: `larm-db` (test \"compatibility\") generated 1 warning | warning: `larm-db` (test \"model_verification\") generated 1 warning | warning: `larm-db` (example \"guard_worker\") generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s"
+                   },
+                   {
+                       "check":  "test_fixtures",
+                       "result":  "PASS",
+                       "detail":  "exit=0    Compiling larm-adapter-sdk v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-sdk) |    Compiling larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.33s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "FAIL",
+                       "detail":  "exit=101     health_degradado_caido_y_parada_http |  | test result: FAILED. 4 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 52.17s |  | error: test failed, to rerun pass `-p larm-adapter-host --test declarative`"
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager � LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 PASS 63 copias id�nticas al paquete 3.8.0"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\incremental\\build_script_build-2wvf0lsc4qz6d\\s-hnf5maq8hf-0qo4eij-working` | System.Management.Automation.RemoteException | warning: `larm-desktop` (build script) generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.07s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "npm_lint",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_typecheck",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0    Duration  44.19s (environment 57%, tests 30%, import 11%, transform 2%) |  |     Isolate  10 workers spawned · ~2.58s startup each (spawn + environment, per file) |              at least ~23.25s faster with isolate: false — reuses workers across files instead of one per file | "
+                   },
+                   {
+                       "check":  "npm_build",
+                       "result":  "PASS",
+                       "detail":  "exit=0 dist/assets/index-CDF6uqFC.css   22.95 kB │ gzip:   4.74 kB | dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:   0.10 kB | dist/assets/index-lA6Hxdig.js   417.49 kB │ gzip: 119.34 kB |  | ✓ built in 416ms"
+                   },
+                   {
+                       "check":  "P033_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0    BLOQUEO  El daemon ya inicia el consumidor durable y el controlador nativo, pero la ruta de producción LaunchPlan→RuntimeInstance todavía no registra la sesión cualificada que ese controlador requiere; no se declara completo el ciclo start→stop. |    BLOQUEO  dependencia P030 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P021 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P029 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ],
+    "transcripts":  {
+                        "cargo_fmt":  {
+                                          "path":  "docs/reports/check_runs/20261024T1300485058754Z/cargo_fmt.log",
+                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                          "exit_code":  0
+                                      },
+                        "cargo_clippy":  {
+                                             "path":  "docs/reports/check_runs/20261024T1300485058754Z/cargo_clippy.log",
+                                             "sha256":  "2377af210944061ab698cdbe8c1a5c44698c8b34e577c5448813bba366c067cb",
+                                             "exit_code":  0
+                                         },
+                        "test_fixtures":  {
+                                              "path":  "docs/reports/check_runs/20261024T1300485058754Z/test_fixtures.log",
+                                              "sha256":  "44ae07d1c85ea2197195360c4a25fef89ecc5e58a0181a9ea6790abd5b29d640",
+                                              "exit_code":  0
+                                          },
+                        "cargo_test":  {
+                                           "path":  "docs/reports/check_runs/20261024T1300485058754Z/cargo_test.log",
+                                           "sha256":  "eb36749495e64c4960846abb9b6f87c50b1fc23a7573260cf9401d89a42f8f93",
+                                           "exit_code":  101
+                                       },
+                        "architecture":  {
+                                             "path":  "docs/reports/check_runs/20261024T1300485058754Z/architecture.log",
+                                             "sha256":  "13d81e4fe6cd7b4ce3c56df4004843a864d06cace45b153234d1610f4f3a4a54",
+                                             "exit_code":  0
+                                         },
+                        "package_copy":  {
+                                             "path":  "docs/reports/check_runs/20261024T1300485058754Z/package_copy.log",
+                                             "sha256":  "2c550e4842352ddf08160b81a69b28599129bd3c15075180de2ec97e56c15ca7",
+                                             "exit_code":  0
+                                         },
+                        "desktop_fmt":  {
+                                            "path":  "docs/reports/check_runs/20261024T1300485058754Z/desktop_fmt.log",
+                                            "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "exit_code":  0
+                                        },
+                        "desktop_clippy":  {
+                                               "path":  "docs/reports/check_runs/20261024T1300485058754Z/desktop_clippy.log",
+                                               "sha256":  "f49df594b75652f5d1a6356841ad120018adec7b81fcaf6bf5ebe2da182d4348",
+                                               "exit_code":  0
+                                           },
+                        "desktop_test":  {
+                                             "path":  "docs/reports/check_runs/20261024T1300485058754Z/desktop_test.log",
+                                             "sha256":  "3e81d55da9a9753a735a55aebd642e0b8633a6d31c6f1324bc73e99bfcba3582",
+                                             "exit_code":  0
+                                         },
+                        "npm_lint":  {
+                                         "path":  "docs/reports/check_runs/20261024T1300485058754Z/npm_lint.log",
+                                         "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                         "exit_code":  0
+                                     },
+                        "npm_typecheck":  {
+                                              "path":  "docs/reports/check_runs/20261024T1300485058754Z/npm_typecheck.log",
+                                              "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                              "exit_code":  0
+                                          },
+                        "npm_test":  {
+                                         "path":  "docs/reports/check_runs/20261024T1300485058754Z/npm_test.log",
+                                         "sha256":  "9892c1ee278d7c108fb1efe416e9aafa15a8573408d549dc9b33f2a02d93d202",
+                                         "exit_code":  0
+                                     },
+                        "npm_build":  {
+                                          "path":  "docs/reports/check_runs/20261024T1300485058754Z/npm_build.log",
+                                          "sha256":  "ea02b60c614f339bf4c2ad1da7877a5f5102e45936bc21fda1e78e8a3e7eed38",
+                                          "exit_code":  0
+                                      },
+                        "P033_evidence":  {
+                                              "path":  "docs/reports/check_runs/20261024T1300485058754Z/P033_evidence.log",
+                                              "sha256":  "d236ebac0cbd2f481a12a0230b88da7fefb38875b9b3dbd07428d0052f47d6f0",
+                                              "exit_code":  0
+                                          }
+                    }
+}

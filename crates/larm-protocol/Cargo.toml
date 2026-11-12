@@ -1,0 +1,33 @@
+[package]
+name = "larm-protocol"
+description = "Protocolo con AI Broker: LocalRuntimeResolver, sidecars y MCP."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+larm-adapter-sdk = { workspace = true }
+larm-domain = { workspace = true }
+axum = { workspace = true }
+hex = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+
+[[bin]]
+name = "larm-protocol-sidecar"
+path = "../../adapters/runtime/reference-sidecar/main.rs"
+test = false
+
+[[bin]]
+name = "larm-sidecar-reference-cli"
+path = "../../adapters/runtime/reference-sidecar/echo_cli.rs"
+test = false
+
+
+[lints]
+workspace = true

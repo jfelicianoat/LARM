@@ -1,0 +1,149 @@
+{
+    "prompt":  "P034",
+    "real":  true,
+    "status":  "FAIL",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 warning: `larm-adapter-host` (example \"fake_adapter\") generated 1 warning | warning: `larm-models` (test \"registry\") generated 1 warning | warning: `larm-db` (test \"events\") generated 1 warning | warning: `larm-daemon` (bin \"larm-daemon\") generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.41s"
+                   },
+                   {
+                       "check":  "test_fixtures",
+                       "result":  "PASS",
+                       "detail":  "exit=0 warning: `larm-adapter-host` (example \"conformance_host\") generated 1 warning | warning: `larm-adapter-host` (example \"fake_source\") generated 1 warning | warning: `larm-adapter-host` (example \"fake_adapter\") generated 1 warning | warning: `larm-adapter-host` (example \"wire_proxy\") generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.49s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager � LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "FAIL",
+                       "detail":  "exit=1 FAIL copia modificada respecto al paquete: docs/contracts/adapter-methods.json | FAIL copia modificada respecto al paquete: docs/contracts/api-operations.json | FAIL copia modificada respecto al paquete: docs/contracts/schemas/larm.schema.json"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\desktop\\src-tauri\\target\\debug\\incremental\\build_script_build-2wvf0lsc4qz6d\\s-hnf5maq8hf-0qo4eij-working` | System.Management.Automation.RemoteException | warning: `larm-desktop` (build script) generated 1 warning |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.80s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "npm_lint",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_typecheck",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0    Duration  17.33s (tests 64%, environment 28%, import 5%, transform 2%) |  |     Isolate  6 workers spawned · ~881ms startup each (spawn + environment, per file) |              at least ~4.40s faster with isolate: false — reuses workers across files instead of one per file | "
+                   },
+                   {
+                       "check":  "npm_build",
+                       "result":  "PASS",
+                       "detail":  "exit=0 dist/assets/index-CQajtatj.css    9.67 kB │ gzip:  2.49 kB | dist/assets/core-CwxXejkd.js      0.09 kB │ gzip:  0.10 kB | dist/assets/index-DaJmUWWg.js   320.24 kB │ gzip: 95.76 kB |  | ✓ built in 182ms"
+                   },
+                   {
+                       "check":  "P034_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0    BLOCKED  P034-REAL-PERSISTED-PROFILE-TO-PROCESS: NO EJECUTADA: La prueba de proceso existente verifica parámetros efectivos construidos directamente, pero el daemon todavía no enlaza LaunchProfile guardado con LaunchPlan/RuntimeInstance; P033 mantie |    BLOQUEO  Los perfiles CRUD ya son editables y comparables, pero aún no se consumen desde el flujo productivo LaunchPlan→RuntimeInstance; no se declara cumplimiento real H03 para un perfil guardado. |    BLOQUEO  La ruta de lista contractual P034 ahora devuelve perfiles durables; el antiguo GET configurado del Broker deja de ser la fuente de esa ruta y su consumidor debe migrar al catálogo después de cerrar el flujo P033/P030. |    BLOQUEO  dependencia P030 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P033 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ],
+    "transcripts":  {
+                        "cargo_fmt":  {
+                                          "path":  "docs/reports/check_runs/20261022T1148380561030Z/cargo_fmt.log",
+                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                          "exit_code":  0
+                                      },
+                        "cargo_clippy":  {
+                                             "path":  "docs/reports/check_runs/20261022T1148380561030Z/cargo_clippy.log",
+                                             "sha256":  "034c0f4e9a4b35869e06e9cd54875625c8b243f79e2846707d3ea95e157400e5",
+                                             "exit_code":  0
+                                         },
+                        "test_fixtures":  {
+                                              "path":  "docs/reports/check_runs/20261022T1148380561030Z/test_fixtures.log",
+                                              "sha256":  "aac4a3982c76c2ca323a19d7cb1a12e73a6abc7a1f07fd64f1a23595643fb3c8",
+                                              "exit_code":  0
+                                          },
+                        "cargo_test":  {
+                                           "path":  "docs/reports/check_runs/20261022T1148380561030Z/cargo_test.log",
+                                           "sha256":  "f7c3b030d9716e9a7850fb2d36bd1f77e6a5775305762a2774d71d5016742aef",
+                                           "exit_code":  0
+                                       },
+                        "architecture":  {
+                                             "path":  "docs/reports/check_runs/20261022T1148380561030Z/architecture.log",
+                                             "sha256":  "9532dd5f24d2c8c4a6048eb5f9f376777c94db379b8d41194a57c46d93b13e89",
+                                             "exit_code":  0
+                                         },
+                        "package_copy":  {
+                                             "path":  "docs/reports/check_runs/20261022T1148380561030Z/package_copy.log",
+                                             "sha256":  "7d6bba720dd659e6c63244c17429971ce9ace3a71d5dbf3d9f17f5c752ec5d85",
+                                             "exit_code":  1
+                                         },
+                        "desktop_fmt":  {
+                                            "path":  "docs/reports/check_runs/20261022T1148380561030Z/desktop_fmt.log",
+                                            "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "exit_code":  0
+                                        },
+                        "desktop_clippy":  {
+                                               "path":  "docs/reports/check_runs/20261022T1148380561030Z/desktop_clippy.log",
+                                               "sha256":  "5bcdf8895ad010fe788cee14782d0e907ab0c7fcca4964c73a1b153583d511b3",
+                                               "exit_code":  0
+                                           },
+                        "desktop_test":  {
+                                             "path":  "docs/reports/check_runs/20261022T1148380561030Z/desktop_test.log",
+                                             "sha256":  "961b032f9a93d62af7ce89c98def8ffaa361fa19d026b776573847ce7b9e7b0c",
+                                             "exit_code":  0
+                                         },
+                        "npm_lint":  {
+                                         "path":  "docs/reports/check_runs/20261022T1148380561030Z/npm_lint.log",
+                                         "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                         "exit_code":  0
+                                     },
+                        "npm_typecheck":  {
+                                              "path":  "docs/reports/check_runs/20261022T1148380561030Z/npm_typecheck.log",
+                                              "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                              "exit_code":  0
+                                          },
+                        "npm_test":  {
+                                         "path":  "docs/reports/check_runs/20261022T1148380561030Z/npm_test.log",
+                                         "sha256":  "8e61f3d5961ece1d8589929e45aea52ebba82648cb936ceafe559a030e7f50dc",
+                                         "exit_code":  0
+                                     },
+                        "npm_build":  {
+                                          "path":  "docs/reports/check_runs/20261022T1148380561030Z/npm_build.log",
+                                          "sha256":  "924bf775c2f72abf6fa92a1197a495206541ff5a2a7839557c3bdbe796410371",
+                                          "exit_code":  0
+                                      },
+                        "P034_evidence":  {
+                                              "path":  "docs/reports/check_runs/20261022T1148380561030Z/P034_evidence.log",
+                                              "sha256":  "da9990cd6f9e0873affb1d920fd6caac5ea15a8f9cc65be5e52ec1529e53e0f7",
+                                              "exit_code":  0
+                                          }
+                    }
+}

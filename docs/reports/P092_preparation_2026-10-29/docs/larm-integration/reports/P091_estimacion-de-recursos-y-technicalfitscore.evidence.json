@@ -1,0 +1,111 @@
+{
+  "prompt_id": "P091",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "c21eb50332753c9aca1cedf73f8eb296f6dc076d30bc6e2d64489b10296c59c4",
+  "inputs_hash": "5a1aead432c5a3c44175cafe827cc11e9cb65d329d5a35018037bd6e66f428a3",
+  "changed_files": [
+    "crates/larm-core/src/compatibility.rs",
+    "crates/larm-core/src/compatibility/score.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P091_estimacion-de-recursos-y-technicalfitscore.md",
+    "tools/p091_evidence.py",
+    "tools/p091_schema_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P091-FMT",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:e8c06241b00be8394810a36b69a1563e175acba6b4283fdd28b61c9ff77d1da5",
+        "crates/larm-core/src/compatibility.rs:6d127617c0789911ec9c58c96accd1ff9745137ca74bf2806a0af165f7f1e6c3"
+      ],
+      "expected": "El workspace Rust conserva formato válido.",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/P091-FMT.log#sha256=e65275593fefcc4c70f8ea1a0cca8466ad200b7281dd2410fa301cbaca35f613"
+      ]
+    },
+    {
+      "id": "P091-SCORE-AND-NEGATIVE-CASES",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-core compatibility::score::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:e8c06241b00be8394810a36b69a1563e175acba6b4283fdd28b61c9ff77d1da5",
+        "crates/larm-core/src/compatibility.rs:6d127617c0789911ec9c58c96accd1ff9745137ca74bf2806a0af165f7f1e6c3",
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877"
+      ],
+      "expected": "Determinismo, pesos de defaults, benchmark con huella coincidente, desconocidos, incompatibilidad, schema inválido y backend sin evidencia.",
+      "observed": "exit=0; warning: `larm-core` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 15.10s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-f2cc9d3befc95cc1.exe) | Running tests\\conformance.rs (target\\debug\\deps\\conformance-7abeab4692f92c7e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/P091-SCORE-AND-NEGATIVE-CASES.log#sha256=42636ed98bcf205546f984d3520dda6fa618fa28cffb9e465813bd10688e6a00"
+      ]
+    },
+    {
+      "id": "P091-PUBLISHED-SCHEMA",
+      "kind": "CONTRACT",
+      "command": ".venv-tools/Scripts/python.exe tools/p091_schema_evidence.py",
+      "fixture_hashes": [
+        "tools/p091_schema_evidence.py:2c1520f379181fb55cd7b42cae3c9c9c0feaceabb19f7b1b47dc0f3fe0c1e480"
+      ],
+      "expected": "El schema v3 acepta el score escalar y rechaza breakdown/confidence públicos y scores fuera de rango.",
+      "observed": "exit=0; PASS: el score escalar válido se acepta; breakdown/confidence públicos y score >100 se rechazan",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/P091-PUBLISHED-SCHEMA.log#sha256=9aa30c90d75498041a32a7f77165f38797f4815a8af52224e981e2f575547cd7"
+      ]
+    },
+    {
+      "id": "P091-CLIPPY-FOCAL",
+      "kind": "CONTRACT",
+      "command": "cargo clippy -p larm-core --all-targets -j 1 -- -D warnings",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:e8c06241b00be8394810a36b69a1563e175acba6b4283fdd28b61c9ff77d1da5"
+      ],
+      "expected": "El módulo de score no introduce warnings ni viola las reglas Clippy del workspace.",
+      "observed": "exit=0; warning: hard linking files in the incremental compilation cache failed. copying files instead. consider moving the cache directory to a file system which supports hard linking in session dir `\\\\?\\C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\target\\debug\\incremental\\larm_core-2t8is5jtoo5hk\\s-hnglnprgtu-0lag7sp-working` | warning: `larm-core` (lib test) generated 1 warning | Finished `dev` profile [unoptimized + debuginfo] target(s) in 7.01s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/P091-CLIPPY-FOCAL.log#sha256=5bc7e557ba43c391cb25043096fb923980404e25f409aae6cfa259f977f4d3b7"
+      ]
+    },
+    {
+      "id": "P091-WINDOWS-CORE-FIXTURES",
+      "kind": "REAL",
+      "command": "cargo test -p larm-core compatibility::score::tests -j 1 -- --test-threads=1",
+      "fixture_hashes": [
+        "crates/larm-core/src/compatibility/score.rs:e8c06241b00be8394810a36b69a1563e175acba6b4283fdd28b61c9ff77d1da5",
+        "crates/larm-core/src/compatibility.rs:6d127617c0789911ec9c58c96accd1ff9745137ca74bf2806a0af165f7f1e6c3"
+      ],
+      "expected": "El módulo corre en el host Windows actual sobre fixtures deterministas; esto no cualifica un modelo/runtime real.",
+      "observed": "exit=0; warning: `larm-core` (lib test) generated 1 warning | Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-f2cc9d3befc95cc1.exe) | Running tests\\conformance.rs (target\\debug\\deps\\conformance-7abeab4692f92c7e.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P091_runs/P091-WINDOWS-CORE-FIXTURES.log#sha256=a25c16b6a56279f6bc37f804ae4d5e2fb9f91882f761685539ab56ae8901c12f"
+      ]
+    },
+    {
+      "id": "P091-QUALIFIED-LOCAL-BENCHMARK",
+      "kind": "REAL",
+      "command": "Ejecutar una suite local de cinco repeticiones sobre modelo/runtime/backend cualificados y fingerprint completo",
+      "fixture_hashes": [],
+      "expected": "El benchmark compatible sustituye estimaciones de memoria, velocidad y almacenamiento; estabilidad usa hasta las últimas 20 ejecuciones.",
+      "observed": "NO EJECUTADA: No hay benchmark calificado conectado al motor ni REAL_PASS de P090, P015 o P035; los fixtures prueban la fórmula, no una ejecución real.",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "P090, P015 y P035 no tienen REAL_PASS, por lo que el contrato 00 impide cerrar P091.",
+    "El score y su breakdown/confidence son un resultado puro interno; el schema v3 sólo permite publicar technical_fit como número o null. No se amplía el contrato público ni se simula persistencia.",
+    "El contrato 05 define la puntuación de almacenamiento con MB/s observados, pero no define multiplicadores por NVME/SSD/HDD/NETWORK/REMOVABLE/UNKNOWN. Se muestra la clase junto al score y no se inventa un ajuste numérico.",
+    "Los casos de autorización, timeout, IO, journal/outbox y recuperación no aplican al módulo puro, que no realiza efectos externos; los casos de schema, estado/gates y medidas inválidas sí se cubren.",
+    "dependencia P090 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P015 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P035 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-22T21:49:25.961Z"
+}

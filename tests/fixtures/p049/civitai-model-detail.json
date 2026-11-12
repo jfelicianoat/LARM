@@ -1,0 +1,61 @@
+{
+  "id": 12345,
+  "name": "Demo checkpoint",
+  "type": "Checkpoint",
+  "nsfw": false,
+  "nsfwLevel": 1,
+  "updatedAt": "2026-10-20T12:00:00.000Z",
+  "createdAt": "2025-01-02T03:04:05.000Z",
+  "creator": {
+    "username": "local-fixture"
+  },
+  "tags": [
+    "fixture",
+    "text-to-image"
+  ],
+  "modelVersions": [
+    {
+      "id": 67890,
+      "name": "v1",
+      "createdAt": "2026-10-19T12:00:00.000Z",
+      "updatedAt": "2026-10-20T12:00:00.000Z",
+      "baseModel": "SDXL 1.0",
+      "license": "CreativeML Open RAIL-M",
+      "files": [
+        {
+          "id": 1,
+          "name": "demo.safetensors",
+          "type": "Model",
+          "sizeKB": 1.5,
+          "primary": true,
+          "hashes": {
+            "SHA256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        {
+          "id": 2,
+          "name": "README.md",
+          "type": "Config",
+          "primary": false,
+          "hashes": {}
+        },
+        {
+          "id": 3,
+          "name": "bad/../escape.safetensors",
+          "type": "Model",
+          "sizeKB": 50,
+          "primary": true,
+          "hashes": {}
+        },
+        {
+          "id": 4,
+          "name": "NaN.safetensors",
+          "type": "Model",
+          "sizeKB": "NaN",
+          "primary": false,
+          "hashes": {}
+        }
+      ]
+    }
+  ]
+}

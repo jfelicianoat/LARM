@@ -1,0 +1,6 @@
+{
+  "identifier": "default",
+  "description": "capacidad por defecto de la ventana principal",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

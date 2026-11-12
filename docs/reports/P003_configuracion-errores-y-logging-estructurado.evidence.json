@@ -1,0 +1,394 @@
+{
+  "prompt_id": "P003",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "e6e3729ccd878791774c86537862e351338efbf45a10c893ba2fe0084f489a24",
+  "inputs_hash": "c84e20fc278776eddd764d034c467cd9dd68c6c95a30e2edde4f0eece9033a2a",
+  "changed_files": [
+    "apps/daemon/src/main.rs",
+    "crates/larm-core/src/config/mod.rs",
+    "crates/larm-core/src/logging.rs",
+    "crates/larm-core/src/redact.rs",
+    "crates/larm-domain/Cargo.toml",
+    "crates/larm-domain/src/bridge.rs",
+    "crates/larm-domain/src/correlation.rs",
+    "crates/larm-domain/src/error.rs",
+    "crates/larm-domain/src/lib.rs",
+    "crates/larm-domain/src/redact.rs",
+    "crates/larm-domain/src/units.rs",
+    "crates/larm-runtime/src/external_adoption/tests.rs",
+    "docs/operations/configuration.md",
+    "tools/p003_evidence.py",
+    "tools/p003_real.py"
+  ],
+  "tests": [
+    {
+      "id": "P003-UNIT-error-shape",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- error::tests::serializa",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "LarmError serializa exactamente {code,message,retryable,correlation_id,details} sin el detalle técnico",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-error-shape.log#sha256=31a64b4e6ae68ba559a5e4bbc1ca995153a40b165fef07dbec23a60f2b65bf9d"
+      ]
+    },
+    {
+      "id": "P003-CONTRACT-error-catalog",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib -- error::tests::catalogo",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "34 códigos del contrato 07 y §154 con su estado HTTP",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-CONTRACT-error-catalog.log#sha256=d95dc98de245c98fe87c6a7a8041c5380b3627f43ae3890b36a1bb2015c7cec6"
+      ]
+    },
+    {
+      "id": "P003-UNIT-error-extensible",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- error::tests::codigo_desconocido",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "código desconocido se conserva y responde 500",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-error-extensible.log#sha256=825d629b8c317b715afe5980005a77a70142136a1dadc6ee6e8318420490fa35"
+      ]
+    },
+    {
+      "id": "P003-FAULT-error-strict",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-domain --lib -- error::tests::campos_adicionales",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "campo adicional (detail) o código vacío rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-FAULT-error-strict.log#sha256=7c6fd9b2e7170f410c70219ad9580af288986d635b1039516bb0843260d868ca"
+      ]
+    },
+    {
+      "id": "P003-UNIT-error-retryable",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- error::tests::retryable",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "retryable nunca en licencia/incompatibles",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-error-retryable.log#sha256=aec2223dc56daa5ff9fcd916cb04f272702edf2badb4e095a1166f2a992e3d7e"
+      ]
+    },
+    {
+      "id": "P003-UNIT-original-error",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- error::tests::original_error",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "original_error redactado y truncado a 4096",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-original-error.log#sha256=900d6c8628bc3594c207931ba870988d5d5923081e0f79291e7156be35c02507"
+      ]
+    },
+    {
+      "id": "P003-UNIT-correlation",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- correlation::tests",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "correlation id UUIDv7: roundtrip, generación, conservación y rechazo de v4/mayúsculas",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-correlation.log#sha256=2dc5dfd7c22d98d9f6ebba2f6819fe3f35225b0d8501951c019306076488a1e5"
+      ]
+    },
+    {
+      "id": "P003-UNIT-redaction",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- redact::tests",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "9 patrones compilan; secretos redactados; texto normal y sha256 intactos",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-redaction.log#sha256=86887ec42f27b19699c19dc7b74140b39dcd25c8e815597e16601f6d0f463033"
+      ]
+    },
+    {
+      "id": "P003-UNIT-decimal-bytes",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-domain --lib -- units::tests",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "bytes como string decimal; number, signo, ceros y overflow rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-8b4cf033dcba57e7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-decimal-bytes.log#sha256=32c1b6b57ba614541cdbd375dc785d7d846453c0e2888dc7da210f9276d60452"
+      ]
+    },
+    {
+      "id": "P003-CONTRACT-defaults",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-core --lib -- config::tests::defaults_serializan",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "Settings::defaults() serializa exactamente defaults.json y valida",
+      "observed": "exit=0; Compiling larm-core v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-core) | Finished `test` profile [unoptimized + debuginfo] target(s) in 1.08s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-CONTRACT-defaults.log#sha256=afc0e2f1c6998b9d2a47e2610972f2f00219098f12655ca3e08e065603313293"
+      ]
+    },
+    {
+      "id": "P003-UNIT-precedence",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-core --lib -- config::tests::precedencia",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "defaults < file < env < cli",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-precedence.log#sha256=91846dcf56e5005c60ac4c27b9aee9276e44d79a145495c9322a7e4a0186cc68"
+      ]
+    },
+    {
+      "id": "P003-UNIT-env-sections",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-core --lib -- config::tests::env_solo",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "solo LARM_<SECCIÓN>__<CLAVE> es config; bytes de env como string; typo rechazado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-env-sections.log#sha256=fff3b33a1bd34df9b3bdcccb11c84fac8b3239c7a3ecb5724d26f7d5f7ffcce4"
+      ]
+    },
+    {
+      "id": "P003-CONTRACT-h08",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-core --lib -- config::tests::h08",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "límite null o positivo como string; cero y number rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-CONTRACT-h08.log#sha256=03cd6afe226dce68f960d50f1a2d0e943c7180984545f3fd11a1008b7d28cd72"
+      ]
+    },
+    {
+      "id": "P003-CONTRACT-h09",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-core --lib -- config::tests::h09",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "PERCENT y BYTES con critical<warning; igualdad, cruce, rango, mezcla y modo desconocido rechazados",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-CONTRACT-h09.log#sha256=e7e2c6ac4b834cda0a997f56dac6bbdb6b543e473ac340f496b8059e72f4bddf"
+      ]
+    },
+    {
+      "id": "P003-FAULT-schema-negatives",
+      "kind": "FAULT",
+      "command": "cargo test -p larm-core --lib -- config::tests::negativos",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "11 configuraciones fuera de schema -> VALIDATION_FAILED 400 sin detalle técnico serializado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-FAULT-schema-negatives.log#sha256=0d3a89cc86a9dadd96aff785dbe00959438114a942c83f303f2f8d4c98d8169c"
+      ]
+    },
+    {
+      "id": "P003-UNIT-logging-options",
+      "kind": "UNIT",
+      "command": "cargo test -p larm-core --lib -- config::tests::logging_options",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "nivel/formato con precedencia env<cli; valores inválidos rechazados, sin fallback",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-e023ecd407f07da7.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-logging-options.log#sha256=21d31be9056a131835601bf005d59374ceed83aff0e33e2fa02257accb1086e2"
+      ]
+    },
+    {
+      "id": "P003-UNIT-cargo-fmt",
+      "kind": "UNIT",
+      "command": "cargo fmt --all --check",
+      "fixture_hashes": [],
+      "expected": "sin diferencias de formato",
+      "observed": "exit=0; sin salida",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-cargo-fmt.log#sha256=841ddf8d91a2388de3cb0a0e61f26aa4a5cb523ba61e6ff8f22d2af28b780603"
+      ]
+    },
+    {
+      "id": "P003-UNIT-cargo-clippy",
+      "kind": "UNIT",
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "fixture_hashes": [],
+      "expected": "clippy sin avisos",
+      "observed": "exit=0; Checking larm-core v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-core) | Checking larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) | Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.24s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-cargo-clippy.log#sha256=c38c29eaf53c384b33f509e3c463ee5fc8e3e64dccc74f7a2340dec5dd4d322f"
+      ]
+    },
+    {
+      "id": "P003-UNIT-cargo-test",
+      "kind": "UNIT",
+      "command": "cargo test --workspace",
+      "fixture_hashes": [],
+      "expected": "pruebas del workspace en verde",
+      "observed": "exit=0; Doc-tests larm_protocol | Doc-tests larm_runtime | Doc-tests larm_storage | Doc-tests larm_transform",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-UNIT-cargo-test.log#sha256=d81fe58ca4082288e0efce8eff2f914cf116f96d063594c233994910ca3893e1"
+      ]
+    },
+    {
+      "id": "P003-REAL-daemon-build",
+      "kind": "REAL",
+      "command": "cargo build -p larm-daemon",
+      "fixture_hashes": [],
+      "expected": "binario del daemon compilado",
+      "observed": "exit=0; Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.21s",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-REAL-daemon-build.log#sha256=977e8d6a7f85d40fc6bd61cfc57f718acff1dbe89d02426116d68056032ed241"
+      ]
+    },
+    {
+      "id": "P003-REAL-precedence",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p003_real.py precedence",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "larm-daemon print-settings: cli > env > fichero > defaults, salida válida contra Settings",
+      "observed": "exit=0; PASS cli 9333 > env 9211 > fichero 9000; bandwidth '1048576' (fichero), minimum_free_bytes '2147483648' (env), thresholds BYTES; salida válida contra Settings; sin más capas == defaults.json",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-REAL-precedence.log#sha256=7a434d3011d7ea7be3285f9ec3122f762a60a54929465bc7d48c93addb99ba81"
+      ]
+    },
+    {
+      "id": "P003-REAL-rejects",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p003_real.py rejects",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "6 configuraciones inválidas -> exit 2 sin escribir logs",
+      "observed": "exit=0; PASS 6 configuraciones inválidas rechazadas con exit 2 antes de escribir logs: ['bandwidth_cero', 'bytes_como_number', 'log_level_en_fichero', 'log_level_env_invalido', 'typo_en_seccion', 'umbral_cruzado']",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-REAL-rejects.log#sha256=c80ac524723541c9f05d83c6baafda63cb2db3867a0cd11b79e77949f8005da8"
+      ]
+    },
+    {
+      "id": "P003-REAL-logging",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p003_real.py logging",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "log JSON diario con timestamps ms+Z, correlation UUIDv7 y secreto inyectado redactado; exit 0",
+      "observed": "exit=0; PASS larm.2026-10-11.log: 3 líneas JSON, timestamps ms+Z, correlation_id UUIDv7 01a12970-16ac-7359-99f1-ebf644396a1c, telemetría off, secreto inyectado -> token=[REDACTED] (fichero y stdout), exit 0",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-REAL-logging.log#sha256=66ef73d71a0117a74a646ab6a1fdd0ca66d2a1a75b6a68394bbd520a805d64d0"
+      ]
+    },
+    {
+      "id": "P003-REAL-retention",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p003_real.py retention",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "20 logs antiguos podados a diagnostics.log_retention_days",
+      "observed": "exit=0; PASS 21 ficheros (20 antiguos + hoy) -> 14 conservados (retención 14); el más antiguo conservado: larm.2026-09-08.log",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-REAL-retention.log#sha256=1ccf3c0336c359c6f7b39c46d02601e8dece6f1f15ff052c43235d4f606a5904"
+      ]
+    },
+    {
+      "id": "P003-REAL-stdout-bloqueado",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe tools/p003_real.py stdout-bloqueado",
+      "fixture_hashes": [
+        "docs/contracts/defaults.json:e36d17e5f8e9e1ec9fe2385f75b3d2f046c8d1111d86a9b35515a2ae07d50877",
+        "docs/contracts/schemas/larm.schema.json:4413e5b9b932da0684a71bdf33a9a1e14e39cc477fd65d8f450625edeccf0cc3"
+      ],
+      "expected": "stdout en un pipe sin leer no congela el daemon: 500 peticiones, registro completo en fichero",
+      "observed": "exit=0; PASS 500 peticiones en 7.4s con stdout sin leer; 501 registradas en el fichero; exit 0",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P003_runs/P003-REAL-stdout-bloqueado.log#sha256=022ed663fadab573dc35999cc2955b03267638b1116b002fe192a29b0d1bd642"
+      ]
+    }
+  ],
+  "blockers": [
+    "dependencia P001 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P002 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-10-11T05:29:45.832Z"
+}

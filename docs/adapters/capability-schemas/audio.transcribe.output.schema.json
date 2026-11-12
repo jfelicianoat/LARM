@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "larm__audio_transcribe_output": {
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "segments": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "end_seconds": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "start_seconds": {
+                "minimum": 0,
+                "type": "number"
+              },
+              "text": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "start_seconds",
+              "end_seconds",
+              "text"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "language",
+        "segments"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/larm__audio_transcribe_output",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

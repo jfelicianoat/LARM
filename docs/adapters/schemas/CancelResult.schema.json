@@ -1,0 +1,15 @@
+{
+  "$id": "https://larm.local/adapters/CancelResult.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CancelResult (generado desde docs/contracts/schemas/larm.schema.json; no editar)",
+  "properties": {
+    "cancelled": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "cancelled"
+  ],
+  "type": "object"
+}
