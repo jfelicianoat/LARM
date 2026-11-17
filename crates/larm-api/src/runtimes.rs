@@ -60,6 +60,7 @@ pub fn routes(state: RuntimesState) -> Router {
             get(list_installations).post(submit_install),
         )
         .route("/api/v1/runtime-installations/{id}", get(read_installation))
+        .route("/api/v1/execution-hosts", get(list_execution_hosts))
         .route("/api/v1/runtime-backends", get(list_backends))
         .route("/api/v1/runtime-backends/{id}", get(read_backend))
         .route(
@@ -282,6 +283,7 @@ fn update_install_request(
         storage_location_id: request.storage_location_id.clone(),
         profile_lock_hash: request.profile_lock_hash.clone(),
         external_host_id: request.external_host_id.clone(),
+        execution_host_id: request.execution_host_id.clone(),
     };
     install.validate()?;
     Ok(install)
@@ -472,6 +474,27 @@ async fn change_retention_policy(
     Ok(json(StatusCode::OK, &value))
 }
 
+async fn list_execution_hosts(
+    State(state): State<RuntimesState>,
+    Extension(ctx): Extension<AuthContext>,
+    Query(params): Query<BTreeMap<String, String>>,
+) -> Answer {
+    let (cursor, limit, filter) = filters(&params, &["q", "state"]).map_err(fail(&ctx))?;
+    if let Some(raw) = &filter.state {
+        serde_json::from_value::<ExternalHostState>(serde_json::json!(raw))
+            .map_err(|_| fail(&ctx)(filter_error()))?;
+    }
+    page!(
+        state,
+        ctx,
+        cursor,
+        limit,
+        filter,
+        "execution-hosts",
+        ExecutionHost,
+        execution_hosts
+    )
+}
 async fn list_backends(
     State(state): State<RuntimesState>,
     Extension(ctx): Extension<AuthContext>,
@@ -884,7 +907,8 @@ mod tests {
             "strategy": "PREBUILT_BINARY",
             "storage_location_id": uuid::Uuid::now_v7().to_string(),
             "profile_lock_hash": "a".repeat(64),
-            "external_host_id": null
+            "external_host_id": null,
+            "execution_host_id": null
         })
     }
 
@@ -928,6 +952,7 @@ mod tests {
             strategy: InstallationStrategy::PrebuiltBinary,
             profile_lock_hash: "a".repeat(64),
             external_host_id: None,
+            execution_host_id: None,
         };
 
         let install = update_install_request(&runtime, &version, &request).unwrap();

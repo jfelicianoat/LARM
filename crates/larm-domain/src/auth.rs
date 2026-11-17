@@ -451,7 +451,7 @@ mod tests {
     fn el_catalogo_del_contrato_carga_completo() {
         let c = Catalog::contract();
         // Mantiene el catálogo sincronizado con las operaciones del contrato actual.
-        assert_eq!(c.operations.len(), 154);
+        assert_eq!(c.operations.len(), 159);
         let promotion = c
             .find("PATCH", "/api/v1/variants/{id}/promotion")
             .expect("la operación de promoción P120 debe estar en el catálogo");

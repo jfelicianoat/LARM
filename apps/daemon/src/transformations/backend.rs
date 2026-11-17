@@ -77,6 +77,9 @@ impl Backend {
             Recipe::Transformation(reference) => (reference.profile.clone(), "reference.base64.v1"),
             Recipe::Gguf(gguf_recipe) => (gguf_recipe.profile.clone(), "product.gguf.v1"),
             Recipe::Onnx(onnx_recipe) => (onnx_recipe.profile.clone(), "product.onnx.v1"),
+            Recipe::OnnxQuantize(onnxq_recipe) => {
+                (onnxq_recipe.profile.clone(), "product.onnxq.v1")
+            }
             _ => {
                 return Err(error(
                     ErrorCode::UnsupportedCapability,

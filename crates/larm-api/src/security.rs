@@ -84,6 +84,33 @@ pub async fn guard(
         error.correlation_id.clone_from(&correlation_id);
         Failure::from(error).into_response()
     };
+    // P131: rate limit de fallos de autenticación por fuente. Se activa sólo
+    // cuando el router lleva el `AuthRateLimiter` (el daemon lo inserta como
+    // extensión); los routers aislados de pruebas siguen sin él.
+    let limiter = request
+        .extensions()
+        .get::<Arc<crate::auth::AuthRateLimiter>>()
+        .cloned();
+    let source = request
+        .extensions()
+        .get::<axum::extract::ConnectInfo<std::net::SocketAddr>>()
+        .map(|info| info.0.ip().to_string())
+        .unwrap_or_else(|| "local".to_string());
+    if let Some(limiter) = &limiter {
+        if let Some(retry) = limiter.retry_after(&source, std::time::Instant::now()) {
+            let mut response = fail(ApiError::new(
+                "AUTH_REQUIRED",
+                "Demasiados fallos de autenticación; espera antes de reintentar",
+                "auth_rate_limited",
+            ));
+            if let Ok(value) = axum::http::HeaderValue::from_str(&retry.as_secs().to_string()) {
+                response
+                    .headers_mut()
+                    .insert(axum::http::header::RETRY_AFTER, value);
+            }
+            return response;
+        }
+    }
     let method = if request.method() == axum::http::Method::HEAD {
         "GET"
     } else {
@@ -132,13 +159,23 @@ pub async fn guard(
         ));
     };
     let principal = match auth.authenticate(token).await {
-        Ok(Some(principal)) => principal,
+        Ok(Some(principal)) => {
+            if let Some(limiter) = &limiter {
+                limiter.reset(&source);
+            }
+            principal
+        }
         Ok(None) => {
+            // Fallo de credencial: cuenta para el rate limit de la fuente
+            // (un Bearer ausente no cuenta — no intentó ninguna credencial).
+            if let Some(limiter) = &limiter {
+                limiter.record_failure(&source, std::time::Instant::now());
+            }
             return fail(ApiError::new(
                 "AUTH_REQUIRED",
                 "Bearer no válido",
                 "bearer_invalid",
-            ))
+            ));
         }
         Err(error) => return fail(error),
     };

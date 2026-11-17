@@ -71,6 +71,27 @@ contract_enum!(RuntimeOwnership { LarmManaged => "LARM_MANAGED", External => "EX
 contract_enum!(ExternalOwnership { External => "EXTERNAL" });
 contract_enum!(ExternalHostState { Online => "ONLINE", Offline => "OFFLINE", Unknown => "UNKNOWN" });
 contract_enum!(BackendStatus { Available => "AVAILABLE", Unavailable => "UNAVAILABLE", Unknown => "UNKNOWN" });
+// §5.1: cómo se ejecuta un runtime en Windows. Un runtime Linux bajo WSL no
+// puede anunciarse como nativo: la regla `allows_strategy` liga cada host con
+// las estrategias de instalación que puede sostener.
+contract_enum!(ExecutionHostKind {
+    WindowsNative => "WINDOWS_NATIVE", WindowsPython => "WINDOWS_PYTHON",
+    WindowsMl => "WINDOWS_ML", Wsl2 => "WSL2", Container => "CONTAINER",
+    ExternalLocal => "EXTERNAL_LOCAL",
+});
+impl ExecutionHostKind {
+    #[must_use]
+    pub fn allows_strategy(self, strategy: InstallationStrategy) -> bool {
+        match strategy {
+            InstallationStrategy::Wsl => self == Self::Wsl2,
+            InstallationStrategy::Container => self == Self::Container,
+            _ => matches!(
+                self,
+                Self::WindowsNative | Self::WindowsPython | Self::WindowsMl | Self::ExternalLocal
+            ),
+        }
+    }
+}
 contract_enum!(InstallationStrategy {
     PrebuiltBinary => "PREBUILT_BINARY", GithubRelease => "GITHUB_RELEASE",
     SourceBuild => "SOURCE_BUILD", Winget => "WINGET", Pip => "PIP", Uv => "UV",
@@ -283,6 +304,9 @@ pub struct RuntimeUpdateRequest {
     pub profile_lock_hash: String,
     #[serde(deserialize_with = "Option::deserialize")]
     pub external_host_id: Option<String>,
+    /// P081: host de ejecución referenciado para estrategias WSL/CONTAINER.
+    #[serde(deserialize_with = "Option::deserialize")]
+    pub execution_host_id: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -324,12 +348,77 @@ pub struct RuntimeInstallation {
     pub strategy: InstallationStrategy,
     #[serde(deserialize_with = "Option::deserialize")]
     pub external_host_id: Option<String>,
+    /// P081: host de ejecución referenciado (WSL2/CONTAINER) para las
+    /// estrategias `WSL`/`CONTAINER`; null para estrategias nativas.
+    #[serde(deserialize_with = "Option::deserialize")]
+    pub execution_host_id: Option<String>,
     pub state: InstallationState,
     pub ownership: RuntimeOwnership,
     #[serde(deserialize_with = "Option::deserialize")]
     pub lock_hash: Option<String>,
     pub stage: InstallationStage,
     pub registration_mode: RegistrationMode,
+}
+
+/// P081: host de ejecución virtualizado observado read-only (registro de
+/// WSL2/motor de contenedores). Nunca acredita compatibilidad ni habilita
+/// ejecución: es observación estructurada con su evidencia.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ExecutionHost {
+    pub id: String,
+    pub created_at: String,
+    pub updated_at: String,
+    pub row_version: i64,
+    pub metadata: Map<String, Value>,
+    pub kind: ExecutionHostKind,
+    pub name: String,
+    #[serde(deserialize_with = "Option::deserialize")]
+    pub engine_version: Option<String>,
+    /// 1|2 para hosts WSL2 (de `wsl --list --verbose`); null en contenedores.
+    #[serde(deserialize_with = "Option::deserialize")]
+    pub wsl_version: Option<u8>,
+    pub default: bool,
+    pub status: ExternalHostState,
+    pub evidence_refs: Vec<String>,
+}
+
+impl ExecutionHost {
+    pub fn validate(&self) -> Result<(), LarmError> {
+        record(
+            &self.id,
+            &self.created_at,
+            &self.updated_at,
+            self.row_version,
+        )?;
+        if self.name.is_empty()
+            || self.name.len() > 256
+            || self.name.chars().any(char::is_control)
+            || self.name.starts_with('.')
+            || self.name.contains(['/', '\\', ':'])
+        {
+            return Err(invalid("execution_host_name_invalid"));
+        }
+        if self
+            .engine_version
+            .as_deref()
+            .is_some_and(|v| v.is_empty() || v.len() > 64)
+        {
+            return Err(invalid("execution_host_engine_version_invalid"));
+        }
+        if self.wsl_version.is_some() != (self.kind == ExecutionHostKind::Wsl2) {
+            return Err(invalid("execution_host_wsl_version_invalid"));
+        }
+        if self.evidence_refs.len() > 64
+            || self
+                .evidence_refs
+                .iter()
+                .any(|reference| reference.is_empty() || reference.len() > 512)
+        {
+            return Err(invalid("execution_host_evidence_invalid"));
+        }
+        Ok(())
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

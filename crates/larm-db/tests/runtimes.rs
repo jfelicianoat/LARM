@@ -108,7 +108,7 @@ async fn roundtrip_cinco_canales_provider_abierto_host_separado_y_reapertura() {
     }
     let host:ExternalHost=serde_json::from_value(entity(json!({"name":"fixture host","base_url":"http://127.0.0.1:23239","host_type":"vendor.unlisted.host","credential_reference_id":null,"state":"UNKNOWN","ownership":"EXTERNAL","observed_version":null,"registration_mode":"ADOPTED"}))).unwrap();
     repo.record_external_host(&host, &ctx()).await.unwrap();
-    let installed:RuntimeInstallation=serde_json::from_value(entity(json!({"runtime_version_id":versions[0].id,"storage_location_id":null,"relative_path":null,"strategy":"EXTERNAL_ADOPTION","external_host_id":host.id,"state":"DISCOVERED","ownership":"EXTERNAL","lock_hash":null,"stage":"DISCOVERED","registration_mode":"ADOPTED"}))).unwrap();
+    let installed:RuntimeInstallation=serde_json::from_value(entity(json!({"runtime_version_id":versions[0].id,"storage_location_id":null,"relative_path":null,"strategy":"EXTERNAL_ADOPTION","external_host_id":host.id,"execution_host_id":null,"state":"DISCOVERED","ownership":"EXTERNAL","lock_hash":null,"stage":"DISCOVERED","registration_mode":"ADOPTED"}))).unwrap();
     repo.record_installation(&installed, &ctx()).await.unwrap();
     let backend:RuntimeBackend=serde_json::from_value(entity(json!({"runtime_installation_id":installed.id,"backend_type":"vendor.future.provider/v42","device_id":null,"driver_version":null,"status":"UNKNOWN","evidence_refs":[],"limits":{"max_instances":1,"multi_model_support":false,"parallel_requests":1,"gpu_sharing":false}}))).unwrap();
     repo.record_backend(&backend, &ctx()).await.unwrap();
@@ -540,6 +540,7 @@ async fn validated_installation(repo: &SqlRuntimes, version_id: &str) -> Runtime
         "relative_path": null,
         "strategy": "CUSTOM",
         "external_host_id": null,
+        "execution_host_id": null,
         "state": "VALIDATED",
         "ownership": "LARM_MANAGED",
         "lock_hash": null,

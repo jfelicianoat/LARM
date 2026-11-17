@@ -1,0 +1,159 @@
+{
+    "prompt":  "P137",
+    "real":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.62s"
+                   },
+                   {
+                       "check":  "test_fixtures",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 PASS 82 copias idénticas al paquete 3.16.0"
+                   },
+                   {
+                       "check":  "python_tests",
+                       "result":  "PASS",
+                       "detail":  "exit=0 ---------------------------------------------------------------------- | Ran 2 tests in 37.014s | System.Management.Automation.RemoteException | OK | PASS: 9 suites"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.37s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "npm_lint",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_typecheck",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0 \u001b[2m   Duration \u001b[22m 39.22s\u001b[2m (tests 45%, environment 44%, import 9%, transform 1%)\u001b[22m |  | \u001b[2m    Isolate \u001b[22m \u001b[33m21 workers spawned\u001b[39m\u001b[2m · ~868ms startup each (spawn + environment, per file)\u001b[22m | \u001b[2m            \u001b[22m \u001b[2mat least ~17.35s faster with \u001b[22m\u001b[33misolate: false\u001b[39m\u001b[2m — reuses workers across files instead of one per file\u001b[22m | "
+                   },
+                   {
+                       "check":  "npm_build",
+                       "result":  "PASS",
+                       "detail":  "exit=0 \u001b[33m[plugin builtin:vite-reporter]  | (!) Some chunks are larger than 500 kB after minification. Consider: | - Using dynamic import() to code-split the application | - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting | - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m"
+                   },
+                   {
+                       "check":  "P137_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0    BLOCKED  P137-REAL-service-instalado: NO EJECUTADA: la instalación del servicio exige una consola elevada; la consola de pruebas no está elevada y el comando real queda NO VERIFICADO (conducta esperada documentada): el guard service_requi |    BLOQUEO  servicio Windows instalado y verificado unattended: exige consola elevada (NO VERIFICADO sin ella; el guard service_requires_elevation está probado REAL) |    BLOQUEO  dependencia P132 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P131 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P133 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ],
+    "transcripts":  {
+                        "cargo_fmt":  {
+                                          "path":  "docs/reports/check_runs/20261117T0035367723266Z/cargo_fmt.log",
+                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                          "exit_code":  0
+                                      },
+                        "cargo_clippy":  {
+                                             "path":  "docs/reports/check_runs/20261117T0035367723266Z/cargo_clippy.log",
+                                             "sha256":  "551ab87ee501b45157f43c318c3ff5a7ac090bda852ea7d53ec49ac87de74387",
+                                             "exit_code":  0
+                                         },
+                        "test_fixtures":  {
+                                              "path":  "docs/reports/check_runs/20261117T0035367723266Z/test_fixtures.log",
+                                              "sha256":  "9b194554ab2051dd3391187f1b6aa4a2ef64e98f7901c2dbd3bb8f0bdb1a0313",
+                                              "exit_code":  0
+                                          },
+                        "cargo_test":  {
+                                           "path":  "docs/reports/check_runs/20261117T0035367723266Z/cargo_test.log",
+                                           "sha256":  "f2d88769b2b5adc82b45627a1e6f180d4e6d28b469e315de06c2fede8afb511b",
+                                           "exit_code":  0
+                                       },
+                        "architecture":  {
+                                             "path":  "docs/reports/check_runs/20261117T0035367723266Z/architecture.log",
+                                             "sha256":  "dd93c8d3783a8733bc80a19be08a4f0cad476257824eaca02ed24a8fa9129d9d",
+                                             "exit_code":  0
+                                         },
+                        "package_copy":  {
+                                             "path":  "docs/reports/check_runs/20261117T0035367723266Z/package_copy.log",
+                                             "sha256":  "54f6455ba0c0dce5ad5b4de9a4999887d949fdc9ae71cd23572c1427177d63d8",
+                                             "exit_code":  0
+                                         },
+                        "python_tests":  {
+                                             "path":  "docs/reports/check_runs/20261117T0035367723266Z/python_tests.log",
+                                             "sha256":  "0a59f682cba0981f35ca2a4b9b0042711cb83cf51fed461074ade15d534a880c",
+                                             "exit_code":  0
+                                         },
+                        "desktop_fmt":  {
+                                            "path":  "docs/reports/check_runs/20261117T0035367723266Z/desktop_fmt.log",
+                                            "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "exit_code":  0
+                                        },
+                        "desktop_clippy":  {
+                                               "path":  "docs/reports/check_runs/20261117T0035367723266Z/desktop_clippy.log",
+                                               "sha256":  "b3482a467f2c055af9c300822b29b97c2f98ba65c6835a2c4e13f3446e65d970",
+                                               "exit_code":  0
+                                           },
+                        "desktop_test":  {
+                                             "path":  "docs/reports/check_runs/20261117T0035367723266Z/desktop_test.log",
+                                             "sha256":  "65735731e31deea17f0e04fc15865b6673dfd5d3a8c9b7a75e43d96635d9ef72",
+                                             "exit_code":  0
+                                         },
+                        "npm_lint":  {
+                                         "path":  "docs/reports/check_runs/20261117T0035367723266Z/npm_lint.log",
+                                         "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                         "exit_code":  0
+                                     },
+                        "npm_typecheck":  {
+                                              "path":  "docs/reports/check_runs/20261117T0035367723266Z/npm_typecheck.log",
+                                              "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                              "exit_code":  0
+                                          },
+                        "npm_test":  {
+                                         "path":  "docs/reports/check_runs/20261117T0035367723266Z/npm_test.log",
+                                         "sha256":  "ab1f4ef56f2cb75702c2e2ca611f2591c14cc4d455f52710dd917e36ac6e341d",
+                                         "exit_code":  0
+                                     },
+                        "npm_build":  {
+                                          "path":  "docs/reports/check_runs/20261117T0035367723266Z/npm_build.log",
+                                          "sha256":  "69c1fbc4a547b5baea498f2213ec43387d2c7500dab09d9e13fbf6e3aaa02342",
+                                          "exit_code":  0
+                                      },
+                        "P137_evidence":  {
+                                              "path":  "docs/reports/check_runs/20261117T0035367723266Z/P137_evidence.log",
+                                              "sha256":  "e6930658428a797a4b53812a31472bac7b6a3634bfa0d230d7e9593545a05da5",
+                                              "exit_code":  0
+                                          }
+                    }
+}

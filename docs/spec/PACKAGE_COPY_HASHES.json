@@ -1,6 +1,6 @@
 {
   "source_package": "LARM_prompts_v3",
-  "package_version": "3.14.0",
+  "package_version": "3.16.0",
   "files": {
     "docs/spec/LARM_SPEC_V1.md": {
       "source": "LARM_SPEC_V1.md",
@@ -20,7 +20,7 @@
     },
     "docs/spec/manifest.json": {
       "source": "manifest.json",
-      "sha256": "bf32a86b9c7eeb5ae375df7e23f6374a5f4745af6725d44d3981b53b82451a83"
+      "sha256": "ff36a96b9dcd5c338a4200a933bf37d2410d1277cf2b09158f55a8a69b9efe2e"
     },
     "docs/spec/PROMPT_INDEX.md": {
       "source": "PROMPT_INDEX.md",
@@ -84,7 +84,7 @@
     },
     "docs/contracts/api-operations.json": {
       "source": "contracts/api-operations.json",
-      "sha256": "c53d8d01ee1b73e58a8008acf0cf8215d8529c5c91c7d29dd2828ccc2e4cd017"
+      "sha256": "3ffc2b848c7c892dbab1cf502b1840281935d0b5d73aceb3bb0200b12f7dba3c"
     },
     "docs/contracts/capability-contracts.json": {
       "source": "contracts/capability-contracts.json",
@@ -222,6 +222,14 @@
       "source": "contracts/REVISION_3_14_0_P120.md",
       "sha256": "c2dc47102af66fa4c61f5dc319d0d495f558689dbd6f4b39ca27428c8159cd37"
     },
+    "docs/contracts/REVISION_3_15_0_P081.md": {
+      "source": "contracts/REVISION_3_15_0_P081.md",
+      "sha256": "4046ffe58a61cd02d7cc3540859bfbbde0a5b96b4e80f82b09de7f8e9acccae6"
+    },
+    "docs/contracts/REVISION_3_16_0_P119.md": {
+      "source": "contracts/REVISION_3_16_0_P119.md",
+      "sha256": "7a49f685a744ac593fee16e790ef6b7c5a6d8200b47222012cf147f733185b8c"
+    },
     "docs/contracts/REVISION_3_1_0_P052.md": {
       "source": "contracts/REVISION_3_1_0_P052.md",
       "sha256": "0a09116084c66a4eb6a64faa20870c0718a73a03cb5f4860ac68f8c5c3a477c0"
@@ -280,11 +288,11 @@
     },
     "docs/contracts/schemas/domain.schema.json": {
       "source": "schemas/domain.schema.json",
-      "sha256": "384bed4e270a7011471d185bf3fc647f7beefde7266c8e5cf0608ab5615150c0"
+      "sha256": "d14a9585e4d70f0ac147a2493dfe31f299db19546b3b310a5842135e709c1bc4"
     },
     "docs/contracts/schemas/larm.schema.json": {
       "source": "schemas/larm.schema.json",
-      "sha256": "2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8"
+      "sha256": "1e27cd667c415e8663bc6c8a0562257f8a3ac6cb44a0b14dfd61d1b065025aca"
     },
     "tests/fixtures/benchmark-suites.json": {
       "source": "fixtures/benchmark-suites.json",

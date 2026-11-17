@@ -15,6 +15,7 @@ pub mod process;
 pub mod profiler;
 pub mod storage;
 pub mod tools;
+pub mod virtualization;
 
 pub use profiler::WindowsProfiler;
 

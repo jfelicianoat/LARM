@@ -26,6 +26,8 @@ pub mod gguf;
 mod gguf_golden;
 pub mod onnx;
 mod onnx_golden;
+pub mod onnx_quantize;
+pub mod onnxq_golden;
 pub mod profiles;
 pub mod protocol;
 pub mod runtime;

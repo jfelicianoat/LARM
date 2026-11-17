@@ -1,7 +1,7 @@
 {
   "product": "Local AI Runtime Manager (LARM)",
-  "package_version": "3.14.0",
-  "generated_at_utc": "2026-10-30T18:19:21Z",
+  "package_version": "3.16.0",
+  "generated_at_utc": "2026-11-16T05:49:39Z",
   "prompt_count": 128,
   "original_prompt_count": 107,
   "new_prompt_count": 21,
@@ -2205,7 +2205,8 @@
         "09_EXTERNAL_PROFILES.md",
         "04_RUNTIME_LEASES.md",
         "10_MULTIMODAL_PROTOCOL.md",
-        "11_CONFORMIDAD_V3.md"
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_15_0_P081.md"
       ],
       "spec_sections": [
         5,
@@ -2960,7 +2961,8 @@
         "02_STORAGE_DOWNLOAD.md",
         "07_API_EVENTS_MCP.md",
         "08_UI_RELEASE.md",
-        "11_CONFORMIDAD_V3.md"
+        "11_CONFORMIDAD_V3.md",
+        "REVISION_3_16_0_P119.md"
       ],
       "spec_sections": [
         44,
@@ -3911,6 +3913,16 @@
       "sha256": "396fae3c8ac40cb51389d8e07f802eaca890e69875c722826d885ea228a6788b"
     },
     {
+      "file": "contracts/REVISION_3_15_0_P081.md",
+      "bytes": 4103,
+      "sha256": "4046ffe58a61cd02d7cc3540859bfbbde0a5b96b4e80f82b09de7f8e9acccae6"
+    },
+    {
+      "file": "contracts/REVISION_3_16_0_P119.md",
+      "bytes": 3966,
+      "sha256": "7a49f685a744ac593fee16e790ef6b7c5a6d8200b47222012cf147f733185b8c"
+    },
+    {
       "file": "contracts/REVISION_3_1_0_P052.md",
       "bytes": 893,
       "sha256": "0a09116084c66a4eb6a64faa20870c0718a73a03cb5f4860ac68f8c5c3a477c0"
@@ -3977,8 +3989,8 @@
     },
     {
       "file": "contracts/api-operations.json",
-      "bytes": 74086,
-      "sha256": "c53d8d01ee1b73e58a8008acf0cf8215d8529c5c91c7d29dd2828ccc2e4cd017"
+      "bytes": 76700,
+      "sha256": "3ffc2b848c7c892dbab1cf502b1840281935d0b5d73aceb3bb0200b12f7dba3c"
     },
     {
       "file": "contracts/capability-contracts.json",
@@ -4807,13 +4819,13 @@
     },
     {
       "file": "schemas/domain.schema.json",
-      "bytes": 108595,
-      "sha256": "384bed4e270a7011471d185bf3fc647f7beefde7266c8e5cf0608ab5615150c0"
+      "bytes": 110691,
+      "sha256": "d14a9585e4d70f0ac147a2493dfe31f299db19546b3b310a5842135e709c1bc4"
     },
     {
       "file": "schemas/larm.schema.json",
-      "bytes": 360591,
-      "sha256": "2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8"
+      "bytes": 348794,
+      "sha256": "1e27cd667c415e8663bc6c8a0562257f8a3ac6cb44a0b14dfd61d1b065025aca"
     },
     {
       "file": "tools/generate_fixtures.py",
@@ -4841,7 +4853,7 @@
       "sha256": "e851a1bb61ab48e75f930e859ad83989b3236e4d1c8c9674b60342968967681d"
     }
   ],
-  "predecessor_package_version": "3.12.1",
+  "predecessor_package_version": "3.15.0",
   "audit_findings_addressed": [
     "H01",
     "H02",
@@ -4993,6 +5005,20 @@
       "date": "2026-11-12",
       "scope": "P120 variant promotion state machine: exclusive DEFAULT per (revision, format, quantization) with demotion of the previous DEFAULT, REJECTED/PINNED laterals and optimistic row_version",
       "audit": "contracts/REVISION_3_14_0_P120.md"
+    },
+    {
+      "version": "3.15.0",
+      "predecessor": "3.14.0",
+      "date": "2026-11-14",
+      "scope": "P081 execution hosts: read-only WSL2/container engine registry, execution_host_id reference on runtime_installation with strategy/host coherence, loopback-only port policy and forbidden host-mutating install plans",
+      "audit": "contracts/REVISION_3_15_0_P081.md"
+    },
+    {
+      "version": "3.16.0",
+      "predecessor": "3.15.0",
+      "date": "2026-11-16",
+      "scope": "P119 authorized automatic downloads: opt-in admission policy (source/capability/license/trust allowlists, daily byte quota, storage target), immutable admission history with day_key and revocation, watcher notify-only default and BACKGROUND auto-jobs",
+      "audit": "contracts/REVISION_3_16_0_P119.md"
     }
   ]
 }

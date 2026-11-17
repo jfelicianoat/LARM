@@ -1,0 +1,119 @@
+{
+    "prompt":  "P142",
+    "real":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.59s"
+                   },
+                   {
+                       "check":  "test_fixtures",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.62s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 PASS 81 copias idénticas al paquete 3.15.0"
+                   },
+                   {
+                       "check":  "python_tests",
+                       "result":  "PASS",
+                       "detail":  "exit=0 ---------------------------------------------------------------------- | Ran 2 tests in 37.476s | System.Management.Automation.RemoteException | OK | PASS: 8 suites"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.52s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "P142_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0 ==\u003e P142-REAL-scenario-g01-reports-blocked-with-real-owners: C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 tools/scenarios/g01.py |     PASS (0.1s) | P142: BLOCKED_REAL {\u0027PASS\u0027: 6, \u0027FAIL\u0027: 0, \u0027BLOCKED\u0027: 0, \u0027INAPPLICABLE\u0027: 0} bloqueos=2 -\u003e docs\\reports\\P142_cobertura-normativa-y-manifiesto-de-evidencia-por-requisito.evidence.json |    BLOQUEO  REAL_PASS de P142 exige el conjunto completo de prompts en REAL_PASS y los 15 escenarios realmente ejecutados en el PC IA (P138 lo exige); hoy 127 requisitos cubren 73 evidencias con la mayoría BLOCKED_REAL/NOT_STARTED — el verificador reporta esa distribución sin maquillarla. |    BLOQUEO  dependencia P007 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ],
+    "transcripts":  {
+                        "cargo_fmt":  {
+                                          "path":  "docs/reports/check_runs/20261115T1557016429571Z/cargo_fmt.log",
+                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                          "exit_code":  0
+                                      },
+                        "cargo_clippy":  {
+                                             "path":  "docs/reports/check_runs/20261115T1557016429571Z/cargo_clippy.log",
+                                             "sha256":  "07d4fc4ba9d4b801b6914bf2a1dff409d253b15be43d5cc05f89d87fab94778d",
+                                             "exit_code":  0
+                                         },
+                        "test_fixtures":  {
+                                              "path":  "docs/reports/check_runs/20261115T1557016429571Z/test_fixtures.log",
+                                              "sha256":  "218ca6d894fb12656991ae2c5b617cbbc0d472904d19e310ff80904ce95a2697",
+                                              "exit_code":  0
+                                          },
+                        "cargo_test":  {
+                                           "path":  "docs/reports/check_runs/20261115T1557016429571Z/cargo_test.log",
+                                           "sha256":  "f674952e2833e19dea8603c5ba330d5c15c67ff59aeacf2b1b38dedc272c93fe",
+                                           "exit_code":  0
+                                       },
+                        "architecture":  {
+                                             "path":  "docs/reports/check_runs/20261115T1557016429571Z/architecture.log",
+                                             "sha256":  "dd93c8d3783a8733bc80a19be08a4f0cad476257824eaca02ed24a8fa9129d9d",
+                                             "exit_code":  0
+                                         },
+                        "package_copy":  {
+                                             "path":  "docs/reports/check_runs/20261115T1557016429571Z/package_copy.log",
+                                             "sha256":  "c762238dcec9f5534423ec02255a3dae2f1f6d4b98f6b35267cef7da338e9d4d",
+                                             "exit_code":  0
+                                         },
+                        "python_tests":  {
+                                             "path":  "docs/reports/check_runs/20261115T1557016429571Z/python_tests.log",
+                                             "sha256":  "5e75a95c348ba9727273a974d03133ea1ba037f7f86562536963289bbba8a8a7",
+                                             "exit_code":  0
+                                         },
+                        "desktop_fmt":  {
+                                            "path":  "docs/reports/check_runs/20261115T1557016429571Z/desktop_fmt.log",
+                                            "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "exit_code":  0
+                                        },
+                        "desktop_clippy":  {
+                                               "path":  "docs/reports/check_runs/20261115T1557016429571Z/desktop_clippy.log",
+                                               "sha256":  "db31a2b8b72ebf124b6b32532a6659539b53870cc99e60574c2b247f3701f456",
+                                               "exit_code":  0
+                                           },
+                        "desktop_test":  {
+                                             "path":  "docs/reports/check_runs/20261115T1557016429571Z/desktop_test.log",
+                                             "sha256":  "03f20886fb34ea85a67699f9834f72802da9c59b8de24d5366ffe024198fbb27",
+                                             "exit_code":  0
+                                         },
+                        "P142_evidence":  {
+                                              "path":  "docs/reports/check_runs/20261115T1557016429571Z/P142_evidence.log",
+                                              "sha256":  "b1e7e2492acba3b86a58935f58edbff2a4a49f7fac821d26df0aa91ecb798b6d",
+                                              "exit_code":  0
+                                          }
+                    }
+}

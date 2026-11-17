@@ -246,6 +246,7 @@ async fn fixture(free_bytes: i64, last_seen_at: String) -> Fixture {
         storage_location_id: storage_id.clone(),
         profile_lock_hash: profile.lock_sha256,
         external_host_id: None,
+        execution_host_id: None,
     };
     let install_id = uid();
     let relative_path = format!(
@@ -255,7 +256,7 @@ async fn fixture(free_bytes: i64, last_seen_at: String) -> Fixture {
     let installation: larm_domain::runtime::RuntimeInstallation = serde_json::from_value(json!({
         "id":install_id,"created_at":at,"updated_at":at,"row_version":1,"metadata":{"fixture_only":true},
         "runtime_version_id":version.id,"storage_location_id":storage_id,"relative_path":relative_path,
-        "strategy":"PREBUILT_BINARY","external_host_id":null,"state":"INSTALL_PLANNED",
+        "strategy":"PREBUILT_BINARY","external_host_id":null,"execution_host_id":null,"state":"INSTALL_PLANNED",
         "ownership":"LARM_MANAGED","lock_hash":request.profile_lock_hash,"stage":"INSTALL_PLANNED","registration_mode":"MANAGED"
     })).unwrap();
     let mut plan: larm_domain::artifacts::Plan = serde_json::from_value(json!({

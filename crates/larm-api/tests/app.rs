@@ -101,6 +101,7 @@ async fn harness_with_replay(origins: Vec<String>, replay: Option<Arc<dyn EventR
     });
     let state = AppState {
         auth: principals,
+        auth_limiter: Arc::new(larm_api::auth::AuthRateLimiter::new()),
         readiness: probe.clone(),
         bus: bus.clone(),
         config: AppConfig {

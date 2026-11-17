@@ -1,0 +1,106 @@
+{
+  "prompt_id": "P061",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "2ba329f239d305db70d3223594fa085917454aa05d9c3e33005b9ca58f10c6cb",
+  "inputs_hash": "352ff58073cd097a7f0c04683170b114e14ff6b534d5106fe4a046ae5df662d9",
+  "changed_files": [
+    "adapters/runtime/llama-cpp/README.md",
+    "adapters/runtime/llama-cpp/core.py",
+    "adapters/runtime/llama-cpp/tests/test_p061_core.py",
+    "docs/adapters/llama-cpp.md",
+    "docs/implementation/STATE.md",
+    "docs/reports/P061_llama-cpp-compatibilidad-serving-smoke-tests-y-llama-bench.evidence.json",
+    "docs/reports/P061_llama-cpp-compatibilidad-serving-smoke-tests-y-llama-bench.md",
+    "tools/p061_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P061-CONTRACT-core-synthetic",
+      "kind": "CONTRACT",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 adapters\\runtime\\llama-cpp\\tests\\test_p061_core.py CompatibilidadSintetica FormatoBench",
+      "fixture_hashes": [
+        "adapters/runtime/llama-cpp/tests/test_p061_core.py:308d9ee5600b69fa22af500ca5eedb33f8ede5633448e371c371aeb5e5aab5d1"
+      ],
+      "expected": "lectura GGUF sintética (magic/version/kv), arch desconocido incompatible, tool_calling/multimodal false sin evidencia, ModelBundle exige mmproj para mllama, argumentos sólo flags contractuales sin shell, parser llama-bench versionado con formato desconocido fallando",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 9 tests in 0.009s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P061_runs/P061-CONTRACT-core-synthetic.log#sha256=4d20b80dcefa52e6c6566af96e4d0b4a6d5a269ea25ec7c791e896896f6190a3"
+      ]
+    },
+    {
+      "id": "P061-REAL-gguf-compatibility-pc-ia",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 adapters\\runtime\\llama-cpp\\tests\\test_p061_core.py RealLlamaCppPCIA.test_00_compatibilidad_con_gguf_real_de_ollama",
+      "fixture_hashes": [
+        "adapters/runtime/llama-cpp/tests/test_p061_core.py:308d9ee5600b69fa22af500ca5eedb33f8ede5633448e371c371aeb5e5aab5d1"
+      ],
+      "expected": "compatibilidad determinada por metadata del GGUF real de Ollama (granite-embedding 30m, arch bert) + capacidades del build b79696f; embeddings declarado, tool_calling/multimodal false",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 1 test in 0.018s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P061_runs/P061-REAL-gguf-compatibility-pc-ia.log#sha256=eacc777d93f3e82363b1c0055c62310145d0c931359f9c50a69bb567951e44b0"
+      ]
+    },
+    {
+      "id": "P061-REAL-server-lifecycle-health-models-embeddings",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 adapters\\runtime\\llama-cpp\\tests\\test_p061_core.py RealLlamaCppPCIA.test_10_ciclo_de_vida_server_health_models_embeddings_y_parada",
+      "fixture_hashes": [
+        "adapters/runtime/llama-cpp/tests/test_p061_core.py:308d9ee5600b69fa22af500ca5eedb33f8ede5633448e371c371aeb5e5aab5d1"
+      ],
+      "expected": "llama-server real (build b79696f) arrancado en puerto loopback del PC IA con el GGUF real: health 200, /v1/models con el modelo, /v1/embeddings con vector 384d y parada determinista",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 1 test in 0.574s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P061_runs/P061-REAL-server-lifecycle-health-models-embeddings.log#sha256=b38f499d94d8ecff77b4c6d5398b66b29e24ed8954b6918ec5f91011306c4e79"
+      ]
+    },
+    {
+      "id": "P061-REAL-llama-bench-two-builds",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 adapters\\runtime\\llama-cpp\\tests\\test_p061_core.py RealLlamaCppPCIA.test_20_llama_bench_real_en_los_dos_builds",
+      "fixture_hashes": [
+        "adapters/runtime/llama-cpp/tests/test_p061_core.py:308d9ee5600b69fa22af500ca5eedb33f8ede5633448e371c371aeb5e5aab5d1"
+      ],
+      "expected": "llama-bench real en los dos builds side-by-side (b79696f y d2d6269): 5 repeticiones, salida cruda con sha256, parser versionado y versiones distintas entre builds",
+      "observed": "exit=0; ---------------------------------------------------------------------- | Ran 1 test in 0.724s | OK",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P061_runs/P061-REAL-llama-bench-two-builds.log#sha256=c2e75be6ad35c75ab052dbc28000ec85f8d5fbbc46b87e0c218291d97161342d"
+      ]
+    },
+    {
+      "id": "P061-REAL-text-generation-smoke-chat-model",
+      "kind": "REAL",
+      "command": "smoke de generación de texto con un modelo de chat autorizado",
+      "fixture_hashes": [],
+      "expected": "chat completion real (tokens limitados) contra llama-server con un modelo de chat del PC IA",
+      "observed": "NO EJECUTADA: los modelos de chat disponibles (tev1 4b / gemma4 12b) requieren la autorización explícita del operador para servirlos fuera de Ollama; embeddings ya probado con el GGUF real más pequeño",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P061-REAL-runtime-adapter-protocol-package",
+      "kind": "REAL",
+      "command": "paquete del Runtime Adapter Protocol de llama.cpp con admisión y leases",
+      "fixture_hashes": [],
+      "expected": "worker empaquetado con los métodos runtime.* observados por la cualificación P026 real y admisión runtime.install con profile lock cualificado",
+      "observed": "NO EJECUTADA: la admisión P031 exige lock cualificado (P099 UNQUALIFIED) y las interfaces P034/P036 conservan BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "paquete del Runtime Adapter Protocol y admisión con leases: dependencias P034/P036/P090/P099/P031 en BLOCKED_REAL (contrato 00)",
+    "smoke de generación con modelo de chat: requiere autorización explícita del operador para servir los GGUF de chat del PC IA fuera de Ollama",
+    "dependencia P060 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P034 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P036 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P042 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P103 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P090 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-11-15T18:06:00.550Z"
+}

@@ -29,6 +29,10 @@ y [convert_lora_to_gguf.py](https://github.com/ggml-org/llama.cpp/blob/master/co
 Estas referencias `master` orientan el inventario; no sustituyen la captura de
 fuente y documentación fijada por revisión que P099 exige para un profile lock.
 
+## Hosts de ejecución (P081)
+
+La abstracción de hosts de ejecución (revisión contractual 3.15.0) ya observa read-only los motores virtualizados del equipo — WSL2 (`wsl --status/--list --verbose`) y el motor de contenedores (`docker --version/info --format`) — y los expone por `GET /api/v1/execution-hosts` y en la pantalla Runtimes. Un build de llama.cpp para Linux bajo WSL2 se registrará con estrategia `WSL` y `execution_host_id` del distro observado, nunca como runtime Windows nativo; los comandos que instalen distros, habiliten features de Windows o muten el estado global del motor se rechazan con `execution_host_plan_mutates_host`. La compatibilidad de un runtime concreto exige su lock cualificado (P099).
+
 ## Pendiente de P060
 
 El paquete todavía no implementa el protocolo de adaptadores de LARM ni planes

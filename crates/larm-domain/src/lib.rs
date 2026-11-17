@@ -20,6 +20,7 @@ pub mod correlation;
 pub mod credential;
 pub mod custom_rules;
 pub mod download;
+pub mod download_admission;
 pub mod error;
 pub mod estimate;
 pub mod evaluation;

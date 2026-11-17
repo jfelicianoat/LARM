@@ -172,7 +172,7 @@ mod tests {
             .values()
             .map(|p| p.as_object().unwrap().len())
             .sum();
-        assert_eq!(count, 154);
+        assert_eq!(count, 159);
         let schemas = doc["components"]["schemas"].as_object().unwrap();
         let mut refs = Vec::new();
         all_refs(&doc, &mut refs);
@@ -217,6 +217,7 @@ mod tests {
                 .is_object()
         );
         assert!(is_implemented("POST", "/api/v1/runtime-installations"));
+        assert!(is_implemented("GET", "/api/v1/execution-hosts"));
         assert!(is_implemented("GET", "/api/v1/custom-rules"));
         assert!(is_implemented("PATCH", "/api/v1/custom-rules"));
         assert!(is_implemented("GET", "/api/v1/compatibility"));
@@ -296,6 +297,11 @@ pub const IMPLEMENTED: &[(&str, &str)] = &[
     ("GET", "/api/v1/runtime-installations/{id}"),
     ("GET", "/api/v1/runtime-backends"),
     ("GET", "/api/v1/runtime-backends/{id}"),
+    ("GET", "/api/v1/execution-hosts"),
+    ("PUT", "/api/v1/download-admission-policy"),
+    ("GET", "/api/v1/download-admission-policy"),
+    ("GET", "/api/v1/download-admissions"),
+    ("POST", "/api/v1/download-admissions/{id}/revoke"),
     ("GET", "/api/v1/external-hosts"),
     ("POST", "/api/v1/external-hosts"),
     ("GET", "/api/v1/external-hosts/{id}"),

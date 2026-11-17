@@ -1,0 +1,3076 @@
+{
+  "counts": {
+    "entities": 34,
+    "plugin_families": 5,
+    "prompts": 127,
+    "runtimes": 20,
+    "scenarios": 15,
+    "screens": 14,
+    "source_types": 14
+  },
+  "coverage": {
+    "entities": [
+      {
+        "id": "canonical_model",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "model_distribution",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "model_revision",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "model_variant",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "model_bundle",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "model_artifact",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "artifact_provenance",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "artifact_location",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "model_source",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "model_source_adapter",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "model_source_account",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "runtime",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "runtime_adapter",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "runtime_version",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "runtime_installation",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "runtime_backend",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "runtime_instance",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "external_host",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "hardware_profile",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "storage_location",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "compatibility_record",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "launch_profile",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "runtime_lease",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "inference_endpoint",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "download_job",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "transformation_job",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "technical_benchmark",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "evaluation_reference",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "certification",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "source_watch",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "notification",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "event",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "credential_reference",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "adapter_installation",
+        "kind": "entity",
+        "owners": [],
+        "status": "NOT_STARTED"
+      }
+    ],
+    "plugin_families": [
+      {
+        "id": "runtime",
+        "kind": "plugin_family",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "source",
+        "kind": "plugin_family",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "protocol",
+        "kind": "plugin_family",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "transformation",
+        "kind": "plugin_family",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "benchmark",
+        "kind": "plugin_family",
+        "owners": [],
+        "status": "NOT_STARTED"
+      }
+    ],
+    "runtimes": [
+      {
+        "id": "llama.cpp",
+        "kind": "runtime",
+        "owners": [
+          "P060",
+          "P061"
+        ],
+        "status": "BLOCKED_REAL"
+      },
+      {
+        "id": "ONNX Runtime",
+        "kind": "runtime",
+        "owners": [
+          "P062"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "ORT GenAI",
+        "kind": "runtime",
+        "owners": [
+          "P063"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Windows ML",
+        "kind": "runtime",
+        "owners": [
+          "P064"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "stable-diffusion.cpp",
+        "kind": "runtime",
+        "owners": [
+          "P066"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "whisper.cpp",
+        "kind": "runtime",
+        "owners": [
+          "P067"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Lemonade",
+        "kind": "runtime",
+        "owners": [
+          "P068",
+          "P069"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Ollama",
+        "kind": "runtime",
+        "owners": [
+          "P090",
+          "P091",
+          "P099"
+        ],
+        "status": "BLOCKED_REAL"
+      },
+      {
+        "id": "MLC LLM",
+        "kind": "runtime",
+        "owners": [
+          "P073"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "PyTorch/Transformers",
+        "kind": "runtime",
+        "owners": [
+          "P070"
+        ],
+        "status": "BLOCKED_REAL"
+      },
+      {
+        "id": "Diffusers",
+        "kind": "runtime",
+        "owners": [
+          "P071"
+        ],
+        "status": "BLOCKED_REAL"
+      },
+      {
+        "id": "sherpa-onnx",
+        "kind": "runtime",
+        "owners": [
+          "P074"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "OpenVINO",
+        "kind": "runtime",
+        "owners": [
+          "P075"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Foundry Local",
+        "kind": "runtime",
+        "owners": [
+          "P076"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "CTranslate2",
+        "kind": "runtime",
+        "owners": [
+          "P077"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "ComfyUI",
+        "kind": "runtime",
+        "owners": [
+          "P078"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "LM Studio",
+        "kind": "runtime",
+        "owners": [
+          "P079"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "KoboldCpp",
+        "kind": "runtime",
+        "owners": [
+          "P080"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "NCNN",
+        "kind": "runtime",
+        "owners": [
+          "P082"
+        ],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "MNN",
+        "kind": "runtime",
+        "owners": [
+          "P083"
+        ],
+        "status": "NOT_STARTED"
+      }
+    ],
+    "screens": [
+      {
+        "id": "Inicio",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Descubrir",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Mis modelos",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Runtimes",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Instancias",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Hardware",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Almacenamiento",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Descargas",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Benchmarks",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Actualizaciones",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Fuentes",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Adaptadores",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Notificaciones",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "Configuración",
+        "kind": "screen",
+        "owners": [],
+        "status": "NOT_STARTED"
+      }
+    ],
+    "source_types": [
+      {
+        "id": "HUGGING_FACE",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "MODELSCOPE",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "KAGGLE",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "OLLAMA_LIBRARY",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "GITHUB",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "OPENXLAB",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "NGC",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "CIVITAI",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "FOUNDRY_CATALOG",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "LEMONADE_REGISTRY",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "HTTP",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "GIT_LFS",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "LOCAL",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      },
+      {
+        "id": "UNC_PRIVATE",
+        "kind": "source_type",
+        "owners": [],
+        "status": "NOT_STARTED"
+      }
+    ]
+  },
+  "generated_from": {
+    "acceptance_sha256": "0b1a3bec9eb8157424a599f5f2728e4c4aa227b60a3100a67219d55b0d59ddd3",
+    "manifest_sha256": "2676cf280e58a94ae92a9723a404a29620fa61e69d4339f1a6592289734c8735"
+  },
+  "prompts": [
+    {
+      "closure_complete": null,
+      "dependencies": [],
+      "evidence_file": "P000_inventario-real-y-locks-de-entorno-antes-de-implementar.evidence.json",
+      "evidence_sha256": "b7b67b890e433b6650c42ba8508f0d5bbce1917e9b7cca94ffbb3c40c66b329c",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P000",
+      "real_tests": 7,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 7,
+        "FAULT": 2,
+        "REAL": 7
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P000"
+      ],
+      "evidence_file": "P001_bootstrap-del-monorepo-y-estructura-contractual.evidence.json",
+      "evidence_sha256": "558fc8d7aac9cd13f3aadfa1abd46accfab7f172a309aa0879858d865f1b09b4",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P001",
+      "real_tests": 6,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "FAULT": 1,
+        "INTEGRATION": 1,
+        "REAL": 6,
+        "UNIT": 10
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P001"
+      ],
+      "evidence_file": "P002_reglas-de-arquitectura-adr-y-contratos-de-dependencia.evidence.json",
+      "evidence_sha256": "101bc0562d33f40f95ca6ff6076ef1efd7a912a8da32d874a85c1db7608e5c8e",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P002",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "FAULT": 1,
+        "REAL": 1,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P001",
+        "P002"
+      ],
+      "evidence_file": "P003_configuracion-errores-y-logging-estructurado.evidence.json",
+      "evidence_sha256": "ffb78d75f26d1909213b0d57780a90e15a8e655d4d03b465a75792aded1419f4",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P003",
+      "real_tests": 6,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "FAULT": 2,
+        "REAL": 6,
+        "UNIT": 13
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P001",
+        "P002",
+        "P003"
+      ],
+      "evidence_file": "P004_persistencia-sqlite-y-framework-de-migraciones.evidence.json",
+      "evidence_sha256": "a3c311482303bebc61b36c2af1c9278956b5ae9243a191919a3930b9df44abdf",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P004",
+      "real_tests": 5,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 5,
+        "FAULT": 5,
+        "INTEGRATION": 3,
+        "REAL": 5,
+        "UNIT": 5
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P003",
+        "P004",
+        "P009"
+      ],
+      "evidence_file": "P005_api-administrativa-axum-v1-y-openapi.evidence.json",
+      "evidence_sha256": "5cb0af83dceca0722bf6c688db4e174e5cdefcd8e1fc3a9cece2529b5307c601",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P005",
+      "real_tests": 4,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "FAULT": 3,
+        "INTEGRATION": 3,
+        "REAL": 4,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P005"
+      ],
+      "evidence_file": "P006_shell-desktop-tauri-navegacion-y-cliente-api.evidence.json",
+      "evidence_sha256": "a2f99d2e4d1b6473e07b7551038222a9e0ac9872c10ffb591006980aa7d19ae1",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P006",
+      "real_tests": 5,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "FAULT": 3,
+        "INTEGRATION": 2,
+        "REAL": 5,
+        "UNIT": 10
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P001",
+        "P004",
+        "P005",
+        "P006"
+      ],
+      "evidence_file": "P007_ci-local-quality-gates-y-fixtures-comunes.evidence.json",
+      "evidence_sha256": "6d80192c4a21d7e321e517993f30f405330205264250207f3a342299084fa5dd",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P007",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "FAULT": 1,
+        "INTEGRATION": 4,
+        "REAL": 3,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P000",
+        "P001",
+        "P007"
+      ],
+      "evidence_file": "P008_prerequisitos-y-packaging-de-desarrollo-windows.evidence.json",
+      "evidence_sha256": "c1341d5b0e5c006386ce340715903e5ea2daead7e1351488e8c6b2bef7cce64f",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P008",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "REAL": 2,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P003",
+        "P004"
+      ],
+      "evidence_file": "P009_autenticacion-secretos-y-autorizaciones-desde-la-primera-api.evidence.json",
+      "evidence_sha256": "ba34653c71b69293cffd0bda9db0ef0de9cb807f4ed02eae4111068ce57c09ce",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P009",
+      "real_tests": 4,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 8,
+        "FAULT": 5,
+        "INTEGRATION": 2,
+        "REAL": 4,
+        "UNIT": 11
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P003",
+        "P004"
+      ],
+      "evidence_file": "P010_hardware-profiler-windows-cpu-y-memoria.evidence.json",
+      "evidence_sha256": "e4751521b370fcdfee4c6322a5f4e9b35381a3cca544777e6a26a409bc888b7c",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P010",
+      "real_tests": 4,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "FAULT": 5,
+        "INTEGRATION": 2,
+        "REAL": 4,
+        "UNIT": 14
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P010"
+      ],
+      "evidence_file": "P011_hardware-profiler-gpu-npu-y-backends.evidence.json",
+      "evidence_sha256": "7e76b6b63e9e46bff167c0acd3daeb840ba3a640a3e6b762f5a5dec228b30981",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P011",
+      "real_tests": 6,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "FAULT": 5,
+        "INTEGRATION": 2,
+        "REAL": 6,
+        "UNIT": 15
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P010"
+      ],
+      "evidence_file": "P012_storage-profiler-y-volume-identity-windows.evidence.json",
+      "evidence_sha256": "ecd922ff85d73de06db22b86d70e1c9437f2b8be90df6038638768682367ecdd",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P012",
+      "real_tests": 4,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 3,
+        "FAULT": 4,
+        "INTEGRATION": 1,
+        "REAL": 4,
+        "UNIT": 16
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P010",
+        "P011",
+        "P012"
+      ],
+      "evidence_file": "P013_hardwarefingerprint-reproducible.evidence.json",
+      "evidence_sha256": "34d0d60178bcccd172ae04daf04ca58eda1a1a986a8e288d33d9f50da579feb5",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P013",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 5,
+        "INTEGRATION": 2,
+        "REAL": 3,
+        "UNIT": 13
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P004",
+        "P012"
+      ],
+      "evidence_file": "P014_storagelocation-registry-y-politicas-de-colocacion.evidence.json",
+      "evidence_sha256": "7bc8046b0275602f46a069d0665d64c3444ae9e0cb381f185bb5009a1b4192b3",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P014",
+      "real_tests": 4,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "FAULT": 1,
+        "INTEGRATION": 3,
+        "REAL": 4,
+        "UNIT": 15
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P014"
+      ],
+      "evidence_file": "P015_storageestimate-y-preflight-de-espacio.evidence.json",
+      "evidence_sha256": "2e16ef87d47d75fe73bca3403922695c12a5b5554073d1d9b2903944efd83b9f",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P015",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "FAULT": 1,
+        "INTEGRATION": 1,
+        "REAL": 3,
+        "UNIT": 11
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P014",
+        "P015",
+        "P019"
+      ],
+      "evidence_file": "P016_artifactlocation-resolucion-de-rutas-y-movimiento-seguro.evidence.json",
+      "evidence_sha256": "2ef1b0d04a67a733d0f8b0724210190e96166d46fcc5fea88186bdeea19e00ac",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P016",
+      "real_tests": 7,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "FAULT": 10,
+        "INTEGRATION": 11,
+        "REAL": 7,
+        "UNIT": 5
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P016",
+        "P041"
+      ],
+      "evidence_file": "P017_content-addressed-store-deduplicacion-e-importacion.evidence.json",
+      "evidence_sha256": "0efe46857695404ecb0fa10acdb4b91faad27e50a010688b5b54ccaed0e05306",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P017",
+      "real_tests": 4,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 7,
+        "REAL": 4,
+        "UNIT": 6
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P017"
+      ],
+      "evidence_file": "P018_storage-analyzer-offline-volumes-y-rebuild-registry.evidence.json",
+      "evidence_sha256": "24e10633b8e3a4f91bc1d64b2df4ca502b5e3b1e1b55d1238e2a1baa3868b767",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P018",
+      "real_tests": 6,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 6,
+        "REAL": 6,
+        "UNIT": 6
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P004"
+      ],
+      "evidence_file": "P019_guards-de-artefactos-reservas-y-journal-transaccional.evidence.json",
+      "evidence_sha256": "df4213f3b5ef24fd566e73ccbd895d6d31dba074cbeef9f696abcb91cffa0433",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P019",
+      "real_tests": 5,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "FAULT": 2,
+        "INTEGRATION": 6,
+        "REAL": 5,
+        "UNIT": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P002",
+        "P003",
+        "P004",
+        "P009"
+      ],
+      "evidence_file": "P020_adapter-manifest-y-protocolo-v1.evidence.json",
+      "evidence_sha256": "ee45c0d9dfe967995f462ca7e90af0716663b8c0713dbf6ed9964cb01d52a886",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P020",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 2,
+        "REAL": 3,
+        "UNIT": 6
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P020"
+      ],
+      "evidence_file": "P021_adapter-host-workers-timeout-crash-y-lifecycle.evidence.json",
+      "evidence_sha256": "8646dfabde3dc9051aa354b33a975eef2f9998418b6f5bb5ab23e2c8ae23d108",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P021",
+      "real_tests": 15,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "REAL": 15,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P020",
+        "P021"
+      ],
+      "evidence_file": "P022_permisos-confianza-y-aislamiento-de-adaptadores.evidence.json",
+      "evidence_sha256": "68bf2ea615a0fde407373b9ddb986ac2b4d66273f07d72e6c2b9e2ccadac02a3",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P022",
+      "real_tests": 11,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "REAL": 11,
+        "UNIT": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P020",
+        "P021",
+        "P022"
+      ],
+      "evidence_file": "P023_adaptador-declarativo-configurable-desde-gui.evidence.json",
+      "evidence_sha256": "de11a58bba5965544f14c61f1aadb19dfedf90cfb1e059c3dc08787d22462f90",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P023",
+      "real_tests": 13,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "FAULT": 1,
+        "INTEGRATION": 1,
+        "REAL": 13,
+        "UNIT": 5
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P020",
+        "P022"
+      ],
+      "evidence_file": "P024_plugin-registry-instalacion-y-actualizacion-de-adaptadores.evidence.json",
+      "evidence_sha256": "502a26c36142a03c854453695a42fb8bbcbe515bf13fc6f2dd2684c1818ce3c0",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P024",
+      "real_tests": 10,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "INTEGRATION": 2,
+        "REAL": 10,
+        "UNIT": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P020",
+        "P021",
+        "P024",
+        "P043"
+      ],
+      "evidence_file": "P025_sdk-de-adaptadores-y-adaptadores-de-referencia.evidence.json",
+      "evidence_sha256": "236c1c6f5fc55f01b37df2bfc2dba7629e07c850c978ee93b8ea6f8bd67a8ae1",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P025",
+      "real_tests": 10,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "REAL": 10
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025"
+      ],
+      "evidence_file": "P026_conformance-sdk-para-las-cinco-familias-de-plugins.evidence.json",
+      "evidence_sha256": "535c5f895dde6572114fc3815d351739c19d84a3344764af9125fabbeaf11d89",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P026",
+      "real_tests": 14,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 23,
+        "FAULT": 8,
+        "INTEGRATION": 7,
+        "REAL": 14
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P023",
+        "P031"
+      ],
+      "evidence_file": "P027_custom-rules-como-datos-y-estrategia-nuget-gestionada.evidence.json",
+      "evidence_sha256": "8f736465749f3d65860edbac7e0c3f13155f2266adc43db3132883e2878d0bd9",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P027",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "INTEGRATION": 7,
+        "REAL": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P024",
+        "P026"
+      ],
+      "evidence_file": "P028_registro-remoto-firmado-y-exportacion-importacion-de-plugins.evidence.json",
+      "evidence_sha256": "6da0fb16c3b8bb3868105da2629f9ac252723d8c479c08d6bc7c5212da368c6a",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P028",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 13,
+        "INTEGRATION": 21,
+        "REAL": 1,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P004",
+        "P005"
+      ],
+      "evidence_file": "P029_outbox-y-eventos-durables-antes-de-watchers-y-procesos.evidence.json",
+      "evidence_sha256": "974c507bd5b571c27b5d245737ffa90aff47803b0056cd14c351d046a3c1a981",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P029",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "INTEGRATION": 3,
+        "REAL": 1,
+        "UNIT": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P004",
+        "P020"
+      ],
+      "evidence_file": "P030_dominio-y-persistencia-de-runtimes.evidence.json",
+      "evidence_sha256": "bfec11d800d678d245cc6966133eefdb837d3e85cf43b5ebac8d6e9786706d65",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P030",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 7,
+        "FAULT": 2,
+        "INTEGRATION": 6,
+        "REAL": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P019",
+        "P021",
+        "P030"
+      ],
+      "evidence_file": "P031_descubrimiento-e-instalacion-de-versiones-de-runtime.evidence.json",
+      "evidence_sha256": "81bbbb7418eb632a724a03f3a82044f2e54af9803e10234ec19f57cc46d974a2",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P031",
+      "real_tests": 4,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "INTEGRATION": 13,
+        "REAL": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P031"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P032",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P019",
+        "P021",
+        "P029",
+        "P030"
+      ],
+      "evidence_file": "P033_runtime-process-supervisor-e-instancias.evidence.json",
+      "evidence_sha256": "94dcecd436e65c7b351f7d4550ef9933828995222151cd3b82b0ac34939df13d",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P033",
+      "real_tests": 6,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "INTEGRATION": 15,
+        "REAL": 6,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P030",
+        "P033"
+      ],
+      "evidence_file": "P034_launch-profiles-y-configuracion-reproducible.evidence.json",
+      "evidence_sha256": "ed97a23328f723f7d1de12ca5893e3cfb17ccb5a7479828e273c200051c6575e",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P034",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 3,
+        "INTEGRATION": 6,
+        "REAL": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P011",
+        "P019",
+        "P034"
+      ],
+      "evidence_file": "P035_memory-estimator-y-scheduler-de-instancias.evidence.json",
+      "evidence_sha256": "1c5ef67aedad3bdde4598346c399584f8460fd9c2fc363098b7ac48a99fa62cc",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P035",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "INTEGRATION": 4,
+        "REAL": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P033"
+      ],
+      "evidence_file": "P036_inferenceendpoint-y-registro-de-protocolos.evidence.json",
+      "evidence_sha256": "c01723df715a32011b6850589f7d4c54e20adc6c5d4970fc44988f193c8fc920",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P036",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "INTEGRATION": 2,
+        "REAL": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P023",
+        "P030",
+        "P031",
+        "P036"
+      ],
+      "evidence_file": "P037_onboarding-generico-de-runtimes-desde-gui-api.evidence.json",
+      "evidence_sha256": "d601f7090ea968375a9cfc75e45a14fbdd7c43f4bf2d7f5d895a68b0b7047e9e",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P037",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 3,
+        "INTEGRATION": 1,
+        "REAL": 1,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P003",
+        "P004"
+      ],
+      "evidence_file": "P040_dominio-de-modelos-variantes-y-procedencia.evidence.json",
+      "evidence_sha256": "2fb449937c8bdcc909f0e79d7ea538ac35a61b5c980d622535aa553d1f439c7b",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P040",
+      "real_tests": 4,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 6,
+        "REAL": 4,
+        "UNIT": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P040"
+      ],
+      "evidence_file": "P041_modelbundle-artefactos-requeridos-e-identidad-canonica.evidence.json",
+      "evidence_sha256": "e227c0e405ffab8aab72d4f4b3af5f051628e12c0254160ace0a98e93de8e8ae",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P041",
+      "real_tests": 5,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 10,
+        "REAL": 5,
+        "UNIT": 5
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P016",
+        "P040",
+        "P041"
+      ],
+      "evidence_file": "P042_lifecycle-de-modelos-y-availability-derivada.evidence.json",
+      "evidence_sha256": "0cf21db3839bb16dc846eed82e8aef8b79ba562b16e9ea55cb27942dd18e5e9f",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P042",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "REAL": 3,
+        "UNIT": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P020",
+        "P040",
+        "P041"
+      ],
+      "evidence_file": "P043_modelsourceadapter-protocol-y-catalogo-de-fuentes.evidence.json",
+      "evidence_sha256": "b1a81187121150ca59dc3dd0ed703164233ae85492955c3363918b17f238b739",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P043",
+      "real_tests": 6,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 10,
+        "INTEGRATION": 1,
+        "REAL": 6
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P041",
+        "P043"
+      ],
+      "evidence_file": "P044_busqueda-federada-normalizacion-y-ranking-tecnico-inicial.evidence.json",
+      "evidence_sha256": "8b8a5b8062be10c6635836b2693ffb9adeea926b2d344a0d9ec916dc7806951e",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P044",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 5,
+        "REAL": 1,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P003",
+        "P009",
+        "P043"
+      ],
+      "evidence_file": "P045_autenticacion-de-fuentes-y-credentialreference.evidence.json",
+      "evidence_sha256": "0ed5f31ae3b7c56971b77d67927831e4cf55e0515a04f1a1801db817290aaaae",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P045",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "INTEGRATION": 3,
+        "REAL": 1,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P043",
+        "P045"
+      ],
+      "evidence_file": "P046_hugging-face-source-adapter.evidence.json",
+      "evidence_sha256": "0e64d1b74a4c2346f0ce6522868a8ee6a903d505cda75efefce8459108441bb2",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P046",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 2,
+        "REAL": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P043",
+        "P045"
+      ],
+      "evidence_file": "P047_modelscope-source-adapter.evidence.json",
+      "evidence_sha256": "94bf36ec440e11247ec7540f45e95db5514ce9735c005c2d68cae99876516fca",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P047",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "INTEGRATION": 2,
+        "REAL": 1,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P017",
+        "P043",
+        "P045"
+      ],
+      "evidence_file": "P048_github-releases-url-directa-local-y-unc-source-adapters.evidence.json",
+      "evidence_sha256": "4c9acc06789a0e0b3cd4d7ab657688aa06167dbdae2870b4d0b79c0567a118d9",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P048",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "REAL": 3,
+        "UNIT": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P043",
+        "P045"
+      ],
+      "evidence_file": "P049_fuentes-adicionales-kaggle-ollama-library-openxlab-ngc-y-civitai.evidence.json",
+      "evidence_sha256": "069bcb27b73a071d3ef27d4ed0fad8d8332b21efaeb8a62fd613b92d39687ad0",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P049",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "REAL": 2,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P029",
+        "P044",
+        "P046",
+        "P047"
+      ],
+      "evidence_file": "P050_source-watcher-sincronizacion-incremental-y-notificaciones.evidence.json",
+      "evidence_sha256": "0b2be3003b4bb3eb0be7ea5c612eb9a83885c111d66f2e417759638612e1d639",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P050",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "FAULT": 1,
+        "INTEGRATION": 2,
+        "REAL": 1,
+        "UNIT": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P015",
+        "P019",
+        "P029",
+        "P043"
+      ],
+      "evidence_file": "P051_download-manager-cola-pausa-reanudacion-y-checksum.evidence.json",
+      "evidence_sha256": "bfbecf13b9f5be1669bd96211d4a5f3f27a35a77fafe190f69a8d3628304056b",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P051",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 15,
+        "INTEGRATION": 7,
+        "REAL": 2,
+        "UNIT": 7
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P015",
+        "P041",
+        "P043",
+        "P051"
+      ],
+      "evidence_file": "P052_planificador-de-tamano-y-descarga-multi-fuente.evidence.json",
+      "evidence_sha256": "0bfc32ec9c2bc3c153ffb856b2eaa6506d81395cb8dc7ca63038eed2dbe1cbae",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P052",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 12,
+        "INTEGRATION": 13,
+        "REAL": 2,
+        "UNIT": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P011",
+        "P025",
+        "P031",
+        "P032",
+        "P099"
+      ],
+      "evidence_file": "P060_llama-cpp-descubrimiento-instalacion-y-versiones.evidence.json",
+      "evidence_sha256": "278fd3d3514664f60e82e3ca51afcbaf8c3256ddead4ff63625d4cd5998cd6d6",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P060",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "REAL": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P034",
+        "P036",
+        "P042",
+        "P060",
+        "P090",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P061",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P011",
+        "P025",
+        "P031",
+        "P071",
+        "P099"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P062",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P034",
+        "P036",
+        "P062",
+        "P090",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P063",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P011",
+        "P062",
+        "P099"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P064",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P062",
+        "P071",
+        "P093"
+      ],
+      "evidence_file": "P065_microsoft-olive-transformacion-y-optimizacion-onnx.evidence.json",
+      "evidence_sha256": "e4ba58f4e63ad8cd505d57bd791a49c54bd52cb46773a79f296c8c8970c9d6bc",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P065",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 1,
+        "REAL": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P031",
+        "P034",
+        "P036",
+        "P090",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P066",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P031",
+        "P034",
+        "P036",
+        "P090",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P067",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P030",
+        "P045",
+        "P099"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P068",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P036",
+        "P042",
+        "P068",
+        "P090"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P069",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P090",
+        "P099"
+      ],
+      "evidence_file": "P070_ollama-runtime-host-adapter.evidence.json",
+      "evidence_sha256": "fbfa342828266922a46b14c990b5938642f5c408f0dac2c1a2a118b0ba030b97",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P070",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "INTEGRATION": 2,
+        "REAL": 2,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P022",
+        "P031",
+        "P040"
+      ],
+      "evidence_file": "P071_python-environment-manager-y-pytorch-transformers.evidence.json",
+      "evidence_sha256": "f662d9c4567abe3ef54a79e36fb7e39fb3ff46095aac8045168779ea8d134b36",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P071",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 1,
+        "REAL": 2,
+        "UNIT": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P036",
+        "P071",
+        "P090",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": "P072_diffusers-pytorch-runtime.evidence.json",
+      "evidence_sha256": "b79aff1d4ac992317459f8f9160d84c05ebc4d0dd9a40a13198950766800e02e",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P072",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "INTEGRATION": 1,
+        "REAL": 3,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P090",
+        "P093",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P073",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P036",
+        "P062",
+        "P090",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P074",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P090",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P075",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P090",
+        "P099"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P076",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P090",
+        "P093",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P077",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P022",
+        "P025",
+        "P030",
+        "P036",
+        "P090",
+        "P099"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P078",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P090",
+        "P099"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P079",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P030",
+        "P036",
+        "P090",
+        "P099"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P080",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P022",
+        "P030",
+        "P031"
+      ],
+      "evidence_file": "P081_wsl2-y-container-execution-host-abstraction.evidence.json",
+      "evidence_sha256": "3f1da32a598707ebb37367d99473d39862a97290b453375f064e045313be889d",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P081",
+      "real_tests": 3,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 6,
+        "REAL": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P082",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P025",
+        "P031",
+        "P036",
+        "P099",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P083",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P013",
+        "P019",
+        "P030",
+        "P035",
+        "P041"
+      ],
+      "evidence_file": "P090_compatibility-engine-hard-gates.evidence.json",
+      "evidence_sha256": "ef6d63a84273d21c656d099e8f2f906c885cdfa7af7a7d2c9b387c3fe139d57f",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P090",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 8,
+        "REAL": 2,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P015",
+        "P035",
+        "P090"
+      ],
+      "evidence_file": "P091_estimacion-de-recursos-y-technicalfitscore.evidence.json",
+      "evidence_sha256": "95fc92d67e03072b8e4d57154e2288e5fd93f31819228ff8b8f164c004878192",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P091",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "REAL": 1,
+        "UNIT": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P044",
+        "P091"
+      ],
+      "evidence_file": "P092_recomendacion-de-variante-y-runtime-para-el-pc.evidence.json",
+      "evidence_sha256": "634d96546ac06f86fd30645abe4955e6d025e450aecdd3fd7c9354a6cbb41609",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P092",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 3,
+        "REAL": 1,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P016",
+        "P040",
+        "P051"
+      ],
+      "evidence_file": "P093_transformation-pipeline-framework.evidence.json",
+      "evidence_sha256": "a49498550ce5b37c45c5674b1fe1e12ca289d031d033560d5e30e995cccf2cbe",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P093",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 3,
+        "INTEGRATION": 4,
+        "REAL": 2,
+        "UNIT": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P060",
+        "P093"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P094",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P062",
+        "P065",
+        "P093"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P095",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P093",
+        "P094",
+        "P095"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P096",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P042",
+        "P050",
+        "P051",
+        "P117"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P097",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P017",
+        "P041"
+      ],
+      "evidence_file": "P098_importadores-de-todos-los-bundles-y-recuperacion-sin-base-de-datos.evidence.json",
+      "evidence_sha256": "3108379aee4e2508fb87a806f91a1c9ee1b7bf669b6953ada9e3840709cfa2ab",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P098",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 8,
+        "INTEGRATION": 11,
+        "REAL": 1,
+        "UNIT": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P000",
+        "P020",
+        "P036",
+        "P043"
+      ],
+      "evidence_file": "P099_perfiles-externos-por-version-y-fixtures-de-apis-reales.evidence.json",
+      "evidence_sha256": "9ed3bc31c2243390252ef28f7bbc2db4757a0d4ee043fad6faa3004f0c6a467c",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P099",
+      "real_tests": 5,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 20,
+        "REAL": 5
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P019",
+        "P033",
+        "P035",
+        "P036",
+        "P042",
+        "P090"
+      ],
+      "evidence_file": "P100_runtime-lease-service.evidence.json",
+      "evidence_sha256": "284169a32730ad7a2942147698a00d7805577a524bd7927e4b931ec44583eef5",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P100",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 5,
+        "INTEGRATION": 10,
+        "REAL": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P009",
+        "P069",
+        "P100"
+      ],
+      "evidence_file": "P101_contrato-larm-con-ai-broker-y-localruntimeresolver.evidence.json",
+      "evidence_sha256": "ef4a849aba43bd826a4265f2785b7af0aea33e9d336760cdd1fe2b6e57973439",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P101",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 5,
+        "INTEGRATION": 3,
+        "REAL": 1,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P066",
+        "P067",
+        "P071",
+        "P072",
+        "P073",
+        "P074",
+        "P075",
+        "P077",
+        "P078",
+        "P082",
+        "P083",
+        "P101"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P102",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P021",
+        "P026",
+        "P036"
+      ],
+      "evidence_file": "P103_protocol-sidecar-framework.evidence.json",
+      "evidence_sha256": "6c4aaff8187416ccc25df2879d400e971aa0f77c6cfc51fd01e5646c97abea85",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P103",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 1,
+        "REAL": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P005",
+        "P022",
+        "P029",
+        "P032",
+        "P051",
+        "P100"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P104",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P102",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P105",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P042",
+        "P092",
+        "P100",
+        "P103"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P106",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P099",
+        "P101"
+      ],
+      "evidence_file": "P107_cambio-companero-en-ai-broker-localruntimeresolver-real.evidence.json",
+      "evidence_sha256": "427d6b56a7cc37e41cba461d754cd43499e80baa8d1bffeeeb09c8b47c50513d",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P107",
+      "real_tests": 9,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 2,
+        "FAULT": 1,
+        "INTEGRATION": 2,
+        "REAL": 9,
+        "UNIT": 7
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P102",
+        "P103",
+        "P106",
+        "P107"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P108",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P013",
+        "P034",
+        "P096"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P110",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P061",
+        "P063",
+        "P110"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P111",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P066",
+        "P067",
+        "P074",
+        "P110"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P112",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P005",
+        "P029",
+        "P050",
+        "P110"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P113",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P110",
+        "P113",
+        "P118"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P114",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P101",
+        "P114"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P115",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P115"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P116",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P032",
+        "P110",
+        "P111",
+        "P112",
+        "P116",
+        "P142"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P117",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P107",
+        "P110",
+        "P113"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P118",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P009",
+        "P050",
+        "P052"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P119",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P006",
+        "P014",
+        "P033",
+        "P113"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P120",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P044",
+        "P092",
+        "P120"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P121",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P052",
+        "P092",
+        "P121"
+      ],
+      "evidence_file": "P122_detalle-de-modelo-variantes-y-preflight-de-descarga.evidence.json",
+      "evidence_sha256": "baa48ed4d05f00eacb1ce133ee0a8572fb43f3440045b4feae3c180cc39b381b",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P122",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 2,
+        "REAL": 1,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P016",
+        "P018",
+        "P042",
+        "P098"
+      ],
+      "evidence_file": "P123_mis-modelos-y-gestion-multidisco.evidence.json",
+      "evidence_sha256": "5298a9b7420a42f1e91d83539b32476baf31e161af2395000dabc879a62c7d96",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P123",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 4,
+        "REAL": 1,
+        "UNIT": 3
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P032",
+        "P033",
+        "P037"
+      ],
+      "evidence_file": "P124_runtimes-versiones-backends-e-instancias.evidence.json",
+      "evidence_sha256": "3f14b10d5ffaea28b12bdeb6823c918e914ddc11b4a86a433461bde47ba5a077",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P124",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 4,
+        "REAL": 1,
+        "UNIT": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P051",
+        "P093"
+      ],
+      "evidence_file": "P125_descargas-y-transformaciones.evidence.json",
+      "evidence_sha256": "3286e0ac4d623eb97add2176df7401f32be97525d7ad955d32d13e908a342c08",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P125",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "INTEGRATION": 7,
+        "REAL": 1,
+        "UNIT": 5
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P110",
+        "P116",
+        "P117"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P126",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P024",
+        "P028",
+        "P045",
+        "P049",
+        "P141"
+      ],
+      "evidence_file": "P127_fuentes-cuentas-y-adaptadores.evidence.json",
+      "evidence_sha256": "52a9209f1a9e1ab68f2cbf00b4bc4a757ae49f4d3b43f0e5bd7f7bebce6b8f96",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P127",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "INTEGRATION": 8,
+        "REAL": 1,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P032",
+        "P050",
+        "P097",
+        "P113",
+        "P119"
+      ],
+      "evidence_file": "P128_notificaciones-watchers-y-actualizaciones.evidence.json",
+      "evidence_sha256": "1d976e2024aa4b159250fe21ce7f8b5884f8120bca9233e416e2c3cdde8ece25",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P128",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "INTEGRATION": 4,
+        "REAL": 1,
+        "UNIT": 4
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P120",
+        "P128",
+        "P139",
+        "P140"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P129",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P022",
+        "P026",
+        "P028",
+        "P071",
+        "P078"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P130",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P005",
+        "P009",
+        "P045",
+        "P104"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P131",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P018",
+        "P019",
+        "P029",
+        "P033",
+        "P051",
+        "P093",
+        "P100"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P132",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P004",
+        "P098",
+        "P132"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P133",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P003",
+        "P113",
+        "P131"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P134",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P026",
+        "P027",
+        "P028",
+        "P082",
+        "P083",
+        "P097",
+        "P098",
+        "P107",
+        "P108",
+        "P118",
+        "P119",
+        "P129",
+        "P132",
+        "P134",
+        "P137",
+        "P139",
+        "P140",
+        "P141",
+        "P142",
+        "P143"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P135",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P135"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P136",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P131",
+        "P132",
+        "P133"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P137",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P011",
+        "P014",
+        "P015",
+        "P018",
+        "P120"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P139",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P027",
+        "P028",
+        "P037",
+        "P119",
+        "P127",
+        "P139"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P140",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P045",
+        "P046",
+        "P047",
+        "P048",
+        "P049"
+      ],
+      "evidence_file": "P141_autenticacion-privada-oauth-ssh-cookies-y-git-lfs.evidence.json",
+      "evidence_sha256": "c7dbe3e6921c51c7f6724a9d240b1634f39244cb5ed8003e69b589cf612cea43",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P141",
+      "real_tests": 1,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 5,
+        "FAULT": 1,
+        "INTEGRATION": 3,
+        "REAL": 1,
+        "UNIT": 1
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P007"
+      ],
+      "evidence_file": "P142_cobertura-normativa-y-manifiesto-de-evidencia-por-requisito.evidence.json",
+      "evidence_sha256": "01d47da0176876916072b5d9031abda140dbe493a01a18046bca4373d644568f",
+      "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+      "id": "P142",
+      "real_tests": 2,
+      "status": "BLOCKED_REAL",
+      "tests_by_kind": {
+        "CONTRACT": 4,
+        "REAL": 2
+      }
+    },
+    {
+      "closure_complete": null,
+      "dependencies": [
+        "P028",
+        "P130",
+        "P131"
+      ],
+      "evidence_file": null,
+      "evidence_sha256": null,
+      "host_id": null,
+      "id": "P143",
+      "real_tests": 0,
+      "status": "NOT_STARTED",
+      "tests_by_kind": {}
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "G01",
+      "name": "Runtimes",
+      "oracle_present": true,
+      "owners": [
+        "P031",
+        "P032",
+        "P060"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G02",
+      "name": "Sources",
+      "oracle_present": true,
+      "owners": [
+        "P044",
+        "P046",
+        "P047"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G03",
+      "name": "Storage",
+      "oracle_present": true,
+      "owners": [
+        "P015",
+        "P052",
+        "P122"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G04",
+      "name": "Multi-disk",
+      "oracle_present": true,
+      "owners": [
+        "P014",
+        "P051",
+        "P122"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G05",
+      "name": "Move",
+      "oracle_present": true,
+      "owners": [
+        "P016",
+        "P123"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G06",
+      "name": "Drive loss",
+      "oracle_present": true,
+      "owners": [
+        "P012",
+        "P018",
+        "P042"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G07",
+      "name": "Compatibility",
+      "oracle_present": true,
+      "owners": [
+        "P090"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G08",
+      "name": "AI Broker",
+      "oracle_present": true,
+      "owners": [
+        "P100",
+        "P101",
+        "P107"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G09",
+      "name": "Laya/System-1",
+      "oracle_present": true,
+      "owners": [
+        "P106",
+        "P108",
+        "P116",
+        "P118"
+      ],
+      "procedure_present": true,
+      "status": "NOT_STARTED"
+    },
+    {
+      "id": "G10",
+      "name": "Lemonade",
+      "oracle_present": true,
+      "owners": [
+        "P068",
+        "P069"
+      ],
+      "procedure_present": true,
+      "status": "NOT_STARTED"
+    },
+    {
+      "id": "G11",
+      "name": "Benchmark",
+      "oracle_present": true,
+      "owners": [
+        "P110",
+        "P111",
+        "P117"
+      ],
+      "procedure_present": true,
+      "status": "NOT_STARTED"
+    },
+    {
+      "id": "G12",
+      "name": "Updates",
+      "oracle_present": true,
+      "owners": [
+        "P032",
+        "P117"
+      ],
+      "procedure_present": true,
+      "status": "NOT_STARTED"
+    },
+    {
+      "id": "G13",
+      "name": "Discovery",
+      "oracle_present": true,
+      "owners": [
+        "P050",
+        "P119",
+        "P128"
+      ],
+      "procedure_present": true,
+      "status": "BLOCKED_REAL"
+    },
+    {
+      "id": "G14",
+      "name": "MCP",
+      "oracle_present": true,
+      "owners": [
+        "P104"
+      ],
+      "procedure_present": true,
+      "status": "NOT_STARTED"
+    },
+    {
+      "id": "G15",
+      "name": "Recovery",
+      "oracle_present": true,
+      "owners": [
+        "P132",
+        "P133"
+      ],
+      "procedure_present": true,
+      "status": "NOT_STARTED"
+    }
+  ],
+  "schema_version": "larm.requirements-matrix/1"
+}

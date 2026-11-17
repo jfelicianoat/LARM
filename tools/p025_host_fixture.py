@@ -326,6 +326,22 @@ def main():
         expected.write_bytes(data)
         print(json.dumps({"package":str(folder / "package"),"work":str(folder / "work"),"profile":profile,"entry":entry,"expected_input":str(expected)}),flush=True)
         sys.stdin.buffer.read()
+    elif kind == "onnxq-conformance":
+        module=load("onnxq_factory",REPO / "adapters/transformation/onnx-quantize/package.py")
+        lock = json.loads((REPO / "environment.lock.json").read_text(encoding="utf-8"))
+        olive = next((e for e in lock["extensions"] if e.get("python_runtime") == "python-olive"), None)
+        if olive is None:
+            raise SystemExit("el runtime python-olive no está registrado en environment.lock.json")
+        runtime = Path(olive["path"])
+        if not (runtime / "Scripts/python.exe").is_file():
+            raise SystemExit(f"el runtime python-olive sellado no está en la ruta registrada: {runtime}")
+        os.environ["OLIVE_RUNTIME"] = str(runtime)
+        data=module.build_onnx_fixture()
+        _manifest,profile,entry=module.create(REPO,folder / "package",folder / "work",data)
+        expected = folder / "expected-input.bin"
+        expected.write_bytes(data)
+        print(json.dumps({"package":str(folder / "package"),"work":str(folder / "work"),"profile":profile,"entry":entry,"expected_input":str(expected),"olive_runtime":str(runtime)}),flush=True)
+        sys.stdin.buffer.read()
     elif kind == "onnx-conformance":
         module=load("onnx_factory",REPO / "adapters/transformation/onnx/package.py")
         data=module.build_conformance_safetensors()

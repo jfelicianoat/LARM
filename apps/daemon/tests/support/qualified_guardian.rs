@@ -7,6 +7,7 @@ use larm_adapter_host::{
     conformance::{
         gguf::{GgufConfig, GgufTransformationSuite},
         onnx::{OnnxConfig, OnnxTransformationSuite},
+        onnx_quantize::{OnnxQuantizeConfig, OnnxQuantizeSuite},
         profiles::Recipe,
         transformation::{ReferenceTransformationSuite, TransformationConfig},
         NativeSuite,
@@ -37,6 +38,8 @@ mod public_gguf_quant;
 mod public_h07;
 #[path = "public_onnx.rs"]
 mod public_onnx;
+#[path = "public_onnxq.rs"]
+mod public_onnxq;
 #[path = "public_witness_lost.rs"]
 mod public_witness_lost;
 #[path = "registered_guardian.rs"]
@@ -168,6 +171,20 @@ fn onnx_roots(fixture: &super::Fixture) -> RootMap {
     ])
 }
 
+/// Raíces del cuantizador ONNX de producto: su manifest declara los nombres
+/// reference-* (derivado del patrón de referencia) mapeados a los directorios
+/// del fixture.
+fn onnxq_roots(fixture: &super::Fixture) -> RootMap {
+    RootMap(vec![
+        ("product-package".into(), fixture.package.clone()),
+        ("product-onnxq-input".into(), fixture.work.join("input")),
+        ("product-onnxq-profile".into(), fixture.work.join("profile")),
+        ("product-onnxq-state".into(), fixture.work.join("state")),
+        ("product-onnxq-output".into(), fixture.work.join("output")),
+    ])
+}
+
+#[allow(clippy::too_many_arguments)] // selector de escenario de aceptación
 pub(super) async fn exercise(
     public: bool,
     cancel: bool,
@@ -176,9 +193,12 @@ pub(super) async fn exercise(
     gguf: bool,
     onnx: bool,
     quant: bool,
+    onnxq: bool,
 ) {
     let fixture = Fixture::new(if onnx {
         "onnx-conformance"
+    } else if onnxq {
+        "onnxq-conformance"
     } else if gguf || quant {
         "gguf-conformance"
     } else {
@@ -219,7 +239,7 @@ pub(super) async fn exercise(
     // authenticated request so the initial principal cache load already
     // contains it (5s TTL without mid-flight reload).
     let job_principal = public.then(|| {
-        if cancel || gguf || onnx || quant {
+        if cancel || gguf || onnx || quant || onnxq {
             download_restart::TemporaryPrincipal::enroll_canceller(&data, &settings)
         } else {
             download_restart::TemporaryPrincipal::enroll(&data, &settings)
@@ -245,7 +265,14 @@ pub(super) async fn exercise(
         forbidden: forbidden.clone(),
         evidence_root: output.join("p026"),
     });
-    let reference_config = (!gguf && !onnx && !quant).then(|| TransformationConfig {
+    let onnxq_config = onnxq.then(|| OnnxQuantizeConfig {
+        profile: fixture.data["profile"].clone(),
+        expected_input: fixture.data["expected_input"].as_str().unwrap().into(),
+        forbidden: forbidden.clone(),
+        evidence_root: output.join("p026"),
+        olive_runtime: fixture.data["olive_runtime"].as_str().unwrap().into(),
+    });
+    let reference_config = (!gguf && !onnx && !quant && !onnxq).then(|| TransformationConfig {
         profile: fixture.data["profile"].clone(),
         expected_input: fixture.data["expected_input"].as_str().unwrap().into(),
         forbidden: forbidden.clone(),
@@ -279,14 +306,18 @@ pub(super) async fn exercise(
         // el TTL de la aprobación de prueba debe cubrir toda la sesión.
         permissions:json!({"publisher":fixture.manifest.publisher,"permissions":fixture.manifest.permissions,"expires_at":timestamp(now+chrono::Duration::minutes(120)),"secret_refs":[]}).as_object().unwrap().clone()}
         .grant(uuid::Uuid::now_v7().to_string(),&ctx.actor_id,now,chrono::Duration::minutes(120)).unwrap();
-    let suite: Arc<dyn NativeSuite> = if let Some(config) = &onnx_config {
+    let suite: Arc<dyn NativeSuite> = if let Some(config) = &onnxq_config {
+        Arc::new(OnnxQuantizeSuite::new(config.clone()).unwrap())
+    } else if let Some(config) = &onnx_config {
         Arc::new(OnnxTransformationSuite::new(config.clone()).unwrap())
     } else if let Some(config) = &gguf_config {
         Arc::new(GgufTransformationSuite::new(config.clone()).unwrap())
     } else {
         Arc::new(ReferenceTransformationSuite::new(reference_config.clone().unwrap()).unwrap())
     };
-    let recipe = if let Some(config) = &onnx_config {
+    let recipe = if let Some(config) = &onnxq_config {
+        Recipe::OnnxQuantize(config.clone())
+    } else if let Some(config) = &onnx_config {
         Recipe::Onnx(config.clone())
     } else if let Some(config) = &gguf_config {
         Recipe::Gguf(config.clone())
@@ -295,6 +326,8 @@ pub(super) async fn exercise(
     };
     let roots = if onnx {
         onnx_roots(&fixture)
+    } else if onnxq {
+        onnxq_roots(&fixture)
     } else if gguf || quant {
         gguf_roots(&fixture)
     } else {
@@ -311,7 +344,7 @@ pub(super) async fn exercise(
             .unwrap(),
         inputs: vec![repo.join("tools/p025_host_fixture.py")],
         suite,
-        capability_profile: if gguf || onnx || quant {
+        capability_profile: if gguf || onnx || quant || onnxq {
             Some("product-capabilities.json".into())
         } else {
             Some("reference-capabilities.json".into())
@@ -421,6 +454,8 @@ job={job}"
             public_gguf_quant::start(inputs, job_principal)
         } else if onnx {
             public_onnx::start(inputs, job_principal)
+        } else if onnxq {
+            public_onnxq::start(inputs, job_principal)
         } else if gguf {
             public_gguf::start(inputs, job_principal)
         } else if witness_lost {
@@ -438,6 +473,8 @@ job={job}"
             "docs/reports/P093_runs/native-public-gguf-quant.json"
         } else if onnx {
             "docs/reports/P093_runs/native-public-onnx.json"
+        } else if onnxq {
+            "docs/reports/P093_runs/native-public-onnxq.json"
         } else if gguf {
             "docs/reports/P093_runs/native-public-gguf.json"
         } else if witness_lost {

@@ -333,6 +333,7 @@ async fn build_installation_plan(
         relative_path: Some(relative_destination),
         strategy: request.strategy,
         external_host_id: None,
+        execution_host_id: request.execution_host_id.clone(),
         state: InstallationState::InstallPlanned,
         ownership: RuntimeOwnership::LarmManaged,
         lock_hash: Some(request.profile_lock_hash.clone()),
@@ -695,6 +696,16 @@ impl RuntimeInstallService {
             || profile.key.runtime != context.adapter.runtime_family
         {
             return Err(conflict("runtime_install_profile_lock_binding_changed"));
+        }
+        // P081: el host referenciado debe existir y sostener la estrategia.
+        if let Some(id) = request.execution_host_id.as_deref() {
+            let host = self
+                .runtimes
+                .execution_host(id)
+                .await?
+                .ok_or_else(|| conflict("execution_host_reference_missing"))?;
+            crate::execution_host::validate_installation_host(request.strategy, Some(host.kind))
+                .map_err(|_| conflict("execution_host_strategy_mismatch"))?;
         }
         let declared_strategies = verify_adapter_binding(
             &context.installation,
@@ -2137,6 +2148,7 @@ mod tests {
             storage_location_id: storage_id.clone(),
             profile_lock_hash: profile_hash.clone(),
             external_host_id: None,
+            execution_host_id: None,
         };
         let destination = format!("runtimes/{runtime_id}/{version_id}/{profile_hash}");
         let mut plan: larm_domain::artifacts::Plan = serde_json::from_value(json!({
@@ -2183,6 +2195,7 @@ mod tests {
             relative_path: binding.relative_destination.clone(),
             strategy: request.strategy,
             external_host_id: None,
+            execution_host_id: None,
             state: InstallationState::Installing,
             ownership: RuntimeOwnership::LarmManaged,
             lock_hash: Some(request.profile_lock_hash.clone()),
@@ -2516,6 +2529,7 @@ mod tests {
             storage_location_id: storage_id.clone(),
             profile_lock_hash: "a".repeat(64),
             external_host_id: None,
+            execution_host_id: None,
         };
         let adapter_plan = session.plan_install(&request).await.unwrap();
         assert!(!adapter_plan.resource_ids.contains(&version_id));

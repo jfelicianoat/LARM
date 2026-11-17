@@ -1,0 +1,119 @@
+{
+    "prompt":  "P061",
+    "real":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.24s"
+                   },
+                   {
+                       "check":  "test_fixtures",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.66s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 PASS 81 copias idénticas al paquete 3.15.0"
+                   },
+                   {
+                       "check":  "python_tests",
+                       "result":  "PASS",
+                       "detail":  "exit=0 ---------------------------------------------------------------------- | Ran 2 tests in 37.491s | System.Management.Automation.RemoteException | OK | PASS: 9 suites"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.65s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "P061_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0    BLOQUEO  dependencia P034 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P036 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P042 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P103 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P090 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ],
+    "transcripts":  {
+                        "cargo_fmt":  {
+                                          "path":  "docs/reports/check_runs/20261115T1729126211877Z/cargo_fmt.log",
+                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                          "exit_code":  0
+                                      },
+                        "cargo_clippy":  {
+                                             "path":  "docs/reports/check_runs/20261115T1729126211877Z/cargo_clippy.log",
+                                             "sha256":  "e90f08937808fc6a6a815fae41622d81baa5b8b545669a60cc4bb5b2dda62323",
+                                             "exit_code":  0
+                                         },
+                        "test_fixtures":  {
+                                              "path":  "docs/reports/check_runs/20261115T1729126211877Z/test_fixtures.log",
+                                              "sha256":  "a40be9390897172eb49dff93b7033c4a95f71953ee8a2cc3c85acbd81f909882",
+                                              "exit_code":  0
+                                          },
+                        "cargo_test":  {
+                                           "path":  "docs/reports/check_runs/20261115T1729126211877Z/cargo_test.log",
+                                           "sha256":  "fc4112b874d9ab55113ecd15fb320fb657683fb7680e6dbcaa1a35a5333cb244",
+                                           "exit_code":  0
+                                       },
+                        "architecture":  {
+                                             "path":  "docs/reports/check_runs/20261115T1729126211877Z/architecture.log",
+                                             "sha256":  "dd93c8d3783a8733bc80a19be08a4f0cad476257824eaca02ed24a8fa9129d9d",
+                                             "exit_code":  0
+                                         },
+                        "package_copy":  {
+                                             "path":  "docs/reports/check_runs/20261115T1729126211877Z/package_copy.log",
+                                             "sha256":  "c762238dcec9f5534423ec02255a3dae2f1f6d4b98f6b35267cef7da338e9d4d",
+                                             "exit_code":  0
+                                         },
+                        "python_tests":  {
+                                             "path":  "docs/reports/check_runs/20261115T1729126211877Z/python_tests.log",
+                                             "sha256":  "6a9b37b3f7e9e7e5823ff4b9c6c509573400cee81583c6e88d7c7ef00ace2df5",
+                                             "exit_code":  0
+                                         },
+                        "desktop_fmt":  {
+                                            "path":  "docs/reports/check_runs/20261115T1729126211877Z/desktop_fmt.log",
+                                            "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "exit_code":  0
+                                        },
+                        "desktop_clippy":  {
+                                               "path":  "docs/reports/check_runs/20261115T1729126211877Z/desktop_clippy.log",
+                                               "sha256":  "f7c89755a471351b6f3e2e19f78b96206e7d52f0b8b4f650aee009164ffa0b54",
+                                               "exit_code":  0
+                                           },
+                        "desktop_test":  {
+                                             "path":  "docs/reports/check_runs/20261115T1729126211877Z/desktop_test.log",
+                                             "sha256":  "1966ec248837bc149765c73ecac066daea41ee74d36d1650f01a338affcdb7bd",
+                                             "exit_code":  0
+                                         },
+                        "P061_evidence":  {
+                                              "path":  "docs/reports/check_runs/20261115T1729126211877Z/P061_evidence.log",
+                                              "sha256":  "3bd76ea15160ee000f8bd1445c3663733d3df5dd0334c7a81d98e5aea2b5b6df",
+                                              "exit_code":  0
+                                          }
+                    }
+}

@@ -45,8 +45,8 @@ export interface RuntimeVersionPin extends RecordBase {
 }
 export interface RuntimeInstallation extends RecordBase {
   runtime_version_id: string; storage_location_id: string | null; relative_path: string | null;
-  external_host_id: string | null; strategy: string; state: string; stage: string;
-  registration_mode: string; ownership: string; lock_hash: string | null;
+  external_host_id: string | null; execution_host_id: string | null; strategy: string; state: string;
+  stage: string; registration_mode: string; ownership: string; lock_hash: string | null;
 }
 export interface RuntimeBackend extends RecordBase {
   runtime_installation_id: string; backend_type: string; device_id: string | null; driver_version: string | null;
@@ -57,6 +57,11 @@ export interface ExternalHost extends RecordBase {
   name: string; base_url: string; host_type: string; credential_reference_id: string | null;
   observed_version: string | null; state: "ONLINE" | "OFFLINE" | "UNKNOWN";
   registration_mode: string; ownership: "EXTERNAL";
+}
+export interface ExecutionHost extends RecordBase {
+  kind: "WSL2" | "CONTAINER"; name: string; engine_version: string | null;
+  wsl_version: 1 | 2 | null; default: boolean; status: "ONLINE" | "OFFLINE" | "UNKNOWN";
+  evidence_refs: string[];
 }
 export interface ExternalHostCreate {
   name: string; base_url: string; host_type: string; credential_reference_id: string | null;

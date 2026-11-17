@@ -7,7 +7,7 @@
  */
 import { useCallback, useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { ApiClient, ApiError } from "./api/client";
-import { cancelRuntimeInstallJob, CHANNELS, CHANNEL_LABEL, INSTALLATION_STRATEGIES, allPages, runtimeConnections, type AdapterInstallation, type ChannelPolicy, type Connector, type ExternalHost, type InstallationStrategy, type JobReceipt, type Page, type Runtime, type RuntimeBackend, type RuntimeChannel, type RuntimeCreate, type RuntimeInstallation, type RuntimeInstallJobState, type RuntimeInstallRequest, type RuntimeProfileLock, type RuntimeRetentionPolicy, type RuntimeVersion } from "./api/runtimes";
+import { cancelRuntimeInstallJob, CHANNELS, CHANNEL_LABEL, INSTALLATION_STRATEGIES, allPages, runtimeConnections, type AdapterInstallation, type ChannelPolicy, type Connector, type ExecutionHost, type ExternalHost, type InstallationStrategy, type JobReceipt, type Page, type Runtime, type RuntimeBackend, type RuntimeChannel, type RuntimeCreate, type RuntimeInstallation, type RuntimeInstallJobState, type RuntimeInstallRequest, type RuntimeProfileLock, type RuntimeRetentionPolicy, type RuntimeVersion } from "./api/runtimes";
 import { useToasts } from "./components";
 import type { StorageLocation } from "./storage";
 import { LaunchProfiles } from "./launchProfiles";
@@ -542,7 +542,7 @@ function RuntimeDetails({ runtime, client, refresh, onUpdated, onClose }: { runt
 }
 
 export function RuntimesPage({ client, focusResourceId }: { client: ApiClient; focusResourceId?: string }) {
-  const [items, setItems] = useState<Runtime[]>([]), [connectors, setConnectors] = useState<Connector[]>([]), [hosts, setHosts] = useState<ExternalHost[]>([]), [cursor, setCursor] = useState<string | null>(null);
+  const [items, setItems] = useState<Runtime[]>([]), [connectors, setConnectors] = useState<Connector[]>([]), [hosts, setHosts] = useState<ExternalHost[]>([]), [cursor, setCursor] = useState<string | null>(null); const [executionHosts, setExecutionHosts] = useState<ExecutionHost[]>([]), [execHostError, setExecHostError] = useState(false);
   const [selected, setSelected] = useState<Runtime | null>(null), [adding, setAdding] = useState(false), [addingHost, setAddingHost] = useState(false), [addingAdapter, setAddingAdapter] = useState(false), [loading, setLoading] = useState(true), [moreBusy, setMoreBusy] = useState(false);
   const [error, setError] = useState<string | null>(null), [connectorError, setConnectorError] = useState(false), [hostError, setHostError] = useState(false), [query, setQuery] = useState(""), [draftQuery, setDraftQuery] = useState(""), [revision, setRevision] = useState(0);
   const generation = useRef(0), attempt = useRef<{ body: string; key: string } | null>(null), queryId = useId();
@@ -555,18 +555,20 @@ export function RuntimesPage({ client, focusResourceId }: { client: ApiClient; f
   const path = (next: string | null) => { const params = new URLSearchParams({ limit: "200" }); if (query) params.set("q", query); if (next) params.set("cursor", next); return `/api/v1/runtimes?${params}`; };
   useEffect(() => {
     const active = ++generation.current;
-    setLoading(true); setMoreBusy(false); setError(null); setConnectorError(false); setHostError(false); setItems([]); setCursor(null); setConnectors([]); setHosts([]);
+    setLoading(true); setMoreBusy(false); setError(null); setConnectorError(false); setHostError(false); setItems([]); setCursor(null); setConnectors([]); setHosts([]); setExecutionHosts([]); setExecHostError(false);
     const params = new URLSearchParams({ limit: "200" }); if (query) params.set("q", query);
     void Promise.allSettled([
       client.get<Page<Runtime>>(`/api/v1/runtimes?${params}`),
       allPages<AdapterInstallation>(client, "/api/v1/adapters", () => active === generation.current),
       allPages<ExternalHost>(client, "/api/v1/external-hosts", () => active === generation.current),
+      client.get<Page<ExecutionHost>>("/api/v1/execution-hosts?limit=200"),
     ])
-      .then(([runtimes, adapters, externalHosts]) => {
+      .then(([runtimes, adapters, externalHosts, execHosts]) => {
         if (active !== generation.current) return;
         if (runtimes.status === "fulfilled") { setItems(runtimes.value.items); setCursor(runtimes.value.next_cursor); } else setError(explain(runtimes.reason));
         if (adapters.status === "fulfilled") setConnectors(runtimeConnections(adapters.value)); else setConnectorError(true);
         if (externalHosts.status === "fulfilled") setHosts(externalHosts.value); else setHostError(true);
+        if (execHosts.status === "fulfilled") setExecutionHosts(execHosts.value.items); else setExecHostError(true);
       }).finally(() => { if (active === generation.current) setLoading(false); });
     return () => { generation.current++; };
   }, [client, query, revision]);
@@ -604,6 +606,16 @@ export function RuntimesPage({ client, focusResourceId }: { client: ApiClient; f
     {adding && <RuntimeForm connectors={connectors} onSave={save} onCancel={() => { setAdding(false); attempt.current = null; }} />}
     {addingHost && <RuntimeWizard client={client} onSaved={hostSaved} onCancel={() => setAddingHost(false)} />}
     {addingAdapter && <DeclarativeRuntimeWizard client={client} onCreated={adapterCreated} onCancel={() => setAddingAdapter(false)} />}
+    <section className="panel execution-hosts" aria-labelledby="execution-hosts-title">
+      <h2 id="execution-hosts-title">Hosts de ejecución observados</h2>
+      <p className="detail">Motores virtualizados detectados por sondeo read-only en este equipo (WSL2 y motor de contenedores). El registro es observación estructurada: no acredita compatibilidad ni habilita ejecución.</p>
+      {execHostError && <p role="status">No se pudo cargar el registro de hosts de ejecución.</p>}
+      {!execHostError && !executionHosts.length && !loading && <p>Todavía no hay hosts de ejecución observados.</p>}
+      {!!executionHosts.length && <ul aria-label="Hosts de ejecución observados">{executionHosts.map((host) => <li key={host.id}>
+        <strong>{host.name}</strong><span> · {host.kind === "WSL2" ? `WSL${host.wsl_version ?? 2}` : "Motor de contenedores"} · {host.default ? "Por defecto" : "Secundario"} · {host.status === "ONLINE" ? "En línea" : host.status === "OFFLINE" ? "Fuera de línea" : "Estado desconocido"}</span>
+        {host.engine_version && <p className="mono detail">Versión del motor: {host.engine_version}</p>}
+      </li>)}</ul>}
+    </section>
     <section className="panel external-hosts" aria-labelledby="external-hosts-title">
       <h2 id="external-hosts-title">Hosts externos</h2>
       <p className="detail">Registrar un host guarda su URL y referencia de credencial. La conectividad no se considera verificada por el registro.</p>

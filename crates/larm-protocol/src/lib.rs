@@ -4,6 +4,7 @@
 /// Identificador estable del crate para inventario y trazabilidad.
 pub const CRATE_NAME: &str = "larm-protocol";
 
+pub mod mcp_admin;
 pub mod sidecar;
 
 #[cfg(test)]

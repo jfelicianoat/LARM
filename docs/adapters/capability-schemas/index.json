@@ -148,7 +148,7 @@
   "schema_version": "1.0",
   "sources": {
     "capability-contracts.json": "63a539eb5c6855892593c81542616d4d75a59a6720b51f679c38f49ea6c3280f",
-    "domain.schema.json": "384bed4e270a7011471d185bf3fc647f7beefde7266c8e5cf0608ab5615150c0",
-    "larm.schema.json": "2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8"
+    "domain.schema.json": "d14a9585e4d70f0ac147a2493dfe31f299db19546b3b310a5842135e709c1bc4",
+    "larm.schema.json": "1e27cd667c415e8663bc6c8a0562257f8a3ac6cb44a0b14dfd61d1b065025aca"
   }
 }

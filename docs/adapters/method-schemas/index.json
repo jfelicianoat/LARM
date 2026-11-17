@@ -57,7 +57,7 @@
       "response": {
         "canonical_ref": "larm.schema.json#/$defs/RuntimeDiscovery",
         "file": "runtime.discover.response.schema.json",
-        "sha256": "c0bdc0c26e3dc7180f63bf09e070f1f5256569a25da55227a3e3f7cac2a5e993"
+        "sha256": "1878d4281d73332365b5953eb0669f70a089007bf1da24f32a9057fafad43273"
       }
     },
     {
@@ -81,7 +81,7 @@
       "request": {
         "canonical_ref": "larm.schema.json#/$defs/InstallRequest",
         "file": "runtime.install_plan.request.schema.json",
-        "sha256": "c607bd135148786a478c1223c93642aad8059dc1d2611a856d8aa641b2160575"
+        "sha256": "a1dd218c150b8f927a44be00ce57eee8c30b2f9331982a20042ccf7ab3282d41"
       },
       "required": true,
       "response": {
@@ -605,7 +605,7 @@
   "scope": "generated method schemas only; no worker qualification or capability estimator evidence",
   "sources": {
     "adapter-methods.json": "f7425cc346d61e53ac15e0d3e518c5ea5fc2c4ab24ba93363a49fd9cfaf6ae70",
-    "domain.schema.json": "384bed4e270a7011471d185bf3fc647f7beefde7266c8e5cf0608ab5615150c0",
-    "larm.schema.json": "2f329dcfec16abc3d688a6b7311346e71785b5093ee360fb7e4d692cf51d9cf8"
+    "domain.schema.json": "d14a9585e4d70f0ac147a2493dfe31f299db19546b3b310a5842135e709c1bc4",
+    "larm.schema.json": "1e27cd667c415e8663bc6c8a0562257f8a3ac6cb44a0b14dfd61d1b065025aca"
   }
 }

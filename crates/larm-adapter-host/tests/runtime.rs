@@ -134,6 +134,7 @@ fn install() -> InstallRequest {
         storage_location_id: uuid::Uuid::now_v7().to_string(),
         profile_lock_hash: "a".repeat(64),
         external_host_id: None,
+        execution_host_id: None,
     }
 }
 

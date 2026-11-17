@@ -1550,24 +1550,36 @@
             "ADOPTED",
             "EXTERNAL"
           ]
+        },
+        "execution_host_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
-        "id",
         "created_at",
-        "updated_at",
-        "row_version",
-        "metadata",
-        "runtime_version_id",
-        "storage_location_id",
-        "relative_path",
-        "strategy",
+        "execution_host_id",
         "external_host_id",
-        "state",
-        "ownership",
+        "id",
         "lock_hash",
+        "metadata",
+        "ownership",
+        "registration_mode",
+        "relative_path",
+        "row_version",
+        "runtime_version_id",
         "stage",
-        "registration_mode"
+        "state",
+        "storage_location_id",
+        "strategy",
+        "updated_at"
       ]
     },
     "runtime_backend": {
@@ -4127,6 +4139,255 @@
         "adapter_installation_sha256",
         "conformance_run_id",
         "conformance_run_sha256"
+      ]
+    },
+    "runtime_execution_host": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "created_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+        },
+        "updated_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+        },
+        "row_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "WSL2",
+            "CONTAINER"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "engine_version": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wsl_version": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "enum": [
+                1,
+                2
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "default": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ONLINE",
+            "OFFLINE",
+            "UNKNOWN"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "row_version",
+        "metadata",
+        "kind",
+        "name",
+        "engine_version",
+        "wsl_version",
+        "default",
+        "status",
+        "evidence_refs"
+      ]
+    },
+    "download_admission_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "source_allowlist": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "uniqueItems": true
+        },
+        "capability_allowlist": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "license_allowlist": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "min_trust": {
+          "type": "string",
+          "enum": [
+            "CANDIDATE",
+            "TECHNICALLY_APPROVED",
+            "EVALUATION_APPROVED"
+          ]
+        },
+        "daily_quota_bytes": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]+$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "storage_location_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "enabled",
+        "source_allowlist",
+        "capability_allowlist",
+        "license_allowlist",
+        "min_trust",
+        "daily_quota_bytes",
+        "storage_location_id"
+      ]
+    },
+    "download_admission": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "created_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+        },
+        "updated_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+        },
+        "row_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "variant_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "estimated_bytes": {
+          "type": "string",
+          "pattern": "^[0-9]+$"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "ADMITTED",
+            "BLOCKED",
+            "REVOKED"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policy_row_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "day_key": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "job_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "updated_at",
+        "row_version",
+        "metadata",
+        "variant_id",
+        "source_id",
+        "estimated_bytes",
+        "decision",
+        "reason",
+        "policy_row_version",
+        "day_key",
+        "job_id"
       ]
     }
   }

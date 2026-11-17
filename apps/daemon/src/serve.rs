@@ -625,6 +625,14 @@ pub async fn run(
             error.technical_detail()
         )
     })?;
+    // P132: registro del arranque en el orden contractual. La protección de
+    // crash loop del contrato 04 es para los procesos runtime/adapter
+    // (supervisor `CrashRestartTracker`, 3 reinicios por 10 min con backoff
+    // [1, 5, 15] y FAILED después), no para el arranque del propio daemon.
+    let mut startup_journal = larm_core::startup::StartupJournal::begin();
+    startup_journal
+        .complete("database_migrations")
+        .map_err(|error| format!("orden de arranque: {}", error.technical_detail()))?;
     let disk_threshold_state = Arc::new(parking_lot::RwLock::new((
         crate::hardware::thresholds(&settings),
         persisted_settings.revision,
@@ -794,6 +802,14 @@ pub async fn run(
     admin = admin.merge(larm_api::downloads::routes(
         larm_api::downloads::DownloadsState {
             service: download_jobs.clone(),
+            cursors: cursors.clone(),
+        },
+    ));
+    admin = admin.merge(larm_api::download_admissions::routes(
+        larm_api::download_admissions::AdmissionState {
+            store: Arc::new(SqlAdmissionStore {
+                pool: db.pool.clone(),
+            }),
             cursors: cursors.clone(),
         },
     ));
@@ -1237,6 +1253,13 @@ pub async fn run(
             },
         ));
     }
+    // P133: updater y recuperación (rebuild en staging) sobre la base real.
+    admin = admin.merge(larm_api::recovery::routes(
+        larm_api::recovery::RecoveryState {
+            ops: crate::recovery::state(db.pool.clone(), settings.clone(), data_root.to_path_buf()),
+            approvals: approvals.clone(),
+        },
+    ));
     admin = admin.merge(larm_api::adapters::routes(
         larm_api::adapters::AdaptersState {
             registry: Arc::new(larm_core::adapters::DeclarativeRegistry {
@@ -1427,6 +1450,7 @@ pub async fn run(
     let app = larm_api::app::app(
         AppState {
             auth: principals,
+            auth_limiter: std::sync::Arc::new(larm_api::auth::AuthRateLimiter::new()),
             readiness: Arc::new(DbReadiness(db)),
             bus,
             config: AppConfig {
@@ -1661,5 +1685,89 @@ mod download_consumer_supervision_tests {
         consumer.release.notify_one();
         tokio::time::timeout(Duration::from_secs(3), task).await??;
         Ok(())
+    }
+}
+
+/// Adaptador del repositorio SQL de admisiones al trait de la API.
+struct SqlAdmissionStore {
+    pool: sqlx::SqlitePool,
+}
+
+#[async_trait::async_trait]
+impl larm_api::download_admissions::AdmissionStore for SqlAdmissionStore {
+    async fn load(
+        &self,
+    ) -> Result<
+        Option<(
+            larm_domain::download_admission::DownloadAdmissionPolicy,
+            i64,
+            String,
+        )>,
+        larm_domain::error::LarmError,
+    > {
+        larm_db::download_admissions::SqlDownloadAdmissions {
+            pool: self.pool.clone(),
+        }
+        .get_policy()
+        .await
+        .map(|stored| stored.map(|stored| (stored.policy, stored.row_version, stored.updated_at)))
+    }
+
+    async fn save(
+        &self,
+        policy: &larm_domain::download_admission::DownloadAdmissionPolicy,
+        ctx: &larm_domain::ports::MutationContext,
+    ) -> Result<(i64, String), larm_domain::error::LarmError> {
+        larm_db::download_admissions::SqlDownloadAdmissions {
+            pool: self.pool.clone(),
+        }
+        .put_policy(policy, ctx)
+        .await
+        .map(|stored| (stored.row_version, stored.updated_at))
+    }
+
+    async fn list(
+        &self,
+        limit: u32,
+    ) -> Result<Vec<serde_json::Value>, larm_domain::error::LarmError> {
+        larm_db::download_admissions::SqlDownloadAdmissions {
+            pool: self.pool.clone(),
+        }
+        .list(limit)
+        .await
+        .and_then(|admissions| {
+            admissions
+                .iter()
+                .map(serde_json::to_value)
+                .collect::<Result<Vec<_>, _>>()
+                .map_err(|_| {
+                    larm_domain::error::LarmError::new(
+                        larm_domain::error::ErrorCode::IntegrityFailed,
+                        "Admisión persistida no supera la verificación",
+                        "download_admission_corrupt",
+                    )
+                })
+        })
+    }
+
+    async fn revoke(
+        &self,
+        id: &str,
+        ctx: &larm_domain::ports::MutationContext,
+    ) -> Result<serde_json::Value, larm_domain::error::LarmError> {
+        larm_db::download_admissions::SqlDownloadAdmissions {
+            pool: self.pool.clone(),
+        }
+        .revoke(id, ctx)
+        .await
+        .and_then(|admission| {
+            serde_json::to_value(admission).map_err(|_| {
+                larm_domain::error::LarmError::new(
+                    larm_domain::error::ErrorCode::IntegrityFailed,
+                    "Admisión persistida no supera la verificación",
+                    "download_admission_corrupt",
+                )
+            })
+        })
     }
 }

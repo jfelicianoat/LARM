@@ -1322,6 +1322,36 @@ impl RuntimeRepository for SqlRuntimes {
     ) -> Result<Vec<RuntimeBackend>, LarmError> {
         self.page(after, limit, filter).await
     }
+    async fn record_execution_host(
+        &self,
+        value: &ExecutionHost,
+        ctx: &MutationContext,
+    ) -> Result<(), LarmError> {
+        crate::execution_hosts::SqlExecutionHosts {
+            pool: self.pool.clone(),
+        }
+        .record(value, ctx)
+        .await
+    }
+    async fn execution_host(&self, id: &str) -> Result<Option<ExecutionHost>, LarmError> {
+        crate::execution_hosts::SqlExecutionHosts {
+            pool: self.pool.clone(),
+        }
+        .find(id)
+        .await
+    }
+    async fn execution_hosts(
+        &self,
+        after: Option<(String, String)>,
+        limit: u32,
+        filter: &RuntimeFilter,
+    ) -> Result<Vec<ExecutionHost>, LarmError> {
+        crate::execution_hosts::SqlExecutionHosts {
+            pool: self.pool.clone(),
+        }
+        .list(after, limit, filter)
+        .await
+    }
     async fn record_external_host(
         &self,
         value: &ExternalHost,

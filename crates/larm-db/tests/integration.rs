@@ -36,7 +36,9 @@ async fn prepare(path: &std::path::Path) -> Db {
             "0011_p127_source_operational_snapshot",
             "0012_p128_low_disk_transition",
             "0013_p032_runtime_version_pinning_and_retention",
-            "0014_model_acquisition_manifest"
+            "0014_model_acquisition_manifest",
+            "0015_p081_execution_host",
+            "0016_p119_download_admission"
         ]
     );
     db
@@ -110,7 +112,9 @@ async fn p052_migra_tamanos_historicos_a_unknown_y_los_expone_conservadoramente(
             "0011_p127_source_operational_snapshot",
             "0012_p128_low_disk_transition",
             "0013_p032_runtime_version_pinning_and_retention",
-            "0014_model_acquisition_manifest"
+            "0014_model_acquisition_manifest",
+            "0015_p081_execution_host",
+            "0016_p119_download_admission"
         ]
     );
     let (expected_size, persisted): (i64, String) = sqlx::query_as(
@@ -178,7 +182,9 @@ async fn runtime_migra_canales_sin_reescribir_datos_y_conserva_identidad_por_can
             "0011_p127_source_operational_snapshot",
             "0012_p128_low_disk_transition",
             "0013_p032_runtime_version_pinning_and_retention",
-            "0014_model_acquisition_manifest"
+            "0014_model_acquisition_manifest",
+            "0015_p081_execution_host",
+            "0016_p119_download_admission"
         ]
     );
     let after: (i64, String, String) = sqlx::query_as(
@@ -241,7 +247,9 @@ async fn runtime_fallo_de_migracion_revierte_drop_index_y_no_avanza_metadata() {
             "0011_p127_source_operational_snapshot",
             "0012_p128_low_disk_transition",
             "0013_p032_runtime_version_pinning_and_retention",
-            "0014_model_acquisition_manifest"
+            "0014_model_acquisition_manifest",
+            "0015_p081_execution_host",
+            "0016_p119_download_admission"
         ]
     );
 }
@@ -302,13 +310,16 @@ async fn migracion_desde_vacia_crea_exactamente_las_tablas_del_ddl() {
     expected.insert("adapter_selection".into()); // auxiliar tipado de P024
     expected.insert("runtime_profile_lock".into()); // auxiliar inmutable de P099
     expected.insert("runtime_profile_qualification".into()); // evidencia inmutable separada de P099
+    expected.insert("execution_host".into()); // registro read-only de hosts de ejecución (P081)
+    expected.insert("download_admission_policy".into()); // política opt-in P119
+    expected.insert("download_admission".into()); // historial inmutable de admisiones P119
     expected.insert("storage_volume_alert_state".into()); // nivel H09 duradero por volumen
     expected.insert("sqlite_sequence".into()); // AUTOINCREMENT
     let mut actual = tables(&db.pool).await;
     actual.insert("sqlite_sequence".into());
     assert_eq!(actual, expected);
     let applied = migrate::applied(&db.pool).await.unwrap();
-    assert_eq!(applied.len(), 14);
+    assert_eq!(applied.len(), 16);
     assert_eq!(applied[0].sha256, migrate::MIGRATIONS[0].sha256());
     assert_eq!(applied[1].version, "0002_adapter_selection");
     assert_eq!(applied[1].sha256, migrate::MIGRATIONS[1].sha256());
@@ -337,7 +348,8 @@ async fn migracion_desde_vacia_crea_exactamente_las_tablas_del_ddl() {
         "0013_p032_runtime_version_pinning_and_retention"
     );
     assert_eq!(applied[12].sha256, migrate::MIGRATIONS[12].sha256());
-    assert_eq!(applied[13].version, "0014_model_acquisition_manifest");
+    assert_eq!(applied[14].version, "0015_p081_execution_host");
+    assert_eq!(applied[15].version, "0016_p119_download_admission");
     assert_eq!(applied[13].sha256, migrate::MIGRATIONS[13].sha256());
     let url_binding_index: i64 = sqlx::query_scalar(
         "SELECT count(*) FROM sqlite_master WHERE type='index' AND name='adapter_registry_checkpoint_url_unique'",
@@ -415,7 +427,9 @@ async fn migracion_que_falla_a_mitad_no_deja_rastro() {
             "0011_p127_source_operational_snapshot",
             "0012_p128_low_disk_transition",
             "0013_p032_runtime_version_pinning_and_retention",
-            "0014_model_acquisition_manifest"
+            "0014_model_acquisition_manifest",
+            "0015_p081_execution_host",
+            "0016_p119_download_admission"
         ]
     );
     // corregida, se aplica entera y una sola vez
@@ -798,7 +812,9 @@ async fn helper_de_base_temporal_migrada() {
             "0011_p127_source_operational_snapshot",
             "0012_p128_low_disk_transition",
             "0013_p032_runtime_version_pinning_and_retention",
-            "0014_model_acquisition_manifest"
+            "0014_model_acquisition_manifest",
+            "0015_p081_execution_host",
+            "0016_p119_download_admission"
         ]
     );
     let root = dir.path().to_path_buf();

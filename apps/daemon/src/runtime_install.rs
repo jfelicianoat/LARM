@@ -94,7 +94,8 @@ mod tests {
             "strategy": "PREBUILT_BINARY",
             "storage_location_id": uuid::Uuid::now_v7().to_string(),
             "profile_lock_hash": "a".repeat(64),
-            "external_host_id": null
+            "external_host_id": null,
+            "execution_host_id": null
         });
         serde_json::to_writer(&mut file, &request).unwrap();
         file.flush().unwrap();

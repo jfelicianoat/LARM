@@ -155,6 +155,51 @@ pub fn ping() -> &'static str {
     "pong"
 }
 
+/// Estado de instalación de los dos modos de daemon Windows (P137; spec
+/// §102): la tarea de logon del User Background Agent y el servicio opcional.
+/// Sólo consulta el estado del equipo; instalar/desinstalar es del CLI del
+/// operador (`larm-daemon install-agent` / `install-service`).
+#[tauri::command]
+pub fn larm_install_status() -> Result<serde_json::Value, String> {
+    let query = |program: &str, args: &[&str], absent: &[&str]| -> Result<bool, String> {
+        let output = std::process::Command::new(program)
+            .args(args)
+            .output()
+            .map_err(|e| format!("{program}: {e}"))?;
+        let text = format!(
+            "{}{}",
+            String::from_utf8_lossy(&output.stdout),
+            String::from_utf8_lossy(&output.stderr)
+        );
+        if output.status.success() {
+            Ok(true)
+        } else if absent.iter().any(|marker| text.contains(marker)) {
+            Ok(false)
+        } else {
+            Err(text.trim().to_string())
+        }
+    };
+    let agent_task_registered = query(
+        "schtasks",
+        &["/Query", "/TN", "LARMUserAgent"],
+        &[
+            "ERROR: The system cannot find the file",
+            "no existe",
+            "does not exist",
+        ],
+    )?;
+    let service_registered = query(
+        "sc",
+        &["query", "LARM"],
+        &["1060", "does not exist", "no existe"],
+    )?;
+    Ok(serde_json::json!({
+        "agent_task_registered": agent_task_registered,
+        "service_registered": service_registered,
+        "mode_default": "user-background-agent",
+    }))
+}
+
 fn smoke_requested() -> bool {
     std::env::var(SMOKE_ENV).is_ok_and(|v| v == "1")
 }

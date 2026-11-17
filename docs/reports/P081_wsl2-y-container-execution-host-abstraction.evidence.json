@@ -1,0 +1,155 @@
+{
+  "prompt_id": "P081",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "2ba329f239d305db70d3223594fa085917454aa05d9c3e33005b9ca58f10c6cb",
+  "inputs_hash": "0ebc4b418112387e02f223299b8183c309b422ad67e0cd8e98acc00548dc9a66",
+  "changed_files": [
+    "apps/daemon/tests/execution_hosts.rs",
+    "apps/desktop/src/api/runtimes.ts",
+    "apps/desktop/src/runtimes.test.tsx",
+    "apps/desktop/src/runtimes.tsx",
+    "crates/larm-adapter-host/tests/runtime.rs",
+    "crates/larm-adapter-sdk/tests/contracts.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-api/src/runtimes.rs",
+    "crates/larm-db/src/execution_hosts.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/runtimes.rs",
+    "crates/larm-db/tests/execution_hosts.rs",
+    "crates/larm-db/tests/runtime_installation.rs",
+    "crates/larm-domain/src/auth.rs",
+    "crates/larm-domain/src/runtime.rs",
+    "crates/larm-domain/src/runtime_install.rs",
+    "crates/larm-domain/src/runtime_ports.rs",
+    "crates/larm-hardware/src/lib.rs",
+    "crates/larm-hardware/src/virtualization.rs",
+    "crates/larm-runtime/src/execution_host.rs",
+    "crates/larm-runtime/src/install_service.rs",
+    "crates/larm-runtime/src/lib.rs",
+    "crates/larm-runtime/tests/install.rs",
+    "docs/adapters/llama-cpp.md",
+    "docs/adapters/method-schemas/runtime.install_plan.request.schema.json",
+    "docs/implementation/STATE.md",
+    "docs/reports/P081_wsl2-y-container-execution-host-abstraction.evidence.json",
+    "docs/reports/P081_wsl2-y-container-execution-host-abstraction.md",
+    "migrations/0015_p081_execution_host.sql",
+    "tests/fixtures/adapters/method-schema-corpus.json",
+    "tools/p081_contract_revision.py"
+  ],
+  "tests": [
+    {
+      "id": "P081-CONTRACT-domain-and-hardware",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib",
+      "fixture_hashes": [],
+      "expected": "enum ExecutionHostKind con los seis modos de §5.1 y regla allows_strategy que impide anunciar un runtime WSL como nativo",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 1.31s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-11b22671b55091d0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P081_runs/P081-CONTRACT-domain-and-hardware.log#sha256=2cb6b061ec89105d13c1cfd135984b984def677458ae39b302884b94089efada"
+      ]
+    },
+    {
+      "id": "P081-CONTRACT-virtualization-probe",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-hardware --lib",
+      "fixture_hashes": [],
+      "expected": "sondeo read-only con timeout/kill, entorno mínimo, decodificación UTF-8/UTF-16LE, parsers tolerantes al locale y ausencia de binarios como observación válida",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_hardware-61d0612e10885278.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P081_runs/P081-CONTRACT-virtualization-probe.log#sha256=b8128d9a76e45ed135a6468c015cee7372eb4921e6c763b7496e42f1a72e6623"
+      ]
+    },
+    {
+      "id": "P081-CONTRACT-execution-host-abstraction",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-runtime --lib",
+      "fixture_hashes": [],
+      "expected": "mapeo Windows↔WSL ida/vuelta sin traversal, política de puertos sólo loopback, comandos que mutan el host rechazados (execution_host_plan_mutates_host) y coherencia instalación↔host",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 2.99s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_runtime-45e3c253e8fb1644.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P081_runs/P081-CONTRACT-execution-host-abstraction.log#sha256=fdc4cf5a7910fdd4acb503fc76a24c40ef3cd66d78018ab752d583a4f86ad557"
+      ]
+    },
+    {
+      "id": "P081-CONTRACT-installation-roundtrip",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-runtime --test install",
+      "fixture_hashes": [],
+      "expected": "las quince estrategias quedan en el plan con execution_host_id exigido para WSL/CONTAINER",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.29s | Running tests\\install.rs (target\\debug\\deps\\install-947337bf4df8dd19.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P081_runs/P081-CONTRACT-installation-roundtrip.log#sha256=85fbcd6d77004abbeea8b2c78e92fe385a489eda20146cc3347a1fff13b8700d"
+      ]
+    },
+    {
+      "id": "P081-CONTRACT-db-repository",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test execution_hosts",
+      "fixture_hashes": [],
+      "expected": "upsert idempotente con row_version+1, journal/evento/outbox en una transacción, filtros, DTO inválido sin escrituras, sin columna de promoción y FK exigida",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.51s | Running tests\\execution_hosts.rs (target\\debug\\deps\\execution_hosts-85efe2ad182e88e6.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P081_runs/P081-CONTRACT-db-repository.log#sha256=9e3317443f134c69d07758d5157da196ffb46cd9a0d1b386dee85375c9620d5e"
+      ]
+    },
+    {
+      "id": "P081-CONTRACT-api-route",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --lib",
+      "fixture_hashes": [],
+      "expected": "GET /api/v1/execution-hosts publicado como implementado con 155 operaciones en el catálogo",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.61s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_api-60e084f815a4f920.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P081_runs/P081-CONTRACT-api-route.log#sha256=65f781f7447fb90e59b639432e4e54b9de43214fa7a984f5837abc0e30cf445e"
+      ]
+    },
+    {
+      "id": "P081-REAL-wsl2-docker-probe-and-public-read",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test execution_hosts windows_sondeo_real_wsl2_y_docker_registro_y_lectura_publica -- --nocapture",
+      "fixture_hashes": [],
+      "expected": "sondeo real de wsl.exe/docker.exe del PC IA; registro con journal/evento/outbox; GET público con scopes (200/400/401/403) y POST rechazado (registro read-only)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 1.94s | Running tests\\execution_hosts.rs (target\\debug\\deps\\execution_hosts-79b9fc6bfe2434ac.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P081_runs/P081-REAL-wsl2-docker-probe-and-public-read.log#sha256=ef82d33609c702344ef06634cb49b53cbbc4361dcca448e76c02a67bffba25c4"
+      ]
+    },
+    {
+      "id": "P081-REAL-per-runtime-qualification",
+      "kind": "REAL",
+      "command": "cualificación real de un runtime concreto instalado en WSL2/contenedor",
+      "fixture_hashes": [],
+      "expected": "lock de perfil con versión upstream, documentación de esa versión y fixtures/probes de cada runtime adoptado bajo WSL2/contenedor",
+      "observed": "NO EJECUTADA: los locks de P099 permanecen UNQUALIFIED sin cualificación real; el registro P081 observa motores y nunca acredita compatibilidad de un runtime concreto",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    },
+    {
+      "id": "P081-REAL-installation-with-wsl-strategy",
+      "kind": "REAL",
+      "command": "primera instalación real con estrategia WSL/CONTAINER referenciando un execution host",
+      "fixture_hashes": [],
+      "expected": "instalación MANAGED con execution_host_id sobre un lock cualificado y su runtime observado en el huésped",
+      "observed": "NO EJECUTADA: la admisión P031 exige lock cualificado; sin él la referencia queda probada sólo estructuralmente",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "cualificación real por versión upstream (P099): los locks vigentes permanecen UNQUALIFIED",
+    "primera instalación real con estrategia WSL/CONTAINER exige lock cualificado (P031)",
+    "dependencia P030 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P022 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P031 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-11-15T11:49:30.554Z"
+}

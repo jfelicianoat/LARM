@@ -1,0 +1,79 @@
+{
+  "prompt_id": "P133",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "73a9a32c864be998438fd047e13731e5a4b4595c4b799182e99e1f6fe4cbcd58",
+  "inputs_hash": "37348c9c6f4f8e93c44efd81a6046ebe9f3fa73babe2deda0d5a5cc701f3f5b3",
+  "changed_files": [
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/recovery.rs",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/tests/backup_recovery.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/recovery.rs",
+    "crates/larm-core/Cargo.toml",
+    "crates/larm-core/src/backup.rs",
+    "crates/larm-core/src/lib.rs",
+    "crates/larm-domain/src/ports.rs",
+    "docs/implementation/STATE.md",
+    "docs/operations/backup-restore.md",
+    "docs/reports/P133_updater-de-larm-backup-y-rebuild.evidence.json",
+    "docs/reports/P133_updater-de-larm-backup-y-rebuild.md",
+    "tools/p133_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P133-CONTRACT-bundle-y-guardas",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-core --lib backup",
+      "fixture_hashes": [],
+      "expected": "bundle determinista (manifiesto con versiones y SHA-256 por fichero), validación de import (versión de bundle/contrato, incompleto, digest alterado), staging sin tocar la instalación viva y guardas del updater (restart_decision: leases/jobs activas exigen confirmación)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 1.94s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-96d25ac457f82638.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P133_runs/P133-CONTRACT-bundle-y-guardas.log#sha256=9d5685b73cae5d7ea8efe52d26fa8cad40ddff614ea2f3c62d5f270442114244"
+      ]
+    },
+    {
+      "id": "P133-CONTRACT-api-y-dominio",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api",
+      "fixture_hashes": [],
+      "expected": "rutas POST /api/v1/updates/larm y POST /api/v1/recovery/rebuild montadas con el guard real (ExecutePlan estricto, UUIDv7/sha256, aprobación ligada al plan_hash) y el resto de la superficie API sin regresiones (128 pruebas)",
+      "observed": "exit=0; Running tests\\source_watches.rs (target\\debug\\deps\\source_watches-70dfbee8f4c35d73.exe) | Running tests\\storage.rs (target\\debug\\deps\\storage-743a1792baf73e8f.exe) | Running tests\\transformations.rs (target\\debug\\deps\\transformations-308ad1ef55078828.exe) | Doc-tests larm_api",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P133_runs/P133-CONTRACT-api-y-dominio.log#sha256=5a0820e399e0fe12585581ffef254e7898360411318af1ac6ca9b84fe0957cb3"
+      ]
+    },
+    {
+      "id": "P133-REAL-updater-backup-rebuild-pc-ia",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test backup_recovery -- --nocapture",
+      "fixture_hashes": [],
+      "expected": "REAL sobre el daemon real del PC IA: update con lease ACTIVA y sin confirmación bloqueado (update_blocked_active_leases); con aprobación real → 202 y job COMPLETED que verifica el staged por sha256, deja backup verificado y bundle determinista; restore a temporal verificado tabla a tabla; import con bytes alterados rechazado (backup_import_digest_mismatch); rebuild en staging COMPLETED; staged corrupto → job FAILED (update_staged_hash_mismatch)",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 1.23s | Running tests\\backup_recovery.rs (target\\debug\\deps\\backup_recovery-87393512b778f22b.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P133_runs/P133-REAL-updater-backup-rebuild-pc-ia.log#sha256=3a46e0211277a1077cacd5b398c9616a381c2dda76c50b20acb06d898a199b05"
+      ]
+    },
+    {
+      "id": "P133-REAL-update-binario-real",
+      "kind": "REAL",
+      "command": "actualización real side-by-side con binario nuevo firmado y migración incompatible con rollback del binario",
+      "fixture_hashes": [],
+      "expected": "un release real de LARM se instala side-by-side, la migración incompatible corre con backup previo y el rollback del binario restaura la instalación",
+      "observed": "NO EJECUTADA: el flujo staged→verificación→backup→bundle→reinicio está probado REAL sobre el daemon real; un release firmado real con migración incompatible exige una versión nueva publicada del binario (el árbol actual es la única versión)",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "actualización real side-by-side con binario nuevo firmado y migración incompatible con rollback: exige un release publicado distinto del árbol actual",
+    "dependencia P004 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P132 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P098 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-11-16T22:27:19.471Z"
+}

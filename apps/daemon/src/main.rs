@@ -17,6 +17,7 @@ mod model_search;
 mod preflight;
 mod probe_profiles;
 mod probes;
+mod recovery;
 mod runtime_discovery;
 mod runtime_install;
 mod runtime_instance_process;
@@ -30,6 +31,8 @@ mod sources;
 mod transformation_recovery;
 #[cfg(windows)]
 mod transformations;
+#[cfg(windows)]
+mod windows;
 #[cfg(windows)]
 mod winsec;
 
@@ -328,6 +331,29 @@ enum Command {
         #[arg(long = "file")]
         files: Vec<PathBuf>,
     },
+    /// Registra el User Background Agent del usuario actual (tarea de logon
+    /// sin admin; modo predeterminado, spec §102). Usa --data-root/--config
+    /// dados: no toca el PATH global, drivers ni WSL.
+    InstallAgent,
+    /// Elimina la tarea de logon del agente de fondo de usuario. Los datos
+    /// (modelos y base) no se tocan; la purga es una operación separada y
+    /// confirmada.
+    UninstallAgent,
+    /// Instala el servicio Windows opcional (exige consola elevada y rutas
+    /// locales o UNC, separadas del usuario; spec §102). Sin elevación queda
+    /// NO VERIFICADO.
+    InstallService,
+    /// Elimina el servicio Windows opcional (exige consola elevada).
+    UninstallService,
+    /// Estado de instalación: tarea del agente de fondo y servicio opcional.
+    InstallStatus,
+    /// Purga SEPARADA de datos (modelos y base) de la raíz dada: exige
+    /// --confirm. La desinstalación normal nunca borra datos.
+    PurgeData {
+        /// Confirmación explícita del operador para borrar los datos.
+        #[arg(long)]
+        confirm: bool,
+    },
 }
 
 fn main() {
@@ -466,6 +492,12 @@ fn main() {
                 | Command::StorageReconcile
                 | Command::RegistryRebuild { .. }
                 | Command::RuntimeView { .. }
+                | Command::InstallAgent
+                | Command::UninstallAgent
+                | Command::InstallService
+                | Command::UninstallService
+                | Command::InstallStatus
+                | Command::PurgeData { .. }
         )
     ) {
         let runtime = tokio::runtime::Builder::new_current_thread()
@@ -669,6 +701,117 @@ fn main() {
                         },
                         Err(e) => Err(e),
                     }
+                }
+                #[cfg(windows)]
+                Some(Command::InstallAgent) => {
+                    let bin = std::env::current_exe().map_err(|e| {
+                        larm_domain::error::LarmError::new(
+                            larm_domain::error::ErrorCode::Internal,
+                            "Sin ruta del ejecutable",
+                            "storage_probe_unavailable",
+                        )
+                        .with_technical(e.to_string())
+                    })?;
+                    let config = cli
+                        .config
+                        .clone()
+                        .unwrap_or_else(|| data_root.join("larm.json"));
+                    windows::install_agent(&bin, &data_root, &config).and_then(|()| {
+                        to_json(&serde_json::json!({
+                            "file": windows::AGENT_STARTUP_FILE,
+                            "mode": "user-background-agent",
+                            "bin": bin.display().to_string(),
+                            "data_root": data_root.display().to_string(),
+                            "config": config.display().to_string(),
+                        }))
+                    })
+                }
+                #[cfg(windows)]
+                Some(Command::UninstallAgent) => {
+                    let plan = windows::uninstall_plan(false, false)?;
+                    let removed = windows::uninstall_agent()?;
+                    to_json(&serde_json::json!({
+                        "file": windows::AGENT_STARTUP_FILE,
+                        "removed": removed,
+                        "plan": { "remove_agent_task": plan.remove_agent_task,
+                                  "remove_service": plan.remove_service,
+                                  "remove_binaries": plan.remove_binaries,
+                                  "purge_data": plan.purge_data },
+                        "note": "los modelos y la base no se tocan; la purga es una operación separada y confirmada",
+                    }))
+                }
+                #[cfg(windows)]
+                Some(Command::InstallService) => {
+                    let bin = std::env::current_exe().map_err(|e| {
+                        larm_domain::error::LarmError::new(
+                            larm_domain::error::ErrorCode::Internal,
+                            "Sin ruta del ejecutable",
+                            "storage_probe_unavailable",
+                        )
+                        .with_technical(e.to_string())
+                    })?;
+                    let service_root = cli
+                        .data_root
+                        .as_deref()
+                        .map(std::path::PathBuf::from)
+                        .unwrap_or_else(|| {
+                            PathBuf::from(
+                                std::env::var("ProgramData").unwrap_or_else(|_| String::from("C:") + std::path::MAIN_SEPARATOR_STR + "ProgramData"),
+                            )
+                            .join("LARM")
+                        });
+                    let _ = std::fs::create_dir_all(&service_root);
+                    let config = cli
+                        .config
+                        .clone()
+                        .unwrap_or_else(|| service_root.join("larm.json"));
+                    windows::install_service(&bin, &service_root, &config).and_then(|()| {
+                        to_json(&serde_json::json!({
+                            "service": windows::SERVICE_NAME,
+                            "mode": "windows-service",
+                            "bin": bin.display().to_string(),
+                            "data_root": service_root.display().to_string(),
+                            "config": config.display().to_string(),
+                        }))
+                    })
+                }
+                #[cfg(windows)]
+                Some(Command::UninstallService) => {
+                    let plan = windows::uninstall_plan(false, false)?;
+                    let removed = windows::uninstall_service()?;
+                    to_json(&serde_json::json!({
+                        "service": windows::SERVICE_NAME,
+                        "removed": removed,
+                        "plan": { "remove_agent_task": plan.remove_agent_task,
+                                  "remove_service": plan.remove_service,
+                                  "remove_binaries": plan.remove_binaries,
+                                  "purge_data": plan.purge_data },
+                        "note": "los modelos y la base no se tocan; la purga es una operación separada y confirmada",
+                    }))
+                }
+                #[cfg(windows)]
+                Some(Command::InstallStatus) => {
+                    to_json(&serde_json::json!({
+                        "agent_task_registered": windows::agent_installed()?,
+                        "service_registered": windows::service_installed()?,
+                        "elevated": windows::is_elevated(),
+                        "mode_default": "user-background-agent",
+                    }))
+                }
+                Some(Command::PurgeData { confirm }) => {
+                    let plan = windows::uninstall_plan(true, *confirm)?;
+                    std::fs::remove_dir_all(&data_root).map_err(|e| {
+                        larm_domain::error::LarmError::new(
+                            larm_domain::error::ErrorCode::Internal,
+                            "No se pudo purgar la raíz de datos",
+                            "io_failed",
+                        )
+                        .with_technical(e.to_string())
+                    })?;
+                    to_json(&serde_json::json!({
+                        "purged": plan.purge_data,
+                        "data_root": data_root.display().to_string(),
+                    }))
                 }
                 Some(Command::RegistryRebuild { roots, out }) => {
                     registry_rebuild(&settings, roots, out)

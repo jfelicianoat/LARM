@@ -85,6 +85,14 @@ pub const MIGRATIONS: &[Migration] = &[
         version: "0014_model_acquisition_manifest",
         sql: include_str!("../../../migrations/0014_model_acquisition_manifest.sql"),
     },
+    Migration {
+        version: "0015_p081_execution_host",
+        sql: include_str!("../../../migrations/0015_p081_execution_host.sql"),
+    },
+    Migration {
+        version: "0016_p119_download_admission",
+        sql: include_str!("../../../migrations/0016_p119_download_admission.sql"),
+    },
 ];
 
 /// Migración registrada en `schema_metadata`.

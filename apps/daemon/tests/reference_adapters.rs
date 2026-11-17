@@ -79,49 +79,55 @@ mod transformation_worker;
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 #[ignore = "explicit native Windows keyring/HTTP P026/qualified guardian acceptance; build and freeze inputs"]
 async fn transformation_guardian_cualificado_rpc_y_recuperacion_de_propietario() {
-    qualified_guardian::exercise(false, false, false, false, false, false, false).await;
+    qualified_guardian::exercise(false, false, false, false, false, false, false, false).await;
 }
 #[cfg(windows)]
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 #[ignore = "explicit public P093 HTTP/native consumer qualification and restart acceptance"]
 async fn transformation_publica_plan_confirmacion_worker_y_publicacion() {
-    qualified_guardian::exercise(true, false, false, false, false, false, false).await;
+    qualified_guardian::exercise(true, false, false, false, false, false, false, false).await;
 }
 #[cfg(windows)]
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 #[ignore = "explicit public P093 cooperative cancellation acceptance with real qualified native worker"]
 async fn transformation_publica_cancelacion_colaborativa_y_cierre_de_recursos() {
-    qualified_guardian::exercise(true, true, false, false, false, false, false).await;
+    qualified_guardian::exercise(true, true, false, false, false, false, false, false).await;
 }
 #[cfg(windows)]
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 #[ignore = "explicit public H07 partial-bytes acceptance: daemon crash with committed worker blocks, reused worker job namespace and same-job restart to CAS publication"]
 async fn transformation_publica_h07_caida_con_bytes_parciales_y_reinicio_hasta_publicacion() {
-    qualified_guardian::exercise(true, false, true, false, false, false, false).await;
+    qualified_guardian::exercise(true, false, true, false, false, false, false, false).await;
 }
 #[cfg(windows)]
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 #[ignore = "explicit definitive witness-loss acceptance: system restart retires the PREPARING intent witness-lessly and the job re-dispatches to CAS publication"]
 async fn transformation_publica_perdida_definitiva_del_testigo_y_redespacho_hasta_publicacion() {
-    qualified_guardian::exercise(true, false, false, true, false, false, false).await;
+    qualified_guardian::exercise(true, false, false, true, false, false, false, false).await;
 }
 #[cfg(windows)]
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 #[ignore = "explicit public GGUF product-converter acceptance: real P026 qualification with the host GGUF suite and CAS publication verified by the Rust GGUF oracle"]
 async fn transformation_publica_gguf_conversor_cualificado_hasta_publicacion() {
-    qualified_guardian::exercise(true, false, false, false, true, false, false).await;
+    qualified_guardian::exercise(true, false, false, false, true, false, false, false).await;
 }
 #[cfg(windows)]
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 #[ignore = "explicit public ONNX product-converter acceptance: real P026 qualification with the host ONNX suite and CAS publication verified by the Rust ONNX oracle"]
 async fn transformation_publica_onnx_conversor_cualificado_hasta_publicacion() {
-    qualified_guardian::exercise(true, false, false, false, false, true, false).await;
+    qualified_guardian::exercise(true, false, false, false, false, true, false, false).await;
 }
 #[cfg(windows)]
 #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
 #[ignore = "explicit public GGUF Q8_0 quantization acceptance: real P026 qualification with the host GGUF suite, plan with quantization=Q8_0 and CAS publication of the quantized container verified byte-exact by the Rust GGUF oracle"]
 async fn transformation_publica_gguf_cuantizacion_q8_0_hasta_publicacion() {
-    qualified_guardian::exercise(true, false, false, false, false, false, true).await;
+    qualified_guardian::exercise(true, false, false, false, false, false, true, false).await;
+}
+#[cfg(windows)]
+#[tokio::test(flavor = "multi_thread", worker_threads = 2)]
+#[ignore = "explicit public ONNXQ Olive quantizer acceptance: real P026 qualification with the host ONNXQ suite, public plan with quantization=INT8, sealed managed python-olive runtime injected via OLIVE_RUNTIME and CAS publication verified byte-exact by the Rust QDQ oracle"]
+async fn transformation_publica_onnxq_cuantizador_olive_hasta_publicacion() {
+    qualified_guardian::exercise(true, false, false, false, false, false, false, true).await;
 }
 async fn native_actor() -> (
     MutationContext,
@@ -613,7 +619,10 @@ async fn persistent_recipe(
     .unwrap();
     let capability_profile = match &recipe {
         larm_adapter_host::conformance::profiles::Recipe::Gguf(_)
-        | larm_adapter_host::conformance::profiles::Recipe::Onnx(_) => "product-capabilities.json",
+        | larm_adapter_host::conformance::profiles::Recipe::Onnx(_)
+        | larm_adapter_host::conformance::profiles::Recipe::OnnxQuantize(_) => {
+            "product-capabilities.json"
+        }
         _ => "reference-capabilities.json",
     };
     let config = LocalProfile {

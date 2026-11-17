@@ -166,6 +166,20 @@ pub trait RuntimeRepository: Send + Sync {
         limit: u32,
         filter: &RuntimeFilter,
     ) -> Result<Vec<ExternalHost>, LarmError>;
+    /// P081: registro read-only de hosts de ejecución observados. El registro
+    /// no habilita ejecución ni acredita compatibilidad.
+    async fn record_execution_host(
+        &self,
+        host: &ExecutionHost,
+        ctx: &MutationContext,
+    ) -> Result<(), LarmError>;
+    async fn execution_host(&self, id: &str) -> Result<Option<ExecutionHost>, LarmError>;
+    async fn execution_hosts(
+        &self,
+        after: Option<(String, String)>,
+        limit: u32,
+        filter: &RuntimeFilter,
+    ) -> Result<Vec<ExecutionHost>, LarmError>;
 }
 
 /// Lecturas persistidas de instancias de runtime (P033).

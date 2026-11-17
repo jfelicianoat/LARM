@@ -33,7 +33,7 @@ fn mapped_plan(
     // contenedor y el ancla es su re-preflight en execute (fail-closed ante
     // cambios del input) más la verificación por hash de la salida.
     let (data, phase_name, data_item) = match planner_id {
-        "product.gguf.v1" | "product.onnx.v1" => {
+        "product.gguf.v1" | "product.onnx.v1" | "product.onnxq.v1" => {
             let declared = worker
                 .storage_estimate
                 .final_artifact_bytes
@@ -44,7 +44,12 @@ fn mapped_plan(
                     )
                 })?
                 .get();
-            (declared, "product_gguf_conversion", "product_gguf_data")
+            let labels = match planner_id {
+                "product.onnxq.v1" => ("product_onnxq_conversion", "product_onnxq_data"),
+                "product.onnx.v1" => ("product_onnx_conversion", "product_onnx_data"),
+                _ => ("product_gguf_conversion", "product_gguf_data"),
+            };
+            (declared, labels.0, labels.1)
         }
         _ => {
             let data = input_bytes.div_ceil(3).checked_mul(4).ok_or_else(|| {

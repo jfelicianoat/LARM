@@ -16,6 +16,7 @@ use tower::ServiceExt;
 
 struct Harness {
     app: axum::Router,
+    state: larm_api::security::SecurityState,
     secrets: Arc<MemorySecrets>,
     principals: Arc<Principals>,
     admin: String,
@@ -93,7 +94,8 @@ async fn harness() -> Harness {
         cursors: Arc::new(CursorSigner::default()),
     };
     Harness {
-        app: larm_api::security::router(state),
+        app: larm_api::security::router(state.clone()),
+        state,
         secrets,
         principals,
         admin,
@@ -563,4 +565,81 @@ async fn correlacion_v7_se_conserva_y_otra_se_sustituye() {
     .await;
     let got = v["correlation_id"].as_str().unwrap();
     assert!(larm_domain::bridge::is_uuid_v7(got) && got != "8f14e45f-ceea-4c3b-9e1d-2a7b5c3d4e5f");
+}
+
+#[tokio::test]
+async fn rate_limit_bloquea_la_fuente_tras_diez_fallos() {
+    // Router real con el limiter del daemon insertado como extensión (igual
+    // que hace app() en el daemon): diez fallos bloquean la fuente incluso
+    // con un token válido, hasta el reset tras un éxito.
+    let h = harness().await;
+    let limiter = std::sync::Arc::new(larm_api::auth::AuthRateLimiter::new());
+    let app = larm_api::security::router(h.state.clone()).layer(axum::Extension(limiter.clone()));
+
+    // Un Bearer ausente no intenta credencial: no cuenta para el límite.
+    for _ in 0..12 {
+        let (status, value, _) = call(&app, "GET", "/api/v1/credentials", None, &[], None).await;
+        assert_eq!(status, StatusCode::UNAUTHORIZED);
+        assert_eq!(value["details"]["reason"], "bearer_missing");
+    }
+    let (status, _, _) = call(
+        &app,
+        "GET",
+        "/api/v1/credentials",
+        Some(&h.admin),
+        &[],
+        None,
+    )
+    .await;
+    assert_eq!(status, StatusCode::OK, "sin bearer no consume el límite");
+
+    // Diez credenciales inválidas llenan la ventana de la fuente.
+    for index in 0..10 {
+        let (status, value, _) = call(
+            &app,
+            "GET",
+            "/api/v1/credentials",
+            Some(&format!("token-malo-{index}")),
+            &[],
+            None,
+        )
+        .await;
+        assert_eq!(status, StatusCode::UNAUTHORIZED);
+        assert_eq!(value["details"]["reason"], "bearer_invalid");
+    }
+
+    // El onceavo intento (con token VÁLIDO) sale bloqueado con la razón del
+    // límite y Retry-After; el catálogo sellado del contrato 07 no tiene
+    // código 429, así que el bloqueo viaja como AUTH_REQUIRED 401.
+    let (status, value, headers) = call(
+        &app,
+        "GET",
+        "/api/v1/credentials",
+        Some(&h.admin),
+        &[],
+        None,
+    )
+    .await;
+    assert_eq!(status, StatusCode::UNAUTHORIZED);
+    assert_eq!(value["details"]["reason"], "auth_rate_limited");
+    assert_eq!(value["code"], "AUTH_REQUIRED");
+    let retry = headers
+        .get("retry-after")
+        .and_then(|v| v.to_str().ok())
+        .and_then(|v| v.parse::<u64>().ok())
+        .expect("Retry-After presente");
+    assert!(retry > 0 && retry <= 60, "Retry-After acotado: {retry}");
+
+    // Un éxito auténtico resetea el historial de la fuente.
+    limiter.reset("local");
+    let (status, _, _) = call(
+        &app,
+        "GET",
+        "/api/v1/credentials",
+        Some(&h.admin),
+        &[],
+        None,
+    )
+    .await;
+    assert_eq!(status, StatusCode::OK);
 }

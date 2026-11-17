@@ -26,6 +26,7 @@ pub fn run() {
             commands::smoke_enabled,
             commands::smoke_report,
             commands::inspect_adapter_package,
+            commands::larm_install_status,
             api::api_request
         ])
         .run(tauri::generate_context!())

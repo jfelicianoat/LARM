@@ -1,0 +1,159 @@
+{
+    "prompt":  "P132",
+    "real":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Checking larm-runtime v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-runtime) |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.14s"
+                   },
+                   {
+                       "check":  "test_fixtures",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.31s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 PASS 82 copias idénticas al paquete 3.16.0"
+                   },
+                   {
+                       "check":  "python_tests",
+                       "result":  "PASS",
+                       "detail":  "exit=0 ---------------------------------------------------------------------- | Ran 2 tests in 49.214s | System.Management.Automation.RemoteException | OK | PASS: 9 suites"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 7.66s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "npm_lint",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_typecheck",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "npm_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0 \u001b[2m   Duration \u001b[22m 41.33s\u001b[2m (environment 46%, tests 44%, import 9%, transform 1%)\u001b[22m |  | \u001b[2m    Isolate \u001b[22m \u001b[33m21 workers spawned\u001b[39m\u001b[2m · ~945ms startup each (spawn + environment, per file)\u001b[22m | \u001b[2m            \u001b[22m \u001b[2mat least ~18.89s faster with \u001b[22m\u001b[33misolate: false\u001b[39m\u001b[2m — reuses workers across files instead of one per file\u001b[22m | "
+                   },
+                   {
+                       "check":  "npm_build",
+                       "result":  "PASS",
+                       "detail":  "exit=0 \u001b[33m[plugin builtin:vite-reporter]  | (!) Some chunks are larger than 500 kB after minification. Consider: | - Using dynamic import() to code-split the application | - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting | - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m"
+                   },
+                   {
+                       "check":  "P132_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0    BLOQUEO  dependencia P051 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P093 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P029 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P100 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ],
+    "transcripts":  {
+                        "cargo_fmt":  {
+                                          "path":  "docs/reports/check_runs/20261116T1928048640444Z/cargo_fmt.log",
+                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                          "exit_code":  0
+                                      },
+                        "cargo_clippy":  {
+                                             "path":  "docs/reports/check_runs/20261116T1928048640444Z/cargo_clippy.log",
+                                             "sha256":  "13c5a78930d2d229f11f9cdddb3db159b7385e0f02485095bcb78654d6f0d252",
+                                             "exit_code":  0
+                                         },
+                        "test_fixtures":  {
+                                              "path":  "docs/reports/check_runs/20261116T1928048640444Z/test_fixtures.log",
+                                              "sha256":  "5f8379bed0af3af928684d4afa9e3faf6f9b93ddb7aeaf6da1ef360787be3d3e",
+                                              "exit_code":  0
+                                          },
+                        "cargo_test":  {
+                                           "path":  "docs/reports/check_runs/20261116T1928048640444Z/cargo_test.log",
+                                           "sha256":  "44802c4c029fac1b6c3858bbdcf79638385a535bb3d07715b99dc5e2d02bc535",
+                                           "exit_code":  0
+                                       },
+                        "architecture":  {
+                                             "path":  "docs/reports/check_runs/20261116T1928048640444Z/architecture.log",
+                                             "sha256":  "dd93c8d3783a8733bc80a19be08a4f0cad476257824eaca02ed24a8fa9129d9d",
+                                             "exit_code":  0
+                                         },
+                        "package_copy":  {
+                                             "path":  "docs/reports/check_runs/20261116T1928048640444Z/package_copy.log",
+                                             "sha256":  "54f6455ba0c0dce5ad5b4de9a4999887d949fdc9ae71cd23572c1427177d63d8",
+                                             "exit_code":  0
+                                         },
+                        "python_tests":  {
+                                             "path":  "docs/reports/check_runs/20261116T1928048640444Z/python_tests.log",
+                                             "sha256":  "bbab43082eb3cdee59b012df7df0b4aed7e5fa87c2ce3d173f904b0440a12a0a",
+                                             "exit_code":  0
+                                         },
+                        "desktop_fmt":  {
+                                            "path":  "docs/reports/check_runs/20261116T1928048640444Z/desktop_fmt.log",
+                                            "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "exit_code":  0
+                                        },
+                        "desktop_clippy":  {
+                                               "path":  "docs/reports/check_runs/20261116T1928048640444Z/desktop_clippy.log",
+                                               "sha256":  "cb70d79fc338db6294c0ec7014783956b7a0cb81b69b6361753e5540b8fffce8",
+                                               "exit_code":  0
+                                           },
+                        "desktop_test":  {
+                                             "path":  "docs/reports/check_runs/20261116T1928048640444Z/desktop_test.log",
+                                             "sha256":  "8913733a2c446434bd36aef94099d6895982161eb506cf85079efad6017a41e8",
+                                             "exit_code":  0
+                                         },
+                        "npm_lint":  {
+                                         "path":  "docs/reports/check_runs/20261116T1928048640444Z/npm_lint.log",
+                                         "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                         "exit_code":  0
+                                     },
+                        "npm_typecheck":  {
+                                              "path":  "docs/reports/check_runs/20261116T1928048640444Z/npm_typecheck.log",
+                                              "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                              "exit_code":  0
+                                          },
+                        "npm_test":  {
+                                         "path":  "docs/reports/check_runs/20261116T1928048640444Z/npm_test.log",
+                                         "sha256":  "ab8f92bcba030cb826bf53153f0ec676da9d47eaa642cd743445018d95c8c5ab",
+                                         "exit_code":  0
+                                     },
+                        "npm_build":  {
+                                          "path":  "docs/reports/check_runs/20261116T1928048640444Z/npm_build.log",
+                                          "sha256":  "c6fc063e576d38496cf80553b3272f8b0146fac471dadf604c6955cd8b797e05",
+                                          "exit_code":  0
+                                      },
+                        "P132_evidence":  {
+                                              "path":  "docs/reports/check_runs/20261116T1928048640444Z/P132_evidence.log",
+                                              "sha256":  "1f476f3bffb6eb4a6b69fa03f794d062ed5620bd3254c47cf5b9d92b77d218e5",
+                                              "exit_code":  0
+                                          }
+                    }
+}

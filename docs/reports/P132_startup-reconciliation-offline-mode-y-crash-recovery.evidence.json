@@ -1,0 +1,65 @@
+{
+  "prompt_id": "P132",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "73a9a32c864be998438fd047e13731e5a4b4595c4b799182e99e1f6fe4cbcd58",
+  "inputs_hash": "45569980ece6557ab60f7bf68970ca3aab42e5f4a78b34331c0bdd5f0b4cb6b0",
+  "changed_files": [
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/tests/startup_reconcile.rs",
+    "crates/larm-core/src/lib.rs",
+    "crates/larm-core/src/startup.rs",
+    "docs/implementation/STATE.md",
+    "docs/operations/recovery.md",
+    "docs/reports/P132_startup-reconciliation-offline-mode-y-crash-recovery.evidence.json",
+    "docs/reports/P132_startup-reconciliation-offline-mode-y-crash-recovery.md",
+    "tools/p132_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P132-CONTRACT-startup-order-and-crash-loop",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-core --lib startup",
+      "fixture_hashes": [],
+      "expected": "orden contractual de 7 pasos con validación incremental y estricta, modo offline con rechazo explícito, huérfanos por identidad fuerte y digest determinista",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 2.75s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_core-1b91358c7c28fdcc.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P132_runs/P132-CONTRACT-startup-order-and-crash-loop.log#sha256=f8aa1143973329b804521e73ca314b2957a5c980ae88e0c9a79248ad5dec2af7"
+      ]
+    },
+    {
+      "id": "P132-REAL-startup-reconcile-pc-ia",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test startup_reconcile -- --nocapture",
+      "fixture_hashes": [],
+      "expected": "journal real del arranque con los 7 pasos contractuales (paso desconocido falla cerrado), crash loop de runtime con la política del contrato 04 (3 reinicios por 10 min, backoff [1, 5, 15] y FAILED en el cuarto), modo offline con rechazo explícito y huérfanos sin kill por ambigüedad",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 3.94s | Running tests\\startup_reconcile.rs (target\\debug\\deps\\startup_reconcile-07a9eaac22975eb8.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P132_runs/P132-REAL-startup-reconcile-pc-ia.log#sha256=ecf01f0482164096fbfcdf62175718d58860994249edfa5e9de75cc2bde70022"
+      ]
+    },
+    {
+      "id": "P132-REAL-crash-recovery-e2e",
+      "kind": "REAL",
+      "command": "reconciliación end-to-end tras kill abrupto del daemon con jobs activos",
+      "fixture_hashes": [],
+      "expected": "kill abrupto del daemon con downloads/transforms activos → arranque siguiente reconcilia downloads seguros y persiste transformaciones no reanudables como FAILED_RECOVERABLE con la causa y el journal",
+      "observed": "NO EJECUTADA: las piezas cubiertas: H07 (public_h07) demuestra el crash con bytes parciales y la reconciliación FAILED_RECOVERABLE, y las suites de referencia del daemon reinician el proceso con recuperación (source_suite_nativa descarga_recupera, settings_restart) — la aceptación e2e dedicada con jobs concurrentes queda como extensión del REAL_PASS que las dependencias en BLOCKED_REAL ya impiden",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "reconciliación end-to-end tras kill abrupto con jobs activos concurrentes: requiere la suite del workspace en el host (fallo ambiental transformation_suite confirmado en HEAD); la política y las decisiones están verificadas y la aceptación H07 de transformaciones ya cubre el crash con bytes parciales",
+    "dependencia P018 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P033 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P051 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P093 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P019 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P029 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P100 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-11-16T20:05:06.879Z"
+}

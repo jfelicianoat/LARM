@@ -74,7 +74,7 @@ impl Graph {
             ),
             installation: entity(
                 72,
-                json!({"runtime_version_id":id(70),"storage_location_id":id(74),"relative_path":"runtime","strategy":"PREBUILT_BINARY","external_host_id":null,"state":"VALIDATED","ownership":"LARM_MANAGED","lock_hash":null,"stage":"VALIDATED","registration_mode":"MANAGED"}),
+                json!({"runtime_version_id":id(70),"storage_location_id":id(74),"relative_path":"runtime","strategy":"PREBUILT_BINARY","external_host_id":null,"execution_host_id":null,"state":"VALIDATED","ownership":"LARM_MANAGED","lock_hash":null,"stage":"VALIDATED","registration_mode":"MANAGED"}),
             ),
             backend: entity(
                 73,

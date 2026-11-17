@@ -109,6 +109,7 @@
     "plan_id": "019a0000-0000-7000-8000-000000000001"
   },
   "runtime.install_plan": {
+    "execution_host_id": null,
     "external_host_id": "019a0000-0000-7000-8000-000000000001",
     "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "runtime_id": "019a0000-0000-7000-8000-000000000001",

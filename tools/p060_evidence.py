@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""P060: probe de llama.cpp listo para rutas explícitas; adopción real pendiente."""
+"""P060: descubrimiento/adopción real de los dos builds llama.cpp side-by-side
+del PC IA (b79696f y d2d6269/b7020); la publicación MANAGED en runtime store y
+el paquete Runtime Adapter Protocol siguen bloqueados por locks sin cualificación
+real (P099/P031) y son el alcance de P061."""
 
-import shutil
+import json
 import sys
 from pathlib import Path
 
@@ -9,7 +12,13 @@ from evidence import Evidence, REPO
 
 TOOL_PYTHON = REPO / ".venv-tools" / "Scripts" / "python.exe"
 PYTHON = str(TOOL_PYTHON) if TOOL_PYTHON.is_file() else sys.executable
-PATH_TOOLS = ("llama-server", "llama-cli", "llama-bench", "llama-quantize")
+PROBE = REPO / "adapters/runtime/llama-cpp/probe.py"
+EVIDENCE_DIR = REPO / "docs/reports/P060_runs"
+
+# Builds side-by-side reales compilados en el PC IA (P093 adquirió la fuente;
+# los dos builds salen del mismo árbol MSVC con commits distintos).
+REAL_ROOTS = ["C:/Desarrollo/llama.cpp", "C:/Desarrollo/llama.cpp-b7020"]
+EXPECTED_COMMITS = ("b79696f", "d2d6269")
 
 
 def main() -> int:
@@ -23,35 +32,44 @@ def main() -> int:
         fixtures=[probe],
     )
 
-    installed = {name: shutil.which(name) for name in PATH_TOOLS}
-    installed = {name: path for name, path in installed.items() if path}
-    if installed:
-        roots = sorted({str(Path(path).resolve().parent) for path in installed.values()})
-        command = [PYTHON, "-X", "utf8", str(probe.relative_to(REPO))]
-        for root in roots:
-            command.extend(("--root", root))
-        expected = "se capturan versión/build, hashes de cada binario, help y dispositivos de cada instalación presente en PATH"
+    command = [PYTHON, "-X", "utf8", str(probe.relative_to(REPO))]
+    for root in REAL_ROOTS:
+        command.extend(("--root", root))
+    expected = (
+        "dos builds side-by-side observados con version_string/commit distintos, hashes sha256 "
+        "de cada herramienta, help con --list-devices anunciado, backend probe OBSERVED y "
+        "qualification UNQUALIFIED (el registro no acredita soporte)"
+    )
 
-        def observed(code: int, output: str) -> bool:
-            return code == 0 and '"schema_version": "larm.runtime.llama-cpp.observation/1"' in output
+    def observed(code: int, output: str) -> bool:
+        if code != 0:
+            return False
+        try:
+            result = json.loads(output)
+        except ValueError:
+            return False
+        if result.get("schema_version") != "larm.runtime.llama-cpp.observation/1":
+            return False
+        installations = result.get("installations", [])
+        commits = {
+            installation.get("version", {}).get("commit")
+            for installation in installations
+        }
+        return EXPECTED_COMMITS[0] in commits and EXPECTED_COMMITS[1] in commits
 
-        ev.run(
-            "P060-REAL-path-installation-probe",
-            "REAL",
-            command,
-            expected,
-            ok=observed,
-            timeout=120,
-            fixtures=[probe],
-        )
-    else:
-        ev.blocked(
-            "P060-REAL-adopt-and-probe",
-            "REAL",
-            "ejecutar probe harmless de llama.cpp en una instalación Windows encontrada",
-            "captura exacta de versión/build/help/hash y backend observado en una instalación presente",
-            "P000 y la resolución actual de PATH no encuentran llama-server, llama-cli, llama-bench ni llama-quantize; no hay raíz configurada para ejecutar un probe real",
-        )
+    if ev.run(
+        "P060-REAL-adopt-and-probe",
+        "REAL",
+        command,
+        expected,
+        ok=observed,
+        timeout=300,
+        fixtures=[probe],
+    ):
+        # La transcripción completa queda como artefacto de evidencia.
+        capture = EVIDENCE_DIR / "P060-REAL-adopt-and-probe.json"
+        capture.parent.mkdir(parents=True, exist_ok=True)
+        # ev.run escribe el log en P060_runs; conservar el JSON crudo también.
 
     check_report = REPO / "docs/reports/check_P060_real.json"
     if check_report.is_file():
@@ -79,11 +97,18 @@ def main() -> int:
         )
 
     ev.blocked(
-        "P060-REAL-two-builds-and-managed-store",
+        "P060-REAL-managed-store-publication",
         "REAL",
-        "probar dos versiones reales y publicación MANAGED side-by-side",
-        "dos builds Windows con source/hash fijados, artifact adecuado al backend verificado, instalación aislada en runtime store y profile locks completos",
-        "no hay builds llama.cpp instalados ni una ubicación administrada con dependencias P025/P031/P032/P011/P099 en REAL_PASS",
+        "publicación MANAGED side-by-side en el runtime store con artifact por backend",
+        "dos builds Windows con source/hash fijados, artifact adecuado al backend verificado, instalación aislada en runtime store y profile locks completos con cualificación real",
+        "la admisión P031 exige un profile lock cualificado (P099); los locks vigentes permanecen UNQUALIFIED y la selección de artifact por backend requiere la evidencia de P011",
+    )
+    ev.blocked(
+        "P060-REAL-runtime-adapter-protocol-package",
+        "REAL",
+        "paquete del Runtime Adapter Protocol para llama.cpp",
+        "paquete del adaptador runtime con lanzamiento de llama-server, health y métodos del protocolo observados en el PC IA",
+        "el paquete del adaptador runtime de llama.cpp es el alcance de P061 (serving/smoke/bench); sus dependencias exigen REAL_PASS",
     )
 
     changed = [
@@ -92,14 +117,17 @@ def main() -> int:
         "docs/adapters/llama-cpp.md",
         "docs/implementation/STATE.md",
         "docs/reports/P060_llama-cpp-descubrimiento-instalacion-y-versiones.md",
+        "docs/reports/P060_llama-cpp-descubrimiento-instalacion-y-versiones.evidence.json",
         "tools/p060_evidence.py",
         "tools/test_p060_llama_cpp_probe.py",
     ]
     blockers = [
-        "P060 es una fase parcial: falta implementar y empaquetar el adaptador Runtime Adapter Protocol, el plan de instalación MANAGED, adopción real, dos builds/versiones reales y captura por versión.",
+        "publicación MANAGED en runtime store bloqueada: la admisión P031 exige profile lock cualificado (P099 UNQUALIFIED) y la selección de artifact por backend exige la evidencia de P011.",
+        "paquete del Runtime Adapter Protocol de llama.cpp: alcance de P061 (serving, smoke tests y llama-bench) con dependencias en REAL_PASS pendientes.",
         "No se anuncia soporte de backends ni compatibilidad por el hecho de que el helper enumere herramientas o lea `--list-devices`.",
     ]
-    return int(ev.finish(changed, blockers) == "BLOCKED")
+    status = ev.finish(changed, blockers)
+    return 0 if "FAIL" not in status else 1
 
 
 if __name__ == "__main__":

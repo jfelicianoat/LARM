@@ -2,6 +2,7 @@
 #![forbid(unsafe_code)]
 
 pub mod adapters;
+pub mod backup;
 pub mod bridge;
 pub mod compatibility;
 pub mod config;
@@ -16,6 +17,7 @@ pub mod security;
 pub mod source_accounts;
 pub mod source_credentials;
 pub mod sources;
+pub mod startup;
 
 /// Identificador estable del crate para inventario y trazabilidad.
 pub const CRATE_NAME: &str = "larm-core";

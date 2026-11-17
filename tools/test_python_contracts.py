@@ -30,7 +30,7 @@ class MethodContracts(unittest.TestCase):
                 accepted += 1
                 directions.add((case["method"], case["direction"]))
         # Mismo oráculo canónico que crates/larm-adapter-sdk/tests/contracts.rs.
-        self.assertEqual((accepted, len(directions)), (1000, 80))
+        self.assertEqual((accepted, len(directions)), (1001, 80))
 
     def test_error_does_not_echo_value_or_allow_unknown_method(self):
         contracts = Contracts(REPO / "docs")

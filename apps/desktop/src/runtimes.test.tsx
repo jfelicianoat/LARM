@@ -13,7 +13,7 @@ const runtime = (over: Partial<Runtime> = {}): Runtime => ({ ...record, id: RID,
 const versions = (): RuntimeVersion[] => CHANNELS.map((channel, i) => ({ ...record, id: `version-${i}`, runtime_id: RID, version_string: `b7142-${channel}`, channel, commit: null, build: null, released_at: null, artifact_hash: null, promotion: "NONE", lifecycle: "CANDIDATE", metadata: channel === "custom" ? { upstream_channel: { value: "experimental.vendor/42", reason: "UNKNOWN" } } : {} }));
 const installation = (over: Partial<RuntimeInstallation> = {}): RuntimeInstallation => ({
   ...record, id: "0192aaaa-0000-7000-8000-000000000040", runtime_version_id: "version-0",
-  storage_location_id: null, relative_path: null, external_host_id: null, strategy: "EXTERNAL_ADOPTION",
+  storage_location_id: null, relative_path: null, external_host_id: null, execution_host_id: null, strategy: "EXTERNAL_ADOPTION",
   state: "ACTIVE", stage: "VALIDATED", registration_mode: "EXTERNAL", ownership: "EXTERNAL", lock_hash: null,
   ...over,
 });
@@ -508,5 +508,51 @@ describe("inventario de runtimes", () => {
     expect(t.calls.find((request) => request.method === "PATCH" && request.path === `/api/v1/launch-profiles/${saved[1].id}`)).toMatchObject({
       headers: { "If-Match": "1" }, body: { name: "BALANCED", backend_id: null, parameters: { ...parameters, batch: 768 } },
     });
+  });
+});
+
+describe("hosts de ejecución observados (P081)", () => {
+  it("muestra los motores WSL2 y contenedores con su estado y la advertencia de observación", async () => {
+    const executionHost = (over: Record<string, unknown> = {}): Record<string, unknown> => ({
+      ...record, id: "0192aaaa-0000-7000-8000-000000000060", kind: "WSL2", name: "Ubuntu",
+      engine_version: null, wsl_version: 2, default: true, status: "ONLINE",
+      evidence_refs: ["P081-REAL-wsl-probe"], ...over,
+    });
+    const t = transport((req) => {
+      if (req.path === "/api/v1/execution-hosts?limit=200")
+        return page([
+          executionHost(),
+          executionHost({ id: "0192aaaa-0000-7000-8000-000000000061", kind: "CONTAINER", name: "docker", engine_version: "29.7.2", wsl_version: null, default: false, status: "UNKNOWN" }),
+        ]);
+      return page([]);
+    });
+    open(t);
+    const list = await screen.findByRole("list", { name: "Hosts de ejecución observados" });
+    const entries = within(list).getAllByRole("listitem");
+    const wslEntry = entries.find((item) => item.textContent?.includes("Ubuntu"));
+    const dockerEntry = entries.find((item) => item.textContent?.includes("docker"));
+    expect(wslEntry?.textContent).toContain("WSL2");
+    expect(wslEntry?.textContent).toContain("Por defecto");
+    expect(dockerEntry?.textContent).toContain("Motor de contenedores");
+    expect(dockerEntry?.textContent).toContain("Estado desconocido");
+    expect(within(list).getByText(/Versión del motor: 29.7.2/)).toBeTruthy();
+    expect(screen.getByText(/no acredita compatibilidad ni habilita ejecución/)).toBeTruthy();
+    expect(t.calls.some((request) => request.path === "/api/v1/execution-hosts?limit=200")).toBe(true);
+  });
+
+  it("muestra el estado vacío cuando el sondeo aún no observó motores", async () => {
+    open(transport());
+    expect(await screen.findByText("Todavía no hay hosts de ejecución observados.")).toBeTruthy();
+  });
+
+  it("informa el fallo de carga sin bloquear el resto de la pantalla", async () => {
+    const t = transport((req) => {
+      if (req.path === "/api/v1/execution-hosts?limit=200")
+        return error(500, "execution_hosts_unavailable");
+      return page([]);
+    });
+    open(t);
+    await screen.findByText("No se pudo cargar el registro de hosts de ejecución.");
+    expect(screen.queryByRole("list", { name: "Hosts de ejecución observados" })).toBeNull();
   });
 });

@@ -9,7 +9,7 @@ use larm_domain::runtime_install::{
 use serde_json::{json, Value};
 
 fn request() -> Value {
-    json!({"runtime_id":"0192aaaa-0000-7000-8000-000000000001", "upstream_version":"b7142+vendor/42", "strategy":"UV", "storage_location_id":"0192aaaa-0000-7000-8000-000000000002", "profile_lock_hash":"a".repeat(64), "external_host_id":null})
+    json!({"runtime_id":"0192aaaa-0000-7000-8000-000000000001", "upstream_version":"b7142+vendor/42", "strategy":"UV", "storage_location_id":"0192aaaa-0000-7000-8000-000000000002", "profile_lock_hash":"a".repeat(64), "external_host_id":null, "execution_host_id":null})
 }
 
 fn plan() -> Plan {
@@ -103,6 +103,10 @@ fn quince_estrategias_del_schema_conservan_solicitud_y_declaracion() {
     for strategy in strategies {
         let mut value = request();
         value["strategy"] = strategy.clone();
+        // Las estrategias virtualizadas exigen host de ejecución referenciado.
+        if matches!(value["strategy"].as_str(), Some("WSL") | Some("CONTAINER")) {
+            value["execution_host_id"] = json!("0192aaaa-0000-7000-8000-0000000000e1");
+        }
         let parsed: InstallRequest = serde_json::from_value(value.clone()).unwrap();
         parsed.validate().unwrap();
         parsed.require_advertised(&[parsed.strategy]).unwrap();
@@ -161,6 +165,7 @@ fn ids_hashes_y_versiones_se_validan_sin_exigir_semver() {
         ("upstream_version", ""),
         ("profile_lock_hash", &"A".repeat(64)),
         ("external_host_id", "host-name"),
+        ("execution_host_id", "host-name"),
     ] {
         let mut bad = request();
         bad[name] = json!(value);

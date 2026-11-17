@@ -638,7 +638,9 @@ async fn migracion_de_bootstrap_preserva_filas_y_rechaza_identidades_ambiguas_at
             "0011_p127_source_operational_snapshot",
             "0012_p128_low_disk_transition",
             "0013_p032_runtime_version_pinning_and_retention",
-            "0014_model_acquisition_manifest"
+            "0014_model_acquisition_manifest",
+            "0015_p081_execution_host",
+            "0016_p119_download_admission"
         ]
     );
     assert_eq!(

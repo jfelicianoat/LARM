@@ -7152,15 +7152,27 @@
               "type": "null"
             }
           ]
+        },
+        "execution_host_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
-        "runtime_id",
-        "upstream_version",
-        "strategy",
-        "storage_location_id",
+        "execution_host_id",
+        "external_host_id",
         "profile_lock_hash",
-        "external_host_id"
+        "runtime_id",
+        "storage_location_id",
+        "strategy",
+        "upstream_version"
       ]
     },
     "InstallationRef": {
@@ -13913,13 +13925,25 @@
               "type": "null"
             }
           ]
+        },
+        "execution_host_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
-        "strategy",
-        "storage_location_id",
+        "execution_host_id",
+        "external_host_id",
         "profile_lock_hash",
-        "external_host_id"
+        "storage_location_id",
+        "strategy"
       ]
     },
     "RuntimeRollbackRequest": {
@@ -14215,6 +14239,79 @@
         "hard_budget_bytes",
         "source_id",
         "priority"
+      ]
+    },
+    "runtime_execution_host": {
+      "$ref": "domain.schema.json#/$defs/runtime_execution_host"
+    },
+    "runtime_execution_hostList": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "domain.schema.json#/$defs/runtime_execution_host"
+          }
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_at"
+      ]
+    },
+    "download_admission_policy": {
+      "$ref": "domain.schema.json#/$defs/download_admission_policy"
+    },
+    "download_admission": {
+      "$ref": "domain.schema.json#/$defs/download_admission"
+    },
+    "download_admissionList": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "domain.schema.json#/$defs/download_admission"
+          }
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor",
+        "snapshot_at"
       ]
     }
   }

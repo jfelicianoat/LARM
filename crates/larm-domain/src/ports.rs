@@ -1396,6 +1396,31 @@ pub trait StorageMaintenance: Send + Sync {
     ) -> Result<Value, ApiError>;
 }
 
+/// Updater y recuperación de LARM (P133; spec §132-§134), detrás del guard.
+#[async_trait]
+pub trait RecoveryOps: Send + Sync {
+    /// Guarda del updater: con leases o jobs activas no se fuerza el reinicio
+    /// sin confirmación (`Conflict` `update_blocked_active_leases`).
+    async fn update_guard(&self, confirmed: bool) -> Result<(), ApiError>;
+    /// `POST /api/v1/updates/larm`: verificación del staged, backup previo de
+    /// la base y bundle de config/manifests (el reinicio y la migración los
+    /// aplica el arranque siguiente).
+    async fn update_larm(
+        &self,
+        plan_id: &str,
+        plan_hash: &str,
+        ctx: &MutationContext,
+    ) -> Result<(crate::bridge::JobReceipt, BackgroundTask), ApiError>;
+    /// `POST /api/v1/recovery/rebuild`: rebuild del registro desde las
+    /// ubicaciones de almacenamiento hacia una base de staging (P018).
+    async fn recovery_rebuild(
+        &self,
+        plan_id: &str,
+        plan_hash: &str,
+        ctx: &MutationContext,
+    ) -> Result<(crate::bridge::JobReceipt, BackgroundTask), ApiError>;
+}
+
 /// Persistencia de `adapter_installation`. Cada mutación escribe su evento
 /// (`adapter.updated`) en la misma transacción.
 #[async_trait]

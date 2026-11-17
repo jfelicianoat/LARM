@@ -1,0 +1,75 @@
+{
+  "prompt_id": "P137",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "73a9a32c864be998438fd047e13731e5a4b4595c4b799182e99e1f6fe4cbcd58",
+  "inputs_hash": "60c2ab2f9c8a600a136f5fc2c9bd13757bb48cc78df764761bb88d5b567afa61",
+  "changed_files": [
+    "apps/daemon/src/main.rs",
+    "apps/daemon/src/windows.rs",
+    "apps/daemon/tests/windows_agent.rs",
+    "apps/desktop/src-tauri/src/commands.rs",
+    "apps/desktop/src-tauri/src/lib.rs",
+    "docs/implementation/STATE.md",
+    "docs/operations/install-uninstall.md",
+    "docs/reports/P137_packaging-windows-user-background-agent-y-windows-service-opcional.evidence.json",
+    "docs/reports/P137_packaging-windows-user-background-agent-y-windows-service-opcional.md",
+    "tools/p137_evidence.py",
+    "tools/package_windows.py"
+  ],
+  "tests": [
+    {
+      "id": "P137-CONTRACT-modos-windows",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-daemon --bin larm-daemon windows::",
+      "fixture_hashes": [],
+      "expected": "decisiones puras de los dos modos (spec §102): .cmd de autarranque determinista y minimizado sin tocar el PATH global, sc create con rutas separadas (ProgramData) y arranque a demanda, service_data_root rechaza unidades de sesión, uninstall_plan exige confirmación para la purga de datos",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.31s | Running unittests src\\main.rs (target\\debug\\deps\\larm_daemon-771eeea720b3e8fb.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P137_runs/P137-CONTRACT-modos-windows.log#sha256=d8f2755652b2ff492c6dc41e9640f3fe023b168e9502814d16134e4a681a07e5"
+      ]
+    },
+    {
+      "id": "P137-REAL-agente-y-servicio-pc-ia",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test windows_agent -- --nocapture",
+      "fixture_hashes": [],
+      "expected": "REAL sobre el PC IA: el daemon arranca como User Background Agent del usuario sin privilegios y sirve health/live; el autarranque se registra y elimina en la carpeta Startup real del usuario (sin admin, .cmd con --serve-api); el servicio opcional sin elevación queda NO VERIFICADO (service_requires_elevation); purge-data sin confirmación se rechaza (uninstall_purge_requires_confirmation) y con --confirm borra la raíz de datos",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s | Running tests\\windows_agent.rs (target\\debug\\deps\\windows_agent-d588fbfe10127f4f.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P137_runs/P137-REAL-agente-y-servicio-pc-ia.log#sha256=bee5c415fc4d330954aa3de38b11b09e5bc10730bf68df9e872464dc0e986e7a"
+      ]
+    },
+    {
+      "id": "P137-REAL-package-build",
+      "kind": "REAL",
+      "command": "C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\.venv-tools\\Scripts\\python.exe -X utf8 -I tools/package_windows.py",
+      "fixture_hashes": [],
+      "expected": "oráculo Install package build: paquete portátil determinista con el binario del daemon, la documentación de operación, VERSION y SHA256SUMS — sólo copia ficheros (no PATH global, drivers, WSL ni BIOS)",
+      "observed": "exit=0; PASS: C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\dist\\LARM-0.1.0-windows-x64.zip (18603980 bytes) sha256=cb75330e3aea47b9721882f956dd22ff1bb691d51b30130e36b7dc37204422f9",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P137_runs/P137-REAL-package-build.log#sha256=c5815efde224ae231fbb29f10186a9ea39fc35be7c6f5610b2425f035903f89a"
+      ]
+    },
+    {
+      "id": "P137-REAL-service-instalado",
+      "kind": "REAL",
+      "command": "servicio Windows instalado, arrancado y verificado unattended",
+      "fixture_hashes": [],
+      "expected": "sc create LARM con consola elevada, arranque del servicio y verificación de health/live del daemon servido por el SCM con rutas separadas en ProgramData",
+      "observed": "NO EJECUTADA: la instalación del servicio exige una consola elevada; la consola de pruebas no está elevada y el comando real queda NO VERIFICADO (conducta esperada documentada): el guard service_requires_elevation está probado REAL y el flujo sc es el documentado en install-uninstall.md",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "servicio Windows instalado y verificado unattended: exige consola elevada (NO VERIFICADO sin ella; el guard service_requires_elevation está probado REAL)",
+    "dependencia P132 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P131 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P133 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-11-17T01:10:53.585Z"
+}

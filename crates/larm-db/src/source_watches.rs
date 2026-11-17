@@ -412,16 +412,24 @@ impl SourceWatchRepository for SqlSourceWatches {
         ctx: &MutationContext,
     ) -> Result<SourceWatch, LarmError> {
         request.validate()?;
+        // P119: automatic_download=true es válido; la admisión se evalúa
+        // contra la política vigente (opt-in) en el momento de la detección.
         if request
             .policy
             .get("automatic_download")
             .and_then(Value::as_bool)
             == Some(true)
+            && request
+                .policy
+                .get("storage_location_id")
+                .and_then(Value::as_str)
+                .map(str::is_empty)
+                != Some(false)
         {
             return Err(LarmError::new(
-                ErrorCode::UnsupportedCapability,
-                "La descarga automática requiere la política P119",
-                "watch_auto_download_not_implemented",
+                ErrorCode::ValidationFailed,
+                "La descarga automática exige el destino de la política",
+                "watch_auto_download_target_missing",
             ));
         }
         if !is_sha256(body_hash)
@@ -559,16 +567,24 @@ impl SourceWatchRepository for SqlSourceWatches {
         ctx: &MutationContext,
     ) -> Result<SourceWatch, LarmError> {
         request.validate()?;
+        // P119: automatic_download=true es válido; la admisión se evalúa
+        // contra la política vigente (opt-in) en el momento de la detección.
         if request
             .policy
             .get("automatic_download")
             .and_then(Value::as_bool)
             == Some(true)
+            && request
+                .policy
+                .get("storage_location_id")
+                .and_then(Value::as_str)
+                .map(str::is_empty)
+                != Some(false)
         {
             return Err(LarmError::new(
-                ErrorCode::UnsupportedCapability,
-                "La descarga automática requiere la política P119",
-                "watch_auto_download_not_implemented",
+                ErrorCode::ValidationFailed,
+                "La descarga automática exige el destino de la política",
+                "watch_auto_download_target_missing",
             ));
         }
         let mut tx = self

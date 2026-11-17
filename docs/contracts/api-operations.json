@@ -229,25 +229,23 @@
         }
       }
     },
-
-  {
-    "id": "P120_patch__variants_id_promotion",
-    "method": "PATCH",
-    "path": "/api/v1/variants/{id}/promotion",
-    "scope": "models:write",
-    "request_schema": null,
-    "response_schema": "larm.schema.json#/$defs/model_variant",
-    "owner": "P120",
-    "mode": "sync",
-    "success_status": 200,
-    "path_parameters": {
-      "id": {
-        "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    {
+      "id": "P120_patch__variants_id_promotion",
+      "method": "PATCH",
+      "path": "/api/v1/variants/{id}/promotion",
+      "scope": "models:write",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/model_variant",
+      "owner": "P120",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
       }
-    }
-  }
-,
+    },
     {
       "id": "P042_post__models_select",
       "method": "POST",
@@ -404,6 +402,62 @@
         "Idempotency-Key"
       ],
       "resource_id_semantics": "ModelVariant UUID, not CanonicalModel group UUID"
+    },
+    {
+      "id": "P119_put__download_admission_policy",
+      "method": "PUT",
+      "path": "/api/v1/download-admission-policy",
+      "scope": "jobs:write",
+      "request_schema": "larm.schema.json#/$defs/download_admission_policy",
+      "response_schema": "larm.schema.json#/$defs/download_admission_policy",
+      "owner": "P119",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {},
+      "required_headers": [
+        "If-Match"
+      ]
+    },
+    {
+      "id": "P119_get__download_admission_policy",
+      "method": "GET",
+      "path": "/api/v1/download-admission-policy",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/download_admission_policy",
+      "owner": "P119",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P119_get__download_admissions",
+      "method": "GET",
+      "path": "/api/v1/download-admissions",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/download_admissionList",
+      "owner": "P119",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
+    },
+    {
+      "id": "P119_post__download_admissions_id_revoke",
+      "method": "POST",
+      "path": "/api/v1/download-admissions/{id}/revoke",
+      "scope": "jobs:write",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/download_admission",
+      "owner": "P119",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+      }
     },
     {
       "id": "P052_post__download_plans",
@@ -613,6 +667,18 @@
           "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         }
       }
+    },
+    {
+      "id": "P081_get__execution_hosts",
+      "method": "GET",
+      "path": "/api/v1/execution-hosts",
+      "scope": "read",
+      "request_schema": null,
+      "response_schema": "larm.schema.json#/$defs/runtime_execution_hostList",
+      "owner": "P081",
+      "mode": "sync",
+      "success_status": 200,
+      "path_parameters": {}
     },
     {
       "id": "P031_get__runtime_versions",

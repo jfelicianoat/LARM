@@ -22,6 +22,8 @@ pub enum Recipe {
     Gguf(gguf::GgufConfig),
     #[serde(rename = "product.transformation.onnx.v1")]
     Onnx(onnx::OnnxConfig),
+    #[serde(rename = "product.transformation.onnxq.v1")]
+    OnnxQuantize(onnx_quantize::OnnxQuantizeConfig),
     #[serde(rename = "reference.benchmark.echo.v1")]
     Benchmark(benchmark::BenchmarkConfig),
 }
@@ -92,6 +94,10 @@ impl LocalProfile {
             Recipe::Onnx(c) => (
                 "transformation",
                 Arc::new(onnx::OnnxTransformationSuite::new(c.clone())?),
+            ),
+            Recipe::OnnxQuantize(c) => (
+                "transformation",
+                Arc::new(onnx_quantize::OnnxQuantizeSuite::new(c.clone())?),
             ),
             Recipe::Benchmark(c) => (
                 "benchmark",
@@ -209,6 +215,14 @@ impl LocalProfile {
                     self.work_dir.join("profile/profile.json"),
                 ]);
             }
+            Recipe::OnnxQuantize(c) => {
+                inputs.extend([
+                    c.forbidden.clone(),
+                    c.expected_input.clone(),
+                    self.work_dir.join("input/model.onnx"),
+                    self.work_dir.join("profile/profile.json"),
+                ]);
+            }
             Recipe::Transformation(c) => {
                 inputs.extend([
                     c.forbidden.clone(),
@@ -230,11 +244,32 @@ impl LocalProfile {
         if inputs.len() > 128 || inputs.iter().any(|p| !p.is_absolute()) {
             return Err(invalid("conformance_inputs_invalid"));
         }
+        // El cuantizador de producto ejecuta su cuantización real como
+        // subproceso del runtime gestionado sellado; la ruta viaja por
+        // entorno del worker (nombres validados por worker.rs).
+        let environment = match &self.suite {
+            Recipe::OnnxQuantize(c) => {
+                let mut env = vec![(
+                    "OLIVE_RUNTIME".to_string(),
+                    c.olive_runtime.to_string_lossy().into_owned(),
+                )];
+                // El subproceso del runtime sellado necesita un scratch corto y
+                // ASCII para sus ficheros temporales (los lanzadores y ORT se
+                // rompen con rutas extendidas \?\ bajo TEMP de trabajo).
+                for name in ["USERPROFILE", "APPDATA"] {
+                    if let Ok(value) = std::env::var(name) {
+                        env.push((name.to_string(), value));
+                    }
+                }
+                env
+            }
+            _ => Vec::new(),
+        };
         Ok(NativeTarget {
             spec: WorkerSpec {
                 package_dir: self.package_dir.clone(),
                 manifest,
-                environment: vec![],
+                environment,
                 work_dir: self.work_dir.clone(),
             },
             roots: Some(RootMap(self.roots.clone())),

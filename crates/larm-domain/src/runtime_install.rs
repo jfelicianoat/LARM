@@ -54,6 +54,9 @@ pub struct InstallRequest {
     pub profile_lock_hash: String,
     #[serde(deserialize_with = "Option::deserialize")]
     pub external_host_id: Option<String>,
+    /// P081: host de ejecución referenciado para estrategias WSL/CONTAINER.
+    #[serde(deserialize_with = "Option::deserialize")]
+    pub execution_host_id: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -138,6 +141,21 @@ impl InstallRequest {
         hash(&self.profile_lock_hash)?;
         if let Some(host) = &self.external_host_id {
             id(host)?;
+        }
+        if let Some(host) = &self.execution_host_id {
+            id(host)?;
+        }
+        // P081: coherencia estructural sin base de datos — las estrategias
+        // virtualizadas exigen host referenciado y las nativas lo prohíben.
+        let virtualized = matches!(
+            self.strategy,
+            InstallationStrategy::Wsl | InstallationStrategy::Container
+        );
+        if virtualized && self.execution_host_id.is_none() {
+            return Err(invalid("execution_host_reference_missing"));
+        }
+        if !virtualized && self.execution_host_id.is_some() {
+            return Err(invalid("execution_host_reference_unexpected"));
         }
         if self.upstream_version.is_empty() {
             return Err(invalid("upstream_version_invalid"));

@@ -26,7 +26,7 @@ fn version() -> Value {
 fn installation() -> Value {
     entity(
         json!({"runtime_version_id":uid(),"storage_location_id":null,"relative_path":null,
-        "strategy":"EXTERNAL_ADOPTION","external_host_id":uid(),"state":"DISCOVERED",
+        "strategy":"EXTERNAL_ADOPTION","external_host_id":uid(),"execution_host_id":null,"state":"DISCOVERED",
         "ownership":"EXTERNAL","lock_hash":null,"stage":"DISCOVERED","registration_mode":"ADOPTED"}),
     )
 }
@@ -204,6 +204,7 @@ fn dtos_cerrados_y_todos_los_nullable_obligatorios() {
         "storage_location_id",
         "relative_path",
         "external_host_id",
+        "execution_host_id",
         "lock_hash",
     ] {
         let mut raw = installation();

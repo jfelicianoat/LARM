@@ -3,6 +3,17 @@
     "larm__InstallRequest": {
       "additionalProperties": false,
       "properties": {
+        "execution_host_id": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "external_host_id": {
           "anyOf": [
             {
@@ -52,12 +63,13 @@
         }
       },
       "required": [
-        "runtime_id",
-        "upstream_version",
-        "strategy",
-        "storage_location_id",
+        "execution_host_id",
+        "external_host_id",
         "profile_lock_hash",
-        "external_host_id"
+        "runtime_id",
+        "storage_location_id",
+        "strategy",
+        "upstream_version"
       ],
       "type": "object"
     }

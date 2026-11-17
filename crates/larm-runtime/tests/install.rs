@@ -24,6 +24,12 @@ fn request(strategy: InstallationStrategy) -> InstallRequest {
         storage_location_id: STORAGE.into(),
         profile_lock_hash: "a".repeat(64),
         external_host_id: None,
+        // Las estrategias virtualizadas exigen host de ejecución referenciado.
+        execution_host_id: matches!(
+            strategy,
+            InstallationStrategy::Wsl | InstallationStrategy::Container
+        )
+        .then(|| "0199aaaa-0000-7000-8000-0000000000e1".to_string()),
     }
 }
 fn binding(strategy: InstallationStrategy) -> InstallSpec {

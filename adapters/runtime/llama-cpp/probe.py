@@ -151,7 +151,16 @@ def _version_from_output(stdout: bytes, stderr: bytes) -> dict[str, object]:
             "stderr_sha256": _sha256_bytes(stderr),
         }
     parenthesized_commit = re.search(r"\(([0-9a-f]{7,40})\)", version_value, re.IGNORECASE)
-    commit = commits[0] if commits else (parenthesized_commit.group(1).lower() if parenthesized_commit else None)
+    inline_commit = re.search(r"\bcommit[:\s]+([0-9a-f]{7,40})\b", version_value, re.IGNORECASE)
+    commit = (
+        commits[0]
+        if commits
+        else parenthesized_commit.group(1).lower()
+        if parenthesized_commit
+        else inline_commit.group(1).lower()
+        if inline_commit
+        else None
+    )
     exact_version = (
         version_value[: parenthesized_commit.start()].strip()
         if parenthesized_commit

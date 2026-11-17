@@ -1,0 +1,119 @@
+{
+    "prompt":  "P119",
+    "real":  true,
+    "status":  "FAIL",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Checking larm-models v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-models) |     Checking larm-transform v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-transform) |     Checking larm-source-p048 v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\adapters\\source\\p048) |     Checking larm-daemon v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\apps\\daemon) |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 12.67s"
+                   },
+                   {
+                       "check":  "test_fixtures",
+                       "result":  "PASS",
+                       "detail":  "exit=0    Compiling larm-db v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-db) |    Compiling larm-storage v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-storage) |    Compiling larm-adapter-host v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-adapter-host) |    Compiling larm-download v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-download) |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 11.81s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "FAIL",
+                       "detail":  "exit=101     transformation_suite_nativa_completa_archivos_intentos_fallos_y_core_sqlite |  | test result: FAILED. 19 passed; 13 failed; 14 ignored; 0 measured; 0 filtered out; finished in 340.12s |  | error: test failed, to rerun pass `-p larm-daemon --test reference_adapters`"
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "FAIL",
+                       "detail":  "exit=1 FAIL copia modificada respecto al paquete: docs/spec/manifest.json | FAIL copia modificada respecto al paquete: docs/contracts/api-operations.json | FAIL copia modificada respecto al paquete: docs/contracts/REVISION_3_15_0_P081.md | FAIL copia modificada respecto al paquete: docs/contracts/schemas/domain.schema.json | FAIL copia modificada respecto al paquete: docs/contracts/schemas/larm.schema.json"
+                   },
+                   {
+                       "check":  "python_tests",
+                       "result":  "FAIL",
+                       "detail":  "exit=1 ---------------------------------------------------------------------- | Ran 2 tests in 26.112s | System.Management.Automation.RemoteException | FAILED (errors=2) | FAIL: tools, adapters/runtime/ollama, adapters/transformation/gguf, adapters/transformation/onnx, adapters/transformation/onnx-quantize"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.91s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "P119_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0    BLOQUEO  auto-job BACKGROUND end-to-end desde watcher: requiere el plan preview real de la fuente (P044 BLOCKED_REAL) y locks cualificados (P099/P031); la política, cuota, revocación y persistencia están verificadas |    BLOQUEO  UI de historial/revocación: la pantalla de descargas consume las mismas rutas contratadas; el panel dedicado queda para el cierre de UI de P129/P139 |    BLOQUEO  dependencia P050 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P052 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P009 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ],
+    "transcripts":  {
+                        "cargo_fmt":  {
+                                          "path":  "docs/reports/check_runs/20261116T1629021058872Z/cargo_fmt.log",
+                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                          "exit_code":  0
+                                      },
+                        "cargo_clippy":  {
+                                             "path":  "docs/reports/check_runs/20261116T1629021058872Z/cargo_clippy.log",
+                                             "sha256":  "66c552f434bd8d80d622142a35c9df354948e331dec56de9146f726af40c75af",
+                                             "exit_code":  0
+                                         },
+                        "test_fixtures":  {
+                                              "path":  "docs/reports/check_runs/20261116T1629021058872Z/test_fixtures.log",
+                                              "sha256":  "f0b38258a3e29b32861688db2481654529da1d6b21a2fcd62e2cdb5212fb6a85",
+                                              "exit_code":  0
+                                          },
+                        "cargo_test":  {
+                                           "path":  "docs/reports/check_runs/20261116T1629021058872Z/cargo_test.log",
+                                           "sha256":  "a3247329d283f07b33eabe0b837323e51d6c38c16a5f343755f23c50b216072d",
+                                           "exit_code":  101
+                                       },
+                        "architecture":  {
+                                             "path":  "docs/reports/check_runs/20261116T1629021058872Z/architecture.log",
+                                             "sha256":  "dd93c8d3783a8733bc80a19be08a4f0cad476257824eaca02ed24a8fa9129d9d",
+                                             "exit_code":  0
+                                         },
+                        "package_copy":  {
+                                             "path":  "docs/reports/check_runs/20261116T1629021058872Z/package_copy.log",
+                                             "sha256":  "cfb5596c6088c6e7ba9e36ddeca9a1b6a6612c00be90dfe54c70c570f8573bee",
+                                             "exit_code":  1
+                                         },
+                        "python_tests":  {
+                                             "path":  "docs/reports/check_runs/20261116T1629021058872Z/python_tests.log",
+                                             "sha256":  "cf2a9d3f44ee61cd8a0a6753f187f86807fdfb8700db6fd9ca823df020cef58b",
+                                             "exit_code":  1
+                                         },
+                        "desktop_fmt":  {
+                                            "path":  "docs/reports/check_runs/20261116T1629021058872Z/desktop_fmt.log",
+                                            "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "exit_code":  0
+                                        },
+                        "desktop_clippy":  {
+                                               "path":  "docs/reports/check_runs/20261116T1629021058872Z/desktop_clippy.log",
+                                               "sha256":  "68192a473915aae42e0ac4c8aaaa8e2d92d9e100dbc6698122b269cf8a4b8e9a",
+                                               "exit_code":  0
+                                           },
+                        "desktop_test":  {
+                                             "path":  "docs/reports/check_runs/20261116T1629021058872Z/desktop_test.log",
+                                             "sha256":  "0b4ec37d2e34f47e851a706b55bb862e68ca2c769fe99c2c5dad812fb82e99ba",
+                                             "exit_code":  0
+                                         },
+                        "P119_evidence":  {
+                                              "path":  "docs/reports/check_runs/20261116T1629021058872Z/P119_evidence.log",
+                                              "sha256":  "8083ce9355ff21454c75ac7e704e9bd63884ea9cdd0cc7e08e180e7dbe0739c7",
+                                              "exit_code":  0
+                                          }
+                    }
+}

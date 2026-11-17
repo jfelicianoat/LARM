@@ -7,6 +7,17 @@
           "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$",
           "type": "string"
         },
+        "execution_host_id": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "external_host_id": {
           "anyOf": [
             {
@@ -137,21 +148,22 @@
         }
       },
       "required": [
-        "id",
         "created_at",
-        "updated_at",
-        "row_version",
-        "metadata",
-        "runtime_version_id",
-        "storage_location_id",
-        "relative_path",
-        "strategy",
+        "execution_host_id",
         "external_host_id",
-        "state",
-        "ownership",
+        "id",
         "lock_hash",
+        "metadata",
+        "ownership",
+        "registration_mode",
+        "relative_path",
+        "row_version",
+        "runtime_version_id",
         "stage",
-        "registration_mode"
+        "state",
+        "storage_location_id",
+        "strategy",
+        "updated_at"
       ],
       "type": "object"
     },

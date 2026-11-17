@@ -13,7 +13,7 @@ use std::time::{Duration, Instant};
 
 use async_trait::async_trait;
 use axum::body::Body;
-use axum::extract::{Request, State};
+use axum::extract::{Extension, Request, State};
 use axum::http::{header, HeaderMap, HeaderValue, Method, StatusCode};
 use axum::middleware::{from_fn, from_fn_with_state, Next};
 use axum::response::sse::{Event, KeepAlive, Sse};
@@ -147,6 +147,8 @@ pub struct AppConfig {
 #[derive(Clone)]
 pub struct AppState {
     pub auth: Arc<dyn PrincipalAuthenticator>,
+    /// Rate limit de fallos de autenticación (P131): compartido por el guard.
+    pub auth_limiter: Arc<crate::auth::AuthRateLimiter>,
     pub readiness: Arc<dyn Readiness>,
     pub bus: EventBus,
     pub config: AppConfig,
@@ -171,6 +173,7 @@ pub fn app(state: AppState, admin: Router, gateway: Router) -> Router {
             state.auth.clone(),
             crate::security::guard,
         ))
+        .layer(Extension(state.auth_limiter.clone()))
         .fallback(not_found)
         .layer(axum::extract::DefaultBodyLimit::max(
             config.request_body_bytes,

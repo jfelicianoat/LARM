@@ -33,7 +33,7 @@ fn cuarenta_firmas_conservan_el_veredicto_python_independiente() {
     }
     assert_eq!(directions.len(), 80);
     // Canonical oracle: includes the public acquisition fixture and its mutants.
-    assert_eq!(accepted, 1000);
+    assert_eq!(accepted, 1001);
 }
 
 #[test]

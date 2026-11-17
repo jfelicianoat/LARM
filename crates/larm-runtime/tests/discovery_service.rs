@@ -282,13 +282,24 @@ impl Test {
             .unwrap()
             .unwrap();
         #[cfg(windows)]
-        assert!(
-            std::fs::OpenOptions::new()
-                .write(true)
-                .open(&self.repo.package_exe)
-                .is_ok(),
-            "el paquete sigue retenido después de terminar"
-        );
+        {
+            // Windows libera el bloqueo del ejecutable de forma asíncrona tras
+            // terminar el proceso: bajo carga puede tardar, así que se reintenta
+            // acotado antes de declarar fuga del paquete.
+            let mut released = false;
+            for _ in 0..20 {
+                if std::fs::OpenOptions::new()
+                    .write(true)
+                    .open(&self.repo.package_exe)
+                    .is_ok()
+                {
+                    released = true;
+                    break;
+                }
+                tokio::time::sleep(Duration::from_millis(100)).await;
+            }
+            assert!(released, "el paquete sigue retenido después de terminar");
+        }
     }
     async fn retain(&self) {
         let Some(root) = std::env::var_os("LARM_P031_NATIVE_EVIDENCE_DIR") else {

@@ -1,0 +1,119 @@
+{
+    "prompt":  "P081",
+    "real":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "check":  "cargo_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "cargo_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Checking larm-domain v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-domain) |     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.61s"
+                   },
+                   {
+                       "check":  "test_fixtures",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.58s"
+                   },
+                   {
+                       "check":  "cargo_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "architecture",
+                       "result":  "PASS",
+                       "detail":  "exit=0   \"status\": \"PASS\", |   \"workspace\": \"C:\\\\Procesos\\\\Local AI Runtime Manager — LARM\\\\larm\\\\apps\\\\desktop\\\\src-tauri\", |   \"crates_checked\": 1, |   \"failures\": [] | }"
+                   },
+                   {
+                       "check":  "package_copy",
+                       "result":  "PASS",
+                       "detail":  "exit=0 PASS 81 copias idénticas al paquete 3.15.0"
+                   },
+                   {
+                       "check":  "python_tests",
+                       "result":  "PASS",
+                       "detail":  "exit=0 ---------------------------------------------------------------------- | Ran 2 tests in 47.028s | System.Management.Automation.RemoteException | OK | PASS: 8 suites"
+                   },
+                   {
+                       "check":  "desktop_fmt",
+                       "result":  "PASS",
+                       "detail":  "exit=0 "
+                   },
+                   {
+                       "check":  "desktop_clippy",
+                       "result":  "PASS",
+                       "detail":  "exit=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.93s"
+                   },
+                   {
+                       "check":  "desktop_test",
+                       "result":  "PASS",
+                       "detail":  "exit=0  | running 0 tests |  | test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s | "
+                   },
+                   {
+                       "check":  "P081_evidence",
+                       "result":  "PASS",
+                       "detail":  "exit=0    BLOQUEO  cualificación real por versión upstream (P099): los locks vigentes permanecen UNQUALIFIED |    BLOQUEO  primera instalación real con estrategia WSL/CONTAINER exige lock cualificado (P031) |    BLOQUEO  dependencia P030 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P022 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS) |    BLOQUEO  dependencia P031 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+                   }
+               ],
+    "transcripts":  {
+                        "cargo_fmt":  {
+                                          "path":  "docs/reports/check_runs/20261115T1112535912572Z/cargo_fmt.log",
+                                          "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                          "exit_code":  0
+                                      },
+                        "cargo_clippy":  {
+                                             "path":  "docs/reports/check_runs/20261115T1112535912572Z/cargo_clippy.log",
+                                             "sha256":  "7eec87922a9809b05e1759142a274297743f8bc323daf4b936e99fad88be815b",
+                                             "exit_code":  0
+                                         },
+                        "test_fixtures":  {
+                                              "path":  "docs/reports/check_runs/20261115T1112535912572Z/test_fixtures.log",
+                                              "sha256":  "a0dcb9621a815f1529193a919b61cb8db1d14725bb86e97643c4f7fffda49e2f",
+                                              "exit_code":  0
+                                          },
+                        "cargo_test":  {
+                                           "path":  "docs/reports/check_runs/20261115T1112535912572Z/cargo_test.log",
+                                           "sha256":  "4e1f7fe36098f7541d4943415aafc0bc42774368a53d95de9849deba8ecd2703",
+                                           "exit_code":  0
+                                       },
+                        "architecture":  {
+                                             "path":  "docs/reports/check_runs/20261115T1112535912572Z/architecture.log",
+                                             "sha256":  "dd93c8d3783a8733bc80a19be08a4f0cad476257824eaca02ed24a8fa9129d9d",
+                                             "exit_code":  0
+                                         },
+                        "package_copy":  {
+                                             "path":  "docs/reports/check_runs/20261115T1112535912572Z/package_copy.log",
+                                             "sha256":  "c762238dcec9f5534423ec02255a3dae2f1f6d4b98f6b35267cef7da338e9d4d",
+                                             "exit_code":  0
+                                         },
+                        "python_tests":  {
+                                             "path":  "docs/reports/check_runs/20261115T1112535912572Z/python_tests.log",
+                                             "sha256":  "d54c0eee5ec5e49d58381d1eb84e8143be23ba8366a792ee3a258f8008cd9032",
+                                             "exit_code":  0
+                                         },
+                        "desktop_fmt":  {
+                                            "path":  "docs/reports/check_runs/20261115T1112535912572Z/desktop_fmt.log",
+                                            "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "exit_code":  0
+                                        },
+                        "desktop_clippy":  {
+                                               "path":  "docs/reports/check_runs/20261115T1112535912572Z/desktop_clippy.log",
+                                               "sha256":  "be2c9f2907fd8a261621a0ee7ec80204c36f47052fd8537e71c74419c36a4b79",
+                                               "exit_code":  0
+                                           },
+                        "desktop_test":  {
+                                             "path":  "docs/reports/check_runs/20261115T1112535912572Z/desktop_test.log",
+                                             "sha256":  "fe323717deda99e6c5c0af3643e164f47cbcf45db95da46626e7075cc40674e5",
+                                             "exit_code":  0
+                                         },
+                        "P081_evidence":  {
+                                              "path":  "docs/reports/check_runs/20261115T1112535912572Z/P081_evidence.log",
+                                              "sha256":  "4507b6c2a51864eba233608b1aa751cf929f3062438dfacf846a913db286a069",
+                                              "exit_code":  0
+                                          }
+                    }
+}

@@ -5,6 +5,7 @@ pub mod catalog;
 pub mod credentials_pipe;
 pub mod discovery_service;
 pub mod endpoints;
+pub mod execution_host;
 pub mod external_adoption;
 pub mod install;
 pub mod install_service;

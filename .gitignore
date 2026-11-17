@@ -18,6 +18,7 @@ apps/desktop/src-tauri/gen
 __pycache__/
 tools/.bin/
 /.local/
+.olive-cache/
 
 # Generated test-run artifacts (never commit)
 docs/reports/*_runs/

@@ -1,0 +1,99 @@
+{
+  "prompt_id": "P119",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "73a9a32c864be998438fd047e13731e5a4b4595c4b799182e99e1f6fe4cbcd58",
+  "inputs_hash": "e87a9358f7cded24a5ef6fabd47c84a03fdfcdbc3293700353dc2c86f3b32af3",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/src/serve.rs",
+    "apps/daemon/tests/download_admission.rs",
+    "crates/larm-api/src/download_admissions.rs",
+    "crates/larm-api/src/lib.rs",
+    "crates/larm-api/src/openapi.rs",
+    "crates/larm-db/src/download_admissions.rs",
+    "crates/larm-db/src/lib.rs",
+    "crates/larm-db/src/migrate.rs",
+    "crates/larm-db/src/source_watches.rs",
+    "crates/larm-db/tests/adapter_selection.rs",
+    "crates/larm-db/tests/download_admissions.rs",
+    "crates/larm-db/tests/integration.rs",
+    "crates/larm-domain/src/auth.rs",
+    "crates/larm-domain/src/download_admission.rs",
+    "crates/larm-domain/src/lib.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P119_admision-autorizada-de-descargas-automaticas.evidence.json",
+    "docs/reports/P119_admision-autorizada-de-descargas-automaticas.md",
+    "migrations/0016_p119_download_admission.sql",
+    "tools/p119_contract_revision.py",
+    "tools/p119_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P119-CONTRACT-domain-evaluator",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-domain --lib download_admission",
+      "fixture_hashes": [],
+      "expected": "evaluador determinista: opt-in apagado sólo notifica, allowlists de fuente/capability/license separadas, trust por debajo del mínimo bloquea, cuota diaria agregada bloquea el excedente, política inválida falla cerrado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_domain-11b22671b55091d0.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P119_runs/P119-CONTRACT-domain-evaluator.log#sha256=046e1ed74fb588f4572166a542985910b194051e9f3ff3e7374534d4ac36b00e"
+      ]
+    },
+    {
+      "id": "P104-CARRIED-contractual-gates",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-db --test download_admissions",
+      "fixture_hashes": [],
+      "expected": "política singleton versionada con journal/evento/outbox, cuota diaria agregada por day_key (800 admitido, excedente bloqueado), revocación inmediata con triggers de inmutabilidad y listado",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s | Running tests\\download_admissions.rs (target\\debug\\deps\\download_admissions-fd6caca9dfc6c8f5.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P119_runs/P104-CARRIED-contractual-gates.log#sha256=7ce4cecb47b872de6d0143934cef587b7169cdd29d40b3d6cd04db346b1cbe80"
+      ]
+    },
+    {
+      "id": "P119-CONTRACT-api-routes",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-api --lib",
+      "fixture_hashes": [],
+      "expected": "PUT/GET de política con If-Match (stale ante versión antigua), GET de admisiones paginado y revocación POST sobre el repositorio real",
+      "observed": "exit=0; Compiling larm-core v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-core) | Compiling larm-api v0.1.0 (C:\\Procesos\\Local AI Runtime Manager — LARM\\larm\\crates\\larm-api) | Finished `test` profile [unoptimized + debuginfo] target(s) in 6.65s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_api-60e084f815a4f920.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P119_runs/P119-CONTRACT-api-routes.log#sha256=c311b11a31d7ce4ea9e4ee50501fcb3062edfd2a5b7bf6667c14f887c6780e8e"
+      ]
+    },
+    {
+      "id": "P119-REAL-quota-admission-and-revocation",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test download_admission -- --nocapture",
+      "fixture_hashes": [],
+      "expected": "flujo contractual REAL en el PC IA sobre SQLite migrado (0016): sin política sólo notifica (policy_disabled), cuota pequeña autorizada (1000 bytes) admite dos descargas de 400 y bloquea la tercera (admission_quota_exhausted), revocación inmediata REVOKED y política persistida sobrevive re-open",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 0.30s | Running tests\\download_admission.rs (target\\debug\\deps\\download_admission-1142440473943e7d.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P119_runs/P119-REAL-quota-admission-and-revocation.log#sha256=5975ca3555b6f4b8ac6c416b76aa255884ca694b875684aa45064488deb85627"
+      ]
+    },
+    {
+      "id": "P119-REAL-watcher-auto-job-end-to-end",
+      "kind": "REAL",
+      "command": "auto-job BACKGROUND end-to-end desde la sincronización del watcher con un job descargado por el consumer",
+      "fixture_hashes": [],
+      "expected": "detección compatible en fuente controlada → admisión con cuota → plan+activación BACKGROUND con job BACKGROUND en el consumer",
+      "observed": "NO EJECUTADA: el activador automático de plan/activación desde el watcher requiere el plan preview real de la fuente (P044 en BLOCKED_REAL) y los locks cualificados de P099/P031 para runtime; la evaluación, cuota, revocación y persistencia sí están verificadas sobre SQLite migrado",
+      "result": "BLOCKED",
+      "evidence_paths": []
+    }
+  ],
+  "blockers": [
+    "auto-job BACKGROUND end-to-end desde watcher: requiere el plan preview real de la fuente (P044 BLOCKED_REAL) y locks cualificados (P099/P031); la política, cuota, revocación y persistencia están verificadas",
+    "UI de historial/revocación: la pantalla de descargas consume las mismas rutas contratadas; el panel dedicado queda para el cierre de UI de P129/P139",
+    "dependencia P050 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P052 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P009 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-11-16T16:57:02.019Z"
+}

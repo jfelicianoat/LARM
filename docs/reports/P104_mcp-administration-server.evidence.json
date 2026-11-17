@@ -1,0 +1,57 @@
+{
+  "prompt_id": "P104",
+  "status": "BLOCKED_REAL",
+  "host_id": "A9_Mega (Windows-11-10.0.26200-SP0)",
+  "environment_lock_hash": "2ba329f239d305db70d3223594fa085917454aa05d9c3e33005b9ca58f10c6cb",
+  "inputs_hash": "edf138bde44633e760afd341e9fc7f1718a44519ffbd5d22d9e8369abb71c119",
+  "changed_files": [
+    "apps/daemon/Cargo.toml",
+    "apps/daemon/tests/mcp_admin.rs",
+    "crates/larm-protocol/Cargo.toml",
+    "crates/larm-protocol/src/lib.rs",
+    "crates/larm-protocol/src/mcp_admin/mod.rs",
+    "crates/larm-protocol/src/mcp_admin/permissions.rs",
+    "crates/larm-protocol/src/mcp_admin/server.rs",
+    "crates/larm-protocol/src/mcp_admin/tests.rs",
+    "docs/implementation/STATE.md",
+    "docs/reports/P104_mcp-administration-server.evidence.json",
+    "docs/reports/P104_mcp-administration-server.md",
+    "tools/p104_evidence.py"
+  ],
+  "tests": [
+    {
+      "id": "P104-CONTRACT-mcp-admin-server",
+      "kind": "CONTRACT",
+      "command": "cargo test -p larm-protocol --lib mcp_admin",
+      "fixture_hashes": [],
+      "expected": "catálogo sellado de 12 herramientas con operaciones publicadas, matriz H06 (start/stop, install/update, admin nunca añade scopes API), confirmation_required sin ejecutar, bucle stdio con JSON inválido y audit sin secretos",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 1.01s | Running unittests src\\lib.rs (target\\debug\\deps\\larm_protocol-916f6e41ede53072.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P104_runs/P104-CONTRACT-mcp-admin-server.log#sha256=3fd2f01f90de3f545da350f9e460518693880c623cc151af767d8cfa5a6dcc37"
+      ]
+    },
+    {
+      "id": "P104-REAL-mcp-server-with-core-use-cases",
+      "kind": "REAL",
+      "command": "cargo test -p larm-daemon --test mcp_admin -- --nocapture",
+      "fixture_hashes": [],
+      "expected": "servidor MCP sobre la superficie API real del Core en loopback del PC IA: initialize con credencial real, tools/list 12, larm.get_hardware ejecuta el caso de uso real, stop sin permiso MCP FORBIDDEN, delete sin confirm confirmation_required y con confirm el rechazo real del Core",
+      "observed": "exit=0; Finished `test` profile [unoptimized + debuginfo] target(s) in 2.46s | Running tests\\mcp_admin.rs (target\\debug\\deps\\mcp_admin-02e6a96d14abfa9d.exe)",
+      "result": "PASS",
+      "evidence_paths": [
+        "docs/reports/P104_runs/P104-REAL-mcp-server-with-core-use-cases.log#sha256=1a94e4daa2b79ca6386593b91634e9f88e046d809084427693c9fcf2fd1af848"
+      ]
+    }
+  ],
+  "blockers": [
+    "REAL_PASS de P104 exige las herramientas MCP sobre lock cualificado y leases reales con runtime instalado (P031/P099 en BLOCKED_REAL); el paquete llm-mcp-admin distribuido como proceso del operador y el wizard de UI de la spec son fases de cierre.",
+    "dependencia P005 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P022 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P051 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P032 en NOT_STARTED (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P100 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)",
+    "dependencia P029 en BLOCKED_REAL (contrato 00: el consumidor no se completa sin REAL_PASS)"
+  ],
+  "generated_at": "2026-11-15T23:34:38.944Z"
+}

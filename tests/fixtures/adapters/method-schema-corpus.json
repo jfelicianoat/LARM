@@ -4003,6 +4003,7 @@
       "method": "runtime.install_plan",
       "valid": true,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -4090,6 +4091,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "p026_extra_field": "not-in-contract",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -4106,6 +4108,21 @@
       "value": {
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": true,
+      "value": {
+        "execution_host_id": null,
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
         "upstream_version": "x"
@@ -4116,9 +4133,10 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": null,
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
         "upstream_version": "x"
@@ -4129,9 +4147,10 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "not-a-uuid-or-hash",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
         "upstream_version": "x"
@@ -4142,9 +4161,10 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": -1,
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "not-a-uuid-or-hash",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
         "upstream_version": "x"
@@ -4155,9 +4175,10 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": {},
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": -1,
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
         "upstream_version": "x"
@@ -4168,117 +4189,15 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": {},
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": [
+        "execution_host_id": [
           null
         ],
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "9223372036854775807",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "9223372036854775808",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "9999999999999999999",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "18446744073709551616",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "00001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
-        "upstream_version": null
+        "upstream_version": "x"
       }
     },
     {
@@ -4286,25 +4205,27 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "9223372036854775807",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
-        "upstream_version": ""
+        "upstream_version": "x"
       }
     },
     {
       "direction": "request",
       "method": "runtime.install_plan",
-      "valid": true,
+      "valid": false,
       "value": {
+        "execution_host_id": "9223372036854775808",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
-        "upstream_version": "not-a-uuid-or-hash"
+        "upstream_version": "x"
       }
     },
     {
@@ -4312,12 +4233,13 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "9999999999999999999",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
-        "upstream_version": -1
+        "upstream_version": "x"
       }
     },
     {
@@ -4325,12 +4247,13 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "18446744073709551616",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
-        "upstream_version": {}
+        "upstream_version": "x"
       }
     },
     {
@@ -4338,90 +4261,12 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "00001",
         "external_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
-        "upstream_version": [
-          null
-        ]
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": true,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "9223372036854775807"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": true,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "9223372036854775808"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": true,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "9999999999999999999"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": true,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "18446744073709551616"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": true,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "00001"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "upstream_version": "x"
       }
     },
@@ -4430,465 +4275,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": null,
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "not-a-uuid-or-hash",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": -1,
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": {},
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": [
-          null
-        ],
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "9223372036854775807",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "9223372036854775808",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "9999999999999999999",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "18446744073709551616",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "00001",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": null,
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "not-a-uuid-or-hash",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": -1,
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": {},
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": [
-          null
-        ],
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "9223372036854775807",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "9223372036854775808",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "9999999999999999999",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "18446744073709551616",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "00001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": null,
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "not-a-uuid-or-hash",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": -1,
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": {},
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": [
-          null
-        ],
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "9223372036854775807",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "9223372036854775808",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "9999999999999999999",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "18446744073709551616",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
-        "external_host_id": "019a0000-0000-7000-8000-000000000001",
-        "profile_lock_hash": "00001",
-        "runtime_id": "019a0000-0000-7000-8000-000000000001",
-        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
-        "strategy": "PREBUILT_BINARY",
-        "upstream_version": "x"
-      }
-    },
-    {
-      "direction": "request",
-      "method": "runtime.install_plan",
-      "valid": false,
-      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
@@ -4901,6 +4288,7 @@
       "method": "runtime.install_plan",
       "valid": true,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": null,
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -4914,6 +4302,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -4927,6 +4316,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "not-a-uuid-or-hash",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -4940,6 +4330,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": -1,
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -4953,6 +4344,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": {},
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -4966,6 +4358,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": [
           null
         ],
@@ -4981,6 +4374,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "9223372036854775807",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -4994,6 +4388,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "9223372036854775808",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -5007,6 +4402,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "9999999999999999999",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -5020,6 +4416,7 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "18446744073709551616",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
@@ -5033,12 +4430,858 @@
       "method": "runtime.install_plan",
       "valid": false,
       "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
         "external_host_id": "00001",
         "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "runtime_id": "019a0000-0000-7000-8000-000000000001",
         "storage_location_id": "019a0000-0000-7000-8000-000000000001",
         "strategy": "PREBUILT_BINARY",
         "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": null,
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "not-a-uuid-or-hash",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": -1,
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": {},
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": [
+          null
+        ],
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "9223372036854775807",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "9223372036854775808",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "9999999999999999999",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "18446744073709551616",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "00001",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": null,
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "not-a-uuid-or-hash",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": -1,
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": {},
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": [
+          null
+        ],
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "9223372036854775807",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "9223372036854775808",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "9999999999999999999",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "18446744073709551616",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "00001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": null,
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "not-a-uuid-or-hash",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": -1,
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": {},
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": [
+          null
+        ],
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "9223372036854775807",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "9223372036854775808",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "9999999999999999999",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "18446744073709551616",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "00001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": null,
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "not-a-uuid-or-hash",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": -1,
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": {},
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": [
+          null
+        ],
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "9223372036854775807",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "9223372036854775808",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "9999999999999999999",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "18446744073709551616",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "00001",
+        "upstream_version": "x"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": null
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": ""
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": true,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "not-a-uuid-or-hash"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": -1
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": {}
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": false,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": [
+          null
+        ]
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": true,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "9223372036854775807"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": true,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "9223372036854775808"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": true,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "9999999999999999999"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": true,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "18446744073709551616"
+      }
+    },
+    {
+      "direction": "request",
+      "method": "runtime.install_plan",
+      "valid": true,
+      "value": {
+        "execution_host_id": "019a0000-0000-7000-8000-000000000001",
+        "external_host_id": "019a0000-0000-7000-8000-000000000001",
+        "profile_lock_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "runtime_id": "019a0000-0000-7000-8000-000000000001",
+        "storage_location_id": "019a0000-0000-7000-8000-000000000001",
+        "strategy": "PREBUILT_BINARY",
+        "upstream_version": "00001"
       }
     },
     {
@@ -235193,7 +235436,7 @@
       }
     }
   ],
-  "index_sha256": "6d62243be4621e949bf9f9acdcdcebe783f5f7c2acccab0d194de174999a675e",
+  "index_sha256": "c8b0a0c3274292702ebeb533f0aeba86f2a107be2dc5c58c1d9aead68f29b14c",
   "schema_version": "1.0",
   "scope": "schema data only, not worker qualification"
 }

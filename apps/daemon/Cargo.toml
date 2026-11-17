@@ -16,6 +16,7 @@ larm-domain = { workspace = true }
 larm-api = { workspace = true }
 larm-runtime = { workspace = true }
 larm-db = { workspace = true }
+larm-protocol = { workspace = true }
 larm-hardware = { workspace = true }
 larm-storage = { workspace = true }
 larm-models = { workspace = true }
